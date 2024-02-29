@@ -1,0 +1,314 @@
+import prisma from "../../db";
+import Link from "next/link";
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
+
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+
+type Props = {
+  params: { id: string }
+  // searchParams: { [key: string]: string | string[] | undefined }
+}
+
+export default async function ViewBuilding({ params }: Props) {
+  console.log(params);
+
+  // Get building information
+  const building = await prisma.buildings.findUnique({
+    where: {
+      id: params.id,
+    },
+  });
+
+  console.log(building);
+
+  // Get floors information
+  const floors = await prisma.floors.findMany({
+    where: {
+      building_id: params.id,
+    },
+  });
+
+  console.log(floors);
+
+  return (
+    <>
+      <div className="flex justify-between mb-4">
+        <h1></h1>
+        <Button asChild>
+          <Link href={"/buildings/floor/add/" + params.id}
+          >
+            Add floor information</Link>
+        </Button>
+      </div>
+      <div className="border border-gray-400 ">
+        <Table>
+          <TableBody>
+            <TableRow>
+              <TableCell  >Name </TableCell > <TableCell >{building?.name}</TableCell >
+            </TableRow>
+            <TableRow>
+              <TableCell >City </TableCell > <TableCell >{building?.city}</TableCell >
+            </TableRow>
+            {/* Facilities */}
+            <TableRow>
+              <TableCell >Facilities </TableCell >
+              <TableCell >
+                {building?.is_centrally_air_conditioned && (
+                  // <div className="badge bg-emerald-700 text-white ">Centrally Airconditioned </div>
+                  <Badge>Centrally Airconditioned </Badge>
+                )}
+                {building?.has_security && (
+                  // <div className="badge bg-emerald-700 text-white">Security</div>
+                  <Badge>Security</Badge>
+                )}
+                {building?.has_escalators && (
+                  // <div className="badge bg-emerald-700 text-white">Escalators</div>
+                  <Badge>Escalators</Badge>
+                )}
+                {building?.has_entertainment_area && (
+                  // <div className="badge bg-emerald-700 text-white">Entertainment Area</div>
+                  <Badge>Entertainment Area</Badge>
+                )}
+              </TableCell >
+            </TableRow>
+            {/* Type */}
+            <TableRow>
+              <TableCell >Type </TableCell >
+              <TableCell >
+                {building?.type_retail && (
+                  // <div className="badge bg-cyan-950 text-white">Retail</div>
+                  <Badge>Retail</Badge>
+                )}
+                {building?.type_offices && (
+                  // <div className="badge bg-cyan-950 text-white">Offices</div>
+                  <Badge>Offices</Badge>
+                )}
+                {building?.type_apartments && (
+                  // <div className="badge bg-cyan-950 text-white">Apartments</div>
+                  <Badge>Apartments</Badge>
+                )}
+                {building?.type_other && (
+                  // <div className="badge bg-cyan-950 text-white">Other</div>
+                  <Badge>Other</Badge>
+                )}
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell >Zone </TableCell > <TableCell >{building?.zone}</TableCell >
+            </TableRow>
+            <TableRow>
+              <TableCell >Area </TableCell > <TableCell >{building?.area}</TableCell >
+            </TableRow>
+            <TableRow>
+              <TableCell >Address</TableCell > <TableCell >{building?.address}</TableCell >
+            </TableRow>
+            <TableRow>
+              <TableCell >Plot Size (Sq. Yards)</TableCell > <TableCell >{building?.plot_size}</TableCell >
+            </TableRow>
+            <TableRow>
+              <TableCell >Construction Area (Sq. Yards)</TableCell > <TableCell >{building?.construction_area}</TableCell >
+            </TableRow>
+            <TableRow>
+              <TableCell >Construction Year </TableCell > <TableCell >{building?.construction_year}</TableCell >
+            </TableRow>
+            <TableRow>
+              <TableCell >Builder Name</TableCell > <TableCell >{building?.builder_name}</TableCell >
+            </TableRow>
+            <TableRow>
+              <TableCell >Building Rank</TableCell > <TableCell >{building?.building_rank}</TableCell >
+            </TableRow>
+            <TableRow>
+              <TableCell >Total Floors</TableCell > <TableCell >{building?.total_floors}</TableCell >
+            </TableRow>
+            <TableRow>
+              <TableCell >Parking Floors</TableCell > <TableCell >{building?.parking_floors}</TableCell >
+            </TableRow>
+
+            <TableRow>
+              <TableCell >Apartment Floors</TableCell > <TableCell >{building?.apartment_floors}</TableCell >
+            </TableRow>
+            <TableRow>
+              <TableCell >Apartments Count:</TableCell > <TableCell >{building?.apartments_count}</TableCell >
+            </TableRow>
+            <TableRow>
+              <TableCell >Apartment Types </TableCell >
+              <TableCell >
+                {building?.apartments_has_type_1_bed && (
+                  // <div className="badge bg-cyan-800 text-white">1 Bed</div>
+                  <Badge>1 Bed</Badge>
+                )}
+                {building?.apartments_has_type_2_bed && (
+                  // <div className="badge bg-cyan-800 text-white">2 Bed</div>
+                  <Badge>2 Bed</Badge>
+                )}
+                {building?.apartments_has_type_3_bed && (
+                  // <div className="badge bg-cyan-800 text-white">3 Bed</div>
+                  <Badge>3 Bed</Badge>
+                )}
+                {building?.apartments_has_type_4_bed && (
+                  // <div className="badge bg-cyan-800 text-white">4 Bed</div>
+                  <Badge>4 Bed</Badge>
+                )}
+                {building?.apartments_has_type_duplex && (
+                  // <div className="badge bg-cyan-800 text-white">Duplex</div>
+                  <Badge>Duplex</Badge>
+                )}
+                {building?.apartments_has_type_penthouse && (
+                  // <div className="badge bg-cyan-800 text-white">Penthouse</div>
+                  <Badge>Penthouse</Badge>
+                )}
+              </TableCell >
+            </TableRow>
+            <TableRow>
+              <TableCell >Servant Quarter</TableCell >{" "}
+              <TableCell >{building?.apartments_has_servant_quarter}</TableCell >
+            </TableRow>
+            <TableRow>
+              <TableCell >Apartment Maintenance Fee Rs.</TableCell >{" "}
+              <TableCell >{building?.apartments_maintenance_fee}</TableCell >
+            </TableRow>
+
+            <TableRow>
+              <TableCell >No. of Retail Floors</TableCell >{" "}
+              <TableCell >{building?.retail_floors_count}</TableCell >
+            </TableRow>
+            <TableRow>
+              <TableCell >Retails shops</TableCell >{" "}
+              <TableCell >{building?.retail_floors_shops_count}</TableCell >
+            </TableRow>
+            <TableRow>
+              <TableCell >Shop Maintenance Fee Rs.</TableCell >{" "}
+              <TableCell >{building?.apartments_maintenance_fee}</TableCell >
+            </TableRow>
+            <TableRow>
+              <TableCell >Brands</TableCell > <TableCell >{building?.retail_floors_brands}</TableCell >
+            </TableRow>
+
+            <TableRow>
+              <TableCell >Office Floors</TableCell > <TableCell >{building?.office_floors_count}</TableCell >
+            </TableRow>
+            <TableRow>
+              <TableCell >Offices</TableCell > <TableCell >{building?.office_floors_count}</TableCell >
+            </TableRow>
+            <TableRow>
+              <TableCell >Maintenance Fee Rs. (Per Sq. Ft.)</TableCell >{" "}
+              <TableCell >{building?.office_maintenance_fee}</TableCell >
+            </TableRow>
+
+            <TableRow>
+              <TableCell >surveyor_name</TableCell > <TableCell >{building?.surveyor_name}</TableCell >
+            </TableRow>
+            {/* <TableRow>
+              <td>Remarks</td> <td>{building.building_survery_remarks}</td>
+            </TableRow> */}
+
+            {/* <tr>
+            <td> </td> <td>{building.}</td>
+          </tr>
+          <tr>
+            <td> </td> <td>{building.}</td>
+          </tr> */}
+          </TableBody>
+        </Table>
+      </div>
+
+      <div className="border mt-4 text-center border-gray-400 overflow-auto" >
+        <Table className="">
+          <TableHeader className=" text-center">
+            <TableHead >
+              <div className=" text-left">Floor No</div></TableHead >
+            <TableHead >Type</TableHead >
+            <TableHead >Unit</TableHead >
+            <TableHead >Occupancy Ratio</TableHead >
+            <TableHead >Min Size</TableHead >
+            <TableHead >Max size</TableHead >
+            <TableHead >Avg. Sale Price</TableHead >
+            <TableHead >Monthly Rent</TableHead >
+            <TableHead >Instalment Plan</TableHead >
+            <TableHead >Instalment Period</TableHead >
+            <TableHead >Down Payment</TableHead >
+            <TableHead >Total Sale Price</TableHead >
+            <TableHead >Possession Amount</TableHead >
+            <TableHead >Remarks</TableHead >
+          </TableHeader>
+          <TableBody className="">
+            {floors.map((floor) => (
+              <TableRow key={floor?.id} className="border-b border-gray-400 text-center">
+                <TableCell >
+                  <div className=" text-left w-28">{floor?.floor_no}</div>
+                </TableCell >
+                <TableCell >
+                  <div className="">{floor?.floor_type}</div></TableCell >
+                <TableCell >{floor?.unit_type}</TableCell >
+                <TableCell >{floor?.occupancy}</TableCell >
+                <TableCell >{floor?.size_min}</TableCell >
+                <TableCell >{floor?.size_max}</TableCell >
+                <TableCell >{floor?.avg_sale_price}</TableCell >
+                <TableCell >{floor?.avg_monthly_rent}</TableCell >
+                <TableCell >{floor?.instalment_plan}</TableCell >
+                <TableCell >{floor?.instalment_period}</TableCell >
+                <TableCell >{floor?.down_payment_amount}</TableCell >
+                <TableCell >{floor?.instalment_amount}</TableCell >
+                <TableCell >{floor?.possession_amount}</TableCell >
+                <TableCell >{floor?.remarks}</TableCell >
+                <TableCell >
+                  {/* <div className="flex justify-center items-center border border-slate-400 px-2 py-1 rounded hover:bg-cyan-800 outline-none hover:text-white">
+                    <Link
+
+                      className="flex"
+                      href={"/buildings/floor/edit/" + floor?.id}
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+                      </svg>
+
+                      Edit
+                    </Link>
+                  </div> */}
+
+                  <Button asChild>
+                    <Link href={"/buildings/floor/edit/" + floor?.id}
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+                      </svg>
+                      Edit
+                    </Link>
+                  </Button>
+
+                </TableCell >
+
+              </TableRow>
+
+
+            ))}
+          </TableBody>
+        </Table>
+
+      </div>
+      <div className="flex justify-center mt-2">
+        {/* <Link href={"/buildings/floor/add/" + params.id}>
+
+          <button className="btn mt-2 bg-white text-black hover:bg-cyan-800 hover:text-white capitalize mb-2 text-base">Add Floor Information</button>
+        </Link> */}
+
+        <Button asChild>
+          <Link href={"/buildings/floor/add/" + params.id}
+          >
+            Add floor information</Link>
+        </Button>
+      </div>
+
+
+    </>
+  );
+}
