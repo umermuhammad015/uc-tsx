@@ -67,7 +67,7 @@ export default async function List() {
 
             >
               <div>+</div>
-              Add New Buildings</Link>
+              Add New Building</Link>
           </Button>
 
 
