@@ -81,7 +81,7 @@ export default async function List() {
           <TableHeader>
             <TableRow className="">
               <TableHead >
-                <div className=" text-lg">Buildings Name</div>
+                <div className=" text-lg">Buildings Names</div>
               </TableHead >
               <TableHead>
                 <div className="text-lg">Status</div>
