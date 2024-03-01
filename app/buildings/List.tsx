@@ -19,6 +19,7 @@ import {
 } from "@/components/ui/table"
 
 export const revalidate = 0 // revalidate the date at most every hour
+export const dynamic = "force-dynamic";
 
 function getBuildings() {
   return prisma.buildings.findMany();
