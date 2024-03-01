@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client'
 
-export const revalidate = 3600 // revalidate the date at most every hour
+
 
 const prismaClientSingleton = () => {
   return new PrismaClient()
