@@ -11,7 +11,7 @@ import Header from "@/components/header";
 // import { useState } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
-export const revalidate = 3600 // revalidate the date at most every hour
+
 
 export const metadata: Metadata = {
   title: "Urban Consultants",
