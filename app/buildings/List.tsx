@@ -18,7 +18,7 @@ import {
   TableRow,
 } from "@/components/ui/table"
 
-export const revalidate = 2 // revalidate the date at most every hour
+export const revalidate = 0 // revalidate the date at most every hour
 
 function getBuildings() {
   return prisma.buildings.findMany();
