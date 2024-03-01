@@ -17,6 +17,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
+export const revalidate = 3600 // revalidate the date at most every hour
 
 function getBuildings() {
   return prisma.buildings.findMany();
@@ -62,7 +63,7 @@ export default async function List() {
 
           <Button asChild >
             <Link href="/buildings/new"
-            
+
             >
               <div>+</div>
               Add New Buildings</Link>
@@ -149,7 +150,7 @@ export default async function List() {
                 <TableCell >{building.city}</TableCell >
                 <TableCell >{building.area}</TableCell >
                 <TableCell >
-                  <div className="flex justify-around gap-2">
+                  <div className="flex justify-around">
                     <div className="flex gap-4">
                       {/* <div className="flex justify-center items-center border border-slate-400 px-2 rounded hover:bg-cyan-800 outline-none hover:text-white">
                         <Link
@@ -202,7 +203,7 @@ export default async function List() {
                 </TableCell >
               </TableRow>
             ))}
-            
+
           </TableBody>
 
         </Table >
@@ -300,7 +301,7 @@ export default async function List() {
                         </Link>
                       </div> */}
 
-                      {/* <Button asChild>
+      {/* <Button asChild>
                         <Link href={"buildings/edit/" + building.id}
                         >
                           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6">
@@ -311,27 +312,27 @@ export default async function List() {
                       </Button> */}
 
 
-                      {/* <Link
+      {/* <Link
                         className="flex justify-center items-center border border-slate-400 px-2 py-1 rounded hover:bg-cyan-800 outline-none hover:text-white "
                         href={"buildings/floor/add/" + building.id}
                       >
                         Add floor information
                       </Link> */}
 
-                      {/* <Button asChild>
+      {/* <Button asChild>
                         <Link href={"buildings/floor/add/" + building.id}
                         >
                           Add floor information</Link>
                       </Button>
                     </div> */}
 
-                    {/* <form action={deleteBuilding}>
+      {/* <form action={deleteBuilding}>
                       <input type="hidden" name="building-id" value={building.id} />
                       <DeleteBuildingButton /> */}
-                      {/* <button type="submit" className="btn bg-red-700 text-white hover:bg-red-800 capitalize">
+      {/* <button type="submit" className="btn bg-red-700 text-white hover:bg-red-800 capitalize">
                         Delete
                       </button> */}
-                    {/* </form>
+      {/* </form>
 
                   </div>
                 </td>
@@ -339,7 +340,7 @@ export default async function List() {
             ))}
             <tr> */}
 
-            {/* </tr>
+      {/* </tr>
           </tbody>
 
         </table >
