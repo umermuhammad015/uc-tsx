@@ -96,7 +96,7 @@ export default async function List() {
                 <div className="text-lg">Area</div>
               </TableHead>
               <TableHead>
-                <div className="text-lg">Actions</div>
+                <div className="text-lg">Action</div>
               </TableHead>
 
 
