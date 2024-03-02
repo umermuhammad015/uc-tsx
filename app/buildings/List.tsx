@@ -1,11 +1,9 @@
-
-
 import Link from "next/link";
 import prisma from "../db";
 import { redirect } from "next/navigation";
 import DeleteBuildingButton from "./components/DeleteBuildingButton";
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import ThemeToggleButton from "@/components/ThemeToggleButton";
 
 import {
@@ -16,9 +14,10 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table"
+} from "@/components/ui/table";
+import { revalidatePath } from "next/cache";
 
-export const revalidate = 0 // revalidate the date at most every hour
+export const revalidate = 0; // revalidate the date at most every hour
 export const dynamic = "force-dynamic";
 
 function getBuildings() {
@@ -41,6 +40,7 @@ export default async function List() {
       },
     });
 
+    revalidatePath("/");
     redirect("/buildings");
   }
 
@@ -54,8 +54,7 @@ export default async function List() {
     <>
       <header className="flex justify-between items-center ">
         <h1 className="text-2xl"></h1>
-        <div >
-
+        <div>
           {/* <Link
             className="flex justify-center items-center"
             href="/buildings/new"
@@ -63,27 +62,21 @@ export default async function List() {
             Add New Buildings
           </Link> */}
 
-          <Button asChild >
-            <Link href="/buildings/new"
-
-            >
+          <Button asChild>
+            <Link href="/buildings/new">
               <div>+</div>
-              Add New Buildings</Link>
+              Add New Buildings
+            </Link>
           </Button>
-
-
-
-
         </div>
-
       </header>
       <div className="mt-4">
         <Table className="table text-base ">
           <TableHeader>
             <TableRow className="">
-              <TableHead >
+              <TableHead>
                 <div className=" text-lg">Buildings Names</div>
-              </TableHead >
+              </TableHead>
               <TableHead>
                 <div className="text-lg">Status</div>
               </TableHead>
@@ -99,16 +92,16 @@ export default async function List() {
               <TableHead>
                 <div className="text-lg">Actions</div>
               </TableHead>
-
-
             </TableRow>
           </TableHeader>
           <TableBody>
             {buildings.map((building) => (
               <TableRow key={building.id} className="">
-                <TableCell ><Link href={"buildings/" + building.id}>{building.name}</Link></TableCell >
-                <TableCell >{building.status}</TableCell >
-                <TableCell  >
+                <TableCell>
+                  <Link href={"buildings/" + building.id}>{building.name}</Link>
+                </TableCell>
+                <TableCell>{building.status}</TableCell>
+                <TableCell>
                   <div className="flex flex-col ">
                     <div>
                       {building.type_retail && (
@@ -147,11 +140,10 @@ export default async function List() {
                       )}
                     </div>
                   </div>
-
-                </TableCell >
-                <TableCell >{building.city}</TableCell >
-                <TableCell >{building.area}</TableCell >
-                <TableCell >
+                </TableCell>
+                <TableCell>{building.city}</TableCell>
+                <TableCell>{building.area}</TableCell>
+                <TableCell>
                   <div className="flex justify-around">
                     <div className="flex gap-4">
                       {/* <div className="flex justify-center items-center border border-slate-400 px-2 rounded hover:bg-cyan-800 outline-none hover:text-white">
@@ -169,15 +161,24 @@ export default async function List() {
                       </div> */}
 
                       <Button asChild>
-                        <Link href={"buildings/edit/" + building.id}
-                        >
-                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+                        <Link href={"buildings/edit/" + building.id}>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke-width="1.5"
+                            stroke="currentColor"
+                            className="w-6 h-6"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
+                            />
                           </svg>
                           Edit
                         </Link>
                       </Button>
-
 
                       {/* <Link
                         className="flex justify-center items-center border border-slate-400 px-2 py-1 rounded hover:bg-cyan-800 outline-none hover:text-white "
@@ -187,30 +188,30 @@ export default async function List() {
                       </Link> */}
 
                       <Button asChild>
-                        <Link href={"buildings/floor/add/" + building.id}
-                        >
-                          Add floor information</Link>
+                        <Link href={"buildings/floor/add/" + building.id}>
+                          Add floor information
+                        </Link>
                       </Button>
-                    </div>
 
-                    <form action={deleteBuilding}>
-                      <input type="hidden" name="building-id" value={building.id} />
-                      <DeleteBuildingButton />
-                      {/* <button type="submit" className="btn bg-red-700 text-white hover:bg-red-800 capitalize">
+                      <form action={deleteBuilding}>
+                        <input
+                          type="hidden"
+                          name="building-id"
+                          value={building.id}
+                        />
+                        <DeleteBuildingButton />
+                        {/* <button type="submit" className="btn bg-red-700 text-white hover:bg-red-800 capitalize">
                         Delete
                       </button> */}
-                    </form>
-
+                      </form>
+                    </div>
                   </div>
-                </TableCell >
+                </TableCell>
               </TableRow>
             ))}
-
           </TableBody>
-
-        </Table >
+        </Table>
       </div>
-
 
       {/* <div className="">
         <table className="table text-base ">
@@ -312,7 +313,6 @@ export default async function List() {
                           Edit
                         </Link>
                       </Button> */}
-
 
       {/* <Link
                         className="flex justify-center items-center border border-slate-400 px-2 py-1 rounded hover:bg-cyan-800 outline-none hover:text-white "

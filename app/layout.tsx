@@ -7,12 +7,11 @@ import Link from "next/link";
 import { ThemeProvider } from "./ThemeProvider";
 import ThemeToggleButton from "@/components/ThemeToggleButton";
 import Header from "@/components/header";
+import NextProgressClient from "@/components/nextprogress-client";
 // import ThemeToggleButton from "@/components/ThemeToggleButton";
 // import { useState } from "react";
 
-
 const inter = Inter({ subsets: ["latin"] });
-
 
 export const metadata: Metadata = {
   title: "Urban Consultants",
@@ -28,19 +27,15 @@ export default function RootLayout({
     <html lang="en">
       <body
         // style={{ minWidth: "1000px" }} className={`$(inter.className) bg-white text-black font-semibold container mx-auto p-4 `}
-        style={{ minWidth: "1000px" }} className={`$(inter.className) text-primary font-semibold container mx-auto p-4 `}
+        style={{ minWidth: "1000px" }}
+        className={`$(inter.className) text-primary font-semibold container mx-auto p-4 `}
       >
-
+        <NextProgressClient />
 
         <ThemeProvider attribute="class">
           <Header />
-          <main className="container mx-auto">
-            {children}
-          </main>
+          <main className="container mx-auto">{children}</main>
         </ThemeProvider>
-
-
-
       </body>
     </html>
   );

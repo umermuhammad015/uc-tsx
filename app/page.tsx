@@ -2,6 +2,8 @@ import Link from "next/link";
 import { BuildingsList } from "./components/BuildingsList";
 import prisma from "./db";
 
+export const revalidate = 1; // revalidate the date at most every hour
+export const dynamic = "force-dynamic";
 
 function getBuildings(){
   return prisma.buildings.findMany()

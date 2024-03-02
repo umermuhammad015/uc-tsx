@@ -1,6 +1,7 @@
 import Link from "next/link";
 import prisma from "../db";
 import { redirect } from "next/navigation";
+import { revalidatePath } from "next/cache";
 
 async function createBuilding(data: FormData) {
   "use server";
@@ -28,6 +29,7 @@ async function createBuilding(data: FormData) {
 
   // console.log("Hi")
 
+  revalidatePath("/");
   redirect("/buildings");
 }
 

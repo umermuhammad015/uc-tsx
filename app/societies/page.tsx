@@ -14,8 +14,8 @@ import {
     TableRow,
   } from "@/components/ui/table"
 
-
-
+export const revalidate = 1; // revalidate the date at most every hour
+export const dynamic = "force-dynamic";
 
 function getSocieties() {
     return prisma.societies.findMany();
