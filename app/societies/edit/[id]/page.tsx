@@ -59,8 +59,8 @@ export default async function editForm({ params }: any) {
         // const societies_survey_date = new Date(data.get("societies-survey-date")?.valueOf() as string);
         // const societies_survey_date = (new Date(data.get("societies-survey-date")?.valueOf())).toISOString();
 
-        const societies_survey_date = (new Date(data.get("societies-survey-date")?.valueOf() as string)).toISOString().substring(0,10) ;
-        
+        const societies_survey_date = (new Date(data.get("societies-survey-date")?.valueOf() as string)).toISOString().substring(0, 10);
+
         const city = data.get("societies-city")?.valueOf();
 
         const project_type = data.get("societies-project-type")?.valueOf();
@@ -138,11 +138,23 @@ export default async function editForm({ params }: any) {
 
         const utilities_type_underground_electrification = data.get("utilities-type-underground-electrification")?.valueOf() === undefined ? null : "yes";
 
+        const features_type_college = data.get("features-type-college")?.valueOf() === undefined ? null : "yes";
+
+        const features_type_graveyard = data.get("features-type-graveyard")?.valueOf() === undefined ? null : "yes";
+
+        const features_type_masjid = data.get("features-type-masjid")?.valueOf() === undefined ? null : "yes";
+
+        const features_type_community_club = data.get("features-type-community_club")?.valueOf() === undefined ? null : "yes";
+
+        const features_type_grid_station = data.get("features-type-grid_station")?.valueOf() === undefined ? null : "yes";
+
         const utilities_type_gas = data.get("utilities-type-gas")?.valueOf() === undefined ? null : "yes";
 
         const utilities_type_water = data.get("utilities-type-water")?.valueOf() === undefined ? null : "yes";
 
-        const utilities_type_security = data.get("utilities-type-security")?.valueOf() === undefined ? null : "yes";
+        const utilities_type_utilities_electricity = data.get("utilities-type-utilities-electricity")?.valueOf() === undefined ? null : "yes";
+
+        const utilities_type_drainage = data.get("utilities-type-drainage")?.valueOf() === undefined ? null : "yes";
 
         const developer_name = data.get("developer-name")?.valueOf();
 
@@ -152,7 +164,7 @@ export default async function editForm({ params }: any) {
 
 
         console.log("Data is: ")
-        console.log(data)
+        // console.log(data)
 
         console.log("ID is: ")
         console.log(params.id)
@@ -205,10 +217,16 @@ export default async function editForm({ params }: any) {
                 features_type_zoo,
                 features_type_food_arena,
                 features_type_gated_community,
+                features_type_college,
+                features_type_graveyard,
+                features_type_masjid,
+                features_type_community_club,
+                features_type_grid_station,
                 utilities_type_underground_electrification,
                 utilities_type_gas,
                 utilities_type_water,
-                utilities_type_security,
+                utilities_type_utilities_electricity,
+                utilities_type_drainage,
                 developer_name,
                 contact_no,
                 survery_remarks: societies_survery_remarks,
@@ -219,9 +237,9 @@ export default async function editForm({ params }: any) {
         }
 
         console.log("Update Query is")
-        console.log("update_query")
+        console.log(update_query)
 
-        await prisma.societies.update(update_query)
+        const updateSociety = await prisma.societies.update(update_query)
         // let updatedNote = await Note.findByIdAndUpdate({ _id: params.id }, { title, note });
         redirect('/societies')
     }
@@ -315,7 +333,7 @@ export default async function editForm({ params }: any) {
                         <select
                             id="societies-city"
                             name="societies-city"
-                            className="select  w-full max-w-xs border-2 border-gray-400 "
+                            className="select w-full max-w-xs border-2 border-gray-400 "
                             defaultValue={societies?.city}
 
                         >
@@ -344,8 +362,9 @@ export default async function editForm({ params }: any) {
                         <select
                             id="societies-project-type"
                             name="societies-project-type"
-                            className="select  w-full max-w-xs border-2 border-gray-400 "
-                            defaultChecked={societies?.type ? true : false}
+                            className="select  w-full max-w-xs border-2 border-gray-400"
+                            // defaultChecked={societies?.type ? true : false}
+                            defaultValue={societies?.type as string}
 
                         >
                             <option>New Launch</option>
@@ -384,8 +403,11 @@ export default async function editForm({ params }: any) {
                             id="societies-zone"
                             name="societies-zone"
                             className="select  w-full max-w-xs border-2 border-gray-400 "
-                            defaultChecked={societies?.zone ? true : false}
+                            // defaultChecked={societies?.zone ? true : false}
+                            defaultValue={societies?.zone as string}
                         >
+                            <option>East</option>
+                            <option>West</option>
                             <option>North</option>
                             <option>South</option>
 
@@ -416,7 +438,7 @@ export default async function editForm({ params }: any) {
                             Total Phase/ Sectors/ Blocks:
                         </label>
                         <Input
-                            type="number"
+                            type="text"
                             id="societies-blocks"
                             name="societies-blocks"
                             className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
@@ -457,7 +479,7 @@ export default async function editForm({ params }: any) {
                             Occupancy Ratio
                         </label>
                         <Input
-                            type="number"
+                            type="text"
                             id="societies-occupancy"
                             name="societies-occupancy"
                             className="input input-bordered w-full max-w-xs border-2 border-gray-400"
@@ -475,7 +497,7 @@ export default async function editForm({ params }: any) {
                             Total Area of Society (Acres):
                         </label>
                         <Input
-                            type="number"
+                            type="text"
                             id="societies-area"
                             name="societies-area"
                             className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
@@ -493,7 +515,7 @@ export default async function editForm({ params }: any) {
                             Population:
                         </label>
                         <input
-                            type="number"
+                            type="text"
                             id="societies-population"
                             name="societies-population"
                             className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
@@ -511,7 +533,7 @@ export default async function editForm({ params }: any) {
                             Launch Year:
                         </label>
                         <Input
-                            type="number"
+                            type="text"
                             id="societies-launch-year"
                             name="societies-launch-year"
                             className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
@@ -529,7 +551,7 @@ export default async function editForm({ params }: any) {
                             Total Plots Residential:
                         </label>
                         <Input
-                            type="number"
+                            type="text"
                             id="total-plots-residential"
                             name="total-plots-residential"
                             className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
@@ -547,7 +569,7 @@ export default async function editForm({ params }: any) {
                             Plot Sizes Residential (Sq. Yards):
                         </label>
                         <Input
-                            type="number"
+                            type="text"
                             id="plot-sizes-residential"
                             name="plot-sizes-residential"
                             className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
@@ -565,7 +587,7 @@ export default async function editForm({ params }: any) {
                             Total Plots Commercial :
                         </label>
                         <Input
-                            type="number"
+                            type="text"
                             id="total-plots-commercial"
                             name="total-plots-commercial"
                             className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
@@ -583,7 +605,7 @@ export default async function editForm({ params }: any) {
                             Plot Sizes Commercial (Sq. Yards):
                         </label>
                         <Input
-                            type="number"
+                            type="text"
                             id="plot-sizes-commercial"
                             name="plot-sizes-commercial"
                             className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
@@ -601,7 +623,7 @@ export default async function editForm({ params }: any) {
                             Total No. of Apartments:
                         </label>
                         <Input
-                            type="number"
+                            type="text"
                             id="societies-total-apartments"
                             name="societies-total-apartments"
                             className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
@@ -619,7 +641,7 @@ export default async function editForm({ params }: any) {
                             Apartment Sizes (Sq. Ft):
                         </label>
                         <Input
-                            type="number"
+                            type="text"
                             id="societies-apartment-size"
                             name="societies-apartment-size"
                             className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
@@ -668,7 +690,7 @@ export default async function editForm({ params }: any) {
                             Plot Price :
                         </label>
                         <Input
-                            type="number"
+                            type="text"
                             id="societies-plot-price"
                             name="societies-plot-price"
                             className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
@@ -716,7 +738,7 @@ export default async function editForm({ params }: any) {
                             Bungalows/ Vilas Price:
                         </label>
                         <Input
-                            type="number"
+                            type="text"
                             id="vilas-price"
                             name="vilas-price"
                             className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
@@ -735,7 +757,7 @@ export default async function editForm({ params }: any) {
                             Monthly Rent:
                         </label>
                         <Input
-                            type="number"
+                            type="text"
                             id="vilas-monthly-rent"
                             name="vilas-monthly-rent"
                             className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
@@ -781,7 +803,7 @@ export default async function editForm({ params }: any) {
                             Plot Price:
                         </label>
                         <Input
-                            type="number"
+                            type="text"
                             id="commercial-plot-price"
                             name="commercial-plot-price"
                             className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
@@ -803,7 +825,7 @@ export default async function editForm({ params }: any) {
                             Apartment Size:
                         </label>
                         <Input
-                            type="number"
+                            type="text"
                             id="apartment-size"
                             name="apartment-size"
                             className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
@@ -822,7 +844,7 @@ export default async function editForm({ params }: any) {
                             Apartment Price:
                         </label>
                         <Input
-                            type="number"
+                            type="text"
                             id="apartments-price"
                             name="apartments-price"
                             className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
@@ -840,7 +862,7 @@ export default async function editForm({ params }: any) {
                             Monthly Rent:
                         </label>
                         <Input
-                            type="number"
+                            type="text"
                             id="apartments-monthly-rent"
                             name="apartments-monthly-rent"
                             className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
@@ -876,7 +898,7 @@ export default async function editForm({ params }: any) {
                 <div className="p-5 border-2 border-t-0 border-gray-200 dark:border-gray-700">
                     <div className="mt-4">
                         <fieldset>
-                            
+
                             <legend className="block mb-2 text-sm font-medium">
                                 Features:
                             </legend>
@@ -1017,6 +1039,91 @@ export default async function editForm({ params }: any) {
                                     Gated Community
                                 </label>
                             </div>
+
+                            <div className="flex items-center mb-4 ml-2">
+                                <input
+                                    id="features-type-college"
+                                    name="features-type-college"
+                                    type="checkbox"
+                                    value="yes"
+                                    defaultChecked={societies?.features_type_college ? true : false}
+                                    className="checkbox checkbox-primary"
+                                />
+                                <label
+                                    htmlFor="features-type-college"
+                                    className="ml-2 text-sm font-medium  "
+                                >
+                                    College
+                                </label>
+                            </div>
+
+                            <div className="flex items-center mb-4 ml-2">
+                                <input
+                                    id="features-type-graveyard"
+                                    name="features-type-graveyard"
+                                    type="checkbox"
+                                    value="yes"
+                                    defaultChecked={societies?.features_type_graveyard ? true : false}
+                                    className="checkbox checkbox-primary"
+                                />
+                                <label
+                                    htmlFor="features-type-graveyard"
+                                    className="ml-2 text-sm font-medium  "
+                                >
+                                    Graveyard
+                                </label>
+                            </div>
+
+                            <div className="flex items-center mb-4 ml-2">
+                                <input
+                                    id="features-type-masjid"
+                                    name="features-type-masjid"
+                                    type="checkbox"
+                                    value="yes"
+                                    defaultChecked={societies?.features_type_masjid ? true : false}
+                                    className="checkbox checkbox-primary"
+                                />
+                                <label
+                                    htmlFor="features-type-masjid"
+                                    className="ml-2 text-sm font-medium  "
+                                >
+                                    Masjid
+                                </label>
+                            </div>
+
+                            {/* <div className="flex items-center mb-4 ml-2">
+                                <input
+                                    id="features-type-community-club"
+                                    name="features-type-community-club"
+                                    type="checkbox"
+                                    value="yes"
+                                    defaultChecked={societies?.features_type_community_club ? true : false}
+                                    className="checkbox checkbox-primary"
+                                />
+                                <label
+                                    htmlFor="features-type-community-club"
+                                    className="ml-2 text-sm font-medium"
+                                >
+                                    Community Club
+                                </label>
+                            </div> */}
+
+                            {/* <div className="flex items-center mb-4 ml-2">
+                                <input
+                                    id="features-type-grid-station"
+                                    name="features-type-grid-station"
+                                    type="checkbox"
+                                    value="yes"
+                                    defaultChecked={societies?.features_type_grid_station ? true : false}
+                                    className="checkbox checkbox-primary"
+                                />
+                                <label
+                                    htmlFor="features-type-grid-station"
+                                    className="ml-2 text-sm font-medium  "
+                                >
+                                    Grid Station
+                                </label>
+                            </div> */}
                         </fieldset>
                     </div>
                 </div>
@@ -1083,18 +1190,35 @@ export default async function editForm({ params }: any) {
 
                             <div className="flex items-center mb-4 ml-2">
                                 <input
-                                    id="utilities-type-security"
-                                    name="utilities-type-security"
+                                    id="utilities-type-utilities-electricity"
+                                    name="utilities-type-utilities-electricity"
                                     type="checkbox"
                                     value="yes"
-                                    defaultChecked={societies?.utilities_type_security ? true : false}
+                                    defaultChecked={societies?.utilities_type_utilities_electricity ? true : false}
                                     className="checkbox checkbox-primary"
                                 />
                                 <label
-                                    htmlFor="utilities-type-security"
-                                    className="ml-2 text-sm font-medium  "
+                                    htmlFor="utilities-type-utilities-electricity"
+                                    className="ml-2 text-sm font-medium "
                                 >
-                                    Security
+                                    Utilities Electricity
+                                </label>
+                            </div>
+
+                            <div className="flex items-center mb-4 ml-2">
+                                <input
+                                    id="utilities-type-drainage "
+                                    name="utilities-type-drainage "
+                                    type="checkbox"
+                                    value="yes"
+                                    defaultChecked={societies?.utilities_type_drainage ? true : false}
+                                    className="checkbox checkbox-primary"
+                                />
+                                <label
+                                    htmlFor="utilities-type-drainage "
+                                    className="ml-2 text-sm font-medium "
+                                >
+                                    Drainage
                                 </label>
                             </div>
 
@@ -1158,7 +1282,7 @@ export default async function editForm({ params }: any) {
                     {/* <Link href="/societies" className="flex justify-center items-center border border-black px-2 py-1 rounded-xl bg-white text-black hover:bg-red-600 hover:text-white capitalize">Cancel</Link> */}
 
                     <Button asChild className="bg-transparent text-primary hover:bg-primary-foreground">
-                        <Link  href="/societies" >Cancel</Link>
+                        <Link href="/societies" >Cancel</Link>
                     </Button>
 
                     {/* <button type="submit" className="border border-gray-300 text-sm rounded-lg block p-2.5">Update</button> */}

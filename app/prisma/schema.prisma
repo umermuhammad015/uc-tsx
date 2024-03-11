@@ -72,7 +72,29 @@ model Buildings {
   floors Floors[]
 }
 
-model societies {
+model Floors {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  building_id String    @db.ObjectId
+  buildings   Buildings @relation(fields: [building_id], references: [id], onDelete: Cascade)
+
+  floor_no            String
+  floor_type          String
+  unit_type           String?
+  occupancy           String?
+  size_min            String?
+  size_max            String?
+  avg_sale_price      String?
+  avg_monthly_rent    String?
+  instalment_plan     String?
+  instalment_period   String?
+  down_payment_amount String?
+  instalment_amount   String?
+  possession_amount   String?
+  remarks             String?
+}
+
+model Societies {
   id                                         String    @id @default(auto()) @map("_id") @db.ObjectId
   survey_date                                DateTime? @db.Date
   city                                       String
@@ -114,33 +136,34 @@ model societies {
   utilities_type_underground_electrification String?
   utilities_type_gas                         String?
   utilities_type_water                       String?
-  utilities_type_security                    String?
+  utilities_type_utilities_electricity       String?
+  utilities_type_drainage                    String?
   developer_name                             String?
   contact_no                                 String?
   survery_remarks                            String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  Plots  Plots[]
 }
 
-model Floors {
+model Plots {
   id String @id @default(auto()) @map("_id") @db.ObjectId
 
-  building_id String    @db.ObjectId
-  buildings   Buildings @relation(fields: [building_id], references: [id], onDelete: Cascade)
+  society_id String    @db.ObjectId
+  societies  Societies @relation(fields: [society_id], references: [id], onDelete: Cascade)
 
-  floor_no            String
-  floor_type          String
-  unit_type           String?
-  occupancy           String?
-  size_min            String?
-  size_max            String?
-  avg_sale_price      String?
-  avg_monthly_rent    String?
-  instalment_plan     String?
-  instalment_period   String?
-  down_payment_amount String?
-  instalment_amount   String?
-  possession_amount   String?
-  remarks             String?
+  type              String
+  plot_no           String?
+  price             String?
+  direction         String?
+  is_corner         Boolean?
+  size              String?
+  instalment_plan   String?
+  instalment_period String?
+
+  remarks String?
 }
+
+

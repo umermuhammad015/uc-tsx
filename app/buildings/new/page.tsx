@@ -392,13 +392,13 @@ export default function Page() {
             />
           </div>
 
-          {/* Construction Area (Sq. Yards)  */}
+          {/* Total Covered Area of Building (Sq. Yards)  */}
           <div className="mt-4">
             <label
               htmlFor="construction-area"
               className="block mb-2 text-sm font-medium"
             >
-              Construction Area (Sq. Yards): :
+              Total Covered Area of Building (Sq Ft):
             </label>
             <Input
               type="number"

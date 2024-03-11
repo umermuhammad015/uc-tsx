@@ -113,6 +113,22 @@ export default async function createSociety(data: FormData) {
   
     const features_type_food_arena = data.get("features-type-food-arena")?.valueOf();
     console.log("🚀 ~ createsocieties ~ features_type_food_arena:", features_type_food_arena)
+
+    const features_type_college = data.get("features-type-college")?.valueOf();
+    console.log("🚀 ~ createsocieties ~ features_type_college:", features_type_college)
+
+    const features_type_graveyard = data.get("features-type-graveyard")?.valueOf();
+    console.log("🚀 ~ createsocieties ~ features_type_graveyard:", features_type_graveyard)
+
+   
+    const features_type_masjid = data.get("features-type-masjid")?.valueOf();
+    console.log("🚀 ~ createsocieties ~ features_type_masjid:", features_type_masjid)
+
+    const features_type_community_club = data.get("features-type-community-club")?.valueOf();
+    console.log("🚀 ~ createsocieties ~ features_type_community_club:", features_type_community_club)
+
+    const features_type_grid_station = data.get("features-type-grid-station")?.valueOf();
+    console.log("🚀 ~ createsocieties ~ features_type_grid_station:", features_type_grid_station)
   
     const features_type_gated_community = data.get("features-type-gated-community")?.valueOf();
     console.log("🚀 ~ createsocieties ~ features_type_gated_community:", features_type_gated_community)
@@ -126,8 +142,11 @@ export default async function createSociety(data: FormData) {
     const utilities_type_water = data.get("utilities-type-water")?.valueOf();
     console.log("🚀 ~ createsocieties ~ utilities_type_water:", utilities_type_water)
   
-    const utilities_type_security = data.get("utilities-type-security")?.valueOf();
-    console.log("🚀 ~ createsocieties ~ utilities_type_security:", utilities_type_security)
+    const utilities_type_utilities_electricity = data.get("utilities-type-utilities-electricity")?.valueOf();
+    console.log("🚀 ~ createsocieties ~ utilities_type_utilities_electricity:", utilities_type_utilities_electricity)
+
+    const utilities_type_drainage = data.get("utilities-type-drainage")?.valueOf();
+    console.log("🚀 ~ createsocieties ~ utilities_type_drainage:", utilities_type_drainage)
   
     const developer_name = data.get("developer-name")?.valueOf();
     console.log("🚀 ~ createsocieties ~ developer_name:", developer_name)
@@ -187,12 +206,18 @@ export default async function createSociety(data: FormData) {
         features_type_hospital: features_type_hospital as string,
         features_type_commercial_market: features_type_commercial_market as string,
         features_type_zoo: features_type_zoo as string,
+        features_type_college: features_type_college as string,
+        features_type_graveyard: features_type_graveyard as string,
+        features_type_masjid: features_type_masjid as string,
+        features_type_community_club: features_type_community_club as string,
+        features_type_grid_station: features_type_grid_station as string,
         features_type_food_arena: features_type_food_arena as string,
         features_type_gated_community: features_type_gated_community as string,
         utilities_type_underground_electrification: utilities_type_underground_electrification as string,
         utilities_type_gas: utilities_type_gas as string,
         utilities_type_water: utilities_type_water as string,
-        utilities_type_security: utilities_type_security as string,
+        utilities_type_utilities_electricity: utilities_type_utilities_electricity as string,
+        utilities_type_drainage: utilities_type_drainage as string,
         developer_name: developer_name as string,
         contact_no: contact_no as string,
         survery_remarks: societies_survery_remarks as string

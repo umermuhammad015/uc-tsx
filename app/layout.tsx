@@ -8,6 +8,7 @@ import { ThemeProvider } from "./ThemeProvider";
 import ThemeToggleButton from "@/components/ThemeToggleButton";
 import Header from "@/components/header";
 import NextProgressClient from "@/components/nextprogress-client";
+
 // import ThemeToggleButton from "@/components/ThemeToggleButton";
 // import { useState } from "react";
 
@@ -35,6 +36,7 @@ export default function RootLayout({
         <ThemeProvider attribute="class">
           <Header />
           <main className="container mx-auto">{children}</main>
+          
         </ThemeProvider>
       </body>
     </html>

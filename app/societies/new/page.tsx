@@ -74,6 +74,23 @@ export default function page() {
             />
           </div>
 
+          {/* Soceity/Project Name  */}
+          <div className="mt-4">
+            <label
+              htmlFor="soceity-project-name"
+              className="block mb-2 text-sm font-medium "
+            >
+              Soceity/Project Name:
+            </label>
+            <Input
+              id="soceity-project-name"
+              name="soceity-project-name"
+              className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+              required
+            />
+
+          </div>
+
           {/* <Popover>
             <PopoverTrigger asChild>
               <Button
@@ -143,22 +160,7 @@ export default function page() {
             </select>
           </div>
 
-          {/* Soceity/Project Name  */}
-          <div className="mt-4">
-            <label
-              htmlFor="soceity-project-name"
-              className="block mb-2 text-sm font-medium "
-            >
-              Soceity/Project Name:
-            </label>
-            <Input
-              id="soceity-project-name"
-              name="soceity-project-name"
-              className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-              required
-            />
 
-          </div>
 
           {/* Zone/ Region  */}
           <div className="mt-4">
@@ -173,6 +175,8 @@ export default function page() {
               name="societies-zone"
               className="select  w-full max-w-xs border-2 border-gray-400  "
             >
+              <option>East</option>
+              <option>West</option>
               <option>North</option>
               <option>South</option>
 
@@ -202,7 +206,7 @@ export default function page() {
               Total Phase/ Sectors/ Blocks:
             </label>
             <Input
-              type="number"
+              type="text"
               id="societies-blocks"
               name="societies-blocks"
               className="input input-bordered w-full max-w-xs border-2 border-gray-400  "
@@ -241,7 +245,7 @@ export default function page() {
               Occupancy Ratio
             </label>
             <Input
-              type="number"
+              // type="number"
               id="societies-occupancy"
               name="societies-occupancy"
               className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
@@ -258,7 +262,7 @@ export default function page() {
               Total Area of Society (Acres):
             </label>
             <Input
-              type="number"
+              type="text"
               id="societies-area"
               name="societies-area"
               className="input input-bordered w-full max-w-xs border-2 border-gray-400  "
@@ -275,7 +279,7 @@ export default function page() {
               Population:
             </label>
             <Input
-              type="number"
+              type="text"
               id="societies-population"
               name="societies-population"
               className="input input-bordered w-full max-w-xs border-2 border-gray-400  "
@@ -292,7 +296,7 @@ export default function page() {
               Launch Year:
             </label>
             <Input
-              type="number"
+              type="text"
               id="societies-launch-year"
               name="societies-launch-year"
               className="input input-bordered w-full max-w-xs border-2 border-gray-400  "
@@ -309,7 +313,7 @@ export default function page() {
               Total Plots Residential:
             </label>
             <Input
-              type="number"
+              type="text"
               id="total-plots-residential"
               name="total-plots-residential"
               className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
@@ -326,7 +330,7 @@ export default function page() {
               Plot Sizes Residential (Sq. Yards):
             </label>
             <Input
-              type="number"
+              type="text"
               id="plot-sizes-residential"
               name="plot-sizes-residential"
               className="input input-bordered w-full max-w-xs border-2 border-gray-400  "
@@ -343,7 +347,7 @@ export default function page() {
               Total Plots Commercial :
             </label>
             <Input
-              type="number"
+              type="text"
               id="total-plots-commercial"
               name="total-plots-commercial"
               className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
@@ -360,7 +364,7 @@ export default function page() {
               Plot Sizes Commercial (Sq. Yards):
             </label>
             <Input
-              type="number"
+              type="text"
               id="plot-sizes-commercial"
               name="plot-sizes-commercial"
               className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
@@ -377,7 +381,7 @@ export default function page() {
               Total No. of Apartments:
             </label>
             <Input
-              type="number"
+              type="text"
               id="societies-total-apartments"
               name="societies-total-apartments"
               className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
@@ -394,7 +398,7 @@ export default function page() {
               Apartment Sizes (Sq. Ft):
             </label>
             <Input
-              type="number"
+              type="text"
               id="societies-apartment-size"
               name="societies-apartment-size"
               className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
@@ -441,7 +445,7 @@ export default function page() {
               Plot Price :
             </label>
             <Input
-              type="number"
+              type="text"
               id="societies-plot-price"
               name="societies-plot-price"
               className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
@@ -486,7 +490,7 @@ export default function page() {
               Bungalows/ Vilas Price:
             </label>
             <Input
-              type="number"
+              type="text"
               id="vilas-price"
               name="vilas-price"
               className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
@@ -503,7 +507,7 @@ export default function page() {
               Monthly Rent:
             </label>
             <Input
-              type="number"
+              type="text"
               id="vilas-monthly-rent"
               name="vilas-monthly-rent"
               className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
@@ -547,7 +551,7 @@ export default function page() {
               Plot Price:
             </label>
             <Input
-              type="number"
+              type="text"
               id="commercial-plot-price"
               name="commercial-plot-price"
               className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
@@ -568,7 +572,7 @@ export default function page() {
               Apartment Size:
             </label>
             <Input
-              type="number"
+              type="text"
               id="apartment-size"
               name="apartment-size"
               className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
@@ -586,7 +590,7 @@ export default function page() {
               Apartment Price:
             </label>
             <Input
-              type="number"
+              type="text"
               id="apartments-price"
               name="apartments-price"
               className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
@@ -603,7 +607,7 @@ export default function page() {
               Monthly Rent:
             </label>
             <Input
-              type="number"
+              type="text"
               id="apartments-monthly-rent"
               name="apartments-monthly-rent"
               className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
@@ -768,6 +772,86 @@ export default function page() {
                   Gated Community
                 </label>
               </div>
+
+              <div className="flex items-center mb-4 ml-2">
+                <input
+                  id="features-type-college"
+                  name="features-type-college"
+                  type="checkbox"
+                  value="yes"
+                  className="checkbox checkbox-primary"
+                />
+                <label
+                  htmlFor="features-type-college"
+                  className="ml-2 text-sm font-medium  "
+                >
+                  College
+                </label>
+              </div>
+
+              <div className="flex items-center mb-4 ml-2">
+                <input
+                  id="features-type-graveyard"
+                  name="features-type-graveyard"
+                  type="checkbox"
+                  value="yes"
+                  className="checkbox checkbox-primary"
+                />
+                <label
+                  htmlFor="features-type-graveyard"
+                  className="ml-2 text-sm font-medium  "
+                >
+                  Graveyard
+                </label>
+              </div>
+
+              <div className="flex items-center mb-4 ml-2">
+                <input
+                  id="features-type-masjid"
+                  name="features-type-masjid"
+                  type="checkbox"
+                  value="yes"
+                  className="checkbox checkbox-primary"
+                />
+                <label
+                  htmlFor="features-type-masjid"
+                  className="ml-2 text-sm font-medium  "
+                >
+                  Masjid
+                </label>
+              </div>
+
+              <div className="flex items-center mb-4 ml-2">
+                <input
+                  id="features-type-community-club"
+                  name="features-type-community-club"
+                  type="checkbox"
+                  value="yes"
+                  className="checkbox checkbox-primary"
+                />
+                <label
+                  htmlFor="features-type-community-club"
+                  className="ml-2 text-sm font-medium  "
+                >
+                  Community Club
+                </label>
+              </div>
+
+              <div className="flex items-center mb-4 ml-2">
+                <input
+                  id="features-type-grid-station"
+                  name="features-type-grid-station"
+                  type="checkbox"
+                  value="yes"
+                  className="checkbox checkbox-primary"
+                />
+                <label
+                  htmlFor="features-type-grid-station"
+                  className="ml-2 text-sm font-medium  "
+                >
+                  Grid Station
+                </label>
+              </div>
             </fieldset>
           </div>
         </div>
@@ -831,19 +915,36 @@ export default function page() {
 
               <div className="flex items-center mb-4 ml-2">
                 <input
-                  id="utilities-type-security"
-                  name="utilities-type-security"
+                  id="utilities-type-utilities-electricity"
+                  name="utilities-type-utilities-electricity"
                   type="checkbox"
                   value="yes"
                   className="checkbox checkbox-primary"
                 />
                 <label
-                  htmlFor="utilities-type-security"
+                  htmlFor="utilities-type-utilities-electricity"
                   className="ml-2 text-sm font-medium "
                 >
-                  Security
+                  Utilities Electricity
                 </label>
               </div>
+
+              <div className="flex items-center mb-4 ml-2">
+                <input
+                  id="utilities-type-drainage "
+                  name="utilities-type-drainage "
+                  type="checkbox"
+                  value="yes"
+                  className="checkbox checkbox-primary"
+                />
+                <label
+                  htmlFor="utilities-type-drainage "
+                  className="ml-2 text-sm font-medium "
+                >
+                  Drainage
+                </label>
+              </div>
+
 
 
             </fieldset>

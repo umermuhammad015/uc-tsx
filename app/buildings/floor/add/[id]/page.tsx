@@ -169,7 +169,7 @@ export default async function AddFloor({ params }: Props) {
                   type="text"
                   id="building-id"
                   name="building-id"
-                  className="input input-bordered  w-full max-w-xs border-2 border-black bg-gray-200 cursor-not-allowed disabled:bg-gray-200"
+                  className="input input-bordered  w-full max-w-xs border-2 border-gray-400 cursor-not-allowed disabled:bg-gray-200"
                   placeholder=""
                   value={building?.id}
                 // defaultValue={building?.id}
@@ -192,7 +192,7 @@ export default async function AddFloor({ params }: Props) {
                   type="text"
                   id="building-name"
                   name="building-name"
-                  className="input input-bordered  w-full max-w-xs border-2 border-cyan-700 cursor-not-allowed disabled:bg-gray-200"
+                  className="input input-bordered  w-full max-w-xs border-2 border-gray-400 cursor-not-allowed disabled:bg-gray-200"
                   placeholder=""
                   defaultValue={building?.name}
                   disabled
@@ -224,6 +224,7 @@ export default async function AddFloor({ params }: Props) {
                   <option>7th</option>
                   <option>8th</option>
                   <option>9th</option>
+                  <option>10th</option>
                   <option>11th</option>
                   <option>12th</option>
                   <option>13th</option>
@@ -261,6 +262,7 @@ export default async function AddFloor({ params }: Props) {
                   className="select w-full max-w-xs border-2 border-gray-400 "
                 >
                   <option>Retails</option>
+                  <option>Penthouse</option>
                   <option>Offices</option>
                   <option>Apartment</option>
                   <option>Other</option>

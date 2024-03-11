@@ -6,7 +6,6 @@
 // npx prisma migrate dev --name init
 // npm prisma init
 
-
 // npx prisma init
 
 // npx prisma db push
@@ -22,7 +21,7 @@ datasource db {
 }
 
 model Buildings {
-  id                             String    @id @default(auto()) @map("_id") @db.ObjectId
+  id                             String  @id @default(auto()) @map("_id") @db.ObjectId
   name                           String
   city                           String
   status                         String?
@@ -74,8 +73,33 @@ model Buildings {
   floors Floors[]
 }
 
-model societies {
-  id                                         String    @id @default(auto()) @map("_id") @db.ObjectId
+model Floors {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  building_id String    @db.ObjectId
+  buildings   Buildings @relation(fields: [building_id], references: [id], onDelete: Cascade)
+
+  floor_no            String
+  floor_type          String
+  unit_type           String?
+  occupancy           String?
+  size_min            String?
+  size_max            String?
+  avg_sale_price      String?
+  avg_monthly_rent    String?
+  instalment_plan     String?
+  instalment_period   String?
+  down_payment_amount String?
+  instalment_amount   String?
+  possession_amount   String?
+  remarks             String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Societies {
+  id                                         String  @id @default(auto()) @map("_id") @db.ObjectId
   // survey_date                                DateTime? @db.Date
   survey_date                                String?
   city                                       String
@@ -113,37 +137,65 @@ model societies {
   features_type_commercial_market            String?
   features_type_zoo                          String?
   features_type_food_arena                   String?
+  features_type_college                      String?
+  features_type_graveyard                    String?
+  features_type_grid_station                 String?
+  features_type_masjid                       String?
+  features_type_community_club               String?
   features_type_gated_community              String?
   utilities_type_underground_electrification String?
   utilities_type_gas                         String?
   utilities_type_water                       String?
-  utilities_type_security                    String?
+  utilities_type_utilities_electricity       String?
+  utilities_type_drainage                    String?
   developer_name                             String?
   contact_no                                 String?
   survery_remarks                            String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  Plots  Plots[]
+  Houses Houses[]
 }
 
-model Floors {
+model Plots {
   id String @id @default(auto()) @map("_id") @db.ObjectId
 
-  building_id String    @db.ObjectId
-  buildings   Buildings @relation(fields: [building_id], references: [id], onDelete: Cascade)
+  society_id String    @db.ObjectId
+  societies  Societies @relation(fields: [society_id], references: [id], onDelete: Cascade)
 
-  floor_no            String
-  floor_type          String
-  unit_type           String?
-  occupancy           String?
-  size_min            String?
-  size_max            String?
-  avg_sale_price      String?
-  avg_monthly_rent    String?
-  instalment_plan     String?
-  instalment_period   String?
-  down_payment_amount String?
-  instalment_amount   String?
-  possession_amount   String?
-  remarks             String?
+  type              String?
+  size              String?
+  price             String?
+  direction         String?
+  is_corner         String?
+  instalment_period String?
+  instalment_plan   String?
+  remarks           String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Houses {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  society_id String    @db.ObjectId
+  societies  Societies @relation(fields: [society_id], references: [id], onDelete: Cascade)
+
+  type              String?
+  size              String?
+  price             String?
+  direction         String?
+  is_corner         String?
+  condition         String?
+  floors            String?
+  has_basement      String?
+  construction_year String?
+  remarks           String?
+  
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
