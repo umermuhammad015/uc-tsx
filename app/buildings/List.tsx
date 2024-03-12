@@ -29,9 +29,9 @@ export const revalidate = 0; // revalidate the date at most every hour
 export const dynamic = "force-dynamic";
 const PAGE_SIZE = 5;
 
-const getBuildings = async ({ search = '', take = PAGE_SIZE, skip = 0 }) => {
+const GetBuildings = async ({ search = '', take = PAGE_SIZE, skip = 0 }) => {
   // async function getBuildings({ search = '', take = PAGE_SIZE, skip = 0 }) {
-  console.log("getBuildings");
+  console.log("GetBuildings");
 
   if (search === null || search === '') {
 
@@ -141,7 +141,7 @@ export default async function List(props: PageProps) {
   const search = props?.searchParams?.search || ''
 
   // const buildings = await getBuildings({search, take, skip});
-  const { data, metadata } = await getBuildings({ search, take, skip });
+  const { data, metadata } = await GetBuildings({ search , take, skip });
 
   // const searchedBuildings = await getSearchedBuildings()
 
@@ -154,7 +154,7 @@ export default async function List(props: PageProps) {
 
     await prisma.buildings.delete({
       where: {
-        id: building_id as string,
+        id: Number(building_id) as number
       },
     });
 

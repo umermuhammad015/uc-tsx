@@ -1,4 +1,4 @@
-async function getSearchedSocieties() {
+async function GetSearchedSocieties() {
 
     const searchParams = useSearchParams()
   

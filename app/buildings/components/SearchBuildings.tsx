@@ -1,4 +1,4 @@
-async function getSearchedBuildings() {
+async function GetSearchedBuildings() {
 
     const searchParams = useSearchParams()
   

@@ -22,9 +22,9 @@ export const revalidate = 1; // revalidate the date at most every hour
 export const dynamic = "force-dynamic";
 const PAGE_SIZE = 5;
 
-const getSocieties = async ({ search = '', take = PAGE_SIZE, skip = 0 }) => {
+const GetSocieties = async ({ search = '', take = PAGE_SIZE, skip = 0 }) => {
     // async function getBuildings({ search = '', take = PAGE_SIZE, skip = 0 }) {
-    console.log("getSocieties");
+    console.log("GetSocieties");
 
     if (search === null || search === '') {
 
@@ -134,7 +134,7 @@ export default async function List(props: PageProps) {
     const search = props?.searchParams?.search || ''
 
     // const buildings = await getBuildings({search, take, skip});
-    const { data, metadata } = await getSocieties({ search, take, skip });
+    const { data, metadata } = await GetSocieties({ search, take, skip });
 
     // const searchedBuildings = await getSearchedBuildings()
 
