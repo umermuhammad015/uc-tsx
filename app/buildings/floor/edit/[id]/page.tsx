@@ -27,7 +27,7 @@ export default async function editFloorForm({ params }: Props) {
 
     const floor = await prisma.floors.findUnique({
         where: {
-            id: params.id,
+            id: Number(params.id) as number
         },
     })
 
@@ -71,7 +71,7 @@ export default async function editFloorForm({ params }: Props) {
 
         const update_query = {
             where: {
-                id: params.id
+                id: Number(params.id) as number
             },
             data: {
                 // name: name,

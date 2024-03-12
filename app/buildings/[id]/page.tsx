@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/table";
 
 type Props = {
-  params: { id: string }
+  params: { id: number }
   // searchParams: { [key: string]: string | string[] | undefined }
 }
 
@@ -25,7 +25,7 @@ export default async function ViewBuilding({ params }: Props) {
   // Get building information
   const building = await prisma.buildings.findUnique({
     where: {
-      id: params.id,
+      id: Number(params.id) as number
     },
   });
 
@@ -34,7 +34,7 @@ export default async function ViewBuilding({ params }: Props) {
   // Get floors information
   const floors = await prisma.floors.findMany({
     where: {
-      building_id: params.id,
+      building_id: Number(params.id) as number
     },
   });
 
@@ -53,6 +53,7 @@ export default async function ViewBuilding({ params }: Props) {
       <div className="border border-gray-400 ">
         <Table>
           <TableBody>
+
             <TableRow>
               <TableCell  >Name </TableCell > <TableCell >{building?.name}</TableCell >
             </TableRow>
@@ -95,7 +96,7 @@ export default async function ViewBuilding({ params }: Props) {
                 )}
                 {building?.type_apartments && (
                   // <div className="badge bg-cyan-950 text-white">Apartments</div>
-                  <Badge>Apartments</Badge>
+                  <Badge>Apartment</Badge>
                 )}
                 {building?.type_other && (
                   // <div className="badge bg-cyan-950 text-white">Other</div>
@@ -225,21 +226,23 @@ export default async function ViewBuilding({ params }: Props) {
       <div className="border mt-4 text-center border-gray-400 overflow-auto" >
         <Table className="">
           <TableHeader className=" text-center">
-            <TableHead >
-              <div className=" text-left">Floor No</div></TableHead >
-            <TableHead >Type</TableHead >
-            <TableHead >Unit</TableHead >
-            <TableHead >Occupancy Ratio</TableHead >
-            <TableHead >Min Size</TableHead >
-            <TableHead >Max size</TableHead >
-            <TableHead >Avg. Sale Price</TableHead >
-            <TableHead >Monthly Rent</TableHead >
-            <TableHead >Instalment Plan</TableHead >
-            <TableHead >Instalment Period</TableHead >
-            <TableHead >Down Payment</TableHead >
-            <TableHead >Total Sale Price</TableHead >
-            <TableHead >Possession Amount</TableHead >
-            <TableHead >Remarks</TableHead >
+            <TableRow>
+              <TableHead >
+                <div className=" text-left">Floor No</div></TableHead >
+              <TableHead >Type</TableHead >
+              <TableHead >Unit</TableHead >
+              <TableHead >Occupancy Ratio</TableHead >
+              <TableHead >Min Size</TableHead >
+              <TableHead >Max size</TableHead >
+              <TableHead >Avg. Sale Price</TableHead >
+              <TableHead >Monthly Rent</TableHead >
+              <TableHead >Instalment Plan</TableHead >
+              <TableHead >Instalment Period</TableHead >
+              <TableHead >Down Payment</TableHead >
+              <TableHead >Total Sale Price</TableHead >
+              <TableHead >Possession Amount</TableHead >
+              <TableHead >Remarks</TableHead >
+            </TableRow>
           </TableHeader>
           <TableBody className="">
             {floors.map((floor) => (

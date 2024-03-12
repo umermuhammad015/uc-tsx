@@ -51,7 +51,7 @@ async function createHouses(data: FormData) {
 
     await prisma.houses.create({
         data: {
-            society_id: society_id as string,
+            society_id: Number(society_id) as number,
             type: house_type as string,
             size: house_size as string,
             price: house_price as string,
@@ -69,7 +69,7 @@ async function createHouses(data: FormData) {
 }
 
 type Props = {
-    params: { id: string }
+    params: { id: number }
     // searchParams: { [key: string]: string | string[] | undefined }
 }
 
@@ -77,7 +77,7 @@ export default async function AddHouse({ params }: Props) {
 
     const society = await prisma.societies.findUnique({
         where: {
-            id: params.id,
+            id: Number(params.id) as number
         },
     });
 

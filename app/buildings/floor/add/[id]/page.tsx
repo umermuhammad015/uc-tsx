@@ -113,7 +113,7 @@ async function createFloor(data: FormData) {
 
   await prisma.floors.create({
     data: {
-      building_id: building_id as string,
+      building_id: Number (building_id) as number,
       floor_type: floor_type as string,
       floor_no: floor_no as string,
       unit_type: floor_unit_type as string,
@@ -136,7 +136,7 @@ async function createFloor(data: FormData) {
 }
 
 type Props = {
-  params: { id: string }
+  params: { id: number }
   // searchParams: { [key: string]: string | string[] | undefined }
 }
 
@@ -145,7 +145,7 @@ export default async function AddFloor({ params }: Props) {
 
   const building = await prisma.buildings.findUnique({
     where: {
-      id: params.id,
+      id: Number(params.id) as number
     },
   });
 

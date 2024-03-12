@@ -29,7 +29,7 @@ import { Checkbox } from "@/components/ui/checkbox"
 // }
 
 type Props = {
-    params: { id: string }
+    params: { id: number }
     // searchParams: { [key: string]: string | string[] | undefined }
 }
 
@@ -45,7 +45,7 @@ export default async function editForm({ params }: any) {
 
     const societies = await prisma.societies.findUnique({
         where: {
-            id: params.id,
+            id: Number(params.id) as number,
         },
     })
 
@@ -176,7 +176,7 @@ export default async function editForm({ params }: any) {
 
         const update_query = {
             where: {
-                id: params.id
+                id: Number(params.id) as number
             },
             data: {
                 // name: name,

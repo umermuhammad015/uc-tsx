@@ -44,7 +44,7 @@ async function createPlots(data: FormData) {
 
     await prisma.plots.create({
         data: {
-            society_id: society_id as string,
+            society_id: Number(society_id) as number,
             type: plot_type as string,
             size: plot_size as string,
             price: plot_price as string,
@@ -60,7 +60,7 @@ async function createPlots(data: FormData) {
 }
 
 type Props = {
-    params: { id: string }
+    params: { id: number }
     // searchParams: { [key: string]: string | string[] | undefined }
 }
 
@@ -68,7 +68,7 @@ export default async function AddPlot({ params }: Props) {
 
     const society = await prisma.societies.findUnique({
         where: {
-            id: params.id,
+            id: Number(params.id) as number
         },
     });
 

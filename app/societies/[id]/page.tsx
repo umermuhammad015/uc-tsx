@@ -27,7 +27,7 @@ export default async function ViewBuilding({ params }: Props) {
     // Get building information
     const society = await prisma.societies.findUnique({
         where: {
-            id: params.id,
+            id: Number(params.id) as number
         },
     });
 
@@ -36,13 +36,13 @@ export default async function ViewBuilding({ params }: Props) {
     // Get floors information
     const plots = await prisma.plots.findMany({
         where: {
-            society_id: params.id,
+            society_id: Number(params.id) as number
         },
     });
 
     const houses = await prisma.houses.findMany({
         where: {
-            society_id: params.id,
+            society_id: Number(params.id) as number
         },
     });
 

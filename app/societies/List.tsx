@@ -186,7 +186,7 @@ export default async function List(props: PageProps) {
                     <TableHeader>
                         <TableRow className="">
                             <TableHead>
-                                <div className="text-lg">Societies Name</div>
+                                <div className="text-lg">Societies Names</div>
                             </TableHead>
                             <TableHead>
                                 <div className="text-lg">Project Type</div>

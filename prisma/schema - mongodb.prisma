@@ -16,17 +16,14 @@ generator client {
 }
 
 datasource db {
-  // // provider = "mongodb"
-  // provider = "postgres"
+  // provider = "mongodb"
+  provider = "postgres"
   url      = env("DATABASE_URL")
-  provider = "postgresql"
-  // url = env("POSTGRES_PRISMA_URL") // uses connection pooling
-  // directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
 
 model Buildings {
   // id                             String  @id @default(auto()) @map("_id") @db.ObjectId
-  id                             Int     @id @default(autoincrement())
+  id                             String  @id @default(auto()) @map("_id")
   name                           String
   city                           String
   status                         String?
@@ -80,10 +77,10 @@ model Buildings {
 
 model Floors {
   // id String @id @default(auto()) @map("_id") @db.ObjectId
-  id Int @id  @default(autoincrement())
+  id String @id @default(auto()) @map("_id")
 
-  building_id         Int
-  buildings   Buildings @relation(fields: [building_id], references: [id])
+  building_id String    @db.ObjectId
+  buildings   Buildings @relation(fields: [building_id], references: [id], onDelete: Cascade)
 
   floor_no            String
   floor_type          String
@@ -101,11 +98,11 @@ model Floors {
   remarks             String?
 
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  updatedAt DateTime @updatedAt  
 }
 
 model Societies {
-  id                                         Int  @id @default(autoincrement())
+  id                                         String  @id @default(auto()) @map("_id") @db.ObjectId
   // survey_date                                DateTime? @db.Date
   survey_date                                String?
   city                                       String
@@ -166,11 +163,10 @@ model Societies {
 }
 
 model Plots {
-  // id String @id @default(auto()) @map("_id") @db.ObjectId
-  id String @id @default(uuid())
+  id String @id @default(auto()) @map("_id") @db.ObjectId
 
-  society_id        Int
-  societies  Societies @relation(fields: [society_id], references: [id])
+  society_id String    @db.ObjectId
+  societies  Societies @relation(fields: [society_id], references: [id], onDelete: Cascade)
 
   type              String?
   size              String?
@@ -186,11 +182,10 @@ model Plots {
 }
 
 model Houses {
-  // id String @id @default(auto()) @map("_id") @db.ObjectId
-  id String @id @default(uuid())
+  id String @id @default(auto()) @map("_id") @db.ObjectId
 
-  society_id        Int
-  societies  Societies @relation(fields: [society_id], references: [id])
+  society_id String    @db.ObjectId
+  societies  Societies @relation(fields: [society_id], references: [id], onDelete: Cascade)
 
   type              String?
   size              String?
@@ -202,6 +197,7 @@ model Houses {
   has_basement      String?
   construction_year String?
   remarks           String?
+  
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
