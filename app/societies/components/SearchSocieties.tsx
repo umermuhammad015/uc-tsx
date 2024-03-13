@@ -1,4 +1,5 @@
 import { useSearchParams } from "next/navigation";
+import prisma from "@/app/db";
 
 async function GetSearchedSocieties() {
 
