@@ -83,7 +83,7 @@ model Floors {
   id Int @id  @default(autoincrement())
 
   building_id         Int
-  buildings   Buildings @relation(fields: [building_id], references: [id])
+  buildings   Buildings @relation(fields: [building_id], references: [id], onDelete: Cascade)
 
   floor_no            String
   floor_type          String
@@ -170,7 +170,7 @@ model Plots {
   id String @id @default(uuid())
 
   society_id        Int
-  societies  Societies @relation(fields: [society_id], references: [id])
+  societies  Societies @relation(fields: [society_id], references: [id], onDelete: Cascade)
 
   type              String?
   size              String?
@@ -190,7 +190,7 @@ model Houses {
   id String @id @default(uuid())
 
   society_id        Int
-  societies  Societies @relation(fields: [society_id], references: [id])
+  societies  Societies @relation(fields: [society_id], references: [id], onDelete: Cascade)
 
   type              String?
   size              String?
