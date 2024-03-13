@@ -29,7 +29,7 @@ export const revalidate = 0; // revalidate the date at most every hour
 export const dynamic = "force-dynamic";
 const PAGE_SIZE = 5;
 
-const GetBuildings = async ({ search = '', take = PAGE_SIZE, skip = 0 }) => {
+const GetBuildings = async ({ search = "", take = PAGE_SIZE, skip = 0 }) => {
   // async function getBuildings({ search = '', take = PAGE_SIZE, skip = 0 }) {
   console.log("GetBuildings");
 
@@ -127,10 +127,19 @@ const GetBuildings = async ({ search = '', take = PAGE_SIZE, skip = 0 }) => {
 
 }
 
+// type Props = {
+//   params: {};
+//   searchParams: { [key: string]: string | string[] | undefined };
+// }
+
 type Props = {
-  params: {};
-  searchParams: { [key: string]: string | string[] | undefined };
-}
+  params?: {
+    num?: string;
+  };
+  searchParams?: {
+    search?: string;
+  };
+};
 
 export default async function List(props: PageProps) {
 
@@ -141,7 +150,7 @@ export default async function List(props: PageProps) {
   const search = props?.searchParams?.search || ''
 
   // const buildings = await getBuildings({search, take, skip});
-  const { data, metadata } = await GetBuildings({ search , take, skip });
+  const { data, metadata } = await GetBuildings({ search, take, skip });
 
   // const searchedBuildings = await getSearchedBuildings()
 

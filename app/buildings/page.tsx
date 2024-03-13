@@ -8,8 +8,11 @@ export const dynamic = "force-dynamic";
 
 export type PageProps = {
 	params: { [key: string]: string | string[] | undefined };
-	searchParams?: { [key: string]: string | string[] | undefined };
+	// searchParams?: { [key: string]: string | string[] | undefined };
+	searchParams?: { [key: string]: string | undefined };
 };
+
+
 
 // export default function Page({searchParams: { search = "" }}) {
 export default function Page(props: PageProps) {

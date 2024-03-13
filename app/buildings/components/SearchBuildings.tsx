@@ -7,7 +7,7 @@ async function GetSearchedBuildings() {
     // Get building information
     const building = await prisma.buildings.findUnique({
       where: {
-        name: search
+        name: search as string
       },
     });
   

@@ -147,7 +147,7 @@ export default async function List(props: PageProps) {
 
         await prisma.societies.delete({
             where: {
-                id: societies_id as string,
+                id: Number(societies_id) as number
             },
         });
 
