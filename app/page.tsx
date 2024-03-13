@@ -22,11 +22,7 @@ export default async function Home() {
   return (
     <>
 
-    <ul>
-      {buildings.map(building => (
-        <BuildingsList key={building.id} {...building} />
-      ))}
-    </ul>
+
     </>
   )
 }
