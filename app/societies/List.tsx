@@ -346,9 +346,9 @@ export default async function List(props: PageProps) {
 
                 </Table >
             </div>
-
-            <Pagination {...props.searchParams} {...metadata} />
-
+            <div className="mt-6">
+                <Pagination {...props.searchParams} {...metadata} />
+            </div>
             {/* <div className="flex flex-col gap-4 ">
         {buildings.map((building) => (
           <div className="flex justify-between gap-4">

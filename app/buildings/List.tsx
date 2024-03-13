@@ -328,8 +328,9 @@ export default async function List(props: PageProps) {
 
         </Table>
       </div>
-      <Pagination {...props.searchParams} {...metadata} />
-
+      <div className="mt-6">
+        <Pagination {...props.searchParams} {...metadata} />
+      </div>
 
     </>
   );
