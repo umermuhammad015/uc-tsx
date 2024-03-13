@@ -44,7 +44,7 @@ function SearchInput() {
         <Input type="search"
           placeholder="search"
           value={input}
-          onInput={e => setInput (e.target.value)}
+          onInput={e => setInput ((e.target as HTMLInputElement).value)}
         />
         <Button onClick={handleSearch} style={{ height:'43px'}}>Search</Button>
       </div>
