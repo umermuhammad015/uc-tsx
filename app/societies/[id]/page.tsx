@@ -109,7 +109,7 @@ export default async function ViewBuilding({ params }: Props) {
                             <TableCell>Plot Sizes Commercial (Sq. Yards)</TableCell> <TableCell>{society?.plot_sizes_commercial}</TableCell>
                         </TableRow>
                         <TableRow>
-                            <TableCell>Total No. of Apartments</TableCell> <TableCell>{society?.total_apartments}</TableCell>
+                            <TableCell>Total No. of Apartment</TableCell> <TableCell>{society?.total_apartments}</TableCell>
                         </TableRow>
                         <TableRow>
                             <TableCell>Apartment Sizes (Sq. Ft)</TableCell> <TableCell>{society?.societies_apartment_size}</TableCell>
