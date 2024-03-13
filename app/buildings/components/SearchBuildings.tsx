@@ -1,3 +1,5 @@
+import { useSearchParams } from "next/navigation";
+
 async function GetSearchedBuildings() {
 
     const searchParams = useSearchParams()
