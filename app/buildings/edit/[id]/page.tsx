@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 
 type Props = {
-    params: { id: string }
+    params: { id: number }
     // searchParams: { [key: string]: string | string[] | undefined }
 }
 
@@ -23,7 +23,7 @@ export default async function editForm({ params }: any) {
 
     const building = await prisma.buildings.findUnique({
         where: {
-            id: params.id,
+            id: Number(params.id) as number
         },
     })
 
@@ -125,7 +125,7 @@ export default async function editForm({ params }: any) {
 
         const update_query = {
             where: {
-                id: params.id
+                id: Number(params.id) as number
             },
             data: {
                 // name: name,
