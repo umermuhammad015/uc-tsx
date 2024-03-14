@@ -2,6 +2,7 @@ import prisma from "../../db";
 import { Badge } from "@/components/ui/badge"
 import Link from "next/link";
 import { Button } from "@/components/ui/button"
+import DeleteHouseButton from "../components/DeleteHouseButton";
 
 import {
     Table,
@@ -12,12 +13,15 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table";
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
+import DeletePlotButton from "../components/DeletePlotButton";
 
 
 
 
 type Props = {
-    params: { id: string }
+    params: { id: number }
     // searchParams: { [key: string]: string | string[] | undefined }
 }
 
@@ -48,6 +52,38 @@ export default async function ViewBuilding({ params }: Props) {
 
 
     console.log(plots);
+
+    async function deleteHouse(data: FormData) {
+        "use server";
+
+        const house_id = data.get("house-id")?.valueOf();
+        console.log(house_id);
+
+        await prisma.houses.delete({
+            where: {
+                id: Number(house_id) as number
+            },
+        });
+
+        revalidatePath("/");
+        redirect("/societies");
+    }
+
+    async function deletePlot(data: FormData) {
+        "use server";
+
+        const plot_id = data.get("plot-id")?.valueOf();
+        console.log(plot_id);
+
+        await prisma.plots.delete({
+            where: {
+                id: Number(plot_id) as number
+            },
+        });
+
+        revalidatePath("/");
+        redirect("/societies");
+    }
 
     return (
         <>
@@ -278,6 +314,16 @@ export default async function ViewBuilding({ params }: Props) {
                                     </Button>
 
                                 </TableCell>
+                                <TableCell >
+                                    <form action={deletePlot}>
+                                        <input
+                                            type="hidden"
+                                            name="plot-id"
+                                            value={plots.id}
+                                        />
+                                        <DeletePlotButton />
+                                    </form>
+                                </TableCell>
 
                             </TableRow>
 
@@ -333,6 +379,17 @@ export default async function ViewBuilding({ params }: Props) {
                                         </Link>
                                     </Button>
 
+                                </TableCell>
+                                <TableCell >
+                                    <form action={deleteHouse}>
+                                        <input
+                                            type="hidden"
+                                            name="house-id"
+                                            value={houses.id}
+                                        />
+                                        <DeleteHouseButton />
+                                    </form>
+                                    
                                 </TableCell>
 
                             </TableRow>

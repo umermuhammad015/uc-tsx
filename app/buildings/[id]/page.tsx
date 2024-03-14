@@ -2,6 +2,7 @@ import prisma from "../../db";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
+import DeleteFloorButton from "../components/DeleteFloorButton";
 export const revalidate = 3600 // revalidate the date at most every hour
 
 import {
@@ -13,6 +14,8 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 type Props = {
   params: { id: number }
@@ -37,6 +40,22 @@ export default async function ViewBuilding({ params }: Props) {
       building_id: Number(params.id) as number
     },
   });
+
+  async function deleteFloor(data: FormData) {
+    "use server";
+
+    const floor_id = data.get("floor-id")?.valueOf();
+    console.log(floor_id);
+
+    await prisma.floors.delete({
+      where: {
+        id: Number(floor_id) as number
+      },
+    });
+
+    revalidatePath("/");
+    redirect("/buildings");
+  }
 
   console.log(floors);
 
@@ -288,8 +307,21 @@ export default async function ViewBuilding({ params }: Props) {
                       Edit
                     </Link>
                   </Button>
-
                 </TableCell >
+                <TableCell >
+                  <form action={deleteFloor}>
+                    <input
+                      type="hidden"
+                      name="floor-id"
+                      value={floor.id}
+                    />
+                    <DeleteFloorButton />
+                  </form>
+                </TableCell>
+
+
+
+
 
               </TableRow>
 

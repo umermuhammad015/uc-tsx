@@ -10,7 +10,7 @@ import { redirect } from "next/navigation"
 
 
 type Props = {
-    params: { id: string }
+    params: { id: number }
     // searchParams: { [key: string]: string | string[] | undefined }
 }
 
@@ -24,7 +24,7 @@ export default async function editPlotForm({ params }: Props) {
 
     const plot = await prisma.plots.findUnique({
         where: {
-            id: params.id,
+            id:Number(params.id) as number
         },
     })
 
@@ -53,7 +53,7 @@ export default async function editPlotForm({ params }: Props) {
 
         const update_query = {
             where: {
-                id: params.id
+                id: Number(params.id) as number
             },
             data: {
                 // name: name,

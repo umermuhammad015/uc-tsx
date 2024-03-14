@@ -167,7 +167,7 @@ model Societies {
 
 model Plots {
   // id String @id @default(auto()) @map("_id") @db.ObjectId
-  id String @id @default(uuid())
+  id                Int @id @default(autoincrement())
 
   society_id        Int
   societies  Societies @relation(fields: [society_id], references: [id], onDelete: Cascade)
@@ -187,7 +187,7 @@ model Plots {
 
 model Houses {
   // id String @id @default(auto()) @map("_id") @db.ObjectId
-  id String @id @default(uuid())
+  id                 Int @id @default(autoincrement())
 
   society_id        Int
   societies  Societies @relation(fields: [society_id], references: [id], onDelete: Cascade)
