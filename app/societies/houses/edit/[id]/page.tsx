@@ -10,7 +10,7 @@ import { redirect } from "next/navigation"
 
 
 type Props = {
-    params: { id: string }
+    params: { id: number }
     // searchParams: { [key: string]: string | string[] | undefined }
 }
 
@@ -24,7 +24,7 @@ export default async function editHouseForm({ params }: Props) {
 
     const house = await prisma.houses.findUnique({
         where: {
-            id: params.id,
+            id: Number(params.id) as number
         },
     })
 
@@ -56,7 +56,7 @@ export default async function editHouseForm({ params }: Props) {
 
         const update_query = {
             where: {
-                id: params.id
+                id: Number(params.id) as number
             },
             data: {
                 // name: name,
