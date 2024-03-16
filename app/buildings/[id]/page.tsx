@@ -136,7 +136,7 @@ export default async function ViewBuilding({ params }: Props) {
               <TableCell >Plot Size (Sq. Yards)</TableCell > <TableCell >{building?.plot_size}</TableCell >
             </TableRow>
             <TableRow>
-              <TableCell >Construction Area (Sq. Yards)</TableCell > <TableCell >{building?.construction_area}</TableCell >
+              <TableCell >Construction Area (Per Sq. Ft.)</TableCell > <TableCell >{building?.construction_area}</TableCell >
             </TableRow>
             <TableRow>
               <TableCell >Construction Year </TableCell > <TableCell >{building?.construction_year}</TableCell >
@@ -194,7 +194,7 @@ export default async function ViewBuilding({ params }: Props) {
               <TableCell >{building?.apartments_has_servant_quarter}</TableCell >
             </TableRow>
             <TableRow>
-              <TableCell >Apartment Maintenance Fee Rs.</TableCell >{" "}
+              <TableCell >Apartment Maintenance Fee Rs. (Per Sq. Ft.)</TableCell >{" "}
               <TableCell >{building?.apartments_maintenance_fee}</TableCell >
             </TableRow>
 
@@ -207,7 +207,7 @@ export default async function ViewBuilding({ params }: Props) {
               <TableCell >{building?.retail_floors_shops_count}</TableCell >
             </TableRow>
             <TableRow>
-              <TableCell >Shop Maintenance Fee Rs.</TableCell >{" "}
+              <TableCell >Shop Maintenance Fee Rs. (Per Sq. Ft.)</TableCell >{" "}
               <TableCell >{building?.apartments_maintenance_fee}</TableCell >
             </TableRow>
             <TableRow>

@@ -3,8 +3,12 @@
 import React from 'react'
 import ThemeToggleButton from './ThemeToggleButton'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation';
 
 export default function Header() {
+
+    const pathname = usePathname()
+
     return (
         <header className="flex justify-between items-center mb-4 bg-cyan-950 text-white  rounded px-1 h-16 w-full">
             <div className="flex gap-1 mb-2">
@@ -19,6 +23,7 @@ export default function Header() {
       Add new
     </Link> */}
             <div className="pr-4 h-full flex mr-1">
+                {/* {pathname} */}
                 <div className="flex hover:bg-cyan-800  justify-center items-center px-4 h-full gap-1">
 
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6 cursor-pointer mt-1">
