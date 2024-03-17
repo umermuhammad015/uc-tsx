@@ -284,7 +284,7 @@ export default async function List(props: PageProps) {
                                             )}
                                             {societies.utilities_type_utilities_electricity && (
                                                 // <div className="badge bg-emerald-700 text-white p-2 m-2 text-xs w-32">Security</div>
-                                                <Badge>Utilities Electricity</Badge>
+                                                <Badge>Electricity</Badge>
                                             )}
                                             {societies.utilities_type_drainage && (
                                                 // <div className="badge bg-emerald-700 text-white p-2 m-2 text-xs">Water</div>

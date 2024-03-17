@@ -241,7 +241,7 @@ export default async function ViewBuilding({ params }: Props) {
                                 )}
                                 {society?.utilities_type_utilities_electricity && (
                                     // <div className="badge bg-emerald-700 text-white">Security</div>
-                                    <Badge>Security</Badge>
+                                    <Badge>Electricity</Badge>
                                 )}
                             </TableCell>
                         </TableRow>

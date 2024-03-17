@@ -410,6 +410,7 @@ export default async function editForm({ params }: any) {
                             <option>West</option>
                             <option>North</option>
                             <option>South</option>
+                            <option>Central</option>
 
                         </select>
                     </div>
@@ -467,6 +468,7 @@ export default async function editForm({ params }: any) {
                             <option>B+</option>
                             <option>B</option>
                             <option>C</option>
+                            <option>D</option>
                         </select>
                     </div>
 
@@ -1201,7 +1203,7 @@ export default async function editForm({ params }: any) {
                                     htmlFor="utilities-type-utilities-electricity"
                                     className="ml-2 text-sm font-medium "
                                 >
-                                    Utilities Electricity
+                                    Electricity
                                 </label>
                             </div>
 

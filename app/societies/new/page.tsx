@@ -179,6 +179,7 @@ export default function page() {
               <option>West</option>
               <option>North</option>
               <option>South</option>
+              <option>Central</option>
 
             </select>
           </div>
@@ -233,6 +234,7 @@ export default function page() {
               <option>B+</option>
               <option>B</option>
               <option>C</option>
+              <option>D</option>
             </select>
           </div>
 
@@ -925,7 +927,7 @@ export default function page() {
                   htmlFor="utilities-type-utilities-electricity"
                   className="ml-2 text-sm font-medium "
                 >
-                  Utilities Electricity
+                  Electricity
                 </label>
               </div>
 
