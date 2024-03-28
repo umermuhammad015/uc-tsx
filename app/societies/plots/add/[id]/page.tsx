@@ -1,85 +1,51 @@
-import { redirect } from "next/navigation";
-import { Button } from "@/components/ui/button"
+"use client";
+
+import * as React from "react"
+
+import AddHomeButton from "../../../components/AddHomeButton";
 import Link from "next/link";
-import AddPlotButton from "../../../components/AddPlotButton";
 import { Input } from "@/components/ui/input"
-import prisma from "../../../../db";
 import { Textarea } from "@/components/ui/textarea"
 
+import createPlot from "../../../../actions/createPlot"
 
+import { redirect } from "next/navigation";
+// import AddButton from "../components/AddButton";
 
+import { format } from "date-fns"
+import { Calendar as CalendarIcon } from "lucide-react"
 
-async function createPlots(data: FormData) {
-    "use server";
+import { useState } from "react";
 
-    console.log("🚀 ~ file: page.tsx:10 ~ createPlots ~ data:", data);
-
-    const society_id = data.get("society-id")?.valueOf();
-
-    const plot_type = data.get("plot-type")?.valueOf();
-
-    const plot_size = data.get("plot-size")?.valueOf();
-
-    const plot_price = data.get("plot-price")?.valueOf();
-
-    const plot_direction = data.get("plot-direction")?.valueOf();
-
-    const is_corner = data.get("is-corner")?.valueOf();
-
-    const instalment_period = data.get("instalment-period")
-
-    const instalment_plan = data.get("instalment-plan")?.valueOf();
-
-    const plot_remarks = data.get("plot-remarks")
-
-    console.log("🚀 ~ file: page.tsx:9 ~ createPlots ~ society_id:", society_id);
-    console.log("🚀 ~ file: page.tsx:9 ~ createPlots ~ plot_type:", plot_type);
-    console.log("🚀 ~ file: page.tsx:9 ~ createPlots ~ plot_size:", plot_size);
-    console.log("🚀 ~ file: page.tsx:9 ~ createPlots ~ plot_price:", plot_price);
-    console.log("🚀 ~ file: page.tsx:9 ~ createPlots ~ plot_direction:", plot_direction);
-    console.log("🚀 ~ file: page.tsx:9 ~ createPlots ~ instalment_period:", instalment_period);
-    console.log("🚀 ~ file: page.tsx:9 ~ createPlots ~ instalment_plan:", instalment_plan);
-    console.log("🚀 ~ file: page.tsx:9 ~ createPlots ~ plot_remarks:", plot_remarks);
-
-
-    await prisma.plots.create({
-        data: {
-            society_id: Number(society_id) as number,
-            type: plot_type as string,
-            size: plot_size as string,
-            price: plot_price as string,
-            direction: plot_direction as string,
-            is_corner: is_corner as string,
-            instalment_period: instalment_period as string,
-            instalment_plan: instalment_plan as string,
-            remarks: plot_remarks as string
-        },
-    });
-
-    redirect("/societies");
-}
+import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
+import { Calendar } from "@/components/ui/calendar"
+import {
+    Popover,
+    PopoverContent,
+    PopoverTrigger,
+} from "@/components/ui/popover"
 
 type Props = {
     params: { id: number }
     // searchParams: { [key: string]: string | string[] | undefined }
 }
 
-export default async function AddPlot({ params }: Props) {
+export default function page({ params }: Props) {
 
-    const society = await prisma.societies.findUnique({
-        where: {
-            id: Number(params.id) as number
-        },
-    });
+    // const [date, setDate] = useState<Date>()
+
+    const [price, setPrice] = useState(0);
+    const [rent, setRent] = useState(0);
 
     return (
         <>
-            <div className="text-lg">Plots Information</div>
+            <div className="text-lg">Plots/Bungalows Information</div>
             <div className="container border-2 ">
 
                 <div className="mx-4">
-                    <form action={createPlots}>
-                        {/* Building ID  */}
+                    <form action={createPlot}>
+
 
 
                         <div className="mt-4 ">
@@ -95,14 +61,11 @@ export default async function AddPlot({ params }: Props) {
                                 name="society-id"
                                 className="input input-bordered  w-full max-w-xs border-2 border-gray-400 cursor-not-allowed disabled:bg-gray-200"
                                 placeholder=""
-                                value={society?.id}
-                            // defaultValue={building?.id}
-                            // value="hi"
-                            // defaultValue="hello"
-                            // disabled
+                                value={params?.id}
+
                             />
                         </div>
-                        <div className="mt-4 ">
+                        {/* <div className="mt-4 ">
                             <label
                                 htmlFor="society-name"
                                 className="block mb-2 text-sm font-medium "
@@ -116,14 +79,9 @@ export default async function AddPlot({ params }: Props) {
                                 className="input input-bordered  w-full max-w-xs border-2 border-gray-400 cursor-not-allowed disabled:bg-gray-200"
                                 placeholder=""
                                 value={society?.name as string}
-                            // defaultValue={building?.id}
-                            // value="hi"
-                            // defaultValue="hello"
-                            // disabled
+                            
                             />
-                        </div>
-
-                        {/* plot type */}
+                        </div> */}
                         <div className="mt-4">
                             <label
                                 htmlFor="plot-type"
@@ -136,144 +94,111 @@ export default async function AddPlot({ params }: Props) {
                                 name="plot-type"
                                 className="select  w-full max-w-xs border-2 border-gray-400 "
                             >
+                                <option>Plot</option>
+                                <option>Bungalow</option>
+
+                            </select>
+                        </div>
+                        {/* plot type */}
+                        <div className="mt-4">
+                            <label
+                                htmlFor="type"
+                                className="block mb-2 text-sm font-medium"
+                            >
+                                Plot/Bungalow Type:
+                            </label>
+                            <select
+                                id="type"
+                                name="type"
+                                className="select  w-full max-w-xs border-2 border-gray-400 "
+                            >
                                 <option>Commercial</option>
                                 <option>Residential</option>
-                                
+
                             </select>
                         </div>
 
 
                         {/* plot size  */}
-                        <div className="">
-
-                            <div className="mt-4 ">
-                                <label
-                                    htmlFor="plot-size"
-                                    className="block mb-2 text-sm font-medium "
-                                >
-                                    Size:
-                                </label>
-                                <Input
-                                    type="text"
-                                    id="plot-size"
-                                    name="plot-size"
-                                    className="input input-bordered w-full max-w-xs border-2 border-gray-400"
-                                    placeholder=""
-                                // value={type}
-
-                                />
-                            </div>
+                        <div className="mt-4">
+                            <label
+                                htmlFor="plot-size"
+                                className="block mb-2 text-sm font-medium"
+                            >
+                                Plot/Bungalow Size :
+                            </label>
+                            <select
+                                id="plot-size"
+                                name="plot-size"
+                                className="select w-full max-w-xs border-2 border-gray-400 "
+                            >
+                                <option value='87.5'>87.5</option>
+                                <option value='125'>125</option>
+                                <option value='200'>200</option>
+                                <option value='250'>250</option>
+                                <option value='500'>500</option>
+                                <option value='1000'>1,000</option>
+                                <option value='2000'>2,000</option>
+                            </select>
                         </div>
 
                         {/* plot price  */}
-                        <div className=" ">
-
-                            <div className="mt-4 ">
-                                <label
-                                    htmlFor="plot-price"
-                                    className="block mb-2 text-sm font-medium "
-                                >
-                                    Price:
-                                </label>
+                        <div className="mt-4">
+                            <label
+                                htmlFor="plot-price"
+                                className="block mb-2 text-sm font-medium"
+                            >
+                                Price:
+                            </label>
+                            <div className="flex">
                                 <Input
+                                    onChange={(e) => {
+                                        setPrice(Number(e.target.value))
+                                        console.log(e.target.value)
+                                    }}
                                     type="text"
                                     id="plot-price"
                                     name="plot-price"
-                                    className="input input-bordered w-full max-w-xs border-2 border-gray-400"
-                                    placeholder=""
-                                // value={type}
-
+                                    className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+                                    placeholder="Rs."
                                 />
+                                <div className="m-4">
+                                    {Number(price).toLocaleString()}
+                                </div>
                             </div>
                         </div>
 
-
-                        {/* plot direction  */}
+                        {/* plot rent  */}
                         <div className="mt-4">
                             <label
-                                htmlFor="plot-direction"
+                                htmlFor="plot-rent"
                                 className="block mb-2 text-sm font-medium"
                             >
-                                Plot direction:
+                                Rental Value:
                             </label>
-                            <select
-                                id="plot-direction"
-                                name="plot-direction"
-                                className="select  w-full max-w-xs border-2 border-gray-400 "
-                            >
-                                <option>East</option>
-                                <option>West</option>
-                                <option>North</option>
-                                <option>South</option>
-                            </select>
-                        </div>
-
-                        {/* corner  */}
-                        <div className="mt-4">
-                            <label
-                                htmlFor="is-corner"
-                                className="block mb-2 text-sm font-medium"
-                            >
-                                Corner Plot?
-                            </label>
-                            <select
-                                id="is-corner"
-                                name="is-corner"
-                                className="select  w-full max-w-xs border-2 border-gray-400 "
-                            >
-                                <option>Yes</option>
-                                <option>No</option>
-                            </select>
-                        </div>
-
-                        {/* instalment period */}
-                        <div className=" ">
-
-                            <div className="mt-4 ">
-                                <label
-                                    htmlFor="instalment-period"
-                                    className="block mb-2 text-sm font-medium "
-                                >
-                                    Instalment period:
-                                </label>
+                            <div className="flex">
                                 <Input
+                                    onChange={(e) => {
+                                        setRent(Number(e.target.value))
+                                        console.log(e.target.value)
+                                    }}
                                     type="text"
-                                    id="instalment-period"
-                                    name="instalment-period"
-                                    className="input input-bordered w-full max-w-xs border-2 border-gray-400"
-                                    placeholder=""
-                                // value={type}
-
+                                    id="plot-rent"
+                                    name="plot-rent"
+                                    className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+                                    placeholder="Rs."
                                 />
+                                <div className="m-4">
+                                    {Number(rent).toLocaleString()}
+                                </div>
                             </div>
                         </div>
 
-                        {/* instalment plan */}
-                        <div className=" ">
-
-                            <div className="mt-4 ">
-                                <label
-                                    htmlFor="instalment-plan"
-                                    className="block mb-2 text-sm font-medium "
-                                >
-                                    Instalment plan:
-                                </label>
-                                <Input
-                                    type="text"
-                                    id="instalment-plan"
-                                    name="instalment-plan"
-                                    className="input input-bordered w-full max-w-xs border-2 border-gray-400"
-                                    placeholder=""
-                                // value={type}
-
-                                />
-                            </div>
-                        </div>
 
                         {/* Plot Remarks  */}
                         <div className="mt-4">
                             <label htmlFor="message" className="block mb-2 text-sm font-medium">
-                                Your Remarks
+                                Remarks
                             </label>
                             <Textarea
                                 id="remarks"
@@ -286,7 +211,7 @@ export default async function AddPlot({ params }: Props) {
 
                         {/* Submit button */}
                         <div className="flex gap-6 justify-center mt-3 mb-2">
-                            <AddPlotButton />
+                            <AddHomeButton />
                             {/* <Link href="/buildings" className="flex justify-center items-center border border-black px-2 py-1 rounded-xl bg-white text-black hover:bg-red-600 hover:text-white capitalize">Cancel</Link> */}
 
                             <Button asChild className="bg-transparent text-primary hover:bg-primary-foreground">
@@ -299,5 +224,6 @@ export default async function AddPlot({ params }: Props) {
                 </div>
             </div>
         </>
+
     )
 }

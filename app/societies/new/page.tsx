@@ -30,6 +30,7 @@ import {
 
 export default function page() {
 
+  const [price, setPrice] = useState(0);
   // const [date, setDate] = useState<Date>()
 
   return (
@@ -446,13 +447,22 @@ export default function page() {
             >
               Plot Price :
             </label>
-            <Input
-              type="text"
-              id="societies-plot-price"
-              name="societies-plot-price"
-              className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-              placeholder="Rs."
-            />
+            <div className="flex">
+              <Input
+                onChange={(e) => {
+                  setPrice(Number(e.target.value))
+                  console.log(e.target.value)
+                }}
+                type="text"
+                id="societies-plot-price"
+                name="societies-plot-price"
+                className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+                placeholder="Rs."
+              />
+              <div className="m-4">
+                {Number(price).toLocaleString()}
+              </div>
+            </div>
           </div>
         </div>
 
@@ -491,13 +501,22 @@ export default function page() {
             >
               Bungalows/ Vilas Price:
             </label>
-            <Input
-              type="text"
-              id="vilas-price"
-              name="vilas-price"
-              className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-              placeholder="Rs."
-            />
+            <div className="flex">
+              <Input
+                onChange={(e) => {
+                  setPrice(Number(e.target.value))
+                  console.log(e.target.value)
+                }}
+                type="text"
+                id="vilas-price"
+                name="vilas-price"
+                className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+                placeholder="Rs."
+              />
+              <div className="m-4">
+                {Number(price).toLocaleString()}
+              </div>
+            </div>
           </div>
 
           {/* Monthly Rent*/}
@@ -508,13 +527,22 @@ export default function page() {
             >
               Monthly Rent:
             </label>
-            <Input
-              type="text"
-              id="vilas-monthly-rent"
-              name="vilas-monthly-rent"
-              className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-              placeholder="Rs."
-            />
+            <div className="flex">
+              <Input
+                onChange={(e) => {
+                  setPrice(Number(e.target.value))
+                  console.log(e.target.value)
+                }}
+                type="text"
+                id="vilas-monthly-rent"
+                name="vilas-monthly-rent"
+                className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+                placeholder="Rs."
+              />
+              <div className="m-4">
+                {Number(price).toLocaleString()}
+              </div>
+            </div>
           </div>
         </div>
 
@@ -552,13 +580,22 @@ export default function page() {
             >
               Plot Price:
             </label>
-            <Input
-              type="text"
-              id="commercial-plot-price"
-              name="commercial-plot-price"
-              className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-              placeholder="Rs."
-            />
+            <div className="flex">
+              <Input
+                onChange={(e) => {
+                  setPrice(Number(e.target.value))
+                  console.log(e.target.value)
+                }}
+                type="text"
+                id="commercial-plot-price"
+                name="commercial-plot-price"
+                className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+                placeholder="Rs."
+              />
+              <div className="m-4">
+                {Number(price).toLocaleString()}
+              </div>
+            </div>
           </div>
         </div>
 
@@ -591,13 +628,22 @@ export default function page() {
             >
               Apartment Price:
             </label>
-            <Input
-              type="text"
-              id="apartments-price"
-              name="apartments-price"
-              className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-              placeholder="Rs."
-            />
+            <div className="flex">
+              <Input
+                onChange={(e) => {
+                  setPrice(Number(e.target.value))
+                  console.log(e.target.value)
+                }}
+                type="text"
+                id="apartments-price"
+                name="apartments-price"
+                className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+                placeholder="Rs."
+              />
+              <div className="m-4">
+                {Number(price).toLocaleString()}
+              </div>
+            </div>
           </div>
 
           {/* Monthly Rent*/}
@@ -608,13 +654,22 @@ export default function page() {
             >
               Monthly Rent:
             </label>
-            <Input
-              type="text"
-              id="apartments-monthly-rent"
-              name="apartments-monthly-rent"
-              className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-              placeholder="Rs."
-            />
+            <div className="flex">
+              <Input
+                onChange={(e) => {
+                  setPrice(Number(e.target.value))
+                  console.log(e.target.value)
+                }}
+                type="text"
+                id="apartments-monthly-rent"
+                name="apartments-monthly-rent"
+                className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+                placeholder="Rs."
+              />
+              <div className="m-4">
+                {Number(price).toLocaleString()}
+              </div>
+            </div>
           </div>
         </div>
 

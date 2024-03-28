@@ -295,7 +295,7 @@ export default async function List(props: PageProps) {
 
                                 </TableCell>
                                 <TableCell>{societies.city}</TableCell>
-                                <TableCell>{societies.area}</TableCell>
+                                <TableCell>{Number(societies?.area).toLocaleString()}</TableCell>
                                 <TableCell>
                                     <div className="flex justify-around gap-2">
                                         <div className="flex gap-4">
@@ -319,15 +319,15 @@ export default async function List(props: PageProps) {
 
                                         <Button asChild>
                                             <Link href={"societies/plots/add/" + societies.id}>
-                                                Add Plots
+                                                Add Plots/Banglow
                                             </Link>
                                         </Button>
 
-                                        <Button asChild>
+                                        {/* <Button asChild>
                                             <Link href={"societies/houses/add/" + societies.id}>
                                                 Add Houses
                                             </Link>
-                                        </Button>
+                                        </Button> */}
 
                                         <form action={deleteSociety}>
                                             <input type="hidden" name="societies-id" value={societies.id} />

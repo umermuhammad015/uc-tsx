@@ -195,7 +195,7 @@ export default async function ViewBuilding({ params }: Props) {
             </TableRow>
             <TableRow>
               <TableCell >Apartment Maintenance Fee Rs. (Per Sq. Ft.)</TableCell >{" "}
-              <TableCell >{building?.apartments_maintenance_fee}</TableCell >
+              <TableCell >{Number(building?.apartments_maintenance_fee).toLocaleString()}</TableCell >
             </TableRow>
 
             <TableRow>
@@ -208,7 +208,7 @@ export default async function ViewBuilding({ params }: Props) {
             </TableRow>
             <TableRow>
               <TableCell >Shop Maintenance Fee Rs. (Per Sq. Ft.)</TableCell >{" "}
-              <TableCell >{building?.apartments_maintenance_fee}</TableCell >
+              <TableCell >{Number(building?.apartments_maintenance_fee ).toLocaleString()}</TableCell >
             </TableRow>
             <TableRow>
               <TableCell >Brands</TableCell > <TableCell >{building?.retail_floors_brands}</TableCell >
@@ -222,7 +222,7 @@ export default async function ViewBuilding({ params }: Props) {
             </TableRow>
             <TableRow>
               <TableCell >Maintenance Fee Rs. (Per Sq. Ft.)</TableCell >{" "}
-              <TableCell >{building?.office_maintenance_fee}</TableCell >
+              <TableCell >{Number(building?.office_maintenance_fee).toLocaleString()}</TableCell >
             </TableRow>
 
             <TableRow>
@@ -275,13 +275,13 @@ export default async function ViewBuilding({ params }: Props) {
                 <TableCell >{floor?.occupancy}</TableCell >
                 <TableCell >{floor?.size_min}</TableCell >
                 <TableCell >{floor?.size_max}</TableCell >
-                <TableCell >{floor?.avg_sale_price}</TableCell >
-                <TableCell >{floor?.avg_monthly_rent}</TableCell >
+                <TableCell >{Number(floor?.avg_sale_price).toLocaleString()}</TableCell >
+                <TableCell >{Number(floor?.avg_monthly_rent).toLocaleString()}</TableCell >
                 <TableCell >{floor?.instalment_plan}</TableCell >
                 <TableCell >{floor?.instalment_period}</TableCell >
-                <TableCell >{floor?.down_payment_amount}</TableCell >
-                <TableCell >{floor?.instalment_amount}</TableCell >
-                <TableCell >{floor?.possession_amount}</TableCell >
+                <TableCell >{Number(floor?.down_payment_amount).toLocaleString()}</TableCell >
+                <TableCell >{Number(floor?.instalment_amount).toLocaleString()}</TableCell >
+                <TableCell >{Number(floor?.possession_amount).toLocaleString()}</TableCell >
                 <TableCell >{floor?.remarks}</TableCell >
                 <TableCell >
                   {/* <div className="flex justify-center items-center border border-slate-400 px-2 py-1 rounded hover:bg-cyan-800 outline-none hover:text-white">

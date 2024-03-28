@@ -17,6 +17,9 @@ export default function Page() {
 
   const [buildingStatus, setBuildingStatus] = useState("Existing")
 
+  const [apartments_maintenance_fee, setApartments_Maintenance_Fee] = useState(0);
+  const [retail_floors_maintenance_fee, setRetail_Floors_Maintenance_Fee] = useState(0);
+  const [office_maintenance_fee, setOffice_Maintenance_Fee] = useState(0);
   // function onbuildingStatusChange(e) {
   //   setBuildingStatus(e.target.value)
   // }
@@ -384,6 +387,7 @@ export default function Page() {
               Plot Size (Sq. Yards):
             </label>
             <Input
+
               type="number"
               id="plot-size"
               name="plot-size"
@@ -668,14 +672,23 @@ export default function Page() {
             >
               Maintenance Fee (Per Sq. Ft.):
             </label>
-            <Input
-              type="number"
-              id="apartments-maintenance-fee"
-              name="apartments-maintenance-fee"
-              min="0"
-              className="input input-bordered  w-full max-w-xs border-2 border-gray-400  "
-              placeholder="Rs."
-            />
+            <div className="flex">
+              <Input
+                onChange={(e) => {
+                  setApartments_Maintenance_Fee(Number(e.target.value))
+                  console.log(e.target.value)
+                }}
+                type="number"
+                id="apartments-maintenance-fee"
+                name="apartments-maintenance-fee"
+                min="0"
+                className="input input-bordered  w-full max-w-xs border-2 border-gray-400  "
+                placeholder="Rs."
+              />
+              <div className="m-4">
+                {Number(apartments_maintenance_fee).toLocaleString()}
+              </div>
+            </div>
           </div>
         </div>
 
@@ -725,14 +738,23 @@ export default function Page() {
             >
               Maintenance Fee:
             </label>
-            <Input
-              type="number"
-              id="retail-floors-maintenance-fee"
-              name="retail-floors-maintenance-fee"
-              min="0"
-              className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-              placeholder="Rs."
-            />
+            <div className="flex">
+              <Input
+                onChange={(e) => {
+                  setRetail_Floors_Maintenance_Fee(Number(e.target.value))
+                  console.log(e.target.value)
+                }}
+                type="number"
+                id="retail-floors-maintenance-fee"
+                name="retail-floors-maintenance-fee"
+                min="0"
+                className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+                placeholder="Rs."
+              />
+              <div className="m-4">
+                {Number(retail_floors_maintenance_fee).toLocaleString()}
+              </div>
+            </div>
           </div>
 
           {/* Brands/Type of Products & Services: */}
@@ -799,14 +821,23 @@ export default function Page() {
             >
               Maintenance Fee (Per Sq. Ft.):
             </label>
-            <Input
-              type="number"
-              id="office-maintenance-fee"
-              name="office-maintenance-fee"
-              min="0"
-              className="input input-bordered  w-full max-w-xs border-2 border-gray-400  "
-              placeholder="Rs."
-            />
+            <div className="flex">
+              <Input
+                onChange={(e) => {
+                  setOffice_Maintenance_Fee(Number(e.target.value))
+                  console.log(e.target.value)
+                }}
+                type="number"
+                id="office-maintenance-fee"
+                name="office-maintenance-fee"
+                min="0"
+                className="input input-bordered  w-full max-w-xs border-2 border-gray-400  "
+                placeholder="Rs."
+              />
+              <div className="m-4">
+                {Number(office_maintenance_fee).toLocaleString()}
+              </div>
+            </div>
           </div>
         </div>
 

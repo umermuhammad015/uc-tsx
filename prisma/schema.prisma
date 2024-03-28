@@ -80,9 +80,9 @@ model Buildings {
 
 model Floors {
   // id String @id @default(auto()) @map("_id") @db.ObjectId
-  id Int @id  @default(autoincrement())
+  id Int @id @default(autoincrement())
 
-  building_id         Int
+  building_id Int
   buildings   Buildings @relation(fields: [building_id], references: [id], onDelete: Cascade)
 
   floor_no            String
@@ -105,7 +105,7 @@ model Floors {
 }
 
 model Societies {
-  id                                         Int  @id @default(autoincrement())
+  id                                         Int     @id @default(autoincrement())
   // survey_date                                DateTime? @db.Date
   survey_date                                String?
   city                                       String
@@ -163,33 +163,34 @@ model Societies {
 
   Plots  Plots[]
   Houses Houses[]
+  // Homes  Homes[]
 }
 
-model Plots {
-  // id String @id @default(auto()) @map("_id") @db.ObjectId
-  id                Int @id @default(autoincrement())
+// model Plots {
+//   // id String @id @default(auto()) @map("_id") @db.ObjectId
+//   id Int @id @default(autoincrement())
 
-  society_id        Int
-  societies  Societies @relation(fields: [society_id], references: [id], onDelete: Cascade)
+//   society_id Int
+//   societies  Societies @relation(fields: [society_id], references: [id], onDelete: Cascade)
 
-  type              String?
-  size              String?
-  price             String?
-  direction         String?
-  is_corner         String?
-  instalment_period String?
-  instalment_plan   String?
-  remarks           String?
+//   type              String?
+//   size              String?
+//   price             String?
+//   direction         String?
+//   is_corner         String?
+//   instalment_period String?
+//   instalment_plan   String?
+//   remarks           String?
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+// }
 
 model Houses {
   // id String @id @default(auto()) @map("_id") @db.ObjectId
-  id                 Int @id @default(autoincrement())
+  id Int @id @default(autoincrement())
 
-  society_id        Int
+  society_id Int
   societies  Societies @relation(fields: [society_id], references: [id], onDelete: Cascade)
 
   type              String?
@@ -201,6 +202,30 @@ model Houses {
   floors            String?
   has_basement      String?
   construction_year String?
+  remarks           String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Plots {
+  // id String @id @default(auto()) @map("_id") @db.ObjectId
+  id Int @id @default(autoincrement())
+
+  society_id Int
+  societies  Societies @relation(fields: [society_id], references: [id], onDelete: Cascade)
+
+  plot_type         String?
+  type              String?
+  size              String?
+  plot_price        String?
+  plot_rent         String?
+  banglow_price     String?
+  banglow_rent      String?
+  direction         String?
+  is_corner         String?
+  instalment_period String?
+  instalment_plan   String?
   remarks           String?
 
   createdAt DateTime @default(now())

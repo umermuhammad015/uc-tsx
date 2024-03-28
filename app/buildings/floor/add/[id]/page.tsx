@@ -1,153 +1,165 @@
+"use client";
 import Link from "next/link";
 import prisma from "../../../../db";
+import { useState } from "react";
+
 import { redirect } from "next/navigation";
 import AddFloorButton from "../../../components/AddFloorButton";
+import createFloor from "../../../../actions/createFloor"
+
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 
-async function createFloor(data: FormData) {
-  "use server";
 
-  console.log("🚀 ~ file: page.tsx:10 ~ createFloor ~ data:", data);
+//   "use server";
 
-  const building_id = data.get("building-id")?.valueOf();
-  console.log(
-    "🚀 ~ file: page.tsx:10 ~ createFloor ~ building_id (for create floor):",
-    building_id
-  );
+//   console.log("🚀 ~ file: page.tsx:10 ~ createFloor ~ data:", data);
 
-  const building_test = data.get("building_test")?.valueOf();
-  console.log("building_test", building_test);
+//   const building_id = data.get("building-id")?.valueOf();
+//   console.log(
+//     "🚀 ~ file: page.tsx:10 ~ createFloor ~ building_id (for create floor):",
+//     building_id
+//   );
 
-  const building_name = data.get("building-name")?.valueOf();
+//   const building_test = data.get("building_test")?.valueOf();
+//   console.log("building_test", building_test);
 
-  const floor_no = data.get("building-floor-no")?.valueOf();
+//   const building_name = data.get("building-name")?.valueOf();
 
-  const floor_type = data.get("building-floor-type")?.valueOf();
+//   const floor_no = data.get("building-floor-no")?.valueOf();
 
-  const floor_unit_type = data.get("building-floor-unit-type")?.valueOf();
+//   const floor_type = data.get("building-floor-type")?.valueOf();
 
-  const floor_occupancy = data.get("building-floor-occupancy")?.valueOf();
+//   const floor_unit_type = data.get("building-floor-unit-type")?.valueOf();
 
-  const floor_size_min = data.get("building-floor-size-min")?.valueOf();
+//   const floor_occupancy = data.get("building-floor-occupancy")?.valueOf();
 
-  const floor_size_max = data.get("building-floor-size-max")?.valueOf();
+//   const floor_size_min = data.get("building-floor-size-min")?.valueOf();
 
-  const floor_avg_sale_price = data
-    .get("building-floor-avg-sale-price")
-    ?.valueOf();
+//   const floor_size_max = data.get("building-floor-size-max")?.valueOf();
 
-  const floor_avg_monthly_rent = data
-    .get("building-floor-avg-monthly-rent")
+//   const floor_avg_sale_price = data
+//     .get("building-floor-avg-sale-price")
+//     ?.valueOf();
 
-    ?.valueOf();
+//   const floor_avg_monthly_rent = data
+//     .get("building-floor-avg-monthly-rent")
 
-  const floor_instalment_plan = data.get("building-instalment-plan")?.valueOf();
+//     ?.valueOf();
 
-  const floor_instalment_period = data
-    .get("building-floor-instalment-period")
+//   const floor_instalment_plan = data.get("building-instalment-plan")?.valueOf();
 
-    ?.valueOf();
-  const floor_down_payment_amount = data
-    .get("building-floor-down-payment-amount")
-    ?.valueOf();
-  const floor_instalment_amount = data
-    .get("building-floor-instalment-amount")
-    ?.valueOf();
-  const floor_possession_amount = data
-    .get("building-floor-possession-amount")
-    ?.valueOf();
-  const floor_remarks = data.get("building-floor-remarks")?.valueOf();
+//   const floor_instalment_period = data
+//     .get("building-floor-instalment-period")
 
-  console.log("🚀 ~ file: page.tsx:9 ~ createFloor ~ floor_no:", floor_no);
-  console.log("🚀 ~ file: page.tsx:11 ~ createFloor ~ floor_type:", floor_type);
-  console.log(
-    "🚀 ~ file: page.tsx:13 ~ createFloor ~ floor_unit_type:",
-    floor_unit_type
-  );
-  console.log(
-    "🚀 ~ file: page.tsx:15 ~ createFloor ~ floor_occupancy:",
-    floor_occupancy
-  );
-  console.log(
-    "🚀 ~ file: page.tsx:17 ~ createFloor ~ floor_size_min:",
-    floor_size_min
-  );
-  console.log(
-    "🚀 ~ file: page.tsx:19 ~ createFloor ~ floor_size_max:",
-    floor_size_max
-  );
-  console.log(
-    "🚀 ~ file: page.tsx:22 ~ createFloor ~ floor_avg_sale_price:",
-    floor_avg_sale_price
-  );
-  console.log(
-    "🚀 ~ file: page.tsx:26 ~ createFloor ~ floor_avg_monthly_rent:",
-    floor_avg_monthly_rent
-  );
-  console.log(
-    "🚀 ~ file: page.tsx:29 ~ createFloor ~ floor_instalment_plan:",
-    floor_instalment_plan
-  );
-  console.log(
-    "🚀 ~ file: page.tsx:32 ~ createFloor ~ floor_instalment_period:",
-    floor_instalment_period
-  );
-  console.log(
-    "🚀 ~ file: page.tsx:36 ~ createFloor ~ floor_down_payment_amount:",
-    floor_down_payment_amount
-  );
-  console.log(
-    "🚀 ~ file: page.tsx:40 ~ createFloor ~ floor_instalment_amount:",
-    floor_instalment_amount
-  );
-  console.log(
-    "🚀 ~ file: page.tsx:44 ~ createFloor ~ floor_possession_amount:",
-    floor_possession_amount
-  );
-  console.log(
-    "🚀 ~ file: page.tsx:47 ~ createFloor ~ floor_remarks:",
-    floor_remarks
-  );
+//     ?.valueOf();
+//   const floor_down_payment_amount = data
+//     .get("building-floor-down-payment-amount")
+//     ?.valueOf();
+//   const floor_instalment_amount = data
+//     .get("building-floor-instalment-amount")
+//     ?.valueOf();
+//   const floor_possession_amount = data
+//     .get("building-floor-possession-amount")
+//     ?.valueOf();
+//   const floor_remarks = data.get("building-floor-remarks")?.valueOf();
 
-  await prisma.floors.create({
-    data: {
-      building_id: Number (building_id) as number,
-      floor_type: floor_type as string,
-      floor_no: floor_no as string,
-      unit_type: floor_unit_type as string,
-      occupancy: floor_occupancy as string,
-      size_min: floor_size_min as string,
-      size_max: floor_size_max as string,
-      avg_sale_price: floor_avg_sale_price as string,
-      avg_monthly_rent: floor_avg_monthly_rent as string,
-      instalment_plan: floor_instalment_plan as string,
-      instalment_period: floor_instalment_period as string,
-      down_payment_amount: floor_down_payment_amount as string,
-      instalment_amount: floor_instalment_amount as string,
-      possession_amount: floor_possession_amount as string,
-      remarks: floor_remarks as string
+//   console.log("🚀 ~ file: page.tsx:9 ~ createFloor ~ floor_no:", floor_no);
+//   console.log("🚀 ~ file: page.tsx:11 ~ createFloor ~ floor_type:", floor_type);
+//   console.log(
+//     "🚀 ~ file: page.tsx:13 ~ createFloor ~ floor_unit_type:",
+//     floor_unit_type
+//   );
+//   console.log(
+//     "🚀 ~ file: page.tsx:15 ~ createFloor ~ floor_occupancy:",
+//     floor_occupancy
+//   );
+//   console.log(
+//     "🚀 ~ file: page.tsx:17 ~ createFloor ~ floor_size_min:",
+//     floor_size_min
+//   );
+//   console.log(
+//     "🚀 ~ file: page.tsx:19 ~ createFloor ~ floor_size_max:",
+//     floor_size_max
+//   );
+//   console.log(
+//     "🚀 ~ file: page.tsx:22 ~ createFloor ~ floor_avg_sale_price:",
+//     floor_avg_sale_price
+//   );
+//   console.log(
+//     "🚀 ~ file: page.tsx:26 ~ createFloor ~ floor_avg_monthly_rent:",
+//     floor_avg_monthly_rent
+//   );
+//   console.log(
+//     "🚀 ~ file: page.tsx:29 ~ createFloor ~ floor_instalment_plan:",
+//     floor_instalment_plan
+//   );
+//   console.log(
+//     "🚀 ~ file: page.tsx:32 ~ createFloor ~ floor_instalment_period:",
+//     floor_instalment_period
+//   );
+//   console.log(
+//     "🚀 ~ file: page.tsx:36 ~ createFloor ~ floor_down_payment_amount:",
+//     floor_down_payment_amount
+//   );
+//   console.log(
+//     "🚀 ~ file: page.tsx:40 ~ createFloor ~ floor_instalment_amount:",
+//     floor_instalment_amount
+//   );
+//   console.log(
+//     "🚀 ~ file: page.tsx:44 ~ createFloor ~ floor_possession_amount:",
+//     floor_possession_amount
+//   );
+//   console.log(
+//     "🚀 ~ file: page.tsx:47 ~ createFloor ~ floor_remarks:",
+//     floor_remarks
+//   );
 
-    },
-  });
+//   await prisma.floors.create({
+//     data: {
+//       building_id: Number (building_id) as number,
+//       floor_type: floor_type as string,
+//       floor_no: floor_no as string,
+//       unit_type: floor_unit_type as string,
+//       occupancy: floor_occupancy as string,
+//       size_min: floor_size_min as string,
+//       size_max: floor_size_max as string,
+//       avg_sale_price: floor_avg_sale_price as string,
+//       avg_monthly_rent: floor_avg_monthly_rent as string,
+//       instalment_plan: floor_instalment_plan as string,
+//       instalment_period: floor_instalment_period as string,
+//       down_payment_amount: floor_down_payment_amount as string,
+//       instalment_amount: floor_instalment_amount as string,
+//       possession_amount: floor_possession_amount as string,
+//       remarks: floor_remarks as string
 
-  redirect("/buildings");
-}
+//     },
+//   });
+
+//   redirect("/buildings");
+// }
 
 type Props = {
   params: { id: number }
   // searchParams: { [key: string]: string | string[] | undefined }
 }
 
-export default async function AddFloor({ params }: Props) {
+export default function Page({ params }: Props) {
   console.log(params.id);
 
-  const building = await prisma.buildings.findUnique({
-    where: {
-      id: Number(params.id) as number
-    },
-  });
+  // const buildings = prisma.buildings.findUnique({
+  //   where: {
+  //     id: Number(params.id) as number
+  //   },
+  // });
+
+  const [avg_sale_price, setAvg_Sale_Price] = useState(0);
+  const [avg_monthly_rent, setAvg_Monthly_Rent] = useState(0);
+  const [down_payment_amount, setDown_Payment_Amount] = useState(0);
+  const [instalment_period, setInstalment_Period] = useState(0);
+  const [instalment_amount, setInstalment_Amount] = useState(0);
+  const [possession_amount, setPossession_Amount] = useState(0);
 
   return (
     <><div className="text-lg">Add Floor Information</div>
@@ -171,7 +183,7 @@ export default async function AddFloor({ params }: Props) {
                   name="building-id"
                   className="input input-bordered  w-full max-w-xs border-2 border-gray-400 cursor-not-allowed disabled:bg-gray-200"
                   placeholder=""
-                  value={building?.id}
+                  value={params?.id}
                 // defaultValue={building?.id}
                 // value="hi"
                 // defaultValue="hello"
@@ -180,7 +192,7 @@ export default async function AddFloor({ params }: Props) {
               </div>
 
 
-              {/* Building Name  */}
+              {/* Building Name 
               <div className="mt-4 ">
                 <label
                   htmlFor="building-name"
@@ -194,10 +206,10 @@ export default async function AddFloor({ params }: Props) {
                   name="building-name"
                   className="input input-bordered  w-full max-w-xs border-2 border-gray-400 cursor-not-allowed disabled:bg-gray-200"
                   placeholder=""
-                  defaultValue={building?.name}
+                  defaultValue={params?.name}
                   disabled
                 />
-              </div>
+              </div> */}
 
 
               {/* Floor Number  */}
@@ -376,7 +388,14 @@ export default async function AddFloor({ params }: Props) {
                   className="input input-bordered  w-full max-w-xs border-2 border-gray-400 "
                   placeholder="Rs."
                   min="0"
+                  onChange={(e) => {
+                    setAvg_Sale_Price(Number(e.target.value))
+                    console.log(e.target.value)
+                  }}
                 />
+                <div className="m-4">
+                  {Number(avg_sale_price).toLocaleString()}
+                </div>
               </div>
 
               {/* Avg. Monthly Rent */}
@@ -394,7 +413,14 @@ export default async function AddFloor({ params }: Props) {
                   className="input input-bordered  w-full max-w-xs border-2 border-gray-400 "
                   placeholder="Rs."
                   min="0"
+                  onChange={(e) => {
+                    setAvg_Monthly_Rent(Number(e.target.value))
+                    console.log(e.target.value)
+                  }}
                 />
+                <div className="m-4">
+                  {Number(avg_monthly_rent).toLocaleString()}
+                </div>
               </div>
 
               {/* Installment Plan  */}
@@ -430,7 +456,14 @@ export default async function AddFloor({ params }: Props) {
                   className="input input-bordered  w-full max-w-xs border-2 border-gray-400 "
                   placeholder=""
                   min="0"
+                  onChange={(e) => {
+                    setInstalment_Period(Number(e.target.value))
+                    console.log(e.target.value)
+                  }}
                 />
+                <div className="m-4">
+                  {Number(instalment_period).toLocaleString()}
+                </div>
               </div>
 
               {/* Down Payment */}
@@ -448,7 +481,14 @@ export default async function AddFloor({ params }: Props) {
                   className="input input-bordered  w-full max-w-xs border-2 border-gray-400 "
                   placeholder="Rs."
                   min="0"
+                  onChange={(e) => {
+                    setDown_Payment_Amount(Number(e.target.value))
+                    console.log(e.target.value)
+                  }}
                 />
+                <div className="m-4">
+                  {Number(down_payment_amount).toLocaleString()}
+                </div>
               </div>
 
               {/* Instalment Amount */}
@@ -457,7 +497,7 @@ export default async function AddFloor({ params }: Props) {
                   htmlFor="building-floor-instalment-amount"
                   className="block mb-2 text-sm font-medium"
                 >
-                  Total Sale Price
+                  Instalment Amount
                 </label>
                 <Input
                   type="number"
@@ -466,7 +506,14 @@ export default async function AddFloor({ params }: Props) {
                   className="input input-bordered  w-full max-w-xs border-2 border-gray-400 "
                   placeholder="Rs."
                   min="0"
+                  onChange={(e) => {
+                    setInstalment_Amount(Number(e.target.value))
+                    console.log(e.target.value)
+                  }}
                 />
+                <div className="m-4">
+                  {Number(instalment_amount).toLocaleString()}
+                </div>
               </div>
 
               {/* Possession Amount */}
@@ -484,7 +531,14 @@ export default async function AddFloor({ params }: Props) {
                   className="input input-bordered  w-full max-w-xs border-2 border-gray-400 "
                   placeholder="Rs."
                   min="0"
+                  onChange={(e) => {
+                    setPossession_Amount(Number(e.target.value))
+                    console.log(e.target.value)
+                  }}
                 />
+                <div className="m-4">
+                  {Number(possession_amount).toLocaleString()}
+                </div>
               </div>
             </div>
 
@@ -525,3 +579,4 @@ export default async function AddFloor({ params }: Props) {
     </>
   );
 }
+

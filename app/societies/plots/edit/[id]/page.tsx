@@ -1,10 +1,12 @@
-import UpdatePlotButton from '@/app/societies/components/UpdatePlotButton'
+import UpdateHomeButton from '@/app/societies/components/UpdateHouseButton'
 import Link from 'next/link'
-import React from 'react'
+// import React, { useState } from 'react'
 import { Input } from "@/components/ui/input"
 import prisma from "../../../../db";
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
+import FetchPlot from '@/app/societies/components/FetchPlot'
+import UpdatePlotForm from '@/app/societies/components/UpdatePlotForm';
 
 import { redirect } from "next/navigation"
 
@@ -18,259 +20,80 @@ type Props = {
 
 export default async function editPlotForm({ params }: Props) {
 
+
     console.log(params)
 
+    // const homes = await prisma.homes.findUnique({
+    //     where: {
+    //         id: Number(params.id) as number
+    //     },
+    // })
 
-
-    const plot = await prisma.plots.findUnique({
-        where: {
-            id:Number(params.id) as number
-        },
-    })
-
-    async function updatePlot(data: FormData) {
-        "use server";
-
-
-        const plot_type = data.get("plot-type")?.valueOf();
-
-        const plot_size = data.get("plot-size")?.valueOf();
-
-        const plot_price = data.get("plot-price")?.valueOf();
-
-        const plot_direction = data.get("plot-direction")?.valueOf();
-
-        const is_corner = data.get("is-corner")?.valueOf();
-
-        const instalment_period = data.get("instalment-period")?.valueOf();
-
-        const instalment_plan = data.get("instalment-plan")?.valueOf();
-
-        const plot_remarks = data.get("plot-remarks")?.valueOf();
+    const plots = await FetchPlot(params.id)
 
 
 
+    // async function updateHome(data: FormData) {
+    //     "use server";
 
-        const update_query = {
-            where: {
-                id: Number(params.id) as number
-            },
-            data: {
-                // name: name,
-                // city: city
+    //     console.log("🚀 ~ file: page.tsx:10 ~ createPlots ~ data:", data);
 
-                type:plot_type, 
-                size:plot_size, 
-                price:plot_price,
-                direction:plot_direction,
-                is_corner,
-                instalment_plan, instalment_period,
-                remarks:plot_remarks
-                
+    //     const society_id = data.get("society-id")?.valueOf();
 
-            }
-        }
+    //     const home_type = data.get("home-type")?.valueOf();
 
-        console.log("Update Query is")
-        console.log("update_query")
+    //     const type = data.get("type")?.valueOf();
 
-        const updateSociety = await prisma.plots.update(update_query)
-        // let updatedNote = await Note.findByIdAndUpdate({ _id: params.id }, { title, note });
-        redirect('/societies/')
+    //     const home_size = data.get("home-size")?.valueOf();
 
-    }
+    //     const plot_price = data.get("plot-price")?.valueOf();
 
-    console.log(plot)
+    //     const plot_rent = data.get("plot-rent")?.valueOf();
+
+    //     const home_remarks = data.get("home-remarks")
+
+
+
+
+
+    //     const update_query = {
+    //         where: {
+    //             id: Number(params.id) as number
+    //         },
+    //         data: {
+    //             // name: name,
+    //             // city: city
+
+    //             society_id: Number(society_id) as number,
+    //             home_type: home_type as string,
+    //             type: type as string,
+    //             size: home_size as string,
+    //             plot_price: plot_price as string,
+    //             plot_rent: plot_rent as string,
+    //             remarks: home_remarks as string
+
+
+    //         }
+    //     }
+
+    //     console.log("Update Query is")
+    //     console.log("update_query")
+
+    //     const updateSociety = await prisma.homes.update(update_query)
+    //     // let updatedNote = await Note.findByIdAndUpdate({ _id: params.id }, { title, note });
+    //     redirect('/societies/')
+
+    // }
+
+    console.log(plots)
 
     return (
         <>
-            <div className="text-lg">Plots Information</div>
+            <div className="text-lg">Plots/Bungalows Information</div>
             <div className="container border-2 ">
 
                 <div className="mx-4">
-                    <form action={updatePlot}>
-                       
-                        {/* plot type */}
-                        <div className="mt-4">
-                            <label
-                                htmlFor="plot-type"
-                                className="block mb-2 text-sm font-medium"
-                            >
-                                Type:
-                            </label>
-                            <select
-                                id="plot-type"
-                                name="plot-type"
-                                className="select  w-full max-w-xs border-2 border-gray-400 "
-                                defaultValue={plot?.type as string}
-                            >
-                                <option>Commercial</option>
-                                <option>Residential</option>
-
-                            </select>
-                        </div>
-
-
-                        {/* plot size  */}
-                        <div className="">
-
-                            <div className="mt-4 ">
-                                <label
-                                    htmlFor="plot-size"
-                                    className="block mb-2 text-sm font-medium "
-                                >
-                                    Size:
-                                </label>
-                                <Input
-                                    type="text"
-                                    id="plot-size"
-                                    name="plot-size"
-                                    className="input input-bordered w-full max-w-xs border-2 border-gray-400"
-                                    placeholder=""
-                                    defaultValue={plot?.size as string}
-                                // value={type}
-
-                                />
-                            </div>
-                        </div>
-
-                        {/* plot price  */}
-                        <div className=" ">
-
-                            <div className="mt-4 ">
-                                <label
-                                    htmlFor="plot-price"
-                                    className="block mb-2 text-sm font-medium "
-                                >
-                                    Price:
-                                </label>
-                                <Input
-                                    type="text"
-                                    id="plot-price"
-                                    name="plot-price"
-                                    className="input input-bordered w-full max-w-xs border-2 border-gray-400"
-                                    placeholder=""
-                                    defaultValue={plot?.price as string}
-                                // value={type}
-
-                                />
-                            </div>
-                        </div>
-
-
-                        {/* plot direction  */}
-                        <div className="mt-4">
-                            <label
-                                htmlFor="plot-direction"
-                                className="block mb-2 text-sm font-medium"
-                            >
-                                Plot direction:
-                            </label>
-                            <select
-                                id="plot-direction"
-                                name="plot-direction"
-                                className="select  w-full max-w-xs border-2 border-gray-400 "
-                                defaultValue={plot?.direction as string}
-                            >
-                                <option>East</option>
-                                <option>West</option>
-                                <option>North</option>
-                                <option>South</option>
-                            </select>
-                        </div>
-
-                        {/* corner  */}
-                        <div className="mt-4">
-                            <label
-                                htmlFor="is-corner"
-                                className="block mb-2 text-sm font-medium"
-                            >
-                                Corner Plot?
-                            </label>
-                            <select
-                                id="is-corner"
-                                name="is-corner"
-                                className="select  w-full max-w-xs border-2 border-gray-400 "
-                                defaultValue={plot?.is_corner as string}
-                            >
-                                <option>Yes</option>
-                                <option>No</option>
-                            </select>
-                        </div>
-
-                        {/* instalment period */}
-                        <div className=" ">
-
-                            <div className="mt-4 ">
-                                <label
-                                    htmlFor="instalment-period"
-                                    className="block mb-2 text-sm font-medium "
-                                >
-                                    Instalment period:
-                                </label>
-                                <Input
-                                    type="text"
-                                    id="instalment-period"
-                                    name="instalment-period"
-                                    className="input input-bordered w-full max-w-xs border-2 border-gray-400"
-                                    placeholder=""
-                                    defaultValue={plot?.instalment_period as string}
-                                // value={type}
-
-                                />
-                            </div>
-                        </div>
-
-                        {/* instalment plan */}
-                        <div className=" ">
-
-                            <div className="mt-4 ">
-                                <label
-                                    htmlFor="instalment-plan"
-                                    className="block mb-2 text-sm font-medium "
-                                >
-                                    Instalment plan:
-                                </label>
-                                <Input
-                                    type="text"
-                                    id="instalment-plan"
-                                    name="instalment-plan"
-                                    className="input input-bordered w-full max-w-xs border-2 border-gray-400"
-                                    placeholder=""
-                                    defaultValue={plot?.instalment_plan as string}
-                                // value={type}
-
-                                />
-                            </div>
-                        </div>
-
-                        {/* Plot Remarks  */}
-                        <div className="mt-4">
-                            <label htmlFor="message" className="block mb-2 text-sm font-medium">
-                                Your Remarks
-                            </label>
-                            <Textarea
-                                id="plot-remarks"
-                                name="plot-remarks"
-                                className="textarea w-full border-2 border-gray-400 "
-                                defaultValue={plot?.remarks as string}
-                                placeholder="Leave a comment..."
-                            ></Textarea>
-                        </div>
-
-
-                        {/* Submit button */}
-                        <div className="flex gap-6 justify-center mt-3 mb-2">
-                            <UpdatePlotButton />
-                            {/* <Link href="/buildings" className="flex justify-center items-center border border-black px-2 py-1 rounded-xl bg-white text-black hover:bg-red-600 hover:text-white capitalize">Cancel</Link> */}
-
-                            <Button asChild className="bg-transparent text-primary hover:bg-primary-foreground">
-                                <Link href="/societies" >Cancel</Link>
-                            </Button>
-
-                        </div>
-
-                    </form>
+                <UpdatePlotForm plots={plots} />
                 </div>
             </div>
         </>
