@@ -28,7 +28,7 @@ import {
 
 
 
-export default function page() {
+export default function NewSocietyPage() {
 
   const [price, setPrice] = useState(0);
   // const [date, setDate] = useState<Date>()

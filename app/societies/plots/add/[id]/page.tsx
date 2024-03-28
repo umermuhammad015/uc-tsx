@@ -31,7 +31,7 @@ type Props = {
     // searchParams: { [key: string]: string | string[] | undefined }
 }
 
-export default function page({ params }: Props) {
+export default function PlotAddPage({ params }: Props) {
 
     // const [date, setDate] = useState<Date>()
 
