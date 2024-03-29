@@ -11,11 +11,13 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Checkbox } from "@/components/ui/checkbox"
 
-export default function UpdatePlotForm({ building }:any) {
+export default function UpdatePlotForm({ building }: any) {
 
     const [apartments_maintenance_fee, setApartments_Maintenance_Fee] = useState(building?.apartments_maintenance_fee)
     const [retail_floors_maintenance_fee, setRetail_Floors_Maintenance_Fee] = useState(building?.retail_floors_maintenance_fee)
     const [office_maintenance_fee, setOffice_Maintenance_Fee] = useState(building?.office_maintenance_fee)
+    const [plot_size, setPlot_Size] = useState(building?.plot_size)
+    const [construction_area, setConstruction_Area] = useState(building?.construction_area)
 
 
     return (
@@ -424,15 +426,24 @@ export default function UpdatePlotForm({ building }:any) {
                         >
                             Plot Size (Sq. Yards):
                         </label>
-                        <Input
-                            type="number"
-                            id="plot-size"
-                            name="plot-size"
+                        <div className="flex">
+                            <Input
+                                type="number"
+                                id="plot-size"
+                                name="plot-size"
 
-                            className="input input-bordered  border-2 border-gray-400   w-full max-w-xs"
-                            defaultValue={building?.plot_size as number}
-                            placeholder="(Sq. Yards)"
-                        />
+                                className="input input-bordered  border-2 border-gray-400   w-full max-w-xs"
+                                defaultValue={building?.plot_size as number}
+                                placeholder="(Sq. Yards)"
+                                onChange={(e) => {
+                                    setPlot_Size(Number(e.target.value))
+                                    console.log(e.target.value)
+                                }}
+                            />
+                            <div className="m-4">
+                                {Number(plot_size).toLocaleString()}
+                            </div>
+                        </div>
                     </div>
 
                     {/* Construction Area (Sq. Yards)  */}
@@ -443,14 +454,23 @@ export default function UpdatePlotForm({ building }:any) {
                         >
                             Construction Area (Sq. Yards): :
                         </label>
-                        <Input
-                            type="number"
-                            id="construction-area"
-                            name="construction-area"
-                            className="input input-bordered  border-2 border-gray-400   w-full max-w-xs"
-                            defaultValue={building?.construction_area as number}
-                            placeholder="(Sq. Yards)"
-                        />
+                        <div className="flex">
+                            <Input
+                                type="number"
+                                id="construction-area"
+                                name="construction-area"
+                                className="input input-bordered  border-2 border-gray-400   w-full max-w-xs"
+                                defaultValue={building?.construction_area as number}
+                                placeholder="(Sq. Yards)"
+                                onChange={(e) => {
+                                    setConstruction_Area(Number(e.target.value))
+                                    console.log(e.target.value)
+                                }}
+                            />
+                            <div className="m-4">
+                                {Number(construction_area).toLocaleString()}
+                            </div>
+                        </div>
                     </div>
 
                     {/* Construction Year  */}

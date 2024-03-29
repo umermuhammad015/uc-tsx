@@ -20,6 +20,10 @@ export default function Page() {
   const [apartments_maintenance_fee, setApartments_Maintenance_Fee] = useState(0);
   const [retail_floors_maintenance_fee, setRetail_Floors_Maintenance_Fee] = useState(0);
   const [office_maintenance_fee, setOffice_Maintenance_Fee] = useState(0);
+  const [plot_size, setPlot_Size] = useState(0);
+  const [construction_area, setConstruction_Area] = useState(0);
+  
+  // const [office_maintenance_fee, setOffice_Maintenance_Fee] = useState(0);
   // function onbuildingStatusChange(e) {
   //   setBuildingStatus(e.target.value)
   // }
@@ -386,14 +390,23 @@ export default function Page() {
             >
               Plot Size (Sq. Yards):
             </label>
-            <Input
+            <div className="flex">
+              <Input
 
-              type="number"
-              id="plot-size"
-              name="plot-size"
-              className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-              placeholder="(Sq. Yards)"
-            />
+                type="number"
+                id="plot-size"
+                name="plot-size"
+                className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+                placeholder="(Sq. Yards)"
+                onChange={(e) => {
+                  setPlot_Size(Number(e.target.value))
+                  console.log(e.target.value)
+                }}
+              />
+              <div className="m-4">
+                {Number(plot_size).toLocaleString()}
+              </div>
+            </div>
           </div>
 
           {/* Total Covered Area of Building (Sq. Yards)  */}
@@ -404,13 +417,22 @@ export default function Page() {
             >
               Total Covered Area of Building (Sq Ft):
             </label>
-            <Input
-              type="number"
-              id="construction-area"
-              name="construction-area"
-              className="input input-bordered w-full max-w-xs border-2 border-gray-400  "
-              placeholder="(Sq. Yards)"
-            />
+            <div className="flex">
+              <Input
+                type="number"
+                id="construction-area"
+                name="construction-area"
+                className="input input-bordered w-full max-w-xs border-2 border-gray-400  "
+                placeholder="(Sq. Yards)"
+                onChange={(e) => {
+                  setConstruction_Area(Number(e.target.value))
+                  console.log(e.target.value)
+                }}
+              />
+              <div className="m-4">
+                {Number(construction_area).toLocaleString()}
+              </div>
+            </div>
           </div>
 
           {/* Construction Year  */}

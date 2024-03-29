@@ -133,10 +133,11 @@ export default async function ViewBuilding({ params }: Props) {
               <TableCell >Address</TableCell > <TableCell >{building?.address}</TableCell >
             </TableRow>
             <TableRow>
-              <TableCell >Plot Size (Sq. Yards)</TableCell > <TableCell >{building?.plot_size}</TableCell >
+              <TableCell >Plot Size (Sq. Yards)</TableCell > <TableCell >{Number(building?.plot_size).toLocaleString()}</TableCell >
+              
             </TableRow>
             <TableRow>
-              <TableCell >Construction Area (Per Sq. Ft.)</TableCell > <TableCell >{building?.construction_area}</TableCell >
+              <TableCell >Construction Area (Per Sq. Ft.)</TableCell > <TableCell >{Number(building?.construction_area).toLocaleString()}</TableCell >
             </TableRow>
             <TableRow>
               <TableCell >Construction Year </TableCell > <TableCell >{building?.construction_year}</TableCell >
@@ -273,12 +274,12 @@ export default async function ViewBuilding({ params }: Props) {
                   <div className="">{floor?.floor_type}</div></TableCell >
                 <TableCell >{floor?.unit_type}</TableCell >
                 <TableCell >{floor?.occupancy}</TableCell >
-                <TableCell >{floor?.size_min}</TableCell >
-                <TableCell >{floor?.size_max}</TableCell >
+                <TableCell >{Number(floor?.size_min).toLocaleString()}</TableCell >
+                <TableCell >{Number(floor?.size_max).toLocaleString()}</TableCell >
                 <TableCell >{Number(floor?.avg_sale_price).toLocaleString()}</TableCell >
                 <TableCell >{Number(floor?.avg_monthly_rent).toLocaleString()}</TableCell >
                 <TableCell >{floor?.instalment_plan}</TableCell >
-                <TableCell >{floor?.instalment_period}</TableCell >
+                <TableCell >{Number(floor?.instalment_period).toLocaleString()}</TableCell >
                 <TableCell >{Number(floor?.down_payment_amount).toLocaleString()}</TableCell >
                 <TableCell >{Number(floor?.instalment_amount).toLocaleString()}</TableCell >
                 <TableCell >{Number(floor?.possession_amount).toLocaleString()}</TableCell >

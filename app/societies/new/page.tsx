@@ -30,7 +30,19 @@ import {
 
 export default function NewSocietyPage() {
 
-  const [price, setPrice] = useState(0);
+  const [area, setArea] = useState(0);
+  const [population, setPoputation] = useState(0);
+  const [plot_sizes_residential, setPlot_sizes_residential] = useState(0);
+  const [plot_sizes_commercial, setPlot_sizes_commercial] = useState(0);
+  const [societies_apartment_size, setSocieties_apartment_size] = useState(0);
+  const [plot_price, setPlot_price] = useState(0);
+  const [vilas_price, setVilas_price] = useState(0);
+  const [vilas_monthly_rent, setVilas_monthly_rent] = useState(0);
+  const [commercial_plot_price, setCommercial_plot_price] = useState(0);
+  const [apartment_size, setApartment_size] = useState(0);
+  const [apartments_price, setApartments_price] = useState(0);
+  const [apartments_monthly_rent, setApartments_monthly_rent] = useState(0);
+
   // const [date, setDate] = useState<Date>()
 
   return (
@@ -264,13 +276,22 @@ export default function NewSocietyPage() {
             >
               Total Area of Society (Acres):
             </label>
-            <Input
-              type="text"
-              id="societies-area"
-              name="societies-area"
-              className="input input-bordered w-full max-w-xs border-2 border-gray-400  "
-              placeholder=""
-            />
+            <div className="flex">
+              <Input
+                type="text"
+                id="societies-area"
+                name="societies-area"
+                className="input input-bordered w-full max-w-xs border-2 border-gray-400  "
+                placeholder=""
+                onChange={(e) => {
+                  setArea(Number(e.target.value))
+                  console.log(e.target.value)
+                }}
+              />
+              <div className="m-4">
+                {Number(area).toLocaleString()}
+              </div>
+            </div>
           </div>
 
           {/* Population*/}
@@ -281,13 +302,22 @@ export default function NewSocietyPage() {
             >
               Population:
             </label>
-            <Input
-              type="text"
-              id="societies-population"
-              name="societies-population"
-              className="input input-bordered w-full max-w-xs border-2 border-gray-400  "
-              placeholder=""
-            />
+            <div className="flex">
+              <Input
+                type="text"
+                id="societies-population"
+                name="societies-population"
+                className="input input-bordered w-full max-w-xs border-2 border-gray-400  "
+                placeholder=""
+                onChange={(e) => {
+                  setPoputation(Number(e.target.value))
+                  console.log(e.target.value)
+                }}
+              />
+              <div className="m-4">
+                {Number(population).toLocaleString()}
+              </div>
+            </div>
           </div>
 
           {/* Launch Year*/}
@@ -332,13 +362,22 @@ export default function NewSocietyPage() {
             >
               Plot Sizes Residential (Sq. Yards):
             </label>
-            <Input
-              type="text"
-              id="plot-sizes-residential"
-              name="plot-sizes-residential"
-              className="input input-bordered w-full max-w-xs border-2 border-gray-400  "
-              placeholder="(Sq. Yards)"
-            />
+            <div className="flex">
+              <Input
+                type="text"
+                id="plot-sizes-residential"
+                name="plot-sizes-residential"
+                className="input input-bordered w-full max-w-xs border-2 border-gray-400  "
+                placeholder="(Sq. Yards)"
+                onChange={(e) => {
+                  setPlot_sizes_residential(Number(e.target.value))
+                  console.log(e.target.value)
+                }}
+              />
+              <div className="m-4">
+                {Number(plot_sizes_residential).toLocaleString()}
+              </div>
+            </div>
           </div>
 
           {/*Total Plots Commercial  */}
@@ -366,13 +405,22 @@ export default function NewSocietyPage() {
             >
               Plot Sizes Commercial (Sq. Yards):
             </label>
-            <Input
-              type="text"
-              id="plot-sizes-commercial"
-              name="plot-sizes-commercial"
-              className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-              placeholder="(Sq. Yards)"
-            />
+            <div className="flex">
+              <Input
+                type="text"
+                id="plot-sizes-commercial"
+                name="plot-sizes-commercial"
+                className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+                placeholder="(Sq. Yards)"
+                onChange={(e) => {
+                  setPlot_sizes_commercial(Number(e.target.value))
+                  console.log(e.target.value)
+                }}
+              />
+              <div className="m-4">
+                {Number(plot_sizes_commercial).toLocaleString()}
+              </div>
+            </div>
           </div>
 
           {/* Total No. of Apartments  */}
@@ -400,13 +448,22 @@ export default function NewSocietyPage() {
             >
               Apartment Sizes (Sq. Ft):
             </label>
-            <Input
-              type="text"
-              id="societies-apartment-size"
-              name="societies-apartment-size"
-              className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-              placeholder="(Sq. Ft)"
-            />
+            <div className="flex">
+              <Input
+                type="text"
+                id="societies-apartment-size"
+                name="societies-apartment-size"
+                className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+                placeholder="(Sq. Ft)"
+                onChange={(e) => {
+                  setSocieties_apartment_size(Number(e.target.value))
+                  console.log(e.target.value)
+                }}
+              />
+              <div className="m-4">
+                {Number(societies_apartment_size).toLocaleString()}
+              </div>
+            </div>
           </div>
 
         </div>
@@ -450,7 +507,7 @@ export default function NewSocietyPage() {
             <div className="flex">
               <Input
                 onChange={(e) => {
-                  setPrice(Number(e.target.value))
+                  setPlot_price(Number(e.target.value))
                   console.log(e.target.value)
                 }}
                 type="text"
@@ -460,7 +517,7 @@ export default function NewSocietyPage() {
                 placeholder="Rs."
               />
               <div className="m-4">
-                {Number(price).toLocaleString()}
+                {Number(plot_price).toLocaleString()}
               </div>
             </div>
           </div>
@@ -503,18 +560,19 @@ export default function NewSocietyPage() {
             </label>
             <div className="flex">
               <Input
-                onChange={(e) => {
-                  setPrice(Number(e.target.value))
-                  console.log(e.target.value)
-                }}
+
                 type="text"
                 id="vilas-price"
                 name="vilas-price"
                 className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
                 placeholder="Rs."
+                onChange={(e) => {
+                  setVilas_price(Number(e.target.value))
+                  console.log(e.target.value)
+                }}
               />
               <div className="m-4">
-                {Number(price).toLocaleString()}
+                {Number(vilas_price).toLocaleString()}
               </div>
             </div>
           </div>
@@ -529,18 +587,19 @@ export default function NewSocietyPage() {
             </label>
             <div className="flex">
               <Input
-                onChange={(e) => {
-                  setPrice(Number(e.target.value))
-                  console.log(e.target.value)
-                }}
+
                 type="text"
                 id="vilas-monthly-rent"
                 name="vilas-monthly-rent"
                 className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
                 placeholder="Rs."
+                onChange={(e) => {
+                  setVilas_monthly_rent(Number(e.target.value))
+                  console.log(e.target.value)
+                }}
               />
               <div className="m-4">
-                {Number(price).toLocaleString()}
+                {Number(vilas_monthly_rent).toLocaleString()}
               </div>
             </div>
           </div>
@@ -582,18 +641,19 @@ export default function NewSocietyPage() {
             </label>
             <div className="flex">
               <Input
-                onChange={(e) => {
-                  setPrice(Number(e.target.value))
-                  console.log(e.target.value)
-                }}
+
                 type="text"
                 id="commercial-plot-price"
                 name="commercial-plot-price"
                 className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
                 placeholder="Rs."
+                onChange={(e) => {
+                  setCommercial_plot_price(Number(e.target.value))
+                  console.log(e.target.value)
+                }}
               />
               <div className="m-4">
-                {Number(price).toLocaleString()}
+                {Number(commercial_plot_price).toLocaleString()}
               </div>
             </div>
           </div>
@@ -610,13 +670,22 @@ export default function NewSocietyPage() {
             >
               Apartment Size:
             </label>
-            <Input
-              type="text"
-              id="apartment-size"
-              name="apartment-size"
-              className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-              placeholder=""
-            />
+            <div className="flex">
+              <Input
+                type="text"
+                id="apartment-size"
+                name="apartment-size"
+                className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+                placeholder=""
+                onChange={(e) => {
+                  setApartment_size(Number(e.target.value))
+                  console.log(e.target.value)
+                }}
+              />
+              <div className="m-4">
+                {Number(apartment_size).toLocaleString()}
+              </div>
+            </div>
           </div>
 
 
@@ -630,18 +699,19 @@ export default function NewSocietyPage() {
             </label>
             <div className="flex">
               <Input
-                onChange={(e) => {
-                  setPrice(Number(e.target.value))
-                  console.log(e.target.value)
-                }}
+
                 type="text"
                 id="apartments-price"
                 name="apartments-price"
                 className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
                 placeholder="Rs."
+                onChange={(e) => {
+                  setApartments_price(Number(e.target.value))
+                  console.log(e.target.value)
+                }}
               />
               <div className="m-4">
-                {Number(price).toLocaleString()}
+                {Number(apartments_price).toLocaleString()}
               </div>
             </div>
           </div>
@@ -656,18 +726,19 @@ export default function NewSocietyPage() {
             </label>
             <div className="flex">
               <Input
-                onChange={(e) => {
-                  setPrice(Number(e.target.value))
-                  console.log(e.target.value)
-                }}
+
                 type="text"
                 id="apartments-monthly-rent"
                 name="apartments-monthly-rent"
                 className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
                 placeholder="Rs."
+                onChange={(e) => {
+                  setApartments_monthly_rent(Number(e.target.value))
+                  console.log(e.target.value)
+                }}
               />
               <div className="m-4">
-                {Number(price).toLocaleString()}
+                {Number(apartments_monthly_rent).toLocaleString()}
               </div>
             </div>
           </div>

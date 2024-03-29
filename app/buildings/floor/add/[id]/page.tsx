@@ -160,6 +160,8 @@ export default function Page({ params }: Props) {
   const [instalment_period, setInstalment_Period] = useState(0);
   const [instalment_amount, setInstalment_Amount] = useState(0);
   const [possession_amount, setPossession_Amount] = useState(0);
+  const [size_min, setSize_Min] = useState(0);
+  const [size_max, setSize_Max] = useState(0);
 
   return (
     <><div className="text-lg">Add Floor Information</div>
@@ -345,6 +347,7 @@ export default function Page({ params }: Props) {
                 >
                   Size Minimum (Sq. Ft.)
                 </label>
+
                 <Input
                   type="number"
                   id="building-floor-size-min"
@@ -352,7 +355,15 @@ export default function Page({ params }: Props) {
                   className="input input-bordered  w-full max-w-xs border-2 border-gray-400 "
                   placeholder="(Sq. Ft.)"
                   min="0"
+                  onChange={(e) => {
+                    setSize_Min(Number(e.target.value))
+                    console.log(e.target.value)
+                  }}
                 />
+                <div className="m-4">
+                  {Number(size_min).toLocaleString()}
+                </div>
+
               </div>
 
               {/* Size Maximum (Sq. Ft.)  */}
@@ -370,7 +381,14 @@ export default function Page({ params }: Props) {
                   className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
                   placeholder="(Sq. Ft.)"
                   min="0"
+                  onChange={(e) => {
+                    setSize_Max(Number(e.target.value))
+                    console.log(e.target.value)
+                  }}
                 />
+                <div className="m-4">
+                  {Number(size_max).toLocaleString()}
+                </div>
               </div>
 
               {/* Avg. Sale Price */}

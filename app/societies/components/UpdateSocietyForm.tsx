@@ -12,12 +12,18 @@ import { Textarea } from "@/components/ui/textarea"
 import { Checkbox } from "@/components/ui/checkbox"
 
 
-export default function UpdatePlotForm({ societies }:any) {
+export default function UpdatePlotForm({ societies }: any) {
 
+    const [area, setArea] = useState(societies?.area)
+    const [population, setPoputation] = useState(societies?.population)
+    const [plot_sizes_residential, setPlot_sizes_residential] = useState(societies?.plot_sizes_residential)
+    const [plot_sizes_commercial, setPlot_sizes_commercial] = useState(societies?.plot_sizes_commercial)
+    const [societies_apartment_size, setSocieties_apartment_size] = useState(societies?.societies_apartment_size)
     const [price, setPrice] = useState(societies?.plot_price)
     const [vilaprice, setVilaprice] = useState(societies?.vilas_price)
     const [rent, setRent] = useState(societies?.vilas_monthly_rent)
     const [commericalprice, setCommericalPrice] = useState(societies?.commercial_plot_price)
+    const [apartments_size, setApartments_size] = useState(societies?.apartments_size)
     const [apartmentsprice, setApartmentsPrice] = useState(societies?.apartments_price)
     const [apartmentsrent, setApartmentsRent] = useState(societies?.apartments_monthly_rent)
 
@@ -283,14 +289,23 @@ export default function UpdatePlotForm({ societies }:any) {
                         >
                             Total Area of Society (Acres):
                         </label>
-                        <Input
-                            type="text"
-                            id="societies-area"
-                            name="societies-area"
-                            className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-                            defaultValue={societies?.area as string}
-                            placeholder=""
-                        />
+                        <div className="flex">
+                            <Input
+                                type="text"
+                                id="societies-area"
+                                name="societies-area"
+                                className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+                                defaultValue={societies?.area as string}
+                                placeholder=""
+                                onChange={(e) => {
+                                    setArea(Number(e.target.value))
+                                    console.log(e.target.value)
+                                }}
+                            />
+                            <div className="m-4">
+                                {Number(area).toLocaleString()}
+                            </div>
+                        </div>
                     </div>
 
                     {/* Population*/}
@@ -301,14 +316,23 @@ export default function UpdatePlotForm({ societies }:any) {
                         >
                             Population:
                         </label>
-                        <input
-                            type="text"
-                            id="societies-population"
-                            name="societies-population"
-                            className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-                            defaultValue={societies?.population as number}
-                            placeholder=""
-                        />
+                        <div className="flex">
+                            <input
+                                type="text"
+                                id="societies-population"
+                                name="societies-population"
+                                className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+                                defaultValue={societies?.population as number}
+                                placeholder=""
+                                onChange={(e) => {
+                                    setPoputation(Number(e.target.value))
+                                    console.log(e.target.value)
+                                }}
+                            />
+                            <div className="m-4">
+                                {Number(population).toLocaleString()}
+                            </div>
+                        </div>
                     </div>
 
                     {/* Launch Year*/}
@@ -355,14 +379,23 @@ export default function UpdatePlotForm({ societies }:any) {
                         >
                             Plot Sizes Residential (Sq. Yards):
                         </label>
-                        <Input
-                            type="text"
-                            id="plot-sizes-residential"
-                            name="plot-sizes-residential"
-                            className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-                            defaultValue={societies?.plot_sizes_residential as number}
-                            placeholder="(Sq. Yards)"
-                        />
+                        <div className="flex">
+                            <Input
+                                type="text"
+                                id="plot-sizes-residential"
+                                name="plot-sizes-residential"
+                                className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+                                defaultValue={societies?.plot_sizes_residential as number}
+                                placeholder="(Sq. Yards)"
+                                onChange={(e) => {
+                                    setPlot_sizes_residential(Number(e.target.value))
+                                    console.log(e.target.value)
+                                }}
+                            />
+                            <div className="m-4">
+                                {Number(plot_sizes_residential).toLocaleString()}
+                            </div>
+                        </div>
                     </div>
 
                     {/*Total Plots Commercial  */}
@@ -391,14 +424,23 @@ export default function UpdatePlotForm({ societies }:any) {
                         >
                             Plot Sizes Commercial (Sq. Yards):
                         </label>
-                        <Input
-                            type="text"
-                            id="plot-sizes-commercial"
-                            name="plot-sizes-commercial"
-                            className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-                            defaultValue={societies?.plot_sizes_commercial as number}
-                            placeholder="(Sq. Yards)"
-                        />
+                        <div className="flex">
+                            <Input
+                                type="text"
+                                id="plot-sizes-commercial"
+                                name="plot-sizes-commercial"
+                                className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+                                defaultValue={societies?.plot_sizes_commercial as number}
+                                placeholder="(Sq. Yards)"
+                                onChange={(e) => {
+                                    setPlot_sizes_commercial(Number(e.target.value))
+                                    console.log(e.target.value)
+                                }}
+                            />
+                            <div className="m-4">
+                                {Number(plot_sizes_commercial).toLocaleString()}
+                            </div>
+                        </div>
                     </div>
 
                     {/* Total No. of Apartments  */}
@@ -427,14 +469,23 @@ export default function UpdatePlotForm({ societies }:any) {
                         >
                             Apartment Sizes (Sq. Ft):
                         </label>
-                        <Input
-                            type="text"
-                            id="societies-apartment-size"
-                            name="societies-apartment-size"
-                            className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-                            defaultValue={societies?.apartment_size as number}
-                            placeholder="(Sq. Ft)"
-                        />
+                        <div className="flex">
+                            <Input
+                                type="text"
+                                id="societies-apartment-size"
+                                name="societies-apartment-size"
+                                className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+                                defaultValue={societies?.apartment_size as number}
+                                placeholder="(Sq. Ft)"
+                                onChange={(e) => {
+                                    setSocieties_apartment_size(Number(e.target.value))
+                                    console.log(e.target.value)
+                                }}
+                            />
+                            <div className="m-4">
+                                {Number(societies_apartment_size).toLocaleString()}
+                            </div>
+                        </div>
                     </div>
 
                 </div>
@@ -646,14 +697,23 @@ export default function UpdatePlotForm({ societies }:any) {
                         >
                             Apartment Size:
                         </label>
-                        <Input
-                            type="text"
-                            id="apartment-size"
-                            name="apartment-size"
-                            className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-                            defaultValue={societies?.apartment_size as number}
-                            placeholder=""
-                        />
+                        <div className="flex">
+                            <Input
+                                type="text"
+                                id="apartment-size"
+                                name="apartment-size"
+                                className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+                                defaultValue={societies?.apartment_size as number}
+                                placeholder=""
+                                onChange={(e) => {
+                                    setApartments_size(Number(e.target.value))
+                                    console.log(e.target.value)
+                                }}
+                            />
+                            <div className="m-4">
+                                {Number(apartments_size).toLocaleString()}
+                            </div>
+                        </div>
                     </div>
 
 

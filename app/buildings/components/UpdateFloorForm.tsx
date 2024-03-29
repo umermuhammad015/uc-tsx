@@ -8,7 +8,7 @@ import { useState } from "react"
 import UpdateFloorButton from "./UpdateFloorButton"
 import Link from 'next/link'
 
-export default function UpdatePlotForm({ floor }:any) {
+export default function UpdatePlotForm({ floor }: any) {
 
     // const [price, setPrice] = useState(plots?.plot_price)
     // const [rent, setRent] = useState(plots?.plot_rent)
@@ -18,6 +18,8 @@ export default function UpdatePlotForm({ floor }:any) {
     const [instalment_period, setInstalment_Period] = useState(floor?.instalment_period)
     const [instalment_amount, setInstalment_Amount] = useState(floor?.instalment_amount)
     const [possession_amount, setPossession_Amount] = useState(floor?.possession_amount)
+    const [size_min, setSize_Min] = useState(floor?.size_min)
+    const [size_max, setSize_Max] = useState(floor?.size_max)
 
     return (
         <>
@@ -136,7 +138,7 @@ export default function UpdatePlotForm({ floor }:any) {
                                 />
                             </div>
 
-                            
+
 
                             {/* Building Floor Occupancy  */}
                             <div className="mt-4">
@@ -174,7 +176,14 @@ export default function UpdatePlotForm({ floor }:any) {
                                     defaultValue={floor?.size_min as string}
                                     placeholder=""
                                     min="0"
+                                    onChange={(e) => {
+                                        setSize_Min(Number(e.target.value))
+                                        console.log(e.target.value)
+                                    }}
                                 />
+                                <div className="m-4">
+                                    {Number(size_min).toLocaleString()}
+                                </div>
                             </div>
 
                             {/* Size Maximum (Sq. Ft.)  */}
@@ -193,7 +202,14 @@ export default function UpdatePlotForm({ floor }:any) {
                                     defaultValue={floor?.size_max as string}
                                     placeholder=""
                                     min="0"
+                                    onChange={(e) => {
+                                        setSize_Max(Number(e.target.value))
+                                        console.log(e.target.value)
+                                    }}
                                 />
+                                <div className="m-4">
+                                    {Number(size_max).toLocaleString()}
+                                </div>
                             </div>
 
                             {/* Avg. Sale Price */}
