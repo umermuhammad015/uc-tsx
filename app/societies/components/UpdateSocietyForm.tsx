@@ -756,7 +756,7 @@ export default function UpdatePlotForm({ societies }: any) {
                             htmlFor="max-apartments-price"
                             className="block mb-2 text-sm font-medium"
                         >
-                            Max Apartment Price:
+                            Maximum Apartment Price:
                         </label>
                         <div className="flex">
                             <Input
@@ -811,7 +811,7 @@ export default function UpdatePlotForm({ societies }: any) {
                             htmlFor="max-apartments-monthly-rent"
                             className="block mb-2 text-sm font-medium"
                         >
-                            Max Monthly Rent:
+                            Maximum Monthly Rent:
                         </label>
                         <div className="flex">
                             <Input
