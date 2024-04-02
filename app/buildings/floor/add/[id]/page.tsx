@@ -148,11 +148,7 @@ type Props = {
 export default function Page({ params }: Props) {
   console.log(params.id);
 
-  // const buildings = prisma.buildings.findUnique({
-  //   where: {
-  //     id: Number(params.id) as number
-  //   },
-  // });
+  
 
   const [avg_sale_price, setAvg_Sale_Price] = useState(0);
   const [avg_monthly_rent, setAvg_Monthly_Rent] = useState(0);
@@ -165,14 +161,14 @@ export default function Page({ params }: Props) {
 
   return (
     <><div className="text-lg">Add Floor Information</div>
-      <div className="container border-2 ">
+      <div className="container border-2  ">
 
         <div className="mx-4">
           <form action={createFloor}>
             {/* Building ID  */}
-            <div className="grid grid-cols-3 gap-4 ">
+            <div className="grid gap-4  md:grid-cols-1 lg:grid-cols-3 ">
 
-              <div className="mt-4 col-span-2">
+              <div className="mt-4 ">
                 <label
                   htmlFor="building-id"
                   className="block mb-2 text-sm font-medium "
@@ -422,7 +418,7 @@ export default function Page({ params }: Props) {
                   htmlFor="building-floor-avg-monthly-rent"
                   className="block mb-2 text-sm font-medium"
                 >
-                  Average Monthly Rent
+                  Average Monthly Rent (Sq. Ft.)
                 </label>
                 <Input
                   type="number"
@@ -468,7 +464,7 @@ export default function Page({ params }: Props) {
                   Installment Period (Years)
                 </label>
                 <Input
-                  type="number"
+                  type="text"
                   id="building-floor-instalment-period"
                   name="building-floor-instalment-period"
                   className="input input-bordered  w-full max-w-xs border-2 border-gray-400 "
@@ -481,6 +477,33 @@ export default function Page({ params }: Props) {
                 />
                 <div className="m-4">
                   {Number(instalment_period).toLocaleString()}
+                </div>
+              </div>
+
+
+
+              {/* Instalment Amount */}
+              <div className="mt-4">
+                <label
+                  htmlFor="building-floor-instalment-amount"
+                  className="block mb-2 text-sm font-medium"
+                >
+                  Total Sale Price
+                </label>
+                <Input
+                  type="number"
+                  id="building-floor-instalment-amount"
+                  name="building-floor-instalment-amount"
+                  className="input input-bordered  w-full max-w-xs border-2 border-gray-400 "
+                  placeholder="Rs."
+                  min="0"
+                  onChange={(e) => {
+                    setInstalment_Amount(Number(e.target.value))
+                    console.log(e.target.value)
+                  }}
+                />
+                <div className="m-4">
+                  {Number(instalment_amount).toLocaleString()}
                 </div>
               </div>
 
@@ -506,31 +529,6 @@ export default function Page({ params }: Props) {
                 />
                 <div className="m-4">
                   {Number(down_payment_amount).toLocaleString()}
-                </div>
-              </div>
-
-              {/* Instalment Amount */}
-              <div className="mt-4">
-                <label
-                  htmlFor="building-floor-instalment-amount"
-                  className="block mb-2 text-sm font-medium"
-                >
-                  Instalment Amount
-                </label>
-                <Input
-                  type="number"
-                  id="building-floor-instalment-amount"
-                  name="building-floor-instalment-amount"
-                  className="input input-bordered  w-full max-w-xs border-2 border-gray-400 "
-                  placeholder="Rs."
-                  min="0"
-                  onChange={(e) => {
-                    setInstalment_Amount(Number(e.target.value))
-                    console.log(e.target.value)
-                  }}
-                />
-                <div className="m-4">
-                  {Number(instalment_amount).toLocaleString()}
                 </div>
               </div>
 

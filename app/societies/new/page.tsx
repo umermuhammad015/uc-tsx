@@ -30,6 +30,8 @@ import {
 
 export default function NewSocietyPage() {
 
+  
+
   const [area, setArea] = useState(0);
   const [population, setPoputation] = useState(0);
   const [plot_sizes_residential, setPlot_sizes_residential] = useState(0);
@@ -40,8 +42,14 @@ export default function NewSocietyPage() {
   const [vilas_monthly_rent, setVilas_monthly_rent] = useState(0);
   const [commercial_plot_price, setCommercial_plot_price] = useState(0);
   const [apartment_size, setApartment_size] = useState(0);
-  const [apartments_price, setApartments_price] = useState(0);
-  const [apartments_monthly_rent, setApartments_monthly_rent] = useState(0);
+  const [min_apartments_price, setMin_Apartments_price] = useState(0);
+  const [max_apartments_price, setMax_Apartments_price] = useState(0);
+  const [min_apartments_monthly_rent, setMin_Apartments_monthly_rent] = useState(0);
+  const [max_apartments_monthly_rent, setMax_Apartments_monthly_rent] = useState(0);
+  const [instalment_total_amount, setInstalment_total_amount] = useState(0);
+  const [instalment_down_payment, setInstalment_down_payment] = useState(0);
+  const [instalment_possession_Amount, setInstalment_possession_Amount] = useState(0);
+  const [instalment_period, setinstalment_period] = useState(0);
 
   // const [date, setDate] = useState<Date>()
 
@@ -692,26 +700,52 @@ export default function NewSocietyPage() {
           {/*Apartment Price*/}
           <div className="mt-4">
             <label
-              htmlFor="apartments-price"
+              htmlFor="min-apartments-price"
               className="block mb-2 text-sm font-medium"
             >
-              Apartment Price:
+              Minimum Apartment Price:
             </label>
             <div className="flex">
               <Input
 
                 type="text"
-                id="apartments-price"
-                name="apartments-price"
+                id="min-apartments-price"
+                name="min-apartments-price"
                 className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
                 placeholder="Rs."
                 onChange={(e) => {
-                  setApartments_price(Number(e.target.value))
+                  setMin_Apartments_price(Number(e.target.value))
                   console.log(e.target.value)
                 }}
               />
               <div className="m-4">
-                {Number(apartments_price).toLocaleString()}
+                {Number(min_apartments_price).toLocaleString()}
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-4">
+            <label
+              htmlFor="max-apartments-price"
+              className="block mb-2 text-sm font-medium"
+            >
+              Max Apartment Price:
+            </label>
+            <div className="flex">
+              <Input
+
+                type="text"
+                id="max-apartments-price"
+                name="max-apartments-price"
+                className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+                placeholder="Rs."
+                onChange={(e) => {
+                  setMax_Apartments_price(Number(e.target.value))
+                  console.log(e.target.value)
+                }}
+              />
+              <div className="m-4">
+                {Number(max_apartments_price).toLocaleString()}
               </div>
             </div>
           </div>
@@ -719,26 +753,52 @@ export default function NewSocietyPage() {
           {/* Monthly Rent*/}
           <div className="mt-4">
             <label
-              htmlFor="apartments-monthly-rent"
+              htmlFor="min-apartments-monthly-rent"
               className="block mb-2 text-sm font-medium"
             >
-              Monthly Rent:
+              Minimum Monthly Rent:
             </label>
             <div className="flex">
               <Input
 
                 type="text"
-                id="apartments-monthly-rent"
-                name="apartments-monthly-rent"
+                id="min-apartments-monthly-rent"
+                name="min-apartments-monthly-rent"
                 className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
                 placeholder="Rs."
                 onChange={(e) => {
-                  setApartments_monthly_rent(Number(e.target.value))
+                  setMin_Apartments_monthly_rent(Number(e.target.value))
                   console.log(e.target.value)
                 }}
               />
               <div className="m-4">
-                {Number(apartments_monthly_rent).toLocaleString()}
+                {Number(min_apartments_monthly_rent).toLocaleString()}
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-4">
+            <label
+              htmlFor="max-apartments-monthly-rent"
+              className="block mb-2 text-sm font-medium"
+            >
+              Max Monthly Rent:
+            </label>
+            <div className="flex">
+              <Input
+
+                type="text"
+                id="max-apartments-monthly-rent"
+                name="max-apartments-monthly-rent"
+                className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+                placeholder="Rs."
+                onChange={(e) => {
+                  setMax_Apartments_monthly_rent(Number(e.target.value))
+                  console.log(e.target.value)
+                }}
+              />
+              <div className="m-4">
+                {Number(max_apartments_monthly_rent).toLocaleString()}
               </div>
             </div>
           </div>
@@ -763,6 +823,111 @@ export default function NewSocietyPage() {
               <option value="Instalments">Instalments</option>
             </select>
           </div>
+
+          {/* Total Amount: */}
+          <div className="mt-4">
+            <label
+              htmlFor="instalment-total-amount"
+              className="block mb-2 text-sm font-medium"
+            >
+              Total Amount:
+            </label>
+            <div className="flex">
+              <Input
+                type="text"
+                id="instalment-total-amount"
+                name="instalment-total-amount"
+                className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+                placeholder="Rs."
+                onChange={(e) => {
+                  setInstalment_total_amount(Number(e.target.value))
+                  console.log(e.target.value)
+                }}
+              />
+              <div className="m-4">
+                {Number(instalment_total_amount).toLocaleString()}
+              </div>
+            </div>
+          </div>
+
+          {/* Down Payment:      */}
+          <div className="mt-4">
+            <label
+              htmlFor="instalment-down-payment"
+              className="block mb-2 text-sm font-medium"
+            >
+              Down Payment:
+            </label>
+            <div className="flex">
+              <Input
+                type="text"
+                id="instalment-down-payment"
+                name="instalment-down-payment"
+                className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+                placeholder="Rs."
+                onChange={(e) => {
+                  setInstalment_down_payment(Number(e.target.value))
+                  console.log(e.target.value)
+                }}
+              />
+              <div className="m-4">
+                {Number(instalment_down_payment).toLocaleString()}
+              </div>
+            </div>
+          </div>
+
+          {/* Possession Amount  : */}
+          <div className="mt-4">
+            <label
+              htmlFor="instalment-possession-Amount"
+              className="block mb-2 text-sm font-medium"
+            >
+              Possession Amount  :
+            </label>
+            <div className="flex">
+              <Input
+                type="text"
+                id="instalment-possession-Amount"
+                name="instalment-possession-Amount"
+                className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+                placeholder="Rs."
+                onChange={(e) => {
+                  setInstalment_possession_Amount(Number(e.target.value))
+                  console.log(e.target.value)
+                }}
+              />
+              <div className="m-4">
+                {Number(instalment_possession_Amount).toLocaleString()}
+              </div>
+            </div>
+          </div>
+
+          {/* Instalment Period Years: */}
+          <div className="mt-4">
+            <label
+              htmlFor="instalment-period"
+              className="block mb-2 text-sm font-medium"
+            >
+              Instalment Period Years:
+            </label>
+            <div className="flex">
+              <Input
+                type="text"
+                id="instalment-period"
+                name="instalment-period"
+                className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+                placeholder=""
+                onChange={(e) => {
+                  setinstalment_period(Number(e.target.value))
+                  console.log(e.target.value)
+                }}
+              />
+              <div className="m-4">
+                {Number(instalment_period).toLocaleString()}
+              </div>
+            </div>
+          </div>
+
         </div >
 
         {/* Features: */}

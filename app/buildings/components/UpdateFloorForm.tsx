@@ -244,7 +244,7 @@ export default function UpdatePlotForm({ floor }: any) {
                                     htmlFor="building-floor-avg-monthly-rent"
                                     className="block mb-2 text-sm font-medium"
                                 >
-                                    Average Monthly Rent
+                                    Average Monthly Rent (Sq. Ft.)
                                 </label>
                                 <Input
                                     type="number"
@@ -309,6 +309,34 @@ export default function UpdatePlotForm({ floor }: any) {
                                 </div>
                             </div>
 
+
+
+                            {/* Instalment Amount */}
+                            <div className="mt-4">
+                                <label
+                                    htmlFor="building-floor-instalment-amount"
+                                    className="block mb-2 text-sm font-medium"
+                                >
+                                    Total Sale Price
+                                </label>
+                                <Input
+                                    type="number"
+                                    id="building-floor-instalment-amount"
+                                    name="building-floor-instalment-amount"
+                                    className="input input-bordered w-full max-w-xs border border-gray-400 "
+                                    defaultValue={floor?.instalment_amount as string}
+                                    placeholder=""
+                                    min="0"
+                                    onChange={(e) => {
+                                        setInstalment_Amount(Number(e.target.value))
+                                        console.log(e.target.value)
+                                    }}
+                                />
+                                <div className="m-4">
+                                    {Number(instalment_amount).toLocaleString()}
+                                </div>
+                            </div>
+
                             {/* Down Payment */}
                             <div className="mt-4">
                                 <label
@@ -332,32 +360,6 @@ export default function UpdatePlotForm({ floor }: any) {
                                 />
                                 <div className="m-4">
                                     {Number(down_payment_amount).toLocaleString()}
-                                </div>
-                            </div>
-
-                            {/* Instalment Amount */}
-                            <div className="mt-4">
-                                <label
-                                    htmlFor="building-floor-instalment-amount"
-                                    className="block mb-2 text-sm font-medium"
-                                >
-                                    Instalment Amount
-                                </label>
-                                <Input
-                                    type="number"
-                                    id="building-floor-instalment-amount"
-                                    name="building-floor-instalment-amount"
-                                    className="input input-bordered w-full max-w-xs border border-gray-400 "
-                                    defaultValue={floor?.instalment_amount as string}
-                                    placeholder=""
-                                    min="0"
-                                    onChange={(e) => {
-                                        setInstalment_Amount(Number(e.target.value))
-                                        console.log(e.target.value)
-                                    }}
-                                />
-                                <div className="m-4">
-                                    {Number(instalment_amount).toLocaleString()}
                                 </div>
                             </div>
 

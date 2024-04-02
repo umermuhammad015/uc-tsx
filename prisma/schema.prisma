@@ -133,9 +133,15 @@ model Societies {
   commercial_plot_size                       Int?
   commercial_plot_price                      Int?
   apartment_size                             Int?
-  apartments_price                           Int?
-  apartments_monthly_rent                    Int?
+  min_apartments_price                       Int?
+  max_apartments_price                       Int?
+  min_apartments_monthly_rent                Int?
+  max_apartments_monthly_rent                Int?
   payment_terms                              String?
+  instalment_total_amount                    Int?
+  instalment_down_payment                    Int?
+  instalment_possession_Amount               Int?
+  instalment_period                          Int?
   features_type_parks                        String?
   features_type_school                       String?
   features_type_university                   String?

@@ -24,8 +24,14 @@ export default function UpdatePlotForm({ societies }: any) {
     const [rent, setRent] = useState(societies?.vilas_monthly_rent)
     const [commericalprice, setCommericalPrice] = useState(societies?.commercial_plot_price)
     const [apartments_size, setApartments_size] = useState(societies?.apartments_size)
-    const [apartmentsprice, setApartmentsPrice] = useState(societies?.apartments_price)
-    const [apartmentsrent, setApartmentsRent] = useState(societies?.apartments_monthly_rent)
+    const [min_apartments_price, setMin_Apartments_price] = useState(societies?.min_apartments_price)
+    const [max_apartments_price, setMax_Apartments_price] = useState(societies?.max_apartments_price)
+    const [min_apartments_monthly_rent, setMin_Apartments_monthly_rent] = useState(societies?.min_apartments_monthly_rent)
+    const [max_apartments_monthly_rent, setMax_Apartments_monthly_rent] = useState(societies?.max_apartments_monthly_rent)
+    const [instalment_total_amount, setInstalment_total_amount] = useState(societies?.instalment_total_amount)
+    const [instalment_down_payment, setInstalment_down_payment] = useState(societies?.instalment_down_payment)
+    const [instalment_possession_Amount, setInstalment_possession_Amount] = useState(societies?.instalment_possession_Amount)
+    const [instalment_period, setinstalment_period] = useState(societies?.instalment_period)
 
 
     return (
@@ -720,26 +726,54 @@ export default function UpdatePlotForm({ societies }: any) {
                     {/*Apartment Price*/}
                     <div className="mt-4">
                         <label
-                            htmlFor="apartments-price"
+                            htmlFor="min-apartments-price"
                             className="block mb-2 text-sm font-medium"
                         >
-                            Apartment Price:
+                            Minimum Apartment Price:
                         </label>
                         <div className="flex">
                             <Input
+
                                 type="text"
-                                id="apartments-price"
-                                name="apartments-price"
+                                id="min-apartments-price"
+                                name="min-apartments-price"
                                 className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-                                defaultValue={societies?.apartments_price as number}
+                                defaultValue={societies?.min_apartments_price as number}
                                 placeholder="Rs."
                                 onChange={(e) => {
-                                    setApartmentsPrice(e.target.value)
+                                    setMin_Apartments_price(Number(e.target.value))
                                     console.log(e.target.value)
                                 }}
                             />
                             <div className="m-4">
-                                {Number(apartmentsprice).toLocaleString()}
+                                {Number(min_apartments_price).toLocaleString()}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="mt-4">
+                        <label
+                            htmlFor="max-apartments-price"
+                            className="block mb-2 text-sm font-medium"
+                        >
+                            Max Apartment Price:
+                        </label>
+                        <div className="flex">
+                            <Input
+
+                                type="text"
+                                id="max-apartments-price"
+                                name="max-apartments-price"
+                                className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+                                defaultValue={societies?.max_apartments_price as number}
+                                placeholder="Rs."
+                                onChange={(e) => {
+                                    setMax_Apartments_price(Number(e.target.value))
+                                    console.log(e.target.value)
+                                }}
+                            />
+                            <div className="m-4">
+                                {Number(max_apartments_price).toLocaleString()}
                             </div>
                         </div>
                     </div>
@@ -747,26 +781,54 @@ export default function UpdatePlotForm({ societies }: any) {
                     {/* Monthly Rent*/}
                     <div className="mt-4">
                         <label
-                            htmlFor="apartments-monthly-rent"
+                            htmlFor="min-apartments-monthly-rent"
                             className="block mb-2 text-sm font-medium"
                         >
-                            Monthly Rent:
+                            Minimum Monthly Rent:
                         </label>
                         <div className="flex">
                             <Input
+
                                 type="text"
-                                id="apartments-monthly-rent"
-                                name="apartments-monthly-rent"
+                                id="min-apartments-monthly-rent"
+                                name="min-apartments-monthly-rent"
                                 className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-                                defaultValue={societies?.apartments_monthly_rent as number}
+                                defaultValue={societies?.min_apartments_monthly_rent as number}
                                 placeholder="Rs."
                                 onChange={(e) => {
-                                    setApartmentsRent(e.target.value)
+                                    setMin_Apartments_monthly_rent(Number(e.target.value))
                                     console.log(e.target.value)
                                 }}
                             />
                             <div className="m-4">
-                                {Number(apartmentsrent).toLocaleString()}
+                                {Number(min_apartments_monthly_rent).toLocaleString()}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="mt-4">
+                        <label
+                            htmlFor="max-apartments-monthly-rent"
+                            className="block mb-2 text-sm font-medium"
+                        >
+                            Max Monthly Rent:
+                        </label>
+                        <div className="flex">
+                            <Input
+
+                                type="text"
+                                id="max-apartments-monthly-rent"
+                                name="max-apartments-monthly-rent"
+                                className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+                                defaultValue={societies?.max_apartments_monthly_rent as number}
+                                placeholder="Rs."
+                                onChange={(e) => {
+                                    setMax_Apartments_monthly_rent(Number(e.target.value))
+                                    console.log(e.target.value)
+                                }}
+                            />
+                            <div className="m-4">
+                                {Number(max_apartments_monthly_rent).toLocaleString()}
                             </div>
                         </div>
                     </div>
@@ -791,6 +853,114 @@ export default function UpdatePlotForm({ societies }: any) {
                             <option value="Lumpsum Payment">Lumpsum Payment</option>
                             <option value="Instalments">Instalments</option>
                         </select>
+                    </div>
+
+                    {/* Total Amount: */}
+                    <div className="mt-4">
+                        <label
+                            htmlFor="instalment-total-amount"
+                            className="block mb-2 text-sm font-medium"
+                        >
+                            Total Amount:
+                        </label>
+                        <div className="flex">
+                            <Input
+                                type="text"
+                                id="instalment-total-amount"
+                                name="instalment-total-amount"
+                                className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+                                defaultValue={societies?.instalment_total_amount as number}
+                                placeholder="Rs."
+                                onChange={(e) => {
+                                    setInstalment_total_amount(Number(e.target.value))
+                                    console.log(e.target.value)
+                                }}
+                            />
+                            <div className="m-4">
+                                {Number(instalment_total_amount).toLocaleString()}
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Down Payment:      */}
+                    <div className="mt-4">
+                        <label
+                            htmlFor="instalment-down-payment"
+                            className="block mb-2 text-sm font-medium"
+                        >
+                            Down Payment:
+                        </label>
+                        <div className="flex">
+                            <Input
+                                type="text"
+                                id="instalment-down-payment"
+                                name="instalment-down-payment"
+                                className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+                                defaultValue={societies?.instalment_down_payment as number}
+                                placeholder="Rs."
+                                onChange={(e) => {
+                                    setInstalment_down_payment(Number(e.target.value))
+                                    console.log(e.target.value)
+                                }}
+                            />
+                            <div className="m-4">
+                                {Number(instalment_down_payment).toLocaleString()}
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Possession Amount  : */}
+                    <div className="mt-4">
+                        <label
+                            htmlFor="instalment-possession-Amount"
+                            className="block mb-2 text-sm font-medium"
+                        >
+                            Possession Amount  :
+                        </label>
+                        <div className="flex">
+                            <Input
+                                type="text"
+                                id="instalment-possession-Amount"
+                                name="instalment-possession-Amount"
+                                className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+                                defaultValue={societies?.instalment_possession_Amount as number}
+                                placeholder="Rs."
+                                onChange={(e) => {
+                                    setInstalment_possession_Amount(Number(e.target.value))
+                                    console.log(e.target.value)
+                                }}
+                            />
+                            <div className="m-4">
+                                {Number(instalment_possession_Amount).toLocaleString()}
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Instalment Period Years: */}
+                    <div className="mt-4">
+                        <label
+                            htmlFor="instalment-period"
+                            className="block mb-2 text-sm font-medium"
+                        >
+                            Instalment Period Years:
+                        </label>
+                        <div className="flex">
+                            <Input
+                                type="text"
+                                id="instalment-period"
+                                name="instalment-period"
+                                className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+                                defaultValue={societies?.instalment_period as number}
+                                placeholder=""
+                                onChange={(e) => {
+                                    setinstalment_period(Number(e.target.value))
+                                    console.log(e.target.value)
+                                }}
+                            />
+                            <div className="m-4">
+                                {Number(instalment_period).toLocaleString()}
+                            </div>
+                        </div>
                     </div>
                 </div >
 

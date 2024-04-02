@@ -84,14 +84,32 @@ export default async function createSociety(data: FormData) {
     const apartment_size = parseInt(data.get("apartment-size")?.valueOf() as string);
     console.log("🚀 ~ createsocieties ~ apartment_size:", apartment_size)
   
-    const apartments_price = parseInt(data.get("apartments-price")?.valueOf() as string);
-    console.log("🚀 ~ createsocieties ~ apartments_price:", apartments_price)
+    const min_apartments_price = parseInt(data.get("min-apartments-price")?.valueOf() as string);
+    console.log("🚀 ~ createsocieties ~ min_apartments_price:", min_apartments_price)
+
+    const max_apartments_price = parseInt(data.get("max-apartments-price")?.valueOf() as string);
+    console.log("🚀 ~ createsocieties ~ max_apartments_price:", max_apartments_price)
   
-    const apartments_monthly_rent = parseInt(data.get("apartments-monthly-rent")?.valueOf() as string);
-    console.log("🚀 ~ createsocieties ~ apartments_monthly_rent:", apartments_monthly_rent)
+    const min_apartments_monthly_rent = parseInt(data.get("min-apartments-monthly-rent")?.valueOf() as string);
+    console.log("🚀 ~ createsocieties ~ min_apartments_monthly_rent:", min_apartments_monthly_rent)
+
+    const max_apartments_monthly_rent = parseInt(data.get("max-apartments-monthly-rent")?.valueOf() as string);
+    console.log("🚀 ~ createsocieties ~ max_apartments_monthly_rent:", max_apartments_monthly_rent)
   
     const payment_terms = data.get("payment-terms")?.valueOf();
     console.log("🚀 ~ createsocieties ~ payment_terms:", payment_terms)
+
+    const instalment_total_amount = parseInt(data.get("instalment-total-amount")?.valueOf() as string);
+    console.log("🚀 ~ createsocieties ~ instalment_total_amount:", instalment_total_amount)
+
+    const instalment_down_payment = parseInt(data.get("instalment-down-payment")?.valueOf() as string);
+    console.log("🚀 ~ createsocieties ~ instalment_down_payment:", instalment_down_payment)
+
+    const instalment_possession_Amount = parseInt(data.get("instalment-possession-Amount")?.valueOf() as string);
+    console.log("🚀 ~ createsocieties ~ instalment_possession_Amount:", instalment_possession_Amount)
+
+    const instalment_period = parseInt(data.get("instalment-period")?.valueOf() as string);
+    console.log("🚀 ~ createsocieties ~ instalment_period:", instalment_period)
   
     const features_type_parks = data.get("features-type-parks")?.valueOf();
     console.log("🚀 ~ createsocieties ~ features_type_parks:", features_type_parks)
@@ -197,9 +215,15 @@ export default async function createSociety(data: FormData) {
         commercial_plot_size: commercial_plot_size,
         commercial_plot_price: commercial_plot_price,
         apartment_size: apartment_size,
-        apartments_price: apartments_price,
-        apartments_monthly_rent: apartments_monthly_rent,
+        min_apartments_price: min_apartments_price,
+        max_apartments_price: max_apartments_price,
+        min_apartments_monthly_rent: min_apartments_monthly_rent,
+        max_apartments_monthly_rent: max_apartments_monthly_rent,
         payment_terms: payment_terms as string,
+        instalment_total_amount: instalment_total_amount,
+        instalment_down_payment: instalment_down_payment,
+        instalment_possession_Amount: instalment_possession_Amount,
+        instalment_period: instalment_period,
         features_type_parks: features_type_parks as string,
         features_type_school: features_type_school as string,
         features_type_university: features_type_university as string,

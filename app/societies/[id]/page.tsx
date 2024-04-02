@@ -198,15 +198,39 @@ export default async function ViewBuilding({ params }: Props) {
                             <TableCell>Apartment Size</TableCell> <TableCell>{society?.apartment_size}</TableCell>
                         </TableRow>
                         <TableRow>
-                            <TableCell>Apartment Price Rs.</TableCell> <TableCell>{Number(society?.apartments_price).toLocaleString()}</TableCell>
+                            <TableCell>Minimum Apartment Price Rs.</TableCell> <TableCell>{Number(society?.min_apartments_price).toLocaleString()}</TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell>Max Apartment Price Rs.</TableCell> <TableCell>{Number(society?.max_apartments_price).toLocaleString()}</TableCell>
                         </TableRow>
 
                         <TableRow>
-                            <TableCell>Monthly Rent Rs.</TableCell> <TableCell>{Number(society?.apartments_monthly_rent).toLocaleString()}</TableCell>
+                            <TableCell>Minimum Monthly Rent Rs.</TableCell> <TableCell>{Number(society?.min_apartments_monthly_rent).toLocaleString()}</TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell>Max Monthly Rent Rs.</TableCell> <TableCell>{Number(society?.max_apartments_monthly_rent).toLocaleString()}</TableCell>
                         </TableRow>
                         <TableRow>
                             <TableCell>Payment Terms:</TableCell> <TableCell>{society?.payment_terms}</TableCell>
                         </TableRow>
+
+                        {/* <TableRow>
+                            <TableCell>Payment Terms:</TableCell> <TableCell>{society?.instalment_total_amount}</TableCell>
+                        </TableRow>
+
+                        <TableRow>
+                            <TableCell>Payment Terms:</TableCell> <TableCell>{society?.instalment_down_payment}</TableCell>
+                        </TableRow>
+
+                        <TableRow>
+                            <TableCell>Payment Terms:</TableCell> <TableCell>{society?.instalment_possession_Amount}</TableCell>
+                        </TableRow>
+
+                        <TableRow>
+                            <TableCell>Payment Terms:</TableCell> <TableCell>{society?.instalment_period}</TableCell>
+                        </TableRow> */}
+
+                        
                         <TableRow>
                             <TableCell>Features</TableCell>
                             <TableCell>
