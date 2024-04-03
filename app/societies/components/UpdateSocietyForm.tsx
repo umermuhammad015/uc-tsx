@@ -323,11 +323,11 @@ export default function UpdatePlotForm({ societies }: any) {
                             Population:
                         </label>
                         <div className="flex">
-                            <input
+                            <Input
                                 type="text"
                                 id="societies-population"
                                 name="societies-population"
-                                className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+                                className="input input-bordered w-full max-w-xs border-2 border-gray-400  "
                                 defaultValue={societies?.population as number}
                                 placeholder=""
                                 onChange={(e) => {
