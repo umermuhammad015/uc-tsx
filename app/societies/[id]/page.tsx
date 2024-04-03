@@ -201,14 +201,14 @@ export default async function ViewBuilding({ params }: Props) {
                             <TableCell>Minimum Apartment Price Rs.</TableCell> <TableCell>{Number(society?.min_apartments_price).toLocaleString()}</TableCell>
                         </TableRow>
                         <TableRow>
-                            <TableCell>Max Apartment Price Rs.</TableCell> <TableCell>{Number(society?.max_apartments_price).toLocaleString()}</TableCell>
+                            <TableCell>Maximum Apartment Price Rs.</TableCell> <TableCell>{Number(society?.max_apartments_price).toLocaleString()}</TableCell>
                         </TableRow>
 
                         <TableRow>
                             <TableCell>Minimum Monthly Rent Rs.</TableCell> <TableCell>{Number(society?.min_apartments_monthly_rent).toLocaleString()}</TableCell>
                         </TableRow>
                         <TableRow>
-                            <TableCell>Max Monthly Rent Rs.</TableCell> <TableCell>{Number(society?.max_apartments_monthly_rent).toLocaleString()}</TableCell>
+                            <TableCell>Maximum Monthly Rent Rs.</TableCell> <TableCell>{Number(society?.max_apartments_monthly_rent).toLocaleString()}</TableCell>
                         </TableRow>
                         <TableRow>
                             <TableCell>Payment Terms:</TableCell> <TableCell>{society?.payment_terms}</TableCell>
