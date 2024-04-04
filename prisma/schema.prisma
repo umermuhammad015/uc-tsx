@@ -121,10 +121,31 @@ model Societies {
   launch_year                                Int?
   total_plots_residential                    Int?
   plot_sizes_residential                     Int?
+  plot_sizes_residential_87_5                String?
+  plot_sizes_residential_125                 String?
+  plot_sizes_residential_200                 String?
+  plot_sizes_residential_250                 String?
+  plot_sizes_residential_500                 String?
+  plot_sizes_residential_1000                String?
+  plot_sizes_residential_2000                String?
   total_plots_commercial                     Int?
   plot_sizes_commercial                      Int?
+  plot_sizes_commercial_87_5                 String?
+  plot_sizes_commercial_125                  String?
+  plot_sizes_commercial_200                  String?
+  plot_sizes_commercial_250                  String?
+  plot_sizes_commercial_500                  String?
+  plot_sizes_commercial_1000                 String?
+  plot_sizes_commercial_2000                 String?
   total_apartments                           Int?
   societies_apartment_size                   Int?
+  apartment_size_87_5                        String?
+  apartment_size_125                         String?
+  apartment_size_200                         String?
+  apartment_size_250                         String?
+  apartment_size_500                         String?
+  apartment_size_1000                        String?
+  apartment_size_2000                        String?
   plot_size                                  Int?
   plot_price                                 Int?
   vilas_size                                 Int?

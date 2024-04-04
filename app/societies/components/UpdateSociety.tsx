@@ -62,13 +62,55 @@ export default async function editForm(data: FormData) {
 
     const plot_sizes_residential = parseInt(data.get("plot-sizes-residential")?.valueOf() as string);
 
+    const plot_sizes_residential_87_5 = data.get("plot-sizes-residential-87-5")?.valueOf() === undefined ? null : "yes";
+
+    const plot_sizes_residential_125 = data.get("plot-sizes-residential-125")?.valueOf() === undefined ? null : "yes";
+
+    const plot_sizes_residential_200 = data.get("plot-sizes-residential-200")?.valueOf() === undefined ? null : "yes";
+
+    const plot_sizes_residential_250 = data.get("plot-sizes-residential-250")?.valueOf() === undefined ? null : "yes";
+
+    const plot_sizes_residential_500 = data.get("plot-sizes-residential-500")?.valueOf() === undefined ? null : "yes";
+
+    const plot_sizes_residential_1000 = data.get("plot-sizes-residential-1000")?.valueOf() === undefined ? null : "yes";
+
+    const plot_sizes_residential_2000 = data.get("plot-sizes-residential-2000")?.valueOf() === undefined ? null : "yes";
+
     const total_plots_commercial = parseInt(data.get("total-plots-commercial")?.valueOf() as string);
 
     const plot_sizes_commercial = parseInt(data.get("plot-sizes-commercial")?.valueOf() as string);
 
+    const plot_sizes_commercial_87_5 = data.get("plot-sizes-commercial-87-5")?.valueOf() === undefined ? null : "yes";
+
+    const plot_sizes_commercial_125 = data.get("plot-sizes-commercial-125")?.valueOf() === undefined ? null : "yes";
+
+    const plot_sizes_commercial_200 = data.get("plot-sizes-commercial-200")?.valueOf() === undefined ? null : "yes";
+
+    const plot_sizes_commercial_250 = data.get("plot-sizes-commercial-250")?.valueOf() === undefined ? null : "yes";
+
+    const plot_sizes_commercial_500 = data.get("plot-sizes-commercial-500")?.valueOf() === undefined ? null : "yes";
+
+    const plot_sizes_commercial_1000 = data.get("plot-sizes-commercial-1000")?.valueOf() === undefined ? null : "yes";
+    
+    const plot_sizes_commercial_2000 = data.get("plot-sizes-commercial-2000")?.valueOf() === undefined ? null : "yes";
+
     const societies_total_apartments = parseInt(data.get("societies-total-apartments")?.valueOf() as string);
 
     const societies_apartment_size = parseInt(data.get("societies-apartment-size")?.valueOf() as string);
+
+    const apartment_size_87_5 = data.get("apartment-size-87-5")?.valueOf() === undefined ? null : "yes";
+
+    const apartment_size_125 = data.get("apartment-size-125")?.valueOf() === undefined ? null : "yes";
+
+    const apartment_size_200 = data.get("apartment-size-200")?.valueOf() === undefined ? null : "yes";
+
+    const apartment_size_250 = data.get("apartment-size-250")?.valueOf() === undefined ? null : "yes";
+
+    const apartment_size_500 = data.get("apartment-size-500")?.valueOf() === undefined ? null : "yes";
+
+    const apartment_size_1000 = data.get("apartment-size-1000")?.valueOf() === undefined ? null : "yes";
+    
+    const apartment_size_2000 = data.get("apartment-size-2000")?.valueOf() === undefined ? null : "yes";
 
     const societies_plot_size = parseInt(data.get("societies-plot-size")?.valueOf() as string);
 
@@ -178,10 +220,31 @@ export default async function editForm(data: FormData) {
             launch_year,
             total_plots_residential,
             plot_sizes_residential,
+            plot_sizes_residential_87_5,
+            plot_sizes_residential_125,
+            plot_sizes_residential_200,
+            plot_sizes_residential_250,
+            plot_sizes_residential_500,
+            plot_sizes_residential_1000,
+            plot_sizes_residential_2000,
             total_plots_commercial,
             plot_sizes_commercial,
+            plot_sizes_commercial_87_5,
+            plot_sizes_commercial_125,
+            plot_sizes_commercial_200,
+            plot_sizes_commercial_250,
+            plot_sizes_commercial_500,
+            plot_sizes_commercial_1000,
+            plot_sizes_commercial_2000,
             total_apartments: societies_total_apartments,
             societies_apartment_size,
+            apartment_size_87_5,
+            apartment_size_125,
+            apartment_size_200,
+            apartment_size_250,
+            apartment_size_500,
+            apartment_size_1000,
+            apartment_size_2000,
             plot_size: societies_plot_size,
             plot_price: societies_plot_price,
             vilas_size,

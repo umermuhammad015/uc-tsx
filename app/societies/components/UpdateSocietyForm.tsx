@@ -34,6 +34,9 @@ export default function UpdatePlotForm({ societies }: any) {
     const [instalment_period, setinstalment_period] = useState(societies?.instalment_period)
 
 
+    const [paymentTerms, setPaymentTerms] = useState(societies?.payment_terms)
+
+
     return (
         <>
             <div>{societies?.name}</div>
@@ -358,8 +361,10 @@ export default function UpdatePlotForm({ societies }: any) {
                             placeholder=""
                         />
                     </div>
+                </div>
 
-                    {/* Total Plots Residential*/}
+                {/* Total Plots Residential*/}
+                <div className="p-5 border-2 border-t-0 border-gray-200 dark:border-gray-700">
                     <div className="mt-4">
                         <label
                             htmlFor="total-plots-residential"
@@ -378,7 +383,142 @@ export default function UpdatePlotForm({ societies }: any) {
                     </div>
 
                     {/* Plot Sizes Residential (Sq. Yards)  */}
-                    <div className="mt-4">
+                    <div className="">
+                        <div className="mt-4">
+                            <fieldset className="flex gap-10 text-lg">
+                                <legend className="block mb-4 text-sm font-medium">
+                                    Plot Sizes Residential (Sq. Yards):
+                                </legend>
+
+                                <div className="flex items-center mb-4 ml-2">
+                                    <input
+                                        id="plot-sizes-residential-87-5"
+                                        name="plot-sizes-residential-87-5"
+                                        type="checkbox"
+                                        defaultChecked={societies?.plot_sizes_residential_87_5 ? true : false}
+                                        value="yes"
+                                        className="checkbox checkbox-primary"
+                                    />
+                                    <label
+                                        htmlFor="plot-sizes-residential-87-5"
+                                        className="ml-2 text-sm font-medium "
+                                    >
+                                        87.5
+                                    </label>
+                                </div>
+
+                                <div className="flex items-center mb-4 ml-2">
+                                    <input
+                                        id="plot-sizes-residential-125"
+                                        name="plot-sizes-residential-125"
+                                        type="checkbox"
+                                        value="yes"
+                                        defaultChecked={societies?.plot_sizes_residential_125 ? true : false}
+                                        className="checkbox checkbox-primary"
+                                    />
+                                    <label
+                                        htmlFor="plot-sizes-residential-125"
+                                        className="ml-2 text-sm font-medium "
+                                    >
+                                        125
+                                    </label>
+                                </div>
+
+
+                                <div className="flex items-center mb-4 ml-2">
+                                    <input
+                                        id="plot-sizes-residential-200"
+                                        name="plot-sizes-residential-200"
+                                        type="checkbox"
+                                        defaultChecked={societies?.plot_sizes_residential_200 ? true : false}
+                                        value="yes"
+                                        className="checkbox checkbox-primary"
+                                    />
+                                    <label
+                                        htmlFor="plot-sizes-residential-200"
+                                        className="ml-2 text-sm font-medium "
+                                    >
+                                        200
+                                    </label>
+                                </div>
+
+                                <div className="flex items-center mb-4 ml-2">
+                                    <input
+                                        id="plot-sizes-residential-250"
+                                        name="plot-sizes-residential-250"
+                                        defaultChecked={societies?.plot_sizes_residential_250 ? true : false}
+                                        type="checkbox"
+                                        value="yes"
+                                        className="checkbox checkbox-primary"
+                                    />
+                                    <label
+                                        htmlFor="plot-sizes-residential-250"
+                                        className="ml-2 text-sm font-medium "
+                                    >
+                                        250
+                                    </label>
+                                </div>
+
+                                <div className="flex items-center mb-4 ml-2">
+                                    <input
+                                        id="plot-sizes-residential-500"
+                                        name="plot-sizes-residential-500"
+                                        type="checkbox"
+                                        defaultChecked={societies?.plot_sizes_residential_500 ? true : false}
+                                        value="yes"
+                                        className="checkbox checkbox-primary"
+                                    />
+                                    <label
+                                        htmlFor="plot-sizes-residential-500"
+                                        className="ml-2 text-sm font-medium "
+                                    >
+                                        500
+                                    </label>
+                                </div>
+
+                                <div className="flex items-center mb-4 ml-2">
+                                    <input
+                                        id="plot-sizes-residential-1000"
+                                        name="plot-sizes-residential-1000"
+                                        defaultChecked={societies?.plot_sizes_residential_1000 ? true : false}
+                                        type="checkbox"
+                                        value="yes"
+                                        className="checkbox checkbox-primary"
+                                    />
+                                    <label
+                                        htmlFor="plot-sizes-residential-1000"
+                                        className="ml-2 text-sm font-medium "
+                                    >
+                                        1,000
+                                    </label>
+                                </div>
+
+                                <div className="flex items-center mb-4 ml-2">
+                                    <input
+                                        id="plot-sizes-residential-2000"
+                                        name="plot-sizes-residential-2000"
+                                        type="checkbox"
+                                        defaultChecked={societies?.plot_sizes_residential_2000 ? true : false}
+                                        value="yes"
+                                        className="checkbox checkbox-primary"
+                                    />
+                                    <label
+                                        htmlFor="plot-sizes-residential-2000"
+                                        className="ml-2 text-sm font-medium "
+                                    >
+                                        2000
+                                    </label>
+                                </div>
+
+
+
+
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+
+                {/* <div className="mt-4">
                         <label
                             htmlFor="plot-sizes-residential"
                             className="block mb-2 text-sm font-medium"
@@ -402,9 +542,10 @@ export default function UpdatePlotForm({ societies }: any) {
                                 {Number(plot_sizes_residential).toLocaleString()}
                             </div>
                         </div>
-                    </div>
+                    </div> */}
 
-                    {/*Total Plots Commercial  */}
+                {/*Total Plots Commercial  */}
+                <div className="p-5 border-2 border-t-0 border-gray-200 dark:border-gray-700">
                     <div className="mt-4">
                         <label
                             htmlFor="total-plots-commercial"
@@ -423,7 +564,141 @@ export default function UpdatePlotForm({ societies }: any) {
                     </div>
 
                     {/* Plot Sizes Commercial (Sq. Yards) */}
-                    <div className="mt-4">
+                    <div className="">
+                        <div className="mt-4">
+                            <fieldset className="flex gap-10 text-lg">
+                                <legend className="block mb-4 text-sm font-medium">
+                                    Plot Sizes Commercial (Sq. Yards):
+                                </legend>
+
+                                <div className="flex items-center mb-4 ml-2">
+                                    <input
+                                        id="plot-sizes-commercial-87-5"
+                                        name="plot-sizes-commercial-87-5"
+                                        type="checkbox"
+                                        defaultChecked={societies?.plot_sizes_commercial_87_5 ? true : false}
+                                        value="yes"
+                                        className="checkbox checkbox-primary"
+                                    />
+                                    <label
+                                        htmlFor="plot-sizes-commercial-87-5"
+                                        className="ml-2 text-sm font-medium "
+                                    >
+                                        87.5
+                                    </label>
+                                </div>
+
+                                <div className="flex items-center mb-4 ml-2">
+                                    <input
+                                        id="plot-sizes-commercial-125"
+                                        name="plot-sizes-commercial-125"
+                                        type="checkbox"
+                                        value="yes"
+                                        defaultChecked={societies?.plot_sizes_commercial_125 ? true : false}
+                                        className="checkbox checkbox-primary"
+                                    />
+                                    <label
+                                        htmlFor="plot-sizes-commercial-125"
+                                        className="ml-2 text-sm font-medium "
+                                    >
+                                        125
+                                    </label>
+                                </div>
+
+                                <div className="flex items-center mb-4 ml-2">
+                                    <input
+                                        id="plot-sizes-commercial-200"
+                                        name="plot-sizes-commercial-200"
+                                        type="checkbox"
+                                        value="yes"
+                                        defaultChecked={societies?.plot_sizes_commercial_200 ? true : false}
+                                        className="checkbox checkbox-primary"
+                                    />
+                                    <label
+                                        htmlFor="plot-sizes-commercial-200"
+                                        className="ml-2 text-sm font-medium "
+                                    >
+                                        200
+                                    </label>
+                                </div>
+
+                                <div className="flex items-center mb-4 ml-2">
+                                    <input
+                                        id="plot-sizes-commercial-250"
+                                        name="plot-sizes-commercial-250"
+                                        type="checkbox"
+                                        value="yes"
+                                        defaultChecked={societies?.plot_sizes_commercial_250 ? true : false}
+                                        className="checkbox checkbox-primary"
+                                    />
+                                    <label
+                                        htmlFor="plot-sizes-commercial-250"
+                                        className="ml-2 text-sm font-medium "
+                                    >
+                                        250
+                                    </label>
+                                </div>
+
+                                <div className="flex items-center mb-4 ml-2">
+                                    <input
+                                        id="plot-sizes-commercial-500"
+                                        name="plot-sizes-commercial-500"
+                                        type="checkbox"
+                                        defaultChecked={societies?.plot_sizes_commercial_500 ? true : false}
+                                        value="yes"
+                                        className="checkbox checkbox-primary"
+                                    />
+                                    <label
+                                        htmlFor="plot-sizes-commercial-500"
+                                        className="ml-2 text-sm font-medium "
+                                    >
+                                        500
+                                    </label>
+                                </div>
+
+                                <div className="flex items-center mb-4 ml-2">
+                                    <input
+                                        id="plot-sizes-commercial-1000"
+                                        name="plot-sizes-commercial-1000"
+                                        type="checkbox"
+                                        defaultChecked={societies?.plot_sizes_commercial_1000 ? true : false}
+                                        value="yes"
+                                        className="checkbox checkbox-primary"
+                                    />
+                                    <label
+                                        htmlFor="plot-sizes-commercial-1000"
+                                        className="ml-2 text-sm font-medium "
+                                    >
+                                        1,000
+                                    </label>
+                                </div>
+
+                                <div className="flex items-center mb-4 ml-2">
+                                    <input
+                                        id="plot-sizes-commercial-2000"
+                                        name="plot-sizes-commercial-2000"
+                                        type="checkbox"
+                                        defaultChecked={societies?.plot_sizes_commercial_2000 ? true : false}
+                                        value="yes"
+                                        className="checkbox checkbox-primary"
+                                    />
+                                    <label
+                                        htmlFor="plot-sizes-commercial-2000"
+                                        className="ml-2 text-sm font-medium "
+                                    >
+                                        2000
+                                    </label>
+                                </div>
+
+
+
+
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+
+                {/* <div className="mt-4">
                         <label
                             htmlFor="plot-sizes-commercial"
                             className="block mb-2 text-sm font-medium"
@@ -447,9 +722,10 @@ export default function UpdatePlotForm({ societies }: any) {
                                 {Number(plot_sizes_commercial).toLocaleString()}
                             </div>
                         </div>
-                    </div>
+                    </div> */}
 
-                    {/* Total No. of Apartments  */}
+                {/* Total No. of Apartments  */}
+                <div className="p-5 border-2 border-t-0 border-gray-200 dark:border-gray-700">
                     <div className="mt-4">
                         <label
                             htmlFor="societies-total-apartments"
@@ -468,7 +744,141 @@ export default function UpdatePlotForm({ societies }: any) {
                     </div>
 
                     {/* Apartment Sizes (Sq. Ft)  */}
-                    <div className="mt-4">
+                    <div className="">
+                        <div className="mt-4">
+                            <fieldset className="flex gap-10 text-lg">
+                                <legend className="block mb-4 text-sm font-medium">
+                                    Apartments Sizes :
+                                </legend>
+
+                                <div className="flex items-center mb-4 ml-2">
+                                    <input
+                                        id="apartment-size-87-5"
+                                        name="apartment-size-87-5"
+                                        type="checkbox"
+                                        value="yes"
+                                        defaultChecked={societies?.apartment_size_87_5 ? true : false}
+                                        className="checkbox checkbox-primary"
+                                    />
+                                    <label
+                                        htmlFor="apartment-size-87-5"
+                                        className="ml-2 text-sm font-medium "
+                                    >
+                                        87.5
+                                    </label>
+                                </div>
+
+                                <div className="flex items-center mb-4 ml-2">
+                                    <input
+                                        id="apartment-size-125"
+                                        name="apartment-size-125"
+                                        type="checkbox"
+                                        defaultChecked={societies?.apartment_size_125 ? true : false}
+                                        value="yes"
+                                        className="checkbox checkbox-primary"
+                                    />
+                                    <label
+                                        htmlFor="apartment-size-125"
+                                        className="ml-2 text-sm font-medium "
+                                    >
+                                        125
+                                    </label>
+                                </div>
+
+                                <div className="flex items-center mb-4 ml-2">
+                                    <input
+                                        id="apartment-size-200"
+                                        name="apartment-size-200"
+                                        type="checkbox"
+                                        defaultChecked={societies?.apartment_size_200 ? true : false}
+                                        value="yes"
+                                        className="checkbox checkbox-primary"
+                                    />
+                                    <label
+                                        htmlFor="apartment-size-200"
+                                        className="ml-2 text-sm font-medium "
+                                    >
+                                        200
+                                    </label>
+                                </div>
+
+                                <div className="flex items-center mb-4 ml-2">
+                                    <input
+                                        id="apartment-size-250"
+                                        name="apartment-size-250"
+                                        type="checkbox"
+                                        defaultChecked={societies?.apartment_size_250 ? true : false}
+                                        value="yes"
+                                        className="checkbox checkbox-primary"
+                                    />
+                                    <label
+                                        htmlFor="apartment-size-250"
+                                        className="ml-2 text-sm font-medium "
+                                    >
+                                        250
+                                    </label>
+                                </div>
+
+                                <div className="flex items-center mb-4 ml-2">
+                                    <input
+                                        id="apartment-size-500"
+                                        name="apartment-size-500"
+                                        type="checkbox"
+                                        defaultChecked={societies?.apartment_size_500 ? true : false}
+                                        value="yes"
+                                        className="checkbox checkbox-primary"
+                                    />
+                                    <label
+                                        htmlFor="apartment-size-500"
+                                        className="ml-2 text-sm font-medium "
+                                    >
+                                        500
+                                    </label>
+                                </div>
+
+                                <div className="flex items-center mb-4 ml-2">
+                                    <input
+                                        id="apartment-size-1000"
+                                        name="apartment-size-1000"
+                                        type="checkbox"
+                                        value="yes"
+                                        defaultChecked={societies?.apartment_size_1000 ? true : false}
+                                        className="checkbox checkbox-primary"
+                                    />
+                                    <label
+                                        htmlFor="apartment-size-1000"
+                                        className="ml-2 text-sm font-medium "
+                                    >
+                                        1,000
+                                    </label>
+                                </div>
+
+                                <div className="flex items-center mb-4 ml-2">
+                                    <input
+                                        id="apartment-size-2000"
+                                        name="apartment-size-2000"
+                                        type="checkbox"
+                                        value="yes"
+                                        defaultChecked={societies?.apartment_size_2000 ? true : false}
+                                        className="checkbox checkbox-primary"
+                                    />
+                                    <label
+                                        htmlFor="apartment-size-2000"
+                                        className="ml-2 text-sm font-medium "
+                                    >
+                                        2000
+                                    </label>
+                                </div>
+
+
+
+
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+
+                {/* <div className="mt-4">
                         <label
                             htmlFor="societies-apartment-size"
                             className="block mb-2 text-sm font-medium"
@@ -492,13 +902,13 @@ export default function UpdatePlotForm({ societies }: any) {
                                 {Number(societies_apartment_size).toLocaleString()}
                             </div>
                         </div>
-                    </div>
+                    </div> */}
 
-                </div>
+
 
                 {/* Residentiall Plots */}
 
-                <div className="p-5 border-2 border-t-0 border-gray-200 dark:border-gray-700">
+                <div className="p-5 border-2 border-t-0 border-gray-200 dark:border-gray-700 hidden">
                     <div className="text-lg">Residentiall Plots:</div>
                     {/* Plot Size (Yards)*/}
                     <div className="mt-4">
@@ -554,7 +964,7 @@ export default function UpdatePlotForm({ societies }: any) {
                 </div>
 
                 {/* Bungalows/ Vilas: */}
-                <div className="p-5 border-2 border-t-0 border-gray-200 dark:border-gray-700">
+                <div className="p-5 border-2 border-t-0 border-gray-200 dark:border-gray-700 hidden">
                     <div className="text-lg">Bungalows/ Vilas:</div>
                     {/* Bungalows/ Vilas Size (Yards)*/}
                     <div className="mt-4">
@@ -638,7 +1048,7 @@ export default function UpdatePlotForm({ societies }: any) {
                 </div>
 
                 {/* Commercial Plots: */}
-                <div className="p-5 border-2 border-t-0 border-gray-200 dark:border-gray-700">
+                <div className="p-5 border-2 border-t-0 border-gray-200 dark:border-gray-700 hidden">
                     <div className="text-lg">Commercial Plots:</div>
                     {/* Plot Size (Yards)*/}
                     <div className="mt-4">
@@ -693,7 +1103,7 @@ export default function UpdatePlotForm({ societies }: any) {
                 </div>
 
                 {/*Apartment */}
-                <div className="p-5 border-2 border-t-0 border-gray-200 dark:border-gray-700">
+                <div className="p-5 border-2 border-t-0 border-gray-200 dark:border-gray-700 hidden">
                     <div className="text-lg">Apartment:</div>
                     {/* Apartment Size*/}
                     <div className="mt-4">
@@ -833,10 +1243,11 @@ export default function UpdatePlotForm({ societies }: any) {
                         </div>
                     </div>
                 </div>
+                
+                {/* Payment Terms*/}
+                <div className="p-5 border-2 border-t-0 border-gray-200 dark:border-gray-700 hidden">
 
-                <div className="p-5 border-2 border-t-0 border-gray-200 dark:border-gray-700">
 
-                    {/* Payment Terms*/}
                     <div className="mt-4">
                         <label
                             htmlFor="payment-terms"
@@ -848,6 +1259,7 @@ export default function UpdatePlotForm({ societies }: any) {
                             id="payment-terms"
                             name="payment-terms"
                             className="select  w-full max-w-xs border-2 border-gray-400  "
+                            onChange={(e) => setPaymentTerms(e.target.value)}
                             defaultValue={societies?.payment_terms as string}
                         >
                             <option value="Lumpsum Payment">Lumpsum Payment</option>
@@ -856,112 +1268,124 @@ export default function UpdatePlotForm({ societies }: any) {
                     </div>
 
                     {/* Total Amount: */}
-                    <div className="mt-4">
-                        <label
-                            htmlFor="instalment-total-amount"
-                            className="block mb-2 text-sm font-medium"
-                        >
-                            Total Amount:
-                        </label>
-                        <div className="flex">
-                            <Input
-                                type="text"
-                                id="instalment-total-amount"
-                                name="instalment-total-amount"
-                                className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-                                defaultValue={societies?.instalment_total_amount as number}
-                                placeholder="Rs."
-                                onChange={(e) => {
-                                    setInstalment_total_amount(Number(e.target.value))
-                                    console.log(e.target.value)
-                                }}
-                            />
-                            <div className="m-4">
-                                {Number(instalment_total_amount).toLocaleString()}
-                            </div>
-                        </div>
-                    </div>
-
                     {/* Down Payment:      */}
-                    <div className="mt-4">
-                        <label
-                            htmlFor="instalment-down-payment"
-                            className="block mb-2 text-sm font-medium"
-                        >
-                            Down Payment:
-                        </label>
-                        <div className="flex">
-                            <Input
-                                type="text"
-                                id="instalment-down-payment"
-                                name="instalment-down-payment"
-                                className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-                                defaultValue={societies?.instalment_down_payment as number}
-                                placeholder="Rs."
-                                onChange={(e) => {
-                                    setInstalment_down_payment(Number(e.target.value))
-                                    console.log(e.target.value)
-                                }}
-                            />
-                            <div className="m-4">
-                                {Number(instalment_down_payment).toLocaleString()}
-                            </div>
-                        </div>
-                    </div>
-
                     {/* Possession Amount  : */}
-                    <div className="mt-4">
-                        <label
-                            htmlFor="instalment-possession-Amount"
-                            className="block mb-2 text-sm font-medium"
-                        >
-                            Possession Amount  :
-                        </label>
-                        <div className="flex">
-                            <Input
-                                type="text"
-                                id="instalment-possession-Amount"
-                                name="instalment-possession-Amount"
-                                className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-                                defaultValue={societies?.instalment_possession_Amount as number}
-                                placeholder="Rs."
-                                onChange={(e) => {
-                                    setInstalment_possession_Amount(Number(e.target.value))
-                                    console.log(e.target.value)
-                                }}
-                            />
-                            <div className="m-4">
-                                {Number(instalment_possession_Amount).toLocaleString()}
-                            </div>
-                        </div>
-                    </div>
-
                     {/* Instalment Period Years: */}
-                    <div className="mt-4">
-                        <label
-                            htmlFor="instalment-period"
-                            className="block mb-2 text-sm font-medium"
-                        >
-                            Instalment Period Years:
-                        </label>
-                        <div className="flex">
-                            <Input
-                                type="text"
-                                id="instalment-period"
-                                name="instalment-period"
-                                className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-                                defaultValue={societies?.instalment_period as number}
-                                placeholder=""
-                                onChange={(e) => {
-                                    setinstalment_period(Number(e.target.value))
-                                    console.log(e.target.value)
-                                }}
-                            />
-                            <div className="m-4">
-                                {Number(instalment_period).toLocaleString()}
+
+                    {
+                        paymentTerms === "Instalments" &&
+                        <>
+
+
+                            <div className="mt-4">
+                                <label
+                                    htmlFor="instalment-total-amount"
+                                    className="block mb-2 text-sm font-medium"
+                                >
+                                    Total Amount:
+                                </label>
+                                <div className="flex">
+                                    <Input
+                                        type="text"
+                                        id="instalment-total-amount"
+                                        name="instalment-total-amount"
+                                        className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+                                        defaultValue={societies?.instalment_total_amount as number}
+                                        placeholder="Rs."
+                                        onChange={(e) => {
+                                            setInstalment_total_amount(Number(e.target.value))
+                                            console.log(e.target.value)
+                                        }}
+                                    />
+                                    <div className="m-4">
+                                        {Number(instalment_total_amount).toLocaleString()}
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
+
+
+                            <div className="mt-4">
+                                <label
+                                    htmlFor="instalment-down-payment"
+                                    className="block mb-2 text-sm font-medium"
+                                >
+                                    Down Payment:
+                                </label>
+                                <div className="flex">
+                                    <Input
+                                        type="text"
+                                        id="instalment-down-payment"
+                                        name="instalment-down-payment"
+                                        className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+                                        defaultValue={societies?.instalment_down_payment as number}
+                                        placeholder="Rs."
+                                        onChange={(e) => {
+                                            setInstalment_down_payment(Number(e.target.value))
+                                            console.log(e.target.value)
+                                        }}
+                                    />
+                                    <div className="m-4">
+                                        {Number(instalment_down_payment).toLocaleString()}
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div className="mt-4">
+                                <label
+                                    htmlFor="instalment-possession-Amount"
+                                    className="block mb-2 text-sm font-medium"
+                                >
+                                    Possession Amount  :
+                                </label>
+                                <div className="flex">
+                                    <Input
+                                        type="text"
+                                        id="instalment-possession-Amount"
+                                        name="instalment-possession-Amount"
+                                        className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+                                        defaultValue={societies?.instalment_possession_Amount as number}
+                                        placeholder="Rs."
+                                        onChange={(e) => {
+                                            setInstalment_possession_Amount(Number(e.target.value))
+                                            console.log(e.target.value)
+                                        }}
+                                    />
+                                    <div className="m-4">
+                                        {Number(instalment_possession_Amount).toLocaleString()}
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div className="mt-4">
+                                <label
+                                    htmlFor="instalment-period"
+                                    className="block mb-2 text-sm font-medium"
+                                >
+                                    Instalment Period Years:
+                                </label>
+                                <div className="flex">
+                                    <Input
+                                        type="text"
+                                        id="instalment-period"
+                                        name="instalment-period"
+                                        className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+                                        defaultValue={societies?.instalment_period as number}
+                                        placeholder=""
+                                        onChange={(e) => {
+                                            setinstalment_period(Number(e.target.value))
+                                            console.log(e.target.value)
+                                        }}
+                                    />
+                                    <div className="m-4">
+                                        {Number(instalment_period).toLocaleString()}
+                                    </div>
+                                </div>
+                            </div>
+                        </>
+
+                    }
                 </div >
 
                 {/* Features: */}
@@ -1277,15 +1701,15 @@ export default function UpdatePlotForm({ societies }: any) {
 
                             <div className="flex items-center mb-4 ml-2">
                                 <input
-                                    id="utilities-type-drainage "
-                                    name="utilities-type-drainage "
+                                    id="utilities-type-drainage"
+                                    name="utilities-type-drainage"
                                     type="checkbox"
                                     value="yes"
                                     defaultChecked={societies?.utilities_type_drainage ? true : false}
                                     className="checkbox checkbox-primary"
                                 />
                                 <label
-                                    htmlFor="utilities-type-drainage "
+                                    htmlFor="utilities-type-drainage"
                                     className="ml-2 text-sm font-medium "
                                 >
                                     Drainage

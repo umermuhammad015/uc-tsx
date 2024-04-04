@@ -158,19 +158,88 @@ export default async function ViewBuilding({ params }: Props) {
                         </TableRow>
 
                         <TableRow>
-                            <TableCell>Plot Sizes Residential (Sq. Yards)</TableCell> <TableCell>{society?.plot_sizes_residential}</TableCell>
+                            <TableCell>Plot Sizes Residential (Sq. Yards)</TableCell>
+                            <TableCell>
+                                {society?.plot_sizes_residential_87_5 && (
+                                    <Badge>87.5</Badge>
+                                )}
+                                {society?.plot_sizes_residential_125 && (
+                                    <Badge>125</Badge>
+                                )}
+                                {society?.plot_sizes_residential_200 && (
+                                    <Badge>200</Badge>
+                                )}
+                                {society?.plot_sizes_residential_250 && (
+                                    <Badge>250</Badge>
+                                )}
+                                {society?.plot_sizes_residential_500 && (
+                                    <Badge>500</Badge>
+                                )}
+                                {society?.plot_sizes_residential_1000 && (
+                                    <Badge>1000</Badge>
+                                )}
+                                {society?.plot_sizes_residential_2000 && (
+                                    <Badge>2000</Badge>
+                                )}
+                            </TableCell>
                         </TableRow>
                         <TableRow>
                             <TableCell>Total Plots Commercial </TableCell> <TableCell>{society?.total_plots_commercial}</TableCell>
                         </TableRow>
                         <TableRow>
-                            <TableCell>Plot Sizes Commercial (Sq. Yards)</TableCell> <TableCell>{society?.plot_sizes_commercial}</TableCell>
+                            <TableCell>Plot Sizes Commercial (Sq. Yards)</TableCell>
+                            <TableCell>
+                                {society?.plot_sizes_commercial_87_5 && (
+                                    <Badge>87.5</Badge>
+                                )}
+                                {society?.plot_sizes_commercial_125 && (
+                                    <Badge>125</Badge>
+                                )}
+                                {society?.plot_sizes_commercial_200 && (
+                                    <Badge>200</Badge>
+                                )}
+                                {society?.plot_sizes_commercial_250 && (
+                                    <Badge>250</Badge>
+                                )}
+                                {society?.plot_sizes_commercial_500 && (
+                                    <Badge>500</Badge>
+                                )}
+                                {society?.plot_sizes_commercial_1000 && (
+                                    <Badge>1000</Badge>
+                                )}
+                                {society?.plot_sizes_commercial_2000 && (
+                                    <Badge>2000</Badge>
+                                )}
+                            </TableCell>
                         </TableRow>
                         <TableRow>
                             <TableCell>Total No. of Apartment</TableCell> <TableCell>{society?.total_apartments}</TableCell>
                         </TableRow>
                         <TableRow>
-                            <TableCell>Apartment Sizes (Sq. Ft)</TableCell> <TableCell>{society?.societies_apartment_size}</TableCell>
+                            <TableCell>Apartment Sizes (Sq. Ft)</TableCell>
+                            <TableCell>
+                                {society?.apartment_size_87_5 && (
+                                    <Badge>87.5</Badge>
+                                )}
+                                {society?.apartment_size_125 && (
+                                    <Badge>125</Badge>
+                                )}
+                                {society?.apartment_size_200 && (
+                                    <Badge>200</Badge>
+                                )}
+                                {society?.apartment_size_250 && (
+                                    <Badge>250</Badge>
+                                )}
+                                {society?.apartment_size_500 && (
+                                    <Badge>500</Badge>
+                                )}
+                                {society?.apartment_size_1000 && (
+                                    <Badge>1000</Badge>
+                                )}
+                                {society?.apartment_size_2000 && (
+                                    <Badge>2000</Badge>
+                                )}
+                            </TableCell>
                         </TableRow>
                         <TableRow>
                             <TableCell>Plot Size (Yards)</TableCell> <TableCell>{society?.plot_size}</TableCell>
@@ -230,7 +299,7 @@ export default async function ViewBuilding({ params }: Props) {
                             <TableCell>Payment Terms:</TableCell> <TableCell>{society?.instalment_period}</TableCell>
                         </TableRow> */}
 
-                        
+
                         <TableRow>
                             <TableCell>Features</TableCell>
                             <TableCell>
