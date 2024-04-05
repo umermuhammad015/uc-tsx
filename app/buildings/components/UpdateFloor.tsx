@@ -7,6 +7,8 @@ export default async function UpdateFloor(data: FormData) {
 
     const building_id = data.get("building-id")?.valueOf();
     const unit_type = data.get("building-floor-unit-type")?.valueOf();
+    const floor_no = data.get("building-floor-no")?.valueOf();
+    const floor_type = data.get("building-floor-type")?.valueOf();
     const occupancy = data.get("building-floor-occupancy")?.valueOf();
     const size_min = data.get("building-floor-size-min")?.valueOf();
     const size_max = data.get("building-floor-size-max")?.valueOf();
@@ -33,6 +35,7 @@ export default async function UpdateFloor(data: FormData) {
             // city: city
 
             unit_type, occupancy, size_min,
+            floor_no, floor_type,
             size_max, avg_sale_price,
             avg_monthly_rent, instalment_plan,
             instalment_period, down_payment_amount,

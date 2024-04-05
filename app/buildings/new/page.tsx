@@ -7,6 +7,15 @@ import { useState } from "react";
 import createBuilding from "../../actions/createBuilding"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 
 import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
@@ -22,7 +31,7 @@ export default function Page() {
   const [office_maintenance_fee, setOffice_Maintenance_Fee] = useState(0);
   const [plot_size, setPlot_Size] = useState(0);
   const [construction_area, setConstruction_Area] = useState(0);
-  
+
   // const [office_maintenance_fee, setOffice_Maintenance_Fee] = useState(0);
   // function onbuildingStatusChange(e) {
   //   setBuildingStatus(e.target.value)
@@ -61,23 +70,39 @@ export default function Page() {
               >
                 City
               </label>
-              <select
-                id="building-city"
-                name="building-city"
-                className="select  w-full max-w-xs border-2 border-gray-400"
-              >
-                <option>Bahawalpur</option>
-                <option>Faisalabad</option>
-                <option>Gujranwala</option>
-                <option>Hyderabad</option>
-                <option>Islamabad</option>
-                <option>Karachi</option>
-                <option>Lahore</option>
-                <option>Multan</option>
-                <option>Peshawar</option>
-                <option>Quetta</option>
-                <option>Rawalpindi</option>
-              </select>
+              <Select
+                name="building-city">
+                <SelectTrigger
+                  id="building-city"
+                  className="select  w-full max-w-xs border-2 border-gray-400">
+                  <SelectValue placeholder="Select city" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup>
+                    <SelectLabel className="text-lg">Punjab</SelectLabel>
+                    <SelectItem value="Bahawalpur">Bahawalpur</SelectItem>
+                    <SelectItem value="Faisalabad">Faisalabad</SelectItem>
+                    <SelectItem value="Gujranwala">Gujranwala</SelectItem>
+                    <SelectItem value="Islamabad">Islamabad</SelectItem>
+                    <SelectItem value="Lahore">Lahore</SelectItem>
+                    <SelectItem value="Multan">Multan</SelectItem>
+                    <SelectItem value="Rawalpindi">Rawalpindi</SelectItem>
+                  </SelectGroup>
+                  <SelectGroup>
+                    <SelectLabel className="text-lg">Sindh</SelectLabel>
+                    <SelectItem value="Hyderabad">Hyderabad</SelectItem>
+                    <SelectItem value="Karachi">Karachi</SelectItem>
+                  </SelectGroup>
+                  <SelectGroup>
+                    <SelectLabel className="text-lg">KPK</SelectLabel>
+                    <SelectItem value="Peshawar">Peshawar</SelectItem>
+                  </SelectGroup>
+                  <SelectGroup>
+                    <SelectLabel className="text-lg">Balochistan</SelectLabel>
+                    <SelectItem value="Quetta">Quetta</SelectItem>
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
             </div>
           </div>
         </div>
@@ -89,17 +114,24 @@ export default function Page() {
           >
             Building Status
           </label>
-          <select
-            id="building-status"
-            name="building-status"
-            className="select w-full max-w-xs border-2 border-gray-400 "
-          >
-            <option>New Launch</option>
-            <option>Pre-Launch</option>
-            <option>Existing</option>
-            <option>Other</option>
+          <Select
+            name="building-status">
+            <SelectTrigger
+              id="building-status"
+              className="select w-full max-w-xs border-2 border-gray-400 ">
+              <SelectValue placeholder="Select Status" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectLabel></SelectLabel>
+                <SelectItem value="New Launch">New Launch</SelectItem>
+                <SelectItem value="Pre-Launch">Pre-Launch</SelectItem>
+                <SelectItem value="Existing">Existing</SelectItem>
+                <SelectItem value="Other">Other</SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
 
-          </select>
 
 
           {/* Building Status */}
@@ -477,17 +509,24 @@ export default function Page() {
             >
               Building Rank
             </label>
-            <select
-              id="building-rank"
-              name="building-rank"
-              className="select w-full max-w-xs border-2 border-gray-400  "
-            >
-              <option>A+</option>
-              <option>A</option>
-              <option>B+</option>
-              <option>B</option>
-              <option>C</option>
-            </select>
+            <Select
+              name="building-rank">
+              <SelectTrigger
+                id="building-rank"
+                className="select w-full max-w-xs border-2 border-gray-400  ">
+                <SelectValue placeholder="Select Rank" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectLabel></SelectLabel>
+                  <SelectItem value="A+">A+</SelectItem>
+                  <SelectItem value="A">A</SelectItem>
+                  <SelectItem value="B+">B+</SelectItem>
+                  <SelectItem value="B">B</SelectItem>
+                  <SelectItem value="C">C</SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
           </div>
 
           {/* Total Floors  */}
@@ -675,15 +714,21 @@ export default function Page() {
             >
               Servant Quarter
             </label>
-            <select
-              id="apartment-has-servant-quarter"
-              name="apartment-has-servant-quarter"
-              className="select w-full max-w-xs border-2 border-gray-400  "
-            >
-              <option>Yes</option>
-              <option>No</option>
-
-            </select>
+            <Select
+              name="apartment-has-servant-quarter">
+              <SelectTrigger
+                id="apartment-has-servant-quarter"
+                className="select w-full max-w-xs border-2 border-gray-400">
+                <SelectValue placeholder="Select" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectLabel></SelectLabel>
+                  <SelectItem value="Yes">Yes</SelectItem>
+                  <SelectItem value="No">No</SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
           </div>
 
           {/* Maintenance fee of apartment  */}

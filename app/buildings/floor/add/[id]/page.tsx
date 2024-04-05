@@ -10,18 +10,20 @@ import createFloor from "../../../../actions/createFloor"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+
 
 
 //   "use server";
-
-//   console.log("🚀 ~ file: page.tsx:10 ~ createFloor ~ data:", data);
-
 //   const building_id = data.get("building-id")?.valueOf();
-//   console.log(
-//     "🚀 ~ file: page.tsx:10 ~ createFloor ~ building_id (for create floor):",
-//     building_id
-//   );
-
 //   const building_test = data.get("building_test")?.valueOf();
 //   console.log("building_test", building_test);
 
@@ -64,58 +66,6 @@ import { Textarea } from "@/components/ui/textarea"
 //     .get("building-floor-possession-amount")
 //     ?.valueOf();
 //   const floor_remarks = data.get("building-floor-remarks")?.valueOf();
-
-//   console.log("🚀 ~ file: page.tsx:9 ~ createFloor ~ floor_no:", floor_no);
-//   console.log("🚀 ~ file: page.tsx:11 ~ createFloor ~ floor_type:", floor_type);
-//   console.log(
-//     "🚀 ~ file: page.tsx:13 ~ createFloor ~ floor_unit_type:",
-//     floor_unit_type
-//   );
-//   console.log(
-//     "🚀 ~ file: page.tsx:15 ~ createFloor ~ floor_occupancy:",
-//     floor_occupancy
-//   );
-//   console.log(
-//     "🚀 ~ file: page.tsx:17 ~ createFloor ~ floor_size_min:",
-//     floor_size_min
-//   );
-//   console.log(
-//     "🚀 ~ file: page.tsx:19 ~ createFloor ~ floor_size_max:",
-//     floor_size_max
-//   );
-//   console.log(
-//     "🚀 ~ file: page.tsx:22 ~ createFloor ~ floor_avg_sale_price:",
-//     floor_avg_sale_price
-//   );
-//   console.log(
-//     "🚀 ~ file: page.tsx:26 ~ createFloor ~ floor_avg_monthly_rent:",
-//     floor_avg_monthly_rent
-//   );
-//   console.log(
-//     "🚀 ~ file: page.tsx:29 ~ createFloor ~ floor_instalment_plan:",
-//     floor_instalment_plan
-//   );
-//   console.log(
-//     "🚀 ~ file: page.tsx:32 ~ createFloor ~ floor_instalment_period:",
-//     floor_instalment_period
-//   );
-//   console.log(
-//     "🚀 ~ file: page.tsx:36 ~ createFloor ~ floor_down_payment_amount:",
-//     floor_down_payment_amount
-//   );
-//   console.log(
-//     "🚀 ~ file: page.tsx:40 ~ createFloor ~ floor_instalment_amount:",
-//     floor_instalment_amount
-//   );
-//   console.log(
-//     "🚀 ~ file: page.tsx:44 ~ createFloor ~ floor_possession_amount:",
-//     floor_possession_amount
-//   );
-//   console.log(
-//     "🚀 ~ file: page.tsx:47 ~ createFloor ~ floor_remarks:",
-//     floor_remarks
-//   );
-
 //   await prisma.floors.create({
 //     data: {
 //       building_id: Number (building_id) as number,
@@ -148,7 +98,7 @@ type Props = {
 export default function Page({ params }: Props) {
   console.log(params.id);
 
-  
+
 
   const [avg_sale_price, setAvg_Sale_Price] = useState(0);
   const [avg_monthly_rent, setAvg_Monthly_Rent] = useState(0);
@@ -218,44 +168,51 @@ export default function Page({ params }: Props) {
                 >
                   Floor Number
                 </label>
-                <select
-                  id="building-floor-no"
-                  name="building-floor-no"
-                  className="select  w-full max-w-xs border-2 border-gray-400 "
-                >
-                  <option>Lower Ground</option>
-                  <option>Ground</option>
-                  <option>1st</option>
-                  <option>2nd</option>
-                  <option>3rd</option>
-                  <option>4th</option>
-                  <option>5th</option>
-                  <option>6th</option>
-                  <option>7th</option>
-                  <option>8th</option>
-                  <option>9th</option>
-                  <option>10th</option>
-                  <option>11th</option>
-                  <option>12th</option>
-                  <option>13th</option>
-                  <option>14th</option>
-                  <option>15th</option>
-                  <option>16th</option>
-                  <option>17th</option>
-                  <option>18th</option>
-                  <option>19th</option>
-                  <option>20th</option>
-                  <option>21th</option>
-                  <option>22th</option>
-                  <option>23th</option>
-                  <option>24th</option>
-                  <option>25th</option>
-                  <option>26th</option>
-                  <option>27th</option>
-                  <option>28th</option>
-                  <option>29th</option>
-                  <option>30th</option>
-                </select>
+                <Select
+                  name="building-floor-no">
+                  <SelectTrigger
+                    id="building-floor-no"
+                    className="select  w-full max-w-xs border-2 border-gray-400">
+                    <SelectValue placeholder="Select Floor" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectGroup>
+                      <SelectLabel></SelectLabel>
+                      <SelectItem value="Lower Ground">Lower Ground</SelectItem>
+                      <SelectItem value="Ground">Ground</SelectItem>
+                      <SelectItem value="1st">1st</SelectItem>
+                      <SelectItem value="2nd">2nd</SelectItem>
+                      <SelectItem value="3rd">3rd</SelectItem>
+                      <SelectItem value="4th">4th</SelectItem>
+                      <SelectItem value="5th">5th</SelectItem>
+                      <SelectItem value="6th">6th</SelectItem>
+                      <SelectItem value="7th">7th</SelectItem>
+                      <SelectItem value="8th">8th</SelectItem>
+                      <SelectItem value="9th">9th</SelectItem>
+                      <SelectItem value="10th">10th</SelectItem>
+                      <SelectItem value="11th">11th</SelectItem>
+                      <SelectItem value="12th">12th</SelectItem>
+                      <SelectItem value="13th">13th</SelectItem>
+                      <SelectItem value="14th">14th</SelectItem>
+                      <SelectItem value="15th">15th</SelectItem>
+                      <SelectItem value="16th">16th</SelectItem>
+                      <SelectItem value="17th">17th</SelectItem>
+                      <SelectItem value="18th">18th</SelectItem>
+                      <SelectItem value="19th">19th</SelectItem>
+                      <SelectItem value="20th">20th</SelectItem>
+                      <SelectItem value="21st">21st</SelectItem>
+                      <SelectItem value="22nd">22nd</SelectItem>
+                      <SelectItem value="23rd">23rd</SelectItem>
+                      <SelectItem value="24th">24th</SelectItem>
+                      <SelectItem value="25th">25th</SelectItem>
+                      <SelectItem value="26th">26th</SelectItem>
+                      <SelectItem value="27th">27th</SelectItem>
+                      <SelectItem value="28th">28th</SelectItem>
+                      <SelectItem value="29th">29th</SelectItem>
+                      <SelectItem value="30th">30th</SelectItem>
+                    </SelectGroup>
+                  </SelectContent>
+                </Select>
               </div>
 
               {/* Floor Type  */}
@@ -266,17 +223,24 @@ export default function Page({ params }: Props) {
                 >
                   Floor Type
                 </label>
-                <select
-                  id="building-floor-type"
-                  name="building-floor-type"
-                  className="select w-full max-w-xs border-2 border-gray-400 "
-                >
-                  <option>Retails</option>
-                  <option>Penthouse</option>
-                  <option>Offices</option>
-                  <option>Apartment</option>
-                  <option>Other</option>
-                </select>
+                <Select
+                  name="building-floor-type">
+                  <SelectTrigger
+                    id="building-floor-type"
+                    className="select w-full max-w-xs border-2 border-gray-400">
+                    <SelectValue placeholder="Select Type" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectGroup>
+                      <SelectLabel></SelectLabel>
+                      <SelectItem value="Retails">Retails</SelectItem>
+                      <SelectItem value="Penthouse">Penthouse</SelectItem>
+                      <SelectItem value="Offices">Offices</SelectItem>
+                      <SelectItem value="Apartment">Apartment</SelectItem>
+                      <SelectItem value="Other">Other</SelectItem>
+                    </SelectGroup>
+                  </SelectContent>
+                </Select>
               </div>
 
               {/* Unit Type  */}
@@ -445,14 +409,21 @@ export default function Page({ params }: Props) {
                 >
                   Installment Plan
                 </label>
-                <select
-                  id="building-instalment-plan"
-                  name="building-instalment-plan"
-                  className="select  w-full max-w-xs border-2 border-gray-400 "
-                >
-                  <option>Yes</option>
-                  <option>No</option>
-                </select>
+                <Select
+                  name="building-instalment-plan">
+                  <SelectTrigger
+                    id="building-instalment-plan"
+                    className="select  w-full max-w-xs border-2 border-gray-400 ">
+                    <SelectValue placeholder="Select Type" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectGroup>
+                      <SelectLabel></SelectLabel>
+                      <SelectItem value="Yes">Yes</SelectItem>
+                      <SelectItem value="No">No</SelectItem>
+                    </SelectGroup>
+                  </SelectContent>
+                </Select>
               </div>
 
               {/* Installment Period (Years) */}

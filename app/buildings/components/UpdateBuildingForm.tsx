@@ -10,6 +10,15 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Checkbox } from "@/components/ui/checkbox"
+import {
+    Select,
+    SelectContent,
+    SelectGroup,
+    SelectItem,
+    SelectLabel,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select"
 
 export default function UpdatePlotForm({ building }: any) {
 
@@ -86,17 +95,25 @@ export default function UpdatePlotForm({ building }: any) {
                         >
                             Building Status
                         </label>
-                        <select
-                            id="building-status"
-                            name="building-status"
-                            className="select  w-full max-w-xs border-2 border-gray-400  "
+                        <Select
                             defaultValue={building?.status as string}
-                        >
-                            <option>New Launch</option>
-                            <option>Pre-Launch</option>
-                            <option>Existing</option>
-                            <option>Other</option>
-                        </select>
+                            name="building-status">
+                            <SelectTrigger
+                                id="building-status"
+                                className="select w-full max-w-xs border-2 border-gray-400 ">
+                                <SelectValue placeholder="Select Status" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectGroup>
+                                    <SelectLabel></SelectLabel>
+                                    <SelectItem value="New Launch">New Launch</SelectItem>
+                                    <SelectItem value="Pre-Launch">Pre-Launch</SelectItem>
+                                    <SelectItem value="Existing">Existing</SelectItem>
+                                    <SelectItem value="Other">Other</SelectItem>
+                                </SelectGroup>
+                            </SelectContent>
+                        </Select>
+
                     </div>
 
                     {/* Building Status

@@ -6,6 +6,17 @@ import { Textarea } from "@/components/ui/textarea"
 import UpdateFloor from "./UpdateFloor"
 import { useState } from "react"
 import UpdateFloorButton from "./UpdateFloorButton"
+import {
+    Select,
+    SelectContent,
+    SelectGroup,
+    SelectItem,
+    SelectLabel,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select"
+
+
 import Link from 'next/link'
 
 export default function UpdatePlotForm({ floor }: any) {
@@ -59,45 +70,54 @@ export default function UpdatePlotForm({ floor }: any) {
                                 >
                                     Floor Number
                                 </label>
-                                <select
-                                    id="building-floor-no"
+                                <Select
+                                    defaultValue={floor?.floor_no as string}
                                     name="building-floor-no"
-                                    className="select w-full max-w-xs border border-gray-400 "
-                                    defaultValue={floor?.floor_no}
-
                                 >
-                                    <option>Lower Ground</option>
-                                    <option>Ground</option>
-                                    <option>1st</option>
-                                    <option>2nd</option>
-                                    <option>3rd</option>
-                                    <option>4th</option>
-                                    <option>5th</option>
-                                    <option>6th</option>
-                                    <option>7th</option>
-                                    <option>8th</option>
-                                    <option>9th</option>
-                                    <option>11th</option>
-                                    <option>12th</option>
-                                    <option>13th</option>
-                                    <option>14th</option>
-                                    <option>15th</option>
-                                    <option>16th</option>
-                                    <option>17th</option>
-                                    <option>18th</option>
-                                    <option>19th</option>
-                                    <option>20th</option>
-                                    <option>21th</option>
-                                    <option>22th</option>
-                                    <option>23th</option>
-                                    <option>24th</option>
-                                    <option>25th</option>
-                                    <option>26th</option>
-                                    <option>27th</option>
-                                    <option>28th</option>
-                                    <option>29th</option>
-                                    <option>30th</option>
-                                </select>
+                                    <SelectTrigger
+                                        id="building-floor-no"
+                                        className="select w-full max-w-xs border border-gray-400 "
+                                    >
+                                        <SelectValue />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectGroup>
+                                            <SelectLabel></SelectLabel>
+                                            <SelectItem value="Lower Ground">Lower Ground</SelectItem>
+                                            <SelectItem value="Ground">Ground</SelectItem>
+                                            <SelectItem value="1st">1st</SelectItem>
+                                            <SelectItem value="2nd">2nd</SelectItem>
+                                            <SelectItem value="3rd">3rd</SelectItem>
+                                            <SelectItem value="4th">4th</SelectItem>
+                                            <SelectItem value="5th">5th</SelectItem>
+                                            <SelectItem value="6th">6th</SelectItem>
+                                            <SelectItem value="7th">7th</SelectItem>
+                                            <SelectItem value="8th">8th</SelectItem>
+                                            <SelectItem value="9th">9th</SelectItem>
+                                            <SelectItem value="10th">10th</SelectItem>
+                                            <SelectItem value="11th">11th</SelectItem>
+                                            <SelectItem value="12th">12th</SelectItem>
+                                            <SelectItem value="13th">13th</SelectItem>
+                                            <SelectItem value="14th">14th</SelectItem>
+                                            <SelectItem value="15th">15th</SelectItem>
+                                            <SelectItem value="16th">16th</SelectItem>
+                                            <SelectItem value="17th">17th</SelectItem>
+                                            <SelectItem value="18th">18th</SelectItem>
+                                            <SelectItem value="19th">19th</SelectItem>
+                                            <SelectItem value="20th">20th</SelectItem>
+                                            <SelectItem value="21st">21st</SelectItem>
+                                            <SelectItem value="22nd">22nd</SelectItem>
+                                            <SelectItem value="23rd">23rd</SelectItem>
+                                            <SelectItem value="24th">24th</SelectItem>
+                                            <SelectItem value="25th">25th</SelectItem>
+                                            <SelectItem value="26th">26th</SelectItem>
+                                            <SelectItem value="27th">27th</SelectItem>
+                                            <SelectItem value="28th">28th</SelectItem>
+                                            <SelectItem value="29th">29th</SelectItem>
+                                            <SelectItem value="30th">30th</SelectItem>
+                                        </SelectGroup>
+                                    </SelectContent>
+                                </Select>
                             </div>
 
                             {/* Floor Type  */}
@@ -108,16 +128,26 @@ export default function UpdatePlotForm({ floor }: any) {
                                 >
                                     Floor Type
                                 </label>
-                                <select
-                                    id="building-floor-type"
-                                    name="building-floor-type"
-                                    className="select w-full max-w-xs border border-gray-400 "
-                                >
-                                    <option>Retails</option>
-                                    <option>Offices</option>
-                                    <option>Apartment</option>
-                                    <option>Other</option>
-                                </select>
+
+                                <Select
+                                    defaultValue={floor?.floor_type as string}
+                                    name="building-floor-type">
+                                    <SelectTrigger
+                                        id="building-floor-type"
+                                        className="select w-full max-w-xs border-2 border-gray-400">
+                                        <SelectValue />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectGroup>
+                                            <SelectLabel></SelectLabel>
+                                            <SelectItem value="Retails">Retails</SelectItem>
+                                            <SelectItem value="Penthouse">Penthouse</SelectItem>
+                                            <SelectItem value="Offices">Offices</SelectItem>
+                                            <SelectItem value="Apartment">Apartment</SelectItem>
+                                            <SelectItem value="Other">Other</SelectItem>
+                                        </SelectGroup>
+                                    </SelectContent>
+                                </Select>
                             </div>
 
                             {/* Unit Type  */}
@@ -272,7 +302,7 @@ export default function UpdatePlotForm({ floor }: any) {
                                 >
                                     Installment Plan
                                 </label>
-                                <select
+                                {/* <select
                                     id="building-instalment-plan"
                                     name="building-instalment-plan"
                                     className="select  w-full max-w-xs border border-gray-400 "
@@ -280,7 +310,25 @@ export default function UpdatePlotForm({ floor }: any) {
                                 >
                                     <option>Yes</option>
                                     <option>No</option>
-                                </select>
+                                </select> */}
+                                <Select
+                                    defaultValue={floor?.instalment_plan as string}
+                                    name="building-instalment-plan">
+                                    <SelectTrigger
+                                        id="building-instalment-plan"
+                                        className="select  w-full max-w-xs border-2 border-gray-400 ">
+                                        <SelectValue placeholder="Select Type" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectGroup>
+                                            <SelectLabel></SelectLabel>
+                                            <SelectItem value="Yes">Yes</SelectItem>
+                                            <SelectItem value="No">No</SelectItem>
+                                        </SelectGroup>
+                                    </SelectContent>
+                                </Select>
+
+
                             </div>
 
                             {/* Installment Period (Years) */}

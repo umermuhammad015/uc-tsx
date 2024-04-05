@@ -169,25 +169,6 @@ export default function NewSocietyPage() {
             >
               City
             </label>
-            {/* <select
-              id="societies-city"
-              name="societies-city"
-              className="select  w-full max-w-xs border-2 border-gray-400 "
-            >
-              <option>Bahawalpur</option>
-              <option>Faisalabad</option>
-              <option>Gujranwala</option>
-              <option>Hyderabad</option>
-              <option>Islamabad</option>
-              <option>Karachi</option>
-              <option>Lahore</option>
-              <option>Multan</option>
-              <option>Peshawar</option>
-              <option>Quetta</option>
-              <option>Rawalpindi</option>
-            </select> */}
-
-
             <Select
               name="societies-city">
               <SelectTrigger
