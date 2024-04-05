@@ -9,6 +9,16 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
+import {
+    Select,
+    SelectContent,
+    SelectGroup,
+    SelectItem,
+    SelectLabel,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select"
+
 import { Checkbox } from "@/components/ui/checkbox"
 
 
@@ -69,7 +79,7 @@ export default function UpdatePlotForm({ societies }: any) {
 
                     {/* Survey Date */}
 
-                    <div className="relative max-w-sm">
+                    <div className="relative max-w-sm mt-4">
                         <label
                             htmlFor="surveyor-name"
                             className="block mb-2 text-sm font-medium"
@@ -130,25 +140,60 @@ export default function UpdatePlotForm({ societies }: any) {
                         >
                             City
                         </label>
-                        <select
-                            id="societies-city"
-                            name="societies-city"
-                            className="select w-full max-w-xs border-2 border-gray-400 "
-                            defaultValue={societies?.city}
+                        {/* <select
+              id="societies-city"
+              name="societies-city"
+              className="select  w-full max-w-xs border-2 border-gray-400 "
+            >
+              <option>Bahawalpur</option>
+              <option>Faisalabad</option>
+              <option>Gujranwala</option>
+              <option>Hyderabad</option>
+              <option>Islamabad</option>
+              <option>Karachi</option>
+              <option>Lahore</option>
+              <option>Multan</option>
+              <option>Peshawar</option>
+              <option>Quetta</option>
+              <option>Rawalpindi</option>
+            </select> */}
 
-                        >
-                            <option>Bahawalpur</option>
-                            <option>Faisalabad</option>
-                            <option>Gujranwala</option>
-                            <option>Hyderabad</option>
-                            <option>Islamabad</option>
-                            <option>Karachi</option>
-                            <option>Lahore</option>
-                            <option>Multan</option>
-                            <option>Peshawar</option>
-                            <option>Quetta</option>
-                            <option>Rawalpindi</option>
-                        </select>
+
+                        <Select
+                            defaultValue={societies?.city}
+                            name="societies-city">
+                            <SelectTrigger
+                                id="societies-city"
+                                className="select  w-full max-w-xs border-2 border-gray-400"
+                            >
+                                <SelectValue />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectGroup>
+                                    <SelectLabel className="text-lg">Punjab</SelectLabel>
+                                    <SelectItem value="Bahawalpur">Bahawalpur</SelectItem>
+                                    <SelectItem value="Faisalabad">Faisalabad</SelectItem>
+                                    <SelectItem value="Gujranwala">Gujranwala</SelectItem>
+                                    <SelectItem value="Islamabad">Islamabad</SelectItem>
+                                    <SelectItem value="Lahore">Lahore</SelectItem>
+                                    <SelectItem value="Multan">Multan</SelectItem>
+                                    <SelectItem value="Rawalpindi">Rawalpindi</SelectItem>
+                                </SelectGroup>
+                                <SelectGroup>
+                                    <SelectLabel className="text-lg">Sindh</SelectLabel>
+                                    <SelectItem value="Hyderabad">Hyderabad</SelectItem>
+                                    <SelectItem value="Karachi">Karachi</SelectItem>
+                                </SelectGroup>
+                                <SelectGroup>
+                                    <SelectLabel className="text-lg">KPK</SelectLabel>
+                                    <SelectItem value="Peshawar">Peshawar</SelectItem>
+                                </SelectGroup>
+                                <SelectGroup>
+                                    <SelectLabel className="text-lg">Balochistan</SelectLabel>
+                                    <SelectItem value="Quetta">Quetta</SelectItem>
+                                </SelectGroup>
+                            </SelectContent>
+                        </Select>
                     </div>
 
                     {/* Project Type */}
@@ -159,18 +204,22 @@ export default function UpdatePlotForm({ societies }: any) {
                         >
                             Project Type
                         </label>
-                        <select
-                            id="societies-project-type"
-                            name="societies-project-type"
-                            className="select  w-full max-w-xs border-2 border-gray-400"
-                            // defaultChecked={societies?.type ? true : false}
+                        <Select
                             defaultValue={societies?.type as string}
-
-                        >
-                            <option>New Launch</option>
-                            <option>Existing</option>
-
-                        </select>
+                            name="societies-project-type">
+                            <SelectTrigger
+                                id="societies-project-type"
+                                className="select  w-full max-w-xs border-2 border-gray-400 ">
+                                <SelectValue placeholder="Select Type" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectGroup>
+                                    <SelectLabel></SelectLabel>
+                                    <SelectItem value="New Launch">New Launch</SelectItem>
+                                    <SelectItem value="Existing">Existing</SelectItem>
+                                </SelectGroup>
+                            </SelectContent>
+                        </Select>
                     </div>
 
                     {/* Soceity/Project Name  */}
@@ -199,20 +248,25 @@ export default function UpdatePlotForm({ societies }: any) {
                         >
                             Zone/ Region:
                         </label>
-                        <select
-                            id="societies-zone"
-                            name="societies-zone"
-                            className="select  w-full max-w-xs border-2 border-gray-400 "
-                            // defaultChecked={societies?.zone ? true : false}
+                        <Select
                             defaultValue={societies?.zone as string}
-                        >
-                            <option>East</option>
-                            <option>West</option>
-                            <option>North</option>
-                            <option>South</option>
-                            <option>Central</option>
-
-                        </select>
+                            name="societies-zone">
+                            <SelectTrigger
+                                id="societies-zone"
+                                className="select  w-full max-w-xs border-2 border-gray-400">
+                                <SelectValue placeholder="Select Zone" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectGroup>
+                                    <SelectLabel></SelectLabel>
+                                    <SelectItem value="East">East</SelectItem>
+                                    <SelectItem value="West">West</SelectItem>
+                                    <SelectItem value="North">North</SelectItem>
+                                    <SelectItem value="South">South</SelectItem>
+                                    <SelectItem value="Central">Central</SelectItem>
+                                </SelectGroup>
+                            </SelectContent>
+                        </Select>
                     </div>
 
                     {/* Location/Address  */}
@@ -271,6 +325,7 @@ export default function UpdatePlotForm({ societies }: any) {
                             <option>D</option>
                         </select>
                     </div>
+                    
 
                     {/* Occupancy Ratio */}
                     <div className="mt-4">
@@ -748,7 +803,7 @@ export default function UpdatePlotForm({ societies }: any) {
                         <div className="mt-4">
                             <fieldset className="flex gap-10 text-lg">
                                 <legend className="block mb-4 text-sm font-medium">
-                                    Apartments Sizes :
+                                    Apartments Sizes (Sq. Yards):
                                 </legend>
 
                                 <div className="flex items-center mb-4 ml-2">
@@ -1243,7 +1298,7 @@ export default function UpdatePlotForm({ societies }: any) {
                         </div>
                     </div>
                 </div>
-                
+
                 {/* Payment Terms*/}
                 <div className="p-5 border-2 border-t-0 border-gray-200 dark:border-gray-700 hidden">
 

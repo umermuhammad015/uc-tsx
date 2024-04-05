@@ -27,6 +27,16 @@ import {
 } from "@/components/ui/popover"
 import clsx from "clsx";
 
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+
 
 
 export default function NewSocietyPage() {
@@ -159,7 +169,7 @@ export default function NewSocietyPage() {
             >
               City
             </label>
-            <select
+            {/* <select
               id="societies-city"
               name="societies-city"
               className="select  w-full max-w-xs border-2 border-gray-400 "
@@ -175,7 +185,42 @@ export default function NewSocietyPage() {
               <option>Peshawar</option>
               <option>Quetta</option>
               <option>Rawalpindi</option>
-            </select>
+            </select> */}
+
+
+            <Select
+              name="societies-city">
+              <SelectTrigger
+                id="societies-city"
+                className="select  w-full max-w-xs border-2 border-gray-400">
+                <SelectValue placeholder="Select city" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectLabel className="text-lg">Punjab</SelectLabel>
+                  <SelectItem value="Bahawalpur">Bahawalpur</SelectItem>
+                  <SelectItem value="Faisalabad">Faisalabad</SelectItem>
+                  <SelectItem value="Gujranwala">Gujranwala</SelectItem>
+                  <SelectItem value="Islamabad">Islamabad</SelectItem>
+                  <SelectItem value="Lahore">Lahore</SelectItem>
+                  <SelectItem value="Multan">Multan</SelectItem>
+                  <SelectItem value="Rawalpindi">Rawalpindi</SelectItem>
+                </SelectGroup>
+                <SelectGroup>
+                  <SelectLabel className="text-lg">Sindh</SelectLabel>
+                  <SelectItem value="Hyderabad">Hyderabad</SelectItem>
+                  <SelectItem value="Karachi">Karachi</SelectItem>
+                </SelectGroup>
+                <SelectGroup>
+                  <SelectLabel className="text-lg">KPK</SelectLabel>
+                  <SelectItem value="Peshawar">Peshawar</SelectItem>
+                </SelectGroup>
+                <SelectGroup>
+                  <SelectLabel className="text-lg">Balochistan</SelectLabel>
+                  <SelectItem value="Quetta">Quetta</SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
           </div>
 
           {/* Project Type */}
@@ -186,15 +231,21 @@ export default function NewSocietyPage() {
             >
               Project Type
             </label>
-            <select
-              id="societies-project-type"
-              name="societies-project-type"
-              className="select  w-full max-w-xs border-2 border-gray-400 "
-            >
-              <option>New Launch</option>
-              <option>Existing</option>
-
-            </select>
+            <Select
+              name="societies-project-type">
+              <SelectTrigger
+                id="societies-project-type"
+                className="select  w-full max-w-xs border-2 border-gray-400 ">
+                <SelectValue placeholder="Select Type" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectLabel></SelectLabel>
+                  <SelectItem value="New Launch">New Launch</SelectItem>
+                  <SelectItem value="Existing">Existing</SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
           </div>
 
 
@@ -207,18 +258,24 @@ export default function NewSocietyPage() {
             >
               Zone/ Region:
             </label>
-            <select
-              id="societies-zone"
-              name="societies-zone"
-              className="select  w-full max-w-xs border-2 border-gray-400  "
-            >
-              <option>East</option>
-              <option>West</option>
-              <option>North</option>
-              <option>South</option>
-              <option>Central</option>
-
-            </select>
+            <Select
+              name="societies-zone">
+              <SelectTrigger
+                id="societies-zone"
+                className="select  w-full max-w-xs border-2 border-gray-400">
+                <SelectValue placeholder="Select Zone" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectLabel></SelectLabel>
+                  <SelectItem value="East">East</SelectItem>
+                  <SelectItem value="West">West</SelectItem>
+                  <SelectItem value="North">North</SelectItem>
+                  <SelectItem value="South">South</SelectItem>
+                  <SelectItem value="Central">Central</SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
           </div>
 
           {/* Location/Address  */}
@@ -261,18 +318,25 @@ export default function NewSocietyPage() {
             >
               Grade
             </label>
-            <select
-              id="societies-grade"
-              name="societies-grade"
-              className="select w-full max-w-xs border-2 border-gray-400  "
-            >
-              <option>A+</option>
-              <option>A</option>
-              <option>B+</option>
-              <option>B</option>
-              <option>C</option>
-              <option>D</option>
-            </select>
+            <Select
+              name="societies-grade">
+              <SelectTrigger
+                id="societies-grade"
+                className="select w-full max-w-xs border-2 border-gray-400  ">
+                <SelectValue placeholder="Select Grade" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectLabel></SelectLabel>
+                  <SelectItem value="A+">A+</SelectItem>
+                  <SelectItem value="A">A</SelectItem>
+                  <SelectItem value="B+">B+</SelectItem>
+                  <SelectItem value="B">B</SelectItem>
+                  <SelectItem value="C">C</SelectItem>
+                  <SelectItem value="D">D</SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
           </div>
 
           {/* Occupancy Ratio */}
@@ -687,7 +751,7 @@ export default function NewSocietyPage() {
               htmlFor="societies-total-apartments"
               className="block mb-2 text-sm font-medium"
             >
-              Total No. of Apartments:
+              Total No. of Apartments (Sq. Yards):
             </label>
             <Input
               type="text"

@@ -35,6 +35,7 @@ export const Pagination = (props: PaginationProps) => {
 			(_, i) => startPage + i,
 		);
 	};
+	// const [pagination, setPagination] = useState('');
 
 	const pages = getPagesToShow();
 
@@ -43,7 +44,9 @@ export const Pagination = (props: PaginationProps) => {
 	// const pages = totalPages;
 
 	return (
+
 		<div className="flex items-center justify-center space-x-6 text-black">
+
 			<Link
 				className={cn(
 					'rounded-md border border-gray-300 px-3 py-2 text-sm font-medium hover:bg-gray-50',
@@ -85,6 +88,12 @@ export const Pagination = (props: PaginationProps) => {
 			>
 				Next
 			</Link>
+
+
 		</div>
 	);
 };
+function useState(arg0: string): [any, any] {
+	throw new Error('Function not implemented.');
+}
+
