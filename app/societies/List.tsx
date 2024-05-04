@@ -275,7 +275,7 @@ export default async function List(props: PageProps) {
                                         )}
                                         {societies.plot_sizes_residential_500 && (
                                             // <div className="badge bg-cyan-950 text-white p-2 m-2 text-xs">Commercial Market</div>
-                                            <Badge>500 (Sq. Yards)</Badge>
+                                            <Badge>500 (Sq.Y)</Badge>
                                         )}
                                         {societies.plot_sizes_residential_1000 && (
                                             // <div className="badge bg-cyan-950 text-white p-2 m-2 text-xs">zoo</div>
