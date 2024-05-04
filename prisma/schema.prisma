@@ -140,7 +140,7 @@ model Societies {
   plot_sizes_commercial_2000                 String?
   total_apartments                           Int?
   societies_apartment_size                   Int?
-  apartment_studio                          String?
+  apartment_studio                           String?
   apartment_one_bad                          String?
   apartment_two_bad                          String?
   apartment_three_bad                        String?

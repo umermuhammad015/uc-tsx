@@ -15,16 +15,19 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table"
+
 import { revalidatePath } from "next/cache";
 import { Pagination } from "@/components/pagination";
+import CityInput from "./components/CityInput";
 
 export const revalidate = 1; // revalidate the date at most every hour
 export const dynamic = "force-dynamic";
 const PAGE_SIZE = 5;
 
-const GetSocieties = async ({ search = '', take = PAGE_SIZE, skip = 0 }) => {
+const GetSocieties = async ({ search = '', take = PAGE_SIZE, skip = 0, city = "" }) => {
     // async function getBuildings({ search = '', take = PAGE_SIZE, skip = 0 }) {
     console.log("GetSocieties");
+
 
     if (search === null || search === '') {
 
@@ -118,12 +121,16 @@ const GetSocieties = async ({ search = '', take = PAGE_SIZE, skip = 0 }) => {
 
     }
 
+    
+
 }
 
 type Props = {
     params: {};
     searchParams: { [key: string]: string | string[] | undefined };
 }
+
+
 
 export default async function List(props: PageProps) {
 
@@ -160,15 +167,10 @@ export default async function List(props: PageProps) {
 
             <SearchInput />
             <header className="flex justify-between items-center mt-4 ">
-                <h1 className="text-2xl"></h1>
+                <CityInput />
                 <div className=" ">
 
-                    {/* <Link
-                        className="flex justify-center items-center"
-                        href="/societies/new"
-                    ><div className="text-xl bg-slate-500 mr-2 px-1">+</div>
-                        Add New Society
-                    </Link> */}
+
 
                     <Button asChild>
                         <Link href="/societies/new"
@@ -187,6 +189,9 @@ export default async function List(props: PageProps) {
                         <TableRow className="">
                             <TableHead>
                                 <div className="text-lg">Societies Names</div>
+                            </TableHead>
+                            <TableHead>
+                                <div className="text-lg">City</div>
                             </TableHead>
                             <TableHead>
                                 <div className="text-lg">Location</div>
@@ -215,6 +220,7 @@ export default async function List(props: PageProps) {
                         {data.map((societies) => (
                             <TableRow key={societies.id} className="">
                                 <TableCell><Link href={"societies/" + societies.id}>{societies.name}</Link></TableCell>
+                                <TableCell>{societies.city}</TableCell>
                                 <TableCell>{societies.address}</TableCell>
                                 <TableCell>{societies.type}</TableCell>
 
@@ -260,7 +266,7 @@ export default async function List(props: PageProps) {
                                         {societies.plot_sizes_residential_87_5 && (
                                             // <div className="badge bg-cyan-950 text-white p-2 m-2 text-xs">Park</div>
                                             <Badge>87.7 (Sq.Y)</Badge>
-                                        )} 
+                                        )}
                                         {societies.plot_sizes_residential_125 && (
                                             // <div className="badge bg-cyan-950 text-white p-2 m-2 text-xs">Gated_Community</div>
                                             <Badge>125 (Sq.Y)</Badge>

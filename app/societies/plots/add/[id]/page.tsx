@@ -226,7 +226,7 @@ export default function PlotAddPage({ params }: Props) {
                                 htmlFor="surveyor-name"
                                 className="block mb-2 text-sm font-medium "
                             >
-                                Date
+                                Date: (Month/Day/year)
 
                             </label>
                             <div className="absolute inset-y-0 right-0 flex items-center pr-20 pointer-events-none">
