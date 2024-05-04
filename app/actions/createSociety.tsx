@@ -102,26 +102,23 @@ export default async function createSociety(data: FormData) {
   const societies_apartment_size = parseInt(data.get("societies-apartment-size")?.valueOf() as string);
   console.log("🚀 ~ createsocieties ~ societies_apartment_size:", societies_apartment_size)
 
-  const apartment_size_87_5 = data.get("apartment-size-87-5")?.valueOf();
-  console.log("🚀 ~ createsocieties ~ apartment_size_87_5:", apartment_size_87_5)
+  const apartment_one_bad = data.get("apartment-one-bad")?.valueOf();
+  console.log("🚀 ~ createsocieties ~ apartment_one_bad:", apartment_one_bad)
 
-  const apartment_size_125 = data.get("apartment-size-125")?.valueOf();
-  console.log("🚀 ~ createsocieties ~ apartment_size_125:", apartment_size_125)
+  const apartment_two_bad = data.get("apartment-two-bad")?.valueOf();
+  console.log("🚀 ~ createsocieties ~ apartment_two_bad:", apartment_two_bad)
 
-  const apartment_size_200 = data.get("apartment-size-200")?.valueOf();
-  console.log("🚀 ~ createsocieties ~ apartment_size_200:", apartment_size_200)
+  const apartment_three_bad = data.get("apartment-three-bad")?.valueOf();
+  console.log("🚀 ~ createsocieties ~ apartment_three_bad:", apartment_three_bad)
 
-  const apartment_size_250 = data.get("apartment-size-250")?.valueOf();
-  console.log("🚀 ~ createsocieties ~ apartment_size_250:", apartment_size_250)
+  const apartment_four_bad = data.get("apartment-four-bad")?.valueOf();
+  console.log("🚀 ~ createsocieties ~ apartment_four_bad:", apartment_four_bad)
 
-  const apartment_size_500 = data.get("apartment-size-500")?.valueOf();
-  console.log("🚀 ~ createsocieties ~ apartment_size_500:", apartment_size_500)
+  const apartment_penthouse = data.get("apartment-penthouse")?.valueOf();
+  console.log("🚀 ~ createsocieties ~ apartment_penthouse:", apartment_penthouse)
 
-  const apartment_size_1000 = data.get("apartment-size-1000")?.valueOf();
-  console.log("🚀 ~ createsocieties ~ apartment_size_1000:", apartment_size_1000)
-
-  const apartment_size_2000 = data.get("apartment-size-2000")?.valueOf();
-  console.log("🚀 ~ createsocieties ~ apartment_size_2000:", apartment_size_2000)
+  const apartment_duplex = data.get("apartment-duplex")?.valueOf();
+  console.log("🚀 ~ createsocieties ~ apartment_duplex:", apartment_duplex)
 
   const societies_plot_size = parseInt(data.get("societies-plot-size")?.valueOf() as string);
   console.log("🚀 ~ createsocieties ~ societies_plot_size:", societies_plot_size)
@@ -283,13 +280,12 @@ export default async function createSociety(data: FormData) {
       plot_sizes_commercial_2000: plot_sizes_commercial_2000 as string,
       total_apartments: societies_total_apartments,
       societies_apartment_size: societies_apartment_size,
-      apartment_size_87_5: apartment_size_87_5 as string,
-      apartment_size_125: apartment_size_125 as string,
-      apartment_size_200: apartment_size_200 as string,
-      apartment_size_250: apartment_size_250 as string,
-      apartment_size_500: apartment_size_500 as string,
-      apartment_size_1000: apartment_size_1000 as string,
-      apartment_size_2000: apartment_size_2000 as string,
+      apartment_one_bad: apartment_one_bad as string,
+      apartment_two_bad: apartment_two_bad as string,
+      apartment_three_bad: apartment_three_bad as string,
+      apartment_four_bad: apartment_four_bad as string,
+      apartment_penthouse: apartment_penthouse as string,
+      apartment_duplex: apartment_duplex as string,
       plot_size: societies_plot_size,
       plot_price: societies_plot_price,
       vilas_size: vilas_size,

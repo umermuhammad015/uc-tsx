@@ -189,19 +189,23 @@ export default async function List(props: PageProps) {
                                 <div className="text-lg">Societies Names</div>
                             </TableHead>
                             <TableHead>
+                                <div className="text-lg">Location</div>
+                            </TableHead>
+                            <TableHead>
                                 <div className="text-lg">Project Type</div>
                             </TableHead>
+
                             <TableHead>
-                                <div className="text-lg">Features/Utilities</div>
+                                <div className="text-lg">Grade</div>
                             </TableHead>
                             <TableHead>
-                                <div className="text-lg">City</div>
+                                <div className="text-lg">size</div>
                             </TableHead>
                             <TableHead>
-                                <div className="text-lg">Area</div>
+                                <div className="text-lg">Occupancy</div>
                             </TableHead>
                             <TableHead>
-                                <div className="text-lg">Actions</div>
+                                <div className="text-lg">Action</div>
                             </TableHead>
 
 
@@ -211,91 +215,82 @@ export default async function List(props: PageProps) {
                         {data.map((societies) => (
                             <TableRow key={societies.id} className="">
                                 <TableCell><Link href={"societies/" + societies.id}>{societies.name}</Link></TableCell>
+                                <TableCell>{societies.address}</TableCell>
                                 <TableCell>{societies.type}</TableCell>
-                                <TableCell >
-                                    <div className="flex flex-col">
-                                        <div>
-                                            {societies.features_type_parks && (
-                                                // <div className="badge bg-cyan-950 text-white p-2 m-2 text-xs">Park</div>
-                                                <Badge>Park</Badge>
-                                            )}
-                                            {societies.features_type_school && (
-                                                // <div className="badge bg-cyan-950 text-white p-2 m-2 text-xs">School</div>
-                                                <Badge>School</Badge>
-                                            )}
-                                            {societies.features_type_college && (
-                                                // <div className="badge bg-cyan-950 text-white p-2 m-2 text-xs">Gated_Community</div>
-                                                <Badge>College</Badge>
-                                            )}
-                                            {societies.features_type_university && (
-                                                // <div className="badge bg-cyan-950 text-white p-2 m-2 text-xs">University</div>
-                                                <Badge>University</Badge>
-                                            )}
-                                            {societies.features_type_hospital && (
-                                                // <div className="badge bg-cyan-950 text-white p-2 m-2 text-xs">Hospital</div>
-                                                <Badge>Hospital</Badge>
-                                            )}
-                                            {societies.features_type_commercial_market && (
-                                                // <div className="badge bg-cyan-950 text-white p-2 m-2 text-xs">Commercial Market</div>
-                                                <Badge>Commercial Market</Badge>
-                                            )}
-                                            {societies.features_type_zoo && (
-                                                // <div className="badge bg-cyan-950 text-white p-2 m-2 text-xs">zoo</div>
-                                                <Badge>zoo</Badge>
-                                            )}
-                                            {societies.features_type_food_arena && (
-                                                // <div className="badge bg-cyan-950 text-white p-2 m-2 text-xs">Food Arena</div>
-                                                <Badge>Food Arena</Badge>
-                                            )}
-                                            {societies.features_type_gated_community && (
-                                                // <div className="badge bg-cyan-950 text-white p-2 m-2 text-xs">Gated_Community</div>
-                                                <Badge>Gated Community</Badge>
-                                            )}
-                                            {societies.features_type_graveyard && (
-                                                // <div className="badge bg-cyan-950 text-white p-2 m-2 text-xs">Gated_Community</div>
-                                                <Badge>Graveyard</Badge>
-                                            )}
-                                            {societies.features_type_masjid && (
-                                                // <div className="badge bg-cyan-950 text-white p-2 m-2 text-xs">Gated_Community</div>
-                                                <Badge>Masjid</Badge>
-                                            )}
-                                            {societies.features_type_community_club && (
-                                                // <div className="badge bg-cyan-950 text-white p-2 m-2 text-xs">Gated_Community</div>
-                                                <Badge>Community Club</Badge>
-                                            )}
-                                            {societies.features_type_grid_station && (
-                                                // <div className="badge bg-cyan-950 text-white p-2 m-2 text-xs">Gated_Community</div>
-                                                <Badge>Grid Station</Badge>
-                                            )}
 
-                                        </div>
-                                        <div>
-                                            {societies.utilities_type_underground_electrification && (
-                                                // <div className="badge bg-emerald-700 text-white p-2 m-2 text-xs">Underground Electrification</div>
-                                                <Badge>Underground Electrification</Badge>
-                                            )}
-                                            {societies.utilities_type_gas && (
-                                                // <div className="badge bg-emerald-700 text-white p-2 m-2 text-xs">Gas</div>
-                                                <Badge>Gas</Badge>
-                                            )}
-                                            {societies.utilities_type_water && (
-                                                // <div className="badge bg-emerald-700 text-white p-2 m-2 text-xs">Water</div>
-                                                <Badge>Water</Badge>
-                                            )}
-                                            {societies.utilities_type_utilities_electricity && (
-                                                // <div className="badge bg-emerald-700 text-white p-2 m-2 text-xs w-32">Security</div>
-                                                <Badge>Electricity</Badge>
-                                            )}
-                                            {societies.utilities_type_drainage && (
-                                                // <div className="badge bg-emerald-700 text-white p-2 m-2 text-xs">Water</div>
-                                                <Badge>Drainage</Badge>
-                                            )}
-                                        </div>
+                                <TableCell>{societies.grade}</TableCell>
+                                <TableCell>
+
+                                    <div className="">
+                                        {societies.plot_sizes_commercial_87_5 && (
+                                            // <div className="badge bg-cyan-950 text-white p-2 m-2 text-xs">Park</div>
+                                            <Badge>87.7 (Sq.Y)</Badge>
+                                        )}
+                                        {societies.plot_sizes_commercial_100 && (
+                                            // <div className="badge bg-cyan-950 text-white p-2 m-2 text-xs">School</div>
+                                            <Badge>100 (Sq.Y)</Badge>
+                                        )}
+                                        {societies.plot_sizes_commercial_125 && (
+                                            // <div className="badge bg-cyan-950 text-white p-2 m-2 text-xs">Gated_Community</div>
+                                            <Badge>125 (Sq.Y)</Badge>
+                                        )}
+                                        {societies.plot_sizes_commercial_200 && (
+                                            // <div className="badge bg-cyan-950 text-white p-2 m-2 text-xs">University</div>
+                                            <Badge>200 (Sq.Y)</Badge>
+                                        )}
+                                        {societies.plot_sizes_commercial_250 && (
+                                            // <div className="badge bg-cyan-950 text-white p-2 m-2 text-xs">Hospital</div>
+                                            <Badge>250 (Sq.Y)</Badge>
+                                        )}
+                                        {societies.plot_sizes_commercial_500 && (
+                                            // <div className="badge bg-cyan-950 text-white p-2 m-2 text-xs">Commercial Market</div>
+                                            <Badge>500 (Sq.Y)</Badge>
+                                        )}
+                                        {societies.plot_sizes_commercial_1000 && (
+                                            // <div className="badge bg-cyan-950 text-white p-2 m-2 text-xs">zoo</div>
+                                            <Badge>1000 (Sq.Y)</Badge>
+                                        )}
+                                        {societies.plot_sizes_commercial_2000 && (
+                                            // <div className="badge bg-cyan-950 text-white p-2 m-2 text-xs">Food Arena</div>
+                                            <Badge>2000 (Sq.Y)</Badge>
+                                        )}
+
                                     </div>
+                                    <div className="">
+                                        {societies.plot_sizes_residential_87_5 && (
+                                            // <div className="badge bg-cyan-950 text-white p-2 m-2 text-xs">Park</div>
+                                            <Badge>87.7 (Sq.Y)</Badge>
+                                        )} 
+                                        {societies.plot_sizes_residential_125 && (
+                                            // <div className="badge bg-cyan-950 text-white p-2 m-2 text-xs">Gated_Community</div>
+                                            <Badge>125 (Sq.Y)</Badge>
+                                        )}
+                                        {societies.plot_sizes_residential_200 && (
+                                            // <div className="badge bg-cyan-950 text-white p-2 m-2 text-xs">University</div>
+                                            <Badge>200 (Sq.Y)</Badge>
+                                        )}
+                                        {societies.plot_sizes_residential_250 && (
+                                            // <div className="badge bg-cyan-950 text-white p-2 m-2 text-xs">Hospital</div>
+                                            <Badge>250 (Sq.Y)</Badge>
+                                        )}
+                                        {societies.plot_sizes_residential_500 && (
+                                            // <div className="badge bg-cyan-950 text-white p-2 m-2 text-xs">Commercial Market</div>
+                                            <Badge>500 (Sq. Yards)</Badge>
+                                        )}
+                                        {societies.plot_sizes_residential_1000 && (
+                                            // <div className="badge bg-cyan-950 text-white p-2 m-2 text-xs">zoo</div>
+                                            <Badge>1000 (Sq.Y)</Badge>
+                                        )}
+                                        {societies.plot_sizes_residential_2000 && (
+                                            // <div className="badge bg-cyan-950 text-white p-2 m-2 text-xs">Food Arena</div>
+                                            <Badge>2000 (Sq.Y)</Badge>
+                                        )}
 
+                                    </div>
                                 </TableCell>
-                                <TableCell>{societies.city}</TableCell>
-                                <TableCell>{Number(societies?.area).toLocaleString()}</TableCell>
+                                <TableCell className="text-center">
+                                    {Number(societies?.occupancy).toLocaleString()}
+                                </TableCell>
                                 <TableCell>
                                     <div className="flex justify-around gap-2">
                                         <div className="flex gap-4">

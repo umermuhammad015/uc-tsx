@@ -7,6 +7,15 @@ import UpdatePlot from "./UpdatePlot"
 import { useState } from "react"
 import UpdateHomeButton from "./UpdateHomeButton"
 import Link from 'next/link'
+import {
+    Select,
+    SelectContent,
+    SelectGroup,
+    SelectItem,
+    SelectLabel,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select"
 
 // type PlotProps = {
 //     id: number,
@@ -60,7 +69,7 @@ export default function UpdatePlotForm({ plots }: any) {
 
         />
     </div> */}
-            <div className="mt-4">
+            {/* <div className="mt-4">
                 <label
                     htmlFor="plot-type"
                     className="block mb-2 text-sm font-medium"
@@ -77,7 +86,7 @@ export default function UpdatePlotForm({ plots }: any) {
                     <option>Bungalow</option>
 
                 </select>
-            </div>
+            </div> */}
             {/* plot type */}
             <div className="mt-4">
                 <label
@@ -86,16 +95,35 @@ export default function UpdatePlotForm({ plots }: any) {
                 >
                     Plot/Bungalow Type:
                 </label>
-                <select
+                {/* <select
                     id="type"
                     name="type"
                     className="select  w-full max-w-xs border-2 border-gray-400 "
-                    defaultValue={plots?.type as string}
+
                 >
                     <option>Commercial</option>
                     <option>Residential</option>
 
-                </select>
+                </select> */}
+
+                <Select
+                    defaultValue={plots?.type as string}
+                    name="type">
+                    <SelectTrigger
+                        id="type"
+                        className="select  w-full max-w-xs border-2 border-gray-400 ">
+                        <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                        <SelectGroup>
+                            <SelectLabel></SelectLabel>
+                            <SelectItem value="Residential">Residential Plot</SelectItem>
+                            <SelectItem value="Commercial">Commercial Plot</SelectItem>
+                            <SelectItem value="Bungalow">Bungalow</SelectItem>
+
+                        </SelectGroup>
+                    </SelectContent>
+                </Select>
             </div>
 
 
@@ -107,20 +135,27 @@ export default function UpdatePlotForm({ plots }: any) {
                 >
                     Plot/Bungalow Size :
                 </label>
-                <select
-                    id="plot-size"
-                    name="plot-size"
-                    className="select w-full max-w-xs border-2 border-gray-400 "
+                <Select
                     defaultValue={plots?.size as string}
-                >
-                    <option>87.5</option>
-                    <option>125</option>
-                    <option>200</option>
-                    <option>250</option>
-                    <option>500</option>
-                    <option>1000</option>
-                    <option>2000</option>
-                </select>
+                    name="plot-size">
+                    <SelectTrigger
+                        id="plot-size"
+                        className="select w-full max-w-xs border-2 border-gray-400 ">
+                        <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                        <SelectGroup>
+                            <SelectLabel></SelectLabel>
+                            <SelectItem value="87.5">87.5</SelectItem>
+                            <SelectItem value="125">125</SelectItem>
+                            <SelectItem value="200">200</SelectItem>
+                            <SelectItem value="250">250</SelectItem>
+                            <SelectItem value="500">500</SelectItem>
+                            <SelectItem value="1000">1,000</SelectItem>
+                            <SelectItem value="2000">2,000</SelectItem>
+                        </SelectGroup>
+                    </SelectContent>
+                </Select>
             </div>
 
             {/* plot price  */}
@@ -176,6 +211,38 @@ export default function UpdatePlotForm({ plots }: any) {
                         {Number(rent).toLocaleString()}
                     </div>
                 </div>
+            </div>
+
+            {/* Survey Date */}
+
+            <div className="relative max-w-sm mt-4">
+                <label
+                    htmlFor="surveyor-name"
+                    className="block mb-2 text-sm font-medium"
+                >
+                    Date
+
+                </label>
+                <div className="absolute inset-y-0 right-0 flex items-center pr-20 pointer-events-none">
+                    <svg
+                        className="w-4 h-4 text-gray-500 dark:text-gray-400 mt-6"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                    >
+                        <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                    </svg>
+                </div>
+                <Input
+                    type="date"
+                    id="plot-date"
+                    name="plot-date"
+                    // defaultValue={societies?.survey_date as unknown as string}
+                    defaultValue={plots?.date as string}
+                    className="max-w-xs border-gray-400 border-2 text-sm rounded focus:ring-blue-500  block w-full p-2.5"
+                    placeholder="Survey date"
+                />
             </div>
 
 

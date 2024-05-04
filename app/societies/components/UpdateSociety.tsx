@@ -98,17 +98,17 @@ export default async function editForm(data: FormData) {
 
     const societies_apartment_size = parseInt(data.get("societies-apartment-size")?.valueOf() as string);
 
-    const apartment_size_87_5 = data.get("apartment-size-87-5")?.valueOf() === undefined ? null : "yes";
+    const apartment_one_bad = data.get("apartment-one-bad")?.valueOf() === undefined ? null : "yes";
 
-    const apartment_size_125 = data.get("apartment-size-125")?.valueOf() === undefined ? null : "yes";
+    const apartment_two_bad = data.get("apartment-two-bad")?.valueOf() === undefined ? null : "yes";
 
-    const apartment_size_200 = data.get("apartment-size-200")?.valueOf() === undefined ? null : "yes";
+    const apartment_three_bad = data.get("apartment-three-bad")?.valueOf() === undefined ? null : "yes";
 
-    const apartment_size_250 = data.get("apartment-size-250")?.valueOf() === undefined ? null : "yes";
+    const apartment_four_bad = data.get("apartment-four-bad")?.valueOf() === undefined ? null : "yes";
 
-    const apartment_size_500 = data.get("apartment-size-500")?.valueOf() === undefined ? null : "yes";
+    const apartment_penthouse = data.get("apartment-penthouse")?.valueOf() === undefined ? null : "yes";
 
-    const apartment_size_1000 = data.get("apartment-size-1000")?.valueOf() === undefined ? null : "yes";
+    const apartment_duplex = data.get("apartment-duplex")?.valueOf() === undefined ? null : "yes";
     
     const apartment_size_2000 = data.get("apartment-size-2000")?.valueOf() === undefined ? null : "yes";
 
@@ -238,13 +238,12 @@ export default async function editForm(data: FormData) {
             plot_sizes_commercial_2000,
             total_apartments: societies_total_apartments,
             societies_apartment_size,
-            apartment_size_87_5,
-            apartment_size_125,
-            apartment_size_200,
-            apartment_size_250,
-            apartment_size_500,
-            apartment_size_1000,
-            apartment_size_2000,
+            apartment_one_bad,
+            apartment_two_bad,
+            apartment_three_bad,
+            apartment_four_bad,
+            apartment_penthouse,
+            apartment_duplex,
             plot_size: societies_plot_size,
             plot_price: societies_plot_price,
             vilas_size,

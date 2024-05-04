@@ -45,6 +45,7 @@ export const Pagination = (props: PaginationProps) => {
 
 	return (
 
+		
 		<div className="flex items-center justify-center space-x-6 text-black">
 
 			<Link

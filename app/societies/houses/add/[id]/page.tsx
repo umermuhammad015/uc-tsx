@@ -83,6 +83,317 @@ export default async function AddHouse({ params }: Props) {
 
     return (
         <>
+            {/* <div className="mt-4">
+            <label
+              htmlFor="societies-apartment-size"
+              className="block mb-2 text-sm font-medium"
+            >
+              Apartment Sizes (Sq. Ft):
+            </label>
+            <div className="flex">
+              <Input
+                type="text"
+                id="societies-apartment-size"
+                name="societies-apartment-size"
+                className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+                placeholder="(Sq. Ft)"
+                onChange={(e) => {
+                  setSocieties_apartment_size(Number(e.target.value))
+                  console.log(e.target.value)
+                }}
+              />
+              <div className="m-4">
+                {Number(societies_apartment_size).toLocaleString()}
+              </div>
+            </div>
+          </div> */}
+
+
+
+
+
+
+            {/* Plot Sizes (Yards)
+        <div className="p-5 border-2 border-t-0 border-gray-200 dark:border-gray-700">
+          <div className="text-lg">Commercial Plot Sizes</div>
+
+          <div className="mt-4">
+            <label
+              htmlFor="societies-plot-sizes"
+              className="block mb-2 text-sm font-medium"
+            >
+              Plot Size (Yards):
+            </label>
+            <select
+              id="societies-plot-sizes"
+              name="societies-plot-sizes"
+              className="select w-full max-w-xs border-2 border-gray-400 "
+              onChange={(e) => setPlotSizes(e.target.value)}
+            >
+              <option value="87.5">87.5</option>
+              <option value="125">125</option>
+              <option value="200">200</option>
+              <option value="250">250</option>
+              <option value="500">500</option>
+              <option value="1000">1,000</option>
+              <option value="2000">2,000</option>
+            </select>
+          </div>
+
+
+          {/* Plot Price  87.5 yards */}
+
+
+
+            {/* <div
+            className={clsx({
+              'hidden': plotSizes !== "87.5",
+
+
+            })}>
+
+
+            <div className="mt-4">
+              <label
+                htmlFor="plot-price-87-5 "
+                className="block mb-2 text-sm font-medium"
+              >
+                Plot Price (87.5 Yards) :
+              </label>
+              <div className="flex">
+                <Input
+                  onChange={(e) => {
+                    setPlot_price_87_5(Number(e.target.value))
+                    console.log(e.target.value)
+                  }}
+                  type="text"
+                  id="plot-price-87-5"
+                  name="plot-price-87-5"
+                  className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+                  placeholder="Rs."
+                />
+                <div className="m-4">
+                  {Number(plot_price_87_5).toLocaleString()}
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+          <div
+            className={clsx({
+              'hidden': plotSizes !== "125",
+
+
+            })}>
+            <div className="mt-4">
+              <label
+                htmlFor="plot-price-125 "
+                className="block mb-2 text-sm font-medium"
+              >
+                Plot Price (125 Yards) :
+              </label>
+              <div className="flex">
+                <Input
+                  onChange={(e) => {
+                    setPlot_price_125(Number(e.target.value))
+                    console.log(e.target.value)
+                  }}
+                  type="text"
+                  id="plot-price-125"
+                  name="plot-price-125"
+                  className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+                  placeholder="Rs."
+                />
+                <div className="m-4">
+                  {Number(plot_price_125).toLocaleString()}
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div
+            className={clsx({
+              'hidden': plotSizes !== "200",
+
+
+            })}>
+            <div className="mt-4">
+              <label
+                htmlFor="plot-price-200"
+                className="block mb-2 text-sm font-medium"
+              >
+                Plot Price (200 Yards) :
+              </label>
+              <div className="flex">
+                <Input
+                  onChange={(e) => {
+                    setPlot_price_200(Number(e.target.value))
+                    console.log(e.target.value)
+                  }}
+                  type="text"
+                  id="plot-price-200"
+                  name="plot-price-200"
+                  className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+                  placeholder="Rs."
+                />
+                <div className="m-4">
+                  {Number(plot_price_200).toLocaleString()}
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+          <div
+            className={clsx({
+              'hidden': plotSizes !== "250",
+
+
+            })}>
+            <div className="mt-4">
+              <label
+                htmlFor="plot-price-250 "
+                className="block mb-2 text-sm font-medium"
+              >
+                Plot Price (250 Yards) :
+              </label>
+              <div className="flex">
+                <Input
+                  onChange={(e) => {
+                    setPlot_price_250(Number(e.target.value))
+                    console.log(e.target.value)
+                  }}
+                  type="text"
+                  id="plot-price-250"
+                  name="plot-price-250"
+                  className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+                  placeholder="Rs."
+                />
+                <div className="m-4">
+                  {Number(plot_price_250).toLocaleString()}
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+          <div
+            className={clsx({
+              'hidden': plotSizes !== "500",
+
+
+            })}>
+            <div className="mt-4">
+              <label
+                htmlFor="plot-price-500 "
+                className="block mb-2 text-sm font-medium"
+              >
+                Plot Price (500 Yards) :
+              </label>
+              <div className="flex">
+                <Input
+                  onChange={(e) => {
+                    setPlot_price_500(Number(e.target.value))
+                    console.log(e.target.value)
+                  }}
+                  type="text"
+                  id="plot-price-500"
+                  name="plot-price-500"
+                  className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+                  placeholder="Rs."
+                />
+                <div className="m-4">
+                  {Number(plot_price_500).toLocaleString()}
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+          <div
+            className={clsx({
+              'hidden': plotSizes !== "1000",
+
+
+            })}>
+            <div className="mt-4">
+              <label
+                htmlFor="plot-price-1000 "
+                className="block mb-2 text-sm font-medium"
+              >
+                Plot Price (1000 Yards) :
+              </label>
+              <div className="flex">
+                <Input
+                  onChange={(e) => {
+                    setPlot_price_1000(Number(e.target.value))
+                    console.log(e.target.value)
+                  }}
+                  type="text"
+                  id="plot-price-1000"
+                  name="plot-price-1000"
+                  className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+                  placeholder="Rs."
+                />
+                <div className="m-4">
+                  {Number(plot_price_1000).toLocaleString()}
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+          <div
+            className={clsx({
+              'hidden': plotSizes !== "2000",
+
+
+            })}>
+            <div className="mt-4">
+              <label
+                htmlFor="plot-price-2000 "
+                className="block mb-2 text-sm font-medium"
+              >
+                Plot Price (2000 Yards) :
+              </label>
+              <div className="flex">
+                <Input
+                  onChange={(e) => {
+                    setPlot_price_2000(Number(e.target.value))
+                    console.log(e.target.value)
+                  }}
+                  type="text"
+                  id="plot-price-2000"
+                  name="plot-price-2000"
+                  className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+                  placeholder="Rs."
+                />
+                <div className="m-4">
+                  {Number(plot_price_2000).toLocaleString()}
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+        </div> */}
             <div className="text-lg">Plots Information</div>
             <div className="container border-2 ">
 
@@ -149,7 +460,7 @@ export default async function AddHouse({ params }: Props) {
                             >
                                 <option>Commercial</option>
                                 <option>Residential</option>
-                                
+
                             </select>
                         </div>
 

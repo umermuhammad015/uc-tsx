@@ -7,6 +7,10 @@ export default async function createPlot(data: FormData) {
 
     console.log("🚀 ~ file: page.tsx:10 ~ createPlots ~ data:", data);
 
+
+    const plot_date = (new Date(data.get("plot-date")?.valueOf() as string)).toISOString().substring(0, 10);
+
+
     const society_id = data.get("society-id")?.valueOf();
 
     const plot_type = data.get("plot-type")?.valueOf();
@@ -17,7 +21,7 @@ export default async function createPlot(data: FormData) {
 
     const plot_price = data.get("plot-price")?.valueOf();
 
-    const plot_rent  = data.get("plot-rent")?.valueOf();
+    const plot_rent = data.get("plot-rent")?.valueOf();
 
     const banglow_price = data.get("banglow-price")?.valueOf();
 
@@ -34,6 +38,7 @@ export default async function createPlot(data: FormData) {
 
     const plot_remarks = data.get("plot-remarks")
 
+    console.log(plot_date)
     console.log("🚀 ~ file: page.tsx:9 ~ createPlots ~ society_id:", society_id);
     console.log("🚀 ~ file: page.tsx:9 ~ createPlots ~ plot_type:", plot_type);
     console.log("🚀 ~ file: page.tsx:9 ~ createPlots ~ type:", type);
@@ -50,6 +55,7 @@ export default async function createPlot(data: FormData) {
 
     await prisma.plots.create({
         data: {
+            date: plot_date,
             society_id: Number(society_id) as number,
             plot_type: plot_type as string,
             type: type as string,
@@ -67,6 +73,6 @@ export default async function createPlot(data: FormData) {
     });
 
     redirect("/societies");
-    
+
 }
 

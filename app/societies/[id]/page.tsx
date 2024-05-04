@@ -192,6 +192,9 @@ export default async function ViewBuilding({ params }: Props) {
                                 {society?.plot_sizes_commercial_87_5 && (
                                     <Badge>87.5</Badge>
                                 )}
+                                {society?.plot_sizes_commercial_100 && (
+                                    <Badge>100</Badge>
+                                )}
                                 {society?.plot_sizes_commercial_125 && (
                                     <Badge>125</Badge>
                                 )}
@@ -218,27 +221,25 @@ export default async function ViewBuilding({ params }: Props) {
                         <TableRow>
                             <TableCell>Apartment Sizes (Sq. Ft)</TableCell>
                             <TableCell>
-                                {society?.apartment_size_87_5 && (
-                                    <Badge>87.5</Badge>
+                                {society?.apartment_one_bad && (
+                                    <Badge>One Bad</Badge>
                                 )}
-                                {society?.apartment_size_125 && (
-                                    <Badge>125</Badge>
+                                {society?.apartment_two_bad && (
+                                    <Badge>Two Bad</Badge>
                                 )}
-                                {society?.apartment_size_200 && (
-                                    <Badge>200</Badge>
+                                {society?.apartment_three_bad && (
+                                    <Badge>Three Bad</Badge>
                                 )}
-                                {society?.apartment_size_250 && (
-                                    <Badge>250</Badge>
+                                {society?.apartment_four_bad && (
+                                    <Badge>Four Bad</Badge>
                                 )}
-                                {society?.apartment_size_500 && (
-                                    <Badge>500</Badge>
+                                {society?.apartment_penthouse && (
+                                    <Badge>Penthouse</Badge>
                                 )}
-                                {society?.apartment_size_1000 && (
-                                    <Badge>1000</Badge>
+                                {society?.apartment_duplex && (
+                                    <Badge>Duplex</Badge>
                                 )}
-                                {society?.apartment_size_2000 && (
-                                    <Badge>2000</Badge>
-                                )}
+
                             </TableCell>
                         </TableRow>
                         <TableRow>
@@ -248,11 +249,11 @@ export default async function ViewBuilding({ params }: Props) {
                             <TableCell>Plot Price Rs.</TableCell> <TableCell>{Number(society?.plot_price).toLocaleString()}</TableCell>
                         </TableRow>
                         <TableRow>
-                            <TableCell>Bungalows/ Vilas Size (Yards)</TableCell> <TableCell>{society?.vilas_size}</TableCell>
+                            <TableCell>Bungalow/ Vilas Size (Yards)</TableCell> <TableCell>{society?.vilas_size}</TableCell>
                         </TableRow>
 
                         <TableRow>
-                            <TableCell>Bungalows/ Vilas Price Rs.</TableCell> <TableCell>{Number(society?.vilas_price).toLocaleString()}</TableCell>
+                            <TableCell>Bungalow/ Vilas Price Rs.</TableCell> <TableCell>{Number(society?.vilas_price).toLocaleString()}</TableCell>
                         </TableRow>
                         <TableRow>
                             <TableCell>Monthly Rent Rs.</TableCell> <TableCell>{Number(society?.vilas_monthly_rent).toLocaleString()}</TableCell>
@@ -376,7 +377,7 @@ export default async function ViewBuilding({ params }: Props) {
                                 )}
                                 {society?.utilities_type_utilities_electricity && (
                                     // <div className="badge bg-emerald-700 text-white">Security</div>
-                                    <Badge>Electricity</Badge>
+                                    <Badge>Open Electrification</Badge>
                                 )}
                                 {society?.utilities_type_drainage && (
                                     // <div className="badge bg-emerald-700 text-white">Security</div>
@@ -402,7 +403,7 @@ export default async function ViewBuilding({ params }: Props) {
                 </Table>
             </div >
 
-            <div className="mt-4">Add Plots/Bungalows</div>
+            <div className="mt-4">Add Plots/Bungalow</div>
             <div className="border  text-center border-gray-400 overflow-auto" >
                 <Table className="">
                     <TableHeader className=" text-center">

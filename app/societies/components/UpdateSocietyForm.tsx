@@ -77,60 +77,6 @@ export default function UpdatePlotForm({ societies }: any) {
                         />
                     </div>
 
-                    {/* Survey Date */}
-
-                    <div className="relative max-w-sm mt-4">
-                        <label
-                            htmlFor="surveyor-name"
-                            className="block mb-2 text-sm font-medium"
-                        >
-                            Survey Date
-
-                        </label>
-                        <div className="absolute inset-y-0 right-0 flex items-center pr-20 pointer-events-none">
-                            <svg
-                                className="w-4 h-4 text-gray-500 dark:text-gray-400 mt-6"
-                                aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="currentColor"
-                                viewBox="0 0 20 20"
-                            >
-                                <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
-                            </svg>
-                        </div>
-                        <Input
-                            type="date"
-                            id="societies-survey-date"
-                            name="societies-survey-date"
-                            // defaultValue={societies?.survey_date as unknown as string}
-                            defaultValue={societies?.survey_date as string}
-                            className="max-w-xs border-gray-400 border-2 text-sm rounded focus:ring-blue-500  block w-full p-2.5"
-                            placeholder="Survey date"
-                        />
-                    </div>
-
-                    {/* <Popover>
-            <PopoverTrigger asChild>
-              <Button
-                variant={"outline"}
-                className={cn(
-                  "w-[280px] justify-start text-left font-normal",
-                  !date && "text-muted-foreground"
-                )}
-              >
-                <CalendarIcon className="mr-2 h-4 w-4" />
-                {date ? format(date, "PPP") : <span>Pick a date</span>}
-              </Button>
-            </PopoverTrigger>
-            <PopoverContent className="w-auto p-0">
-              <Calendar
-                mode="single"
-                selected={date}
-                onSelect={setDate}
-                initialFocus
-              />
-            </PopoverContent>
-          </Popover> */}
 
                     {/* City */}
                     <div className="mt-4">
@@ -196,50 +142,6 @@ export default function UpdatePlotForm({ societies }: any) {
                         </Select>
                     </div>
 
-                    {/* Project Type */}
-                    <div className="mt-4">
-                        <label
-                            htmlFor="societies-project-type"
-                            className="block mb-2 text-sm font-medium"
-                        >
-                            Project Type
-                        </label>
-                        <Select
-                            defaultValue={societies?.type as string}
-                            name="societies-project-type">
-                            <SelectTrigger
-                                id="societies-project-type"
-                                className="select  w-full max-w-xs border-2 border-gray-400 ">
-                                <SelectValue placeholder="Select Type" />
-                            </SelectTrigger>
-                            <SelectContent>
-                                <SelectGroup>
-                                    <SelectLabel></SelectLabel>
-                                    <SelectItem value="New Launch">New Launch</SelectItem>
-                                    <SelectItem value="Existing">Existing</SelectItem>
-                                </SelectGroup>
-                            </SelectContent>
-                        </Select>
-                    </div>
-
-                    {/* Soceity/Project Name  */}
-                    <div className="mt-4">
-                        <label
-                            htmlFor="soceity-project-name"
-                            className="block mb-2 text-sm font-medium"
-                        >
-                            Soceity/Project Name:
-                        </label>
-                        <Input
-                            id="soceity-project-name"
-                            name="soceity-project-name"
-                            className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-                            defaultValue={societies?.name as string}
-
-                        />
-
-                    </div>
-
                     {/* Zone/ Region  */}
                     <div className="mt-4">
                         <label
@@ -269,6 +171,24 @@ export default function UpdatePlotForm({ societies }: any) {
                         </Select>
                     </div>
 
+                    {/* Soceity/Project Name  */}
+                    <div className="mt-4">
+                        <label
+                            htmlFor="soceity-project-name"
+                            className="block mb-2 text-sm font-medium"
+                        >
+                            Soceity/Project Name:
+                        </label>
+                        <Input
+                            id="soceity-project-name"
+                            name="soceity-project-name"
+                            className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+                            defaultValue={societies?.name as string}
+
+                        />
+
+                    </div>
+
                     {/* Location/Address  */}
                     <div className="mt-4">
                         <label htmlFor="societies-address" className="block mb-2 text-sm font-medium">
@@ -284,24 +204,51 @@ export default function UpdatePlotForm({ societies }: any) {
                         />
                     </div>
 
-                    {/* Total Phase/ Sectors/ Blocks*/}
+                    {/* Project Type */}
                     <div className="mt-4">
                         <label
-                            htmlFor="societies-blocks"
+                            htmlFor="societies-project-type"
                             className="block mb-2 text-sm font-medium"
                         >
-                            Total Phase/ Sectors/ Blocks:
+                            Project Type
+                        </label>
+                        <Select
+                            defaultValue={societies?.type as string}
+                            name="societies-project-type">
+                            <SelectTrigger
+                                id="societies-project-type"
+                                className="select  w-full max-w-xs border-2 border-gray-400 ">
+                                <SelectValue />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectGroup>
+                                    <SelectLabel></SelectLabel>
+                                    <SelectItem value="Developed">Developed</SelectItem>
+                                    <SelectItem value="Under Developed">Under Developed</SelectItem>
+                                    <SelectItem value="New Launch">New Launch</SelectItem>
+                                    <SelectItem value="Files">Files</SelectItem>
+                                </SelectGroup>
+                            </SelectContent>
+                        </Select>
+                    </div>
+
+                    {/* Launch Year*/}
+                    <div className="mt-4">
+                        <label
+                            htmlFor="societies-launch-year"
+                            className="block mb-2 text-sm font-medium"
+                        >
+                            Launch Year:
                         </label>
                         <Input
                             type="text"
-                            id="societies-blocks"
-                            name="societies-blocks"
+                            id="societies-launch-year"
+                            name="societies-launch-year"
                             className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-                            defaultValue={societies?.blocks as string}
+                            defaultValue={societies?.launch_year as number}
                             placeholder=""
                         />
                     </div>
-
 
                     {/*Grade  */}
                     <div className="mt-4">
@@ -319,30 +266,10 @@ export default function UpdatePlotForm({ societies }: any) {
                         >
                             <option>A+</option>
                             <option>A</option>
-                            <option>B+</option>
                             <option>B</option>
                             <option>C</option>
                             <option>D</option>
                         </select>
-                    </div>
-                    
-
-                    {/* Occupancy Ratio */}
-                    <div className="mt-4">
-                        <label
-                            htmlFor="societies-occupancy"
-                            className="block mb-2 text-sm font-medium"
-                        >
-                            Occupancy Ratio
-                        </label>
-                        <Input
-                            type="text"
-                            id="societies-occupancy"
-                            name="societies-occupancy"
-                            className="input input-bordered w-full max-w-xs border-2 border-gray-400"
-                            defaultValue={societies?.occupancy as string}
-                            placeholder=""
-                        />
                     </div>
 
                     {/* Total Area of Society (Acres) */}
@@ -372,6 +299,42 @@ export default function UpdatePlotForm({ societies }: any) {
                         </div>
                     </div>
 
+                    {/* Total Phase/ Sectors/ Blocks*/}
+                    <div className="mt-4">
+                        <label
+                            htmlFor="societies-blocks"
+                            className="block mb-2 text-sm font-medium"
+                        >
+                            Total Phase/ Sectors/ Blocks:
+                        </label>
+                        <Input
+                            type="text"
+                            id="societies-blocks"
+                            name="societies-blocks"
+                            className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+                            defaultValue={societies?.blocks as string}
+                            placeholder=""
+                        />
+                    </div>
+
+                    {/* Occupancy Ratio */}
+                    <div className="mt-4">
+                        <label
+                            htmlFor="societies-occupancy"
+                            className="block mb-2 text-sm font-medium"
+                        >
+                            Occupancy Ratio
+                        </label>
+                        <Input
+                            type="text"
+                            id="societies-occupancy"
+                            name="societies-occupancy"
+                            className="input input-bordered w-full max-w-xs border-2 border-gray-400"
+                            defaultValue={societies?.occupancy as string}
+                            placeholder=""
+                        />
+                    </div>
+
                     {/* Population*/}
                     <div className="mt-4">
                         <label
@@ -399,23 +362,7 @@ export default function UpdatePlotForm({ societies }: any) {
                         </div>
                     </div>
 
-                    {/* Launch Year*/}
-                    <div className="mt-4">
-                        <label
-                            htmlFor="societies-launch-year"
-                            className="block mb-2 text-sm font-medium"
-                        >
-                            Launch Year:
-                        </label>
-                        <Input
-                            type="text"
-                            id="societies-launch-year"
-                            name="societies-launch-year"
-                            className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-                            defaultValue={societies?.launch_year as number}
-                            placeholder=""
-                        />
-                    </div>
+
                 </div>
 
                 {/* Total Plots Residential*/}
@@ -645,6 +592,24 @@ export default function UpdatePlotForm({ societies }: any) {
 
                                 <div className="flex items-center mb-4 ml-2">
                                     <input
+                                        id="plot-sizes-commercial-100"
+                                        name="plot-sizes-commercial-100"
+                                        type="checkbox"
+                                        defaultChecked={societies?.plot_sizes_commercial_100 ? true : false}
+                                        value="yes"
+                                        className="checkbox checkbox-primary"
+                                    />
+                                    <label
+                                        htmlFor="plot-sizes-commercial-100"
+                                        className="ml-2 text-sm font-medium "
+                                    >
+                                        100
+                                    </label>
+                                </div>
+
+
+                                <div className="flex items-center mb-4 ml-2">
+                                    <input
                                         id="plot-sizes-commercial-125"
                                         name="plot-sizes-commercial-125"
                                         type="checkbox"
@@ -803,112 +768,112 @@ export default function UpdatePlotForm({ societies }: any) {
                         <div className="mt-4">
                             <fieldset className="flex gap-10 text-lg">
                                 <legend className="block mb-4 text-sm font-medium">
-                                    Apartments Sizes (Sq. Yards):
+                                    Apartments Sizes:
                                 </legend>
 
                                 <div className="flex items-center mb-4 ml-2">
                                     <input
-                                        id="apartment-size-87-5"
-                                        name="apartment-size-87-5"
+                                        id="apartment-one-bad"
+                                        name="apartment-one-bad"
                                         type="checkbox"
                                         value="yes"
-                                        defaultChecked={societies?.apartment_size_87_5 ? true : false}
+                                        defaultChecked={societies?.apartment_one_bad ? true : false}
                                         className="checkbox checkbox-primary"
                                     />
                                     <label
-                                        htmlFor="apartment-size-87-5"
+                                        htmlFor="apartment-one-bad"
                                         className="ml-2 text-sm font-medium "
                                     >
-                                        87.5
+                                        One Bad
                                     </label>
                                 </div>
 
                                 <div className="flex items-center mb-4 ml-2">
                                     <input
-                                        id="apartment-size-125"
-                                        name="apartment-size-125"
+                                        id="apartment-two-bad"
+                                        name="apartment-two-bad"
                                         type="checkbox"
-                                        defaultChecked={societies?.apartment_size_125 ? true : false}
+                                        defaultChecked={societies?.apartment_two_bad ? true : false}
                                         value="yes"
                                         className="checkbox checkbox-primary"
                                     />
                                     <label
-                                        htmlFor="apartment-size-125"
+                                        htmlFor="apartment-two-bad"
                                         className="ml-2 text-sm font-medium "
                                     >
-                                        125
+                                        Two Bad
                                     </label>
                                 </div>
 
                                 <div className="flex items-center mb-4 ml-2">
                                     <input
-                                        id="apartment-size-200"
-                                        name="apartment-size-200"
+                                        id="apartment-three-bad"
+                                        name="apartment-three-bad"
                                         type="checkbox"
-                                        defaultChecked={societies?.apartment_size_200 ? true : false}
+                                        defaultChecked={societies?.apartment_three_bad ? true : false}
                                         value="yes"
                                         className="checkbox checkbox-primary"
                                     />
                                     <label
-                                        htmlFor="apartment-size-200"
+                                        htmlFor="apartment-three-bad"
                                         className="ml-2 text-sm font-medium "
                                     >
-                                        200
+                                        Three Bad
                                     </label>
                                 </div>
 
                                 <div className="flex items-center mb-4 ml-2">
                                     <input
-                                        id="apartment-size-250"
-                                        name="apartment-size-250"
+                                        id="apartment-four-bad"
+                                        name="apartment-four-bad"
                                         type="checkbox"
-                                        defaultChecked={societies?.apartment_size_250 ? true : false}
+                                        defaultChecked={societies?.apartment_four_bad ? true : false}
                                         value="yes"
                                         className="checkbox checkbox-primary"
                                     />
                                     <label
-                                        htmlFor="apartment-size-250"
+                                        htmlFor="apartment-four-bad"
                                         className="ml-2 text-sm font-medium "
                                     >
-                                        250
+                                        Four Bad
                                     </label>
                                 </div>
 
                                 <div className="flex items-center mb-4 ml-2">
                                     <input
-                                        id="apartment-size-500"
-                                        name="apartment-size-500"
+                                        id="apartment-penthouse"
+                                        name="apartment-penthouse"
                                         type="checkbox"
-                                        defaultChecked={societies?.apartment_size_500 ? true : false}
+                                        defaultChecked={societies?.apartment_penthouse ? true : false}
                                         value="yes"
                                         className="checkbox checkbox-primary"
                                     />
                                     <label
-                                        htmlFor="apartment-size-500"
+                                        htmlFor="apartment-penthouse"
                                         className="ml-2 text-sm font-medium "
                                     >
-                                        500
+                                        Penthouse
                                     </label>
                                 </div>
 
                                 <div className="flex items-center mb-4 ml-2">
                                     <input
-                                        id="apartment-size-1000"
-                                        name="apartment-size-1000"
+                                        id="apartment-duplex"
+                                        name="apartment-duplex"
                                         type="checkbox"
                                         value="yes"
-                                        defaultChecked={societies?.apartment_size_1000 ? true : false}
+                                        defaultChecked={societies?.apartment_duplex ? true : false}
                                         className="checkbox checkbox-primary"
                                     />
                                     <label
-                                        htmlFor="apartment-size-1000"
+                                        htmlFor="apartment-duplex"
                                         className="ml-2 text-sm font-medium "
                                     >
-                                        1,000
+                                        Duplex
                                     </label>
                                 </div>
 
-                                <div className="flex items-center mb-4 ml-2">
+                                {/* <div className="flex items-center mb-4 ml-2">
                                     <input
                                         id="apartment-size-2000"
                                         name="apartment-size-2000"
@@ -924,7 +889,7 @@ export default function UpdatePlotForm({ societies }: any) {
                                         2000
                                     </label>
                                 </div>
-
+ */}
 
 
 
@@ -1750,7 +1715,7 @@ export default function UpdatePlotForm({ societies }: any) {
                                     htmlFor="utilities-type-utilities-electricity"
                                     className="ml-2 text-sm font-medium "
                                 >
-                                    Electricity
+                                    Open Electrification
                                 </label>
                             </div>
 
@@ -1808,6 +1773,37 @@ export default function UpdatePlotForm({ societies }: any) {
                             className="input input-bordered w-full max-w-xs border-2 border-gray-400  "
                             defaultValue={societies?.contact_no as string}
                             placeholder=""
+                        />
+                    </div>
+
+                    {/* Survey Date */}
+                    <div className="relative max-w-sm mt-4">
+                        <label
+                            htmlFor="surveyor-name"
+                            className="block mb-2 text-sm font-medium"
+                        >
+                            Survey Date
+
+                        </label>
+                        <div className="absolute inset-y-0 right-0 flex items-center pr-20 pointer-events-none">
+                            <svg
+                                className="w-4 h-4 text-gray-500 dark:text-gray-400 mt-6"
+                                aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="currentColor"
+                                viewBox="0 0 20 20"
+                            >
+                                <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                            </svg>
+                        </div>
+                        <Input
+                            type="date"
+                            id="societies-survey-date"
+                            name="societies-survey-date"
+                            // defaultValue={societies?.survey_date as unknown as string}
+                            defaultValue={societies?.survey_date as string}
+                            className="max-w-xs border-gray-400 border-2 text-sm rounded focus:ring-blue-500  block w-full p-2.5"
+                            placeholder="Survey date"
                         />
                     </div>
 

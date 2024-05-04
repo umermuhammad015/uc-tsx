@@ -9,23 +9,9 @@ import { Textarea } from "@/components/ui/textarea"
 
 import createSociety from "../../actions/createSociety"
 
-import { redirect } from "next/navigation";
-// import AddButton from "../components/AddButton";
 
-import { format } from "date-fns"
-import { Calendar as CalendarIcon } from "lucide-react"
-
-
-
-import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
-import { Calendar } from "@/components/ui/calendar"
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover"
-import clsx from "clsx";
+
 
 import {
   Select,
@@ -85,84 +71,10 @@ export default function NewSocietyPage() {
       <form
         action={createSociety}
       >
-        <div className="p-5 border-2 border-gray-200 dark:border-gray-700">
-
-          {/* Survey Date */}
-
-          <div className="relative max-w-sm">
-            <label
-              htmlFor="surveyor-name"
-              className="block mb-2 text-sm font-medium "
-            >
-              Survey Date
-
-            </label>
-            <div className="absolute inset-y-0 right-0 flex items-center pr-20 pointer-events-none">
-              <svg
-                className="w-4 h-4  dark:text-gray-400 mt-6"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
-              </svg>
-            </div>
-
-            <Input
-              type="date"
-              id="societies-survey-date"
-              name="societies-survey-date"
-              // defaultValue="2024-12-13"
-              defaultValue={(new Date).toISOString().split('T')[0]}
-              // value="12/26/2024"
-              className="max-w-xs border-gray-400  border-2 text-sm rounded focus:ring-blue-500  block w-full p-2.5"
-              placeholder="Survey date"
-            />
-          </div>
-
-          {/* Soceity/Project Name  */}
-          <div className="mt-4">
-            <label
-              htmlFor="soceity-project-name"
-              className="block mb-2 text-sm font-medium "
-            >
-              Soceity/Project Name:
-            </label>
-            <Input
-              id="soceity-project-name"
-              name="soceity-project-name"
-              className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-              required
-            />
-
-          </div>
-
-          {/* <Popover>
-            <PopoverTrigger asChild>
-              <Button
-                variant={"outline"}
-                className={cn(
-                  "w-[280px] justify-start text-left font-normal",
-                  !date && "text-muted-foreground"
-                )}
-              >
-                <CalendarIcon className="mr-2 h-4 w-4" />
-                {date ? format(date, "PPP") : <span>Pick a date</span>}
-              </Button>
-            </PopoverTrigger>
-            <PopoverContent className="w-auto p-0">
-              <Calendar
-                mode="single"
-                selected={date}
-                onSelect={setDate}
-                initialFocus
-              />
-            </PopoverContent>
-          </Popover> */}
+        <div className="p-5 border-2 border-gray-200 dark:border-gray-700 flex flex-col gap-5">
 
           {/* City */}
-          <div className="mt-4">
+          <div className="">
             <label
               htmlFor="societies-city"
               className="block mb-2 text-sm font-medium"
@@ -204,35 +116,8 @@ export default function NewSocietyPage() {
             </Select>
           </div>
 
-          {/* Project Type */}
-          <div className="mt-4">
-            <label
-              htmlFor="societies-project-type"
-              className="block mb-2 text-sm font-medium"
-            >
-              Project Type
-            </label>
-            <Select
-              name="societies-project-type">
-              <SelectTrigger
-                id="societies-project-type"
-                className="select  w-full max-w-xs border-2 border-gray-400 ">
-                <SelectValue placeholder="Select Type" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectGroup>
-                  <SelectLabel></SelectLabel>
-                  <SelectItem value="New Launch">New Launch</SelectItem>
-                  <SelectItem value="Existing">Existing</SelectItem>
-                </SelectGroup>
-              </SelectContent>
-            </Select>
-          </div>
-
-
-
           {/* Zone/ Region  */}
-          <div className="mt-4">
+          <div className="">
             <label
               htmlFor="societies-zone"
               className="block mb-2 text-sm font-medium"
@@ -259,8 +144,49 @@ export default function NewSocietyPage() {
             </Select>
           </div>
 
+          {/* Soceity/Project Name  */}
+          <div className="">
+            <label
+              htmlFor="soceity-project-name"
+              className="block mb-2 text-sm font-medium "
+            >
+              Soceity/Project Name:
+            </label>
+            <Input
+              id="soceity-project-name"
+              name="soceity-project-name"
+              className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+              required
+            />
+
+          </div>
+
+          {/* <Popover>
+            <PopoverTrigger asChild>
+              <Button
+                variant={"outline"}
+                className={cn(
+                  "w-[280px] justify-start text-left font-normal",
+                  !date && "text-muted-foreground"
+                )}
+              >
+                <CalendarIcon className="mr-2 h-4 w-4" />
+                {date ? format(date, "PPP") : <span>Pick a date</span>}
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="w-auto p-0">
+              <Calendar
+                mode="single"
+                selected={date}
+                onSelect={setDate}
+                initialFocus
+              />
+            </PopoverContent>
+          </Popover> */}
+
+
           {/* Location/Address  */}
-          <div className="mt-4">
+          <div className="">
             <label htmlFor="societies-address" className="block mb-2 text-sm font-medium">
               Location/Address:
             </label>
@@ -273,26 +199,52 @@ export default function NewSocietyPage() {
             />
           </div>
 
-          {/* Total Phase/ Sectors/ Blocks*/}
-          <div className="mt-4">
+          {/* Project Type */}
+          <div className="">
             <label
-              htmlFor="societies-blocks"
+              htmlFor="societies-project-type"
               className="block mb-2 text-sm font-medium"
             >
-              Total Phase/ Sectors/ Blocks:
+              Project Type
+            </label>
+            <Select
+              name="societies-project-type">
+              <SelectTrigger
+                id="societies-project-type"
+                className="select  w-full max-w-xs border-2 border-gray-400 ">
+                <SelectValue placeholder="Select Type" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectLabel></SelectLabel>
+                  <SelectItem value="Developed">Developed</SelectItem>
+                  <SelectItem value="Under Developed">Under Developed</SelectItem>
+                  <SelectItem value="New Launch">New Launch</SelectItem>
+                  <SelectItem value="Files">Files</SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
+          </div>
+
+          {/* Launch Year*/}
+          <div className="">
+            <label
+              htmlFor="societies-launch-year"
+              className="block mb-2 text-sm font-medium"
+            >
+              Launch Year:
             </label>
             <Input
               type="text"
-              id="societies-blocks"
-              name="societies-blocks"
+              id="societies-launch-year"
+              name="societies-launch-year"
               className="input input-bordered w-full max-w-xs border-2 border-gray-400  "
               placeholder=""
             />
           </div>
 
-
           {/*Grade  */}
-          <div className="mt-4">
+          <div className="">
             <label
               htmlFor="societies-grade"
               className="block mb-2 text-sm font-medium"
@@ -311,7 +263,6 @@ export default function NewSocietyPage() {
                   <SelectLabel></SelectLabel>
                   <SelectItem value="A+">A+</SelectItem>
                   <SelectItem value="A">A</SelectItem>
-                  <SelectItem value="B+">B+</SelectItem>
                   <SelectItem value="B">B</SelectItem>
                   <SelectItem value="C">C</SelectItem>
                   <SelectItem value="D">D</SelectItem>
@@ -320,25 +271,8 @@ export default function NewSocietyPage() {
             </Select>
           </div>
 
-          {/* Occupancy Ratio */}
-          <div className="mt-4">
-            <label
-              htmlFor="societies-occupancy"
-              className="block mb-2 text-sm font-medium"
-            >
-              Occupancy Ratio
-            </label>
-            <Input
-              // type="number"
-              id="societies-occupancy"
-              name="societies-occupancy"
-              className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-              placeholder=""
-            />
-          </div>
-
           {/* Total Area of Society (Acres) */}
-          <div className="mt-4">
+          <div className="">
             <label
               htmlFor="societies-area"
               className="block mb-2 text-sm font-medium"
@@ -363,8 +297,44 @@ export default function NewSocietyPage() {
             </div>
           </div>
 
+          {/* Total Phase/ Sectors/ Blocks*/}
+          <div className="">
+            <label
+              htmlFor="societies-blocks"
+              className="block mb-2 text-sm font-medium"
+            >
+              Total Phase/ Sectors/ Blocks:
+            </label>
+            <Input
+              type="text"
+              id="societies-blocks"
+              name="societies-blocks"
+              className="input input-bordered w-full max-w-xs border-2 border-gray-400  "
+              placeholder=""
+            />
+          </div>
+
+
+          {/* Occupancy Ratio */}
+          <div className="">
+            <label
+              htmlFor="societies-occupancy"
+              className="block mb-2 text-sm font-medium"
+            >
+              Occupancy Ratio
+            </label>
+            <Input
+              // type="number"
+              id="societies-occupancy"
+              name="societies-occupancy"
+              className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+              placeholder=""
+            />
+          </div>
+
+
           {/* Population*/}
-          <div className="mt-4">
+          <div className="">
             <label
               htmlFor="societies-population"
               className="block mb-2 text-sm font-medium"
@@ -389,22 +359,7 @@ export default function NewSocietyPage() {
             </div>
           </div>
 
-          {/* Launch Year*/}
-          <div className="mt-4">
-            <label
-              htmlFor="societies-launch-year"
-              className="block mb-2 text-sm font-medium"
-            >
-              Launch Year:
-            </label>
-            <Input
-              type="text"
-              id="societies-launch-year"
-              name="societies-launch-year"
-              className="input input-bordered w-full max-w-xs border-2 border-gray-400  "
-              placeholder=""
-            />
-          </div>
+
         </div>
         <div className="p-5 border-2 border-gray-200 dark:border-gray-700 border-t-0">
           {/* Total Plots Residential*/}
@@ -623,6 +578,22 @@ export default function NewSocietyPage() {
 
                 <div className="flex items-center mb-4 ml-2">
                   <input
+                    id="plot-sizes-commercial-100"
+                    name="plot-sizes-commercial-100"
+                    type="checkbox"
+                    value="yes"
+                    className="checkbox checkbox-primary"
+                  />
+                  <label
+                    htmlFor="plot-sizes-commercial-100"
+                    className="ml-2 text-sm font-medium "
+                  >
+                    100
+                  </label>
+                </div>
+
+                <div className="flex items-center mb-4 ml-2">
+                  <input
                     id="plot-sizes-commercial-125"
                     name="plot-sizes-commercial-125"
                     type="checkbox"
@@ -732,7 +703,7 @@ export default function NewSocietyPage() {
               htmlFor="societies-total-apartments"
               className="block mb-2 text-sm font-medium"
             >
-              Total No. of Apartments (Sq. Yards):
+              Total No. of Apartments:
             </label>
             <Input
               type="text"
@@ -743,7 +714,7 @@ export default function NewSocietyPage() {
             />
           </div>
 
-          {/* Plot Sizes Commercial (Sq. Yards) */}
+          {/* apartment Sizes Commercial (Sq. Yards) */}
 
           <div className="">
             <div className="mt-4">
@@ -754,101 +725,117 @@ export default function NewSocietyPage() {
 
                 <div className="flex items-center mb-4 ml-2">
                   <input
-                    id="apartment-size-87-5"
-                    name="apartment-size-87-5"
+                    id="apartment-one-bad"
+                    name="apartment-one-bad"
                     type="checkbox"
                     value="yes"
                     className="checkbox checkbox-primary"
                   />
                   <label
-                    htmlFor="apartment-size-87-5"
+                    htmlFor="apartment-one-bad"
                     className="ml-2 text-sm font-medium "
                   >
-                    87.5
+                    Studio
                   </label>
                 </div>
 
                 <div className="flex items-center mb-4 ml-2">
                   <input
-                    id="apartment-size-125"
-                    name="apartment-size-125"
+                    id="apartment-one-bad"
+                    name="apartment-one-bad"
                     type="checkbox"
                     value="yes"
                     className="checkbox checkbox-primary"
                   />
                   <label
-                    htmlFor="apartment-size-125"
+                    htmlFor="apartment-one-bad"
                     className="ml-2 text-sm font-medium "
                   >
-                    125
+                    One Bad
                   </label>
                 </div>
 
                 <div className="flex items-center mb-4 ml-2">
                   <input
-                    id="apartment-size-200"
-                    name="apartment-size-200"
+                    id="apartment-two-bad"
+                    name="apartment-two-bad"
                     type="checkbox"
                     value="yes"
                     className="checkbox checkbox-primary"
                   />
                   <label
-                    htmlFor="apartment-size-200"
+                    htmlFor="apartment-two-bad"
                     className="ml-2 text-sm font-medium "
                   >
-                    200
+                    Two bad
                   </label>
                 </div>
 
                 <div className="flex items-center mb-4 ml-2">
                   <input
-                    id="apartment-size-250"
-                    name="apartment-size-250"
+                    id="apartment-three-bad"
+                    name="apartment-three-bad"
                     type="checkbox"
                     value="yes"
                     className="checkbox checkbox-primary"
                   />
                   <label
-                    htmlFor="apartment-size-250"
+                    htmlFor="apartment-three-bad"
                     className="ml-2 text-sm font-medium "
                   >
-                    250
+                    Three Bad
                   </label>
                 </div>
 
                 <div className="flex items-center mb-4 ml-2">
                   <input
-                    id="apartment-size-500"
-                    name="apartment-size-500"
+                    id="apartment-four-bad"
+                    name="apartment-four-bad"
                     type="checkbox"
                     value="yes"
                     className="checkbox checkbox-primary"
                   />
                   <label
-                    htmlFor="apartment-size-500"
+                    htmlFor="apartment-four-bad"
                     className="ml-2 text-sm font-medium "
                   >
-                    500
+                    Four Bad
                   </label>
                 </div>
 
                 <div className="flex items-center mb-4 ml-2">
                   <input
-                    id="apartment-size-1000"
-                    name="apartment-size-1000"
+                    id="apartment-penthouse"
+                    name="apartment-penthouse"
                     type="checkbox"
                     value="yes"
                     className="checkbox checkbox-primary"
                   />
                   <label
-                    htmlFor="apartment-size-1000"
+                    htmlFor="apartment-penthouse"
                     className="ml-2 text-sm font-medium "
                   >
-                    1,000
+                    Penthouse
                   </label>
                 </div>
 
                 <div className="flex items-center mb-4 ml-2">
+                  <input
+                    id="apartment-duplex"
+                    name="apartment-duplex"
+                    type="checkbox"
+                    value="yes"
+                    className="checkbox checkbox-primary"
+                  />
+                  <label
+                    htmlFor="apartment-duplex"
+                    className="ml-2 text-sm font-medium "
+                  >
+                    Duplex
+                  </label>
+                </div>
+
+                {/* <div className="flex items-center mb-4 ml-2">
                   <input
                     id="apartment-size-2000"
                     name="apartment-size-2000"
@@ -862,7 +849,7 @@ export default function NewSocietyPage() {
                   >
                     2000
                   </label>
-                </div>
+                </div> */}
 
 
 
@@ -871,319 +858,6 @@ export default function NewSocietyPage() {
             </div>
           </div>
         </div>
-        {/* <div className="mt-4">
-            <label
-              htmlFor="societies-apartment-size"
-              className="block mb-2 text-sm font-medium"
-            >
-              Apartment Sizes (Sq. Ft):
-            </label>
-            <div className="flex">
-              <Input
-                type="text"
-                id="societies-apartment-size"
-                name="societies-apartment-size"
-                className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-                placeholder="(Sq. Ft)"
-                onChange={(e) => {
-                  setSocieties_apartment_size(Number(e.target.value))
-                  console.log(e.target.value)
-                }}
-              />
-              <div className="m-4">
-                {Number(societies_apartment_size).toLocaleString()}
-              </div>
-            </div>
-          </div> */}
-
-
-
-
-
-
-        {/* Plot Sizes (Yards)
-        <div className="p-5 border-2 border-t-0 border-gray-200 dark:border-gray-700">
-          <div className="text-lg">Commercial Plot Sizes</div>
-
-          <div className="mt-4">
-            <label
-              htmlFor="societies-plot-sizes"
-              className="block mb-2 text-sm font-medium"
-            >
-              Plot Size (Yards):
-            </label>
-            <select
-              id="societies-plot-sizes"
-              name="societies-plot-sizes"
-              className="select w-full max-w-xs border-2 border-gray-400 "
-              onChange={(e) => setPlotSizes(e.target.value)}
-            >
-              <option value="87.5">87.5</option>
-              <option value="125">125</option>
-              <option value="200">200</option>
-              <option value="250">250</option>
-              <option value="500">500</option>
-              <option value="1000">1,000</option>
-              <option value="2000">2,000</option>
-            </select>
-          </div>
-
-
-          {/* Plot Price  87.5 yards */}
-
-
-
-        {/* <div
-            className={clsx({
-              'hidden': plotSizes !== "87.5",
-
-
-            })}>
-
-
-            <div className="mt-4">
-              <label
-                htmlFor="plot-price-87-5 "
-                className="block mb-2 text-sm font-medium"
-              >
-                Plot Price (87.5 Yards) :
-              </label>
-              <div className="flex">
-                <Input
-                  onChange={(e) => {
-                    setPlot_price_87_5(Number(e.target.value))
-                    console.log(e.target.value)
-                  }}
-                  type="text"
-                  id="plot-price-87-5"
-                  name="plot-price-87-5"
-                  className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-                  placeholder="Rs."
-                />
-                <div className="m-4">
-                  {Number(plot_price_87_5).toLocaleString()}
-                </div>
-              </div>
-            </div>
-          </div>
-
-
-
-
-
-          <div
-            className={clsx({
-              'hidden': plotSizes !== "125",
-
-
-            })}>
-            <div className="mt-4">
-              <label
-                htmlFor="plot-price-125 "
-                className="block mb-2 text-sm font-medium"
-              >
-                Plot Price (125 Yards) :
-              </label>
-              <div className="flex">
-                <Input
-                  onChange={(e) => {
-                    setPlot_price_125(Number(e.target.value))
-                    console.log(e.target.value)
-                  }}
-                  type="text"
-                  id="plot-price-125"
-                  name="plot-price-125"
-                  className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-                  placeholder="Rs."
-                />
-                <div className="m-4">
-                  {Number(plot_price_125).toLocaleString()}
-                </div>
-              </div>
-            </div>
-          </div>
-
-
-          <div
-            className={clsx({
-              'hidden': plotSizes !== "200",
-
-
-            })}>
-            <div className="mt-4">
-              <label
-                htmlFor="plot-price-200"
-                className="block mb-2 text-sm font-medium"
-              >
-                Plot Price (200 Yards) :
-              </label>
-              <div className="flex">
-                <Input
-                  onChange={(e) => {
-                    setPlot_price_200(Number(e.target.value))
-                    console.log(e.target.value)
-                  }}
-                  type="text"
-                  id="plot-price-200"
-                  name="plot-price-200"
-                  className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-                  placeholder="Rs."
-                />
-                <div className="m-4">
-                  {Number(plot_price_200).toLocaleString()}
-                </div>
-              </div>
-            </div>
-          </div>
-
-
-
-
-
-          <div
-            className={clsx({
-              'hidden': plotSizes !== "250",
-
-
-            })}>
-            <div className="mt-4">
-              <label
-                htmlFor="plot-price-250 "
-                className="block mb-2 text-sm font-medium"
-              >
-                Plot Price (250 Yards) :
-              </label>
-              <div className="flex">
-                <Input
-                  onChange={(e) => {
-                    setPlot_price_250(Number(e.target.value))
-                    console.log(e.target.value)
-                  }}
-                  type="text"
-                  id="plot-price-250"
-                  name="plot-price-250"
-                  className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-                  placeholder="Rs."
-                />
-                <div className="m-4">
-                  {Number(plot_price_250).toLocaleString()}
-                </div>
-              </div>
-            </div>
-          </div>
-
-
-
-
-
-          <div
-            className={clsx({
-              'hidden': plotSizes !== "500",
-
-
-            })}>
-            <div className="mt-4">
-              <label
-                htmlFor="plot-price-500 "
-                className="block mb-2 text-sm font-medium"
-              >
-                Plot Price (500 Yards) :
-              </label>
-              <div className="flex">
-                <Input
-                  onChange={(e) => {
-                    setPlot_price_500(Number(e.target.value))
-                    console.log(e.target.value)
-                  }}
-                  type="text"
-                  id="plot-price-500"
-                  name="plot-price-500"
-                  className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-                  placeholder="Rs."
-                />
-                <div className="m-4">
-                  {Number(plot_price_500).toLocaleString()}
-                </div>
-              </div>
-            </div>
-          </div>
-
-
-
-
-
-          <div
-            className={clsx({
-              'hidden': plotSizes !== "1000",
-
-
-            })}>
-            <div className="mt-4">
-              <label
-                htmlFor="plot-price-1000 "
-                className="block mb-2 text-sm font-medium"
-              >
-                Plot Price (1000 Yards) :
-              </label>
-              <div className="flex">
-                <Input
-                  onChange={(e) => {
-                    setPlot_price_1000(Number(e.target.value))
-                    console.log(e.target.value)
-                  }}
-                  type="text"
-                  id="plot-price-1000"
-                  name="plot-price-1000"
-                  className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-                  placeholder="Rs."
-                />
-                <div className="m-4">
-                  {Number(plot_price_1000).toLocaleString()}
-                </div>
-              </div>
-            </div>
-          </div>
-
-
-
-
-          <div
-            className={clsx({
-              'hidden': plotSizes !== "2000",
-
-
-            })}>
-            <div className="mt-4">
-              <label
-                htmlFor="plot-price-2000 "
-                className="block mb-2 text-sm font-medium"
-              >
-                Plot Price (2000 Yards) :
-              </label>
-              <div className="flex">
-                <Input
-                  onChange={(e) => {
-                    setPlot_price_2000(Number(e.target.value))
-                    console.log(e.target.value)
-                  }}
-                  type="text"
-                  id="plot-price-2000"
-                  name="plot-price-2000"
-                  className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-                  placeholder="Rs."
-                />
-                <div className="m-4">
-                  {Number(plot_price_2000).toLocaleString()}
-                </div>
-              </div>
-            </div>
-          </div>
-
-
-
-        </div> */}
-
-
 
         {/* Residential Plots */}
 
@@ -1941,7 +1615,7 @@ export default function NewSocietyPage() {
                   htmlFor="utilities-type-utilities-electricity"
                   className="ml-2 text-sm font-medium "
                 >
-                  Electricity
+                  Open Electrification
                 </label>
               </div>
 
@@ -2000,6 +1674,39 @@ export default function NewSocietyPage() {
             />
           </div>
 
+          {/* Survey Date */}
+
+          <div className="relative max-w-sm mt-4">
+            <label
+              htmlFor="surveyor-name"
+              className="block mb-2 text-sm font-medium "
+            >
+              Survey Date
+
+            </label>
+            <div className="absolute inset-y-0 right-0 flex items-center pr-20 pointer-events-none">
+              <svg
+                className="w-4 h-4  dark:text-gray-400 mt-6"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+              </svg>
+            </div>
+
+            <Input
+              type="date"
+              id="societies-survey-date"
+              name="societies-survey-date"
+              // defaultValue="2024-12-13"
+              defaultValue={(new Date).toISOString().split('T')[0]}
+              // value="12/26/2024"
+              className="max-w-xs border-gray-400  border-2 text-sm rounded focus:ring-blue-500  block w-full p-2.5"
+              placeholder="Survey date"
+            />
+          </div>
           {/* Remarks  */}
           <div className="mt-4">
             <label htmlFor="message" className="block mb-2 text-sm font-medium">

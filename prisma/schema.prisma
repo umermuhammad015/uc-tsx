@@ -131,6 +131,7 @@ model Societies {
   total_plots_commercial                     Int?
   plot_sizes_commercial                      Int?
   plot_sizes_commercial_87_5                 String?
+  plot_sizes_commercial_100                  String?
   plot_sizes_commercial_125                  String?
   plot_sizes_commercial_200                  String?
   plot_sizes_commercial_250                  String?
@@ -139,13 +140,13 @@ model Societies {
   plot_sizes_commercial_2000                 String?
   total_apartments                           Int?
   societies_apartment_size                   Int?
-  apartment_size_87_5                        String?
-  apartment_size_125                         String?
-  apartment_size_200                         String?
-  apartment_size_250                         String?
-  apartment_size_500                         String?
-  apartment_size_1000                        String?
-  apartment_size_2000                        String?
+  apartment_studio                          String?
+  apartment_one_bad                          String?
+  apartment_two_bad                          String?
+  apartment_three_bad                        String?
+  apartment_four_bad                         String?
+  apartment_penthouse                        String?
+  apartment_duplex                           String?
   plot_size                                  Int?
   plot_price                                 Int?
   vilas_size                                 Int?
@@ -242,6 +243,7 @@ model Plots {
   society_id Int
   societies  Societies @relation(fields: [society_id], references: [id], onDelete: Cascade)
 
+  date              String?
   plot_type         String?
   type              String?
   size              String?

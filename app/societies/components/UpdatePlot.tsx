@@ -6,6 +6,8 @@ export default async function UpdatePlot(data: FormData) {
 
     console.log("🚀 ~ file: page.tsx:10 ~ createPlots ~ data:", data);
 
+    const plot_date = (new Date(data.get("plot-date")?.valueOf() as string)).toISOString().substring(0, 10);
+
     const society_id = data.get("society-id")?.valueOf();
 
     const plot_type = data.get("plot-type")?.valueOf();
@@ -32,7 +34,8 @@ export default async function UpdatePlot(data: FormData) {
             size: plot_size as string,
             plot_price: plot_price as string,
             plot_rent: plot_rent as string,
-            remarks: plot_remarks as string
+            remarks: plot_remarks as string,
+            date: plot_date
         }
     }
 

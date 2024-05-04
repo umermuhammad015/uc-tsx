@@ -6,26 +6,20 @@ import AddHomeButton from "../../../components/AddHomeButton";
 import Link from "next/link";
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
+import {
+    Select,
+    SelectContent,
+    SelectGroup,
+    SelectItem,
+    SelectLabel,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select"
+
 
 import createPlot from "../../../../actions/createPlot"
-
-import { redirect } from "next/navigation";
-// import AddButton from "../components/AddButton";
-
-import { format } from "date-fns"
-import { Calendar as CalendarIcon } from "lucide-react"
-
 import { useState } from "react";
-
-import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
-import { Calendar } from "@/components/ui/calendar"
-import {
-    Popover,
-    PopoverContent,
-    PopoverTrigger,
-} from "@/components/ui/popover"
-
 type Props = {
     params: { id: number }
     // searchParams: { [key: string]: string | string[] | undefined }
@@ -40,7 +34,7 @@ export default function PlotAddPage({ params }: Props) {
 
     return (
         <>
-            <div className="text-lg">Plots/Bungalows Information</div>
+            <div className="text-lg">Plots/Bungalow Information</div>
             <div className="container border-2 ">
 
                 <div className="mx-4">
@@ -82,23 +76,30 @@ export default function PlotAddPage({ params }: Props) {
                             
                             />
                         </div> */}
-                        <div className="mt-4">
+                        {/* <div className="mt-4">
                             <label
                                 htmlFor="plot-type"
                                 className="block mb-2 text-sm font-medium"
                             >
                                 Type:
                             </label>
-                            <select
-                                id="plot-type"
-                                name="plot-type"
-                                className="select  w-full max-w-xs border-2 border-gray-400 "
-                            >
-                                <option>Plot</option>
-                                <option>Bungalow</option>
 
-                            </select>
-                        </div>
+                            <Select
+                                name="plot-type">
+                                <SelectTrigger
+                                    id="plot-type"
+                                    className="select  w-full max-w-xs border-2 border-gray-400 ">
+                                    <SelectValue placeholder="Select Type" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectGroup>
+                                        <SelectLabel></SelectLabel>
+                                        <SelectItem value="Plot">Plot</SelectItem>
+                                        <SelectItem value="Bungalow">Bungalow</SelectItem>
+                                    </SelectGroup>
+                                </SelectContent>
+                            </Select>
+                        </div> */}
                         {/* plot type */}
                         <div className="mt-4">
                             <label
@@ -107,7 +108,7 @@ export default function PlotAddPage({ params }: Props) {
                             >
                                 Plot/Bungalow Type:
                             </label>
-                            <select
+                            {/* <select
                                 id="type"
                                 name="type"
                                 className="select  w-full max-w-xs border-2 border-gray-400 "
@@ -115,7 +116,24 @@ export default function PlotAddPage({ params }: Props) {
                                 <option>Commercial</option>
                                 <option>Residential</option>
 
-                            </select>
+                            </select> */}
+                            <Select
+                                name="type">
+                                <SelectTrigger
+                                    id="type"
+                                    className="select  w-full max-w-xs border-2 border-gray-400 ">
+                                    <SelectValue placeholder="Select Plot/Bungalow Type" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectGroup>
+                                        <SelectLabel></SelectLabel>
+                                        <SelectItem value="Residential">Residential Plot</SelectItem>
+                                        <SelectItem value="Commercial">Commercial Plot</SelectItem>
+                                        <SelectItem value="Bungalow">Bungalow</SelectItem>
+
+                                    </SelectGroup>
+                                </SelectContent>
+                            </Select>
                         </div>
 
 
@@ -127,19 +145,26 @@ export default function PlotAddPage({ params }: Props) {
                             >
                                 Plot/Bungalow Size :
                             </label>
-                            <select
-                                id="plot-size"
-                                name="plot-size"
-                                className="select w-full max-w-xs border-2 border-gray-400 "
-                            >
-                                <option value='87.5'>87.5</option>
-                                <option value='125'>125</option>
-                                <option value='200'>200</option>
-                                <option value='250'>250</option>
-                                <option value='500'>500</option>
-                                <option value='1000'>1,000</option>
-                                <option value='2000'>2,000</option>
-                            </select>
+                            <Select
+                                name="plot-size">
+                                <SelectTrigger
+                                    id="plot-size"
+                                    className="select w-full max-w-xs border-2 border-gray-400 ">
+                                    <SelectValue placeholder="Select Plot/Bungalow Size" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectGroup>
+                                        <SelectLabel></SelectLabel>
+                                        <SelectItem value="87.5">87.5</SelectItem>
+                                        <SelectItem value="125">125</SelectItem>
+                                        <SelectItem value="200">200</SelectItem>
+                                        <SelectItem value="250">250</SelectItem>
+                                        <SelectItem value="500">500</SelectItem>
+                                        <SelectItem value="1000">1,000</SelectItem>
+                                        <SelectItem value="2000">2,000</SelectItem>
+                                    </SelectGroup>
+                                </SelectContent>
+                            </Select>
                         </div>
 
                         {/* plot price  */}
@@ -194,6 +219,39 @@ export default function PlotAddPage({ params }: Props) {
                             </div>
                         </div>
 
+                        {/*Date */}
+
+                        <div className="relative max-w-sm">
+                            <label
+                                htmlFor="surveyor-name"
+                                className="block mb-2 text-sm font-medium "
+                            >
+                                Date
+
+                            </label>
+                            <div className="absolute inset-y-0 right-0 flex items-center pr-20 pointer-events-none">
+                                <svg
+                                    className="w-4 h-4  dark:text-gray-400 mt-6"
+                                    aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="currentColor"
+                                    viewBox="0 0 20 20"
+                                >
+                                    <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                                </svg>
+                            </div>
+
+                            <Input
+                                type="date"
+                                id="plot-date"
+                                name="plot-date"
+                                // defaultValue="2024-12-13"
+                                defaultValue={(new Date).toISOString().split('T')[0]}
+                                // value="12/26/2024"
+                                className="max-w-xs border-gray-400  border-2 text-sm rounded focus:ring-blue-500  block w-full p-2.5"
+                                placeholder="date"
+                            />
+                        </div>
 
                         {/* Plot Remarks  */}
                         <div className="mt-4">
