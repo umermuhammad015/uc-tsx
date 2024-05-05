@@ -71,7 +71,13 @@ export default function CityInput() {
                     <option value="Bahawalpur">Bahawalpur</option>
                     <option value="Faisalabad">Faisalabad</option>
                     <option value="Gujranwala">Gujranwala</option>
-                    <option value="Islamabad">Islamabad</option>
+                    <option value="Lahore">Lahore</option>
+                    <option value="Multan">Multan</option>
+                    <option value="Rawalpindi">Rawalpindi</option>
+                    <option value="Hyderabad">Hyderabad</option>
+                    <option value="Karachi">Karachi</option>
+                    <option value="Peshawar">Peshawar</option>
+                    <option value="Quetta">Quetta</option>
                 </select>
 
                
