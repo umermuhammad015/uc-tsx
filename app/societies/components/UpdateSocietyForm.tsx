@@ -226,6 +226,7 @@ export default function UpdatePlotForm({ societies }: any) {
                                     <SelectItem value="Developed">Developed</SelectItem>
                                     <SelectItem value="Under Developed">Under Developed</SelectItem>
                                     <SelectItem value="New Launch">New Launch</SelectItem>
+                                    <SelectItem value="Commercial Zone">Commercial Zone</SelectItem>
                                     <SelectItem value="Files">Files</SelectItem>
                                 </SelectGroup>
                             </SelectContent>
@@ -784,7 +785,7 @@ export default function UpdatePlotForm({ societies }: any) {
                                         htmlFor="apartment-one-bad"
                                         className="ml-2 text-sm font-medium "
                                     >
-                                        One Bad
+                                        1 Bed
                                     </label>
                                 </div>
 
@@ -801,7 +802,7 @@ export default function UpdatePlotForm({ societies }: any) {
                                         htmlFor="apartment-two-bad"
                                         className="ml-2 text-sm font-medium "
                                     >
-                                        Two Bad
+                                        2 Bed
                                     </label>
                                 </div>
 
@@ -818,7 +819,7 @@ export default function UpdatePlotForm({ societies }: any) {
                                         htmlFor="apartment-three-bad"
                                         className="ml-2 text-sm font-medium "
                                     >
-                                        Three Bad
+                                        3 Bed
                                     </label>
                                 </div>
 
@@ -835,7 +836,24 @@ export default function UpdatePlotForm({ societies }: any) {
                                         htmlFor="apartment-four-bad"
                                         className="ml-2 text-sm font-medium "
                                     >
-                                        Four Bad
+                                        4 Bed
+                                    </label>
+                                </div>
+
+                                <div className="flex items-center mb-4 ml-2">
+                                    <input
+                                        id="apartment-five-bad"
+                                        name="apartment-five-bad"
+                                        type="checkbox"
+                                        defaultChecked={societies?.apartment_four_bad ? true : false}
+                                        value="yes"
+                                        className="checkbox checkbox-primary"
+                                    />
+                                    <label
+                                        htmlFor="apartment-five-bad"
+                                        className="ml-2 text-sm font-medium "
+                                    >
+                                        5 Bed
                                     </label>
                                 </div>
 

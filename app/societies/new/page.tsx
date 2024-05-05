@@ -1,17 +1,14 @@
 "use client";
 
-import { useState } from "react";
-
+import { useEffect, useState } from "react";
 import AddButton from "../components/AddButton";
 import Link from "next/link";
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-
 import createSociety from "../../actions/createSociety"
-
-
 import { Button } from "@/components/ui/button"
 
+import useDebounce from "@/components/debouce";
 
 import {
   Select,
@@ -22,14 +19,30 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import clsx from "clsx";
+import FetchSocietyNames from "../components/FetchSocietyNames";
 
+type Society = {
+  // Define the properties of your society object
+  // For example:
 
+  name: string | null;
+};
+
+type Name = {
+  name: string;
+};
 
 export default function NewSocietyPage() {
 
+  const [nameKeywords, setNameKeywords] = useState('')
+  const debouncedNameKeywords = useDebounce(nameKeywords, 500)
+
+  const [names, setNames] = useState<Society[]>([])
 
 
   const [area, setArea] = useState(0);
+  const [occupancy, setOccupancy] = useState(0);
   const [population, setPoputation] = useState(0);
   const [plot_sizes_residential, setPlot_sizes_residential] = useState(0);
   const [plot_sizes_commercial, setPlot_sizes_commercial] = useState(0);
@@ -58,6 +71,45 @@ export default function NewSocietyPage() {
   // const [plot_price_2000, setPlot_price_2000] = useState(0);
 
   const [paymentTerms, setPaymentTerms] = useState('Lumpsum Payment');
+
+  useEffect(() => {
+
+    console.log(nameKeywords);
+
+    if (debouncedNameKeywords !== "") {
+      const fetchData = async () => {
+        try {
+          const societyNames: Society[] = await FetchSocietyNames(debouncedNameKeywords)
+          console.log(societyNames);
+
+          setNames(societyNames);
+
+        } catch (error) {
+
+          console.error('Error fetching city list based on keywords:', error);
+        }
+      };
+
+      fetchData();
+    }
+
+  }, [debouncedNameKeywords]);
+
+  function BoldedText(text: string, shouldBeBold: string) {
+
+    const textArray = text.split(shouldBeBold);
+
+    return (
+      <span>
+        {textArray.map((item, index) => (
+          <>
+            {item}
+            {index !== textArray.length - 1 && <b>{shouldBeBold}</b>}
+          </>
+        ))}
+      </span>
+    );
+  }
 
 
 
@@ -220,10 +272,28 @@ export default function NewSocietyPage() {
                   <SelectItem value="Developed">Developed</SelectItem>
                   <SelectItem value="Under Developed">Under Developed</SelectItem>
                   <SelectItem value="New Launch">New Launch</SelectItem>
+                  <SelectItem value="Commercial Zone">Commercial Zone</SelectItem>
                   <SelectItem value="Files">Files</SelectItem>
                 </SelectGroup>
               </SelectContent>
             </Select>
+
+            {/* <form className="max-w-sm mx-auto">
+              <label
+                htmlFor="societies-project-type"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                Project Type
+              </label>
+              <select
+                name="societies-project-type"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+
+                <option value="Developed">Developed</option>
+                <option value="Under Developed">Under Developed</option>
+                <option value="New Launch">New Launch</option>
+                <option value="Files">Files</option>
+              </select>
+            </form> */}
           </div>
 
           {/* Launch Year*/}
@@ -291,6 +361,7 @@ export default function NewSocietyPage() {
                   console.log(e.target.value)
                 }}
               />
+
               <div className="m-4">
                 {Number(area).toLocaleString()}
               </div>
@@ -321,15 +392,25 @@ export default function NewSocietyPage() {
               htmlFor="societies-occupancy"
               className="block mb-2 text-sm font-medium"
             >
-              Occupancy Ratio
+              Occupancy Ratio (1 to 100)
             </label>
             <Input
               // type="number"
               id="societies-occupancy"
               name="societies-occupancy"
+              type="number"
               className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+              min={0}
+              max={100}
               placeholder=""
+              onChange={(e) => {
+                setOccupancy(Number(e.target.value))
+              }}
             />
+            <div className="m-4">
+              {occupancy + "%"}
+            </div>
+
           </div>
 
 
@@ -350,7 +431,6 @@ export default function NewSocietyPage() {
                 placeholder=""
                 onChange={(e) => {
                   setPoputation(Number(e.target.value))
-                  console.log(e.target.value)
                 }}
               />
               <div className="m-4">
@@ -454,6 +534,38 @@ export default function NewSocietyPage() {
 
                 <div className="flex items-center mb-4 ml-2">
                   <input
+                    id="plot-sizes-residential-300"
+                    name="plot-sizes-residential-300"
+                    type="checkbox"
+                    value="yes"
+                    className="checkbox checkbox-primary"
+                  />
+                  <label
+                    htmlFor="plot-sizes-residential-300"
+                    className="ml-2 text-sm font-medium "
+                  >
+                    300
+                  </label>
+                </div>
+
+                <div className="flex items-center mb-4 ml-2">
+                  <input
+                    id="plot-sizes-residential-400"
+                    name="plot-sizes-residential-400"
+                    type="checkbox"
+                    value="yes"
+                    className="checkbox checkbox-primary"
+                  />
+                  <label
+                    htmlFor="plot-sizes-residential-400"
+                    className="ml-2 text-sm font-medium "
+                  >
+                    400
+                  </label>
+                </div>
+
+                <div className="flex items-center mb-4 ml-2">
+                  <input
                     id="plot-sizes-residential-500"
                     name="plot-sizes-residential-500"
                     type="checkbox"
@@ -465,6 +577,38 @@ export default function NewSocietyPage() {
                     className="ml-2 text-sm font-medium "
                   >
                     500
+                  </label>
+                </div>
+
+                <div className="flex items-center mb-4 ml-2">
+                  <input
+                    id="plot-sizes-residential-600"
+                    name="plot-sizes-residential-600"
+                    type="checkbox"
+                    value="yes"
+                    className="checkbox checkbox-primary"
+                  />
+                  <label
+                    htmlFor="plot-sizes-residential-500"
+                    className="ml-2 text-sm font-medium "
+                  >
+                    600
+                  </label>
+                </div>
+
+                <div className="flex items-center mb-4 ml-2">
+                  <input
+                    id="plot-sizes-residential-800"
+                    name="plot-sizes-residential-800"
+                    type="checkbox"
+                    value="yes"
+                    className="checkbox checkbox-primary"
+                  />
+                  <label
+                    htmlFor="plot-sizes-residential-500"
+                    className="ml-2 text-sm font-medium "
+                  >
+                    800
                   </label>
                 </div>
 
@@ -720,7 +864,7 @@ export default function NewSocietyPage() {
             <div className="mt-4">
               <fieldset className="flex gap-10 text-lg">
                 <legend className="block mb-4 text-sm font-medium">
-                  Apartments Sizes :
+                  Apartments Type :
                 </legend>
 
                 <div className="flex items-center mb-4 ml-2">
@@ -751,7 +895,7 @@ export default function NewSocietyPage() {
                     htmlFor="apartment-one-bad"
                     className="ml-2 text-sm font-medium "
                   >
-                    One Bad
+                    1 Bed
                   </label>
                 </div>
 
@@ -767,7 +911,7 @@ export default function NewSocietyPage() {
                     htmlFor="apartment-two-bad"
                     className="ml-2 text-sm font-medium "
                   >
-                    Two bad
+                    2 Bed
                   </label>
                 </div>
 
@@ -783,7 +927,7 @@ export default function NewSocietyPage() {
                     htmlFor="apartment-three-bad"
                     className="ml-2 text-sm font-medium "
                   >
-                    Three Bad
+                    3 Bed
                   </label>
                 </div>
 
@@ -799,7 +943,7 @@ export default function NewSocietyPage() {
                     htmlFor="apartment-four-bad"
                     className="ml-2 text-sm font-medium "
                   >
-                    Four Bad
+                    4 Bed
                   </label>
                 </div>
 

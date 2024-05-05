@@ -25,6 +25,8 @@ type Props = {
     // searchParams: { [key: string]: string | string[] | undefined }
 }
 
+export const revalidate = 1 // revalidate at most every hour
+
 export default function PlotAddPage({ params }: Props) {
 
     // const [date, setDate] = useState<Date>()
@@ -199,7 +201,7 @@ export default function PlotAddPage({ params }: Props) {
                                 htmlFor="plot-rent"
                                 className="block mb-2 text-sm font-medium"
                             >
-                                Rental Value:
+                                Monthly Rent:
                             </label>
                             <div className="flex">
                                 <Input
@@ -259,13 +261,28 @@ export default function PlotAddPage({ params }: Props) {
                                 Remarks
                             </label>
                             <Textarea
-                                id="remarks"
-                                name="remarks"
+                                id="plot-remarks"
+                                name="plot-remarks"
                                 className="textarea w-full border-2 border-gray-400 "
                                 placeholder="Leave a comment..."
                             ></Textarea>
                         </div>
 
+                        <div className="flex items-center mb-4 ml-2">
+                            <input
+                                id="add-more-plots"
+                                name="add-more-plots"
+                                type="checkbox"
+                                value="yes"
+                                className="checkbox checkbox-primary"
+                            />
+                            <label
+                                htmlFor="add-more-plots"
+                                className="ml-2 text-sm font-medium "
+                            >
+                                Add more
+                            </label>
+                        </div>
 
                         {/* Submit button */}
                         <div className="flex gap-6 justify-center mt-3 mb-2">

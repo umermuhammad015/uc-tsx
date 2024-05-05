@@ -221,17 +221,23 @@ export default async function ViewBuilding({ params }: Props) {
                         <TableRow>
                             <TableCell>Apartment Sizes (Sq. Ft)</TableCell>
                             <TableCell>
+                                {society?.apartment_studio && (
+                                    <Badge>Studio</Badge>
+                                )}
                                 {society?.apartment_one_bad && (
-                                    <Badge>One Bad</Badge>
+                                    <Badge>1 Bed</Badge>
                                 )}
                                 {society?.apartment_two_bad && (
-                                    <Badge>Two Bad</Badge>
+                                    <Badge>2 Bed</Badge>
                                 )}
                                 {society?.apartment_three_bad && (
-                                    <Badge>Three Bad</Badge>
+                                    <Badge>3 Bed</Badge>
                                 )}
                                 {society?.apartment_four_bad && (
-                                    <Badge>Four Bad</Badge>
+                                    <Badge>4 Bed</Badge>
+                                )}
+                                {society?.apartment_five_bad && (
+                                    <Badge>5 Bed</Badge>
                                 )}
                                 {society?.apartment_penthouse && (
                                     <Badge>Penthouse</Badge>
@@ -404,11 +410,10 @@ export default async function ViewBuilding({ params }: Props) {
             </div >
 
             <div className="mt-4">Add Plots/Bungalow</div>
-            <div className="border  text-center border-gray-400 overflow-auto" >
+            <div className="border border-gray-400 overflow-auto" >
                 <Table className="">
-                    <TableHeader className=" text-center">
+                    <TableHeader className="">
                         <TableRow>
-                            <TableHead>Type</TableHead >
                             <TableHead>Type</TableHead >
                             <TableHead>Size</TableHead>
                             <TableHead>Price</TableHead>
@@ -418,12 +423,9 @@ export default async function ViewBuilding({ params }: Props) {
                     </TableHeader>
                     <TableBody className="">
                         {plots.map((plot) => (
-                            <TableRow key={plot?.id} className="border-b border-gray-400 text-center">
+                            <TableRow key={plot?.id} className="border-b border-gray-400 ">
                                 <TableCell>
-                                    <div className=" text-left w-28">{plot?.plot_type}</div>
-                                </TableCell>
-                                <TableCell>
-                                    <div className=" text-left w-28">{plot?.type}</div>
+                                    <div className="">{plot?.type}</div>
                                 </TableCell>
                                 <TableCell>
                                     <div className="">{plot?.size}</div></TableCell>

@@ -2,6 +2,7 @@
 
 import { redirect } from "next/navigation";
 import prisma from "../db";
+import { revalidatePath } from "next/cache";
 
 export default async function createPlot(data: FormData) {
 
@@ -38,6 +39,8 @@ export default async function createPlot(data: FormData) {
 
     const plot_remarks = data.get("plot-remarks")
 
+    const add_more = data.get("add-more-plots")
+
     console.log(plot_date)
     console.log("🚀 ~ file: page.tsx:9 ~ createPlots ~ society_id:", society_id);
     console.log("🚀 ~ file: page.tsx:9 ~ createPlots ~ plot_type:", plot_type);
@@ -51,6 +54,7 @@ export default async function createPlot(data: FormData) {
     console.log("🚀 ~ file: page.tsx:9 ~ createPlots ~ instalment_period:", instalment_period);
     console.log("🚀 ~ file: page.tsx:9 ~ createPlots ~ instalment_plan:", instalment_plan);
     console.log("🚀 ~ file: page.tsx:9 ~ createPlots ~ plot_remarks:", plot_remarks);
+    console.log("🚀 ~ file: page.tsx:9 ~ createPlots ~ add_more:", add_more);
 
 
     await prisma.plots.create({
@@ -72,7 +76,14 @@ export default async function createPlot(data: FormData) {
         },
     });
 
-    redirect("/societies");
+    if (add_more === "yes") {
+
+        revalidatePath("/societies/plots/add/" + society_id, ) // Update cached posts
+        redirect("/societies/plots/add/" + society_id)
+
+    } else {
+        redirect("/societies/" + society_id) 
+    } 
 
 }
 

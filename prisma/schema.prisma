@@ -125,7 +125,11 @@ model Societies {
   plot_sizes_residential_125                 String?
   plot_sizes_residential_200                 String?
   plot_sizes_residential_250                 String?
+  plot_sizes_residential_300                 String?
+  plot_sizes_residential_400                 String?
   plot_sizes_residential_500                 String?
+  plot_sizes_residential_600                 String?
+  plot_sizes_residential_800                 String?
   plot_sizes_residential_1000                String?
   plot_sizes_residential_2000                String?
   total_plots_commercial                     Int?
@@ -145,6 +149,7 @@ model Societies {
   apartment_two_bad                          String?
   apartment_three_bad                        String?
   apartment_four_bad                         String?
+  apartment_five_bad                         String?
   apartment_penthouse                        String?
   apartment_duplex                           String?
   plot_size                                  Int?

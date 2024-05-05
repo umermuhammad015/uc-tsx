@@ -82,6 +82,8 @@ export default async function editForm(data: FormData) {
 
     const plot_sizes_commercial_87_5 = data.get("plot-sizes-commercial-87-5")?.valueOf() === undefined ? null : "yes";
 
+    const plot_sizes_commercial_100 = data.get("plot-sizes-commercial-100")?.valueOf() === undefined ? null : "yes";
+
     const plot_sizes_commercial_125 = data.get("plot-sizes-commercial-125")?.valueOf() === undefined ? null : "yes";
 
     const plot_sizes_commercial_200 = data.get("plot-sizes-commercial-200")?.valueOf() === undefined ? null : "yes";
@@ -105,6 +107,8 @@ export default async function editForm(data: FormData) {
     const apartment_three_bad = data.get("apartment-three-bad")?.valueOf() === undefined ? null : "yes";
 
     const apartment_four_bad = data.get("apartment-four-bad")?.valueOf() === undefined ? null : "yes";
+
+    const apartment_five_bad = data.get("apartment-five-bad")?.valueOf() === undefined ? null : "yes";
 
     const apartment_penthouse = data.get("apartment-penthouse")?.valueOf() === undefined ? null : "yes";
 
@@ -230,6 +234,7 @@ export default async function editForm(data: FormData) {
             total_plots_commercial,
             plot_sizes_commercial,
             plot_sizes_commercial_87_5,
+            plot_sizes_commercial_100,
             plot_sizes_commercial_125,
             plot_sizes_commercial_200,
             plot_sizes_commercial_250,
@@ -242,6 +247,7 @@ export default async function editForm(data: FormData) {
             apartment_two_bad,
             apartment_three_bad,
             apartment_four_bad,
+            apartment_five_bad,
             apartment_penthouse,
             apartment_duplex,
             plot_size: societies_plot_size,

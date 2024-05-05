@@ -2,6 +2,7 @@ import Link from "next/link";
 import prisma from "../db";
 import SearchInput from "./components/SearchInput";
 import { redirect } from "next/navigation";
+import useDebounce from "@/components/debouce";
 import { PageProps } from '../buildings/page';
 import DeleteSocietyButton from "./components/DeleteSocietyButton";
 import { Badge } from "@/components/ui/badge"
@@ -22,20 +23,25 @@ import CityInput from "./components/CityInput";
 
 export const revalidate = 1; // revalidate the date at most every hour
 export const dynamic = "force-dynamic";
-const PAGE_SIZE = 5;
+const PAGE_SIZE = 10000;
 
-const GetSocieties = async ({ search = '', take = PAGE_SIZE, skip = 0, city = "" }) => {
+const GetSocieties = async ({ search_string = '', take = PAGE_SIZE, skip = 0, city = ""}) => {
     // async function getBuildings({ search = '', take = PAGE_SIZE, skip = 0 }) {
-    console.log("GetSocieties");
+    // console.log("GetSocieties");
 
+    // console.log("city GetSocieties")
+    // console.log(city)
 
-    if (search === null || search === '') {
+    if (search_string === null || search_string === '') {
 
         console.log("inside if");
 
         const results = await prisma.societies.findMany({
             take,
             skip,
+            where: {
+                city: city === "" ? undefined : city,
+            },
             orderBy: {
                 name: 'asc',
             },
@@ -53,14 +59,15 @@ const GetSocieties = async ({ search = '', take = PAGE_SIZE, skip = 0, city = ""
             },
         };
 
-        console.log("RO")
-        console.log(return_object)
+        // console.log("RO")
+        // console.log(return_object)
 
         return return_object
 
     } else {
 
-        console.log("inside else");
+        console.log("inside else GetSocieties");
+        console.log(search_string);
 
         const results = await prisma.societies.findMany({
             take,
@@ -69,19 +76,22 @@ const GetSocieties = async ({ search = '', take = PAGE_SIZE, skip = 0, city = ""
                 OR: [
                     {
                         name: {
-                            contains: search,
+                            contains: search_string,
                             mode: 'insensitive',
                         },
                     },
                     {
                         city: {
-                            contains: search,
+                            contains: search_string,
                             mode: 'insensitive',
                         },
                     },
-                ]
+                ],
+                city: city === "" ? undefined : city,
             },
         })
+
+        console.log(results);
 
         const total = await prisma.societies.count({
             take,
@@ -90,13 +100,13 @@ const GetSocieties = async ({ search = '', take = PAGE_SIZE, skip = 0, city = ""
                 OR: [
                     {
                         name: {
-                            contains: search,
+                            contains: search_string,
                             mode: 'insensitive',
                         },
                     },
                     {
                         city: {
-                            contains: search,
+                            contains: search_string,
                             mode: 'insensitive',
                         },
                     },
@@ -114,14 +124,14 @@ const GetSocieties = async ({ search = '', take = PAGE_SIZE, skip = 0, city = ""
             },
         };
 
-        console.log("RO")
-        console.log(return_object)
+        // console.log("RO")
+        // console.log(return_object)
 
         return return_object
 
     }
 
-    
+
 
 }
 
@@ -132,16 +142,22 @@ type Props = {
 
 
 
-export default async function List(props: PageProps) {
+// export default async function List(props: PageProps) {
+export default async function List({ city, page, search }: any) {
 
-    const pageNumber = Number(props?.searchParams?.page || 1); // Get the page number. Default to 1 if not provided.
+    // console.log("city list ")
+    // console.log(city)
+
+    // const pageNumber = Number(props?.searchParams?.page || 1); // Get the page number. Default to 1 if not provided.
+    const pageNumber = Number(page || 1); // Get the page number. Default to 1 if not provided.
 
     const take = PAGE_SIZE;
     const skip = (pageNumber - 1) * take; // Calculate skip based on page number.
-    const search = props?.searchParams?.search || ''
+    // const search = props?.searchParams?.search || ''
+    const search_string = search || ''
 
     // const buildings = await getBuildings({search, take, skip});
-    const { data, metadata } = await GetSocieties({ search, take, skip });
+    const { data, metadata } = await GetSocieties({ search_string, take, skip, city });
 
     // const searchedBuildings = await getSearchedBuildings()
 
@@ -191,9 +207,6 @@ export default async function List(props: PageProps) {
                                 <div className="text-lg">Societies Names</div>
                             </TableHead>
                             <TableHead>
-                                <div className="text-lg">City</div>
-                            </TableHead>
-                            <TableHead>
                                 <div className="text-lg">Location</div>
                             </TableHead>
                             <TableHead>
@@ -220,82 +233,14 @@ export default async function List(props: PageProps) {
                         {data.map((societies) => (
                             <TableRow key={societies.id} className="">
                                 <TableCell><Link href={"societies/" + societies.id}>{societies.name}</Link></TableCell>
-                                <TableCell>{societies.city}</TableCell>
                                 <TableCell>{societies.address}</TableCell>
                                 <TableCell>{societies.type}</TableCell>
 
-                                <TableCell>{societies.grade}</TableCell>
-                                <TableCell>
-
-                                    <div className="">
-                                        {societies.plot_sizes_commercial_87_5 && (
-                                            // <div className="badge bg-cyan-950 text-white p-2 m-2 text-xs">Park</div>
-                                            <Badge>87.7 (Sq.Y)</Badge>
-                                        )}
-                                        {societies.plot_sizes_commercial_100 && (
-                                            // <div className="badge bg-cyan-950 text-white p-2 m-2 text-xs">School</div>
-                                            <Badge>100 (Sq.Y)</Badge>
-                                        )}
-                                        {societies.plot_sizes_commercial_125 && (
-                                            // <div className="badge bg-cyan-950 text-white p-2 m-2 text-xs">Gated_Community</div>
-                                            <Badge>125 (Sq.Y)</Badge>
-                                        )}
-                                        {societies.plot_sizes_commercial_200 && (
-                                            // <div className="badge bg-cyan-950 text-white p-2 m-2 text-xs">University</div>
-                                            <Badge>200 (Sq.Y)</Badge>
-                                        )}
-                                        {societies.plot_sizes_commercial_250 && (
-                                            // <div className="badge bg-cyan-950 text-white p-2 m-2 text-xs">Hospital</div>
-                                            <Badge>250 (Sq.Y)</Badge>
-                                        )}
-                                        {societies.plot_sizes_commercial_500 && (
-                                            // <div className="badge bg-cyan-950 text-white p-2 m-2 text-xs">Commercial Market</div>
-                                            <Badge>500 (Sq.Y)</Badge>
-                                        )}
-                                        {societies.plot_sizes_commercial_1000 && (
-                                            // <div className="badge bg-cyan-950 text-white p-2 m-2 text-xs">zoo</div>
-                                            <Badge>1000 (Sq.Y)</Badge>
-                                        )}
-                                        {societies.plot_sizes_commercial_2000 && (
-                                            // <div className="badge bg-cyan-950 text-white p-2 m-2 text-xs">Food Arena</div>
-                                            <Badge>2000 (Sq.Y)</Badge>
-                                        )}
-
-                                    </div>
-                                    <div className="">
-                                        {societies.plot_sizes_residential_87_5 && (
-                                            // <div className="badge bg-cyan-950 text-white p-2 m-2 text-xs">Park</div>
-                                            <Badge>87.7 (Sq.Y)</Badge>
-                                        )}
-                                        {societies.plot_sizes_residential_125 && (
-                                            // <div className="badge bg-cyan-950 text-white p-2 m-2 text-xs">Gated_Community</div>
-                                            <Badge>125 (Sq.Y)</Badge>
-                                        )}
-                                        {societies.plot_sizes_residential_200 && (
-                                            // <div className="badge bg-cyan-950 text-white p-2 m-2 text-xs">University</div>
-                                            <Badge>200 (Sq.Y)</Badge>
-                                        )}
-                                        {societies.plot_sizes_residential_250 && (
-                                            // <div className="badge bg-cyan-950 text-white p-2 m-2 text-xs">Hospital</div>
-                                            <Badge>250 (Sq.Y)</Badge>
-                                        )}
-                                        {societies.plot_sizes_residential_500 && (
-                                            // <div className="badge bg-cyan-950 text-white p-2 m-2 text-xs">Commercial Market</div>
-                                            <Badge>500 (Sq.Y)</Badge>
-                                        )}
-                                        {societies.plot_sizes_residential_1000 && (
-                                            // <div className="badge bg-cyan-950 text-white p-2 m-2 text-xs">zoo</div>
-                                            <Badge>1000 (Sq.Y)</Badge>
-                                        )}
-                                        {societies.plot_sizes_residential_2000 && (
-                                            // <div className="badge bg-cyan-950 text-white p-2 m-2 text-xs">Food Arena</div>
-                                            <Badge>2000 (Sq.Y)</Badge>
-                                        )}
-
-                                    </div>
-                                </TableCell>
+                                <TableCell className="text-center">{societies.grade}</TableCell>
+                                <TableCell className="text-right">{Number(societies.area).toLocaleString()}</TableCell>
                                 <TableCell className="text-center">
-                                    {Number(societies?.occupancy).toLocaleString()}
+                                    {/* {(societies?.occupancy !== null || societies?.occupancy !== undefined || societies?.occupancy !== "") ? (societies?.occupancy + '%') : (societies?.occupancy)} */}
+                                    {societies?.occupancy === "" ? (societies?.occupancy !== null) : (societies?.occupancy + '%') }
                                 </TableCell>
                                 <TableCell>
                                     <div className="flex justify-around gap-2">
@@ -348,7 +293,7 @@ export default async function List(props: PageProps) {
                 </Table >
             </div>
             <div className="mt-6">
-                <Pagination {...props.searchParams} {...metadata} />
+                {/* <Pagination {...props.searchParams} {...metadata} /> */}
             </div>
             {/* <div className="flex flex-col gap-4 ">
         {buildings.map((building) => (

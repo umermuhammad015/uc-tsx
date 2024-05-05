@@ -60,8 +60,20 @@ export default async function createSociety(data: FormData) {
   const plot_sizes_residential_250 = data.get("plot-sizes-residential-250")?.valueOf();
   console.log("🚀 ~ createsocieties ~ plot_sizes_residential_250:", plot_sizes_residential_250)
 
+  const plot_sizes_residential_300 = data.get("plot-sizes-residential-300")?.valueOf();
+  console.log("🚀 ~ createsocieties ~ plot_sizes_residential_300:", plot_sizes_residential_300)
+
+  const plot_sizes_residential_400 = data.get("plot-sizes-residential-400")?.valueOf();
+  console.log("🚀 ~ createsocieties ~ plot_sizes_residential_400:", plot_sizes_residential_400)
+
   const plot_sizes_residential_500 = data.get("plot-sizes-residential-500")?.valueOf();
   console.log("🚀 ~ createsocieties ~ plot_sizes_residential_500:", plot_sizes_residential_500)
+
+  const plot_sizes_residential_600 = data.get("plot-sizes-residential-600")?.valueOf();
+  console.log("🚀 ~ createsocieties ~ plot_sizes_residential_600:", plot_sizes_residential_600)
+
+  const plot_sizes_residential_800 = data.get("plot-sizes-residential-800")?.valueOf();
+  console.log("🚀 ~ createsocieties ~ plot_sizes_residential_800:", plot_sizes_residential_800)
 
   const plot_sizes_residential_1000 = data.get("plot-sizes-residential-1000")?.valueOf();
   console.log("🚀 ~ createsocieties ~ plot_sizes_residential_1000:", plot_sizes_residential_1000)
@@ -77,6 +89,9 @@ export default async function createSociety(data: FormData) {
 
   const plot_sizes_commercial_87_5 = data.get("plot-sizes-residential-87-5")?.valueOf();
   console.log("🚀 ~ createsocieties ~ plot_sizes_commercial_87_5:", plot_sizes_commercial_87_5)
+
+  const plot_sizes_commercial_100 = data.get("plot-sizes-residential-100")?.valueOf();
+  console.log("🚀 ~ createsocieties ~ plot_sizes_commercial_100:", plot_sizes_commercial_100)
 
   const plot_sizes_commercial_125 = data.get("plot-sizes-commercial-125")?.valueOf();
   console.log("🚀 ~ createsocieties ~ plot_sizes_commercial_125:", plot_sizes_commercial_125)
@@ -266,12 +281,17 @@ export default async function createSociety(data: FormData) {
       plot_sizes_residential_125: plot_sizes_residential_125 as string,
       plot_sizes_residential_200: plot_sizes_residential_200 as string,
       plot_sizes_residential_250: plot_sizes_residential_250 as string,
+      plot_sizes_residential_300: plot_sizes_residential_300 as string,
+      plot_sizes_residential_400: plot_sizes_residential_400 as string,
       plot_sizes_residential_500: plot_sizes_residential_500 as string,
+      plot_sizes_residential_600: plot_sizes_residential_600 as string,
+      plot_sizes_residential_800: plot_sizes_residential_800 as string,
       plot_sizes_residential_1000: plot_sizes_residential_1000 as string,
       plot_sizes_residential_2000: plot_sizes_residential_2000 as string,
       total_plots_commercial: total_plots_commercial,
       plot_sizes_commercial: plot_sizes_commercial,
       plot_sizes_commercial_87_5: plot_sizes_commercial_87_5 as string,
+      plot_sizes_commercial_100: plot_sizes_commercial_100 as string,
       plot_sizes_commercial_125: plot_sizes_commercial_125 as string,
       plot_sizes_commercial_200: plot_sizes_commercial_200 as string,
       plot_sizes_commercial_250: plot_sizes_commercial_250 as string,

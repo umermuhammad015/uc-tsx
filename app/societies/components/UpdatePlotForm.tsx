@@ -31,6 +31,8 @@ export default function UpdatePlotForm({ plots }: any) {
     const [price, setPrice] = useState(plots?.plot_price)
     const [rent, setRent] = useState(plots?.plot_rent)
 
+    
+
 
     return (
         <form action={UpdatePlot}>
@@ -191,7 +193,7 @@ export default function UpdatePlotForm({ plots }: any) {
                     htmlFor="plot-rent"
                     className="block mb-2 text-sm font-medium"
                 >
-                    Rental Value:
+                    Monthly Rent:
                 </label>
                 <div className="flex">
                     <Input
