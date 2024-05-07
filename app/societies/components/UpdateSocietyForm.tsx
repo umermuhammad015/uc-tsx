@@ -25,6 +25,7 @@ import { Checkbox } from "@/components/ui/checkbox"
 export default function UpdatePlotForm({ societies }: any) {
 
     const [area, setArea] = useState(societies?.area)
+    const [occupancy, setOccupancy] = useState(societies?.occupancy);
     const [population, setPoputation] = useState(societies?.population)
     const [plot_sizes_residential, setPlot_sizes_residential] = useState(societies?.plot_sizes_residential)
     const [plot_sizes_commercial, setPlot_sizes_commercial] = useState(societies?.plot_sizes_commercial)
@@ -326,15 +327,25 @@ export default function UpdatePlotForm({ societies }: any) {
                         >
                             Occupancy Ratio
                         </label>
-                        <Input
-                            type="text"
-                            id="societies-occupancy"
-                            name="societies-occupancy"
-                            className="input input-bordered w-full max-w-xs border-2 border-gray-400"
-                            defaultValue={societies?.occupancy as string}
-                            placeholder=""
-                        />
+                        <div className="flex">
+                            <Input
+                                type="text"
+                                id="societies-occupancy"
+                                name="societies-occupancy"
+                                className="input input-bordered w-full max-w-xs border-2 border-gray-400"
+                                defaultValue={societies?.occupancy as number}
+                                placeholder=""
+                                onChange={(e) => {
+                                    setOccupancy(Number(e.target.value))
+                                }}
+                            />
+                            <div className="m-4">
+                                {occupancy + "%"}
+                            </div>
+                        </div>
                     </div>
+                   
+
 
                     {/* Population*/}
                     <div className="mt-4">

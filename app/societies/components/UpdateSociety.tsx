@@ -101,7 +101,7 @@ export default async function editForm(data: FormData) {
     const plot_sizes_commercial_500 = data.get("plot-sizes-commercial-500")?.valueOf() === undefined ? null : "yes";
 
     const plot_sizes_commercial_1000 = data.get("plot-sizes-commercial-1000")?.valueOf() === undefined ? null : "yes";
-    
+
     const plot_sizes_commercial_2000 = data.get("plot-sizes-commercial-2000")?.valueOf() === undefined ? null : "yes";
 
     const societies_total_apartments = parseInt(data.get("societies-total-apartments")?.valueOf() as string);
@@ -123,7 +123,7 @@ export default async function editForm(data: FormData) {
     const apartment_penthouse = data.get("apartment-penthouse")?.valueOf() === undefined ? null : "yes";
 
     const apartment_duplex = data.get("apartment-duplex")?.valueOf() === undefined ? null : "yes";
-    
+
     const apartment_size_2000 = data.get("apartment-size-2000")?.valueOf() === undefined ? null : "yes";
 
     const societies_plot_size = parseInt(data.get("societies-plot-size")?.valueOf() as string);
@@ -143,9 +143,9 @@ export default async function editForm(data: FormData) {
     const apartment_size = parseInt(data.get("apartment-size")?.valueOf() as string);
 
     const min_apartments_price = parseInt(data.get("min-apartments-price")?.valueOf() as string);
-    
+
     const max_apartments_price = parseInt(data.get("max-apartments-price")?.valueOf() as string);
-  
+
     const min_apartments_monthly_rent = parseInt(data.get("min-apartments-monthly-rent")?.valueOf() as string);
 
     const max_apartments_monthly_rent = parseInt(data.get("max-apartments-monthly-rent")?.valueOf() as string);
@@ -312,8 +312,14 @@ export default async function editForm(data: FormData) {
     console.log(update_query)
 
     const updateSociety = await prisma.societies.update(update_query)
-    // let updatedNote = await Note.findByIdAndUpdate({ _id: params.id }, { title, note });
-    redirect('/societies')
+    // let updatedNote = await Note.findByIdAndUpdate({ _id: params.id }, { title, note })
+
+    if (city === city) {
+        redirect("/societies?city=" + city)
+
+    } else {
+        redirect('/societies')
+    }
     // }
 
 
