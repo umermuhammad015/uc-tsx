@@ -34,6 +34,8 @@ export default function PlotAddPage({ params }: Props) {
     const [price, setPrice] = useState(0);
     const [rent, setRent] = useState(0);
 
+    const [plotType, setPlotType] = useState("Residential Plot");
+
     return (
         <>
             <div className="text-lg">Plots/Bungalow Information</div>
@@ -61,65 +63,29 @@ export default function PlotAddPage({ params }: Props) {
 
                             />
                         </div>
-                        {/* <div className="mt-4 ">
-                            <label
-                                htmlFor="society-name"
-                                className="block mb-2 text-sm font-medium "
-                            >
-                                Society Name:
-                            </label>
-                            <Input
-                                type="text"
-                                id="society-name"
-                                name="society-name"
-                                className="input input-bordered  w-full max-w-xs border-2 border-gray-400 cursor-not-allowed disabled:bg-gray-200"
-                                placeholder=""
-                                value={society?.name as string}
-                            
-                            />
-                        </div> */}
-                        {/* <div className="mt-4">
-                            <label
-                                htmlFor="plot-type"
-                                className="block mb-2 text-sm font-medium"
-                            >
-                                Type:
-                            </label>
-
-                            <Select
-                                name="plot-type">
-                                <SelectTrigger
-                                    id="plot-type"
-                                    className="select  w-full max-w-xs border-2 border-gray-400 ">
-                                    <SelectValue placeholder="Select Type" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    <SelectGroup>
-                                        <SelectLabel></SelectLabel>
-                                        <SelectItem value="Plot">Plot</SelectItem>
-                                        <SelectItem value="Bungalow">Bungalow</SelectItem>
-                                    </SelectGroup>
-                                </SelectContent>
-                            </Select>
-                        </div> */}
+                      
                         {/* plot type */}
                         <div className="mt-4">
                             <label
                                 htmlFor="type"
                                 className="block mb-2 text-sm font-medium"
                             >
-                                Plot/Bungalow Type:
+                                Property Type:
                             </label>
-                            {/* <select
+
+
+                            <select
                                 id="type"
                                 name="type"
-                                className="select  w-full max-w-xs border-2 border-gray-400 "
+                                className="select  w-full h-10 max-w-xs border-2 rounded border-gray-400 bg-background"
+                                onChange={(e) => setPlotType(e.target.value)}
                             >
-                                <option>Commercial</option>
-                                <option>Residential</option>
-
-                            </select> */}
-                            <Select
+                                <option value="Residential Plot">Residential Plot</option>
+                                <option value="Commercial Plot">Commercial Plot</option>
+                                <option value="Bungalow">Bungalow</option>
+                                <option value="Apartment">Apartment</option>
+                            </select>
+                            {/* <Select
                                 name="type">
                                 <SelectTrigger
                                     id="type"
@@ -129,45 +95,97 @@ export default function PlotAddPage({ params }: Props) {
                                 <SelectContent>
                                     <SelectGroup>
                                         <SelectLabel></SelectLabel>
-                                        <SelectItem value="Residential">Residential Plot</SelectItem>
-                                        <SelectItem value="Commercial">Commercial Plot</SelectItem>
+                                        <SelectItem value="Residential Plot">Residential Plot</SelectItem>
+                                        <SelectItem value="Commercial Plot">Commercial Plot</SelectItem>
                                         <SelectItem value="Bungalow">Bungalow</SelectItem>
+                                        <SelectItem value="Apartment">Apartment</SelectItem>
 
                                     </SelectGroup>
                                 </SelectContent>
-                            </Select>
+                            </Select> */}
+
                         </div>
+
+
+
 
 
                         {/* plot size  */}
-                        <div className="mt-4">
-                            <label
-                                htmlFor="plot-size"
-                                className="block mb-2 text-sm font-medium"
-                            >
-                                Plot/Bungalow Size :
-                            </label>
-                            <Select
-                                name="plot-size">
-                                <SelectTrigger
-                                    id="plot-size"
-                                    className="select w-full max-w-xs border-2 border-gray-400 ">
-                                    <SelectValue placeholder="Select Plot/Bungalow Size" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    <SelectGroup>
-                                        <SelectLabel></SelectLabel>
-                                        <SelectItem value="87.5">87.5</SelectItem>
-                                        <SelectItem value="125">125</SelectItem>
-                                        <SelectItem value="200">200</SelectItem>
-                                        <SelectItem value="250">250</SelectItem>
-                                        <SelectItem value="500">500</SelectItem>
-                                        <SelectItem value="1000">1,000</SelectItem>
-                                        <SelectItem value="2000">2,000</SelectItem>
-                                    </SelectGroup>
-                                </SelectContent>
-                            </Select>
-                        </div>
+
+                        {
+                            plotType !== "Apartment"  &&
+                            <>
+                                <div className="mt-4">
+                                    <label
+                                        htmlFor="plot-size"
+                                        className="block mb-2 text-sm font-medium"
+                                    >
+                                        Plot/Bungalow Size :
+                                    </label>
+                                    <Select
+                                        name="plot-size">
+                                        <SelectTrigger
+                                            id="plot-size"
+                                            className="select w-full max-w-xs border-2 border-gray-400 ">
+                                            <SelectValue placeholder="Select Plot/Bungalow Size" />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            <SelectGroup>
+                                                <SelectLabel></SelectLabel>
+                                                <SelectItem value="87.5">87.5</SelectItem>
+                                                <SelectItem value="125">125</SelectItem>
+                                                <SelectItem value="200">200</SelectItem>
+                                                <SelectItem value="250">250</SelectItem>
+                                                <SelectItem value="500">500</SelectItem>
+                                                <SelectItem value="1000">1,000</SelectItem>
+                                                <SelectItem value="2000">2,000</SelectItem>
+                                            </SelectGroup>
+                                        </SelectContent>
+                                    </Select>
+                                </div>
+                            </>
+
+                        }
+
+
+                        {
+                            plotType === "Apartment" &&
+                            <>
+                                <div className="mt-4">
+                                    <label
+                                        htmlFor="apartment-size"
+                                        className="block mb-2 text-sm font-medium"
+                                    >
+                                        Apartment Type :
+                                    </label>
+                                    <Select
+                                        name="apartment-size">
+                                        <SelectTrigger
+                                            id="apartment-size"
+                                            className="select w-full max-w-xs border-2 border-gray-400 ">
+                                            <SelectValue />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            <SelectGroup>
+                                                <SelectLabel></SelectLabel>
+                                                <SelectItem value="Studio">Studio</SelectItem>
+                                                <SelectItem value="1 Bed">1 Bed</SelectItem>
+                                                <SelectItem value="2 Bed">2 Bed</SelectItem>
+                                                <SelectItem value="3 Bed">3 Bed</SelectItem>
+                                                <SelectItem value="4 Bed">4 Bed</SelectItem>
+                                                <SelectItem value="5 Bed">5 Bed</SelectItem>
+                                                <SelectItem value="Penthouse">Penthouse</SelectItem>
+                                                <SelectItem value="Duplex">Duplex</SelectItem>
+                                            </SelectGroup>
+                                        </SelectContent>
+                                    </Select>
+                                </div>
+                            </>
+
+                        }
+
+                        {/* Apartment size  */}
+
 
                         {/* plot price  */}
                         <div className="mt-4">
@@ -228,8 +246,7 @@ export default function PlotAddPage({ params }: Props) {
                                 htmlFor="surveyor-name"
                                 className="block mb-2 text-sm font-medium "
                             >
-                                Date: (Month/Day/year)
-
+                                Date:
                             </label>
                             <div className="absolute inset-y-0 right-0 flex items-center pr-20 pointer-events-none">
                                 <svg

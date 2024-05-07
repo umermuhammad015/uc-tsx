@@ -464,6 +464,41 @@ export default function UpdatePlotForm({ societies }: any) {
 
                                 <div className="flex items-center mb-4 ml-2">
                                     <input
+                                        id="plot-sizes-residential-300"
+                                        name="plot-sizes-residential-300"
+                                        type="checkbox"
+                                        value="yes"
+                                        defaultChecked={societies?.plot_sizes_residential_300 ? true : false}
+                                        className="checkbox checkbox-primary"
+                                    />
+                                    <label
+                                        htmlFor="plot-sizes-residential-300"
+                                        className="ml-2 text-sm font-medium "
+                                    >
+                                        300
+                                    </label>
+                                </div>
+
+                                <div className="flex items-center mb-4 ml-2">
+                                    <input
+                                        id="plot-sizes-residential-400"
+                                        name="plot-sizes-residential-400"
+                                        type="checkbox"
+                                        value="yes"
+                                        defaultChecked={societies?.plot_sizes_residential_400 ? true : false}
+                                        className="checkbox checkbox-primary"
+                                    />
+                                    <label
+                                        htmlFor="plot-sizes-residential-400"
+                                        className="ml-2 text-sm font-medium "
+                                    >
+                                        400
+                                    </label>
+                                </div>
+
+
+                                <div className="flex items-center mb-4 ml-2">
+                                    <input
                                         id="plot-sizes-residential-500"
                                         name="plot-sizes-residential-500"
                                         type="checkbox"
@@ -476,6 +511,40 @@ export default function UpdatePlotForm({ societies }: any) {
                                         className="ml-2 text-sm font-medium "
                                     >
                                         500
+                                    </label>
+                                </div>
+
+                                <div className="flex items-center mb-4 ml-2">
+                                    <input
+                                        id="plot-sizes-residential-600"
+                                        name="plot-sizes-residential-600"
+                                        type="checkbox"
+                                        defaultChecked={societies?.plot_sizes_residential_600 ? true : false}
+                                        value="yes"
+                                        className="checkbox checkbox-primary"
+                                    />
+                                    <label
+                                        htmlFor="plot-sizes-residential-600"
+                                        className="ml-2 text-sm font-medium "
+                                    >
+                                        600
+                                    </label>
+                                </div>
+
+                                <div className="flex items-center mb-4 ml-2">
+                                    <input
+                                        id="plot-sizes-residential-800"
+                                        name="plot-sizes-residential-800"
+                                        type="checkbox"
+                                        defaultChecked={societies?.plot_sizes_residential_800 ? true : false}
+                                        value="yes"
+                                        className="checkbox checkbox-primary"
+                                    />
+                                    <label
+                                        htmlFor="plot-sizes-residential-800"
+                                        className="ml-2 text-sm font-medium "
+                                    >
+                                        800
                                     </label>
                                 </div>
 
@@ -660,6 +729,9 @@ export default function UpdatePlotForm({ societies }: any) {
                                     </label>
                                 </div>
 
+
+
+
                                 <div className="flex items-center mb-4 ml-2">
                                     <input
                                         id="plot-sizes-commercial-500"
@@ -676,6 +748,8 @@ export default function UpdatePlotForm({ societies }: any) {
                                         500
                                     </label>
                                 </div>
+
+
 
                                 <div className="flex items-center mb-4 ml-2">
                                     <input
@@ -771,6 +845,23 @@ export default function UpdatePlotForm({ societies }: any) {
                                 <legend className="block mb-4 text-sm font-medium">
                                     Apartments Sizes:
                                 </legend>
+
+                                <div className="flex items-center mb-4 ml-2">
+                                    <input
+                                        id="apartment-studio"
+                                        name="apartment-studio"
+                                        type="checkbox"
+                                        value="yes"
+                                        defaultChecked={societies?.apartment_studio ? true : false}
+                                        className="checkbox checkbox-primary"
+                                    />
+                                    <label
+                                        htmlFor="apartment-studio"
+                                        className="ml-2 text-sm font-medium "
+                                    >
+                                        Studio
+                                    </label>
+                                </div>
 
                                 <div className="flex items-center mb-4 ml-2">
                                     <input

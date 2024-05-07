@@ -37,7 +37,7 @@ type Props = {
 
 export default async function editForm({ params }: any) {
 
-    console.log(params)
+    // console.log(params)
 
     const societies = await FetchSociety(params.id)
 
@@ -262,7 +262,7 @@ export default async function editForm({ params }: any) {
     //     return date
     // }
 
-    console.log(societies)
+    // console.log(societies)
 
     return (
         <>

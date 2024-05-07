@@ -74,13 +74,13 @@ export default function NewSocietyPage() {
 
   useEffect(() => {
 
-    console.log(nameKeywords);
+    // console.log(nameKeywords);
 
     if (debouncedNameKeywords !== "") {
       const fetchData = async () => {
         try {
           const societyNames: Society[] = await FetchSocietyNames(debouncedNameKeywords)
-          console.log(societyNames);
+          // console.log(societyNames);
 
           setNames(societyNames);
 
@@ -394,21 +394,23 @@ export default function NewSocietyPage() {
             >
               Occupancy Ratio (1 to 100)
             </label>
-            <Input
-              // type="number"
-              id="societies-occupancy"
-              name="societies-occupancy"
-              type="number"
-              className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-              min={0}
-              max={100}
-              placeholder=""
-              onChange={(e) => {
-                setOccupancy(Number(e.target.value))
-              }}
-            />
-            <div className="m-4">
-              {occupancy + "%"}
+            <div className="flex">
+              <Input
+                // type="number"
+                id="societies-occupancy"
+                name="societies-occupancy"
+                type="number"
+                className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+                min={0}
+                max={100}
+                placeholder=""
+                onChange={(e) => {
+                  setOccupancy(Number(e.target.value))
+                }}
+              />
+              <div className="m-4">
+                {occupancy + "%"}
+              </div>
             </div>
 
           </div>
@@ -869,14 +871,14 @@ export default function NewSocietyPage() {
 
                 <div className="flex items-center mb-4 ml-2">
                   <input
-                    id="apartment-one-bad"
-                    name="apartment-one-bad"
+                    id="apartment-studio"
+                    name="apartment-studio"
                     type="checkbox"
                     value="yes"
                     className="checkbox checkbox-primary"
                   />
                   <label
-                    htmlFor="apartment-one-bad"
+                    htmlFor="apartment-studio"
                     className="ml-2 text-sm font-medium "
                   >
                     Studio
@@ -944,6 +946,22 @@ export default function NewSocietyPage() {
                     className="ml-2 text-sm font-medium "
                   >
                     4 Bed
+                  </label>
+                </div>
+
+                <div className="flex items-center mb-4 ml-2">
+                  <input
+                    id="apartment-five-bad"
+                    name="apartment-five-bad"
+                    type="checkbox"
+                    value="yes"
+                    className="checkbox checkbox-primary"
+                  />
+                  <label
+                    htmlFor="apartment-five-bad"
+                    className="ml-2 text-sm font-medium "
+                  >
+                    5 Bed
                   </label>
                 </div>
 
@@ -1765,14 +1783,14 @@ export default function NewSocietyPage() {
 
               <div className="flex items-center mb-4 ml-2">
                 <input
-                  id="utilities-type-drainage "
-                  name="utilities-type-drainage "
+                  id="utilities-type-drainage"
+                  name="utilities-type-drainage"
                   type="checkbox"
                   value="yes"
                   className="checkbox checkbox-primary"
                 />
                 <label
-                  htmlFor="utilities-type-drainage "
+                  htmlFor="utilities-type-drainage"
                   className="ml-2 text-sm font-medium "
                 >
                   Drainage

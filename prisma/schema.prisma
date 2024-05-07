@@ -252,6 +252,7 @@ model Plots {
   plot_type         String?
   type              String?
   size              String?
+  apartment_size    String?
   plot_price        String?
   plot_rent         String?
   banglow_price     String?

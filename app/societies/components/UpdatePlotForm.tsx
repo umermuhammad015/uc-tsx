@@ -31,7 +31,9 @@ export default function UpdatePlotForm({ plots }: any) {
     const [price, setPrice] = useState(plots?.plot_price)
     const [rent, setRent] = useState(plots?.plot_rent)
 
-    
+    const [plotType, setPlotType] = useState(plots?.plot_type)
+
+
 
 
     return (
@@ -95,70 +97,105 @@ export default function UpdatePlotForm({ plots }: any) {
                     htmlFor="type"
                     className="block mb-2 text-sm font-medium"
                 >
-                    Plot/Bungalow Type:
+                    Property Type:
                 </label>
-                {/* <select
+
+
+                <select
                     id="type"
                     name="type"
                     className="select  w-full max-w-xs border-2 border-gray-400 "
-
-                >
-                    <option>Commercial</option>
-                    <option>Residential</option>
-
-                </select> */}
-
-                <Select
                     defaultValue={plots?.type as string}
-                    name="type">
-                    <SelectTrigger
-                        id="type"
-                        className="select  w-full max-w-xs border-2 border-gray-400 ">
-                        <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                        <SelectGroup>
-                            <SelectLabel></SelectLabel>
-                            <SelectItem value="Residential">Residential Plot</SelectItem>
-                            <SelectItem value="Commercial">Commercial Plot</SelectItem>
-                            <SelectItem value="Bungalow">Bungalow</SelectItem>
+                    onChange={(e) => setPlotType(e.target.value)}
+                >
+                    <option value="Residential Plot">Residential Plot</option>
+                    <option value="Commercial Plot">Commercial Plot</option>
+                    <option value="Bungalow">Bungalow</option>
+                    <option value="Apartment">Apartment</option>
+                </select>
 
-                        </SelectGroup>
-                    </SelectContent>
-                </Select>
             </div>
+
+
 
 
             {/* plot size  */}
-            <div className="mt-4">
-                <label
-                    htmlFor="plot-size"
-                    className="block mb-2 text-sm font-medium"
-                >
-                    Plot/Bungalow Size :
-                </label>
-                <Select
-                    defaultValue={plots?.size as string}
-                    name="plot-size">
-                    <SelectTrigger
-                        id="plot-size"
-                        className="select w-full max-w-xs border-2 border-gray-400 ">
-                        <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                        <SelectGroup>
-                            <SelectLabel></SelectLabel>
-                            <SelectItem value="87.5">87.5</SelectItem>
-                            <SelectItem value="125">125</SelectItem>
-                            <SelectItem value="200">200</SelectItem>
-                            <SelectItem value="250">250</SelectItem>
-                            <SelectItem value="500">500</SelectItem>
-                            <SelectItem value="1000">1,000</SelectItem>
-                            <SelectItem value="2000">2,000</SelectItem>
-                        </SelectGroup>
-                    </SelectContent>
-                </Select>
-            </div>
+
+
+            {
+                plotType !== "Apartment" &&
+                <>
+                    <div className="mt-4">
+                        <label
+                            htmlFor="plot-size"
+                            className="block mb-2 text-sm font-medium"
+                        >
+                            Plot/Bungalow Size :
+                        </label>
+                        <Select
+                            defaultValue={plots?.size as string}
+                            name="plot-size">
+                            <SelectTrigger
+                                id="plot-size"
+                                className="select w-full max-w-xs border-2 border-gray-400 ">
+                                <SelectValue />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectGroup>
+                                    <SelectLabel></SelectLabel>
+                                    <SelectItem value="87.5">87.5</SelectItem>
+                                    <SelectItem value="125">125</SelectItem>
+                                    <SelectItem value="200">200</SelectItem>
+                                    <SelectItem value="250">250</SelectItem>
+                                    <SelectItem value="500">500</SelectItem>
+                                    <SelectItem value="1000">1,000</SelectItem>
+                                    <SelectItem value="2000">2,000</SelectItem>
+                                </SelectGroup>
+                            </SelectContent>
+                        </Select>
+                    </div>
+                </>
+
+            }
+
+            {
+                plotType === "Apartment" &&
+                <>
+                    <div className="mt-4">
+                        <label
+                            htmlFor="apartment-size"
+                            className="block mb-2 text-sm font-medium"
+                        >
+                            Apartment Type :
+                        </label>
+                        <Select
+                            defaultValue={plots?.apartment_size as string}
+                            name="apartment-size">
+                            <SelectTrigger
+                                id="apartment-size"
+                                className="select w-full max-w-xs border-2 border-gray-400 ">
+                                <SelectValue placeholder="Select Plot/Bungalow Size" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectGroup>
+                                    <SelectLabel></SelectLabel>
+                                    <SelectItem value="Studio">Studio</SelectItem>
+                                    <SelectItem value="1 Bed">1 Bed</SelectItem>
+                                    <SelectItem value="2 Bed">2 Bed</SelectItem>
+                                    <SelectItem value="3 Bed">3 Bed</SelectItem>
+                                    <SelectItem value="4 Bed">4 Bed</SelectItem>
+                                    <SelectItem value="5 Bed">5 Bed</SelectItem>
+                                    <SelectItem value="Penthouse">Penthouse</SelectItem>
+                                    <SelectItem value="Duplex">Duplex</SelectItem>
+                                </SelectGroup>
+                            </SelectContent>
+                        </Select>
+                    </div>
+
+
+                </>
+
+            }
 
             {/* plot price  */}
             <div className="mt-4">
@@ -222,7 +259,7 @@ export default function UpdatePlotForm({ plots }: any) {
                     htmlFor="surveyor-name"
                     className="block mb-2 text-sm font-medium"
                 >
-                    Date: (Month/Day/year)
+                    Date:
 
                 </label>
                 <div className="absolute inset-y-0 right-0 flex items-center pr-20 pointer-events-none">
@@ -274,7 +311,7 @@ export default function UpdatePlotForm({ plots }: any) {
 
             </div>
 
-        </form>
+        </form >
     )
 }
 

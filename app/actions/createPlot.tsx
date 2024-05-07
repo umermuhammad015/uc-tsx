@@ -20,6 +20,8 @@ export default async function createPlot(data: FormData) {
 
     const plot_size = data.get("plot-size")?.valueOf();
 
+    const apartment_size = data.get("apartment-size")?.valueOf();
+
     const plot_price = data.get("plot-price")?.valueOf();
 
     const plot_rent = data.get("plot-rent")?.valueOf();
@@ -64,6 +66,7 @@ export default async function createPlot(data: FormData) {
             plot_type: plot_type as string,
             type: type as string,
             size: plot_size as string,
+            apartment_size: apartment_size as string,
             plot_price: plot_price as string,
             plot_rent: plot_rent as string,
             banglow_price: banglow_price as string,

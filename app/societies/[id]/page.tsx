@@ -2,7 +2,16 @@ import prisma from "../../db";
 import { Badge } from "@/components/ui/badge"
 import Link from "next/link";
 import { Button } from "@/components/ui/button"
-
+import {
+    Dialog,
+    DialogClose,
+    DialogContent,
+    DialogDescription,
+    DialogFooter,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from "@/components/ui/dialog"
 
 import {
     Table,
@@ -35,7 +44,7 @@ export default async function ViewBuilding({ params }: Props) {
         },
     });
 
-    console.log(society);
+    // console.log(society);
 
     // Get floors information
     // const plots = await prisma.plots.findMany({
@@ -95,7 +104,7 @@ export default async function ViewBuilding({ params }: Props) {
         "use server";
 
         const plot_id = data.get("plot-id")?.valueOf();
-        console.log(plot_id);
+        // console.log(plot_id);
 
         await prisma.plots.delete({
             where: {
@@ -104,7 +113,7 @@ export default async function ViewBuilding({ params }: Props) {
         });
 
         revalidatePath("/");
-        redirect("/societies");
+        redirect("/societies/" + params.id);
     }
 
     return (
@@ -123,36 +132,36 @@ export default async function ViewBuilding({ params }: Props) {
                             <TableCell>City </TableCell> <TableCell>{society?.city}</TableCell>
                         </TableRow>
                         <TableRow>
-                            <TableCell>Project Type </TableCell> <TableCell>{society?.type}</TableCell>
+                            <TableCell>Zone/ Region </TableCell> <TableCell>{society?.zone}</TableCell>
                         </TableRow>
-
                         <TableRow>
                             <TableCell>Soceity/Project Name </TableCell> <TableCell>{society?.name}</TableCell>
-                        </TableRow>
-                        <TableRow>
-                            <TableCell>Zone/ Region </TableCell> <TableCell>{society?.zone}</TableCell>
                         </TableRow>
                         <TableRow>
                             <TableCell>Location/Address</TableCell> <TableCell>{society?.address}</TableCell>
                         </TableRow>
                         <TableRow>
-                            <TableCell>Total Phase/ Sectors/ Blocks</TableCell> <TableCell>{society?.blocks}</TableCell>
+                            <TableCell>Project Type </TableCell> <TableCell>{society?.type}</TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell>Launch Year</TableCell> <TableCell>{society?.launch_year}</TableCell>
                         </TableRow>
                         <TableRow>
                             <TableCell>Grade</TableCell> <TableCell>{society?.grade}</TableCell>
                         </TableRow>
                         <TableRow>
-                            <TableCell>Occupancy Ratio</TableCell> <TableCell>{society?.occupancy}</TableCell>
+                            <TableCell>Total Area of Society (Acres)</TableCell> <TableCell>{society?.area}</TableCell>
                         </TableRow>
                         <TableRow>
-                            <TableCell>Total Area of Society (Acres)</TableCell> <TableCell>{society?.area}</TableCell>
+                            <TableCell>Total Phase/ Sectors/ Blocks</TableCell> <TableCell>{society?.blocks}</TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell>Occupancy Ratio</TableCell> <TableCell>{society?.occupancy === "" ? (society?.occupancy !== null) : (society?.occupancy + '%')}</TableCell>
                         </TableRow>
                         <TableRow>
                             <TableCell>Population</TableCell> <TableCell>{Number(society?.population).toLocaleString()}</TableCell>
                         </TableRow>
-                        <TableRow>
-                            <TableCell>Launch Year</TableCell> <TableCell>{society?.launch_year}</TableCell>
-                        </TableRow>
+
                         <TableRow>
                             <TableCell>Total Plots Residential</TableCell> <TableCell>{Number(society?.total_plots_residential).toLocaleString()}</TableCell>
                         </TableRow>
@@ -172,8 +181,20 @@ export default async function ViewBuilding({ params }: Props) {
                                 {society?.plot_sizes_residential_250 && (
                                     <Badge>250</Badge>
                                 )}
+                                {society?.plot_sizes_residential_300 && (
+                                    <Badge>300</Badge>
+                                )}
+                                {society?.plot_sizes_residential_400 && (
+                                    <Badge>400</Badge>
+                                )}
                                 {society?.plot_sizes_residential_500 && (
                                     <Badge>500</Badge>
+                                )}
+                                {society?.plot_sizes_residential_600 && (
+                                    <Badge>600</Badge>
+                                )}
+                                {society?.plot_sizes_residential_800 && (
+                                    <Badge>800</Badge>
                                 )}
                                 {society?.plot_sizes_residential_1000 && (
                                     <Badge>1000</Badge>
@@ -248,7 +269,7 @@ export default async function ViewBuilding({ params }: Props) {
 
                             </TableCell>
                         </TableRow>
-                        <TableRow>
+                        {/* <TableRow>
                             <TableCell>Plot Size (Yards)</TableCell> <TableCell>{society?.plot_size}</TableCell>
                         </TableRow>
                         <TableRow>
@@ -288,7 +309,7 @@ export default async function ViewBuilding({ params }: Props) {
                         </TableRow>
                         <TableRow>
                             <TableCell>Payment Terms:</TableCell> <TableCell>{society?.payment_terms}</TableCell>
-                        </TableRow>
+                        </TableRow> */}
 
                         {/* <TableRow>
                             <TableCell>Payment Terms:</TableCell> <TableCell>{society?.instalment_total_amount}</TableCell>
@@ -409,7 +430,16 @@ export default async function ViewBuilding({ params }: Props) {
                 </Table>
             </div >
 
-            <div className="mt-4">Add Plots/Bungalow</div>
+            <div className="my-2 flex justify-between">
+                <div className="text-center pt-4">
+                    Add Plots/Bungalow
+                </div>
+                <Button asChild>
+                    <Link href={"/societies/plots/add/" + params.id}>
+                        Add Price
+                    </Link>
+                </Button>
+            </div>
             <div className="border border-gray-400 overflow-auto" >
                 <Table className="">
                     <TableHeader className="">
@@ -418,6 +448,7 @@ export default async function ViewBuilding({ params }: Props) {
                             <TableHead>Size</TableHead>
                             <TableHead>Price</TableHead>
                             <TableHead>Rental Value</TableHead>
+                            <TableHead>Date</TableHead>
                             <TableHead>Remarks</TableHead >
                         </TableRow>
                     </TableHeader>
@@ -428,9 +459,13 @@ export default async function ViewBuilding({ params }: Props) {
                                     <div className="">{plot?.type}</div>
                                 </TableCell>
                                 <TableCell>
-                                    <div className="">{plot?.size}</div></TableCell>
+                                    <div className="">{plot?.size}</div>
+                                    <div className="">{plot?.apartment_size}</div>
+
+                                </TableCell>
                                 <TableCell>{Number(plot?.plot_price).toLocaleString()}</TableCell>
                                 <TableCell>{Number(plot?.plot_rent).toLocaleString()}</TableCell>
+                                <TableCell>{plot?.date}</TableCell>
                                 <TableCell>{plot?.remarks}</TableCell>
                                 <TableCell>
                                     <Button asChild>
@@ -445,14 +480,39 @@ export default async function ViewBuilding({ params }: Props) {
 
                                 </TableCell>
                                 <TableCell >
-                                    <form action={deletePlot}>
-                                        <input
-                                            type="hidden"
-                                            name="plot-id"
-                                            value={plot.id}
-                                        />
-                                        <DeleteHomeButton />
-                                    </form>
+
+                                    <Dialog>
+                                        <DialogTrigger asChild>
+                                            <Button variant="destructive">Delete</Button>
+                                        </DialogTrigger>
+                                        <DialogContent className="sm:max-w-md">
+                                            <DialogHeader>
+                                                <DialogTitle>Delete Society</DialogTitle>
+                                                <DialogDescription>
+                                                    Are you absolutely sure?
+                                                </DialogDescription>
+                                            </DialogHeader>
+                                            <div className="flex items-center space-x-2">
+
+                                            </div>
+                                            <DialogFooter className="sm:justify-start">
+                                                <DialogClose asChild>
+                                                    <Button type="button" variant="secondary">
+                                                        Close
+                                                    </Button>
+
+                                                </DialogClose>
+                                                <form action={deletePlot}>
+                                                    <input
+                                                        type="hidden"
+                                                        name="plot-id"
+                                                        value={plot.id}
+                                                    />
+                                                    <DeleteHomeButton />
+                                                </form>
+                                            </DialogFooter>
+                                        </DialogContent>
+                                    </Dialog>
                                 </TableCell>
 
                             </TableRow>

@@ -70,7 +70,15 @@ export default async function editForm(data: FormData) {
 
     const plot_sizes_residential_250 = data.get("plot-sizes-residential-250")?.valueOf() === undefined ? null : "yes";
 
+    const plot_sizes_residential_300 = data.get("plot-sizes-residential-300")?.valueOf() === undefined ? null : "yes";
+
+    const plot_sizes_residential_400 = data.get("plot-sizes-residential-400")?.valueOf() === undefined ? null : "yes";
+
     const plot_sizes_residential_500 = data.get("plot-sizes-residential-500")?.valueOf() === undefined ? null : "yes";
+
+    const plot_sizes_residential_600 = data.get("plot-sizes-residential-600")?.valueOf() === undefined ? null : "yes";
+
+    const plot_sizes_residential_800 = data.get("plot-sizes-residential-800")?.valueOf() === undefined ? null : "yes";
 
     const plot_sizes_residential_1000 = data.get("plot-sizes-residential-1000")?.valueOf() === undefined ? null : "yes";
 
@@ -99,6 +107,8 @@ export default async function editForm(data: FormData) {
     const societies_total_apartments = parseInt(data.get("societies-total-apartments")?.valueOf() as string);
 
     const societies_apartment_size = parseInt(data.get("societies-apartment-size")?.valueOf() as string);
+
+    const apartment_studio = data.get("apartment-studio")?.valueOf() === undefined ? null : "yes";
 
     const apartment_one_bad = data.get("apartment-one-bad")?.valueOf() === undefined ? null : "yes";
 
@@ -228,7 +238,11 @@ export default async function editForm(data: FormData) {
             plot_sizes_residential_125,
             plot_sizes_residential_200,
             plot_sizes_residential_250,
+            plot_sizes_residential_300,
+            plot_sizes_residential_400,
             plot_sizes_residential_500,
+            plot_sizes_residential_600,
+            plot_sizes_residential_800,
             plot_sizes_residential_1000,
             plot_sizes_residential_2000,
             total_plots_commercial,

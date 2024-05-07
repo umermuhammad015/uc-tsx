@@ -87,10 +87,10 @@ export default async function createSociety(data: FormData) {
   const plot_sizes_commercial = parseInt(data.get("plot-sizes-commercial")?.valueOf() as string);
   console.log("🚀 ~ createsocieties ~ plot_sizes_commercial:", plot_sizes_commercial)
 
-  const plot_sizes_commercial_87_5 = data.get("plot-sizes-residential-87-5")?.valueOf();
+  const plot_sizes_commercial_87_5 = data.get("plot-sizes-commercial-87-5")?.valueOf();
   console.log("🚀 ~ createsocieties ~ plot_sizes_commercial_87_5:", plot_sizes_commercial_87_5)
 
-  const plot_sizes_commercial_100 = data.get("plot-sizes-residential-100")?.valueOf();
+  const plot_sizes_commercial_100 = data.get("plot-sizes-commercial-100")?.valueOf();
   console.log("🚀 ~ createsocieties ~ plot_sizes_commercial_100:", plot_sizes_commercial_100)
 
   const plot_sizes_commercial_125 = data.get("plot-sizes-commercial-125")?.valueOf();
@@ -117,6 +117,9 @@ export default async function createSociety(data: FormData) {
   const societies_apartment_size = parseInt(data.get("societies-apartment-size")?.valueOf() as string);
   console.log("🚀 ~ createsocieties ~ societies_apartment_size:", societies_apartment_size)
 
+  const apartment_studio = data.get("apartment-studio")?.valueOf();
+  console.log("🚀 ~ createsocieties ~ apartment_studio:", apartment_studio)
+
   const apartment_one_bad = data.get("apartment-one-bad")?.valueOf();
   console.log("🚀 ~ createsocieties ~ apartment_one_bad:", apartment_one_bad)
 
@@ -128,6 +131,9 @@ export default async function createSociety(data: FormData) {
 
   const apartment_four_bad = data.get("apartment-four-bad")?.valueOf();
   console.log("🚀 ~ createsocieties ~ apartment_four_bad:", apartment_four_bad)
+
+  const apartment_five_bad = data.get("apartment-five-bad")?.valueOf();
+  console.log("🚀 ~ createsocieties ~ apartment_five_bad:", apartment_five_bad)
 
   const apartment_penthouse = data.get("apartment-penthouse")?.valueOf();
   console.log("🚀 ~ createsocieties ~ apartment_penthouse:", apartment_penthouse)
@@ -300,10 +306,12 @@ export default async function createSociety(data: FormData) {
       plot_sizes_commercial_2000: plot_sizes_commercial_2000 as string,
       total_apartments: societies_total_apartments,
       societies_apartment_size: societies_apartment_size,
+      apartment_studio: apartment_studio as string,
       apartment_one_bad: apartment_one_bad as string,
       apartment_two_bad: apartment_two_bad as string,
       apartment_three_bad: apartment_three_bad as string,
       apartment_four_bad: apartment_four_bad as string,
+      apartment_five_bad: apartment_five_bad as string,
       apartment_penthouse: apartment_penthouse as string,
       apartment_duplex: apartment_duplex as string,
       plot_size: societies_plot_size,

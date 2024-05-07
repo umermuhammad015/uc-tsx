@@ -17,8 +17,8 @@ export default async function FetchSocietyNames(nameKeywords:string) {
         },
     })
 
-    console.log("FetchSocietyNames society_name")
-    console.log(society_name)
+    // console.log("FetchSocietyNames society_name")
+    // console.log(society_name)
 
     return (society_name)
 }

@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 import useDebounce from "@/components/debouce";
 import { PageProps } from '../buildings/page';
 import DeleteSocietyButton from "./components/DeleteSocietyButton";
-import { Badge } from "@/components/ui/badge"
+
 import { Button } from "@/components/ui/button"
 import {
     Table,
@@ -16,25 +16,37 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table"
+import {
+    Dialog,
+    DialogClose,
+    DialogContent,
+    DialogDescription,
+    DialogFooter,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from "@/components/ui/dialog"
+
 
 import { revalidatePath } from "next/cache";
 import { Pagination } from "@/components/pagination";
 import CityInput from "./components/CityInput";
+import DeveloperName from "./components/developerName";
 
 export const revalidate = 1; // revalidate the date at most every hour
 export const dynamic = "force-dynamic";
 const PAGE_SIZE = 10000;
 
-const GetSocieties = async ({ search_string = '', take = PAGE_SIZE, skip = 0, city = ""}) => {
+const GetSocieties = async ({ search_string = '', take = PAGE_SIZE, skip = 0, city = "", developer_name = "" }) => {
     // async function getBuildings({ search = '', take = PAGE_SIZE, skip = 0 }) {
     // console.log("GetSocieties");
 
     // console.log("city GetSocieties")
-    // console.log(city)
+    console.log(developer_name)
 
     if (search_string === null || search_string === '') {
 
-        console.log("inside if");
+        // console.log("inside if");
 
         const results = await prisma.societies.findMany({
             take,
@@ -66,8 +78,8 @@ const GetSocieties = async ({ search_string = '', take = PAGE_SIZE, skip = 0, ci
 
     } else {
 
-        console.log("inside else GetSocieties");
-        console.log(search_string);
+        // console.log("inside else GetSocieties");
+        // console.log(search_string);
 
         const results = await prisma.societies.findMany({
             take,
@@ -88,10 +100,11 @@ const GetSocieties = async ({ search_string = '', take = PAGE_SIZE, skip = 0, ci
                     },
                 ],
                 city: city === "" ? undefined : city,
+                developer_name: developer_name === "" ? undefined : developer_name,
             },
         })
 
-        console.log(results);
+        // console.log(results);
 
         const total = await prisma.societies.count({
             take,
@@ -143,7 +156,7 @@ type Props = {
 
 
 // export default async function List(props: PageProps) {
-export default async function List({ city, page, search }: any) {
+export default async function List({ developer_name, city, page, search }: any) {
 
     // console.log("city list ")
     // console.log(city)
@@ -157,7 +170,7 @@ export default async function List({ city, page, search }: any) {
     const search_string = search || ''
 
     // const buildings = await getBuildings({search, take, skip});
-    const { data, metadata } = await GetSocieties({ search_string, take, skip, city });
+    const { data, metadata } = await GetSocieties({ search_string, take, skip, city, developer_name });
 
     // const searchedBuildings = await getSearchedBuildings()
 
@@ -183,7 +196,10 @@ export default async function List({ city, page, search }: any) {
 
             <SearchInput />
             <header className="flex justify-between items-center mt-4 ">
-                <CityInput />
+                <div className="flex gap-5">
+                    <CityInput />
+                    <DeveloperName />
+                </div>
                 <div className=" ">
 
 
@@ -217,7 +233,7 @@ export default async function List({ city, page, search }: any) {
                                 <div className="text-lg">Grade</div>
                             </TableHead>
                             <TableHead>
-                                <div className="text-lg">size</div>
+                                <div className="text-lg">Size (Acres)</div>
                             </TableHead>
                             <TableHead>
                                 <div className="text-lg">Occupancy</div>
@@ -240,7 +256,7 @@ export default async function List({ city, page, search }: any) {
                                 <TableCell className="text-right">{Number(societies.area).toLocaleString()}</TableCell>
                                 <TableCell className="text-center">
                                     {/* {(societies?.occupancy !== null || societies?.occupancy !== undefined || societies?.occupancy !== "") ? (societies?.occupancy + '%') : (societies?.occupancy)} */}
-                                    {societies?.occupancy === "" ? (societies?.occupancy !== null) : (societies?.occupancy + '%') }
+                                    {societies?.occupancy === "" ? (societies?.occupancy !== null) : (societies?.occupancy + '%')}
                                 </TableCell>
                                 <TableCell>
                                     <div className="flex justify-around gap-2">
@@ -265,7 +281,7 @@ export default async function List({ city, page, search }: any) {
 
                                         <Button asChild>
                                             <Link href={"societies/plots/add/" + societies.id}>
-                                                Add Plots/Banglow
+                                                Add Price
                                             </Link>
                                         </Button>
 
@@ -275,13 +291,65 @@ export default async function List({ city, page, search }: any) {
                                             </Link>
                                         </Button> */}
 
-                                        <form action={deleteSociety}>
+                                        <form action={deleteSociety} className="hidden">
                                             <input type="hidden" name="societies-id" value={societies.id} />
                                             <DeleteSocietyButton />
-                                            {/* <button type="submit" className="h-14 btn bg-red-700 text-white hover:bg-red-800 capitalize">
-                                                Delete
-                                            </button> */}
+                                            
                                         </form>
+
+                                        {/* <AlertDialog>
+                                            <AlertDialogTrigger asChild>
+                                                <Button variant="destructive">Delete</Button>
+                                            </AlertDialogTrigger>
+                                            <AlertDialogContent>
+                                                <AlertDialogHeader>
+                                                    <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                                                    <AlertDialogDescription>
+
+                                                    </AlertDialogDescription>
+                                                </AlertDialogHeader>
+                                                <AlertDialogFooter>
+                                                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+
+                                                    <form action={deleteSociety}>
+                                                        <input type="hidden" name="societies-id" value={societies.id} />
+                                                        <DeleteSocietyButton />
+
+                                                    </form>
+
+                                                </AlertDialogFooter>
+                                            </AlertDialogContent>
+                                        </AlertDialog> */}
+
+                                        <Dialog>
+                                            <DialogTrigger asChild>
+                                                <Button variant="destructive">Delete</Button>
+                                            </DialogTrigger>
+                                            <DialogContent className="sm:max-w-md">
+                                                <DialogHeader>
+                                                    <DialogTitle>Delete Society</DialogTitle>
+                                                    <DialogDescription>
+                                                        Are you absolutely sure?
+                                                    </DialogDescription>
+                                                </DialogHeader>
+                                                <div className="flex items-center space-x-2">
+
+                                                </div>
+                                                <DialogFooter className="sm:justify-start">
+                                                    <DialogClose asChild>
+                                                        <Button type="button" variant="secondary">
+                                                            Close
+                                                        </Button>
+
+                                                    </DialogClose>
+                                                    <form action={deleteSociety}>
+                                                        <input type="hidden" name="societies-id" value={societies.id} />
+                                                        <DeleteSocietyButton />
+
+                                                    </form>
+                                                </DialogFooter>
+                                            </DialogContent>
+                                        </Dialog>
 
                                     </div>
                                 </TableCell>
