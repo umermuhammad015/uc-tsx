@@ -42,26 +42,26 @@ export default function CityInput() {
 
     }, [city])
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        const fetchData = async () => {
-            try {
-                // console.log("CityInput use effect trying")
-                const all_cities = await FetchCity()
+    //     const fetchData = async () => {
+    //         try {
+    //             // console.log("CityInput use effect trying")
+    //             const all_cities = await FetchCity()
 
-                // console.log("all_cities");
-                // console.log(all_cities);
+    //             // console.log("all_cities");
+    //             // console.log(all_cities);
 
-                setCityList(all_cities);
-            } catch (error) {
+    //             setCityList(all_cities);
+    //         } catch (error) {
 
-                console.error('Error fetching cities list:', error);
-            }
-        };
+    //             console.error('Error fetching cities list:', error);
+    //         }
+    //     };
 
-        fetchData();
+    //     fetchData();
 
-    }, []);
+    // }, []);
 
 
 
@@ -83,12 +83,12 @@ export default function CityInput() {
                     onChange={e => setCity(e.target.value)}
 
                 >
-                    <option value='' className='' selected>All</option>
+                    {/* <option value='' className='' selected>All</option>
                     {cityList.length > 0 && cityList.map((c: { city: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | PromiseLikeOfReactNode | null | undefined }, i: Key | null | undefined) =>
                         <option key={i}>{c.city}</option>
-                    )}
+                    )} */}
 
-                    {/* <option value="">All</option>
+                    <option value="">All</option>
                     <option value="Bahawalpur">Bahawalpur</option>
                     <option value="Faisalabad">Faisalabad</option>
                     <option value="Gujranwala">Gujranwala</option>
@@ -99,7 +99,7 @@ export default function CityInput() {
                     <option value="Hyderabad">Hyderabad</option>
                     <option value="Karachi">Karachi</option>
                     <option value="Peshawar">Peshawar</option>
-                    <option value="Quetta">Quetta</option> */}
+                    <option value="Quetta">Quetta</option>
                 </select>
 
 
