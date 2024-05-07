@@ -14,15 +14,15 @@ export const dynamic = "force-dynamic";
 // export default function Page(props: PageProps ) {
 export default function Page({
     // params, 
-    searchParams: { city, page, search, developer_name }
+    searchParams: { city, page, search, developer }
 
 }: {
     // params: { slug: string }
     searchParams: { [key: string]: string | string[] | undefined }
 }) {
 
-    // console.log("city socities page");
-    // console.log(city);
+    // console.log("developer_name socities page");
+    // console.log(developer_name);
 
     return (
         <>
@@ -31,7 +31,7 @@ export default function Page({
 
 
             {/* <SocietiesList city={city} {...props} /> */}
-            <SocietiesList city={city} search={search} page={page} developer_name={developer_name} />
+            <SocietiesList city={city} search={search} page={page} developer={developer} />
 
 
         </>

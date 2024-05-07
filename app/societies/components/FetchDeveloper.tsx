@@ -4,6 +4,8 @@ import prisma from "../../db";
 
 export default async function FetchDeveloper() {
 
+    // console.log("FetchDeveloper()")
+
     const developer_names = await prisma.societies.findMany({
         distinct: ['developer_name'],
         select: {
@@ -22,7 +24,7 @@ export default async function FetchDeveloper() {
         },
     })
 
-    // console.log("FetchSocietyNames society_name")
+    // console.log("developer_names")
     // console.log(developer_names)
 
     return (developer_names)

@@ -14,13 +14,13 @@ export default function DeveloperName() {
     const router = useRouter()
 
 
-    const [name, setName] = useState('');
+    const [developer, setDeveloper] = useState('');
     const [developerNames, setDeveloperNames] = useState<any>([])
 
     useEffect(() => {
 
         const query = {
-            name: name,
+            developer: developer,
 
         }
         const url = qs.stringifyUrl({
@@ -30,7 +30,7 @@ export default function DeveloperName() {
 
         router.push(url)
 
-    }, [name])
+    }, [developer])
 
     useEffect(() => {
 
@@ -78,9 +78,9 @@ export default function DeveloperName() {
                     <select
                         name="developer-name"
                         className="bg-gray-50 border border-gray-300 w-40 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        defaultValue={name}
+                        defaultValue={developer}
                         onChange={e => {
-                            setName(e.target.value)
+                            setDeveloper(e.target.value)
 
                             // setTeamsList(await FetchTeams(e.target.value))
                         }}>

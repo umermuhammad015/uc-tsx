@@ -37,22 +37,25 @@ export const revalidate = 1; // revalidate the date at most every hour
 export const dynamic = "force-dynamic";
 const PAGE_SIZE = 10000;
 
-const GetSocieties = async ({ search_string = '', take = PAGE_SIZE, skip = 0, city = "", developer_name = "" }) => {
+const GetSocieties = async ({ search_string = '', take = PAGE_SIZE, skip = 0, city = "", developer = "" }) => {
+    
     // async function getBuildings({ search = '', take = PAGE_SIZE, skip = 0 }) {
     // console.log("GetSocieties");
 
-    // console.log("city GetSocieties")
-    console.log(developer_name)
+    console.log("developer_name GetSocieties")
+    console.log(developer)
 
     if (search_string === null || search_string === '') {
 
-        // console.log("inside if");
+        console.log("developer inside if")
+        console.log(developer)
 
         const results = await prisma.societies.findMany({
             take,
             skip,
             where: {
                 city: city === "" ? undefined : city,
+                developer_name: developer === "" ? undefined : developer,
             },
             orderBy: {
                 name: 'asc',
@@ -78,8 +81,8 @@ const GetSocieties = async ({ search_string = '', take = PAGE_SIZE, skip = 0, ci
 
     } else {
 
-        // console.log("inside else GetSocieties");
-        // console.log(search_string);
+        // console.log("inside else developer_name");
+        // console.log(developer_name);
 
         const results = await prisma.societies.findMany({
             take,
@@ -100,7 +103,7 @@ const GetSocieties = async ({ search_string = '', take = PAGE_SIZE, skip = 0, ci
                     },
                 ],
                 city: city === "" ? undefined : city,
-                developer_name: developer_name === "" ? undefined : developer_name,
+                developer_name: developer === "" ? undefined : developer,
             },
         })
 
@@ -139,6 +142,7 @@ const GetSocieties = async ({ search_string = '', take = PAGE_SIZE, skip = 0, ci
 
         // console.log("RO")
         // console.log(return_object)
+        
 
         return return_object
 
@@ -156,10 +160,10 @@ type Props = {
 
 
 // export default async function List(props: PageProps) {
-export default async function List({ developer_name, city, page, search }: any) {
+export default async function List({city, page, search, developer }: any) {
 
-    // console.log("city list ")
-    // console.log(city)
+    console.log("developer list ")
+    console.log(developer)
 
     // const pageNumber = Number(props?.searchParams?.page || 1); // Get the page number. Default to 1 if not provided.
     const pageNumber = Number(page || 1); // Get the page number. Default to 1 if not provided.
@@ -170,7 +174,7 @@ export default async function List({ developer_name, city, page, search }: any) 
     const search_string = search || ''
 
     // const buildings = await getBuildings({search, take, skip});
-    const { data, metadata } = await GetSocieties({ search_string, take, skip, city, developer_name });
+    const { data, metadata } = await GetSocieties({ search_string, take, skip, city, developer});
 
     // const searchedBuildings = await getSearchedBuildings()
 
@@ -200,7 +204,7 @@ export default async function List({ developer_name, city, page, search }: any) 
                     <CityInput />
                     <DeveloperName />
                 </div>
-                <div className=" ">
+                <div className="">
 
 
 
@@ -253,7 +257,7 @@ export default async function List({ developer_name, city, page, search }: any) 
                                 <TableCell>{societies.type}</TableCell>
 
                                 <TableCell className="text-center">{societies.grade}</TableCell>
-                                <TableCell className="text-right">{Number(societies.area).toLocaleString()}</TableCell>
+                                <TableCell className="text-center">{Number(societies.area).toLocaleString()}</TableCell>
                                 <TableCell className="text-center">
                                     {/* {(societies?.occupancy !== null || societies?.occupancy !== undefined || societies?.occupancy !== "") ? (societies?.occupancy + '%') : (societies?.occupancy)} */}
                                     {societies?.occupancy === "" ? (societies?.occupancy !== null) : (societies?.occupancy + '%')}
