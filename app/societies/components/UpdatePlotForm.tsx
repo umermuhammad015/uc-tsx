@@ -105,8 +105,8 @@ export default function UpdatePlotForm({ plots }: any) {
                     id="type"
                     name="type"
                     className="select  w-full max-w-xs border-2 border-gray-400 "
-                    defaultValue={plots?.type as string}
                     onChange={(e) => setPlotType(e.target.value)}
+                    defaultValue={plots?.type as string}
                 >
                     <option value="Residential Plot">Residential Plot</option>
                     <option value="Commercial Plot">Commercial Plot</option>
@@ -130,7 +130,7 @@ export default function UpdatePlotForm({ plots }: any) {
                             htmlFor="plot-size"
                             className="block mb-2 text-sm font-medium"
                         >
-                            Plot/Bungalow Size :
+                            Property Size (Sq. Yards):
                         </label>
                         <Select
                             defaultValue={plots?.size as string}

@@ -49,8 +49,8 @@ export default async function UpdatePlot(data: FormData) {
     console.log("update_query")
 
     const updateSociety = await prisma.plots.update(update_query)
-    // let updatedNote = await Note.findByIdAndUpdate({ _id: params.id }, { title, note });
     redirect('/societies/')
+
     // if (add_more === "yes") {
 
     //     revalidatePath("/societies/plots/add/" + society_id, ) // Update cached posts

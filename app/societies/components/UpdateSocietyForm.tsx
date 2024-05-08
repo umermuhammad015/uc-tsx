@@ -260,18 +260,25 @@ export default function UpdatePlotForm({ societies }: any) {
                         >
                             Grade
                         </label>
-                        <select
-                            id="societies-grade"
-                            name="societies-grade"
-                            className="select w-full max-w-xs border-2 border-gray-400 "
-                            defaultChecked={societies?.grade ? true : false}
-                        >
-                            <option>A+</option>
-                            <option>A</option>
-                            <option>B</option>
-                            <option>C</option>
-                            <option>D</option>
-                        </select>
+                        <Select
+                            defaultValue={societies?.grade as string}
+                            name="societies-grade">
+                            <SelectTrigger
+                                id="societies-grade"
+                                className="select w-full max-w-xs border-2 border-gray-400  ">
+                                <SelectValue placeholder="Select Grade" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectGroup>
+                                    <SelectLabel></SelectLabel>
+                                    <SelectItem value="A+">A+</SelectItem>
+                                    <SelectItem value="A">A</SelectItem>
+                                    <SelectItem value="B">B</SelectItem>
+                                    <SelectItem value="C">C</SelectItem>
+                                    <SelectItem value="D">D</SelectItem>
+                                </SelectGroup>
+                            </SelectContent>
+                        </Select>
                     </div>
 
                     {/* Total Area of Society (Acres) */}
@@ -344,7 +351,7 @@ export default function UpdatePlotForm({ societies }: any) {
                             </div>
                         </div>
                     </div>
-                   
+
 
 
                     {/* Population*/}

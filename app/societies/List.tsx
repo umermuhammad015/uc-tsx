@@ -32,12 +32,13 @@ import { revalidatePath } from "next/cache";
 import { Pagination } from "@/components/pagination";
 import CityInput from "./components/CityInput";
 import DeveloperName from "./components/developerName";
+import Grade from "./components/Grade";
 
 export const revalidate = 1; // revalidate the date at most every hour
 export const dynamic = "force-dynamic";
 const PAGE_SIZE = 10000;
 
-const GetSocieties = async ({ search_string = '', take = PAGE_SIZE, skip = 0, city = "", developer = "" }) => {
+const GetSocieties = async ({ search_string = '', take = PAGE_SIZE, skip = 0, city = "", developer = "", society_Grade = "" }) => {
     
     // async function getBuildings({ search = '', take = PAGE_SIZE, skip = 0 }) {
     // console.log("GetSocieties");
@@ -56,6 +57,7 @@ const GetSocieties = async ({ search_string = '', take = PAGE_SIZE, skip = 0, ci
             where: {
                 city: city === "" ? undefined : city,
                 developer_name: developer === "" ? undefined : developer,
+                grade: society_Grade === "" ? undefined : society_Grade,
             },
             orderBy: {
                 name: 'asc',
@@ -104,6 +106,7 @@ const GetSocieties = async ({ search_string = '', take = PAGE_SIZE, skip = 0, ci
                 ],
                 city: city === "" ? undefined : city,
                 developer_name: developer === "" ? undefined : developer,
+                grade: society_Grade === "" ? undefined : society_Grade,
             },
         })
 
@@ -160,7 +163,7 @@ type Props = {
 
 
 // export default async function List(props: PageProps) {
-export default async function List({city, page, search, developer }: any) {
+export default async function List({city, page, search, developer, society_Grade }: any) {
 
     console.log("developer list ")
     console.log(developer)
@@ -174,7 +177,7 @@ export default async function List({city, page, search, developer }: any) {
     const search_string = search || ''
 
     // const buildings = await getBuildings({search, take, skip});
-    const { data, metadata } = await GetSocieties({ search_string, take, skip, city, developer});
+    const { data, metadata } = await GetSocieties({ search_string, take, skip, city, developer, society_Grade});
 
     // const searchedBuildings = await getSearchedBuildings()
 
@@ -202,7 +205,8 @@ export default async function List({city, page, search, developer }: any) {
             <header className="flex justify-between items-center mt-4 ">
                 <div className="flex gap-5">
                     <CityInput />
-                    <DeveloperName />
+                    {/* <DeveloperName /> */}
+                    <Grade/>
                 </div>
                 <div className="">
 

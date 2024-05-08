@@ -3,20 +3,20 @@
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import qs from 'query-string'
-import FetchDeveloper from './FetchDeveloper';
+import FetchGrade from './FetchGrade';
 
-export default function DeveloperName() {
+export default function Grade() {
 
     const router = useRouter()
 
 
-    const [developer, setDeveloper] = useState('');
-    const [developerNames, setDeveloperNames] = useState<any>([])
+    const [society_Grade, setSociety_Grade] = useState('');
+    const [grade_List, setGrade_List] = useState<any>([])
 
     useEffect(() => {
 
         const query = {
-            developer: developer,
+            society_Grade: society_Grade,
 
         }
         const url = qs.stringifyUrl({
@@ -26,7 +26,7 @@ export default function DeveloperName() {
 
         router.push(url)
 
-    }, [developer])
+    }, [society_Grade])
 
     useEffect(() => {
 
@@ -36,10 +36,10 @@ export default function DeveloperName() {
             
 
             try {
-                const deve_name = await FetchDeveloper()
+                const gradese = await FetchGrade()
                 // console.log(deve_name);
 
-                setDeveloperNames(deve_name);
+                setGrade_List(gradese);
                 
 
             } catch (error) {
@@ -63,25 +63,25 @@ export default function DeveloperName() {
 
 
                 {/* league */}
-                <div className="hidden">
+                <div className="">
                     <label
                         htmlFor="developer-name"
                         id="developer-name"
                         className="select  w-full max-w-xs "
                     >
-                        Developer Name
+                        Grade
                     </label>
                     <select
                         name="developer-name"
-                        className="bg-gray-50 border border-gray-300 w-40 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        defaultValue={developer}
+                        className="bg-gray-50 border border-gray-300 w-28 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        defaultValue={society_Grade}
                         onChange={e => {
-                            setDeveloper(e.target.value)
+                            setSociety_Grade(e.target.value)
 
                             // setTeamsList(await FetchTeams(e.target.value))
                         }}>
                         <option value='' selected>All</option>
-                        {developerNames.length > 0 && developerNames.map((dn: { developer_name: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | React.PromiseLikeOfReactNode | null | undefined; }, i: React.Key | null | undefined) => <option key={i}>{dn.developer_name}</option>)}
+                        {grade_List.length > 0 && grade_List.map((g: { grade: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | React.PromiseLikeOfReactNode | null | undefined; }, i: React.Key | null | undefined) => <option key={i}>{g.grade}</option>)}
                     </select>
                 </div>
             </div>

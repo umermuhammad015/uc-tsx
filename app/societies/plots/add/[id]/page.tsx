@@ -120,7 +120,7 @@ export default function PlotAddPage({ params }: Props) {
                                         htmlFor="plot-size"
                                         className="block mb-2 text-sm font-medium"
                                     >
-                                        Plot/Bungalow Size :
+                                        Property Size (Sq. Yards):
                                     </label>
                                     <Select
                                         name="plot-size">

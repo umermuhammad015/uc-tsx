@@ -447,7 +447,7 @@ export default async function ViewBuilding({ params }: Props) {
                             <TableHead>Type</TableHead >
                             <TableHead>Size</TableHead>
                             <TableHead>Price</TableHead>
-                            <TableHead>Rental Value</TableHead>
+                            <TableHead>Monthly Rent</TableHead>
                             <TableHead>Date</TableHead>
                             <TableHead>Remarks</TableHead >
                         </TableRow>
