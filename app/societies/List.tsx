@@ -33,23 +33,24 @@ import { Pagination } from "@/components/pagination";
 import CityInput from "./components/CityInput";
 import DeveloperName from "./components/developerName";
 import Grade from "./components/Grade";
+import ProjectType from "./components/Project_type";
 
 export const revalidate = 1; // revalidate the date at most every hour
 export const dynamic = "force-dynamic";
 const PAGE_SIZE = 10000;
 
-const GetSocieties = async ({ search_string = '', take = PAGE_SIZE, skip = 0, city = "", developer = "", society_Grade = "" }) => {
+const GetSocieties = async ({ search_string = '', take = PAGE_SIZE, skip = 0, city = "", developer = "", society_Grade = "", project_Type = "" }) => {
     
     // async function getBuildings({ search = '', take = PAGE_SIZE, skip = 0 }) {
     // console.log("GetSocieties");
 
-    console.log("developer_name GetSocieties")
-    console.log(developer)
+    // console.log("developer_name GetSocieties")
+    // console.log(developer)
 
     if (search_string === null || search_string === '') {
 
-        console.log("developer inside if")
-        console.log(developer)
+        // console.log("developer inside if")
+        // console.log(developer)
 
         const results = await prisma.societies.findMany({
             take,
@@ -58,6 +59,7 @@ const GetSocieties = async ({ search_string = '', take = PAGE_SIZE, skip = 0, ci
                 city: city === "" ? undefined : city,
                 developer_name: developer === "" ? undefined : developer,
                 grade: society_Grade === "" ? undefined : society_Grade,
+                type: project_Type === "" ? undefined : project_Type,
             },
             orderBy: {
                 name: 'asc',
@@ -107,6 +109,7 @@ const GetSocieties = async ({ search_string = '', take = PAGE_SIZE, skip = 0, ci
                 city: city === "" ? undefined : city,
                 developer_name: developer === "" ? undefined : developer,
                 grade: society_Grade === "" ? undefined : society_Grade,
+                type: project_Type === "" ? undefined : project_Type,
             },
         })
 
@@ -163,10 +166,10 @@ type Props = {
 
 
 // export default async function List(props: PageProps) {
-export default async function List({city, page, search, developer, society_Grade }: any) {
+export default async function List({city, page, search, developer, society_Grade, project_Type }: any) {
 
-    console.log("developer list ")
-    console.log(developer)
+    // console.log("developer list ")
+    // console.log(developer)
 
     // const pageNumber = Number(props?.searchParams?.page || 1); // Get the page number. Default to 1 if not provided.
     const pageNumber = Number(page || 1); // Get the page number. Default to 1 if not provided.
@@ -177,7 +180,7 @@ export default async function List({city, page, search, developer, society_Grade
     const search_string = search || ''
 
     // const buildings = await getBuildings({search, take, skip});
-    const { data, metadata } = await GetSocieties({ search_string, take, skip, city, developer, society_Grade});
+    const { data, metadata } = await GetSocieties({ search_string, take, skip, city, developer, society_Grade, project_Type});
 
     // const searchedBuildings = await getSearchedBuildings()
 
@@ -207,6 +210,7 @@ export default async function List({city, page, search, developer, society_Grade
                     <CityInput />
                     {/* <DeveloperName /> */}
                     <Grade/>
+                    <ProjectType />
                 </div>
                 <div className="">
 
