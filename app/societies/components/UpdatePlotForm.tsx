@@ -104,7 +104,7 @@ export default function UpdatePlotForm({ plots }: any) {
                 <select
                     id="type"
                     name="type"
-                    className="select  w-full max-w-xs border-2 border-gray-400 "
+                    className="select  w-full h-10 max-w-xs border-2 rounded border-gray-400 bg-background"
                     onChange={(e) => setPlotType(e.target.value)}
                     defaultValue={plots?.type as string}
                 >
@@ -112,6 +112,7 @@ export default function UpdatePlotForm({ plots }: any) {
                     <option value="Commercial Plot">Commercial Plot</option>
                     <option value="Bungalow">Bungalow</option>
                     <option value="Apartment">Apartment</option>
+                    <option value="Files">Files</option>
                 </select>
 
             </div>
@@ -144,10 +145,14 @@ export default function UpdatePlotForm({ plots }: any) {
                                 <SelectGroup>
                                     <SelectLabel></SelectLabel>
                                     <SelectItem value="87.5">87.5</SelectItem>
+                                    <SelectItem value="100">100</SelectItem>
                                     <SelectItem value="125">125</SelectItem>
                                     <SelectItem value="200">200</SelectItem>
                                     <SelectItem value="250">250</SelectItem>
+                                    <SelectItem value="300">300</SelectItem>
                                     <SelectItem value="500">500</SelectItem>
+                                    <SelectItem value="600">600</SelectItem>
+                                    <SelectItem value="800">800</SelectItem>
                                     <SelectItem value="1000">1,000</SelectItem>
                                     <SelectItem value="2000">2,000</SelectItem>
                                 </SelectGroup>

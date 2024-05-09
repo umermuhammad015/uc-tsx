@@ -257,7 +257,7 @@ export default function NewSocietyPage() {
               htmlFor="societies-project-type"
               className="block mb-2 text-sm font-medium"
             >
-              Project Type
+              Project Status
             </label>
             <Select
               name="societies-project-type">

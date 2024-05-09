@@ -69,7 +69,7 @@ export default function ProjectType() {
                         id="societies-project-type"
                         className="select  w-full max-w-xs "
                     >
-                        Project Type
+                        Project Status
                     </label>
                     <select
                         name="societies-project-type"

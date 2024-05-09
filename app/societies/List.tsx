@@ -238,7 +238,7 @@ export default async function List({city, page, search, developer, society_Grade
                                 <div className="text-lg">Location</div>
                             </TableHead>
                             <TableHead>
-                                <div className="text-lg">Project Type</div>
+                                <div className="text-lg">Project Status</div>
                             </TableHead>
 
                             <TableHead>

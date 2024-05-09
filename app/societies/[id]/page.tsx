@@ -141,7 +141,7 @@ export default async function ViewBuilding({ params }: Props) {
                             <TableCell>Location/Address</TableCell> <TableCell>{society?.address}</TableCell>
                         </TableRow>
                         <TableRow>
-                            <TableCell>Project Type </TableCell> <TableCell>{society?.type}</TableCell>
+                            <TableCell>Project Status</TableCell> <TableCell>{society?.type}</TableCell>
                         </TableRow>
                         <TableRow>
                             <TableCell>Launch Year</TableCell> <TableCell>{society?.launch_year}</TableCell>
@@ -240,7 +240,7 @@ export default async function ViewBuilding({ params }: Props) {
                             <TableCell>Total No. of Apartment</TableCell> <TableCell>{society?.total_apartments}</TableCell>
                         </TableRow>
                         <TableRow>
-                            <TableCell>Apartment Sizes (Sq. Ft)</TableCell>
+                            <TableCell> Apartment Type</TableCell>
                             <TableCell>
                                 {society?.apartment_studio && (
                                     <Badge>Studio</Badge>
@@ -432,7 +432,7 @@ export default async function ViewBuilding({ params }: Props) {
 
             <div className="my-2 flex justify-between">
                 <div className="text-center pt-4">
-                    Add Plots/Bungalow
+                    Property Prices
                 </div>
                 <Button asChild>
                     <Link href={"/societies/plots/add/" + params.id}>
@@ -445,7 +445,7 @@ export default async function ViewBuilding({ params }: Props) {
                     <TableHeader className="">
                         <TableRow>
                             <TableHead>Type</TableHead >
-                            <TableHead>Size</TableHead>
+                            <TableHead>Size (Sq. Yards)</TableHead>
                             <TableHead>Price</TableHead>
                             <TableHead>Monthly Rent</TableHead>
                             <TableHead>Date</TableHead>

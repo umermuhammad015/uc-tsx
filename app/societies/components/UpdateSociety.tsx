@@ -257,6 +257,7 @@ export default async function editForm(data: FormData) {
             plot_sizes_commercial_2000,
             total_apartments: societies_total_apartments,
             societies_apartment_size,
+            apartment_studio,
             apartment_one_bad,
             apartment_two_bad,
             apartment_three_bad,

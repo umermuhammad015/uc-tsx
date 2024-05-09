@@ -211,7 +211,7 @@ export default function UpdatePlotForm({ societies }: any) {
                             htmlFor="societies-project-type"
                             className="block mb-2 text-sm font-medium"
                         >
-                            Project Type
+                            Project Status
                         </label>
                         <Select
                             defaultValue={societies?.type as string}
