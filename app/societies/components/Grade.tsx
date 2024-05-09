@@ -28,31 +28,31 @@ export default function Grade() {
 
     }, [society_Grade])
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        
-        // if (debouncedNameKeywords !== "") {
-        const fetchData = async () => {
-            
 
-            try {
-                const gradese = await FetchGrade()
-                // console.log(deve_name);
+    //     // if (debouncedNameKeywords !== "") {
+    //     const fetchData = async () => {
 
-                setGrade_List(gradese);
-                
 
-            } catch (error) {
+    //         try {
+    //             const gradese = await FetchGrade()
+    //             // console.log(deve_name);
 
-                console.error('Error fetching city list based on keywords:', error);
-            }
-        };
+    //             setGrade_List(gradese);
 
-        fetchData();
-        // console.log("nameKeywords2");
-        // }
 
-    }, []);
+    //         } catch (error) {
+
+    //             console.error('Error fetching city list based on keywords:', error);
+    //         }
+    //     };
+
+    //     fetchData();
+    //     // console.log("nameKeywords2");
+    //     // }
+
+    // }, []);
 
 
 
@@ -65,14 +65,14 @@ export default function Grade() {
                 {/* league */}
                 <div className="">
                     <label
-                        htmlFor="societies-grade"
-                        id="societies-grade"
+                        htmlFor="developer-name"
+                        id="developer-name"
                         className="select  w-full max-w-xs "
                     >
                         Grade
                     </label>
                     <select
-                        name="societies-grade"
+                        name="developer-name"
                         className="bg-gray-50 border border-gray-300 w-28 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         defaultValue={society_Grade}
                         onChange={e => {
@@ -80,8 +80,14 @@ export default function Grade() {
 
                             // setTeamsList(await FetchTeams(e.target.value))
                         }}>
-                        <option value='' selected>All</option>
-                        {grade_List.length > 0 && grade_List.map((g: { grade: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | React.PromiseLikeOfReactNode | null | undefined; }, i: React.Key | null | undefined) => <option key={i}>{g.grade}</option>)}
+                        {/* <option value='' selected>All</option>
+                        {grade_List.length > 0 && grade_List.map((g: { grade: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | React.PromiseLikeOfReactNode | null | undefined; }, i: React.Key | null | undefined) => <option key={i}>{g.grade}</option>)} */}
+                        <option value="">All</option>
+                        <option value="A+">A+</option>
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                        <option value="D">D</option>
                     </select>
                 </div>
             </div>
