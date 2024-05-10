@@ -1,6 +1,6 @@
 "use client";
 
-import React from 'react'
+import React, { useState } from 'react'
 import ThemeToggleButton from './ThemeToggleButton'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation';
@@ -8,6 +8,36 @@ import { usePathname } from 'next/navigation';
 export default function Header() {
 
     const pathname = usePathname()
+
+    // const [positions, setPositions] = useState<any>([]);
+
+    // function handlePositions(p: any) {
+    //     console.log(p);
+
+    //     console.log(positions.includes(p));
+
+    //     if (positions.includes(p)) {
+
+    //         setPositions((current_p: any) => {
+    //             return current_p.filter((item: any) => item !== p)
+    //         })
+
+    //         //setPositions(positions.filter(item => item !== p));
+
+    //     } else {
+    //         setPositions((current_p: any) => {
+    //             return [...current_p, p]
+    //         })
+
+    //         // setPositions([...positions, p]);
+
+    //     }
+
+
+
+
+
+    // }
 
     return (
         <header className="flex justify-between items-center mb-4 bg-cyan-950 text-white  rounded px-1 h-16 w-full">
@@ -30,13 +60,10 @@ export default function Header() {
                         <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008z" />
                     </svg>
 
-
                     <Link href="/buildings" className=" mt-3">Buildings</Link>
                 </div>
+
                 <div className="flex gap-4">
-
-
-
                     <div className="hover:bg-cyan-800 flex justify-center items-center px-4 h-full gap-1">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6 cursor-pointer mt-1">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 21v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21m0 0h4.5V3.545M12.75 21h7.5V10.75M2.25 21h1.5m18 0h-18M2.25 9l4.5-1.636M18.75 3l-1.5.545m0 6.205 3 1m1.5.5-1.5-.5M6.75 7.364V3h-3v18m3-13.636 10.5-3.819" />
@@ -46,11 +73,27 @@ export default function Header() {
 
                     <ThemeToggleButton />
                 </div>
+                {/* <div className="flex gap-4">
 
 
+
+                    <div onClick={() => handlePositions('Reset')}
+                        className={` ${positions.includes('Reset') ? "bg-cyan-800" : "bg-cyan-950"} hover:bg-cyan-800 flex justify-center items-center px-4 h-full gap-1`}
+                    //  className="hover:bg-cyan-800 flex justify-center items-center px-4 h-full gap-1"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6 cursor-pointer mt-1">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 21v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21m0 0h4.5V3.545M12.75 21h7.5V10.75M2.25 21h1.5m18 0h-18M2.25 9l4.5-1.636M18.75 3l-1.5.545m0 6.205 3 1m1.5.5-1.5-.5M6.75 7.364V3h-3v18m3-13.636 10.5-3.819" />
+                        </svg>
+                        <Link href="/societies"
+                            className="mt-3"
+
+                        >Societies</Link>
+                    </div>
+
+                    <ThemeToggleButton />
+                </div> */}
 
             </div>
-
         </header>
     )
 }
