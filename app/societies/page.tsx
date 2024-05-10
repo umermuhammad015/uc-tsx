@@ -31,7 +31,13 @@ export default function Page({
 
 
             {/* <SocietiesList city={city} {...props} /> */}
-            <SocietiesList city={city} search={search} page={page} developer={developer} society_Grade={society_Grade} project_Type={project_Type} />
+            <SocietiesList city={city}
+                search={search}
+                page={page}
+                developer={developer}
+                society_Grade={society_Grade}
+                project_Type={project_Type}
+            />
 
 
         </>

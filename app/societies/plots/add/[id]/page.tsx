@@ -84,6 +84,8 @@ export default function PlotAddPage({ params }: Props) {
                                 <option value="Commercial Plot">Commercial Plot</option>
                                 <option value="Bungalow">Bungalow</option>
                                 <option value="Apartment">Apartment</option>
+                                <option value="Shop">Shop</option>
+                                <option value="Office">Office</option>
                                 <option value="Files">Files</option>
                             </select>
                             {/* <Select
