@@ -133,8 +133,8 @@ export default function UpdatePlotForm({ plots }: any) {
                 console.log(plotType)
             }}>Check</button> */}
             {
-                (plotType === "Residential Plot" || plotType === 'Commercial Plot' || plotType === 'Bungalow' || 
-                plotType === 'Files') &&
+                (plotType === "Residential Plot" || plotType === 'Commercial Plot' || plotType === 'Bungalow' ||
+                    plotType === 'Files') &&
                 <>
                     <div className="mt-4">
                         <label

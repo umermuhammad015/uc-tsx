@@ -123,9 +123,8 @@ export default function PlotAddPage({ params }: Props) {
                         {/* plot size  */}
 
                         {
-                            plotType !== 'Apartment' &&
-                            plotType !== 'Shop' &&
-                            plotType !== 'Office' &&
+                            (plotType === "Residential Plot" || plotType === 'Commercial Plot' || plotType === 'Bungalow' ||
+                                plotType === 'Files') &&
                             <>
                                 <div className="mt-4">
                                     <label
