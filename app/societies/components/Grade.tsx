@@ -10,13 +10,13 @@ export default function Grade() {
     const router = useRouter()
 
 
-    const [society_Grade, setSociety_Grade] = useState('');
+    const [society_grade, setSociety_grade] = useState('');
     const [grade_List, setGrade_List] = useState<any>([])
 
     useEffect(() => {
 
         const query = {
-            society_Grade: society_Grade,
+            society_grade: society_grade,
 
         }
         const url = qs.stringifyUrl({
@@ -26,7 +26,7 @@ export default function Grade() {
 
         router.push(url)
 
-    }, [society_Grade])
+    }, [society_grade])
 
     // useEffect(() => {
 
@@ -74,9 +74,9 @@ export default function Grade() {
                     <select
                         name="developer-name"
                         className="bg-gray-50 border border-gray-300 w-28 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        defaultValue={society_Grade}
+                        defaultValue={society_grade}
                         onChange={e => {
-                            setSociety_Grade(e.target.value)
+                            setSociety_grade(e.target.value)
 
                             // setTeamsList(await FetchTeams(e.target.value))
                         }}>

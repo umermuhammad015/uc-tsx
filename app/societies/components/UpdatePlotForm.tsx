@@ -31,7 +31,12 @@ export default function UpdatePlotForm({ plots }: any) {
     const [price, setPrice] = useState(plots?.plot_price)
     const [rent, setRent] = useState(plots?.plot_rent)
 
-    const [plotType, setPlotType] = useState(plots?.plot_type)
+    const [plotType, setPlotType] = useState(plots?.type)
+    const [paymentTerms, setPaymentTerms] = useState(plots?.payment_mode)
+    const [ins_total_price, setIns_total_price] = useState(plots?.ins_total_price);
+    const [ins_down_payment, setIns_down_payment] = useState(plots?.ins_down_payment);
+    const [ins_possession_Amount, setIns_possession_Amount] = useState(plots?.ins_possession_Amount);
+    const [ins_period, setIns_Period] = useState(plots?.ins_period);
 
 
 
@@ -124,9 +129,12 @@ export default function UpdatePlotForm({ plots }: any) {
 
             {/* plot size  */}
 
-
+            {/* <button onClick={() => {
+                console.log(plotType)
+            }}>Check</button> */}
             {
-                plotType !== "Apartment" &&
+                (plotType === "Residential Plot" || plotType === 'Commercial Plot' || plotType === 'Bungalow' || 
+                plotType === 'Files') &&
                 <>
                     <div className="mt-4">
                         <label
@@ -199,10 +207,157 @@ export default function UpdatePlotForm({ plots }: any) {
                         </Select>
                     </div>
 
+                    <div className="mt-4">
+                        <label
+                            htmlFor="apartment-size-ft"
+                            className="block mb-2 text-sm font-medium"
+                        >
+                            Apartment Size (Sq. Ft.):
+                        </label>
+                        <Select
+                            defaultValue={plots?.apartment_size_ft as string}
+                            name="apartment-size-ft">
+                            <SelectTrigger
+                                id="apartment-size-ft"
+                                className="select w-full max-w-xs border-2 border-gray-400 ">
+                                <SelectValue />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectGroup>
+                                    <SelectLabel></SelectLabel>
+                                    <SelectItem value="400">400</SelectItem>
+                                    <SelectItem value="550">550</SelectItem>
+                                    <SelectItem value="650">650</SelectItem>
+                                    <SelectItem value="800">800</SelectItem>
+                                    <SelectItem value="900">900</SelectItem>
+                                    <SelectItem value="1000">1000</SelectItem>
+                                    <SelectItem value="1200">1200</SelectItem>
+                                    <SelectItem value="1500">1500</SelectItem>
+                                    <SelectItem value="1800">1800</SelectItem>
+                                    <SelectItem value="2000">2000</SelectItem>
+                                    <SelectItem value="2400">2400</SelectItem>
+                                    <SelectItem value="2800">2800</SelectItem>
+                                    <SelectItem value="3200">3200</SelectItem>
+                                    <SelectItem value="4000">4000</SelectItem>
+                                </SelectGroup>
+                            </SelectContent>
+                        </Select>
+                    </div>
+
 
                 </>
 
             }
+
+            {/* Shop size  */}
+            {
+                plotType === "Shop" &&
+                <>
+                    <div className="mt-4">
+                        <label
+                            htmlFor="shop-size"
+                            className="block mb-2 text-sm font-medium"
+                        >
+                            Property Size (Sq. Ft.):
+                        </label>
+                        <Select
+                            defaultValue={plots?.shop_size as string}
+                            name="shop-size">
+                            <SelectTrigger
+                                id="shop-size"
+                                className="select w-full max-w-xs border-2 border-gray-400 ">
+                                <SelectValue placeholder="Select  Property Size" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectGroup>
+                                    <SelectLabel></SelectLabel>
+                                    <SelectItem value="50">50</SelectItem>
+                                    <SelectItem value="75">75</SelectItem>
+                                    <SelectItem value="100">100</SelectItem>
+                                    <SelectItem value="150">150</SelectItem>
+                                    <SelectItem value="200">200</SelectItem>
+                                    <SelectItem value="250">250</SelectItem>
+                                    <SelectItem value="300">300</SelectItem>
+                                    <SelectItem value="400">400</SelectItem>
+                                    <SelectItem value="500">500</SelectItem>
+                                    <SelectItem value="600">600</SelectItem>
+                                    <SelectItem value="800">800</SelectItem>
+                                    <SelectItem value="1000">1000</SelectItem>
+                                    <SelectItem value="1500">1500</SelectItem>
+                                    <SelectItem value="2000">2000</SelectItem>
+                                    <SelectItem value="2500">2500</SelectItem>
+                                </SelectGroup>
+                            </SelectContent>
+                        </Select>
+                    </div>
+                </>
+
+            }
+
+            {/* Office size  */}
+            {
+                plotType === "Office" &&
+                <>
+                    <div className="mt-4">
+                        <label
+                            htmlFor="office-size"
+                            className="block mb-2 text-sm font-medium"
+                        >
+                            Property Size (Sq. Ft.):
+                        </label>
+                        <Select
+                            defaultValue={plots?.office_size as string}
+                            name="office-size">
+                            <SelectTrigger
+                                id="office-size"
+                                className="select w-full max-w-xs border-2 border-gray-400">
+                                <SelectValue placeholder="Select  Property Size" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectGroup>
+                                    <SelectLabel></SelectLabel>
+                                    <SelectItem value="50">50</SelectItem>
+                                    <SelectItem value="75">75</SelectItem>
+                                    <SelectItem value="100">100</SelectItem>
+                                    <SelectItem value="150">150</SelectItem>
+                                    <SelectItem value="200">200</SelectItem>
+                                    <SelectItem value="250">250</SelectItem>
+                                    <SelectItem value="300">300</SelectItem>
+                                    <SelectItem value="400">400</SelectItem>
+                                    <SelectItem value="500">500</SelectItem>
+                                    <SelectItem value="600">600</SelectItem>
+                                    <SelectItem value="800">800</SelectItem>
+                                    <SelectItem value="1000">1000</SelectItem>
+                                    <SelectItem value="1500">1500</SelectItem>
+                                    <SelectItem value="2000">2000</SelectItem>
+                                    <SelectItem value="2500">2500</SelectItem>
+                                </SelectGroup>
+                            </SelectContent>
+                        </Select>
+                    </div>
+                </>
+
+            }
+
+            {/* Payment Mode*/}
+            <div className="mt-4">
+                <label
+                    htmlFor="payment-mode"
+                    className="block mb-2 text-sm font-medium"
+                >
+                    Payment Mode:
+                </label>
+                <select
+                    id="payment-mode"
+                    name="payment-mode"
+                    className="select  w-full text-sm pl-2 h-10 max-w-xs border-2 rounded border-gray-400 bg-background"
+                    defaultValue={plots?.payment_mode as string}
+                    onChange={(e) => setPaymentTerms(e.target.value)}
+                >
+                    <option value="Lumpsum Payment">Lumpsum Payment</option>
+                    <option value="Instalments">Instalments</option>
+                </select>
+            </div>
 
             {/* plot price  */}
             <div className="mt-4">
@@ -258,6 +413,121 @@ export default function UpdatePlotForm({ plots }: any) {
                     </div>
                 </div>
             </div>
+
+            {/* Total Amount: */}
+            {/* Down Payment:      */}
+            {/* Possession Amount  : */}
+            {/* Instalment Period Years: */}
+
+            {
+                paymentTerms === "Instalments" &&
+                <>
+                    <div className="mt-4">
+                        <label
+                            htmlFor="ins-total-price"
+                            className="block mb-2 text-sm font-medium"
+                        >
+                            Total Price:
+                        </label>
+                        <div className="flex">
+                            <Input
+                                type="text"
+                                id="ins-total-price"
+                                name="ins-total-price"
+                                className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+                                defaultValue={plots?.ins_total_price as string}
+                                placeholder="Rs."
+                                onChange={(e) => {
+                                    setIns_total_price(Number(e.target.value))
+                                    console.log(e.target.value)
+                                }}
+                            />
+                            <div className="m-4">
+                                {Number(ins_total_price).toLocaleString()}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="mt-4">
+                        <label
+                            htmlFor="ins-down-payment"
+                            className="block mb-2 text-sm font-medium"
+                        >
+                            Down Payment:
+                        </label>
+                        <div className="flex">
+                            <Input
+                                type="text"
+                                id="ins-down-payment"
+                                name="ins-down-payment"
+                                className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+                                defaultValue={plots?.ins_down_payment as string}
+                                placeholder="Rs."
+                                onChange={(e) => {
+                                    setIns_down_payment(Number(e.target.value))
+                                    console.log(e.target.value)
+                                }}
+                            />
+                            <div className="m-4">
+                                {Number(ins_down_payment).toLocaleString()}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="mt-4">
+                        <label
+                            htmlFor="ins-possession-Amount"
+                            className="block mb-2 text-sm font-medium"
+                        >
+                            Possession Amount  :
+                        </label>
+                        <div className="flex">
+                            <Input
+                                type="text"
+                                id="ins-possession-Amount"
+                                name="ins-possession-Amount"
+                                className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+                                defaultValue={plots?.ins_possession_Amount as string}
+                                placeholder="Rs."
+                                onChange={(e) => {
+                                    setIns_possession_Amount(Number(e.target.value))
+                                    console.log(e.target.value)
+                                }}
+                            />
+                            <div className="m-4">
+                                {Number(ins_possession_Amount).toLocaleString()}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="mt-4">
+                        <label
+                            htmlFor="ins-period"
+                            className="block mb-2 text-sm font-medium"
+                        >
+                            Instalment Period Years:
+                        </label>
+                        <div className="flex">
+                            <Input
+                                type="text"
+                                id="ins-period"
+                                name="ins-period"
+                                className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+                                defaultValue={plots?.ins_period as string}
+                                placeholder=""
+                                onChange={(e) => {
+                                    setIns_Period(Number(e.target.value))
+                                    console.log(e.target.value)
+                                }}
+                            />
+                            <div className="m-4">
+                                {Number(ins_period).toLocaleString()}
+                            </div>
+                        </div>
+                    </div>
+                </>
+
+            }
 
             {/* Survey Date */}
 

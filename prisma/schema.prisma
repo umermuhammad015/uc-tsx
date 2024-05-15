@@ -248,20 +248,26 @@ model Plots {
   society_id Int
   societies  Societies @relation(fields: [society_id], references: [id], onDelete: Cascade)
 
-  date              String?
-  plot_type         String?
-  type              String?
-  size              String?
-  apartment_size    String?
-  plot_price        String?
-  plot_rent         String?
-  banglow_price     String?
-  banglow_rent      String?
-  direction         String?
-  is_corner         String?
-  instalment_period String?
-  instalment_plan   String?
-  remarks           String?
+  date                  String?
+  plot_type             String?
+  type                  String?
+  size                  String?
+  apartment_size        String?
+  apartment_size_ft     String?
+  shop_size             String?
+  office_size           String?
+  plot_price            String?
+  plot_rent             String?
+  banglow_price         String?
+  banglow_rent          String?
+  direction             String?
+  is_corner             String?
+  payment_mode          String?
+  ins_total_price       Int?
+  ins_down_payment      Int?
+  ins_possession_Amount Int?
+  ins_period            Int?
+  remarks               String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

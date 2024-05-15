@@ -17,15 +17,32 @@ export default async function UpdatePlot(data: FormData) {
 
     const apartment_size = data.get("apartment-size")?.valueOf();
 
+    const apartment_size_ft = data.get("apartment-size-ft")?.valueOf();
+
+    const shop_size = data.get("shop-size")?.valueOf();
+
+    const office_size = data.get("office-size")?.valueOf();
+
+    const payment_mode = data.get("payment-mode")?.valueOf();
+
     const plot_size = data.get("plot-size")?.valueOf();
 
     const plot_price = data.get("plot-price")?.valueOf();
 
     const plot_rent = data.get("plot-rent")?.valueOf();
 
+    const ins_total_price = parseInt(data.get("ins-total-price")?.valueOf() as string);
+
+    const ins_down_payment = parseInt(data.get("ins-down-payment")?.valueOf() as string);
+
+    const ins_possession_Amount = parseInt(data.get("ins-possession-Amount")?.valueOf() as string);
+
+    const ins_period = parseInt(data.get("ins-period")?.valueOf() as string);
+
+
     const plot_remarks = data.get("plot-remarks")
 
-    
+
 
     const update_query = {
         where: {
@@ -37,9 +54,17 @@ export default async function UpdatePlot(data: FormData) {
             plot_type: plot_type as string,
             type: type as string,
             apartment_size: apartment_size as string,
+            apartment_size_ft: apartment_size_ft as string,
+            shop_size: shop_size as string,
+            office_size: office_size as string,
+            payment_mode: payment_mode as string,
             size: plot_size as string,
             plot_price: plot_price as string,
             plot_rent: plot_rent as string,
+            ins_down_payment: ins_down_payment,
+            ins_total_price: ins_total_price,
+            ins_period: ins_period,
+            ins_possession_Amount: ins_possession_Amount,
             remarks: plot_remarks as string,
             date: plot_date
         }

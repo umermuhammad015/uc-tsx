@@ -5,7 +5,6 @@ import { redirect } from "next/navigation";
 import useDebounce from "@/components/debouce";
 import { PageProps } from '../buildings/page';
 import DeleteSocietyButton from "./components/DeleteSocietyButton";
-
 import { Button } from "@/components/ui/button"
 import {
     Table,
@@ -39,8 +38,8 @@ export const revalidate = 1; // revalidate the date at most every hour
 export const dynamic = "force-dynamic";
 const PAGE_SIZE = 10000;
 
-const GetSocieties = async ({ search_string = '', take = PAGE_SIZE, skip = 0, city = "", developer = "", society_Grade = "", project_Type = "" }) => {
-    
+const GetSocieties = async ({ search_string = '', take = PAGE_SIZE, skip = 0, city = "", developer = "", society_grade = "", project_type = "" }) => {
+
     // async function getBuildings({ search = '', take = PAGE_SIZE, skip = 0 }) {
     // console.log("GetSocieties");
 
@@ -58,8 +57,8 @@ const GetSocieties = async ({ search_string = '', take = PAGE_SIZE, skip = 0, ci
             where: {
                 city: city === "" ? undefined : city,
                 developer_name: developer === "" ? undefined : developer,
-                grade: society_Grade === "" ? undefined : society_Grade,
-                type: project_Type === "" ? undefined : project_Type,
+                grade: society_grade === "" ? undefined : society_grade,
+                type: project_type === "" ? undefined : project_type,
             },
             orderBy: {
                 name: 'asc',
@@ -108,8 +107,8 @@ const GetSocieties = async ({ search_string = '', take = PAGE_SIZE, skip = 0, ci
                 ],
                 city: city === "" ? undefined : city,
                 developer_name: developer === "" ? undefined : developer,
-                grade: society_Grade === "" ? undefined : society_Grade,
-                type: project_Type === "" ? undefined : project_Type,
+                grade: society_grade === "" ? undefined : society_grade,
+                type: project_type === "" ? undefined : project_type,
             },
         })
 
@@ -148,7 +147,7 @@ const GetSocieties = async ({ search_string = '', take = PAGE_SIZE, skip = 0, ci
 
         // console.log("RO")
         // console.log(return_object)
-        
+
 
         return return_object
 
@@ -166,7 +165,7 @@ type Props = {
 
 
 // export default async function List(props: PageProps) {
-export default async function List({city, page, search, developer, society_Grade, project_Type }: any) {
+export default async function List({ city, page, search, developer, society_grade, project_type }: any) {
 
     // console.log("developer list ")
     // console.log(developer)
@@ -180,7 +179,7 @@ export default async function List({city, page, search, developer, society_Grade
     const search_string = search || ''
 
     // const buildings = await getBuildings({search, take, skip});
-    const { data, metadata } = await GetSocieties({ search_string, take, skip, city, developer, society_Grade, project_Type});
+    const { data, metadata } = await GetSocieties({ search_string, take, skip, city, developer, society_grade, project_type });
 
     // const searchedBuildings = await getSearchedBuildings()
 
@@ -209,7 +208,7 @@ export default async function List({city, page, search, developer, society_Grade
                 <div className="flex gap-5">
                     <CityInput />
                     {/* <DeveloperName /> */}
-                    <Grade/>
+                    <Grade />
                     <ProjectType />
                 </div>
                 <div className="">
@@ -223,10 +222,34 @@ export default async function List({city, page, search, developer, society_Grade
                             <span className="ml-2">Add Society</span></Link>
                     </Button>
 
-
                 </div>
 
+
+
             </header>
+            <div className="flex justify-end">
+                <Button asChild>
+                    <Link href="/api/tables/societies?format=xlsx"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                            width="18"
+                            height="18"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            className="lucide lucide-download">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                            <polyline points="7 10 12 15 17 10" />
+                            <line x1="12" x2="12" y1="15" y2="3" />
+                        </svg>
+                        <span className="ml-2">Export</span></Link>
+                </Button>
+            </div>
+
+
             <div className="mt-4">
                 <Table className="table text-base">
                     <TableHeader>
@@ -306,7 +329,7 @@ export default async function List({city, page, search, developer, society_Grade
                                         <form action={deleteSociety} className="hidden">
                                             <input type="hidden" name="societies-id" value={societies.id} />
                                             <DeleteSocietyButton />
-                                            
+
                                         </form>
 
                                         {/* <AlertDialog>

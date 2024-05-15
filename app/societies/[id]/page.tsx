@@ -467,8 +467,13 @@ export default async function ViewBuilding({ params }: Props) {
                         <TableRow>
                             <TableHead>Type</TableHead >
                             <TableHead>Size (Sq. Yards)</TableHead>
+                            <TableHead>Payment Mode</TableHead>
                             <TableHead>Price</TableHead>
                             <TableHead>Monthly Rent</TableHead>
+                            <TableHead>Total Price</TableHead>
+                            <TableHead>Down Payment</TableHead>
+                            <TableHead>Possession Amount</TableHead>
+                            <TableHead>Instalment Period Years</TableHead>
                             <TableHead>Date</TableHead>
                             <TableHead>Remarks</TableHead >
                         </TableRow>
@@ -480,12 +485,20 @@ export default async function ViewBuilding({ params }: Props) {
                                     <div className="">{plot?.type}</div>
                                 </TableCell>
                                 <TableCell>
-                                    <div className="">{plot?.size}</div>
-                                    <div className="">{plot?.apartment_size}</div>
+                                    <div className="">{plot?.type === 'Apartment' ? plot?.apartment_size : plot?.size}</div>
+                                    <div className="">{plot?.shop_size}</div>
+                                    <div className="">{plot?.office_size}</div>
 
+                                </TableCell>
+                                <TableCell>
+                                    <div className="">{plot?.payment_mode}</div>
                                 </TableCell>
                                 <TableCell>{Number(plot?.plot_price).toLocaleString()}</TableCell>
                                 <TableCell>{Number(plot?.plot_rent).toLocaleString()}</TableCell>
+                                <TableCell>{Number(plot?.ins_total_price).toLocaleString()}</TableCell>
+                                <TableCell>{Number(plot?.ins_down_payment).toLocaleString()}</TableCell>
+                                <TableCell>{Number(plot?.ins_possession_Amount).toLocaleString()}</TableCell>
+                                <TableCell>{Number(plot?.ins_period).toLocaleString()}</TableCell>
                                 <TableCell>{plot?.date}</TableCell>
                                 <TableCell>{plot?.remarks}</TableCell>
                                 <TableCell>
