@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
 import UpdatePlot from "./UpdatePlot"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import UpdateHomeButton from "./UpdateHomeButton"
 import Link from 'next/link'
 import {
@@ -16,6 +16,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
+import FetchSociety from "./FatchSociety"
 
 // type PlotProps = {
 //     id: number,
@@ -25,19 +26,59 @@ import {
 // type Props = {
 //     plots: { id: number }
 // }
+type Props = {
+    params: { id: number }
+    // searchParams: { [key: string]: string | string[] | undefined }
+}
 
-export default function UpdatePlotForm({ plots }: any) {
+export default function UpdatePlotForm({ plots }: any, { params }: Props) {
 
+    
     const [price, setPrice] = useState(plots?.plot_price)
     const [rent, setRent] = useState(plots?.plot_rent)
 
     const [plotType, setPlotType] = useState(plots?.type)
-    const [paymentTerms, setPaymentTerms] = useState(plots?.payment_mode)
+    const [payment_mode, setPayment_mode] = useState(plots?.payment_mode)
     const [ins_total_price, setIns_total_price] = useState(plots?.ins_total_price);
     const [ins_down_payment, setIns_down_payment] = useState(plots?.ins_down_payment);
     const [ins_possession_Amount, setIns_possession_Amount] = useState(plots?.ins_possession_Amount);
     const [ins_period, setIns_Period] = useState(plots?.ins_period);
 
+
+    // useEffect(() => {
+
+    //     // console.log("use effect called")
+
+
+    //     const getSocietyData = async () => {
+
+    //         try {
+
+    //             // console.log("trying")
+    //             // console.log(params.id)
+
+    //             const society_data = await FetchSociety(params.id)
+
+    //             // console.log("Current_society_data")
+    //             // console.log(society_data)
+
+
+    //             setCurrent_society(society_data)
+
+    //         } catch (error) {
+
+    //             console.error('Error fetching society data:', error);
+
+    //             // setIsAdding(!isAdding)
+    //         }
+    //     };
+
+
+    //     getSocietyData();
+
+
+
+    // }, []);
 
 
 
@@ -352,7 +393,7 @@ export default function UpdatePlotForm({ plots }: any) {
                     name="payment-mode"
                     className="select  w-full text-sm pl-2 h-10 max-w-xs border-2 rounded border-gray-400 bg-background"
                     defaultValue={plots?.payment_mode as string}
-                    onChange={(e) => setPaymentTerms(e.target.value)}
+                    onChange={(e) => setPayment_mode(e.target.value)}
                 >
                     <option value="Lumpsum Payment">Lumpsum Payment</option>
                     <option value="Instalments">Instalments</option>
@@ -365,7 +406,7 @@ export default function UpdatePlotForm({ plots }: any) {
                     htmlFor="plot-price"
                     className="block mb-2 text-sm font-medium"
                 >
-                    Price:
+                    Total Price:
                 </label>
                 <div className="flex">
                     <Input
@@ -420,33 +461,9 @@ export default function UpdatePlotForm({ plots }: any) {
             {/* Instalment Period Years: */}
 
             {
-                paymentTerms === "Instalments" &&
+                payment_mode === "Instalments" &&
                 <>
-                    <div className="mt-4">
-                        <label
-                            htmlFor="ins-total-price"
-                            className="block mb-2 text-sm font-medium"
-                        >
-                            Total Price:
-                        </label>
-                        <div className="flex">
-                            <Input
-                                type="text"
-                                id="ins-total-price"
-                                name="ins-total-price"
-                                className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-                                defaultValue={plots?.ins_total_price as string}
-                                placeholder="Rs."
-                                onChange={(e) => {
-                                    setIns_total_price(Number(e.target.value))
-                                    console.log(e.target.value)
-                                }}
-                            />
-                            <div className="m-4">
-                                {Number(ins_total_price).toLocaleString()}
-                            </div>
-                        </div>
-                    </div>
+
 
                     <div className="mt-4">
                         <label
@@ -470,6 +487,32 @@ export default function UpdatePlotForm({ plots }: any) {
                             />
                             <div className="m-4">
                                 {Number(ins_down_payment).toLocaleString()}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="mt-4">
+                        <label
+                            htmlFor="ins-total-price"
+                            className="block mb-2 text-sm font-medium"
+                        >
+                            Installment Amount:
+                        </label>
+                        <div className="flex">
+                            <Input
+                                type="text"
+                                id="ins-total-price"
+                                name="ins-total-price"
+                                className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+                                defaultValue={plots?.ins_total_price as string}
+                                placeholder="Rs."
+                                onChange={(e) => {
+                                    setIns_total_price(Number(e.target.value))
+                                    console.log(e.target.value)
+                                }}
+                            />
+                            <div className="m-4">
+                                {Number(ins_total_price).toLocaleString()}
                             </div>
                         </div>
                     </div>

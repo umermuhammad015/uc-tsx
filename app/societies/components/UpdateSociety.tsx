@@ -5,30 +5,6 @@ import prisma from "../../db";
 
 export default async function editForm(data: FormData) {
 
-    // console.log(params)
-
-    // building = prisma.buildings.find(
-    //     {
-    //         _id: params.id
-    //     }
-    // )
-
-    // const societies = await prisma.societies.findUnique({
-    //     where: {
-    //         id: Number(params.id) as number,
-    //     },
-    // })
-
-    // console.log(societies)
-    // console.log(societies?.id)
-    // console.log(societies?.survey_date)
-    // console.log(societies?.survey_date.toISOString().split('T')[0])
-
-    // async function updateSociety() {
-    // "use server";
-    // const societies_survey_date = new Date(data.get("societies-survey-date")?.valueOf() as string);
-    // const societies_survey_date = (new Date(data.get("societies-survey-date")?.valueOf())).toISOString();
-
     const society_id = data.get("societies-id")?.valueOf();
 
     const societies_survey_date = (new Date(data.get("societies-survey-date")?.valueOf() as string)).toISOString().substring(0, 10);
@@ -123,8 +99,6 @@ export default async function editForm(data: FormData) {
     const apartment_penthouse = data.get("apartment-penthouse")?.valueOf() === undefined ? null : "yes";
 
     const apartment_duplex = data.get("apartment-duplex")?.valueOf() === undefined ? null : "yes";
-
-    const apartment_size_2000 = data.get("apartment-size-2000")?.valueOf() === undefined ? null : "yes";
 
     const societies_plot_size = parseInt(data.get("societies-plot-size")?.valueOf() as string);
 

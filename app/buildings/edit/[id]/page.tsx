@@ -1,13 +1,7 @@
-import Link from "next/link";
-import prisma from "../../../db";
+
 import FetchBuilding from '@/app/buildings/components/FetchBuilding'
 import UpdateBuildingForm from '@/app/buildings/components/UpdateBuildingForm';
-import { redirect } from "next/navigation"
-import UpdateButton from "../../components/UpdateButton";
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Checkbox } from "@/components/ui/checkbox"
+
 
 type Props = {
     params: { id: number }
@@ -209,7 +203,7 @@ export default async function editForm({ params }: any) {
             <div className="container">
 
                 <div className="mx-4">
-                <UpdateBuildingForm building={buildings} />
+                    <UpdateBuildingForm building={buildings} />
                 </div>
             </div>
         </>

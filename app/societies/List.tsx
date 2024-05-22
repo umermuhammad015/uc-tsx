@@ -15,16 +15,7 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table"
-import {
-    Dialog,
-    DialogClose,
-    DialogContent,
-    DialogDescription,
-    DialogFooter,
-    DialogHeader,
-    DialogTitle,
-    DialogTrigger,
-} from "@/components/ui/dialog"
+
 
 
 import { revalidatePath } from "next/cache";
@@ -33,6 +24,8 @@ import CityInput from "./components/CityInput";
 import DeveloperName from "./components/developerName";
 import Grade from "./components/Grade";
 import ProjectType from "./components/Project_type";
+import DeletePlotDialog from "./components/DeleteSocietyDialog";
+import DeleteSocietyDialog from "./components/DeleteSocietyDialog";
 
 export const revalidate = 1; // revalidate the date at most every hour
 export const dynamic = "force-dynamic";
@@ -184,21 +177,7 @@ export default async function List({ city, page, search, developer, society_grad
     // const searchedBuildings = await getSearchedBuildings()
 
     // Function to delete building
-    async function deleteSociety(data: FormData) {
-        "use server";
 
-        const societies_id = data.get("societies-id")?.valueOf();
-        console.log(societies_id);
-
-        await prisma.societies.delete({
-            where: {
-                id: Number(societies_id) as number
-            },
-        });
-
-        revalidatePath("/");
-        redirect("/societies");
-    }
 
     return (
         <>
@@ -228,25 +207,7 @@ export default async function List({ city, page, search, developer, society_grad
 
             </header>
             <div className="flex justify-end">
-                <Button asChild>
-                    <Link href="/api/tables/societies?format=xlsx"
-                    >
-                        <svg xmlns="http://www.w3.org/2000/svg"
-                            width="18"
-                            height="18"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            className="lucide lucide-download">
-                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                            <polyline points="7 10 12 15 17 10" />
-                            <line x1="12" x2="12" y1="15" y2="3" />
-                        </svg>
-                        <span className="ml-2">Export</span></Link>
-                </Button>
+
             </div>
 
 
@@ -273,9 +234,31 @@ export default async function List({ city, page, search, developer, society_grad
                             <TableHead>
                                 <div className="text-lg">Occupancy</div>
                             </TableHead>
-                            <TableHead>
-                                <div className="text-lg">Action</div>
+                            <TableHead className="flex justify-between">
+                                <div className="text-lg mt-2">Action</div>
+                                <Button asChild>
+                                    <Link href="/api/tables/plots?format=xlsx"
+                                    >
+
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            width="18"
+                                            height="18"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            className="lucide lucide-download">
+                                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                            <polyline points="7 10 12 15 17 10" />
+                                            <line x1="12" x2="12" y1="15" y2="3" />
+                                        </svg>
+                                        <span className="ml-2">Export</span>
+                                    </Link>
+                                </Button>
                             </TableHead>
+
 
 
                         </TableRow>
@@ -326,11 +309,11 @@ export default async function List({ city, page, search, developer, society_grad
                                             </Link>
                                         </Button> */}
 
-                                        <form action={deleteSociety} className="hidden">
+                                        {/* <form action={deleteSociety} className="hidden">
                                             <input type="hidden" name="societies-id" value={societies.id} />
                                             <DeleteSocietyButton />
 
-                                        </form>
+                                        </form> */}
 
                                         {/* <AlertDialog>
                                             <AlertDialogTrigger asChild>
@@ -356,35 +339,9 @@ export default async function List({ city, page, search, developer, society_grad
                                             </AlertDialogContent>
                                         </AlertDialog> */}
 
-                                        <Dialog>
-                                            <DialogTrigger asChild>
-                                                <Button variant="destructive">Delete</Button>
-                                            </DialogTrigger>
-                                            <DialogContent className="sm:max-w-md">
-                                                <DialogHeader>
-                                                    <DialogTitle>Delete Society</DialogTitle>
-                                                    <DialogDescription>
-                                                        Are you absolutely sure?
-                                                    </DialogDescription>
-                                                </DialogHeader>
-                                                <div className="flex items-center space-x-2">
+                                        {/* <DeletePlotDialog /> */}
+                                        <DeleteSocietyDialog society_id={societies.id} />
 
-                                                </div>
-                                                <DialogFooter className="sm:justify-start">
-                                                    <DialogClose asChild>
-                                                        <Button type="button" variant="secondary">
-                                                            Close
-                                                        </Button>
-
-                                                    </DialogClose>
-                                                    <form action={deleteSociety}>
-                                                        <input type="hidden" name="societies-id" value={societies.id} />
-                                                        <DeleteSocietyButton />
-
-                                                    </form>
-                                                </DialogFooter>
-                                            </DialogContent>
-                                        </Dialog>
 
                                     </div>
                                 </TableCell>

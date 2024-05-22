@@ -25,6 +25,7 @@ import {
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import DeleteHomeButton from "../components/DeleteHomeButton";
+import DeletePlotDialog from "../components/DeletePlotDialog";
 
 
 
@@ -127,6 +128,7 @@ export default async function ViewBuilding({ params }: Props) {
         revalidatePath("/");
         redirect("/societies/" + params.id);
     }
+
 
     return (
         <>
@@ -485,10 +487,22 @@ export default async function ViewBuilding({ params }: Props) {
                                     <div className="">{plot?.type}</div>
                                 </TableCell>
                                 <TableCell>
-                                    <div className="">{plot?.type === 'Apartment' ? plot?.apartment_size : plot?.size}</div>
-                                    <div className="">{plot?.shop_size}</div>
-                                    <div className="">{plot?.office_size}</div>
+                                    <div className="">
 
+                                        {
+                                            plot?.type === 'Apartment' ? plot?.apartment_size
+                                                : plot?.type === 'Shop' ? plot?.shop_size
+                                                    : plot?.type === 'Office' ? plot?.office_size
+                                                        : plot?.size
+                                        }
+
+                                        {/* {plot?.type === 'Apartment' ? plot?.apartment_size : plot?.size} */}
+
+                                        {/* {plot?.type === 'Shop' ? plot?.shop_size : plot?.size} */}
+
+                                    </div>
+                                    {/* <div className="">{plot?.shop_size}</div>
+                                    <div className="">{plot?.office_size}</div> */}
                                 </TableCell>
                                 <TableCell>
                                     <div className="">{plot?.payment_mode}</div>
@@ -515,38 +529,7 @@ export default async function ViewBuilding({ params }: Props) {
                                 </TableCell>
                                 <TableCell >
 
-                                    <Dialog>
-                                        <DialogTrigger asChild>
-                                            <Button variant="destructive">Delete</Button>
-                                        </DialogTrigger>
-                                        <DialogContent className="sm:max-w-md">
-                                            <DialogHeader>
-                                                <DialogTitle>Delete Society</DialogTitle>
-                                                <DialogDescription>
-                                                    Are you absolutely sure?
-                                                </DialogDescription>
-                                            </DialogHeader>
-                                            <div className="flex items-center space-x-2">
-
-                                            </div>
-                                            <DialogFooter className="sm:justify-start">
-                                                <DialogClose asChild>
-                                                    <Button type="button" variant="secondary">
-                                                        Close
-                                                    </Button>
-
-                                                </DialogClose>
-                                                <form action={deletePlot}>
-                                                    <input
-                                                        type="hidden"
-                                                        name="plot-id"
-                                                        value={plot.id}
-                                                    />
-                                                    <DeleteHomeButton />
-                                                </form>
-                                            </DialogFooter>
-                                        </DialogContent>
-                                    </Dialog>
+                                    <DeletePlotDialog plot_id={plot.id} />
                                 </TableCell>
 
                             </TableRow>

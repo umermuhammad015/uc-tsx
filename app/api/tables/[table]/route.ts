@@ -40,7 +40,7 @@ export async function GET(
     // Loading example data
     const file = await prisma.societies.findMany({
         where: {
-            city: city === null ? undefined : ('')
+            city: city === null ? undefined : ("")
             // project_type: project_type === null ? undefined : ''
             // society_grade: null ? undefined : '' 
         }

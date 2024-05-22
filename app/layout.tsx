@@ -8,6 +8,7 @@ import { ThemeProvider } from "./ThemeProvider";
 import ThemeToggleButton from "@/components/ThemeToggleButton";
 import Header from "@/components/header";
 import NextProgressClient from "@/components/nextprogress-client";
+import { Toaster } from "@/components/ui/sonner"
 
 // import ThemeToggleButton from "@/components/ThemeToggleButton";
 // import { useState } from "react";
@@ -29,15 +30,18 @@ export default function RootLayout({
       <body
         // style={{ minWidth: "1000px" }} className={`$(inter.className) bg-white text-black font-semibold container mx-auto p-4 `}
         style={{ minWidth: "1000px" }}
-        className={`$(inter.className) text-primary font-semibold container mx-auto p-4 `}
+        className={`$(inter.className) `}
       >
-        <NextProgressClient />
+        <div className="container text-primary font-semibold mx-auto p-4">
+          <NextProgressClient />
 
-        <ThemeProvider attribute="class">
-          <Header />
-          <main className="container mx-auto">{children}</main>
-          
-        </ThemeProvider>
+          <ThemeProvider attribute="class">
+            <Header />
+            <main className="container mx-auto">{children}</main>
+            <Toaster position="bottom-right"/>
+          </ThemeProvider>
+        </div>
+
       </body>
     </html>
   );

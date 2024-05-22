@@ -155,7 +155,6 @@ export default async function editForm(data: FormData) {
     console.log(update_query)
 
     const updateBuilding = await prisma.buildings.update(update_query)
-    // let updatedNote = await Note.findByIdAndUpdate({ _id: params.id }, { title, note });
     redirect('/buildings')
 
 }

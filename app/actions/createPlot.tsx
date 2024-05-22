@@ -30,18 +30,9 @@ export default async function createPlot(data: FormData) {
 
     const payment_mode = data.get("payment-mode")?.valueOf();
 
-    const plot_price = data.get("plot-price")?.valueOf();
+    const plot_price =  parseInt(data.get("plot-price")?.valueOf() as string);
 
-    const plot_rent = data.get("plot-rent")?.valueOf();
-
-    const banglow_price = data.get("banglow-price")?.valueOf();
-
-    const banglow_rent = data.get("banglow_rent")?.valueOf();
-
-
-    const plot_direction = data.get("plot-direction")?.valueOf();
-
-    const is_corner = data.get("is-corner")?.valueOf();
+    const plot_rent =  parseInt(data.get("plot-rent")?.valueOf() as string);
 
     const ins_total_price =  parseInt(data.get("ins-total-price")?.valueOf() as string);
 
@@ -63,9 +54,6 @@ export default async function createPlot(data: FormData) {
     console.log("🚀 ~ file: page.tsx:9 ~ createPlots ~ apartment_size_ft:", apartment_size_ft);
     console.log("🚀 ~ file: page.tsx:9 ~ createPlots ~ plot_price:", plot_price);
     console.log("🚀 ~ file: page.tsx:9 ~ createPlots ~ plot_rent:", plot_rent);
-    console.log("🚀 ~ file: page.tsx:9 ~ createPlots ~ banglow_price:", banglow_price);
-    console.log("🚀 ~ file: page.tsx:9 ~ createPlots ~ banglow_rent:", banglow_rent);
-    console.log("🚀 ~ file: page.tsx:9 ~ createPlots ~ plot_direction:", plot_direction);
     console.log("🚀 ~ file: page.tsx:9 ~ createPlots ~ plot_remarks:", plot_remarks);
     console.log("🚀 ~ file: page.tsx:9 ~ createPlots ~ add_more:", add_more);
 
@@ -82,12 +70,8 @@ export default async function createPlot(data: FormData) {
             payment_mode: payment_mode as string,
             shop_size: shop_size as string,
             office_size: office_size as string,
-            plot_price: plot_price as string,
-            plot_rent: plot_rent as string,
-            banglow_price: banglow_price as string,
-            banglow_rent: banglow_rent as string,
-            direction: plot_direction as string,
-            is_corner: is_corner as string,
+            plot_price: plot_price,
+            plot_rent: plot_rent,
             ins_down_payment: ins_down_payment,
             ins_total_price: ins_total_price,
             ins_period: ins_period,

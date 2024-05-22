@@ -27,9 +27,9 @@ export default async function UpdatePlot(data: FormData) {
 
     const plot_size = data.get("plot-size")?.valueOf();
 
-    const plot_price = data.get("plot-price")?.valueOf();
+    const plot_price = parseInt(data.get("plot-price")?.valueOf() as string);
 
-    const plot_rent = data.get("plot-rent")?.valueOf();
+    const plot_rent = parseInt(data.get("plot-rent")?.valueOf() as string);
 
     const ins_total_price = parseInt(data.get("ins-total-price")?.valueOf() as string);
 
@@ -59,8 +59,8 @@ export default async function UpdatePlot(data: FormData) {
             office_size: office_size as string,
             payment_mode: payment_mode as string,
             size: plot_size as string,
-            plot_price: plot_price as string,
-            plot_rent: plot_rent as string,
+            plot_price: plot_price,
+            plot_rent: plot_rent,
             ins_down_payment: ins_down_payment,
             ins_total_price: ins_total_price,
             ins_period: ins_period,

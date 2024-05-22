@@ -199,6 +199,33 @@ model Societies {
   // Homes  Homes[]
 }
 
+model Commercial {
+  id                   Int     @id @default(autoincrement())
+  survey_date          String?
+  city                 String?
+  commercial_zone_name String?
+  zone                 String?
+  type                 String?
+  location             String?
+  project_status       String?
+  launch_year          String?
+  grade                String?
+  area                 String?
+  occupancy            Int?
+  total_plots          Int?
+  total_shops          Int?
+  total_offices        Int?
+  total_apartments     Int?
+  property_feature     String?
+  property_title       String?
+  remarks              String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  Price Price[]
+}
+
 // model Plots {
 //   // id String @id @default(auto()) @map("_id") @db.ObjectId
 //   id Int @id @default(autoincrement())
@@ -256,8 +283,8 @@ model Plots {
   apartment_size_ft     String?
   shop_size             String?
   office_size           String?
-  plot_price            String?
-  plot_rent             String?
+  plot_price            Int?
+  plot_rent             Int?
   banglow_price         String?
   banglow_rent          String?
   direction             String?
@@ -268,6 +295,36 @@ model Plots {
   ins_possession_Amount Int?
   ins_period            Int?
   remarks               String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Price {
+  // id String @id @default(auto()) @map("_id") @db.ObjectId
+  id Int @id @default(autoincrement())
+
+  commercial_id Int
+  commercial    Commercial @relation(fields: [commercial_id], references: [id], onDelete: Cascade)
+
+  date               String?
+  property_type      String?
+  plot_size          String?
+  building_size      String?
+  total_floor        Int?
+  building_size_sq   Int?
+  shop_size          String?
+  office_size        String?
+  apartment_size     String?
+  total_bed          String?
+  payment_mode       String?
+  price              Int?
+  rent               Int?
+  total_price        Int?
+  installment_period Int?
+  down_payment       Int?
+  possession_amount  Int?
+  remarks            String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

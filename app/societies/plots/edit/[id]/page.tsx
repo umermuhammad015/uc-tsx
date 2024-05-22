@@ -85,7 +85,7 @@ export default async function editPlotForm({ params }: Props) {
 
     // }
 
-    console.log(plots)
+    // console.log(plots)
 
     return (
         <>
