@@ -3,7 +3,7 @@ import { Input } from "@/components/ui/input"
 import prisma from "../db";
 import { Feed } from "@/components/feed";
 import SearchInput from "./components/SearchInput";
-import { PageProps } from '../commercial/page';
+// import { PageProps } from '../commercial/page';
 import { redirect } from "next/navigation";
 // import DeleteBuildingButton from "./components/DeleteBuildingButton";
 // import { Badge } from "@/components/ui/badge";
@@ -46,152 +46,155 @@ import {
 import { revalidatePath } from "next/cache";
 import DeleteCommercialButton from "./components/DeleteCommercialButton";
 import DeleteCommercialDialog from "./components/DeleteCommercIalDialog";
+import CityInput from "./components/CityInput";
 
 export const revalidate = 0; // revalidate the date at most every hour
 export const dynamic = "force-dynamic";
 const PAGE_SIZE = 5;
 
-const GetCommercial = async ({ search = "", take = PAGE_SIZE, skip = 0 }) => {
+const GetCommercial = async ({ search_string = '', take = PAGE_SIZE, skip = 0, city = "" }) => {
+
   // async function getBuildings({ search = '', take = PAGE_SIZE, skip = 0 }) {
-  console.log("GetCommercial");
+  // console.log("GetSocieties");
 
-  if (search === null || search === '') {
+  // console.log("developer_name GetSocieties")
+  // console.log(developer)
 
-    console.log("inside if");
+  if (search_string === null || search_string === '') {
 
-    const results = await prisma.commercial.findMany({
-      take,
-      skip,
-      orderBy: {
-        commercial_zone_name: 'asc',
-      },
-    });
+      // console.log("developer inside if")
+      // console.log(developer)
 
-    const total = await prisma.commercial.count();
+      const results = await prisma.commercial.findMany({
+          take,
+          skip,
+          where: {
+              city: city === "" ? undefined : city,
+             
+          },
+          orderBy: {
+              commercial_zone_name: 'asc',
+          },
+      });
 
-    revalidatePath('/commercial');
+      const total = await prisma.commercial.count();
 
-    const return_object = {
-      data: results,
-      metadata: {
-        hasNextPage: skip + take < total,
-        totalPages: Math.ceil(total / take),
-      },
-    };
+      revalidatePath('/commercial');
 
-    console.log("RO")
-    console.log(return_object)
+      const return_object = {
+          data: results,
+          metadata: {
+              hasNextPage: skip + take < total,
+              totalPages: Math.ceil(total / take),
+          },
+      };
 
-    return return_object
+      // console.log("RO")
+      // console.log(return_object)
+
+      return return_object
 
   } else {
 
-    console.log("inside else");
+      // console.log("inside else developer_name");
+      // console.log(developer_name);
 
-    const results = await prisma.commercial.findMany({
-      take,
-      skip,
-      where: {
-        OR: [
-          {
-            commercial_zone_name: {
-              contains: search,
-              mode: 'insensitive',
-            },
+      const results = await prisma.commercial.findMany({
+          take,
+          skip,
+          where: {
+              OR: [
+                  {
+                      commercial_zone_name: {
+                          contains: search_string,
+                          mode: 'insensitive',
+                      },
+                  },
+                  {
+                      city: {
+                          contains: search_string,
+                          mode: 'insensitive',
+                      },
+                  },
+              ],
+              city: city === "" ? undefined : city,
+              
           },
-          {
-            city: {
-              contains: search,
-              mode: 'insensitive',
-            },
+      })
+
+      // console.log(results);
+
+      const total = await prisma.commercial.count({
+          take,
+          skip,
+          where: {
+              OR: [
+                  {
+                      commercial_zone_name: {
+                          contains: search_string,
+                          mode: 'insensitive',
+                      },
+                  },
+                  {
+                      city: {
+                          contains: search_string,
+                          mode: 'insensitive',
+                      },
+                  },
+              ]
           },
-        ]
-      },
-    })
+      });
 
-    const total = await prisma.commercial.count({
-      take,
-      skip,
-      where: {
-        OR: [
-          {
-            commercial_zone_name: {
-              contains: search,
-              mode: 'insensitive',
-            },
+      revalidatePath('/commercial');
+
+      const return_object = {
+          data: results,
+          metadata: {
+              hasNextPage: skip + take < total,
+              totalPages: Math.ceil(total / take),
           },
-          {
-            city: {
-              contains: search,
-              mode: 'insensitive',
-            },
-          },
-        ]
-      },
-    });
+      };
 
-    revalidatePath('/commercial');
+      // console.log("RO")
+      // console.log(return_object)
 
-    const return_object = {
-      data: results,
-      metadata: {
-        hasNextPage: skip + take < total,
-        totalPages: Math.ceil(total / take),
-      },
-    };
 
-    console.log("RO")
-    console.log(return_object)
-
-    return return_object
+      return return_object
 
   }
 
+
+
 }
 
-// type Props = {
-//   params: {};
-//   searchParams: { [key: string]: string | string[] | undefined };
-// }
-
 type Props = {
-  params?: {
-    num?: string;
-  };
-  searchParams?: {
-    search?: string;
-  };
-};
+  params: {};
+  searchParams: { [key: string]: string | string[] | undefined };
+}
 
-export default async function List(props: PageProps) {
 
-  const pageNumber = Number(props?.searchParams?.page || 1); // Get the page number. Default to 1 if not provided.
+
+// export default async function List(props: PageProps) {
+export default async function List({ city, page, search }: any) {
+
+  // console.log("developer list ")
+  // console.log(developer)
+
+  // const pageNumber = Number(props?.searchParams?.page || 1); // Get the page number. Default to 1 if not provided.
+  const pageNumber = Number(page || 1); // Get the page number. Default to 1 if not provided.
 
   const take = PAGE_SIZE;
   const skip = (pageNumber - 1) * take; // Calculate skip based on page number.
-  const search = props?.searchParams?.search || ''
+  // const search = props?.searchParams?.search || ''
+  const search_string = search || ''
 
   // const buildings = await getBuildings({search, take, skip});
-  const { data, metadata } = await GetCommercial({ search, take, skip });
+  const { data, metadata } = await GetCommercial({ search_string, take, skip, city });
 
   // const searchedBuildings = await getSearchedBuildings()
 
   // Function to delete building
-  async function deleteCommercial(data: FormData) {
-    "use server";
 
-    const commercial_id = data.get("commercial-id")?.valueOf();
-    console.log(commercial_id);
-
-    await prisma.commercial.delete({
-      where: {
-        id: Number(commercial_id) as number
-      },
-    });
-
-    revalidatePath("/");
-    redirect("/commercial");
-  }
 
   // await prisma.buildings.create({
   //   data:{
@@ -206,21 +209,27 @@ export default async function List(props: PageProps) {
       <SearchInput />
 
       <header className="flex justify-between items-center mt-4 ">
-        <h1 className="text-2xl"></h1>
-        <div>
-          {/* <Link
-            className="flex justify-center items-center"
-            href="/buildings/new"
-          ><div className="text-xl bg-slate-500 mr-2 px-1">+</div>
-            Add New Buildings
-          </Link> */}
-          <Button asChild>
-            <Link href="/commercial/new">
-              <div>+</div>
-              Add New
-            </Link>
-          </Button>
+        <div className="flex gap-5">
+          <CityInput />
+          {/* <DeveloperName /> */}
+          {/* <Grade />
+                    <ProjectType /> */}
         </div>
+        <div className="">
+
+
+
+          <Button asChild>
+            <Link href="/commercial/new"
+            >
+              <span>+</span>
+              <span className="ml-2">Add New</span></Link>
+          </Button>
+
+        </div>
+
+
+
       </header>
       <div className="mt-4">
         <Table className="table text-base ">

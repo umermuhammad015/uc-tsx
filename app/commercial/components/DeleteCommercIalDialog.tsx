@@ -22,7 +22,8 @@ import {
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 import { useState } from "react";
-
+import { Toaster } from "@/components/ui/toaster";
+import { useToast } from "@/components/ui/use-toast"
 import { Button } from "@/components/ui/button"
 
 import prisma from "@/app/db";
@@ -32,7 +33,8 @@ import deleteCommercial from "./DeleteCommercial";
 
 
 export default function DeleteCommercialDialog({commercial_id}:any) {
-   
+
+    const { toast } = useToast()
     const [open, setOpen] = useState(false);
     const [isConfirmOpen, setIsConfirmOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(false)
@@ -48,7 +50,13 @@ export default function DeleteCommercialDialog({commercial_id}:any) {
         console.log("logging society_id")
         console.log(deleteCom)
 
-        // revalidatePath("/societies");
+       toast({
+            className: "bg-red-600 rounded-lg",
+            title: "Delete Commercial Zone",
+            description: "your Commercial Zone has been deleted ",
+
+        })
+
     }
 
     return (<>
@@ -120,6 +128,7 @@ export default function DeleteCommercialDialog({commercial_id}:any) {
                 </AlertDialogFooter>
             </AlertDialogContent>
         </AlertDialog>
+        <Toaster />
         {/* <Button
             onClick={() => {
                 setIsConfirmOpen(true)

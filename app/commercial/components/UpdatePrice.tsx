@@ -1,13 +1,11 @@
-"use server";
-
-import { redirect } from "next/navigation";
-import prisma from "../db";
+"use server"
+import { redirect } from "next/navigation"
+import prisma from "../../db";
 import { revalidatePath } from "next/cache";
 
-export default async function createPrice(data: FormData) {
+export default async function UpdatePrice(data: FormData) {
 
-    console.log("🚀 ~ file: page.tsx:10 ~ createPlots ~ data:", data);
-
+    console.log("🚀 ~ file: page.tsx:10 ~ createPrice ~ data:", data);
 
     const date = (new Date(data.get("date")?.valueOf() as string)).toISOString().substring(0, 10);
 
@@ -47,22 +45,13 @@ export default async function createPrice(data: FormData) {
     const remarks = data.get("remarks")?.valueOf();
 
 
-    // console.log(plot_date)
-    // console.log("🚀 ~ file: page.tsx:9 ~ createPlots ~ society_id:", society_id);
-    // console.log("🚀 ~ file: page.tsx:9 ~ createPlots ~ plot_type:", plot_type);
-    // console.log("🚀 ~ file: page.tsx:9 ~ createPlots ~ type:", type);
-    // console.log("🚀 ~ file: page.tsx:9 ~ createPlots ~ plot_size:", plot_size);
-    // console.log("🚀 ~ file: page.tsx:9 ~ createPlots ~ apartment_size_ft:", apartment_size_ft);
-    // console.log("🚀 ~ file: page.tsx:9 ~ createPlots ~ plot_price:", plot_price);
-    // console.log("🚀 ~ file: page.tsx:9 ~ createPlots ~ plot_rent:", plot_rent);
-    // console.log("🚀 ~ file: page.tsx:9 ~ createPlots ~ plot_remarks:", plot_remarks);
-    // console.log("🚀 ~ file: page.tsx:9 ~ createPlots ~ add_more:", add_more);
 
-
-    await prisma.price.create({
+    const update_query = {
+        where: {
+            id: Number(commercial_id) as number
+        },
         data: {
             date: date,
-            commercial_id: Number(commercial_id) as number,
             property_type: property_type as string,
             building_size :building_size as string,
             total_floor: total_floor as string,
@@ -85,9 +74,24 @@ export default async function createPrice(data: FormData) {
 
 
         },
-    });
+    }
 
-    redirect("/commercial");
+    console.log("Update Query is")
+    console.log("update_query")
 
+    const UpdateCommercial = await prisma.price.update(update_query)
+    redirect('/commercial/')
+
+    // if (add_more === "yes") {
+
+    //     revalidatePath("/societies/plots/add/" + society_id, ) // Update cached posts
+    //     redirect("/societies/plots/add/" + society_id)
+
+    // } else {
+    //     redirect("/societies/" + society_id) 
+    // } 
+
+    // return (
+    //     <div>UpdatePlot</div>
+    // )
 }
-

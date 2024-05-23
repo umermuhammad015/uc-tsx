@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button"
 import FetchSociety from "@/app/societies/components/FatchSociety";
 import createPrice from "@/app/actions/createPrice";
 import AddPriceButton from "@/app/commercial/components/AddPriceButton";
+import AddPrice from "@/app/commercial/components/AddPrice";
 type Props = {
     params: { id: number }
     // searchParams: { [key: string]: string | string[] | undefined }
@@ -27,18 +28,22 @@ export default function PriceAddPage({ params }: Props) {
 
     // const [pressAdd, setPress_Add] = useState<Number>(0);
 
-    // const [isAdding, setIsAdding] = useState("no");
+    const [isAdding, setIsAdding] = useState(false);
 
     const [price, setPrice] = useState(0);
-    // const [property_size, setProperty_size] = useState<any>();
+    const [plot_size, setPlot_size] = useState<any>();
     const [apartment_size, setApartment_size] = useState<any>();
+    const [building_size, setBuilding_size] = useState<any>();
     // const [apartment_size_ft, setApartment_size_ft] = useState<any>();
-    // const [shop_size, setShop_size] = useState<any>();
-    // const [office_size, setOffice_size] = useState<any>();
+    const [shop_size, setShop_size] = useState<any>();
+    const [office_size, setOffice_size] = useState<any>();
+    const [total_floor, setTotal_floor] = useState<any>();
+    const [building_sq, setBuilding_sq] = useState<any>();
+    const [total_bed, setTotal_bed] = useState<any>();
     const [rent, setRent] = useState(0);
     const [down_payment, setDown_payment] = useState(0);
     const [total_price, setTotal_price] = useState(0);
-    const [possession_Amount, setpossession_Amount] = useState(0);
+    const [possession_amount, setpossession_Amount] = useState(0);
     const [installment_period, setInstallment_period] = useState(0);
     const [entryDate, setEntryDate] = useState<string>((new Date).toISOString().split('T')[0]);
     const [remarks, setRemarks] = useState<any>("");
@@ -47,79 +52,60 @@ export default function PriceAddPage({ params }: Props) {
 
     const [payment_mode, setPayment_mode] = useState("Lumpsum Payment");
 
-    // useEffect(() => {
+    const insertPlot = async () => {
 
-    //     console.log("use effect called")
+        try {
 
-    //     const getSocietyData = async () => {
+            setIsAdding(true)
 
-    //         try {
+            // console.log("trying")
+            // console.log(params.id)
 
-    //             console.log("trying")
-    //             console.log(params.id)
-
-    //             const society_data = await FetchSociety(params.id)
-
-    //             console.log("Current_society_data")
-    //             console.log(society_data)
-
-
-    //             setCurrent_society(society_data)
-
-    //         } catch (error) {
-
-    //             console.error('Error fetching society data:', error);
-
-    //             // setIsAdding(!isAdding)
-    //         }
-    //     };
-
-    //     getSocietyData();
-
-    // }, []);
+            const add_plot_output = await AddPrice(entryDate, params.id, price, plot_size, property_type,
+                apartment_size, building_size, shop_size, payment_mode, office_size, total_floor, total_bed,
+                building_sq, rent, down_payment, total_price, possession_amount, installment_period, remarks)
 
 
 
-    // useEffect(() => {
+            // toast({
+            //     className: "bg-green-600 rounded-lg",
+            //     // title: "Add Price",
+            //     description: "Plot added successfully ",
 
-    //     const insertPlot = async () => {
-
-    //         try {
-
-    //             console.log("trying")
-    //             console.log(params.id)
-
-    //             const add_plot_output = await AddPlot(entryDate, params.id, plotType, property_size,
-    //                 apartment_size, apartment_size_ft, shop_size, payment_mode, office_size,
-    //                 ins_down_payment, ins_total_price, ins_period, ins_possession_Amount, remarks)
-
-    //             console.log("Plot added")
-    //             console.log(add_plot_output)
-
-    //         } catch (error) {
-
-    //             console.error('Error addign plot:', error);
-
-    //             // setIsAdding(!isAdding)
-    //         }
-    //     };
-
-    //     insertPlot();
+            // })
 
 
-    // }, [pressAdd]);
 
-    // function handleAddMoreClick() {
-
-    //     console.log("plot inserted function running")
+            // setPlotType("")
+            // setPayment_mode("")
+            // setplot_Price(0)
+            // setplot_Rent(0)
+            // setIns_down_payment(0)
+            // setIns_total_price(0)
+            // setIns_possession_Amount(0)
+            // setIns_Period(0)
+            // setIns_Period(0)
+            // setEntryDate("")
+            // setRemarks("")
+            // setApartment_size("")
+            // setApartment_size_ft("")
+            // setProperty_size("")
+            // setShop_size("")
+            // setOffice_size("")
 
 
 
 
 
-    //     console.log("Exitted")
+        } catch (error) {
 
-    // }
+            console.error('Error addign plot:', error);
+
+        } finally {
+            setIsAdding(false)
+        }
+
+    };
 
     return (
         <>
@@ -193,7 +179,7 @@ export default function PriceAddPage({ params }: Props) {
                                         id="plot-size"
                                         name="plot-size"
                                         className="select w-full text-sm pl-2 h-10 max-w-xs border-2 rounded border-gray-400 bg-background"
-
+                                        onChange={(e) => setPlot_size(e.target.value)}
                                     >
                                         <option value="">All</option>
                                         <option value="50">50</option>
@@ -236,6 +222,7 @@ export default function PriceAddPage({ params }: Props) {
                                         id="building-size"
                                         name="building-size"
                                         className="select  w-full text-sm pl-2 h-10 max-w-xs border-2 rounded border-gray-400 bg-background"
+                                        onChange={(e) => setBuilding_size(e.target.value)}
                                     >
                                         <option value="">All</option>
                                         <option value="50">50</option>
@@ -273,6 +260,7 @@ export default function PriceAddPage({ params }: Props) {
                                         id="total-floor"
                                         name="total-floor"
                                         className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+                                        onChange={(e) => setTotal_floor(e.target.value)}
                                         placeholder=""
                                     />
                                 </div>
@@ -289,6 +277,7 @@ export default function PriceAddPage({ params }: Props) {
                                         id="building-size-sq"
                                         name="building-size-sq"
                                         className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+                                        onChange={(e) => setBuilding_sq(e.target.value)}
                                         placeholder=""
                                     />
                                 </div>
@@ -312,6 +301,7 @@ export default function PriceAddPage({ params }: Props) {
                                         id="shop-size"
                                         name="shop-size"
                                         className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+                                        onChange={(e) => setShop_size(e.target.value)}
                                         placeholder=""
                                     />
                                 </div>
@@ -335,6 +325,7 @@ export default function PriceAddPage({ params }: Props) {
                                         id="office-size"
                                         name="office-size"
                                         className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+                                        onChange={(e) => setOffice_size(e.target.value)}
                                         placeholder=""
                                     />
                                 </div>
@@ -375,6 +366,7 @@ export default function PriceAddPage({ params }: Props) {
                                         id="total-bed"
                                         name="total-bed"
                                         className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+                                        onChange={(e) => setTotal_bed(e.target.value)}
                                         placeholder=""
                                     />
                                 </div>
@@ -558,7 +550,7 @@ export default function PriceAddPage({ params }: Props) {
                                             }}
                                         />
                                         <div className="m-4">
-                                            {Number(possession_Amount).toLocaleString()}
+                                            {Number(possession_amount).toLocaleString()}
                                         </div>
                                     </div>
                                 </div>
@@ -604,10 +596,6 @@ export default function PriceAddPage({ params }: Props) {
                             />
                         </div>
 
-                        <button onClick={() => {
-                            console.log(apartment_size)
-                        }}>Check</button>
-
                         {/* Plot Remarks  */}
                         <div className="mt-4">
                             <label htmlFor="message" className="block mb-2 text-sm font-medium">
@@ -636,8 +624,18 @@ export default function PriceAddPage({ params }: Props) {
                 <AddPriceButton />
                 {/* <Link href="/buildings" className="flex justify-center items-center border border-black px-2 py-1 rounded-xl bg-white text-black hover:bg-red-600 hover:text-white capitalize">Cancel</Link> */}
 
-                {/* Add more */}
+                <Button variant='outline'
+                    onClick={async (e) => {
 
+                        e.preventDefault();
+                        insertPlot()
+
+                    }}
+
+                >
+                    {isAdding ? "Saving...." : "Save and Add more"}
+
+                </Button>
                 <Button asChild className="bg-transparent text-primary hover:bg-primary-foreground">
                     <Link href="/commercial" >Cancel</Link>
                 </Button>
