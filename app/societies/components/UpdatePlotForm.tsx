@@ -87,6 +87,24 @@ export default function UpdatePlotForm({ plots }: any, { params }: Props) {
 
             <div className="mt-4 ">
                 <label
+                    htmlFor="plot-id"
+                    className="block mb-2 text-sm font-medium "
+                >
+                    Plot ID:
+                </label>
+                <Input
+                    type="text"
+                    id="plot-id"
+                    name="plot-id"
+                    className="input input-bordered  w-full max-w-xs border-2 border-gray-400 cursor-not-allowed disabled:bg-gray-200"
+                    placeholder=""
+                    value={plots?.id}
+
+                />
+            </div>
+
+            <div className="mt-4 ">
+                <label
                     htmlFor="society-id"
                     className="block mb-2 text-sm font-medium "
                 >
@@ -96,9 +114,9 @@ export default function UpdatePlotForm({ plots }: any, { params }: Props) {
                     type="text"
                     id="society-id"
                     name="society-id"
-                    className="input input-bordered  w-full max-w-xs border-2 border-gray-400 cursor-not-allowed disabled:bg-gray-200"
+                    className="input input-bordered w-full max-w-xs border-2 border-gray-400 cursor-not-allowed disabled:bg-gray-200"
                     placeholder=""
-                    value={plots?.id}
+                    value={plots?.society_id}
 
                 />
             </div>

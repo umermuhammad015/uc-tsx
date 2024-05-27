@@ -4,11 +4,12 @@ import prisma from "../../db";
 import { Input } from "@/components/ui/input"
 
 import { Button } from "@/components/ui/button"
-
+import qs from 'query-string'
 
 import { useFormStatus } from 'react-dom'
 import { useEffect, useState } from "react"
 import { useRouter } from 'next/navigation'
+import useDebounce from "@/components/debouce";
 
 
 function SearchInput() {
@@ -18,19 +19,32 @@ function SearchInput() {
 
   // const { pending } = useFormStatus()
 
-  const [input, setInput] = useState('');
+  const [search, setSearch] = useState('');
+  const debouncedSearchKeywords = useDebounce(search, 500)
   const [results, setResults] = useState({});
+  
 
+  useEffect(() => {
+
+    // console.log(search)
+    // console.log(debouncedSearchKeywords)
+
+    const query = {
+      search: debouncedSearchKeywords,
+
+    }
+    const url = qs.stringifyUrl({
+      url: window.location.href,
+      query
+    }, { skipNull: true, skipEmptyString: true })
+
+    router.push(url)
+
+  }, [debouncedSearchKeywords])
 
   function handleSearch() {
-    // // Get floors information
-    // const buildings = prisma?.buildings.findMany({
-    //   where: {
-    //     name: input,
-    //   },
-    // });
-
-    router.push("buildings?search=" +input )
+  
+    router.push("buildings?search=" + search)
 
   }
 
@@ -42,11 +56,11 @@ function SearchInput() {
     <>
       <div className="flex gap-2">
         <Input type="search"
-          placeholder="search"
-          value={input}
-          onInput={e => setInput ((e.target as HTMLInputElement).value)}
+          placeholder="Search"
+          value={search}
+          onInput={e => setSearch((e.target as HTMLInputElement).value)}
         />
-        <Button onClick={handleSearch} style={{ height:'43px'}}>Search</Button>
+        <Button onClick={handleSearch} style={{ height: '43px' }}>Search</Button>
       </div>
 
       {/* <div>

@@ -3,7 +3,7 @@ import prisma from "../db";
 import SearchInput from "./components/SearchInput";
 import { redirect } from "next/navigation";
 import useDebounce from "@/components/debouce";
-import { PageProps } from '../buildings/page';
+// import { PageProps } from '../buildings/page';
 import DeleteSocietyButton from "./components/DeleteSocietyButton";
 import { Button } from "@/components/ui/button"
 import {

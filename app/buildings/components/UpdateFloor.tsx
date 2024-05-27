@@ -45,8 +45,8 @@ export default async function UpdateFloor(data: FormData) {
         }
     }
 
-    console.log("Update Query is")
-    console.log("update_query")
+    // console.log("Update Query is")
+    // console.log("update_query")
 
     const updateBuilding = await prisma.floors.update(update_query)
     // let updatedNote = await Note.findByIdAndUpdate({ _id: params.id }, { title, note });

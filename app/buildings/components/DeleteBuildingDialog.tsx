@@ -29,10 +29,10 @@ import { Button } from "@/components/ui/button"
 import prisma from "@/app/db";
 import { revalidate } from "../List";
 import { revalidatePath } from "next/cache";
-import deleteCommercial from "./DeleteCommercial";
+import deleteBuilding from "./DeleteBuilding";
 
 
-export default function DeleteCommercialDialog({commercial_id}:any) {
+export default function DeleteCommercialDialog({building_id}:any) {
 
     const { toast } = useToast()
     const [open, setOpen] = useState(false);
@@ -43,12 +43,12 @@ export default function DeleteCommercialDialog({commercial_id}:any) {
        
         setIsLoading(true)
 
-        const deleteCom = await deleteCommercial(commercial_id)
+        const deleteCom = await deleteBuilding(building_id)
 
         setIsLoading(false)
 
-        console.log("logging society_id")
-        console.log(deleteCom)
+        // console.log("logging society_id")
+        // console.log(deleteCom)
 
        toast({
             className: "bg-red-600 rounded-lg",
@@ -61,36 +61,7 @@ export default function DeleteCommercialDialog({commercial_id}:any) {
 
     return (<>
 
-        {/* <Dialog open={open} onOpenChange={setOpen}>
-            <DialogTrigger asChild>
-                <Button variant="destructive">Delete</Button>
-            </DialogTrigger>
-            <DialogContent className="sm:max-w-md">
-                <DialogHeader>
-                    <DialogTitle>Delete Society</DialogTitle>
-                    <DialogDescription>
-                        Are you absolutely sure?
-                    </DialogDescription>
-                </DialogHeader>
-                <div className="flex items-center space-x-2">
-
-                </div>
-                <DialogFooter className="sm:justify-start">
-                    <DialogClose asChild>
-                        <Button type="button" variant="secondary">
-                            Close
-                        </Button>
-
-                    </DialogClose>
-                    <form action={deleteSociety}>
-                        <input type="hidden" name="societies-id" value={society_id} />
-                        <DeleteSocietyButton setOpen={setOpen} />
-
-                    </form>
-                </DialogFooter>
-            </DialogContent>
-        </Dialog> */}
-        {/* <AlertDialog open={open} onOpenChange={setOpen}> */}
+       
         <AlertDialog open={isConfirmOpen} onOpenChange={setIsConfirmOpen}>
             <AlertDialogTrigger asChild>
                 <Button variant="destructive">{isLoading ? "Deleting...." : "Delete" }</Button>

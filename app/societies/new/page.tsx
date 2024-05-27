@@ -247,6 +247,7 @@ export default function NewSocietyPage() {
               id="societies-address"
               name="societies-address"
               className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+              required
               placeholder="address"
             />
           </div>
@@ -356,6 +357,7 @@ export default function NewSocietyPage() {
                 name="societies-area"
                 className="input input-bordered w-full max-w-xs border-2 border-gray-400  "
                 placeholder=""
+                required
                 onChange={(e) => {
                   setArea(Number(e.target.value))
                   console.log(e.target.value)
@@ -404,6 +406,7 @@ export default function NewSocietyPage() {
                 min={0}
                 max={100}
                 placeholder=""
+                required
                 onChange={(e) => {
                   setOccupancy(Number(e.target.value))
                 }}

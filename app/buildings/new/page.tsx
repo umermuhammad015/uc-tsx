@@ -521,7 +521,6 @@ export default function Page() {
                   <SelectLabel></SelectLabel>
                   <SelectItem value="A+">A+</SelectItem>
                   <SelectItem value="A">A</SelectItem>
-                  <SelectItem value="B+">B+</SelectItem>
                   <SelectItem value="B">B</SelectItem>
                   <SelectItem value="C">C</SelectItem>
                 </SelectGroup>

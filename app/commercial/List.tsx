@@ -50,7 +50,7 @@ import CityInput from "./components/CityInput";
 
 export const revalidate = 0; // revalidate the date at most every hour
 export const dynamic = "force-dynamic";
-const PAGE_SIZE = 5;
+const PAGE_SIZE = 10000;
 
 const GetCommercial = async ({ search_string = '', take = PAGE_SIZE, skip = 0, city = "" }) => {
 

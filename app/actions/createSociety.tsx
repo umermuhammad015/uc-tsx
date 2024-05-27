@@ -267,7 +267,7 @@ export default async function createSociety(data: FormData) {
   //     throw new Error ("Invalid city")
   // }
 
-  await prisma.societies.create({
+  const created_society = await prisma.societies.create({
     data: {
       survey_date: societies_survey_date,
       city: societies_city as string,
@@ -356,7 +356,8 @@ export default async function createSociety(data: FormData) {
     },
   });
 
-  // console.log("Hi")
+  // console.log("created_society")
+  // console.log(created_society)
 
-  redirect("/societies");
+  redirect("/societies/" + created_society.id);
 }

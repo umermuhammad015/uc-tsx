@@ -3,7 +3,7 @@ import { Input } from "@/components/ui/input"
 import prisma from "../db";
 import { Feed } from "@/components/feed";
 import SearchInput from "./components/SearchInput";
-import { PageProps } from '../buildings/page';
+// import { PageProps } from '../buildings/page';
 import { redirect } from "next/navigation";
 import DeleteBuildingButton from "./components/DeleteBuildingButton";
 import { Badge } from "@/components/ui/badge";
@@ -24,22 +24,33 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { revalidatePath } from "next/cache";
+import CityInput from "./components/CityInput";
+import DeleteBuildingDialog from "./components/DeleteBuildingDialog";
 
 export const revalidate = 0; // revalidate the date at most every hour
 export const dynamic = "force-dynamic";
-const PAGE_SIZE = 5;
+const PAGE_SIZE = 10000;
 
-const GetBuildings = async ({ search = "", take = PAGE_SIZE, skip = 0 }) => {
+const getBuildings = async ({ search_string = '', take = PAGE_SIZE, skip = 0, city = "" }) => {
+
   // async function getBuildings({ search = '', take = PAGE_SIZE, skip = 0 }) {
-  console.log("GetBuildings");
+  // console.log("GetSocieties");
 
-  if (search === null || search === '') {
+  // console.log("developer_name GetSocieties")
+  // console.log(developer)
 
-    console.log("inside if");
+  if (search_string === null || search_string === '') {
+
+    // console.log("developer inside if")
+    // console.log(developer)
 
     const results = await prisma.buildings.findMany({
       take,
       skip,
+      where: {
+        city: city === "" ? undefined : city,
+
+      },
       orderBy: {
         name: 'asc',
       },
@@ -47,7 +58,7 @@ const GetBuildings = async ({ search = "", take = PAGE_SIZE, skip = 0 }) => {
 
     const total = await prisma.buildings.count();
 
-    revalidatePath('/buildings');
+    revalidatePath('/commercial');
 
     const return_object = {
       data: results,
@@ -57,14 +68,15 @@ const GetBuildings = async ({ search = "", take = PAGE_SIZE, skip = 0 }) => {
       },
     };
 
-    console.log("RO")
-    console.log(return_object)
+    // console.log("RO")
+    // console.log(return_object)
 
     return return_object
 
   } else {
 
-    console.log("inside else");
+    // console.log("inside else developer_name");
+    // console.log(developer_name);
 
     const results = await prisma.buildings.findMany({
       take,
@@ -73,19 +85,23 @@ const GetBuildings = async ({ search = "", take = PAGE_SIZE, skip = 0 }) => {
         OR: [
           {
             name: {
-              contains: search,
+              contains: search_string,
               mode: 'insensitive',
             },
           },
           {
             city: {
-              contains: search,
+              contains: search_string,
               mode: 'insensitive',
             },
           },
-        ]
+        ],
+        city: city === "" ? undefined : city,
+
       },
     })
+
+    // console.log(results);
 
     const total = await prisma.buildings.count({
       take,
@@ -94,13 +110,13 @@ const GetBuildings = async ({ search = "", take = PAGE_SIZE, skip = 0 }) => {
         OR: [
           {
             name: {
-              contains: search,
+              contains: search_string,
               mode: 'insensitive',
             },
           },
           {
             city: {
-              contains: search,
+              contains: search_string,
               mode: 'insensitive',
             },
           },
@@ -118,86 +134,64 @@ const GetBuildings = async ({ search = "", take = PAGE_SIZE, skip = 0 }) => {
       },
     };
 
-    console.log("RO")
-    console.log(return_object)
+    // console.log("RO")
+    // console.log(return_object)
+
 
     return return_object
 
   }
 
+
+
 }
 
-// type Props = {
-//   params: {};
-//   searchParams: { [key: string]: string | string[] | undefined };
-// }
-
 type Props = {
-  params?: {
-    num?: string;
-  };
-  searchParams?: {
-    search?: string;
-  };
-};
+  params: {};
+  searchParams: { [key: string]: string | string[] | undefined };
+}
 
-export default async function List(props: PageProps) {
 
-  const pageNumber = Number(props?.searchParams?.page || 1); // Get the page number. Default to 1 if not provided.
+
+// export default async function List(props: PageProps) {
+export default async function List({ city, page, search }: any) {
+
+  // console.log("developer list ")
+  // console.log(developer)
+
+  // const pageNumber = Number(props?.searchParams?.page || 1); // Get the page number. Default to 1 if not provided.
+  const pageNumber = Number(page || 1); // Get the page number. Default to 1 if not provided.
 
   const take = PAGE_SIZE;
   const skip = (pageNumber - 1) * take; // Calculate skip based on page number.
-  const search = props?.searchParams?.search || ''
+  // const search = props?.searchParams?.search || ''
+  const search_string = search || ''
 
   // const buildings = await getBuildings({search, take, skip});
-  const { data, metadata } = await GetBuildings({ search, take, skip });
-
-  // const searchedBuildings = await getSearchedBuildings()
-
-  // Function to delete building
-  async function deleteBuilding(data: FormData) {
-    "use server";
-
-    const building_id = data.get("building-id")?.valueOf();
-    console.log(building_id);
-
-    await prisma.buildings.delete({
-      where: {
-        id: Number(building_id) as number
-      },
-    });
-
-    revalidatePath("/");
-    redirect("/buildings");
-  }
-
-  // await prisma.buildings.create({
-  //   data:{
-  //     name: "Hafeez Center",
-  //     city: "Lahore"
-  //   }})
-
-  // console.log(searchParams);
+  const { data, metadata } = await getBuildings({ search_string, take, skip, city });
 
   return (
     <>
       <SearchInput />
 
       <header className="flex justify-between items-center mt-4 ">
-        <h1 className="text-2xl"></h1>
-        <div>
-          {/* <Link
-            className="flex justify-center items-center"
-            href="/buildings/new"
-          ><div className="text-xl bg-slate-500 mr-2 px-1">+</div>
-            Add New Buildings
-          </Link> */}
+        <div className="flex gap-5">
+          <CityInput />
+          {/* <DeveloperName /> */}
+          {/* <Grade />
+                    <ProjectType /> */}
+        </div>
+        <div className="">
+
+
+
           <Button asChild>
-            <Link href="/buildings/new">
-              <div>+</div>
-              Add New Buildings
-            </Link>
+            <Link href="/buildings/new"
+            >
+              <span>+</span>
+              <span className="ml-2">Add New Buildings</span></Link>
           </Button>
+
         </div>
       </header>
       <div className="mt-4">
@@ -208,16 +202,19 @@ export default async function List(props: PageProps) {
                 <div className=" text-lg">Buildings Names</div>
               </TableHead>
               <TableHead>
-                <div className="text-lg">Status</div>
+                <div className="text-lg">Location</div>
               </TableHead>
               <TableHead>
-                <div className="text-lg">Facilities</div>
+                <div className="text-lg">Buildind Type</div>
               </TableHead>
               <TableHead>
-                <div className="text-lg">City</div>
+                <div className="text-lg">Grade</div>
               </TableHead>
               <TableHead>
-                <div className="text-lg">Area</div>
+                <div className="text-lg">Plot Size</div>
+              </TableHead>
+              <TableHead>
+                <div className="text-lg">Constructed Area</div>
               </TableHead>
               <TableHead>
                 <div className="text-lg">Actions</div>
@@ -232,53 +229,11 @@ export default async function List(props: PageProps) {
                   <TableCell>
                     <Link href={"buildings/" + building.id}>{building.name}</Link>
                   </TableCell>
-                  <TableCell>{building.status}</TableCell>
-                  <TableCell>
-                    <div className="flex flex-col ">
-                      <div>
-                        {building.type_retail && (
-                          // <div className="badge bg-cyan-950 text-white p-2 m-2 text-xs">Retail</div>
-                          <Badge>Retail</Badge>
-                        )}
-                        {building.type_offices && (
-                          // <div className="badge bg-cyan-950 text-white p-2 m-2 text-xs">Offices</div>
-                          <Badge>Offices</Badge>
-                        )}
-                        {building.type_apartments && (
-                          // <div className="badge bg-cyan-950 text-white p-2 m-2 text-xs">Apartments</div>
-                          <Badge>Apartments</Badge>
-                        )}
-                        {building.type_other && (
-                          // <div className="badge bg-cyan-950 text-white p-2 m-2 text-xs">Other</div>
-                          <Badge>Other</Badge>
-                        )}
-                      </div>
-                      <div>
-                        {building.is_centrally_air_conditioned && (
-                          // <div className="badge bg-emerald-700 text-white p-2 m-2 text-xs">Security</div>
-                          <Badge>Centrally Air Conditioned</Badge>
-                        )}
-                        {building.has_security && (
-                          // <div className="badge bg-emerald-700 text-white p-2 m-2 text-xs">Security</div>
-                          <Badge>Security</Badge>
-                        )}
-                        {building.has_escalators && (
-                          // <div className="badge bg-emerald-700 text-white p-2 m-2 text-xs">Escalators</div>
-                          <Badge>Escalators</Badge>
-                        )}
-                        {building.has_food_court && (
-                          // <div className="badge bg-emerald-700 text-white p-2 m-2 text-xs">Footcourt</div>
-                          <Badge>Footcourt</Badge>
-                        )}
-                        {building.has_entertainment_area && (
-                          // <div className="badge bg-emerald-700 text-white p-2 m-2 text-xs w-32">Entertainment Area</div>
-                          <Badge>Entertainment Area</Badge>
-                        )}
-                      </div>
-                    </div>
-                  </TableCell>
-                  <TableCell>{building.city}</TableCell>
                   <TableCell>{building.area}</TableCell>
+                  <TableCell></TableCell>
+                  <TableCell></TableCell>
+                  <TableCell>{building.plot_size}</TableCell>
+                  <TableCell></TableCell>
                   <TableCell>
                     <div className="flex justify-around">
                       <div className="flex gap-4">
@@ -310,14 +265,8 @@ export default async function List(props: PageProps) {
                           </Link>
                         </Button>
 
-                        <form action={deleteBuilding}>
-                          <input
-                            type="hidden"
-                            name="building-id"
-                            value={building.id}
-                          />
-                          <DeleteBuildingButton />
-                        </form>
+                        <DeleteBuildingDialog building_id={building.id} />
+
                       </div>
                     </div>
                   </TableCell>
@@ -328,9 +277,9 @@ export default async function List(props: PageProps) {
 
         </Table>
       </div>
-      <div className="mt-6">
+      {/* <div className="mt-6">
         <Pagination {...props.searchParams} {...metadata} />
-      </div>
+      </div> */}
 
     </>
   );
