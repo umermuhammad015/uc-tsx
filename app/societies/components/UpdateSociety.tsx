@@ -288,17 +288,17 @@ export default async function editForm(data: FormData) {
 
     const updateSociety = await prisma.societies.update(update_query)
 
-    if (city === undefined) {
+    // if (city === undefined) {
 
-        redirect('/societies')
+    //     redirect('/societies')
 
-    }
-    else if (city === city) {
-        redirect("/societies?city=" + city)
+    // }
+    // else if (city === city) {
+    //     redirect("/societies?city=" + city)
 
-    }
+    // }
 
-    // redirect('/societies')
+    redirect('/societies')
 
 
     // function getFormattedDate(date: Date) {
