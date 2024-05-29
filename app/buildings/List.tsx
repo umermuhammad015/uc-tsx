@@ -26,12 +26,13 @@ import {
 import { revalidatePath } from "next/cache";
 import CityInput from "./components/CityInput";
 import DeleteBuildingDialog from "./components/DeleteBuildingDialog";
+import BuildingStatus from "./components/Building_status";
 
 export const revalidate = 0; // revalidate the date at most every hour
 export const dynamic = "force-dynamic";
 const PAGE_SIZE = 10000;
 
-const getBuildings = async ({ search_string = '', take = PAGE_SIZE, skip = 0, city = "" }) => {
+const getBuildings = async ({ search_string = '', take = PAGE_SIZE, skip = 0, city = "", building_status = "" }) => {
 
   // async function getBuildings({ search = '', take = PAGE_SIZE, skip = 0 }) {
   // console.log("GetSocieties");
@@ -49,6 +50,7 @@ const getBuildings = async ({ search_string = '', take = PAGE_SIZE, skip = 0, ci
       skip,
       where: {
         city: city === "" ? undefined : city,
+        status: building_status === "" ? undefined : building_status,
 
       },
       orderBy: {
@@ -97,6 +99,7 @@ const getBuildings = async ({ search_string = '', take = PAGE_SIZE, skip = 0, ci
           },
         ],
         city: city === "" ? undefined : city,
+        status: building_status === "" ? undefined : building_status,
 
       },
     })
@@ -154,7 +157,7 @@ type Props = {
 
 
 // export default async function List(props: PageProps) {
-export default async function List({ city, page, search }: any) {
+export default async function List({ city, page, search, building_status }: any) {
 
   // console.log("developer list ")
   // console.log(developer)
@@ -168,7 +171,7 @@ export default async function List({ city, page, search }: any) {
   const search_string = search || ''
 
   // const buildings = await getBuildings({search, take, skip});
-  const { data, metadata } = await getBuildings({ search_string, take, skip, city });
+  const { data, metadata } = await getBuildings({ search_string, take, skip, city, building_status });
 
   return (
     <>
@@ -177,6 +180,7 @@ export default async function List({ city, page, search }: any) {
       <header className="flex justify-between items-center mt-4 ">
         <div className="flex gap-5">
           <CityInput />
+          <BuildingStatus />
           {/* <DeveloperName /> */}
           {/* <Grade />
                     <ProjectType /> */}
@@ -230,8 +234,21 @@ export default async function List({ city, page, search }: any) {
                     <Link href={"buildings/" + building.id}>{building.name}</Link>
                   </TableCell>
                   <TableCell>{building.area}</TableCell>
-                  <TableCell></TableCell>
-                  <TableCell></TableCell>
+                  <TableCell>
+                    {building?.type_retail && (
+                      // <div className="badge bg-cyan-800 text-white">1 Bed</div>
+                      <Badge>Retail</Badge>
+                    )}
+                    {building?.type_apartments && (
+                      // <div className="badge bg-cyan-800 text-white">2 Bed</div>
+                      <Badge>Apartment</Badge>
+                    )}
+                    {building?.type_offices && (
+                      // <div className="badge bg-cyan-800 text-white">2 Bed</div>
+                      <Badge>office</Badge>
+                    )}
+                  </TableCell>
+                  <TableCell>{building.building_rank}</TableCell>
                   <TableCell>{building.plot_size}</TableCell>
                   <TableCell></TableCell>
                   <TableCell>

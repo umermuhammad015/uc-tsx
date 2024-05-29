@@ -116,7 +116,7 @@ export default function Page({ params }: Props) {
         <div className="mx-4">
           <form action={createFloor}>
             {/* Building ID  */}
-            <div className="grid gap-4  md:grid-cols-1 lg:grid-cols-3 ">
+            <div className="">
 
               <div className="mt-4 ">
                 <label
@@ -307,21 +307,22 @@ export default function Page({ params }: Props) {
                 >
                   Size Minimum (Sq. Ft.)
                 </label>
-
-                <Input
-                  type="number"
-                  id="building-floor-size-min"
-                  name="building-floor-size-min"
-                  className="input input-bordered  w-full max-w-xs border-2 border-gray-400 "
-                  placeholder="(Sq. Ft.)"
-                  min="0"
-                  onChange={(e) => {
-                    setSize_Min(Number(e.target.value))
-                    console.log(e.target.value)
-                  }}
-                />
-                <div className="m-4">
-                  {Number(size_min).toLocaleString()}
+                <div className="flex">
+                  <Input
+                    type="number"
+                    id="building-floor-size-min"
+                    name="building-floor-size-min"
+                    className="input input-bordered  w-full max-w-xs border-2 border-gray-400 "
+                    placeholder="(Sq. Ft.)"
+                    min="0"
+                    onChange={(e) => {
+                      setSize_Min(Number(e.target.value))
+                      console.log(e.target.value)
+                    }}
+                  />
+                  <div className="m-4">
+                    {Number(size_min).toLocaleString()}
+                  </div>
                 </div>
 
               </div>
@@ -334,20 +335,22 @@ export default function Page({ params }: Props) {
                 >
                   Size Maximum (Sq. Ft.)
                 </label>
-                <Input
-                  type="number"
-                  id="building-floor-size-max"
-                  name="building-floor-size-max"
-                  className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-                  placeholder="(Sq. Ft.)"
-                  min="0"
-                  onChange={(e) => {
-                    setSize_Max(Number(e.target.value))
-                    console.log(e.target.value)
-                  }}
-                />
-                <div className="m-4">
-                  {Number(size_max).toLocaleString()}
+                <div className="flex">
+                  <Input
+                    type="number"
+                    id="building-floor-size-max"
+                    name="building-floor-size-max"
+                    className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+                    placeholder="(Sq. Ft.)"
+                    min="0"
+                    onChange={(e) => {
+                      setSize_Max(Number(e.target.value))
+                      console.log(e.target.value)
+                    }}
+                  />
+                  <div className="m-4">
+                    {Number(size_max).toLocaleString()}
+                  </div>
                 </div>
               </div>
 
@@ -359,20 +362,22 @@ export default function Page({ params }: Props) {
                 >
                   Average Sale Price (Per Sq. Ft.)
                 </label>
-                <Input
-                  type="number"
-                  id="building-floor-avg-sale-price"
-                  name="building-floor-avg-sale-price"
-                  className="input input-bordered  w-full max-w-xs border-2 border-gray-400 "
-                  placeholder="Rs."
-                  min="0"
-                  onChange={(e) => {
-                    setAvg_Sale_Price(Number(e.target.value))
-                    console.log(e.target.value)
-                  }}
-                />
-                <div className="m-4">
-                  {Number(avg_sale_price).toLocaleString()}
+                <div className="flex">
+                  <Input
+                    type="number"
+                    id="building-floor-avg-sale-price"
+                    name="building-floor-avg-sale-price"
+                    className="input input-bordered  w-full max-w-xs border-2 border-gray-400 "
+                    placeholder="Rs."
+                    min="0"
+                    onChange={(e) => {
+                      setAvg_Sale_Price(Number(e.target.value))
+                      console.log(e.target.value)
+                    }}
+                  />
+                  <div className="m-4">
+                    {Number(avg_sale_price).toLocaleString()}
+                  </div>
                 </div>
               </div>
 
@@ -384,20 +389,22 @@ export default function Page({ params }: Props) {
                 >
                   Average Monthly Rent (Sq. Ft.)
                 </label>
-                <Input
-                  type="number"
-                  id="building-floor-avg-monthly-rent"
-                  name="building-floor-avg-monthly-rent"
-                  className="input input-bordered  w-full max-w-xs border-2 border-gray-400 "
-                  placeholder="Rs."
-                  min="0"
-                  onChange={(e) => {
-                    setAvg_Monthly_Rent(Number(e.target.value))
-                    console.log(e.target.value)
-                  }}
-                />
-                <div className="m-4">
-                  {Number(avg_monthly_rent).toLocaleString()}
+                <div className="flex">
+                  <Input
+                    type="number"
+                    id="building-floor-avg-monthly-rent"
+                    name="building-floor-avg-monthly-rent"
+                    className="input input-bordered  w-full max-w-xs border-2 border-gray-400 "
+                    placeholder="Rs."
+                    min="0"
+                    onChange={(e) => {
+                      setAvg_Monthly_Rent(Number(e.target.value))
+                      console.log(e.target.value)
+                    }}
+                  />
+                  <div className="m-4">
+                    {Number(avg_monthly_rent).toLocaleString()}
+                  </div>
                 </div>
               </div>
 
@@ -434,20 +441,22 @@ export default function Page({ params }: Props) {
                 >
                   Installment Period (Years)
                 </label>
-                <Input
-                  type="text"
-                  id="building-floor-instalment-period"
-                  name="building-floor-instalment-period"
-                  className="input input-bordered  w-full max-w-xs border-2 border-gray-400 "
-                  placeholder=""
-                  min="0"
-                  onChange={(e) => {
-                    setInstalment_Period(Number(e.target.value))
-                    console.log(e.target.value)
-                  }}
-                />
-                <div className="m-4">
-                  {Number(instalment_period).toLocaleString()}
+                <div className="flex">
+                  <Input
+                    type="text"
+                    id="building-floor-instalment-period"
+                    name="building-floor-instalment-period"
+                    className="input input-bordered  w-full max-w-xs border-2 border-gray-400 "
+                    placeholder=""
+                    min="0"
+                    onChange={(e) => {
+                      setInstalment_Period(Number(e.target.value))
+                      console.log(e.target.value)
+                    }}
+                  />
+                  <div className="m-4">
+                    {Number(instalment_period).toLocaleString()}
+                  </div>
                 </div>
               </div>
 
@@ -461,20 +470,22 @@ export default function Page({ params }: Props) {
                 >
                   Total Sale Price
                 </label>
-                <Input
-                  type="number"
-                  id="building-floor-instalment-amount"
-                  name="building-floor-instalment-amount"
-                  className="input input-bordered  w-full max-w-xs border-2 border-gray-400 "
-                  placeholder="Rs."
-                  min="0"
-                  onChange={(e) => {
-                    setInstalment_Amount(Number(e.target.value))
-                    console.log(e.target.value)
-                  }}
-                />
-                <div className="m-4">
-                  {Number(instalment_amount).toLocaleString()}
+                <div className="flex">
+                  <Input
+                    type="number"
+                    id="building-floor-instalment-amount"
+                    name="building-floor-instalment-amount"
+                    className="input input-bordered  w-full max-w-xs border-2 border-gray-400 "
+                    placeholder="Rs."
+                    min="0"
+                    onChange={(e) => {
+                      setInstalment_Amount(Number(e.target.value))
+                      console.log(e.target.value)
+                    }}
+                  />
+                  <div className="m-4">
+                    {Number(instalment_amount).toLocaleString()}
+                  </div>
                 </div>
               </div>
 
@@ -486,20 +497,22 @@ export default function Page({ params }: Props) {
                 >
                   Down Payment
                 </label>
-                <Input
-                  type="number"
-                  id="building-floor-down-payment-amount"
-                  name="building-floor-down-payment-amount"
-                  className="input input-bordered  w-full max-w-xs border-2 border-gray-400 "
-                  placeholder="Rs."
-                  min="0"
-                  onChange={(e) => {
-                    setDown_Payment_Amount(Number(e.target.value))
-                    console.log(e.target.value)
-                  }}
-                />
-                <div className="m-4">
-                  {Number(down_payment_amount).toLocaleString()}
+                <div className="flex">
+                  <Input
+                    type="number"
+                    id="building-floor-down-payment-amount"
+                    name="building-floor-down-payment-amount"
+                    className="input input-bordered  w-full max-w-xs border-2 border-gray-400 "
+                    placeholder="Rs."
+                    min="0"
+                    onChange={(e) => {
+                      setDown_Payment_Amount(Number(e.target.value))
+                      console.log(e.target.value)
+                    }}
+                  />
+                  <div className="m-4">
+                    {Number(down_payment_amount).toLocaleString()}
+                  </div>
                 </div>
               </div>
 
@@ -511,20 +524,22 @@ export default function Page({ params }: Props) {
                 >
                   Possession Amount
                 </label>
-                <Input
-                  type="number"
-                  id="building-floor-possession-amount"
-                  name="building-floor-possession-amount"
-                  className="input input-bordered  w-full max-w-xs border-2 border-gray-400 "
-                  placeholder="Rs."
-                  min="0"
-                  onChange={(e) => {
-                    setPossession_Amount(Number(e.target.value))
-                    console.log(e.target.value)
-                  }}
-                />
-                <div className="m-4">
-                  {Number(possession_amount).toLocaleString()}
+                <div className="flex">
+                  <Input
+                    type="number"
+                    id="building-floor-possession-amount"
+                    name="building-floor-possession-amount"
+                    className="input input-bordered  w-full max-w-xs border-2 border-gray-400 "
+                    placeholder="Rs."
+                    min="0"
+                    onChange={(e) => {
+                      setPossession_Amount(Number(e.target.value))
+                      console.log(e.target.value)
+                    }}
+                  />
+                  <div className="m-4">
+                    {Number(possession_amount).toLocaleString()}
+                  </div>
                 </div>
               </div>
             </div>

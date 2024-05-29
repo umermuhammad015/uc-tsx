@@ -44,6 +44,8 @@ export default async function createBuilding(data: FormData) {
 
   const construction_year = parseInt(data.get("construction-year")?.valueOf() as string);
 
+  const launch_year = parseInt(data.get("launch-year")?.valueOf() as string);
+
   const builder_name = data.get("builder-name")?.valueOf();
 
   const rank = data.get("building-rank")?.valueOf();
@@ -55,6 +57,8 @@ export default async function createBuilding(data: FormData) {
   const apartment_floors_count = parseInt(data.get("apartment-floors-count")?.valueOf() as string);
 
   const apartments_count = parseInt(data.get("apartments-count")?.valueOf() as string);
+
+  const apartment_studio = data.get("apartment-studio")?.valueOf();
 
   const apartment_has_type_1_bed = data.get("apartment-has-type-1-bed")?.valueOf();
 
@@ -68,6 +72,10 @@ export default async function createBuilding(data: FormData) {
 
   const apartment_has_type_4_bed = data
     .get("apartment-has-type-4-bed")
+    ?.valueOf();
+
+  const apartment_has_type_5_bed = data
+    .get("apartment-has-type-5-bed")
     ?.valueOf();
 
   const apartment_has_type_duplex = data
@@ -291,16 +299,19 @@ export default async function createBuilding(data: FormData) {
       plot_size: plot_size,
       construction_area: construction_area,
       construction_year: construction_year,
+      launch_year: launch_year,
       builder_name: builder_name as string,
       building_rank: rank as string,
       total_floors: total_floors,
       parking_floors: parking_floors,
       apartment_floors: apartment_floors_count,
       apartments_count: apartments_count,
+      apartments_studio: apartment_studio as string,
       apartments_has_type_1_bed: apartment_has_type_1_bed as string,
       apartments_has_type_2_bed: apartment_has_type_2_bed as string,
       apartments_has_type_3_bed: apartment_has_type_3_bed as string,
       apartments_has_type_4_bed: apartment_has_type_4_bed as string,
+      apartments_has_type_5_bed: apartment_has_type_5_bed as string,
       apartments_has_type_duplex: apartment_has_type_duplex as string,
       apartments_has_type_penthouse: apartment_has_type_penthouse as string,
       apartments_has_servant_quarter: apartment_has_servant_quarter as string,

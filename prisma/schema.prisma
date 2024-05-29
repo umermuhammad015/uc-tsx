@@ -46,16 +46,19 @@ model Buildings {
   plot_size                      Int?
   construction_area              Int?
   construction_year              Int?
+  launch_year                    Int?
   builder_name                   String?
   building_rank                  String?
   total_floors                   Int?
   parking_floors                 Int?
   apartment_floors               Int?
   apartments_count               Int?
+  apartments_studio              String?
   apartments_has_type_1_bed      String?
   apartments_has_type_2_bed      String?
   apartments_has_type_3_bed      String?
   apartments_has_type_4_bed      String?
+  apartments_has_type_5_bed      String?
   apartments_has_type_duplex     String?
   apartments_has_type_penthouse  String?
   apartments_has_servant_quarter String?
@@ -190,6 +193,7 @@ model Societies {
   developer_name                             String?
   contact_no                                 String?
   survery_remarks                            String?
+  imagePath                                  String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -295,6 +299,7 @@ model Plots {
   ins_possession_Amount Int?
   ins_period            Int?
   remarks               String?
+  imagePath             String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

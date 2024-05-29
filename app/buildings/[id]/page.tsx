@@ -134,7 +134,7 @@ export default async function ViewBuilding({ params }: Props) {
             </TableRow>
             <TableRow>
               <TableCell >Plot Size (Sq. Yards)</TableCell > <TableCell >{Number(building?.plot_size).toLocaleString()}</TableCell >
-              
+
             </TableRow>
             <TableRow>
               <TableCell >Construction Area (Per Sq. Ft.)</TableCell > <TableCell >{Number(building?.construction_area).toLocaleString()}</TableCell >
@@ -209,7 +209,7 @@ export default async function ViewBuilding({ params }: Props) {
             </TableRow>
             <TableRow>
               <TableCell >Shop Maintenance Fee Rs. (Per Sq. Ft.)</TableCell >{" "}
-              <TableCell >{Number(building?.apartments_maintenance_fee ).toLocaleString()}</TableCell >
+              <TableCell >{Number(building?.apartments_maintenance_fee).toLocaleString()}</TableCell >
             </TableRow>
             <TableRow>
               <TableCell >Brands</TableCell > <TableCell >{building?.retail_floors_brands}</TableCell >
@@ -332,7 +332,7 @@ export default async function ViewBuilding({ params }: Props) {
         </Table>
 
       </div>
-      <div className="flex justify-center mt-2">
+      <div className="flex justify-end mt-2 gap-2">
         {/* <Link href={"/buildings/floor/add/" + params.id}>
 
           <button className="btn mt-2 bg-white text-black hover:bg-cyan-800 hover:text-white capitalize mb-2 text-base">Add Floor Information</button>
@@ -342,6 +342,9 @@ export default async function ViewBuilding({ params }: Props) {
           <Link href={"/buildings/floor/add/" + params.id}
           >
             Add floor information</Link>
+        </Button>
+        <Button asChild>
+          <Link href="/societies">Go Back</Link>
         </Button>
       </div>
 

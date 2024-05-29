@@ -3,9 +3,21 @@
 import { redirect } from "next/navigation";
 import prisma from "../db";
 import { revalidatePath } from "next/cache";
+import { z } from "zod"
+
+// const fileSchema = z.instanceof(File, { message: "Required" })
+// const imageSchema = fileSchema.refine(
+//   file => file.size === 0 || file.type.startsWith("image/")
+// )
+
+// z.object({
+//     image: imageSchema.refine(file => file.size > 0, "Required"),
+// })
 
 export default async function createPlot(data: FormData) {
 
+
+    
     console.log("🚀 ~ file: page.tsx:10 ~ createPlots ~ data:", data);
 
 

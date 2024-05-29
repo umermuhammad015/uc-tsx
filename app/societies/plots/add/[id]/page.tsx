@@ -3,7 +3,7 @@
 import * as React from "react"
 import { useToast } from "@/components/ui/use-toast"
 import prisma from "@/app/db";
-
+import { Label } from "@/components/ui/label"
 import AddHomeButton from "../../../components/AddHomeButton";
 import Link from "next/link";
 import { Input } from "@/components/ui/input"
@@ -29,6 +29,8 @@ import { redirect } from "next/dist/server/api-utils";
 import { useRouter } from 'next/navigation'
 import { revalidatePath } from "next/cache";
 import { Toaster } from "@/components/ui/toaster";
+import { Image } from "lucide-react";
+// import FileUpload from "@/app/societies/components/FileUpload";
 
 // import { Toaster, toast } from "sonner"
 // import { Toaster } from "@/components/ui/sonner"
@@ -130,10 +132,10 @@ export default function PlotAddPage({ params }: Props) {
 
             })
 
-        //    if (error) {
-        //     toast.error(error);
-        //     return
-        //    }
+            //    if (error) {
+            //     toast.error(error);
+            //     return
+            //    }
 
             // toast.success('Hello World')
 
@@ -173,6 +175,7 @@ export default function PlotAddPage({ params }: Props) {
         }
 
     };
+
 
     // useEffect(() => {
 
@@ -725,7 +728,7 @@ export default function PlotAddPage({ params }: Props) {
                         }
 
 
-
+                        {/* <FileUpload /> */}
 
 
                         {/*Date */}
@@ -782,6 +785,7 @@ export default function PlotAddPage({ params }: Props) {
                             ></Textarea>
                         </div>
 
+
                         {/* <div className="flex items-center mb-4 ml-2">
                             <input
                                 id="add-more-plots"
@@ -805,7 +809,7 @@ export default function PlotAddPage({ params }: Props) {
 
                             {/* Add more */}
                             <Button variant='outline'
-                                onClick={async(e) => {
+                                onClick={async (e) => {
 
                                     e.preventDefault();
                                     insertPlot()

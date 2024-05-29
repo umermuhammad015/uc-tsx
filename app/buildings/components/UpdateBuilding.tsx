@@ -43,15 +43,18 @@ export default async function editForm(data: FormData) {
 
     const plot_size = parseInt(data.get("plot-size")?.valueOf() as string);
 
+    const apartments_studio = data.get("apartment-studio")?.valueOf() === undefined ? null : "yes";
     const apartments_has_type_1_bed = data.get("apartment-has-type-1-bed")?.valueOf() === undefined ? null : "yes";
     const apartments_has_type_2_bed = data.get("apartment-has-type-2-bed")?.valueOf() === undefined ? null : "yes";
     const apartments_has_type_3_bed = data.get("apartment-has-type-3-bed")?.valueOf() === undefined ? null : "yes";
     const apartments_has_type_4_bed = data.get("apartment-has-type-4-bed")?.valueOf() === undefined ? null : "yes";
+    const apartments_has_type_5_bed = data.get("apartment-has-type-5-bed")?.valueOf() === undefined ? null : "yes";
     const apartments_has_type_duplex = data.get("apartment-has-type-duplex")?.valueOf() === undefined ? null : "yes";
     const apartments_has_type_penthouse = data.get("apartment-has-type-penthouse")?.valueOf() === undefined ? null : "yes";
 
 
     const construction_area = parseInt(data.get("construction-area")?.valueOf() as string);
+    const launch_year = parseInt(data.get("launch-year")?.valueOf() as string);
     const construction_year = parseInt(data.get("construction-year")?.valueOf() as string);
     const total_floors = parseInt(data.get("total-floors")?.valueOf() as string);
     const apartments_maintenance_fee = parseInt(data.get("apartments-maintenance-fee")?.valueOf() as string);
@@ -121,7 +124,7 @@ export default async function editForm(data: FormData) {
             type_offices: type_offices,
             type_apartments: type_apartments,
             type_other: type_other,
-
+            launch_year,
             address: address,
             builder_name: builder_name,
             building_rank: building_rank,
@@ -139,10 +142,12 @@ export default async function editForm(data: FormData) {
             office_maintenance_fee: office_maintenance_fee,
             apartment_floors: apartment_floors,
             parking_floors: parking_floors,
+            apartments_studio: apartments_studio,
             apartments_has_type_1_bed: apartments_has_type_1_bed,
             apartments_has_type_2_bed: apartments_has_type_2_bed,
             apartments_has_type_3_bed: apartments_has_type_3_bed,
             apartments_has_type_4_bed: apartments_has_type_4_bed,
+            apartments_has_type_5_bed: apartments_has_type_5_bed,
             apartments_has_type_duplex: apartments_has_type_duplex,
             apartments_has_type_penthouse: apartments_has_type_penthouse,
             apartments_count: apartments_count,
