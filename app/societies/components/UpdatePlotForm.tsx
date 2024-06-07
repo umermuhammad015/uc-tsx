@@ -120,41 +120,6 @@ export default function UpdatePlotForm({ plots }: any, { params }: Props) {
 
                 />
             </div>
-            {/* <div className="mt-4 ">
-        <label
-            htmlFor="society-name"
-            className="block mb-2 text-sm font-medium "
-        >
-            Society Name:
-        </label>
-        <Input
-            type="text"
-            id="society-name"
-            name="society-name"
-            className="input input-bordered  w-full max-w-xs border-2 border-gray-400 cursor-not-allowed disabled:bg-gray-200"
-            placeholder=""
-            value={society?.name as string}
-
-        />
-    </div> */}
-            {/* <div className="mt-4">
-                <label
-                    htmlFor="plot-type"
-                    className="block mb-2 text-sm font-medium"
-                >
-                    Type:
-                </label>
-                <select
-                    id="plot-type"
-                    name="plot-type"
-                    className="select  w-full max-w-xs border-2 border-gray-400 "
-                    defaultValue={plots?.plot_type as string}
-                >
-                    <option>Plot</option>
-                    <option>Bungalow</option>
-
-                </select>
-            </div> */}
             {/* plot type */}
             <div className="mt-4">
                 <label

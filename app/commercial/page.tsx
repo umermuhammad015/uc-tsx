@@ -15,7 +15,7 @@ export const dynamic = "force-dynamic";
 // export default function Page(props: PageProps ) {
 export default function Page({
     // params, 
-    searchParams: { city, page, search, }
+    searchParams: { city, page, search, project_type, commercial_grade }
 
 }: {
     
@@ -30,6 +30,8 @@ export default function Page({
             <CommercialsList city={city}
             search={search}
             page={page}
+            project_type={project_type}
+            commercial_grade={commercial_grade}
                 
             />
 

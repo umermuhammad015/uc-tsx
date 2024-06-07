@@ -21,7 +21,7 @@ type Props = {
 export default async function editPlotForm({ params }: Props) {
 
 
-    console.log(params)
+    // console.log(params)
 
     // const homes = await prisma.homes.findUnique({
     //     where: {
@@ -33,60 +33,7 @@ export default async function editPlotForm({ params }: Props) {
 
 
 
-    // async function updateHome(data: FormData) {
-    //     "use server";
-
-    //     console.log("🚀 ~ file: page.tsx:10 ~ createPlots ~ data:", data);
-
-    //     const society_id = data.get("society-id")?.valueOf();
-
-    //     const home_type = data.get("home-type")?.valueOf();
-
-    //     const type = data.get("type")?.valueOf();
-
-    //     const home_size = data.get("home-size")?.valueOf();
-
-    //     const plot_price = data.get("plot-price")?.valueOf();
-
-    //     const plot_rent = data.get("plot-rent")?.valueOf();
-
-    //     const home_remarks = data.get("home-remarks")
-
-
-
-
-
-    //     const update_query = {
-    //         where: {
-    //             id: Number(params.id) as number
-    //         },
-    //         data: {
-    //             // name: name,
-    //             // city: city
-
-    //             society_id: Number(society_id) as number,
-    //             home_type: home_type as string,
-    //             type: type as string,
-    //             size: home_size as string,
-    //             plot_price: plot_price as string,
-    //             plot_rent: plot_rent as string,
-    //             remarks: home_remarks as string
-
-
-    //         }
-    //     }
-
-    //     console.log("Update Query is")
-    //     console.log("update_query")
-
-    //     const updateSociety = await prisma.homes.update(update_query)
-    //     // let updatedNote = await Note.findByIdAndUpdate({ _id: params.id }, { title, note });
-    //     redirect('/societies/')
-
-    // }
-
-    // console.log(plots)
-
+    
     return (
         <>
             <div className="text-lg">Plots/Bungalows Information</div>

@@ -662,7 +662,7 @@ export default function PlotAddPage({ params }: Props) {
                                             value={ins_total_price}
                                             onChange={(e) => {
                                                 setIns_total_price(Number(e.target.value))
-                                                console.log(e.target.value)
+                                                // console.log(e.target.value)
                                             }}
                                         />
                                         <div className="m-4">

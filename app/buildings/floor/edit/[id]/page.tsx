@@ -105,7 +105,7 @@ export default async function editFloorForm({ params }: Props) {
     return (
         <>
             <h2>Update Floor</h2>
-            <div className="mx-4">
+            <div className="">
                 <UpdateFloorForm floor={floors} />
             </div>
         </>

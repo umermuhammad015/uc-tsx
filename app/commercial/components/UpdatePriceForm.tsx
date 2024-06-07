@@ -32,20 +32,38 @@ type Props = {
 
 export default function UpdatePlotForm({ price }: any, { params }: Props) {
 
-    const [property_type, setProperty_type] = useState("Commercial Plot");
-    const [payment_mode, setPayment_mode] = useState("Lumpsum Payment");
-    const [prices, setPrices] = useState(0);
-    const [rent, setRent] = useState(0);
-    const [down_payment, setDown_payment] = useState(0);
-    const [total_price, setTotal_price] = useState(0);
-    const [possession_amount, setpossession_Amount] = useState(0);
-    const [installment_period, setInstallment_period] = useState(0);
+    const [property_type, setProperty_type] = useState(price?.property_type);
+    const [payment_mode, setPayment_mode] = useState(price?.payment_mode);
+    const [prices, setPrices] = useState(price?.price);
+    const [rent, setRent] = useState(price?.rent);
+    const [down_payment, setDown_payment] = useState(price?.down_payment);
+    const [total_price, setTotal_price] = useState(price?.total_price);
+    const [possession_amount, setpossession_Amount] = useState(price?.possession_amount);
+    const [installment_period, setInstallment_period] = useState(price?.installment_period);
 
 
 
     return (
         <form action={UpdatePrice}>
 
+
+            <div className="mt-4 ">
+                <label
+                    htmlFor="price-id"
+                    className="block mb-2 text-sm font-medium "
+                >
+                    Plot ID:
+                </label>
+                <Input
+                    type="text"
+                    id="price-id"
+                    name="price-id"
+                    className="input input-bordered  w-full max-w-xs border-2 border-gray-400 cursor-not-allowed disabled:bg-gray-200"
+                    placeholder=""
+                    value={price?.id}
+
+                />
+            </div>
 
 
             <div className="mt-4 ">
@@ -61,7 +79,7 @@ export default function UpdatePlotForm({ price }: any, { params }: Props) {
                     name="commercial-id"
                     className="input input-bordered  w-full max-w-xs border-2 border-gray-400 cursor-not-allowed disabled:bg-gray-200"
                     placeholder=""
-                    value={price?.id}
+                    value={price?.commercial_id}
 
                 />
             </div>
@@ -365,7 +383,7 @@ export default function UpdatePlotForm({ price }: any, { params }: Props) {
                     <Input
                         onChange={(e) => {
                             setRent(Number(e.target.value))
-                            console.log(e.target.value)
+                            // console.log(e.target.value)
                         }}
                         type="number"
                         id="rent"
@@ -530,7 +548,7 @@ export default function UpdatePlotForm({ price }: any, { params }: Props) {
                     defaultValue={price?.date as string}
                     // value="12/26/2024"
                     className="max-w-xs border-gray-400  border-2 text-sm rounded focus:ring-blue-500  block w-full p-2.5"
-                   
+
                     placeholder="date"
                 />
             </div>
@@ -549,8 +567,8 @@ export default function UpdatePlotForm({ price }: any, { params }: Props) {
                 ></Textarea>
             </div>
 
-             {/* Submit button */}
-             <div className="flex gap-6 justify-center mt-3 mb-2">
+            {/* Submit button */}
+            <div className="flex gap-6 justify-center mt-3 mb-2">
                 <UpdatePriceButton />
                 {/* <Link href="/buildings" className="flex justify-center items-center border border-black px-2 py-1 rounded-xl bg-white text-black hover:bg-red-600 hover:text-white capitalize">Cancel</Link> */}
 

@@ -9,10 +9,13 @@ export default async function UpdatePrice(data: FormData) {
 
     const date = (new Date(data.get("date")?.valueOf() as string)).toISOString().substring(0, 10);
 
+    const price_id = data.get("price-id")?.valueOf();
+
     const commercial_id = data.get("commercial-id")?.valueOf();
 
     const property_type = data.get("property-type")?.valueOf();
 
+    const plot_size = data.get("plot-size")?.valueOf();
 
     const building_size = data.get("building-size")?.valueOf();
 
@@ -48,11 +51,12 @@ export default async function UpdatePrice(data: FormData) {
 
     const update_query = {
         where: {
-            id: Number(commercial_id) as number
+            id: Number(price_id) as number
         },
         data: {
             date: date,
             property_type: property_type as string,
+            plot_size :plot_size as string,
             building_size :building_size as string,
             total_floor: total_floor as string,
             building_size_sq: building_size_sq as string,
@@ -80,7 +84,7 @@ export default async function UpdatePrice(data: FormData) {
     console.log("update_query")
 
     const UpdateCommercial = await prisma.price.update(update_query)
-    redirect('/commercial/')
+    redirect("/commercial/"+ commercial_id)
 
     // if (add_more === "yes") {
 

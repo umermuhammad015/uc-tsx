@@ -47,12 +47,14 @@ import { revalidatePath } from "next/cache";
 import DeleteCommercialButton from "./components/DeleteCommercialButton";
 import DeleteCommercialDialog from "./components/DeleteCommercIalDialog";
 import CityInput from "./components/CityInput";
+import ProjectType from "./components/project_type";
+import Grade from "./components/Grade";
 
 export const revalidate = 0; // revalidate the date at most every hour
 export const dynamic = "force-dynamic";
 const PAGE_SIZE = 10000;
 
-const GetCommercial = async ({ search_string = '', take = PAGE_SIZE, skip = 0, city = "" }) => {
+const GetCommercial = async ({ search_string = '', take = PAGE_SIZE, skip = 0, city = "", project_type = "", commercial_grade = "" }) => {
 
   // async function getBuildings({ search = '', take = PAGE_SIZE, skip = 0 }) {
   // console.log("GetSocieties");
@@ -70,6 +72,8 @@ const GetCommercial = async ({ search_string = '', take = PAGE_SIZE, skip = 0, c
           skip,
           where: {
               city: city === "" ? undefined : city,
+              project_status: project_type === "" ? undefined : project_type,
+              grade: commercial_grade === "" ? undefined : commercial_grade,
              
           },
           orderBy: {
@@ -118,6 +122,8 @@ const GetCommercial = async ({ search_string = '', take = PAGE_SIZE, skip = 0, c
                   },
               ],
               city: city === "" ? undefined : city,
+              project_status: project_type === "" ? undefined : project_type,
+              grade: commercial_grade === "" ? undefined : commercial_grade,
               
           },
       })
@@ -175,7 +181,7 @@ type Props = {
 
 
 // export default async function List(props: PageProps) {
-export default async function List({ city, page, search }: any) {
+export default async function List({ city, page, search, project_type, commercial_grade }: any) {
 
   // console.log("developer list ")
   // console.log(developer)
@@ -189,7 +195,7 @@ export default async function List({ city, page, search }: any) {
   const search_string = search || ''
 
   // const buildings = await getBuildings({search, take, skip});
-  const { data, metadata } = await GetCommercial({ search_string, take, skip, city });
+  const { data, metadata } = await GetCommercial({ search_string, take, skip, city, project_type, commercial_grade });
 
   // const searchedBuildings = await getSearchedBuildings()
 
@@ -211,6 +217,8 @@ export default async function List({ city, page, search }: any) {
       <header className="flex justify-between items-center mt-4 ">
         <div className="flex gap-5">
           <CityInput />
+          <ProjectType />
+          <Grade />
           {/* <DeveloperName /> */}
           {/* <Grade />
                     <ProjectType /> */}
@@ -241,6 +249,9 @@ export default async function List({ city, page, search }: any) {
               <TableHead>
                 <div className="text-lg">Location</div>
               </TableHead>
+              {/* <TableHead>
+                <div className="text-lg">Project Status</div>
+              </TableHead> */}
               <TableHead>
                 <div className="text-lg">Grade</div>
               </TableHead>
@@ -264,6 +275,7 @@ export default async function List({ city, page, search }: any) {
                     <Link href={"commercial/" + commercial.id}>{commercial.commercial_zone_name}</Link>
                   </TableCell>
                   <TableCell>{commercial.location}</TableCell>
+                  {/* <TableCell>{commercial.location}</TableCell> */}
                   <TableCell>{commercial.grade}</TableCell>
                   <TableCell>{Number(commercial.area).toLocaleString()}</TableCell>
                   <TableCell>

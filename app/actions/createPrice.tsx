@@ -18,6 +18,8 @@ export default async function createPrice(data: FormData) {
 
     const building_size = data.get("building-size")?.valueOf();
 
+    const plot_size = data.get("plot-size")?.valueOf();
+
     const total_floor = data.get("total-floor")?.valueOf();
 
     const building_size_sq = data.get("building-size-sq")?.valueOf();
@@ -64,6 +66,7 @@ export default async function createPrice(data: FormData) {
             date: date,
             commercial_id: Number(commercial_id) as number,
             property_type: property_type as string,
+            plot_size :plot_size as string,
             building_size :building_size as string,
             total_floor: total_floor as string,
             building_size_sq: building_size_sq as string,

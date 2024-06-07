@@ -51,9 +51,6 @@ export default async function UpdatePlot(data: FormData) {
             id: Number(plot_id) as number
         },
         data: {
-            // name: name,
-            // city: city
-            // id: Number(society_id) as number,
             plot_type: plot_type as string,
             type: type as string,
             apartment_size: apartment_size as string,
@@ -73,8 +70,8 @@ export default async function UpdatePlot(data: FormData) {
         }
     }
 
-    console.log("Update Query is")
-    console.log("update_query")
+    // console.log("Update Query is")
+    // console.log("update_query")
 
     const updateSociety = await prisma.plots.update(update_query)
     

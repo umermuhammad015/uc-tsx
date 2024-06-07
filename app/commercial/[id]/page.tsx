@@ -24,6 +24,7 @@ import {
 } from "@/components/ui/table";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import DeletePriceDialog from "../components/DeletePriceDailog";
 // import DeleteHomeButton from "../components/DeleteHomeButton";
 
 
@@ -173,10 +174,17 @@ export default async function ViewCommercail({ params }: Props) {
                                     <div className="">{price?.property_type}</div>
                                 </TableCell>
                                 <TableCell>
-                                    <div className="">{price?.property_type === 'Apartments' ? price?.apartment_size : price?.plot_size}</div>
+                                    {/* <div className="">{price?.property_type === 'Apartments' ? price?.apartment_size : price?.plot_size}</div>
                                     <div className="">{price?.shop_size}</div>
                                     <div className="">{price?.office_size}</div>
-                                    <div className="">{price?.building_size}</div>
+                                    <div className="">{price?.building_size}</div> */}
+                                    {
+                                        price?.property_type === 'Apartments' ? price?.apartment_size
+                                            : price?.property_type === 'Shops' ? price?.shop_size
+                                                : price?.property_type === 'Offices' ? price?.office_size
+                                                    : price?.property_type === 'Commercial Plot' ? price?.plot_size
+                                                        : price?.building_size
+                                    }
 
                                 </TableCell>
                                 <TableCell>
@@ -188,7 +196,7 @@ export default async function ViewCommercail({ params }: Props) {
                                 <TableCell>{Number(price?.installment_period).toLocaleString()}</TableCell>
                                 <TableCell>{Number(price?.down_payment).toLocaleString()}</TableCell>
                                 <TableCell>{Number(price?.possession_amount).toLocaleString()}</TableCell>
-                                
+
                                 <TableCell>{price?.date}</TableCell>
                                 <TableCell>{price?.remarks}</TableCell>
                                 <TableCell>
@@ -202,6 +210,9 @@ export default async function ViewCommercail({ params }: Props) {
                                         </Link>
                                     </Button>
 
+                                </TableCell>
+                                <TableCell>
+                                    <DeletePriceDialog price_id={price.id} />
                                 </TableCell>
                                 {/* <TableCell >
 

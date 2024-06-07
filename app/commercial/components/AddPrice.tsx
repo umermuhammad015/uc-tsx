@@ -20,6 +20,7 @@ export default async function AddPrice(entryDate: string, id: number, price: num
                 date: entryDate,
                 commercial_id: Number(id) as number,
                 property_type: property_type as string,
+                plot_size: plot_size as string,
                 building_size: building_size as string,
                 total_floor: total_floor as string,
                 building_size_sq: building_sq as string,

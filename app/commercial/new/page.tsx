@@ -321,15 +321,15 @@ export default function Page() {
                     {/* Total Shop*/}
                     <div className="mt-4">
                         <label
-                            htmlFor="total-shop"
+                            htmlFor="total-shops"
                             className="block mb-2 text-sm font-medium"
                         >
                             No of Shops:
                         </label>
                         <Input
                             type="text"
-                            id="total-shop"
-                            name="total-shop"
+                            id="total-shops"
+                            name="total-shops"
                             className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
                             placeholder=""
                         />
@@ -338,15 +338,15 @@ export default function Page() {
                     {/* Total office*/}
                     <div className="mt-4">
                         <label
-                            htmlFor="total-office"
+                            htmlFor="total-offices"
                             className="block mb-2 text-sm font-medium"
                         >
                             No of Offices:
                         </label>
                         <Input
                             type="text"
-                            id="total-office"
-                            name="total-office"
+                            id="total-offices"
+                            name="total-offices"
                             className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
                             placeholder=""
                         />
@@ -355,15 +355,15 @@ export default function Page() {
                     {/* Total apartment*/}
                     <div className="mt-4">
                         <label
-                            htmlFor="total-apartment"
+                            htmlFor="total-apartments"
                             className="block mb-2 text-sm font-medium"
                         >
                             No of Apartments:
                         </label>
                         <Input
                             type="text"
-                            id="total-apartment"
-                            name="total-apartment"
+                            id="total-apartments"
+                            name="total-apartments"
                             className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
                             placeholder=""
                         />

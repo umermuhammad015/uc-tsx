@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import prisma from "@/app/db";
+import { useToast } from "@/components/ui/use-toast"
 import Link from "next/link";
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -11,6 +12,7 @@ import FetchSociety from "@/app/societies/components/FatchSociety";
 import createPrice from "@/app/actions/createPrice";
 import AddPriceButton from "@/app/commercial/components/AddPriceButton";
 import AddPrice from "@/app/commercial/components/AddPrice";
+import { Toaster } from "@/components/ui/toaster";
 type Props = {
     params: { id: number }
     // searchParams: { [key: string]: string | string[] | undefined }
@@ -23,7 +25,7 @@ export default function PriceAddPage({ params }: Props) {
     console.log("hi")
 
     // const [date, setDate] = useState<Date>()
-
+    const { toast } = useToast()
     // const [current_society, setCurrent_society] = useState<any>([]);
 
     // const [pressAdd, setPress_Add] = useState<Number>(0);
@@ -61,37 +63,40 @@ export default function PriceAddPage({ params }: Props) {
             // console.log("trying")
             // console.log(params.id)
 
-            const add_plot_output = await AddPrice(entryDate, params.id, price, plot_size, property_type,
+            const add_price_output = await AddPrice(entryDate, params.id, price, plot_size, property_type,
                 apartment_size, building_size, shop_size, payment_mode, office_size, total_floor, total_bed,
                 building_sq, rent, down_payment, total_price, possession_amount, installment_period, remarks)
 
 
 
-            // toast({
-            //     className: "bg-green-600 rounded-lg",
-            //     // title: "Add Price",
-            //     description: "Plot added successfully ",
+            toast({
+                className: "bg-green-600 rounded-lg",
+                // title: "Add Price",
+                description: "Commercial added successfully ",
 
-            // })
+            })
 
 
 
-            // setPlotType("")
-            // setPayment_mode("")
-            // setplot_Price(0)
-            // setplot_Rent(0)
-            // setIns_down_payment(0)
-            // setIns_total_price(0)
-            // setIns_possession_Amount(0)
-            // setIns_Period(0)
-            // setIns_Period(0)
-            // setEntryDate("")
-            // setRemarks("")
-            // setApartment_size("")
-            // setApartment_size_ft("")
-            // setProperty_size("")
-            // setShop_size("")
-            // setOffice_size("")
+            setProperty_type("")
+            setPlot_size("")
+            setBuilding_size("")
+            setTotal_floor("")
+            setBuilding_sq("")
+            setShop_size("")
+            setOffice_size("")
+            setApartment_size("")
+            setTotal_bed("")
+            setPayment_mode("")
+            setPrice(0)
+            setRent(0)
+            setTotal_price(0)
+            setInstallment_period(0)
+            setDown_payment(0)
+            setpossession_Amount(0)
+            setRemarks("")
+            
+           
 
 
 
@@ -148,6 +153,7 @@ export default function PriceAddPage({ params }: Props) {
                             <select
                                 id="property-type"
                                 name="property-type"
+                                value={property_type}
                                 className="select  w-full text-sm pl-2 h-10 max-w-xs border-2 rounded border-gray-400 bg-background"
                                 onChange={(e) => setProperty_type(e.target.value)}
                             >
@@ -178,6 +184,7 @@ export default function PriceAddPage({ params }: Props) {
                                     <select
                                         id="plot-size"
                                         name="plot-size"
+                                        value={plot_size}
                                         className="select w-full text-sm pl-2 h-10 max-w-xs border-2 rounded border-gray-400 bg-background"
                                         onChange={(e) => setPlot_size(e.target.value)}
                                     >
@@ -221,6 +228,7 @@ export default function PriceAddPage({ params }: Props) {
                                     <select
                                         id="building-size"
                                         name="building-size"
+                                        value={building_size}
                                         className="select  w-full text-sm pl-2 h-10 max-w-xs border-2 rounded border-gray-400 bg-background"
                                         onChange={(e) => setBuilding_size(e.target.value)}
                                     >
@@ -259,6 +267,7 @@ export default function PriceAddPage({ params }: Props) {
                                         type="text"
                                         id="total-floor"
                                         name="total-floor"
+                                        value={total_floor}
                                         className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
                                         onChange={(e) => setTotal_floor(e.target.value)}
                                         placeholder=""
@@ -276,6 +285,7 @@ export default function PriceAddPage({ params }: Props) {
                                         type="text"
                                         id="building-size-sq"
                                         name="building-size-sq"
+                                        value={building_sq}
                                         className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
                                         onChange={(e) => setBuilding_sq(e.target.value)}
                                         placeholder=""
@@ -300,6 +310,7 @@ export default function PriceAddPage({ params }: Props) {
                                         type="text"
                                         id="shop-size"
                                         name="shop-size"
+                                        value={shop_size}
                                         className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
                                         onChange={(e) => setShop_size(e.target.value)}
                                         placeholder=""
@@ -324,6 +335,7 @@ export default function PriceAddPage({ params }: Props) {
                                         type="text"
                                         id="office-size"
                                         name="office-size"
+                                        value={office_size}
                                         className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
                                         onChange={(e) => setOffice_size(e.target.value)}
                                         placeholder=""
@@ -348,6 +360,7 @@ export default function PriceAddPage({ params }: Props) {
                                         type="text"
                                         id="apartment-size"
                                         name="apartment-size"
+                                        value={apartment_size}
                                         className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
                                         placeholder=""
                                         onChange={(e) => setApartment_size(e.target.value)}
@@ -365,6 +378,7 @@ export default function PriceAddPage({ params }: Props) {
                                         type="text"
                                         id="total-bed"
                                         name="total-bed"
+                                        value={total_bed}
                                         className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
                                         onChange={(e) => setTotal_bed(e.target.value)}
                                         placeholder=""
@@ -385,6 +399,7 @@ export default function PriceAddPage({ params }: Props) {
                             <select
                                 id="payment-mode"
                                 name="payment-mode"
+                                value={payment_mode}
                                 className="select  w-full text-sm pl-2 h-10 max-w-xs border-2 rounded border-gray-400 bg-background"
                                 onChange={(e) => setPayment_mode(e.target.value)}
                             >
@@ -410,6 +425,7 @@ export default function PriceAddPage({ params }: Props) {
                                     type="number"
                                     id="price"
                                     name="price"
+                                    value={price}
                                     className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
                                     placeholder="Rs."
                                 />
@@ -436,6 +452,7 @@ export default function PriceAddPage({ params }: Props) {
                                     type="number"
                                     id="rent"
                                     name="rent"
+                                    value={rent}
                                     className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
                                     placeholder="Rs."
                                 />
@@ -466,6 +483,7 @@ export default function PriceAddPage({ params }: Props) {
                                             type="number"
                                             id="total-price"
                                             name="total-price"
+                                            value={total_price}
                                             className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
                                             placeholder="Rs."
                                             onChange={(e) => {
@@ -491,6 +509,7 @@ export default function PriceAddPage({ params }: Props) {
                                             type="number"
                                             id="installment-period"
                                             name="installment-period"
+                                            value={installment_period}
                                             className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
 
                                             onChange={(e) => {
@@ -517,6 +536,7 @@ export default function PriceAddPage({ params }: Props) {
                                             type="number"
                                             id="down-payment"
                                             name="down-payment"
+                                            value={down_payment}
                                             className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
                                             placeholder="Rs."
                                             onChange={(e) => {
@@ -542,6 +562,7 @@ export default function PriceAddPage({ params }: Props) {
                                             type="number"
                                             id="possession-amount"
                                             name="possession-amount"
+                                            value={possession_amount}
                                             className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
                                             placeholder="Rs."
                                             onChange={(e) => {
@@ -604,6 +625,7 @@ export default function PriceAddPage({ params }: Props) {
                             <Textarea
                                 id="remarks"
                                 name="remarks"
+                                value={remarks}
                                 className="textarea w-full border-2 border-gray-400 "
                                 onChange={(e) => setRemarks(e.target.value)}
                                 placeholder="Leave a comment..."
@@ -636,6 +658,7 @@ export default function PriceAddPage({ params }: Props) {
                     {isAdding ? "Saving...." : "Save and Add more"}
 
                 </Button>
+                <Toaster />
                 <Button asChild className="bg-transparent text-primary hover:bg-primary-foreground">
                     <Link href="/commercial" >Cancel</Link>
                 </Button>

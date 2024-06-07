@@ -40,7 +40,7 @@ export default function UpdatePlotForm({ floor }: any) {
                 <div className="mx-4">
                     <form action={UpdateFloor}>
                         {/* Floor ID  */}
-                        <div className="grid grid-cols-3 gap-4">
+                        <div className="">
                             <div className="mt-4 ">
                                 <label
                                     htmlFor="building-id"
@@ -198,21 +198,24 @@ export default function UpdatePlotForm({ floor }: any) {
                                 >
                                     Size Minimum (Sq. Ft.)
                                 </label>
-                                <Input
-                                    type="number"
-                                    id="building-floor-size-min"
-                                    name="building-floor-size-min"
-                                    className="input input-bordered  w-full max-w-xs border border-gray-400 "
-                                    defaultValue={floor?.size_min as string}
-                                    placeholder=""
-                                    min="0"
-                                    onChange={(e) => {
-                                        setSize_Min(Number(e.target.value))
-                                        console.log(e.target.value)
-                                    }}
-                                />
-                                <div className="m-4">
-                                    {Number(size_min).toLocaleString()}
+                                <div className="flex">
+                                    <Input
+                                        type="number"
+                                        id="building-floor-size-min"
+                                        name="building-floor-size-min"
+                                        className="input input-bordered  w-full max-w-xs border border-gray-400 "
+                                        defaultValue={floor?.size_min as string}
+                                        placeholder=""
+                                        min="0"
+                                        onChange={(e) => {
+                                            setSize_Min(Number(e.target.value))
+                                            console.log(e.target.value)
+                                        }}
+                                    />
+
+                                    <div className="m-4">
+                                        {Number(size_min).toLocaleString()}
+                                    </div>
                                 </div>
                             </div>
 
@@ -224,21 +227,23 @@ export default function UpdatePlotForm({ floor }: any) {
                                 >
                                     Size Maximum (Sq. Ft.)
                                 </label>
-                                <Input
-                                    type="number"
-                                    id="building-floor-size-max"
-                                    name="building-floor-size-max"
-                                    className="input input-bordered  w-full max-w-xs border border-gray-400 "
-                                    defaultValue={floor?.size_max as string}
-                                    placeholder=""
-                                    min="0"
-                                    onChange={(e) => {
-                                        setSize_Max(Number(e.target.value))
-                                        console.log(e.target.value)
-                                    }}
-                                />
-                                <div className="m-4">
-                                    {Number(size_max).toLocaleString()}
+                                <div className="flex">
+                                    <Input
+                                        type="number"
+                                        id="building-floor-size-max"
+                                        name="building-floor-size-max"
+                                        className="input input-bordered  w-full max-w-xs border border-gray-400 "
+                                        defaultValue={floor?.size_max as string}
+                                        placeholder=""
+                                        min="0"
+                                        onChange={(e) => {
+                                            setSize_Max(Number(e.target.value))
+                                            console.log(e.target.value)
+                                        }}
+                                    />
+                                    <div className="m-4">
+                                        {Number(size_max).toLocaleString()}
+                                    </div>
                                 </div>
                             </div>
 
@@ -250,21 +255,23 @@ export default function UpdatePlotForm({ floor }: any) {
                                 >
                                     Average Sale Price (Per Sq. Ft.)
                                 </label>
-                                <Input
-                                    type="number"
-                                    id="building-floor-avg-sale-price"
-                                    name="building-floor-avg-sale-price"
-                                    className="input input-bordered  w-full max-w-xs border border-gray-400 "
-                                    defaultValue={floor?.avg_sale_price as string}
-                                    placeholder=""
-                                    min="0"
-                                    onChange={(e) => {
-                                        setAvg_Sale_Price(Number(e.target.value))
-                                        console.log(e.target.value)
-                                    }}
-                                />
-                                <div className="m-4">
-                                    {Number(avg_sale_price).toLocaleString()}
+                                <div className="flex">
+                                    <Input
+                                        type="number"
+                                        id="building-floor-avg-sale-price"
+                                        name="building-floor-avg-sale-price"
+                                        className="input input-bordered  w-full max-w-xs border border-gray-400 "
+                                        defaultValue={floor?.avg_sale_price as string}
+                                        placeholder=""
+                                        min="0"
+                                        onChange={(e) => {
+                                            setAvg_Sale_Price(Number(e.target.value))
+                                            console.log(e.target.value)
+                                        }}
+                                    />
+                                    <div className="m-4">
+                                        {Number(avg_sale_price).toLocaleString()}
+                                    </div>
                                 </div>
                             </div>
 
@@ -276,33 +283,35 @@ export default function UpdatePlotForm({ floor }: any) {
                                 >
                                     Average Monthly Rent (Sq. Ft.)
                                 </label>
-                                <Input
-                                    type="number"
-                                    id="building-floor-avg-monthly-rent"
-                                    name="building-floor-avg-monthly-rent"
-                                    className="input input-bordered  w-full max-w-xs border border-gray-400 "
-                                    defaultValue={floor?.avg_monthly_rent as string}
-                                    placeholder=""
-                                    min="0"
-                                    onChange={(e) => {
-                                        setAvg_Monthly_Rent(Number(e.target.value))
-                                        console.log(e.target.value)
-                                    }}
-                                />
-                                <div className="m-4">
-                                    {Number(avg_monthly_rent).toLocaleString()}
-                                </div>
-                            </div>
+                                <div className="flex">
+                                    <Input
+                                        type="number"
+                                        id="building-floor-avg-monthly-rent"
+                                        name="building-floor-avg-monthly-rent"
+                                        className="input input-bordered  w-full max-w-xs border border-gray-400 "
+                                        defaultValue={floor?.avg_monthly_rent as string}
+                                        placeholder=""
+                                        min="0"
+                                        onChange={(e) => {
+                                            setAvg_Monthly_Rent(Number(e.target.value))
+                                            console.log(e.target.value)
+                                        }}
+                                    />
+                                    <div className="m-4">
+                                        {Number(avg_monthly_rent).toLocaleString()}
+                                    </div>
 
-                            {/* Installment Plan  */}
-                            <div className="mt-4">
-                                <label
-                                    htmlFor="building-instalment-plan"
-                                    className="block mb-2 text-sm font-medium"
-                                >
-                                    Installment Plan
-                                </label>
-                                {/* <select
+                                </div>
+
+                                {/* Installment Plan  */}
+                                <div className="mt-4">
+                                    <label
+                                        htmlFor="building-instalment-plan"
+                                        className="block mb-2 text-sm font-medium"
+                                    >
+                                        Installment Plan
+                                    </label>
+                                    {/* <select
                                     id="building-instalment-plan"
                                     name="building-instalment-plan"
                                     className="select  w-full max-w-xs border border-gray-400 "
@@ -311,164 +320,173 @@ export default function UpdatePlotForm({ floor }: any) {
                                     <option>Yes</option>
                                     <option>No</option>
                                 </select> */}
-                                <Select
-                                    defaultValue={floor?.instalment_plan as string}
-                                    name="building-instalment-plan">
-                                    <SelectTrigger
-                                        id="building-instalment-plan"
-                                        className="select  w-full max-w-xs border-2 border-gray-400 ">
-                                        <SelectValue placeholder="Select Type" />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        <SelectGroup>
-                                            <SelectLabel></SelectLabel>
-                                            <SelectItem value="Yes">Yes</SelectItem>
-                                            <SelectItem value="No">No</SelectItem>
-                                        </SelectGroup>
-                                    </SelectContent>
-                                </Select>
+                                    <Select
+                                        defaultValue={floor?.instalment_plan as string}
+                                        name="building-instalment-plan">
+                                        <SelectTrigger
+                                            id="building-instalment-plan"
+                                            className="select  w-full max-w-xs border-2 border-gray-400 ">
+                                            <SelectValue placeholder="Select Type" />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            <SelectGroup>
+                                                <SelectLabel></SelectLabel>
+                                                <SelectItem value="Yes">Yes</SelectItem>
+                                                <SelectItem value="No">No</SelectItem>
+                                            </SelectGroup>
+                                        </SelectContent>
+                                    </Select>
 
 
-                            </div>
+                                </div>
 
-                            {/* Installment Period (Years) */}
-                            <div className="mt-4">
-                                <label
-                                    htmlFor="building-floor-instalment-period"
-                                    className="block mb-2 text-sm font-medium"
-                                >
-                                    Installment Period (Years)
-                                </label>
-                                <Input
-                                    type="number"
-                                    id="building-floor-instalment-period"
-                                    name="building-floor-instalment-period"
-                                    className="input input-bordered  w-full max-w-xs border border-gray-400 "
-                                    defaultValue={floor?.instalment_period as string}
-                                    placeholder=""
-                                    min="0"
-                                    onChange={(e) => {
-                                        setInstalment_Period(Number(e.target.value))
-                                        console.log(e.target.value)
-                                    }}
-                                />
-                                <div className="m-4">
-                                    {Number(instalment_period).toLocaleString()}
+                                {/* Installment Period (Years) */}
+                                <div className="mt-4">
+                                    <label
+                                        htmlFor="building-floor-instalment-period"
+                                        className="block mb-2 text-sm font-medium"
+                                    >
+                                        Installment Period (Years)
+                                    </label>
+                                    <div className="flex">
+                                        <Input
+                                            type="number"
+                                            id="building-floor-instalment-period"
+                                            name="building-floor-instalment-period"
+                                            className="input input-bordered  w-full max-w-xs border border-gray-400 "
+                                            defaultValue={floor?.instalment_period as string}
+                                            placeholder=""
+                                            min="0"
+                                            onChange={(e) => {
+                                                setInstalment_Period(Number(e.target.value))
+                                                console.log(e.target.value)
+                                            }}
+                                        />
+                                        <div className="m-4">
+                                            {Number(instalment_period).toLocaleString()}
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                {/* Instalment Amount */}
+                                <div className="mt-4">
+                                    <label
+                                        htmlFor="building-floor-instalment-amount"
+                                        className="block mb-2 text-sm font-medium"
+                                    >
+                                        Total Sale Price
+                                    </label>
+                                    <div className="flex">
+                                        <Input
+                                            type="number"
+                                            id="building-floor-instalment-amount"
+                                            name="building-floor-instalment-amount"
+                                            className="input input-bordered w-full max-w-xs border border-gray-400 "
+                                            defaultValue={floor?.instalment_amount as string}
+                                            placeholder=""
+                                            min="0"
+                                            onChange={(e) => {
+                                                setInstalment_Amount(Number(e.target.value))
+                                                console.log(e.target.value)
+                                            }}
+                                        />
+                                        <div className="m-4">
+                                            {Number(instalment_amount).toLocaleString()}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Down Payment */}
+                                <div className="mt-4">
+                                    <label
+                                        htmlFor="building-floor-down-payment-amount"
+                                        className="block mb-2 text-sm font-medium"
+                                    >
+                                        Down Payment
+                                    </label>
+                                    <div className="flex">
+                                        <Input
+                                            type="number"
+                                            id="building-floor-down-payment-amount"
+                                            name="building-floor-down-payment-amount"
+                                            className="input input-bordered w-full max-w-xs border border-gray-400 "
+                                            defaultValue={floor?.down_payment_amount as string}
+                                            placeholder=""
+                                            min="0"
+                                            onChange={(e) => {
+                                                setDown_Payment_Amount(Number(e.target.value))
+                                                console.log(e.target.value)
+                                            }}
+                                        />
+                                        <div className="m-4">
+                                            {Number(down_payment_amount).toLocaleString()}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Possession Amount */}
+                                <div className="mt-4">
+                                    <label
+                                        htmlFor="building-floor-possession-amount"
+                                        className="block mb-2 text-sm font-medium"
+                                    >
+                                        Possession Amount
+                                    </label>
+                                    <div className="flex">
+                                        <Input
+                                            type="number"
+                                            id="building-floor-possession-amount"
+                                            name="building-floor-possession-amount"
+                                            className="input input-bordered border w-full max-w-xs border-gray-400 "
+                                            defaultValue={floor?.possession_amount as string}
+                                            placeholder=""
+                                            min="0"
+                                            onChange={(e) => {
+                                                setPossession_Amount(Number(e.target.value))
+                                                console.log(e.target.value)
+                                            }}
+                                        />
+                                        <div className="m-4">
+                                            {Number(possession_amount).toLocaleString()}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
-
-
-                            {/* Instalment Amount */}
+                            {/* Floor Remarks  */}
                             <div className="mt-4">
-                                <label
-                                    htmlFor="building-floor-instalment-amount"
-                                    className="block mb-2 text-sm font-medium"
-                                >
-                                    Total Sale Price
+                                <label htmlFor="message" className="block mb-2 text-sm font-medium">
+                                    Your Remarks
                                 </label>
-                                <Input
-                                    type="number"
-                                    id="building-floor-instalment-amount"
-                                    name="building-floor-instalment-amount"
-                                    className="input input-bordered w-full max-w-xs border border-gray-400 "
-                                    defaultValue={floor?.instalment_amount as string}
-                                    placeholder=""
-                                    min="0"
-                                    onChange={(e) => {
-                                        setInstalment_Amount(Number(e.target.value))
-                                        console.log(e.target.value)
-                                    }}
-                                />
-                                <div className="m-4">
-                                    {Number(instalment_amount).toLocaleString()}
-                                </div>
+                                <Textarea
+                                    id="building-floor-remarks"
+                                    name="building-floor-remarks"
+                                    className="textarea border  w-full border-gray-400 "
+                                    defaultValue={floor?.remarks as string}
+                                    placeholder="Leave a comment..."
+                                ></Textarea>
                             </div>
 
-                            {/* Down Payment */}
-                            <div className="mt-4">
-                                <label
-                                    htmlFor="building-floor-down-payment-amount"
-                                    className="block mb-2 text-sm font-medium"
-                                >
-                                    Down Payment
-                                </label>
-                                <Input
-                                    type="number"
-                                    id="building-floor-down-payment-amount"
-                                    name="building-floor-down-payment-amount"
-                                    className="input input-bordered w-full max-w-xs border border-gray-400 "
-                                    defaultValue={floor?.down_payment_amount as string}
-                                    placeholder=""
-                                    min="0"
-                                    onChange={(e) => {
-                                        setDown_Payment_Amount(Number(e.target.value))
-                                        console.log(e.target.value)
-                                    }}
-                                />
-                                <div className="m-4">
-                                    {Number(down_payment_amount).toLocaleString()}
-                                </div>
-                            </div>
+                            {/* Submit button */}
+                            <div className="flex gap-6 justify-center mt-3 mb-3">
+                                <UpdateFloorButton />
+                                {/* <Link href="/buildings" className="flex justify-center items-center border border-black px-2 py-1 rounded-xl bg-white text-black hover:bg-red-600 hover:text-white capitalize">Cancel</Link> */}
 
-                            {/* Possession Amount */}
-                            <div className="mt-4">
-                                <label
-                                    htmlFor="building-floor-possession-amount"
-                                    className="block mb-2 text-sm font-medium"
-                                >
-                                    Possession Amount
-                                </label>
-                                <Input
-                                    type="number"
-                                    id="building-floor-possession-amount"
-                                    name="building-floor-possession-amount"
-                                    className="input input-bordered border w-full max-w-xs border-gray-400 "
-                                    defaultValue={floor?.possession_amount as string}
-                                    placeholder=""
-                                    min="0"
-                                    onChange={(e) => {
-                                        setPossession_Amount(Number(e.target.value))
-                                        console.log(e.target.value)
-                                    }}
-                                />
-                                <div className="m-4">
-                                    {Number(possession_amount).toLocaleString()}
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Floor Remarks  */}
-                        <div className="mt-4">
-                            <label htmlFor="message" className="block mb-2 text-sm font-medium">
-                                Your Remarks
-                            </label>
-                            <Textarea
-                                id="building-floor-remarks"
-                                name="building-floor-remarks"
-                                className="textarea border  w-full border-gray-400 "
-                                defaultValue={floor?.remarks as string}
-                                placeholder="Leave a comment..."
-                            ></Textarea>
-                        </div>
-
-                        {/* Submit button */}
-                        <div className="flex gap-6 justify-center mt-3 mb-3">
-                            <UpdateFloorButton />
-                            {/* <Link href="/buildings" className="flex justify-center items-center border border-black px-2 py-1 rounded-xl bg-white text-black hover:bg-red-600 hover:text-white capitalize">Cancel</Link> */}
-
-                            <Button asChild className="bg-transparent text-primary hover:bg-primary-foreground">
-                                <Link href="/buildings">Cancel</Link>
-                            </Button>
+                                <Button asChild className="bg-transparent text-primary hover:bg-primary-foreground">
+                                    <Link href="/buildings">Cancel</Link>
+                                </Button>
 
 
 
-                            {/* <button
+                                {/* <button
           type="submit"
           className="border border-gray-300 text-sm rounded-lg block p-2.5"
         >
           Create
         </button> */}
+                            </div>
                         </div>
                     </form>
                 </div>
