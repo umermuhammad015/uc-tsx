@@ -34,6 +34,13 @@ export default async function ViewBuilding({ params }: Props) {
 
   console.log(building);
 
+  const Buildings = await prisma.buildings.findUnique({
+    where: {
+      id: Number(params.id) as number
+    },
+  });
+
+
   // Get floors information
   const floors = await prisma.floors.findMany({
     where: {
@@ -81,69 +88,50 @@ export default async function ViewBuilding({ params }: Props) {
             </TableRow>
             {/* Facilities */}
             <TableRow>
-              <TableCell >Facilities </TableCell >
-              <TableCell >
-                {building?.is_centrally_air_conditioned && (
-                  // <div className="badge bg-emerald-700 text-white ">Centrally Airconditioned </div>
-                  <Badge>Centrally Airconditioned </Badge>
-                )}
-                {building?.has_security && (
-                  // <div className="badge bg-emerald-700 text-white">Security</div>
-                  <Badge>Security</Badge>
-                )}
-                {building?.has_escalators && (
-                  // <div className="badge bg-emerald-700 text-white">Escalators</div>
-                  <Badge>Escalators</Badge>
-                )}
-                {building?.has_entertainment_area && (
-                  // <div className="badge bg-emerald-700 text-white">Entertainment Area</div>
-                  <Badge>Entertainment Area</Badge>
-                )}
-              </TableCell >
+              <TableCell >Zone </TableCell >
+              <TableCell >{building?.zone}</TableCell >
             </TableRow>
             {/* Type */}
             <TableRow>
-              <TableCell >Type </TableCell >
-              <TableCell >
-                {building?.type_retail && (
-                  // <div className="badge bg-cyan-950 text-white">Retail</div>
+              <TableCell >Area/Society: </TableCell >
+              <TableCell >{building?.area}</TableCell >
+            </TableRow>
+            <TableRow>
+              <TableCell >Building Name </TableCell > <TableCell >{building?.address}</TableCell >
+            </TableRow>
+            <TableRow>
+              <TableCell >Building Type </TableCell >
+              <TableCell>
+                {building?.type_offices && (
                   <Badge>Retail</Badge>
                 )}
-                {building?.type_offices && (
-                  // <div className="badge bg-cyan-950 text-white">Offices</div>
+                {building?.type_apartments && (
                   <Badge>Offices</Badge>
                 )}
-                {building?.type_apartments && (
-                  // <div className="badge bg-cyan-950 text-white">Apartments</div>
-                  <Badge>Apartment</Badge>
-                )}
-                {building?.type_other && (
-                  // <div className="badge bg-cyan-950 text-white">Other</div>
-                  <Badge>Other</Badge>
+                {building?.type_retail && (
+                  <Badge>Apartments</Badge>
                 )}
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell >Zone </TableCell > <TableCell >{building?.zone}</TableCell >
-            </TableRow>
-            <TableRow>
-              <TableCell >Area </TableCell > <TableCell >{building?.area}</TableCell >
-            </TableRow>
-            <TableRow>
-              <TableCell >Address</TableCell > <TableCell >{building?.address}</TableCell >
+              <TableCell >Building Status</TableCell >
+              <TableCell >{building?.status}</TableCell >
             </TableRow>
             <TableRow>
               <TableCell >Plot Size (Sq. Yards)</TableCell > <TableCell >{Number(building?.plot_size).toLocaleString()}</TableCell >
 
             </TableRow>
             <TableRow>
-              <TableCell >Construction Area (Per Sq. Ft.)</TableCell > <TableCell >{Number(building?.construction_area).toLocaleString()}</TableCell >
-            </TableRow>
-            <TableRow>
-              <TableCell >Construction Year </TableCell > <TableCell >{building?.construction_year}</TableCell >
+              <TableCell >Total Covered Area of Building (Sq Ft)</TableCell > <TableCell >{Number(building?.construction_area).toLocaleString()}</TableCell >
             </TableRow>
             <TableRow>
               <TableCell >Builder Name</TableCell > <TableCell >{building?.builder_name}</TableCell >
+            </TableRow>
+            <TableRow>
+              <TableCell >Launch Year </TableCell > <TableCell >{building?.launch_year}</TableCell >
+            </TableRow>
+            <TableRow>
+              <TableCell >Construction Year </TableCell > <TableCell >{building?.construction_year}</TableCell >
             </TableRow>
             <TableRow>
               <TableCell >Building Rank</TableCell > <TableCell >{building?.building_rank}</TableCell >
@@ -154,15 +142,54 @@ export default async function ViewBuilding({ params }: Props) {
             <TableRow>
               <TableCell >Parking Floors</TableCell > <TableCell >{building?.parking_floors}</TableCell >
             </TableRow>
-
+            <TableRow>
+              <TableCell >Facilities </TableCell >
+              <TableCell >
+                {building?.is_centrally_air_conditioned && (
+                  // <div className="badge bg-emerald-700 text-white ">Centrally Airconditioned </div>
+                  <Badge>Centrally Air conditioned </Badge>
+                )}
+                {building?.has_security && (
+                  // <div className="badge bg-emerald-700 text-white">Security</div>
+                  <Badge>Security</Badge>
+                )}
+                {building?.has_escalators && (
+                  // <div className="badge bg-emerald-700 text-white">Escalators</div>
+                  <Badge>Escalators</Badge>
+                )}
+                {building?.has_food_court && (
+                  // <div className="badge bg-emerald-700 text-white">Entertainment Area</div>
+                  <Badge>Food Court</Badge>
+                )}
+                {building?.has_entertainment_area && (
+                  // <div className="badge bg-emerald-700 text-white">Entertainment Area</div>
+                  <Badge>Entertainment Area</Badge>
+                )}
+              </TableCell >
+            </TableRow>
+            <TableRow>
+              <TableCell >No. of Retail Floors</TableCell >{" "}
+              <TableCell >{building?.retail_floors_count}</TableCell >
+            </TableRow>
+            <TableRow>
+              <TableCell >Retails shops</TableCell >{" "}
+              <TableCell >{building?.retail_floors_shops_count}</TableCell >
+            </TableRow>
+            {/* <TableRow>
+              <TableCell >Shop Maintenance Fee Rs. (Per Sq. Ft.)</TableCell >{" "}
+              <TableCell >{Number(building?.apartments_maintenance_fee).toLocaleString()}</TableCell >
+            </TableRow> */}
+            <TableRow>
+              <TableCell >Brands</TableCell > <TableCell >{building?.retail_floors_brands}</TableCell >
+            </TableRow>
             <TableRow>
               <TableCell >Apartment Floors</TableCell > <TableCell >{building?.apartment_floors}</TableCell >
             </TableRow>
             <TableRow>
-              <TableCell >Apartments Count:</TableCell > <TableCell >{building?.apartments_count}</TableCell >
+              <TableCell >No. of Apartment</TableCell > <TableCell >{building?.apartments_count}</TableCell >
             </TableRow>
             <TableRow>
-              <TableCell >Apartment Types </TableCell >
+              <TableCell >Apartment Types</TableCell >
               <TableCell >
                 {building?.apartments_has_type_1_bed && (
                   // <div className="badge bg-cyan-800 text-white">1 Bed</div>
@@ -180,6 +207,10 @@ export default async function ViewBuilding({ params }: Props) {
                   // <div className="badge bg-cyan-800 text-white">4 Bed</div>
                   <Badge>4 Bed</Badge>
                 )}
+                {building?.apartments_has_type_5_bed && (
+                  // <div className="badge bg-cyan-800 text-white">4 Bed</div>
+                  <Badge>5 Bed</Badge>
+                )}
                 {building?.apartments_has_type_duplex && (
                   // <div className="badge bg-cyan-800 text-white">Duplex</div>
                   <Badge>Duplex</Badge>
@@ -194,26 +225,12 @@ export default async function ViewBuilding({ params }: Props) {
               <TableCell >Servant Quarter</TableCell >{" "}
               <TableCell >{building?.apartments_has_servant_quarter}</TableCell >
             </TableRow>
-            <TableRow>
+            {/* <TableRow>
               <TableCell >Apartment Maintenance Fee Rs. (Per Sq. Ft.)</TableCell >{" "}
               <TableCell >{Number(building?.apartments_maintenance_fee).toLocaleString()}</TableCell >
-            </TableRow>
+            </TableRow> */}
 
-            <TableRow>
-              <TableCell >No. of Retail Floors</TableCell >{" "}
-              <TableCell >{building?.retail_floors_count}</TableCell >
-            </TableRow>
-            <TableRow>
-              <TableCell >Retails shops</TableCell >{" "}
-              <TableCell >{building?.retail_floors_shops_count}</TableCell >
-            </TableRow>
-            <TableRow>
-              <TableCell >Shop Maintenance Fee Rs. (Per Sq. Ft.)</TableCell >{" "}
-              <TableCell >{Number(building?.apartments_maintenance_fee).toLocaleString()}</TableCell >
-            </TableRow>
-            <TableRow>
-              <TableCell >Brands</TableCell > <TableCell >{building?.retail_floors_brands}</TableCell >
-            </TableRow>
+
 
             <TableRow>
               <TableCell >Office Floors</TableCell > <TableCell >{building?.office_floors_count}</TableCell >
@@ -221,13 +238,16 @@ export default async function ViewBuilding({ params }: Props) {
             <TableRow>
               <TableCell >Offices</TableCell > <TableCell >{building?.office_floors_count}</TableCell >
             </TableRow>
-            <TableRow>
+            {/* <TableRow>
               <TableCell >Maintenance Fee Rs. (Per Sq. Ft.)</TableCell >{" "}
               <TableCell >{Number(building?.office_maintenance_fee).toLocaleString()}</TableCell >
-            </TableRow>
+            </TableRow> */}
 
             <TableRow>
-              <TableCell >surveyor_name</TableCell > <TableCell >{building?.surveyor_name}</TableCell >
+              <TableCell >surveyor name</TableCell > <TableCell >{building?.surveyor_name}</TableCell >
+            </TableRow>
+            <TableRow>
+              <TableCell >Your Remarks</TableCell > <TableCell >{building?.building_survery_remarks}</TableCell >
             </TableRow>
             {/* <TableRow>
               <td>Remarks</td> <td>{building.building_survery_remarks}</td>
@@ -243,7 +263,22 @@ export default async function ViewBuilding({ params }: Props) {
         </Table>
       </div>
 
-      <div className="border mt-4 text-center border-gray-400 overflow-auto" >
+      <div className="flex gap-2 justify-end mt-3">
+        <Button asChild>
+          <Link href={"edit/" + Buildings?.id}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+            </svg>
+            Edit
+          </Link>
+        </Button>
+      </div>
+
+      <div className="mt-4 ">
+        Buildinf Floors
+      </div>
+      <div className="border text-center border-gray-400 overflow-auto" >
         <Table className="">
           <TableHeader className=" text-center">
             <TableRow>

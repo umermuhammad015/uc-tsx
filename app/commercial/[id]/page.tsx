@@ -232,12 +232,11 @@ export default async function ViewCommercail({ params }: Props) {
 
 
             < div className="flex gap-2 justify-end mt-3" >
-                {/* <Button className="bg-cyan-950 text-white">
-                    <Link href={"/societies/plots/add/" + params.id}>
+                <Button className="bg-cyan-950 text-white">
+                    <Link href={"/commercial/price/add/" + params.id}>
                         Add Price
                     </Link>
-                </Button> */}
-                {/* <Link href="/societies" className="flex justify-center items-center border border-black px-2 py-1 rounded-xl bg-white text-black hover:bg-blue-400 hover:text-white capitalize">Go Back</Link> */}
+                </Button>
                 <Button asChild>
                     <Link href="/commercial">Go Back</Link>
                 </Button>

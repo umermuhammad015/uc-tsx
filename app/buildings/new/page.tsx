@@ -801,7 +801,7 @@ export default function Page() {
                     htmlFor="apartment-has-type-5-bed"
                     className="ml-2 text-sm font-medium  "
                   >
-                    4-Bed
+                    5-Bed
                   </label>
                 </div>
 

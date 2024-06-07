@@ -43,10 +43,28 @@ export default function UpdatePlotForm({ floor }: any) {
                         <div className="">
                             <div className="mt-4 ">
                                 <label
-                                    htmlFor="building-id"
+                                    htmlFor="floor-id"
                                     className="block mb-2 text-sm font-medium "
                                 >
                                     Floor ID:
+                                </label>
+                                <Input
+                                    type="text"
+                                    id="floor-id"
+                                    name="floor-id"
+                                    className="input input-bordered  w-full max-w-xs border-2 border-gray-400 cursor-not-allowed disabled:bg-gray-200"
+                                    placeholder=""
+                                    value={floor?.id}
+
+                                />
+                            </div>
+
+                            <div className="mt-4 ">
+                                <label
+                                    htmlFor="building-id"
+                                    className="block mb-2 text-sm font-medium "
+                                >
+                                    Building ID:
                                 </label>
                                 <Input
                                     type="text"
@@ -54,7 +72,7 @@ export default function UpdatePlotForm({ floor }: any) {
                                     name="building-id"
                                     className="input input-bordered  w-full max-w-xs border-2 border-gray-400 cursor-not-allowed disabled:bg-gray-200"
                                     placeholder=""
-                                    value={floor?.id}
+                                    value={floor?.building_id}
 
                                 />
                             </div>

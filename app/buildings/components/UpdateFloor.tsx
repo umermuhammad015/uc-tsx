@@ -5,6 +5,7 @@ import prisma from "../../db";
 
 export default async function UpdateFloor(data: FormData) {
 
+    const floor_id = data.get("floor-id")?.valueOf();
     const building_id = data.get("building-id")?.valueOf();
     const unit_type = data.get("building-floor-unit-type")?.valueOf();
     const floor_no = data.get("building-floor-no")?.valueOf();
@@ -28,7 +29,7 @@ export default async function UpdateFloor(data: FormData) {
 
     const update_query = {
         where: {
-            id: Number(building_id) as number
+            id: Number(floor_id) as number
         },
         data: {
             // name: name,
@@ -48,8 +49,9 @@ export default async function UpdateFloor(data: FormData) {
     // console.log("Update Query is")
     // console.log("update_query")
 
+    // const updateBuilding = await prisma.floors.update(update_query)
+    // redirect('/buildings/')
     const updateBuilding = await prisma.floors.update(update_query)
-    // let updatedNote = await Note.findByIdAndUpdate({ _id: params.id }, { title, note });
-    redirect('/buildings/')
+    redirect("/buildings/"+ building_id)
 
 }
