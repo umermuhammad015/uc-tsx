@@ -64,108 +64,108 @@ const GetCommercial = async ({ search_string = '', take = PAGE_SIZE, skip = 0, c
 
   if (search_string === null || search_string === '') {
 
-      // console.log("developer inside if")
-      // console.log(developer)
+    // console.log("developer inside if")
+    // console.log(developer)
 
-      const results = await prisma.commercial.findMany({
-          take,
-          skip,
-          where: {
-              city: city === "" ? undefined : city,
-              project_status: project_type === "" ? undefined : project_type,
-              grade: commercial_grade === "" ? undefined : commercial_grade,
-             
-          },
-          orderBy: {
-              commercial_zone_name: 'asc',
-          },
-      });
+    const results = await prisma.commercial.findMany({
+      take,
+      skip,
+      where: {
+        city: city === "" ? undefined : city,
+        project_status: project_type === "" ? undefined : project_type,
+        grade: commercial_grade === "" ? undefined : commercial_grade,
 
-      const total = await prisma.commercial.count();
+      },
+      orderBy: {
+        commercial_zone_name: 'asc',
+      },
+    });
 
-      revalidatePath('/commercial');
+    const total = await prisma.commercial.count();
 
-      const return_object = {
-          data: results,
-          metadata: {
-              hasNextPage: skip + take < total,
-              totalPages: Math.ceil(total / take),
-          },
-      };
+    revalidatePath('/commercial');
 
-      // console.log("RO")
-      // console.log(return_object)
+    const return_object = {
+      data: results,
+      metadata: {
+        hasNextPage: skip + take < total,
+        totalPages: Math.ceil(total / take),
+      },
+    };
 
-      return return_object
+    // console.log("RO")
+    // console.log(return_object)
+
+    return return_object
 
   } else {
 
-      // console.log("inside else developer_name");
-      // console.log(developer_name);
+    // console.log("inside else developer_name");
+    // console.log(developer_name);
 
-      const results = await prisma.commercial.findMany({
-          take,
-          skip,
-          where: {
-              OR: [
-                  {
-                      commercial_zone_name: {
-                          contains: search_string,
-                          mode: 'insensitive',
-                      },
-                  },
-                  {
-                      city: {
-                          contains: search_string,
-                          mode: 'insensitive',
-                      },
-                  },
-              ],
-              city: city === "" ? undefined : city,
-              project_status: project_type === "" ? undefined : project_type,
-              grade: commercial_grade === "" ? undefined : commercial_grade,
-              
+    const results = await prisma.commercial.findMany({
+      take,
+      skip,
+      where: {
+        OR: [
+          {
+            commercial_zone_name: {
+              contains: search_string,
+              mode: 'insensitive',
+            },
           },
-      })
-
-      // console.log(results);
-
-      const total = await prisma.commercial.count({
-          take,
-          skip,
-          where: {
-              OR: [
-                  {
-                      commercial_zone_name: {
-                          contains: search_string,
-                          mode: 'insensitive',
-                      },
-                  },
-                  {
-                      city: {
-                          contains: search_string,
-                          mode: 'insensitive',
-                      },
-                  },
-              ]
+          {
+            city: {
+              contains: search_string,
+              mode: 'insensitive',
+            },
           },
-      });
+        ],
+        city: city === "" ? undefined : city,
+        project_status: project_type === "" ? undefined : project_type,
+        grade: commercial_grade === "" ? undefined : commercial_grade,
 
-      revalidatePath('/commercial');
+      },
+    })
 
-      const return_object = {
-          data: results,
-          metadata: {
-              hasNextPage: skip + take < total,
-              totalPages: Math.ceil(total / take),
+    // console.log(results);
+
+    const total = await prisma.commercial.count({
+      take,
+      skip,
+      where: {
+        OR: [
+          {
+            commercial_zone_name: {
+              contains: search_string,
+              mode: 'insensitive',
+            },
           },
-      };
+          {
+            city: {
+              contains: search_string,
+              mode: 'insensitive',
+            },
+          },
+        ]
+      },
+    });
 
-      // console.log("RO")
-      // console.log(return_object)
+    revalidatePath('/commercial');
+
+    const return_object = {
+      data: results,
+      metadata: {
+        hasNextPage: skip + take < total,
+        totalPages: Math.ceil(total / take),
+      },
+    };
+
+    // console.log("RO")
+    // console.log(return_object)
 
 
-      return return_object
+    return return_object
 
   }
 
