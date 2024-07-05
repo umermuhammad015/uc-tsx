@@ -7,6 +7,7 @@ export default async function createFloor(data: FormData) {
 
 
     console.log("🚀 ~ file: page.tsx:10 ~ createFloor ~ data:", data);
+    const floor_date = (new Date(data.get("floor-date")?.valueOf() as string)).toISOString().substring(0, 10);
 
     const building_id = data.get("building-id")?.valueOf();
     console.log(
@@ -110,6 +111,7 @@ export default async function createFloor(data: FormData) {
   
     await prisma.floors.create({
       data: {
+        date: floor_date,
         building_id: Number (building_id) as number,
         floor_type: floor_type as string,
         floor_no: floor_no as string,

@@ -101,6 +101,7 @@ model Floors {
   down_payment_amount Int?
   instalment_amount   Int?
   possession_amount   Int?
+  date                String?
   remarks             String?
 
   createdAt DateTime @default(now())

@@ -99,6 +99,7 @@ type Props = {
 
 export default function Page({ params }: Props) {
   console.log(params.id);
+  const [entryDate, setEntryDate] = useState<string>((new Date).toISOString().split('T')[0]);
 
   const [isAdding, setIsAdding] = useState(false);
   const { toast } = useToast()
@@ -127,7 +128,7 @@ export default function Page({ params }: Props) {
       // console.log("trying")
       // console.log(params.id)
 
-      const add_plot_output = await AddPlot(avg_sale_price, params.id, avg_monthly_rent, down_payment_amount,
+      const add_plot_output = await AddPlot(entryDate,avg_sale_price, params.id, avg_monthly_rent, down_payment_amount,
         instalment_period, instalment_amount, possession_amount, size_min, size_max, floor_num, floor_type,
         unit_type, instalment_plan, occupancy, remarks)
 
@@ -135,9 +136,9 @@ export default function Page({ params }: Props) {
       // console.log(add_plot_output)
 
       toast({
-          className: "bg-green-600 rounded-lg",
-          // title: "Add Price",
-          description: "Floor added successfully ",
+        className: "bg-green-600 rounded-lg",
+        // title: "Add Price",
+        description: "Floor added successfully ",
 
       })
 
@@ -157,6 +158,7 @@ export default function Page({ params }: Props) {
       setInstalment_Period(0)
       setInstalment_Amount(0)
       setPossession_Amount(0)
+      setEntryDate("")
       setSize_Min(0)
       setSize_Max(0)
       setRemarks("")
@@ -634,6 +636,41 @@ export default function Page({ params }: Props) {
                   </div>
                 </div>
               </div>
+            </div>
+
+            {/*Date */}
+
+            <div className="relative max-w-sm">
+              <label
+                htmlFor="surveyor-name"
+                className="block mb-2 text-sm font-medium "
+              >
+                Date:
+              </label>
+              <div className="absolute inset-y-0 right-0 flex items-center pr-20 pointer-events-none">
+                <svg
+                  className="w-4 h-4  dark:text-gray-400 mt-6"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                </svg>
+              </div>
+
+              <Input
+                type="date"
+                id="floor-date"
+                name="floor-date"
+                // defaultValue="2024-12-13"
+                defaultValue={(new Date).toISOString().split('T')[0]}
+                // value="12/26/2024"
+                // value={entryDate}
+                className="max-w-xs border-gray-400  border-2 text-sm rounded focus:ring-blue-500  block w-full p-2.5"
+                onChange={(e) => setEntryDate(e.target.value)}
+                placeholder="date"
+              />
             </div>
 
 
