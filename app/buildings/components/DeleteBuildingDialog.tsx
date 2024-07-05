@@ -1,16 +1,6 @@
 "use client"
 
 import {
-    Dialog,
-    DialogClose,
-    DialogContent,
-    DialogDescription,
-    DialogFooter,
-    DialogHeader,
-    DialogTitle,
-    DialogTrigger,
-} from "@/components/ui/dialog"
-import {
     AlertDialog,
     AlertDialogAction,
     AlertDialogCancel,
@@ -47,13 +37,12 @@ export default function DeleteCommercialDialog({building_id}:any) {
 
         setIsLoading(false)
 
-        // console.log("logging society_id")
-        // console.log(deleteCom)
+        
 
        toast({
             className: "bg-red-600 rounded-lg",
-            title: "Delete Commercial Zone",
-            description: "your Commercial Zone has been deleted ",
+            title: "Delete Building",
+            description: "your Building has been deleted ",
 
         })
 
@@ -78,13 +67,9 @@ export default function DeleteCommercialDialog({building_id}:any) {
 
                     <AlertDialogAction 
                         onClick={() => {
-                            // console.log("delete")
-
-                            // console.log("Deleteing inside deleteSociety")
-                            // console.log(society_id)
+                           
                             handleDelete()
-                            // const societies_id = data.get("societies-id")?.valueOf();
-                            // console.log(societies_id);
+                           
                         }}
                         
                         >
@@ -95,11 +80,7 @@ export default function DeleteCommercialDialog({building_id}:any) {
             </AlertDialogContent>
         </AlertDialog>
         <Toaster />
-        {/* <Button
-            onClick={() => {
-                setIsConfirmOpen(true)
-            }}
-        >Delete</Button> */}
+    
 
     </>)
 }

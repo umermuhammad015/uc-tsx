@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/table";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import DeleteFloorDialog from "../components/DeleteFloorDialog";
 
 type Props = {
   params: { id: number }
@@ -61,7 +62,7 @@ export default async function ViewBuilding({ params }: Props) {
     });
 
     revalidatePath("/");
-    redirect("/buildings");
+    redirect("/buildings" + params.id);
   }
 
   console.log(floors);
@@ -350,14 +351,8 @@ export default async function ViewBuilding({ params }: Props) {
                   </Button>
                 </TableCell >
                 <TableCell >
-                  <form action={deleteFloor}>
-                    <input
-                      type="hidden"
-                      name="floor-id"
-                      value={floor.id}
-                    />
-                    <DeleteFloorButton />
-                  </form>
+
+                  <DeleteFloorDialog floor_id={floor.id} />
                 </TableCell>
 
 
@@ -384,7 +379,7 @@ export default async function ViewBuilding({ params }: Props) {
             Add floor information</Link>
         </Button>
         <Button asChild>
-          <Link href="/societies">Go Back</Link>
+          <Link href="/buildings">Go Back</Link>
         </Button>
       </div>
 

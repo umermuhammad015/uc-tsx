@@ -6,7 +6,7 @@ import { useState } from "react";
 import { redirect } from "next/navigation";
 import AddFloorButton from "../../../components/AddFloorButton";
 import createFloor from "../../../../actions/createFloor"
-
+import { Toaster } from "@/components/ui/toaster";
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -20,6 +20,7 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import AddPlot from "@/app/buildings/components/AddFloor";
+import { useToast } from "@/components/ui/use-toast";
 
 
 
@@ -100,6 +101,7 @@ export default function Page({ params }: Props) {
   console.log(params.id);
 
   const [isAdding, setIsAdding] = useState(false);
+  const { toast } = useToast()
 
   const [avg_sale_price, setAvg_Sale_Price] = useState(0);
   const [avg_monthly_rent, setAvg_Monthly_Rent] = useState(0);
@@ -132,12 +134,12 @@ export default function Page({ params }: Props) {
       // console.log("Plot added")
       // console.log(add_plot_output)
 
-      // toast({
-      //     className: "bg-green-600 rounded-lg",
-      //     // title: "Add Price",
-      //     description: "Plot added successfully ",
+      toast({
+          className: "bg-green-600 rounded-lg",
+          // title: "Add Price",
+          description: "Floor added successfully ",
 
-      // })
+      })
 
       //    if (error) {
       //     toast.error(error);
@@ -692,7 +694,7 @@ export default function Page({ params }: Props) {
                 {isAdding ? "Saving...." : "Save and Add more"}
 
               </Button>
-
+              <Toaster />
               <Button asChild className="bg-transparent text-primary hover:bg-primary-foreground">
                 <Link href="/buildings" >Cancel</Link>
               </Button>
