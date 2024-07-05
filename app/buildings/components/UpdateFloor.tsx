@@ -10,16 +10,16 @@ export default async function UpdateFloor(data: FormData) {
     const unit_type = data.get("building-floor-unit-type")?.valueOf();
     const floor_no = data.get("building-floor-no")?.valueOf();
     const floor_type = data.get("building-floor-type")?.valueOf();
-    const occupancy = data.get("building-floor-occupancy")?.valueOf();
-    const size_min = data.get("building-floor-size-min")?.valueOf();
-    const size_max = data.get("building-floor-size-max")?.valueOf();
-    const avg_sale_price = data.get("building-floor-avg-sale-price")?.valueOf();
-    const avg_monthly_rent = data.get("building-floor-avg-monthly-rent")?.valueOf();
+    const occupancy = parseInt(data.get("building-floor-occupancy")?.valueOf() as string);
+    const size_min = parseInt(data.get("building-floor-size-min")?.valueOf() as string);
+    const size_max = parseInt(data.get("building-floor-size-max")?.valueOf() as string);
+    const avg_sale_price = parseInt(data.get("building-floor-avg-sale-price")?.valueOf() as string);
+    const avg_monthly_rent = parseInt(data.get("building-floor-avg-monthly-rent")?.valueOf() as string);
     const instalment_plan = data.get("building-instalment-plan")?.valueOf();
-    const instalment_period = data.get("building-floor-instalment-period")?.valueOf();
-    const down_payment_amount = data.get("building-floor-down-payment-amount")?.valueOf();
-    const instalment_amount = data.get("building-floor-instalment-amount")?.valueOf();
-    const possession_amount = data.get("building-floor-possession-amount")?.valueOf();
+    const instalment_period = parseInt(data.get("building-floor-instalment-period")?.valueOf() as string);
+    const down_payment_amount = parseInt(data.get("building-floor-down-payment-amount")?.valueOf() as string);
+    const instalment_amount = parseInt(data.get("building-floor-instalment-amount")?.valueOf() as string);
+    const possession_amount = parseInt(data.get("building-floor-possession-amount")?.valueOf() as string);
     const remarks = data.get("building-floor-remarks")?.valueOf();
 
 
@@ -35,13 +35,20 @@ export default async function UpdateFloor(data: FormData) {
             // name: name,
             // city: city
 
-            unit_type, occupancy, size_min,
-            floor_no, floor_type,
-            size_max, avg_sale_price,
-            avg_monthly_rent, instalment_plan,
-            instalment_period, down_payment_amount,
-            instalment_amount, possession_amount,
-            remarks
+            unit_type: unit_type as string,
+            occupancy: occupancy,
+            size_min: size_min,
+            floor_no: floor_no as string,
+            floor_type: floor_type as string,
+            size_max: size_max,
+            avg_sale_price: avg_sale_price,
+            avg_monthly_rent: avg_monthly_rent,
+            instalment_plan: instalment_plan as string,
+            instalment_period: instalment_period,
+            down_payment_amount: down_payment_amount,
+            instalment_amount: instalment_amount,
+            possession_amount: possession_amount,
+            remarks: remarks as string
 
         }
     }
@@ -52,6 +59,6 @@ export default async function UpdateFloor(data: FormData) {
     // const updateBuilding = await prisma.floors.update(update_query)
     // redirect('/buildings/')
     const updateBuilding = await prisma.floors.update(update_query)
-    redirect("/buildings/"+ building_id)
+    redirect("/buildings/" + building_id)
 
 }

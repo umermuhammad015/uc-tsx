@@ -31,6 +31,7 @@ export default function UpdatePlotForm({ floor }: any) {
     const [possession_amount, setPossession_Amount] = useState(floor?.possession_amount)
     const [size_min, setSize_Min] = useState(floor?.size_min)
     const [size_max, setSize_Max] = useState(floor?.size_max)
+    const [occupancy, setOccupancy] = useState(floor?.occupancy);
 
     return (
         <>
@@ -196,16 +197,24 @@ export default function UpdatePlotForm({ floor }: any) {
                                 >
                                     Occupancy Ratio
                                 </label>
-                                <Input
-                                    type="number"
-                                    id="building-floor-occupancy"
-                                    name="building-floor-occupancy"
-                                    className="input input-bordered  w-full max-w-xs border border-gray-400 "
-                                    placeholder=""
-                                    defaultValue={floor?.occupancy as string}
-                                    min="0"
-                                    max="100"
-                                />
+                                <div className="flex">
+                                    <Input
+                                        type="number"
+                                        id="building-floor-occupancy"
+                                        name="building-floor-occupancy"
+                                        className="input input-bordered  w-full max-w-xs border border-gray-400 "
+                                        placeholder=""
+                                        defaultValue={floor?.occupancy as number}
+                                        min="0"
+                                        max="100"
+                                        onChange={(e) => {
+                                            setOccupancy(Number(e.target.value))
+                                        }}
+                                    />
+                                    <div className="m-4">
+                                        {occupancy + "%"}
+                                    </div>
+                                </div>
                             </div>
 
                             {/* Size Minimum (Sq. Ft.)  */}
@@ -222,7 +231,7 @@ export default function UpdatePlotForm({ floor }: any) {
                                         id="building-floor-size-min"
                                         name="building-floor-size-min"
                                         className="input input-bordered  w-full max-w-xs border border-gray-400 "
-                                        defaultValue={floor?.size_min as string}
+                                        defaultValue={floor?.size_min as number}
                                         placeholder=""
                                         min="0"
                                         onChange={(e) => {
@@ -251,7 +260,7 @@ export default function UpdatePlotForm({ floor }: any) {
                                         id="building-floor-size-max"
                                         name="building-floor-size-max"
                                         className="input input-bordered  w-full max-w-xs border border-gray-400 "
-                                        defaultValue={floor?.size_max as string}
+                                        defaultValue={floor?.size_max as number}
                                         placeholder=""
                                         min="0"
                                         onChange={(e) => {
@@ -279,7 +288,7 @@ export default function UpdatePlotForm({ floor }: any) {
                                         id="building-floor-avg-sale-price"
                                         name="building-floor-avg-sale-price"
                                         className="input input-bordered  w-full max-w-xs border border-gray-400 "
-                                        defaultValue={floor?.avg_sale_price as string}
+                                        defaultValue={floor?.avg_sale_price as number}
                                         placeholder=""
                                         min="0"
                                         onChange={(e) => {
@@ -307,7 +316,7 @@ export default function UpdatePlotForm({ floor }: any) {
                                         id="building-floor-avg-monthly-rent"
                                         name="building-floor-avg-monthly-rent"
                                         className="input input-bordered  w-full max-w-xs border border-gray-400 "
-                                        defaultValue={floor?.avg_monthly_rent as string}
+                                        defaultValue={floor?.avg_monthly_rent as number}
                                         placeholder=""
                                         min="0"
                                         onChange={(e) => {
@@ -372,7 +381,7 @@ export default function UpdatePlotForm({ floor }: any) {
                                             id="building-floor-instalment-period"
                                             name="building-floor-instalment-period"
                                             className="input input-bordered  w-full max-w-xs border border-gray-400 "
-                                            defaultValue={floor?.instalment_period as string}
+                                            defaultValue={floor?.instalment_period as number}
                                             placeholder=""
                                             min="0"
                                             onChange={(e) => {
@@ -402,7 +411,7 @@ export default function UpdatePlotForm({ floor }: any) {
                                             id="building-floor-instalment-amount"
                                             name="building-floor-instalment-amount"
                                             className="input input-bordered w-full max-w-xs border border-gray-400 "
-                                            defaultValue={floor?.instalment_amount as string}
+                                            defaultValue={floor?.instalment_amount as number}
                                             placeholder=""
                                             min="0"
                                             onChange={(e) => {
@@ -430,7 +439,7 @@ export default function UpdatePlotForm({ floor }: any) {
                                             id="building-floor-down-payment-amount"
                                             name="building-floor-down-payment-amount"
                                             className="input input-bordered w-full max-w-xs border border-gray-400 "
-                                            defaultValue={floor?.down_payment_amount as string}
+                                            defaultValue={floor?.down_payment_amount as number}
                                             placeholder=""
                                             min="0"
                                             onChange={(e) => {
@@ -458,7 +467,7 @@ export default function UpdatePlotForm({ floor }: any) {
                                             id="building-floor-possession-amount"
                                             name="building-floor-possession-amount"
                                             className="input input-bordered border w-full max-w-xs border-gray-400 "
-                                            defaultValue={floor?.possession_amount as string}
+                                            defaultValue={floor?.possession_amount as number}
                                             placeholder=""
                                             min="0"
                                             onChange={(e) => {

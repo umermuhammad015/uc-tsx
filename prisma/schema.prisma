@@ -91,16 +91,16 @@ model Floors {
   floor_no            String
   floor_type          String
   unit_type           String?
-  occupancy           String?
-  size_min            String?
-  size_max            String?
-  avg_sale_price      String?
-  avg_monthly_rent    String?
+  occupancy           Int?
+  size_min            Int?
+  size_max            Int?
+  avg_sale_price      Int?
+  avg_monthly_rent    Int?
   instalment_plan     String?
-  instalment_period   String?
-  down_payment_amount String?
-  instalment_amount   String?
-  possession_amount   String?
+  instalment_period   Int?
+  down_payment_amount Int?
+  instalment_amount   Int?
+  possession_amount   Int?
   remarks             String?
 
   createdAt DateTime @default(now())

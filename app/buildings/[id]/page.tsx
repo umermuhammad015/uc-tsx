@@ -191,6 +191,10 @@ export default async function ViewBuilding({ params }: Props) {
             <TableRow>
               <TableCell >Apartment Types</TableCell >
               <TableCell >
+                {building?.apartments_studio && (
+                  // <div className="badge bg-cyan-800 text-white">1 Bed</div>
+                  <Badge>Studio</Badge>
+                )}
                 {building?.apartments_has_type_1_bed && (
                   // <div className="badge bg-cyan-800 text-white">1 Bed</div>
                   <Badge>1 Bed</Badge>
@@ -276,7 +280,7 @@ export default async function ViewBuilding({ params }: Props) {
       </div>
 
       <div className="mt-4 ">
-        Buildinf Floors
+        Building Form
       </div>
       <div className="border text-center border-gray-400 overflow-auto" >
         <Table className="">
@@ -308,7 +312,8 @@ export default async function ViewBuilding({ params }: Props) {
                 <TableCell >
                   <div className="">{floor?.floor_type}</div></TableCell >
                 <TableCell >{floor?.unit_type}</TableCell >
-                <TableCell >{floor?.occupancy}</TableCell >
+                {/* <TableCell >{floor?.occupancy}</TableCell > */}
+                <TableCell>{(floor?.occupancy === null ? "0%" : floor?.occupancy + "%")}</TableCell>
                 <TableCell >{Number(floor?.size_min).toLocaleString()}</TableCell >
                 <TableCell >{Number(floor?.size_max).toLocaleString()}</TableCell >
                 <TableCell >{Number(floor?.avg_sale_price).toLocaleString()}</TableCell >

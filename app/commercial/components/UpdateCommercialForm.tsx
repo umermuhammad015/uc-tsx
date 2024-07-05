@@ -312,7 +312,7 @@ export default function UpdateCommercialForm({ commercial }: any) {
                             htmlFor="commercial-area"
                             className="block mb-2 text-sm font-medium"
                         >
-                            Total Area of Society (Acres):
+                            Total Area:
                         </label>
                         <div className="flex">
                             <Input

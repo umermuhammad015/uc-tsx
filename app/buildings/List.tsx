@@ -203,13 +203,13 @@ export default async function List({ city, page, search, building_status }: any)
           <TableHeader>
             <TableRow className="">
               <TableHead>
-                <div className=" text-lg">Buildings Names</div>
+                <div className=" text-lg">Building Names</div>
               </TableHead>
               <TableHead>
                 <div className="text-lg">Location</div>
               </TableHead>
               <TableHead>
-                <div className="text-lg">Buildind Type</div>
+                <div className="text-lg">Building Type</div>
               </TableHead>
               <TableHead>
                 <div className="text-lg">Grade</div>

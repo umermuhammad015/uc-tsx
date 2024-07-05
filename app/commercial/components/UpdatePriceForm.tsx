@@ -358,7 +358,7 @@ export default function UpdatePlotForm({ price }: any, { params }: Props) {
                             setPrices(Number(e.target.value))
                             // console.log(e.target.value)
                         }}
-                        type="number"
+                        type="text"
                         id="price"
                         name="price"
                         className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
@@ -385,7 +385,7 @@ export default function UpdatePlotForm({ price }: any, { params }: Props) {
                             setRent(Number(e.target.value))
                             // console.log(e.target.value)
                         }}
-                        type="number"
+                        type="text"
                         id="rent"
                         name="rent"
                         className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
@@ -416,7 +416,7 @@ export default function UpdatePlotForm({ price }: any, { params }: Props) {
                         </label>
                         <div className="flex">
                             <Input
-                                type="number"
+                                type="text"
                                 id="total-price"
                                 name="total-price"
                                 className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
@@ -442,11 +442,12 @@ export default function UpdatePlotForm({ price }: any, { params }: Props) {
                         </label>
                         <div className="flex">
                             <Input
-                                type="number"
+                                type="text"
                                 id="installment-period"
                                 name="installment-period"
                                 className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
                                 defaultValue={price?.installment_period as string}
+                                 placeholder="Rs."
                                 onChange={(e) => {
                                     setInstallment_period(Number(e.target.value))
                                     console.log(e.target.value)
@@ -468,7 +469,7 @@ export default function UpdatePlotForm({ price }: any, { params }: Props) {
                         </label>
                         <div className="flex">
                             <Input
-                                type="number"
+                                type="text"
                                 id="down-payment"
                                 name="down-payment"
                                 className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
@@ -494,7 +495,7 @@ export default function UpdatePlotForm({ price }: any, { params }: Props) {
                         </label>
                         <div className="flex">
                             <Input
-                                type="number"
+                                type="text"
                                 id="possession-amount"
                                 name="possession-amount"
                                 className="input input-bordered w-full max-w-xs border-2 border-gray-400 "

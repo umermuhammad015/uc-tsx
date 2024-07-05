@@ -25,36 +25,36 @@ export default async function createFloor(data: FormData) {
   
     const floor_unit_type = data.get("building-floor-unit-type")?.valueOf();
   
-    const floor_occupancy = data.get("building-floor-occupancy")?.valueOf();
+    const floor_occupancy = parseInt(data.get("building-floor-occupancy")?.valueOf() as string);
+    
+    const floor_size_min =  parseInt(data.get("building-floor-size-min")?.valueOf() as string);
   
-    const floor_size_min = data.get("building-floor-size-min")?.valueOf();
+    const floor_size_max = parseInt(data.get("building-floor-size-max")?.valueOf() as string);
   
-    const floor_size_max = data.get("building-floor-size-max")?.valueOf();
-  
-    const floor_avg_sale_price = data
+    const floor_avg_sale_price = parseInt(data
       .get("building-floor-avg-sale-price")
-      ?.valueOf();
+      ?.valueOf() as string);
   
-    const floor_avg_monthly_rent = data
+    const floor_avg_monthly_rent = parseInt(data
       .get("building-floor-avg-monthly-rent")
   
-      ?.valueOf();
+      ?.valueOf() as string);
   
-    const floor_instalment_plan = data.get("building-instalment-plan")?.valueOf();
+    const floor_instalment_plan = data.get("building-instalment-plan")?.valueOf() ;
   
-    const floor_instalment_period = data
+    const floor_instalment_period = parseInt(data
       .get("building-floor-instalment-period")
   
-      ?.valueOf();
-    const floor_down_payment_amount = data
+      ?.valueOf() as string);
+    const floor_down_payment_amount = parseInt(data
       .get("building-floor-down-payment-amount")
-      ?.valueOf();
-    const floor_instalment_amount = data
+      ?.valueOf() as string);
+    const floor_instalment_amount = parseInt(data
       .get("building-floor-instalment-amount")
-      ?.valueOf();
-    const floor_possession_amount = data
+      ?.valueOf() as string);
+    const floor_possession_amount = parseInt(data
       .get("building-floor-possession-amount")
-      ?.valueOf();
+      ?.valueOf() as string);
     const floor_remarks = data.get("building-floor-remarks")?.valueOf();
   
     console.log("🚀 ~ file: page.tsx:9 ~ createFloor ~ floor_no:", floor_no);
@@ -114,16 +114,16 @@ export default async function createFloor(data: FormData) {
         floor_type: floor_type as string,
         floor_no: floor_no as string,
         unit_type: floor_unit_type as string,
-        occupancy: floor_occupancy as string,
-        size_min: floor_size_min as string,
-        size_max: floor_size_max as string,
-        avg_sale_price: floor_avg_sale_price as string,
-        avg_monthly_rent: floor_avg_monthly_rent as string,
+        occupancy: floor_occupancy,
+        size_min: floor_size_min,
+        size_max: floor_size_max,
+        avg_sale_price: floor_avg_sale_price,
+        avg_monthly_rent: floor_avg_monthly_rent,
         instalment_plan: floor_instalment_plan as string,
-        instalment_period: floor_instalment_period as string,
-        down_payment_amount: floor_down_payment_amount as string,
-        instalment_amount: floor_instalment_amount as string,
-        possession_amount: floor_possession_amount as string,
+        instalment_period: floor_instalment_period,
+        down_payment_amount: floor_down_payment_amount,
+        instalment_amount: floor_instalment_amount,
+        possession_amount: floor_possession_amount,
         remarks: floor_remarks as string
   
       },

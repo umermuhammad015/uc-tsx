@@ -131,7 +131,7 @@ export default function UpdatePlotForm({ building }: any) {
                         </Select>
                     </div>
 
-                    {/* Zone  */}
+                    {/* Zone 
                     <div className="mt-4">
                         <label htmlFor="zone" className="block mb-2 text-sm font-medium">
                             Zone:
@@ -144,6 +144,35 @@ export default function UpdatePlotForm({ building }: any) {
                             defaultValue={building?.zone as string}
                             className="input input-bordered  w-full max-w-xs border-2 border-gray-400 "
                         />
+                    </div> */}
+
+                    {/* Zone/ Region  */}
+                    <div className="mt-4">
+                        <label
+                            htmlFor="zone"
+                            className="block mb-2 text-sm font-medium"
+                        >
+                            Zone/ Region:
+                        </label>
+                        <Select
+                            defaultValue={building?.zone as string}
+                            name="zone">
+                            <SelectTrigger
+                                id="zone"
+                                className="select  w-full max-w-xs border-2 border-gray-400">
+                                <SelectValue placeholder="" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectGroup>
+                                    <SelectLabel></SelectLabel>
+                                    <SelectItem value="East">East</SelectItem>
+                                    <SelectItem value="West">West</SelectItem>
+                                    <SelectItem value="North">North</SelectItem>
+                                    <SelectItem value="South">South</SelectItem>
+                                    <SelectItem value="Central">Central</SelectItem>
+                                </SelectGroup>
+                            </SelectContent>
+                        </Select>
                     </div>
 
                     {/* Area/Society  */}

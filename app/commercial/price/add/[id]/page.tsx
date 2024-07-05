@@ -422,7 +422,7 @@ export default function PriceAddPage({ params }: Props) {
                                         setPrice(Number(e.target.value))
                                         // console.log(e.target.value)
                                     }}
-                                    type="number"
+                                    type="text"
                                     id="price"
                                     name="price"
                                     value={price}
@@ -434,6 +434,8 @@ export default function PriceAddPage({ params }: Props) {
                                 </div>
                             </div>
                         </div>
+
+                        
 
                         {/* rent  */}
                         <div className="mt-4">
@@ -449,7 +451,7 @@ export default function PriceAddPage({ params }: Props) {
                                         setRent(Number(e.target.value))
                                         console.log(e.target.value)
                                     }}
-                                    type="number"
+                                    type="text"
                                     id="rent"
                                     name="rent"
                                     value={rent}
@@ -480,7 +482,7 @@ export default function PriceAddPage({ params }: Props) {
                                     </label>
                                     <div className="flex">
                                         <Input
-                                            type="number"
+                                            type="text"
                                             id="total-price"
                                             name="total-price"
                                             value={total_price}
@@ -506,7 +508,7 @@ export default function PriceAddPage({ params }: Props) {
                                     </label>
                                     <div className="flex">
                                         <Input
-                                            type="number"
+                                            type="text"
                                             id="installment-period"
                                             name="installment-period"
                                             value={installment_period}
@@ -533,7 +535,7 @@ export default function PriceAddPage({ params }: Props) {
                                     </label>
                                     <div className="flex">
                                         <Input
-                                            type="number"
+                                            type="text"
                                             id="down-payment"
                                             name="down-payment"
                                             value={down_payment}
@@ -559,7 +561,7 @@ export default function PriceAddPage({ params }: Props) {
                                     </label>
                                     <div className="flex">
                                         <Input
-                                            type="number"
+                                            type="text"
                                             id="possession-amount"
                                             name="possession-amount"
                                             value={possession_amount}

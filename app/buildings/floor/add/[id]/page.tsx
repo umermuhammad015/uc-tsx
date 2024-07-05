@@ -19,6 +19,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import AddPlot from "@/app/buildings/components/AddFloor";
 
 
 
@@ -98,7 +99,7 @@ type Props = {
 export default function Page({ params }: Props) {
   console.log(params.id);
 
-
+  const [isAdding, setIsAdding] = useState(false);
 
   const [avg_sale_price, setAvg_Sale_Price] = useState(0);
   const [avg_monthly_rent, setAvg_Monthly_Rent] = useState(0);
@@ -108,6 +109,79 @@ export default function Page({ params }: Props) {
   const [possession_amount, setPossession_Amount] = useState(0);
   const [size_min, setSize_Min] = useState(0);
   const [size_max, setSize_Max] = useState(0);
+  const [floor_num, setFloor_num] = useState("");
+  const [floor_type, setFloor_Type] = useState("");
+  const [unit_type, setUnit_type] = useState("");
+  const [instalment_plan, setInstalment_plan] = useState("");
+  const [occupancy, setOccupancy] = useState(0);
+  const [remarks, setRemarks] = useState<any>("");
+
+  const insertPlot = async () => {
+
+    try {
+
+      setIsAdding(true)
+
+      // console.log("trying")
+      // console.log(params.id)
+
+      const add_plot_output = await AddPlot(avg_sale_price, params.id, avg_monthly_rent, down_payment_amount,
+        instalment_period, instalment_amount, possession_amount, size_min, size_max, floor_num, floor_type,
+        unit_type, instalment_plan, occupancy, remarks)
+
+      // console.log("Plot added")
+      // console.log(add_plot_output)
+
+      // toast({
+      //     className: "bg-green-600 rounded-lg",
+      //     // title: "Add Price",
+      //     description: "Plot added successfully ",
+
+      // })
+
+      //    if (error) {
+      //     toast.error(error);
+      //     return
+      //    }
+
+      // toast.success('Hello World')
+
+
+      setInstalment_plan("")
+      setOccupancy(0)
+      setAvg_Sale_Price(0)
+      setAvg_Monthly_Rent(0)
+      setDown_Payment_Amount(0)
+      setInstalment_Period(0)
+      setInstalment_Amount(0)
+      setPossession_Amount(0)
+      setSize_Min(0)
+      setSize_Max(0)
+      setRemarks("")
+      setFloor_num("")
+      setFloor_Type("")
+      setUnit_type("")
+
+
+
+
+      // redirect('/societies/plots/add/' + (params.id).toString(), "push")
+      // redirect('/societies/plots/add/69', "push")
+      // Router.relo
+      // revalidatePath("/societies/plots/add/69")
+      // router.refresh()
+      // router.reload()
+
+
+    } catch (error) {
+
+      console.error('Error addign plot:', error);
+
+    } finally {
+      setIsAdding(false)
+    }
+
+  };
 
   return (
     <><div className="text-lg">Add Floor Information</div>
@@ -168,51 +242,49 @@ export default function Page({ params }: Props) {
                 >
                   Floor Number
                 </label>
-                <Select
-                  name="building-floor-no">
-                  <SelectTrigger
-                    id="building-floor-no"
-                    className="select  w-full max-w-xs border-2 border-gray-400">
-                    <SelectValue placeholder="Select Floor" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectGroup>
-                      <SelectLabel></SelectLabel>
-                      <SelectItem value="Lower Ground">Lower Ground</SelectItem>
-                      <SelectItem value="Ground">Ground</SelectItem>
-                      <SelectItem value="1st">1st</SelectItem>
-                      <SelectItem value="2nd">2nd</SelectItem>
-                      <SelectItem value="3rd">3rd</SelectItem>
-                      <SelectItem value="4th">4th</SelectItem>
-                      <SelectItem value="5th">5th</SelectItem>
-                      <SelectItem value="6th">6th</SelectItem>
-                      <SelectItem value="7th">7th</SelectItem>
-                      <SelectItem value="8th">8th</SelectItem>
-                      <SelectItem value="9th">9th</SelectItem>
-                      <SelectItem value="10th">10th</SelectItem>
-                      <SelectItem value="11th">11th</SelectItem>
-                      <SelectItem value="12th">12th</SelectItem>
-                      <SelectItem value="13th">13th</SelectItem>
-                      <SelectItem value="14th">14th</SelectItem>
-                      <SelectItem value="15th">15th</SelectItem>
-                      <SelectItem value="16th">16th</SelectItem>
-                      <SelectItem value="17th">17th</SelectItem>
-                      <SelectItem value="18th">18th</SelectItem>
-                      <SelectItem value="19th">19th</SelectItem>
-                      <SelectItem value="20th">20th</SelectItem>
-                      <SelectItem value="21st">21st</SelectItem>
-                      <SelectItem value="22nd">22nd</SelectItem>
-                      <SelectItem value="23rd">23rd</SelectItem>
-                      <SelectItem value="24th">24th</SelectItem>
-                      <SelectItem value="25th">25th</SelectItem>
-                      <SelectItem value="26th">26th</SelectItem>
-                      <SelectItem value="27th">27th</SelectItem>
-                      <SelectItem value="28th">28th</SelectItem>
-                      <SelectItem value="29th">29th</SelectItem>
-                      <SelectItem value="30th">30th</SelectItem>
-                    </SelectGroup>
-                  </SelectContent>
-                </Select>
+
+                <select
+                  key={Math.random()}
+                  id="building-floor-no"
+                  name="building-floor-no"
+                  value={floor_num}
+                  className="select  w-full text-sm pl-2 h-10 max-w-xs border-2 rounded border-gray-400 bg-background"
+                  onChange={(e) => setFloor_num(e.target.value)}
+                >
+                  <option value="Lower Ground">Lower Ground</option>
+                  <option value="Ground">Ground</option>
+                  <option value="1st">1st</option>
+                  <option value="2nd">2nd</option>
+                  <option value="3rd">3rd</option>
+                  <option value="4th">4th</option>
+                  <option value="5th">5th</option>
+                  <option value="6th">6th</option>
+                  <option value="7th">7th</option>
+                  <option value="8th">8th</option>
+                  <option value="9th">9th</option>
+                  <option value="10th">10th</option>
+                  <option value="11th">11th</option>
+                  <option value="12th">12th</option>
+                  <option value="13th">13th</option>
+                  <option value="14th">14th</option>
+                  <option value="15th">15th</option>
+                  <option value="16th">16th</option>
+                  <option value="17th">17th</option>
+                  <option value="18th">18th</option>
+                  <option value="19th">19th</option>
+                  <option value="20th">20th</option>
+                  <option value="21st">21st</option>
+                  <option value="22nd">22nd</option>
+                  <option value="23rd">23rd</option>
+                  <option value="24th">24th</option>
+                  <option value="25th">25th</option>
+                  <option value="26th">26th</option>
+                  <option value="27th">27th</option>
+                  <option value="28th">28th</option>
+                  <option value="29th">29th</option>
+                  <option value="30th">30th</option>
+                </select>
+
               </div>
 
               {/* Floor Type  */}
@@ -223,24 +295,21 @@ export default function Page({ params }: Props) {
                 >
                   Floor Type
                 </label>
-                <Select
-                  name="building-floor-type">
-                  <SelectTrigger
-                    id="building-floor-type"
-                    className="select w-full max-w-xs border-2 border-gray-400">
-                    <SelectValue placeholder="Select Type" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectGroup>
-                      <SelectLabel></SelectLabel>
-                      <SelectItem value="Retails">Retails</SelectItem>
-                      <SelectItem value="Penthouse">Penthouse</SelectItem>
-                      <SelectItem value="Offices">Offices</SelectItem>
-                      <SelectItem value="Apartment">Apartment</SelectItem>
-                      <SelectItem value="Other">Other</SelectItem>
-                    </SelectGroup>
-                  </SelectContent>
-                </Select>
+                <select
+                  key={Math.random()}
+                  id="building-floor-type"
+                  name="building-floor-type"
+                  value={floor_type}
+                  className="select  w-full text-sm pl-2 h-10 max-w-xs border-2 rounded border-gray-400 bg-background"
+                  onChange={(e) => setFloor_Type(e.target.value)}
+                >
+
+                  <option value="Retails">Retails</option>
+                  <option value="Penthouse">Penthouse</option>
+                  <option value="Offices">Offices</option>
+                  <option value="Apartment">Apartment</option>
+                  <option value="Other">Other</option>
+                </select>
               </div>
 
               {/* Unit Type  */}
@@ -252,9 +321,14 @@ export default function Page({ params }: Props) {
                   Unit Type:
                 </label>
                 <Input
+                  onChange={(e) => {
+                    setUnit_type(e.target.value)
+                    // console.log(e.target.value)
+                  }}
                   type="text"
                   id="building-floor-unit-type"
                   name="building-floor-unit-type"
+                  value={unit_type}
                   className="input input-bordered  w-full max-w-xs border-2 border-gray-400 "
                   placeholder=""
                 />
@@ -288,15 +362,24 @@ export default function Page({ params }: Props) {
                 >
                   Occupancy Ratio
                 </label>
-                <Input
-                  type="number"
-                  id="building-floor-occupancy"
-                  name="building-floor-occupancy"
-                  className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-                  placeholder=""
-                  min="0"
-                  max="100"
-                />
+                <div className="flex">
+                  <Input
+                    type="text"
+                    id="building-floor-occupancy"
+                    name="building-floor-occupancy"
+                    className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+                    value={occupancy}
+                    placeholder=""
+                    min="0"
+                    max="100"
+                    onChange={(e) => {
+                      setOccupancy(Number(e.target.value))
+                    }}
+                  />
+                  <div className="m-4">
+                    {occupancy + "%"}
+                  </div>
+                </div>
               </div>
 
               {/* Size Minimum (Sq. Ft.)  */}
@@ -309,8 +392,9 @@ export default function Page({ params }: Props) {
                 </label>
                 <div className="flex">
                   <Input
-                    type="number"
+                    type="text"
                     id="building-floor-size-min"
+                    value={size_min}
                     name="building-floor-size-min"
                     className="input input-bordered  w-full max-w-xs border-2 border-gray-400 "
                     placeholder="(Sq. Ft.)"
@@ -337,11 +421,12 @@ export default function Page({ params }: Props) {
                 </label>
                 <div className="flex">
                   <Input
-                    type="number"
+                    type="text"
                     id="building-floor-size-max"
                     name="building-floor-size-max"
                     className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
                     placeholder="(Sq. Ft.)"
+                    value={size_max}
                     min="0"
                     onChange={(e) => {
                       setSize_Max(Number(e.target.value))
@@ -364,11 +449,12 @@ export default function Page({ params }: Props) {
                 </label>
                 <div className="flex">
                   <Input
-                    type="number"
+                    type="text"
                     id="building-floor-avg-sale-price"
                     name="building-floor-avg-sale-price"
                     className="input input-bordered  w-full max-w-xs border-2 border-gray-400 "
                     placeholder="Rs."
+                    value={avg_sale_price}
                     min="0"
                     onChange={(e) => {
                       setAvg_Sale_Price(Number(e.target.value))
@@ -391,11 +477,12 @@ export default function Page({ params }: Props) {
                 </label>
                 <div className="flex">
                   <Input
-                    type="number"
+                    type="text"
                     id="building-floor-avg-monthly-rent"
                     name="building-floor-avg-monthly-rent"
                     className="input input-bordered  w-full max-w-xs border-2 border-gray-400 "
                     placeholder="Rs."
+                    value={avg_monthly_rent}
                     min="0"
                     onChange={(e) => {
                       setAvg_Monthly_Rent(Number(e.target.value))
@@ -409,6 +496,8 @@ export default function Page({ params }: Props) {
               </div>
 
               {/* Installment Plan  */}
+
+
               <div className="mt-4">
                 <label
                   htmlFor="building-instalment-plan"
@@ -416,21 +505,18 @@ export default function Page({ params }: Props) {
                 >
                   Installment Plan
                 </label>
-                <Select
-                  name="building-instalment-plan">
-                  <SelectTrigger
-                    id="building-instalment-plan"
-                    className="select  w-full max-w-xs border-2 border-gray-400 ">
-                    <SelectValue placeholder="Select Type" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectGroup>
-                      <SelectLabel></SelectLabel>
-                      <SelectItem value="Yes">Yes</SelectItem>
-                      <SelectItem value="No">No</SelectItem>
-                    </SelectGroup>
-                  </SelectContent>
-                </Select>
+
+                <select
+                  id="building-instalment-plan"
+                  name="building-instalment-plan"
+                  className="select  w-full text-sm pl-2 h-10 max-w-xs border-2 rounded border-gray-400 bg-background"
+                  value={instalment_plan}
+                  onChange={(e) => setInstalment_plan(e.target.value)}
+                >
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                </select>
+
               </div>
 
               {/* Installment Period (Years) */}
@@ -448,6 +534,7 @@ export default function Page({ params }: Props) {
                     name="building-floor-instalment-period"
                     className="input input-bordered  w-full max-w-xs border-2 border-gray-400 "
                     placeholder=""
+                    value={instalment_period}
                     min="0"
                     onChange={(e) => {
                       setInstalment_Period(Number(e.target.value))
@@ -472,11 +559,12 @@ export default function Page({ params }: Props) {
                 </label>
                 <div className="flex">
                   <Input
-                    type="number"
+                    type="text"
                     id="building-floor-instalment-amount"
                     name="building-floor-instalment-amount"
                     className="input input-bordered  w-full max-w-xs border-2 border-gray-400 "
                     placeholder="Rs."
+                    value={instalment_amount}
                     min="0"
                     onChange={(e) => {
                       setInstalment_Amount(Number(e.target.value))
@@ -499,11 +587,12 @@ export default function Page({ params }: Props) {
                 </label>
                 <div className="flex">
                   <Input
-                    type="number"
+                    type="text"
                     id="building-floor-down-payment-amount"
                     name="building-floor-down-payment-amount"
                     className="input input-bordered  w-full max-w-xs border-2 border-gray-400 "
                     placeholder="Rs."
+                    value={down_payment_amount}
                     min="0"
                     onChange={(e) => {
                       setDown_Payment_Amount(Number(e.target.value))
@@ -526,11 +615,12 @@ export default function Page({ params }: Props) {
                 </label>
                 <div className="flex">
                   <Input
-                    type="number"
+                    type="text"
                     id="building-floor-possession-amount"
                     name="building-floor-possession-amount"
                     className="input input-bordered  w-full max-w-xs border-2 border-gray-400 "
                     placeholder="Rs."
+                    value={possession_amount}
                     min="0"
                     onChange={(e) => {
                       setPossession_Amount(Number(e.target.value))
@@ -555,6 +645,8 @@ export default function Page({ params }: Props) {
                 name="building-floor-remarks"
                 className="textarea w-full border-2 border-gray-400 "
                 placeholder="Leave a comment..."
+                value={remarks}
+                onChange={(e) => setRemarks(e.target.value)}
               ></Textarea>
             </div>
 
@@ -562,6 +654,44 @@ export default function Page({ params }: Props) {
             <div className="flex gap-6 justify-center mt-3 mb-2">
               <AddFloorButton />
               {/* <Link href="/buildings" className="flex justify-center items-center border border-black px-2 py-1 rounded-xl bg-white text-black hover:bg-red-600 hover:text-white capitalize">Cancel</Link> */}
+              {/* Add more */}
+              <Button variant='outline'
+                onClick={async (e) => {
+
+                  e.preventDefault();
+                  insertPlot()
+
+                  // setPress_Add(pressAdd => pressAdd + 1);
+
+                  // console.log(pressAdd)
+
+                  // handleAddMoreClick()
+                  // console.log(plot_price)
+                  // console.log(plot_rent)
+                  // console.log(plotType)
+                  // console.log()
+                  // console.log(property_size)
+                  // console.log(apartment_size)
+                  // console.log(apartment_size_ft)
+                  // console.log(shop_size)
+                  // console.log(paymentTerms)
+                  // console.log(office_size)
+                  // console.log(ins_total_price)
+                  // console.log(ins_down_payment)
+                  // console.log(ins_possession_Amount)
+                  // console.log(date)
+                  // console.log(remarks)
+
+                  // setIsAdding(!isAdding);
+
+                  // console.log(isAdding);
+
+                }}
+
+              >
+                {isAdding ? "Saving...." : "Save and Add more"}
+
+              </Button>
 
               <Button asChild className="bg-transparent text-primary hover:bg-primary-foreground">
                 <Link href="/buildings" >Cancel</Link>
