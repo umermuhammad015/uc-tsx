@@ -494,6 +494,7 @@ export default async function ViewBuilding({ params }: Props) {
                                                 : plot?.type === 'Shop' ? plot?.shop_size
                                                     : plot?.type === 'Office' ? plot?.office_size
                                                         : plot?.size
+                                                        
                                         }
 
                                         {/* {plot?.type === 'Apartment' ? plot?.apartment_size : plot?.size} */}

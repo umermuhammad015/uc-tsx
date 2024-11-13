@@ -250,7 +250,7 @@ export default async function List({ city, page, search, building_status }: any)
                   </TableCell>
                   <TableCell>{building.building_rank}</TableCell>
                   <TableCell>{building.plot_size}</TableCell>
-                  <TableCell></TableCell>
+                  <TableCell>{building.construction_area}</TableCell>
                   <TableCell>
                     <div className="flex justify-around">
                       <div className="flex gap-4">

@@ -27,6 +27,7 @@ import ProjectType from "./components/Project_type";
 import DeletePlotDialog from "./components/DeleteSocietyDialog";
 import DeleteSocietyDialog from "./components/DeleteSocietyDialog";
 import LoadMore from "./components/Loadmore";
+import ImageUpload from "../components/ImageUpload";
 // import LoadMore from "./components/Loadmore";
 
 export const revalidate = 1; // revalidate the date at most every hour
@@ -310,6 +311,8 @@ export default async function List({ city, page, search, developer, society_grad
                                             Add Price
                                         </Link>
                                     </Button>
+
+                                    {/* <ImageUpload /> */}
 
                                     {/* <Button asChild>
                                             <Link href={"societies/houses/add/" + societies.id}>
