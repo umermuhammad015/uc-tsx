@@ -194,7 +194,7 @@ export default async function List({ city, page, search, developer, society_grad
         <>
 
             <SearchInput />
-            <header className="flex justify-between items-center mt-4 ">
+            <header className="flex justify-between items-center my-4 ">
                 <div className="flex gap-5">
                     <CityInput />
                     {/* <DeveloperName /> */}
