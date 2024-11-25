@@ -693,7 +693,7 @@ export default function Page() {
           </div> */}
 
           {/* Brands/Type of Products & Services: */}
-          <div className="mt-4">Brands/Type of Products & Services</div>
+          <div className="mt-4">Brands/Type of Products & Services:</div>
           <div className="flex gap-12">
             {/* Retail Categories */}
             <div className="mt-4">
