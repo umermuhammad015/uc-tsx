@@ -400,9 +400,11 @@ export default function UpdatePlotForm({ building }: any) {
                         </label>
                         <div className="flex">
                             <Input
-                                type="number"
+                                type="text"
                                 id="launch-year"
                                 name="launch-year"
+                                minLength={1}
+                                maxLength={4}
                                 className="input input-bordered w-full max-w-xs border-2 border-gray-400"
                                 defaultValue={building?.launch_year as number}
                                 onChange={(e) => {
@@ -428,7 +430,8 @@ export default function UpdatePlotForm({ building }: any) {
                             type="number"
                             id="construction-year"
                             name="construction-year"
-                            min="1900"
+                            minLength={1}
+                            maxLength={4}
                             defaultValue={building?.construction_year as number}
                             className="input input-bordered input-primary w-full max-w-xs border-2 border-gray-400 "
                             placeholder=""
@@ -588,6 +591,23 @@ export default function UpdatePlotForm({ building }: any) {
                                         className="ml-2 text-sm font-medium  "
                                     >
                                         Entertainment Areas
+                                    </label>
+                                </div>
+
+                                <div className="flex items-center ml-2">
+                                    <input
+                                        id="building-facility-none"
+                                        name="building-facility-none"
+                                        type="checkbox"
+                                        value="yes"
+                                        defaultChecked={building?.has_none ? true : false}
+                                        className="checkbox checkbox-primary"
+                                    />
+                                    <label
+                                        htmlFor="building-facility-none"
+                                        className="ml-2 text-sm font-medium  "
+                                    >
+                                        None of these
                                     </label>
                                 </div>
                             </div>
@@ -864,7 +884,7 @@ export default function UpdatePlotForm({ building }: any) {
                     </div>
 
                     {/* Servant Quarter  */}
-                    <div className="mt-4">
+                    {/* <div className="mt-4">
                         <label
                             htmlFor="apartment-has-servant-quarter"
                             className="block mb-2 text-sm font-medium"
@@ -887,6 +907,29 @@ export default function UpdatePlotForm({ building }: any) {
                                 </SelectGroup>
                             </SelectContent>
                         </Select>
+                    </div> */}
+
+
+                    <div className="mt-4">
+                        <label
+                            htmlFor="apartment-has-servant-quarter"
+                            className="block mb-2 text-sm font-medium"
+                        >
+                            Servant Quarter
+                        </label>
+
+                        <select
+                            defaultValue={building?.apartments_has_servant_quarter as string}
+                            id="apartment-has-servant-quarter"
+                            name="apartment-has-servant-quarter"
+                            className="select  w-full text-sm pl-2 h-10 max-w-xs border-2 rounded border-gray-400 bg-background"
+
+                        >
+                            <option value="">Select</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+
                     </div>
 
                     {/* Maintenance fee of apartment  */}

@@ -402,18 +402,20 @@ export default function Page() {
             </label>
             <div className="flex">
               <Input
-                type="number"
+                type="text"
                 id="launch-year"
                 name="launch-year"
+                minLength={1}
+                maxLength={4}
                 className="input input-bordered w-full max-w-xs border-2 border-gray-400"
                 onChange={(e) => {
                   setLaunch_year(Number(e.target.value))
                   console.log(e.target.value)
                 }}
               />
-              <div className="m-4">
+              {/* <div className="m-4">
                 {Number(launch_year).toLocaleString()}
-              </div>
+              </div> */}
             </div>
           </div>
 
@@ -426,10 +428,11 @@ export default function Page() {
               Construction Year:
             </label>
             <Input
-              type="number"
+              type="text"
               id="construction-year"
               name="construction-year"
-              min="1900"
+              minLength={1}
+              maxLength={4}
               className="input input-bordered input-primary w-full max-w-xs border-2 border-gray-400 "
               placeholder=""
             />
@@ -498,7 +501,7 @@ export default function Page() {
 
           {/* Facilities */}
           <div className="mt-4">
-            <fieldset>
+            <fieldset >
               <legend className="block mb-2 text-sm font-medium">
                 Building Facilities:
               </legend>
@@ -582,6 +585,22 @@ export default function Page() {
                     Entertainment Areas
                   </label>
                 </div>
+
+                <div className="flex items-center ml-2">
+                  <input
+                    id="building-facility-none"
+                    name="building-facility-none"
+                    type="checkbox"
+                    value="yes"
+                    className="checkbox checkbox-primary"
+                  />
+                  <label
+                    htmlFor="building-facility-none"
+                    className="ml-2 text-sm font-medium  "
+                  >
+                    None of these
+                  </label>
+                </div>
               </div>
             </fieldset>
           </div>
@@ -656,8 +675,8 @@ export default function Page() {
             </div>
           </div> */}
 
-          {/* Brands/Type of Products & Services: */}
-          <div className="mt-4">
+
+          {/* <div className="mt-4">
             <label
               htmlFor="retail-floors-brands-type"
               className="block mb-2 text-sm font-medium"
@@ -671,6 +690,217 @@ export default function Page() {
               className="input input-bordered w-full mb-2 max-w-xs border-2 border-gray-400  "
               placeholder=""
             />
+          </div> */}
+
+          {/* Brands/Type of Products & Services: */}
+          <div className="mt-4">Brands/Type of Products & Services</div>
+          <div className="flex gap-12">
+            {/* Retail Categories */}
+            <div className="mt-4">
+              <fieldset >
+                <legend className="block mb-2  font-medium">
+                  Retail Categories:
+                </legend>
+                <div className=" flex flex-col gap-2">
+                  <div className="flex items-center ml-2">
+                    <input
+                      id="has-fashion-health"
+                      name="has-fashion-health"
+                      type="checkbox"
+                      value="yes"
+                      className="checkbox checkbox-primary"
+                    />
+                    <label
+                      htmlFor="has-fashion-health"
+                      className="ml-2 text-sm font-medium  "
+                    >
+                      Fashion & Health
+                    </label>
+                  </div>
+
+                  <div className="flex items-center ml-2">
+                    <input
+                      id="has-electronics-appliancecs"
+                      name="has-electronics-appliancecs"
+                      type="checkbox"
+                      value="yes"
+                      className="checkbox checkbox-primary"
+                    />
+                    <label
+                      htmlFor="has-electronics-appliancecs"
+                      className="ml-2 text-sm font-medium  "
+                    >
+                      Electronics & Appliances
+                    </label>
+                  </div>
+
+                  <div className="flex items-center ml-2">
+                    <input
+                      id="has-home-living"
+                      name="has-home-living"
+                      type="checkbox"
+                      value="yes"
+                      className="checkbox checkbox-primary"
+                    />
+                    <label
+                      htmlFor="has-home-living"
+                      className="ml-2 text-sm font-medium  "
+                    >
+                      Home & Living
+                    </label>
+                  </div>
+
+
+                </div>
+              </fieldset>
+            </div>
+
+            {/* Food & Beverage Categories */}
+            <div className="mt-4">
+              <fieldset >
+                <legend className="block mb-2 font-medium">
+                  Food & Beverage Categories:
+                </legend>
+                <div className="flex flex-col gap-2">
+                  <div className="flex items-center ml-2">
+                    <input
+                      id="has-restaurants-courts"
+                      name="has-restaurants-courts"
+                      type="checkbox"
+                      value="yes"
+                      className="checkbox checkbox-primary"
+                    />
+                    <label
+                      htmlFor="has-restaurants-courts"
+                      className="ml-2 text-sm font-medium  "
+                    >
+                      Restaurants/Food courts
+                    </label>
+                  </div>
+
+                  <div className="flex items-center ml-2">
+                    <input
+                      id="has-bakery-ice"
+                      name="has-bakery-ice"
+                      type="checkbox"
+                      value="yes"
+                      className="checkbox checkbox-primary"
+                    />
+                    <label
+                      htmlFor="has-bakery-ice"
+                      className="ml-2 text-sm font-medium  "
+                    >
+                      Bakery/Ice cream
+                    </label>
+                  </div>
+
+                  <div className="flex items-center ml-2">
+                    <input
+                      id="has-grocery-supermarkets"
+                      name="has-grocery-supermarkets"
+                      type="checkbox"
+                      value="yes"
+                      className="checkbox checkbox-primary"
+                    />
+                    <label
+                      htmlFor="has-grocery-supermarkets"
+                      className="ml-2 text-sm font-medium  "
+                    >
+                      Grocery & Supermarkets
+                    </label>
+                  </div>
+
+
+                </div>
+              </fieldset>
+            </div>
+
+            {/* Services Categories */}
+            <div className="mt-4">
+              <fieldset >
+                <legend className="block mb-2  font-medium">
+                  Services Categories:
+                </legend>
+                <div className="flex flex-col gap-2">
+                  <div className="flex items-center ml-2">
+                    <input
+                      id="has-banks-atm"
+                      name="has-banks-atm"
+                      type="checkbox"
+                      value="yes"
+                      className="checkbox checkbox-primary"
+                    />
+                    <label
+                      htmlFor="has-banks-atm"
+                      className="ml-2 text-sm font-medium  "
+                    >
+                      Banks & ATMs
+                    </label>
+                  </div>
+
+                  <div className="flex items-center ml-2">
+                    <input
+                      id="has-real-estate"
+                      name="has-real-estate"
+                      type="checkbox"
+                      value="yes"
+                      className="checkbox checkbox-primary"
+                    />
+                    <label
+                      htmlFor="has-real-estate"
+                      className="ml-2 text-sm font-medium  "
+                    >
+                      Real Estate Agencies
+                    </label>
+                  </div>
+
+                  <div className="flex items-center ml-2">
+                    <input
+                      id="has-labs-pharmacies"
+                      name="has-labs-pharmacies"
+                      type="checkbox"
+                      value="yes"
+                      className="checkbox checkbox-primary"
+                    />
+                    <label
+                      htmlFor="has-labs-pharmacies"
+                      className="ml-2 text-sm font-medium  "
+                    >
+                      Labs & Pharmacies
+                    </label>
+                  </div>
+
+
+                </div>
+              </fieldset>
+            </div>
+
+            {/* Entertainment & Leisure */}
+            <div className="mt-4">
+              <fieldset >
+                <legend className="block mb-2 font-medium">
+                  Entertainment & Leisure:
+                </legend>
+                <div className="flex gap-8">
+                  <div className="flex items-center ml-2">
+                    <input
+                      id="has-play-fitness"
+                      name="has-play-fitness"
+                      type="checkbox"
+                      value="yes"
+                      className="checkbox checkbox-primary"
+                    />
+                    <label
+                      htmlFor="has-play-fitness"
+                      className="ml-2 text-sm font-medium  "
+                    >
+                      Play Areas & Fitness Centers
+                    </label>
+                  </div>
+
+                </div>
+              </fieldset>
+            </div>
           </div>
         </div>
 
@@ -876,6 +1106,27 @@ export default function Page() {
             >
               Servant Quarter
             </label>
+
+            <select
+              id="apartment-has-servant-quarter"
+              name="apartment-has-servant-quarter"
+              className="select  w-full text-sm pl-2 h-10 max-w-xs border-2 rounded border-gray-400 bg-background"
+
+            >
+              <option value="">Select</option>
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
+
+          </div>
+
+          {/* <div className="mt-4">
+            <label
+              htmlFor="apartment-has-servant-quarter"
+              className="block mb-2 text-sm font-medium"
+            >
+              Servant Quarter
+            </label>
             <Select
               name="apartment-has-servant-quarter">
               <SelectTrigger
@@ -891,7 +1142,7 @@ export default function Page() {
                 </SelectGroup>
               </SelectContent>
             </Select>
-          </div>
+          </div> */}
 
           {/* Maintenance fee of apartment  */}
           {/* <div className="mt-4">

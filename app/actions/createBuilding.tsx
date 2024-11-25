@@ -18,9 +18,12 @@ export default async function createBuilding(data: FormData) {
   const has_security = data.get("building-facility-security")?.valueOf();
   const has_escalators = data.get("building-facility-escalators")?.valueOf();
   const has_food_court = data.get("building-facility-food-court")?.valueOf();
+
   const has_entertainment_area = data
     .get("building-facility-entertainment-area")
     ?.valueOf();
+
+  const has_none = data.get("building-facility-none")?.valueOf();
 
   const type_mixed_use = data.get("building-type-mixed-use")?.valueOf();
 
@@ -103,6 +106,25 @@ export default async function createBuilding(data: FormData) {
   const retail_floors_maintenance_fee = parseInt(data.get("retail-floors-maintenance-fee")?.valueOf() as string);
   const retail_floors_brands = data.get("retail-floors-brands-type")?.valueOf();
 
+  const has_fashion_health = data.get("has-fashion-health")?.valueOf();
+
+  const has_electronics_appliancecs = data.get("has-electronics-appliancecs")?.valueOf();
+
+  const has_home_living = data.get("has-home-living")?.valueOf();
+
+  const has_restaurants_courts = data.get("has-restaurants-courts")?.valueOf();
+
+  const has_bakery_ice = data.get("has-bakery-ice")?.valueOf();
+
+  const has_grocery_supermarkets = data.get("has-grocery-supermarkets")?.valueOf();
+
+  const has_banks_atm = data.get("has-banks-atm")?.valueOf();
+
+  const has_real_estate = data.get("has-real-estate")?.valueOf();
+
+  const has_labs_pharmacies = data.get("has-labs-pharmacies")?.valueOf();
+
+  const has_play_fitness = data.get("has-play-fitness")?.valueOf();
 
   const office_floors_count = parseInt(data.get("office-floors-count")?.valueOf() as string);
 
@@ -146,6 +168,10 @@ export default async function createBuilding(data: FormData) {
   console.log(
     "🚀 ~ file: page.tsx:22 ~ createBuilding ~ has_entertainment_area:",
     has_entertainment_area
+  );
+  console.log(
+    "🚀 ~ file: page.tsx:22 ~ createBuilding ~ has_none:",
+    has_none
   );
 
   console.log(
@@ -288,6 +314,7 @@ export default async function createBuilding(data: FormData) {
       has_escalators: has_escalators as string,
       has_food_court: has_food_court as string,
       has_entertainment_area: has_entertainment_area as string,
+      has_none: has_none as string,
       type_mixed_use: type_mixed_use as string,
       type_retail: type_retail as string,
       type_offices: type_offices as string,
@@ -320,6 +347,16 @@ export default async function createBuilding(data: FormData) {
       retail_floors_shops_count: retail_floors_shops_count,
       retail_floors_maintenance_fee: retail_floors_maintenance_fee,
       retail_floors_brands: retail_floors_brands as string,
+      has_fashion_health: has_fashion_health as string,
+      has_electronics_appliancecs: has_electronics_appliancecs as string,
+      has_home_living: has_home_living as string,
+      has_restaurants_courts: has_restaurants_courts as string,
+      has_bakery_ice: has_bakery_ice as string,
+      has_grocery_supermarkets: has_grocery_supermarkets as string,
+      has_banks_atm: has_banks_atm as string,
+      has_real_estate: has_real_estate as string,
+      has_labs_pharmacies: has_labs_pharmacies as string,
+      has_play_fitness: has_play_fitness as string,
       office_floors_count: office_floors_count,
       offices_count: offices_count,
       office_maintenance_fee: office_maintenance_fee,

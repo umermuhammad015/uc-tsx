@@ -72,7 +72,8 @@ export default function PlotAddPage({ params }: Props) {
 
     const [plotType, setPlotType] = useState("");
 
-    const [payment_mode, setPayment_mode] = useState("Lumpsum Payment");
+    // const [payment_mode, setPayment_mode] = useState("Lumpsum Payment");
+    const [payment_mode, setPayment_mode] = useState("");
 
     useEffect(() => {
 
@@ -329,6 +330,7 @@ export default function PlotAddPage({ params }: Props) {
                                         value={apartment_size}
                                         onChange={(e) => setApartment_size(e.target.value)}
                                     >
+                                        <option value="">Select</option>
                                         {(current_society.apartment_studio === "yes") && <option value="Studio">Studio</option>}
                                         {(current_society.apartment_one_bad === "yes") && <option value="1 Bed">1 Bed</option>}
                                         {(current_society.apartment_two_bad === "yes") && <option value="2 Bed">2 Bed</option>}
@@ -355,6 +357,7 @@ export default function PlotAddPage({ params }: Props) {
                                         value={apartment_size_ft}
                                         onChange={(e) => setApartment_size_ft(e.target.value)}
                                     >
+                                        <option value="">Select</option>
                                         <option value="400">400</option>
                                         <option value="550">550</option>
                                         <option value="650">650</option>
@@ -420,6 +423,7 @@ export default function PlotAddPage({ params }: Props) {
                                         value={shop_size}
                                         onChange={(e) => setShop_size(e.target.value)}
                                     >
+                                        <option value="">Select</option>
                                         <option value="50">50</option>
                                         <option value="75">75</option>
                                         <option value="100">100</option>
@@ -487,6 +491,7 @@ export default function PlotAddPage({ params }: Props) {
                                         value={office_size}
                                         onChange={(e) => setOffice_size(e.target.value)}
                                     >
+                                        <option value="">Select</option>
                                         <option value="50">50</option>
                                         <option value="75">75</option>
                                         <option value="100">100</option>
@@ -551,6 +556,7 @@ export default function PlotAddPage({ params }: Props) {
                                 value={payment_mode}
                                 onChange={(e) => setPayment_mode(e.target.value)}
                             >
+                                <option value="">Select</option>
                                 <option value="Lumpsum Payment">Lumpsum Payment</option>
                                 <option value="Instalments">Instalments</option>
                             </select>

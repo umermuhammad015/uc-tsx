@@ -35,6 +35,7 @@ model Buildings {
   has_escalators                 String?
   has_food_court                 String?
   has_entertainment_area         String?
+  has_none                       String?
   type_mixed_use                 String?
   type_retail                    String?
   type_offices                   String?
@@ -67,6 +68,16 @@ model Buildings {
   retail_floors_shops_count      Int?
   retail_floors_maintenance_fee  Int?
   retail_floors_brands           String?
+  has_fashion_health             String?
+  has_electronics_appliancecs    String?
+  has_home_living                String?
+  has_restaurants_courts         String?
+  has_bakery_ice                 String?
+  has_grocery_supermarkets       String?
+  has_banks_atm                  String?
+  has_real_estate                String?
+  has_labs_pharmacies            String?
+  has_play_fitness               String?
   office_floors_count            Int?
   offices_count                  Int?
   office_maintenance_fee         Int?

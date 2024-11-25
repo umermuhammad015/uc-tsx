@@ -82,7 +82,7 @@ export default function UpdatePlotForm({ floor }: any) {
 
 
                             {/* Floor Number  */}
-                            <div className="mt-4">
+                            {/* <div className="mt-4">
                                 <label
                                     htmlFor="building-floor-no"
                                     className="block mb-2 text-sm font-medium"
@@ -137,6 +137,59 @@ export default function UpdatePlotForm({ floor }: any) {
                                         </SelectGroup>
                                     </SelectContent>
                                 </Select>
+                            </div> */}
+
+                            <div className="mt-4">
+                                <label
+                                    htmlFor="building-floor-no"
+                                    className="block mb-2 text-sm font-medium"
+                                >
+                                    Floor Number
+                                </label>
+
+                                <select
+                                    id="building-floor-no"
+                                    name="building-floor-no"
+                                    defaultValue={floor?.floor_no as string}
+                                    className="select  w-full text-sm pl-2 h-10 max-w-xs border-2 rounded border-gray-400 bg-background"
+                                >
+                                    <option value="">Select</option>
+                                    <option value="Basement">Basement</option>
+                                    <option value="Lower Ground">Lower Ground</option>
+                                    <option value="Ground">Ground</option>
+                                    <option value="mezzanine">mezzanine</option>
+                                    <option value="1st">1st</option>
+                                    <option value="2nd">2nd</option>
+                                    <option value="3rd">3rd</option>
+                                    <option value="4th">4th</option>
+                                    <option value="5th">5th</option>
+                                    <option value="6th">6th</option>
+                                    <option value="7th">7th</option>
+                                    <option value="8th">8th</option>
+                                    <option value="9th">9th</option>
+                                    <option value="10th">10th</option>
+                                    <option value="11th">11th</option>
+                                    <option value="12th">12th</option>
+                                    <option value="13th">13th</option>
+                                    <option value="14th">14th</option>
+                                    <option value="15th">15th</option>
+                                    <option value="16th">16th</option>
+                                    <option value="17th">17th</option>
+                                    <option value="18th">18th</option>
+                                    <option value="19th">19th</option>
+                                    <option value="20th">20th</option>
+                                    <option value="21st">21st</option>
+                                    <option value="22nd">22nd</option>
+                                    <option value="23rd">23rd</option>
+                                    <option value="24th">24th</option>
+                                    <option value="25th">25th</option>
+                                    <option value="26th">26th</option>
+                                    <option value="27th">27th</option>
+                                    <option value="28th">28th</option>
+                                    <option value="29th">29th</option>
+                                    <option value="30th">30th</option>
+                                </select>
+
                             </div>
 
                             {/* Floor Type  */}
@@ -169,6 +222,8 @@ export default function UpdatePlotForm({ floor }: any) {
                                 </Select>
                             </div>
 
+
+
                             {/* Unit Type  */}
                             <div className="mt-4">
                                 <label
@@ -199,14 +254,14 @@ export default function UpdatePlotForm({ floor }: any) {
                                 </label>
                                 <div className="flex">
                                     <Input
-                                        type="number"
+                                        type="text"
                                         id="building-floor-occupancy"
                                         name="building-floor-occupancy"
                                         className="input input-bordered  w-full max-w-xs border border-gray-400 "
                                         placeholder=""
                                         defaultValue={floor?.occupancy as number}
-                                        min="0"
-                                        max="100"
+                                        minLength={1}
+                                        maxLength={2}
                                         onChange={(e) => {
                                             setOccupancy(Number(e.target.value))
                                         }}
@@ -330,23 +385,15 @@ export default function UpdatePlotForm({ floor }: any) {
 
                                 </div>
 
-                                {/* Installment Plan  */}
-                                <div className="mt-4">
+
+                                {/* <div className="mt-4">
                                     <label
                                         htmlFor="building-instalment-plan"
                                         className="block mb-2 text-sm font-medium"
                                     >
                                         Installment Plan
                                     </label>
-                                    {/* <select
-                                    id="building-instalment-plan"
-                                    name="building-instalment-plan"
-                                    className="select  w-full max-w-xs border border-gray-400 "
-                                    defaultValue={floor?.instalment_plan as string}
-                                >
-                                    <option>Yes</option>
-                                    <option>No</option>
-                                </select> */}
+
                                     <Select
                                         defaultValue={floor?.instalment_plan as string}
                                         name="building-instalment-plan">
@@ -365,8 +412,30 @@ export default function UpdatePlotForm({ floor }: any) {
                                     </Select>
 
 
-                                </div>
+                                </div> */}
 
+                                {/* Installment Plan  */}
+
+                                <div className="mt-4">
+                                    <label
+                                        htmlFor="building-instalment-plan"
+                                        className="block mb-2 text-sm font-medium"
+                                    >
+                                        Installment Plan
+                                    </label>
+
+                                    <select
+                                        id="building-instalment-plan"
+                                        name="building-instalment-plan"
+                                        className="select  w-full text-sm pl-2 h-10 max-w-xs border-2 rounded border-gray-400 bg-background"
+                                        defaultValue={floor?.instalment_plan as string}
+                                    >
+                                        <option value="">Select</option>
+                                        <option value="Yes">Yes</option>
+                                        <option value="No">No</option>
+                                    </select>
+
+                                </div>
                                 {/* Installment Period (Years) */}
                                 <div className="mt-4">
                                     <label

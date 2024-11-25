@@ -102,14 +102,14 @@ export default async function ViewBuilding({ params }: Props) {
             </TableRow>
             <TableRow>
               <TableCell >Building Type </TableCell >
-              <TableCell>
-                {building?.type_offices && (
+              <TableCell >
+                {building?.type_retail && (
                   <Badge>Retail</Badge>
                 )}
-                {building?.type_apartments && (
+                {building?.type_offices && (
                   <Badge>Offices</Badge>
                 )}
-                {building?.type_retail && (
+                {building?.type_apartments && (
                   <Badge>Apartments</Badge>
                 )}
               </TableCell>
@@ -166,6 +166,10 @@ export default async function ViewBuilding({ params }: Props) {
                   // <div className="badge bg-emerald-700 text-white">Entertainment Area</div>
                   <Badge>Entertainment Area</Badge>
                 )}
+                {building?.has_none && (
+                  // <div className="badge bg-emerald-700 text-white">Entertainment Area</div>
+                  <Badge>None of these</Badge>
+                )}
               </TableCell >
             </TableRow>
             <TableRow>
@@ -180,8 +184,69 @@ export default async function ViewBuilding({ params }: Props) {
               <TableCell >Shop Maintenance Fee Rs. (Per Sq. Ft.)</TableCell >{" "}
               <TableCell >{Number(building?.apartments_maintenance_fee).toLocaleString()}</TableCell >
             </TableRow> */}
-            <TableRow>
+            {/* <TableRow>
               <TableCell >Brands</TableCell > <TableCell >{building?.retail_floors_brands}</TableCell >
+            </TableRow> */}
+            <TableRow>
+              <TableCell >Retail Categories </TableCell >
+              <TableCell >
+                {building?.has_fashion_health && (
+                  // <div className="badge bg-emerald-700 text-white ">Centrally Airconditioned </div>
+                  <Badge>Fashion & Health</Badge>
+                )}
+                {building?.has_electronics_appliancecs && (
+                  // <div className="badge bg-emerald-700 text-white">Security</div>
+                  <Badge>Electronics & Appliances</Badge>
+                )}
+                {building?.has_home_living && (
+                  // <div className="badge bg-emerald-700 text-white">Escalators</div>
+                  <Badge>Home & Living</Badge>
+                )}
+              </TableCell >
+            </TableRow>
+            <TableRow>
+              <TableCell >Food & Beverage Categories</TableCell >
+              <TableCell >
+                {building?.has_restaurants_courts && (
+                  // <div className="badge bg-emerald-700 text-white ">Centrally Airconditioned </div>
+                  <Badge>Restaurants/Food courts</Badge>
+                )}
+                {building?.has_bakery_ice && (
+                  // <div className="badge bg-emerald-700 text-white">Security</div>
+                  <Badge>Bakery/Ice cream</Badge>
+                )}
+                {building?.has_grocery_supermarkets && (
+                  // <div className="badge bg-emerald-700 text-white">Escalators</div>
+                  <Badge>Grocery & Supermarkets</Badge>
+                )}
+              </TableCell >
+            </TableRow>
+            <TableRow>
+              <TableCell >Services Categories</TableCell >
+              <TableCell >
+                {building?.has_banks_atm && (
+                  // <div className="badge bg-emerald-700 text-white ">Centrally Airconditioned </div>
+                  <Badge>Banks & ATMs</Badge>
+                )}
+                {building?.has_real_estate && (
+                  // <div className="badge bg-emerald-700 text-white">Security</div>
+                  <Badge>Real Estate Agencies</Badge>
+                )}
+                {building?.has_labs_pharmacies && (
+                  // <div className="badge bg-emerald-700 text-white">Escalators</div>
+                  <Badge>Labs/Pharmacies</Badge>
+                )}
+              </TableCell >
+            </TableRow>
+            <TableRow>
+              <TableCell >Entertainment & Leisure</TableCell >
+              <TableCell >
+                {building?.has_banks_atm && (
+                  // <div className="badge bg-emerald-700 text-white ">Centrally Airconditioned </div>
+                  <Badge>Play Areas/Fitness Centers </Badge>
+                )}
+                
+              </TableCell >
             </TableRow>
             <TableRow>
               <TableCell >Apartment Floors</TableCell > <TableCell >{building?.apartment_floors}</TableCell >

@@ -274,7 +274,8 @@ export default function NewSocietyPage() {
                   <SelectItem value="Under Developed">Under Developed</SelectItem>
                   <SelectItem value="New Launch">New Launch</SelectItem>
                   <SelectItem value="Commercial Zone">Commercial Zone</SelectItem>
-                  <SelectItem value="Files">Files</SelectItem>
+                  <SelectItem value="Residential Files">Residential Files</SelectItem>
+                  <SelectItem value="Commercial Files">Commercial Files</SelectItem>
                 </SelectGroup>
               </SelectContent>
             </Select>

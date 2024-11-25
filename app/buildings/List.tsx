@@ -97,6 +97,12 @@ const getBuildings = async ({ search_string = '', take = PAGE_SIZE, skip = 0, ci
               mode: 'insensitive',
             },
           },
+          {
+            area: {
+              contains: search_string,
+              mode: 'insensitive',
+            },
+          },
         ],
         city: city === "" ? undefined : city,
         status: building_status === "" ? undefined : building_status,
@@ -123,6 +129,7 @@ const getBuildings = async ({ search_string = '', take = PAGE_SIZE, skip = 0, ci
               mode: 'insensitive',
             },
           },
+          
         ]
       },
     });

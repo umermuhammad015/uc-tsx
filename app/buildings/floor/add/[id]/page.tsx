@@ -128,7 +128,7 @@ export default function Page({ params }: Props) {
       // console.log("trying")
       // console.log(params.id)
 
-      const add_plot_output = await AddPlot(entryDate,avg_sale_price, params.id, avg_monthly_rent, down_payment_amount,
+      const add_plot_output = await AddPlot(entryDate, avg_sale_price, params.id, avg_monthly_rent, down_payment_amount,
         instalment_period, instalment_amount, possession_amount, size_min, size_max, floor_num, floor_type,
         unit_type, instalment_plan, occupancy, remarks)
 
@@ -217,6 +217,41 @@ export default function Page({ params }: Props) {
                 />
               </div>
 
+              {/*Date */}
+
+              <div className="relative max-w-sm mt-4">
+                <label
+                  htmlFor="surveyor-name"
+                  className="block mb-2 text-sm font-medium "
+                >
+                  Date:
+                </label>
+                <div className="absolute inset-y-0 right-0 flex items-center pr-20 pointer-events-none">
+                  <svg
+                    className="w-4 h-4  dark:text-gray-400 mt-6"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                  </svg>
+                </div>
+
+                <Input
+                  type="date"
+                  id="floor-date"
+                  name="floor-date"
+                  // defaultValue="2024-12-13"
+                  defaultValue={(new Date).toISOString().split('T')[0]}
+                  // value="12/26/2024"
+                  // value={entryDate}
+                  className="max-w-xs border-gray-400  border-2 text-sm rounded focus:ring-blue-500  block w-full p-2.5"
+                  onChange={(e) => setEntryDate(e.target.value)}
+                  placeholder="date"
+                />
+              </div>
+
 
               {/* Building Name 
               <div className="mt-4 ">
@@ -255,8 +290,11 @@ export default function Page({ params }: Props) {
                   className="select  w-full text-sm pl-2 h-10 max-w-xs border-2 rounded border-gray-400 bg-background"
                   onChange={(e) => setFloor_num(e.target.value)}
                 >
+                  <option value="">Select</option>
+                  <option value="Basement">Basement</option>
                   <option value="Lower Ground">Lower Ground</option>
                   <option value="Ground">Ground</option>
+                  <option value="mezzanine">mezzanine</option>
                   <option value="1st">1st</option>
                   <option value="2nd">2nd</option>
                   <option value="3rd">3rd</option>
@@ -374,8 +412,8 @@ export default function Page({ params }: Props) {
                     className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
                     value={occupancy}
                     placeholder=""
-                    min="0"
-                    max="100"
+                    minLength={1}
+                    maxLength={2}
                     onChange={(e) => {
                       setOccupancy(Number(e.target.value))
                     }}
@@ -517,6 +555,7 @@ export default function Page({ params }: Props) {
                   value={instalment_plan}
                   onChange={(e) => setInstalment_plan(e.target.value)}
                 >
+                  <option value="">Select</option>
                   <option value="Yes">Yes</option>
                   <option value="No">No</option>
                 </select>
@@ -533,7 +572,7 @@ export default function Page({ params }: Props) {
                 </label>
                 <div className="flex">
                   <Input
-                    type="text"
+                    type="number"
                     id="building-floor-instalment-period"
                     name="building-floor-instalment-period"
                     className="input input-bordered  w-full max-w-xs border-2 border-gray-400 "
@@ -638,40 +677,7 @@ export default function Page({ params }: Props) {
               </div>
             </div>
 
-            {/*Date */}
 
-            <div className="relative max-w-sm">
-              <label
-                htmlFor="surveyor-name"
-                className="block mb-2 text-sm font-medium "
-              >
-                Date:
-              </label>
-              <div className="absolute inset-y-0 right-0 flex items-center pr-20 pointer-events-none">
-                <svg
-                  className="w-4 h-4  dark:text-gray-400 mt-6"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
-                </svg>
-              </div>
-
-              <Input
-                type="date"
-                id="floor-date"
-                name="floor-date"
-                // defaultValue="2024-12-13"
-                defaultValue={(new Date).toISOString().split('T')[0]}
-                // value="12/26/2024"
-                // value={entryDate}
-                className="max-w-xs border-gray-400  border-2 text-sm rounded focus:ring-blue-500  block w-full p-2.5"
-                onChange={(e) => setEntryDate(e.target.value)}
-                placeholder="date"
-              />
-            </div>
 
 
             {/* Floor Remarks  */}

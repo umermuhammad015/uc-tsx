@@ -14,6 +14,7 @@ export default async function editForm(data: FormData) {
     const has_security = data.get("building-facility-security")?.valueOf() === undefined ? null : "yes";
     const has_escalators = data.get("building-facility-escalators")?.valueOf() === undefined ? null : "yes";
     const has_food_court = data.get("building-facility-food-court")?.valueOf() === undefined ? null : "yes";
+    const has_none = data.get("building-facility-none")?.valueOf() === undefined ? null : "yes";
     const has_entertainment_area = data
         .get("building-facility-entertainment-area")
         ?.valueOf() === undefined ? null : "yes";
@@ -35,6 +36,7 @@ export default async function editForm(data: FormData) {
     const address = data.get("address")?.valueOf();
     const builder_name = data.get("builder-name")?.valueOf();
     const building_rank = data.get("building-rank")?.valueOf();
+    const apartment_has_servant_quarter = data.get("apartment-has-servant-quarter")?.valueOf();
 
     const surveyor_name = data.get("surveyor-name")?.valueOf();
     // const survey_date = data.get("survey-date")?.valueOf();
@@ -117,7 +119,9 @@ export default async function editForm(data: FormData) {
             has_security: has_security,
             has_escalators: has_escalators,
             has_food_court: has_food_court,
+            has_none: has_none,
             has_entertainment_area: has_entertainment_area,
+            apartments_has_servant_quarter: apartment_has_servant_quarter,
 
             type_mixed_use: type_mixed_use,
             type_retail: type_retail,
