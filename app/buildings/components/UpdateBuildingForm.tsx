@@ -661,7 +661,226 @@ export default function UpdatePlotForm({ building }: any) {
 
 
                     {/* Brands/Type of Products & Services: */}
-                    <div className="mt-4">
+                    <div className="mt-4">Brands/Type of Products & Services</div>
+                    <div className="flex gap-12">
+                        {/* Retail Categories */}
+                        <div className="mt-4">
+                            <fieldset >
+                                <legend className="block mb-2  font-medium">
+                                    Retail Categories:
+                                </legend>
+                                <div className=" flex flex-col gap-2">
+                                    <div className="flex items-center ml-2">
+                                        <input
+                                            id="has-fashion-health"
+                                            name="has-fashion-health"
+                                            type="checkbox"
+                                            value="yes"
+                                            defaultChecked={building?.has_fashion_health ? true : false}
+                                            className="checkbox checkbox-primary"
+                                        />
+                                        <label
+                                            htmlFor="has-fashion-health"
+                                            className="ml-2 text-sm font-medium  "
+                                        >
+                                            Fashion & Health
+                                        </label>
+                                    </div>
+
+                                    <div className="flex items-center ml-2">
+                                        <input
+                                            id="has-electronics-appliancecs"
+                                            name="has-electronics-appliancecs"
+                                            type="checkbox"
+                                            value="yes"
+                                            defaultChecked={building?.has_electronics_appliancecs ? true : false}
+                                            className="checkbox checkbox-primary"
+                                        />
+                                        <label
+                                            htmlFor="has-electronics-appliancecs"
+                                            className="ml-2 text-sm font-medium  "
+                                        >
+                                            Electronics & Appliances
+                                        </label>
+                                    </div>
+
+                                    <div className="flex items-center ml-2">
+                                        <input
+                                            id="has-home-living"
+                                            name="has-home-living"
+                                            type="checkbox"
+                                            value="yes"
+                                            defaultChecked={building?.has_home_living ? true : false}
+                                            className="checkbox checkbox-primary"
+                                        />
+                                        <label
+                                            htmlFor="has-home-living"
+                                            className="ml-2 text-sm font-medium  "
+                                        >
+                                            Home & Living
+                                        </label>
+                                    </div>
+
+
+                                </div>
+                            </fieldset>
+                        </div>
+
+                        {/* Food & Beverage Categories */}
+                        <div className="mt-4">
+                            <fieldset >
+                                <legend className="block mb-2 font-medium">
+                                    Food & Beverage Categories:
+                                </legend>
+                                <div className="flex flex-col gap-2">
+                                    <div className="flex items-center ml-2">
+                                        <input
+                                            id="has-restaurants-courts"
+                                            name="has-restaurants-courts"
+                                            type="checkbox"
+                                            value="yes"
+                                            defaultChecked={building?.has_restaurants_courts ? true : false}
+                                            className="checkbox checkbox-primary"
+                                        />
+                                        <label
+                                            htmlFor="has-restaurants-courts"
+                                            className="ml-2 text-sm font-medium  "
+                                        >
+                                            Restaurants/Food courts
+                                        </label>
+                                    </div>
+
+                                    <div className="flex items-center ml-2">
+                                        <input
+                                            id="has-bakery-ice"
+                                            name="has-bakery-ice"
+                                            type="checkbox"
+                                            value="yes"
+                                            defaultChecked={building?.has_bakery_ice ? true : false}
+                                            className="checkbox checkbox-primary"
+                                        />
+                                        <label
+                                            htmlFor="has-bakery-ice"
+                                            className="ml-2 text-sm font-medium  "
+                                        >
+                                            Bakery/Ice cream
+                                        </label>
+                                    </div>
+
+                                    <div className="flex items-center ml-2">
+                                        <input
+                                            id="has-grocery-supermarkets"
+                                            name="has-grocery-supermarkets"
+                                            type="checkbox"
+                                            value="yes"
+                                            defaultChecked={building?.has_grocery_supermarkets ? true : false}
+                                            className="checkbox checkbox-primary"
+                                        />
+                                        <label
+                                            htmlFor="has-grocery-supermarkets"
+                                            className="ml-2 text-sm font-medium  "
+                                        >
+                                            Grocery & Supermarkets
+                                        </label>
+                                    </div>
+
+
+                                </div>
+                            </fieldset>
+                        </div>
+
+                        {/* Services Categories */}
+                        <div className="mt-4">
+                            <fieldset >
+                                <legend className="block mb-2  font-medium">
+                                    Services Categories:
+                                </legend>
+                                <div className="flex flex-col gap-2">
+                                    <div className="flex items-center ml-2">
+                                        <input
+                                            id="has-banks-atm"
+                                            name="has-banks-atm"
+                                            type="checkbox"
+                                            value="yes"
+                                            defaultChecked={building?.has_banks_atm ? true : false}
+                                            className="checkbox checkbox-primary"
+                                        />
+                                        <label
+                                            htmlFor="has-banks-atm"
+                                            className="ml-2 text-sm font-medium  "
+                                        >
+                                            Banks & ATMs
+                                        </label>
+                                    </div>
+
+                                    <div className="flex items-center ml-2">
+                                        <input
+                                            id="has-real-estate"
+                                            name="has-real-estate"
+                                            type="checkbox"
+                                            value="yes"
+                                            defaultChecked={building?.has_real_estate ? true : false}
+                                            className="checkbox checkbox-primary"
+                                        />
+                                        <label
+                                            htmlFor="has-real-estate"
+                                            className="ml-2 text-sm font-medium  "
+                                        >
+                                            Real Estate Agencies
+                                        </label>
+                                    </div>
+
+                                    <div className="flex items-center ml-2">
+                                        <input
+                                            id="has-labs-pharmacies"
+                                            name="has-labs-pharmacies"
+                                            type="checkbox"
+                                            value="yes"
+                                            defaultChecked={building?.has_labs_pharmacies ? true : false}
+                                            className="checkbox checkbox-primary"
+                                        />
+                                        <label
+                                            htmlFor="has-labs-pharmacies"
+                                            className="ml-2 text-sm font-medium  "
+                                        >
+                                            Labs & Pharmacies
+                                        </label>
+                                    </div>
+
+
+                                </div>
+                            </fieldset>
+                        </div>
+
+                        {/* Entertainment & Leisure */}
+                        <div className="mt-4">
+                            <fieldset >
+                                <legend className="block mb-2 font-medium">
+                                    Entertainment & Leisure:
+                                </legend>
+                                <div className="flex gap-8">
+                                    <div className="flex items-center ml-2">
+                                        <input
+                                            id="has-play-fitness"
+                                            name="has-play-fitness"
+                                            type="checkbox"
+                                            value="yes"
+                                            defaultChecked={building?.has_play_fitness ? true : false}
+                                            className="checkbox checkbox-primary"
+                                        />
+                                        <label
+                                            htmlFor="has-play-fitness"
+                                            className="ml-2 text-sm font-medium  "
+                                        >
+                                            Play Areas & Fitness Centers
+                                        </label>
+                                    </div>
+
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                    {/* <div className="mt-4">
                         <label
                             htmlFor="retail-floors-brands-type"
                             className="block mb-2 text-sm font-medium"
@@ -676,7 +895,7 @@ export default function UpdatePlotForm({ building }: any) {
                             placeholder=""
                             defaultValue={building?.retail_floors_brands as string}
                         />
-                    </div>
+                    </div> */}
                 </div>
 
                 {/* <div className="p-5 border-2 border-b-0 border-gray-200 dark:border-gray-700">

@@ -12,12 +12,34 @@ export default async function editForm(data: FormData) {
         .get("building-facility-centrally-air-conditioned")
         ?.valueOf() === undefined ? null : "yes";
     const has_security = data.get("building-facility-security")?.valueOf() === undefined ? null : "yes";
+
     const has_escalators = data.get("building-facility-escalators")?.valueOf() === undefined ? null : "yes";
+
     const has_food_court = data.get("building-facility-food-court")?.valueOf() === undefined ? null : "yes";
+
     const has_none = data.get("building-facility-none")?.valueOf() === undefined ? null : "yes";
-    const has_entertainment_area = data
-        .get("building-facility-entertainment-area")
-        ?.valueOf() === undefined ? null : "yes";
+
+    const has_entertainment_area = data.get("building-facility-entertainment-area")?.valueOf() === undefined ? null : "yes";
+
+    const has_fashion_health = data.get("has-fashion-health")?.valueOf() === undefined ? null : "yes";
+
+    const has_electronics_appliancecs = data.get("has-electronics-appliancecs")?.valueOf() === undefined ? null : "yes";
+
+    const has_home_living = data.get("has-home-living")?.valueOf() === undefined ? null : "yes";
+
+    const has_restaurants_courts = data.get("has-restaurants-courts")?.valueOf() === undefined ? null : "yes";
+
+    const has_bakery_ice = data.get("has-bakery-ice")?.valueOf() === undefined ? null : "yes";
+
+    const has_grocery_supermarkets = data.get("has-grocery-supermarkets")?.valueOf() === undefined ? null : "yes";
+
+    const has_banks_atm = data.get("has-banks-atm")?.valueOf() === undefined ? null : "yes";
+
+    const has_real_estate = data.get("has-real-estate")?.valueOf() === undefined ? null : "yes";
+
+    const has_labs_pharmacies = data.get("has-labs-pharmacies")?.valueOf() === undefined ? null : "yes";
+
+    const has_play_fitness = data.get("has-play-fitness")?.valueOf() === undefined ? null : "yes";
 
     const status = data.get("building-status")?.valueOf();
 
@@ -122,7 +144,6 @@ export default async function editForm(data: FormData) {
             has_none: has_none,
             has_entertainment_area: has_entertainment_area,
             apartments_has_servant_quarter: apartment_has_servant_quarter,
-
             type_mixed_use: type_mixed_use,
             type_retail: type_retail,
             type_offices: type_offices,
@@ -143,6 +164,16 @@ export default async function editForm(data: FormData) {
             retail_floors_maintenance_fee: retail_floors_maintenance_fee,
             office_floors_count: office_floors_count,
             offices_count: offices_count,
+            has_fashion_health: has_fashion_health,
+            has_electronics_appliancecs: has_electronics_appliancecs,
+            has_home_living: has_home_living,
+            has_restaurants_courts: has_restaurants_courts,
+            has_bakery_ice: has_bakery_ice,
+            has_grocery_supermarkets: has_grocery_supermarkets,
+            has_banks_atm: has_banks_atm,
+            has_real_estate: has_real_estate,
+            has_labs_pharmacies: has_labs_pharmacies,
+            has_play_fitness: has_play_fitness,
             office_maintenance_fee: office_maintenance_fee,
             apartment_floors: apartment_floors,
             parking_floors: parking_floors,
