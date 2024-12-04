@@ -86,6 +86,7 @@ export default function Page() {
               name="building-city">
               <SelectTrigger
                 id="building-city"
+                aria-required
                 className="select  w-full max-w-xs border-2 border-gray-400">
                 <SelectValue placeholder="Select city" />
               </SelectTrigger>
@@ -135,6 +136,7 @@ export default function Page() {
           <div className="mt-4">
             <label
               htmlFor="zone"
+
               className="block mb-2 text-sm font-medium"
             >
               Zone:
@@ -162,12 +164,13 @@ export default function Page() {
           {/* Area/Society  */}
           <div className="mt-4">
             <label htmlFor="area" className="block mb-2 text-sm font-medium">
-              Area/Society:
+              Area / Society:
             </label>
             <Input
               type="text"
               id="area"
               name="area"
+              required
               className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
               placeholder=""
             />
@@ -196,11 +199,12 @@ export default function Page() {
           {/* Location/Address  */}
           <div className="mt-4">
             <label htmlFor="address" className="block mb-2 text-sm font-medium">
-              Location/Address:
+              Location / Address:
             </label>
             <Input
               type="text"
               id="address"
+              required
               name="address"
               className="input input-bordered w-full max-w-xs border-2 border-gray-400"
               placeholder="address"
@@ -598,7 +602,7 @@ export default function Page() {
                     htmlFor="building-facility-none"
                     className="ml-2 text-sm font-medium  "
                   >
-                    None of these
+                    None
                   </label>
                 </div>
               </div>
@@ -964,10 +968,10 @@ export default function Page() {
           <div className="mt-4">
             <fieldset>
               <legend className="block mb-2 text-sm font-medium">
-                Apartments Type
+                Apartments Type:
               </legend>
 
-              <div className="flex gap-10">
+              <div className="grid grid-cols-6 gap-4">
                 <div className="flex items-center mb-4 ml-2">
                   <input
                     id="apartment-studio"
@@ -1092,6 +1096,71 @@ export default function Page() {
                     className="ml-2 text-sm font-medium  "
                   >
                     Penthouse
+                  </label>
+                </div>
+
+                <div className="flex items-center mb-4 ml-2">
+                  <input
+                    id="has-furnished"
+                    name="has-furnished"
+                    type="checkbox"
+                    value="yes"
+                    className="checkbox checkbox-primary"
+                  />
+                  <label
+                    htmlFor="has-furnished"
+                    className="ml-2 text-sm font-medium  "
+                  >
+                    Furnished
+                  </label>
+                </div>
+
+
+                <div className="flex items-center mb-4 ml-2">
+                  <input
+                    id="has-semi-furnished"
+                    name="has-semi-furnished"
+                    type="checkbox"
+                    value="yes"
+                    className="checkbox checkbox-primary"
+                  />
+                  <label
+                    htmlFor="has-semi-furnished"
+                    className="ml-2 text-sm font-medium  "
+                  >
+                    Semi-Furnished
+                  </label>
+                </div>
+
+                <div className="flex items-center mb-4 ml-2">
+                  <input
+                    id="has-service-apartments"
+                    name="has-service-apartments"
+                    type="checkbox"
+                    value="yes"
+                    className="checkbox checkbox-primary"
+                  />
+                  <label
+                    htmlFor="has-service-apartments"
+                    className="ml-2 text-sm font-medium  "
+                  >
+                    Service Apartments
+                  </label>
+                </div>
+
+                <div className="flex items-center mb-4 ml-2">
+                  <input
+                    id="has-hotel-suites-apartments"
+                    name="has-hotel-suites-apartments"
+                    type="checkbox"
+                    value="yes"
+                    className="checkbox checkbox-primary"
+                  />
+                  <label
+                    htmlFor="has-hotel-suites-apartments"
+                    className="ml-2 text-sm font-medium  "
+                  >
+                    Hotel Suites Apartments
                   </label>
                 </div>
               </div>

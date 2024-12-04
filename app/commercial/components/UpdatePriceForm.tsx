@@ -324,6 +324,49 @@ export default function UpdatePlotForm({ price }: any, { params }: Props) {
 
             }
 
+            {/* WAREHOUSE  */}
+            {
+                property_type === "Warehouse" &&
+                <>
+                    <div className="mt-4">
+                        <label
+                            htmlFor="warehouse-size"
+                            className="block mb-2 text-sm font-medium"
+                        >
+                            Property Size (Sq. Yards):
+                        </label>
+                        <select
+                            id="warehouse-size"
+                            name="warehouse-size"
+                            className="select w-full text-sm pl-2 h-10 max-w-xs border-2 rounded border-gray-400 bg-background"
+                            defaultValue={price?.warehouse_size as string}
+                        >
+                            <option value="">All</option>
+                            <option value="50">50</option>
+                            <option value="75">75</option>
+                            <option value="100">100</option>
+                            <option value="125">125</option>
+                            <option value="200">200</option>
+                            <option value="250">250</option>
+                            <option value="300">300</option>
+                            <option value="400">400</option>
+                            <option value="500">500</option>
+                            <option value="800">800</option>
+                            <option value="1,000">1,000</option>
+                            <option value="1,500">1,500</option>
+                            <option value="2,000">2,000</option>
+                            <option value="2,500">2,500</option>
+                            <option value="3,000">3,000</option>
+                            <option value="3,500">3,500</option>
+                            <option value="4,000">4,000</option>
+                            <option value="5,000">5,000</option>
+                            <option value="6,000">6,000</option>
+                        </select>
+                    </div>
+                </>
+
+            }
+
             {/* Payment Mode*/}
             <div className="mt-4">
                 <label
@@ -412,7 +455,7 @@ export default function UpdatePlotForm({ price }: any, { params }: Props) {
                             htmlFor="total-price"
                             className="block mb-2 text-sm font-medium"
                         >
-                            Total Price (Rs.):
+                            Instalments Amount:
                         </label>
                         <div className="flex">
                             <Input
@@ -447,7 +490,7 @@ export default function UpdatePlotForm({ price }: any, { params }: Props) {
                                 name="installment-period"
                                 className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
                                 defaultValue={price?.installment_period as string}
-                                 placeholder="Rs."
+                                placeholder="Rs."
                                 onChange={(e) => {
                                     setInstallment_period(Number(e.target.value))
                                     console.log(e.target.value)

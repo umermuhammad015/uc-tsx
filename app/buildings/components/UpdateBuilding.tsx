@@ -75,6 +75,10 @@ export default async function editForm(data: FormData) {
     const apartments_has_type_5_bed = data.get("apartment-has-type-5-bed")?.valueOf() === undefined ? null : "yes";
     const apartments_has_type_duplex = data.get("apartment-has-type-duplex")?.valueOf() === undefined ? null : "yes";
     const apartments_has_type_penthouse = data.get("apartment-has-type-penthouse")?.valueOf() === undefined ? null : "yes";
+    const has_furnished = data.get("has-furnished")?.valueOf() === undefined ? null : "yes";
+    const has_semi_furnished = data.get("has-semi-furnished")?.valueOf() === undefined ? null : "yes";
+    const has_service_apartments = data.get("has-service-apartments")?.valueOf() === undefined ? null : "yes";
+    const has_hotel_suites_apartments = data.get("has-hotel-suites-apartments")?.valueOf() === undefined ? null : "yes";
 
 
     const construction_area = parseInt(data.get("construction-area")?.valueOf() as string);
@@ -185,6 +189,10 @@ export default async function editForm(data: FormData) {
             apartments_has_type_5_bed: apartments_has_type_5_bed,
             apartments_has_type_duplex: apartments_has_type_duplex,
             apartments_has_type_penthouse: apartments_has_type_penthouse,
+            has_furnished: has_furnished,
+            has_semi_furnished: has_semi_furnished,
+            has_service_apartments: has_service_apartments,
+            has_hotel_suites_apartments: has_hotel_suites_apartments,
             apartments_count: apartments_count,
             building_survery_remarks: building_survery_remarks,
             survey_date: survey_date

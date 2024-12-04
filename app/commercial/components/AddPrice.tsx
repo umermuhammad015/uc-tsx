@@ -3,7 +3,7 @@
 import prisma from "@/app/db"
 
 export default async function AddPrice(entryDate: string, id: number, price: number, plot_size: any, property_type: string,
-    apartment_size: string, building_size: string, shop_size: string, payment_mode: string, office_size: string, total_floor: string, total_bed: string,
+    apartment_size: string, warehouse_size: string, building_size: string, shop_size: string, payment_mode: string, office_size: string, total_floor: string, total_bed: string,
     building_sq: any, rent: number, down_payment: number, total_price: number, possession_amount: number, installment_period: number, remarks: string) {
 
     // console.log("add plot called")
@@ -27,6 +27,7 @@ export default async function AddPrice(entryDate: string, id: number, price: num
                 shop_size: shop_size as string,
                 office_size: office_size as string,
                 apartment_size: apartment_size as string,
+                warehouse_size: warehouse_size as string,
                 total_bed: total_bed as string,
                 payment_mode: payment_mode as string,
                 price: price,

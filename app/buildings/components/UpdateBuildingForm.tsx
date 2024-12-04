@@ -178,7 +178,7 @@ export default function UpdatePlotForm({ building }: any) {
                     {/* Area/Society  */}
                     <div className="mt-4">
                         <label htmlFor="area" className="block mb-2 text-sm font-medium">
-                            Area/Society:
+                            Area / Society:
                         </label>
                         <Input
                             type="text"
@@ -216,7 +216,7 @@ export default function UpdatePlotForm({ building }: any) {
                     {/* Location/Address  */}
                     <div className="mt-4">
                         <label htmlFor="address" className="block mb-2 text-sm font-medium">
-                            Location/Address:
+                            Location / Address:
                         </label>
                         <Input
                             type="text"
@@ -607,7 +607,7 @@ export default function UpdatePlotForm({ building }: any) {
                                         htmlFor="building-facility-none"
                                         className="ml-2 text-sm font-medium  "
                                     >
-                                        None of these
+                                        None
                                     </label>
                                 </div>
                             </div>
@@ -963,7 +963,7 @@ export default function UpdatePlotForm({ building }: any) {
                                 Apartments Type
                             </legend>
 
-                            <div className="flex gap-10">
+                            <div className="grid grid-cols-6 gap-4">
                                 <div className="flex items-center mb-4 ml-2">
                                     <input
                                         id="apartment-studio"
@@ -1096,6 +1096,75 @@ export default function UpdatePlotForm({ building }: any) {
                                         className="ml-2 text-sm font-medium  "
                                     >
                                         Penthouse
+                                    </label>
+                                </div>
+
+                                <div className="flex items-center mb-4 ml-2">
+                                    <input
+                                        id="has-furnished"
+                                        name="has-furnished"
+                                        type="checkbox"
+                                        value="yes"
+                                        defaultChecked={building?.has_furnished ? true : false}
+                                        className="checkbox checkbox-primary"
+                                    />
+                                    <label
+                                        htmlFor="has-furnished"
+                                        className="ml-2 text-sm font-medium  "
+                                    >
+                                        Furnished
+                                    </label>
+                                </div>
+
+
+                                <div className="flex items-center mb-4 ml-2">
+                                    <input
+                                        id="has-semi-furnished"
+                                        name="has-semi-furnished"
+                                        type="checkbox"
+                                        value="yes"
+                                        defaultChecked={building?.has_semi_furnished ? true : false}
+                                        className="checkbox checkbox-primary"
+                                    />
+                                    <label
+                                        htmlFor="has-semi-furnished"
+                                        className="ml-2 text-sm font-medium  "
+                                    >
+                                        Semi-Furnished
+                                    </label>
+                                </div>
+
+                                <div className="flex items-center mb-4 ml-2">
+                                    <input
+                                        id="has-service-apartments"
+                                        name="has-service-apartments"
+                                        type="checkbox"
+                                        value="yes"
+                                        defaultChecked={building?.has_service_apartments ? true : false}
+                                        className="checkbox checkbox-primary"
+                                    />
+                                    <label
+                                        htmlFor="has-service-apartments"
+                                        className="ml-2 text-sm font-medium  "
+                                    >
+                                        Service Apartments
+                                    </label>
+                                </div>
+
+                                <div className="flex items-center mb-4 ml-2">
+                                    <input
+                                        id="has-hotel-suites-apartments"
+                                        name="has-hotel-suites-apartments"
+                                        type="checkbox"
+                                        value="yes"
+                                        defaultChecked={building?.has_hotel_suites_apartments ? true : false}
+                                        className="checkbox checkbox-primary"
+                                    />
+                                    <label
+                                        htmlFor="has-hotel-suites-apartments"
+                                        className="ml-2 text-sm font-medium"
+                                    >
+                                        Hotel Suites Apartments
                                     </label>
                                 </div>
                             </div>

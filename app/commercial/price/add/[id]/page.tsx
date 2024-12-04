@@ -39,6 +39,7 @@ export default function PriceAddPage({ params }: Props) {
     // const [apartment_size_ft, setApartment_size_ft] = useState<any>();
     const [shop_size, setShop_size] = useState<any>();
     const [office_size, setOffice_size] = useState<any>();
+    const [warehouse_size, setWarehouse_size] = useState<any>();
     const [total_floor, setTotal_floor] = useState<any>();
     const [building_sq, setBuilding_sq] = useState<any>();
     const [total_bed, setTotal_bed] = useState<any>();
@@ -64,7 +65,7 @@ export default function PriceAddPage({ params }: Props) {
             // console.log(params.id)
 
             const add_price_output = await AddPrice(entryDate, params.id, price, plot_size, property_type,
-                apartment_size, building_size, shop_size, payment_mode, office_size, total_floor, total_bed,
+                apartment_size, warehouse_size, building_size, shop_size, payment_mode, office_size, total_floor, total_bed,
                 building_sq, rent, down_payment, total_price, possession_amount, installment_period, remarks)
 
 
@@ -85,6 +86,7 @@ export default function PriceAddPage({ params }: Props) {
             setBuilding_sq("")
             setShop_size("")
             setOffice_size("")
+            setWarehouse_size("")
             setApartment_size("")
             setTotal_bed("")
             setPayment_mode("")
@@ -95,8 +97,8 @@ export default function PriceAddPage({ params }: Props) {
             setDown_payment(0)
             setpossession_Amount(0)
             setRemarks("")
-            
-           
+
+
 
 
 
@@ -388,6 +390,50 @@ export default function PriceAddPage({ params }: Props) {
 
                         }
 
+                        {/* COMMERCIAL PLOT  */}
+                        {
+                            property_type === "Warehouse" &&
+                            <>
+                                <div className="mt-4">
+                                    <label
+                                        htmlFor="warehouse-size"
+                                        className="block mb-2 text-sm font-medium"
+                                    >
+                                        Property Size (Sq. Yards):
+                                    </label>
+                                    <select
+                                        id="warehouse-size"
+                                        name="warehouse-size"
+                                        value={warehouse_size}
+                                        className="select w-full text-sm pl-2 h-10 max-w-xs border-2 rounded border-gray-400 bg-background"
+                                        onChange={(e) => setWarehouse_size(e.target.value)}
+                                    >
+                                        <option value="">All</option>
+                                        <option value="50">50</option>
+                                        <option value="75">75</option>
+                                        <option value="100">100</option>
+                                        <option value="125">125</option>
+                                        <option value="200">200</option>
+                                        <option value="250">250</option>
+                                        <option value="300">300</option>
+                                        <option value="400">400</option>
+                                        <option value="500">500</option>
+                                        <option value="800">800</option>
+                                        <option value="1,000">1,000</option>
+                                        <option value="1,500">1,500</option>
+                                        <option value="2,000">2,000</option>
+                                        <option value="2,500">2,500</option>
+                                        <option value="3,000">3,000</option>
+                                        <option value="3,500">3,500</option>
+                                        <option value="4,000">4,000</option>
+                                        <option value="5,000">5,000</option>
+                                        <option value="6,000">6,000</option>
+                                    </select>
+                                </div>
+                            </>
+
+                        }
+
                         {/* Payment Mode*/}
                         <div className="mt-4">
                             <label
@@ -435,7 +481,7 @@ export default function PriceAddPage({ params }: Props) {
                             </div>
                         </div>
 
-                        
+
 
                         {/* rent  */}
                         <div className="mt-4">
@@ -478,7 +524,7 @@ export default function PriceAddPage({ params }: Props) {
                                         htmlFor="total-price"
                                         className="block mb-2 text-sm font-medium"
                                     >
-                                        Total Price (Rs.):
+                                        Instalments Amount:
                                     </label>
                                     <div className="flex">
                                         <Input

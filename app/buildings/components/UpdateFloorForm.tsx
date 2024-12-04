@@ -442,7 +442,7 @@ export default function UpdatePlotForm({ floor }: any) {
                                         htmlFor="building-floor-instalment-period"
                                         className="block mb-2 text-sm font-medium"
                                     >
-                                        Installment Period (Years)
+                                        Installment Period (Month)
                                     </label>
                                     <div className="flex">
                                         <Input

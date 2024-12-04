@@ -29,6 +29,8 @@ export default async function UpdatePrice(data: FormData) {
 
     const apartment_size = data.get("apartment-size")?.valueOf();
 
+    const warehouse_size = data.get("warehouse-size")?.valueOf();
+
     const total_bed = data.get("total-bed")?.valueOf();
 
     const payment_mode = data.get("payment-mode")?.valueOf();
@@ -63,6 +65,7 @@ export default async function UpdatePrice(data: FormData) {
             shop_size: shop_size as string,
             office_size: office_size as string,
             apartment_size: apartment_size as string,
+            warehouse_size: warehouse_size as string,
             total_bed: total_bed as string,
             payment_mode: payment_mode as string,
             price: price,

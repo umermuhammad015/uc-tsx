@@ -85,6 +85,22 @@ export default async function createBuilding(data: FormData) {
     .get("apartment-has-type-duplex")
     ?.valueOf();
 
+  const has_furnished = data
+    .get("has-furnished")
+    ?.valueOf();
+
+  const has_semi_furnished = data
+    .get("has-semi-furnished")
+    ?.valueOf();
+
+  const has_service_apartments = data
+    .get("has-service-apartments")
+    ?.valueOf();
+
+  const has_hotel_suites_apartments = data
+    .get("has-hotel-suites-apartments")
+    ?.valueOf();
+
   const apartment_has_type_penthouse = data
     .get("apartment-has-type-penthouse")
     ?.valueOf();
@@ -341,6 +357,10 @@ export default async function createBuilding(data: FormData) {
       apartments_has_type_5_bed: apartment_has_type_5_bed as string,
       apartments_has_type_duplex: apartment_has_type_duplex as string,
       apartments_has_type_penthouse: apartment_has_type_penthouse as string,
+      has_furnished: has_furnished as string,
+      has_semi_furnished: has_semi_furnished as string,
+      has_service_apartments: has_service_apartments as string,
+      has_hotel_suites_apartments: has_hotel_suites_apartments as string,
       apartments_has_servant_quarter: apartment_has_servant_quarter as string,
       apartments_maintenance_fee: apartments_maintenance_fee,
       retail_floors_count: retail_floors_count,

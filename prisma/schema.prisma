@@ -63,6 +63,10 @@ model Buildings {
   apartments_has_type_duplex     String?
   apartments_has_type_penthouse  String?
   apartments_has_servant_quarter String?
+  has_furnished                  String?
+  has_semi_furnished             String?
+  has_service_apartments         String?
+  has_hotel_suites_apartments    String?
   apartments_maintenance_fee     Int?
   retail_floors_count            Int?
   retail_floors_shops_count      Int?
@@ -333,6 +337,7 @@ model Price {
   shop_size          String?
   office_size        String?
   apartment_size     String?
+  warehouse_size     String?
   total_bed          String?
   payment_mode       String?
   price              Int?

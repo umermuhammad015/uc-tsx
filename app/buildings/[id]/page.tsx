@@ -289,6 +289,22 @@ export default async function ViewBuilding({ params }: Props) {
                   // <div className="badge bg-cyan-800 text-white">Penthouse</div>
                   <Badge>Penthouse</Badge>
                 )}
+                {building?.has_furnished && (
+                  // <div className="badge bg-cyan-800 text-white">Penthouse</div>
+                  <Badge>Furnished</Badge>
+                )}
+                {building?.has_semi_furnished && (
+                  // <div className="badge bg-cyan-800 text-white">Penthouse</div>
+                  <Badge>Semi Furnished</Badge>
+                )}
+                {building?.has_service_apartments && (
+                  // <div className="badge bg-cyan-800 text-white">Penthouse</div>
+                  <Badge>Service Apartments</Badge>
+                )}
+                {building?.has_hotel_suites_apartments && (
+                  // <div className="badge bg-cyan-800 text-white">Penthouse</div>
+                  <Badge>Hotel Suites Apartments</Badge>
+                )}
               </TableCell >
             </TableRow>
             <TableRow>

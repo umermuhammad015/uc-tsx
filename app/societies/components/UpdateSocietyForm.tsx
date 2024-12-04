@@ -190,6 +190,24 @@ export default function UpdatePlotForm({ societies }: any) {
 
                     </div>
 
+                    {/* Total Phase/ Sectors/ Blocks*/}
+                    <div className="mt-4">
+                        <label
+                            htmlFor="societies-blocks"
+                            className="block mb-2 text-sm font-medium"
+                        >
+                            Total phase / sectors :
+                        </label>
+                        <Input
+                            type="text"
+                            id="societies-blocks"
+                            name="societies-blocks"
+                            className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+                            defaultValue={societies?.blocks as string}
+                            placeholder=""
+                        />
+                    </div>
+
                     {/* Location/Address  */}
                     <div className="mt-4">
                         <label htmlFor="societies-address" className="block mb-2 text-sm font-medium">
@@ -309,23 +327,7 @@ export default function UpdatePlotForm({ societies }: any) {
                         </div>
                     </div>
 
-                    {/* Total Phase/ Sectors/ Blocks*/}
-                    <div className="mt-4">
-                        <label
-                            htmlFor="societies-blocks"
-                            className="block mb-2 text-sm font-medium"
-                        >
-                            Total Phase/ Sectors/ Blocks:
-                        </label>
-                        <Input
-                            type="text"
-                            id="societies-blocks"
-                            name="societies-blocks"
-                            className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-                            defaultValue={societies?.blocks as string}
-                            placeholder=""
-                        />
-                    </div>
+                    
 
                     {/* Occupancy Ratio */}
                     <div className="mt-4">

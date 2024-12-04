@@ -183,7 +183,8 @@ export default async function ViewCommercail({ params }: Props) {
                                             : price?.property_type === 'Shops' ? price?.shop_size
                                                 : price?.property_type === 'Offices' ? price?.office_size
                                                     : price?.property_type === 'Commercial Plot' ? price?.plot_size
-                                                        : price?.building_size
+                                                        : price?.property_type === 'Warehouse' ? price?.warehouse_size
+                                                            : price?.building_size
                                     }
 
                                 </TableCell>

@@ -332,13 +332,13 @@ export default function PlotAddPage({ params }: Props) {
                                     >
                                         <option value="">Select</option>
                                         {(current_society.apartment_studio === "yes") && <option value="Studio">Studio</option>}
-                                        {(current_society.apartment_one_bad === "yes") && <option value="1 Bed">1 Bed</option>}
-                                        {(current_society.apartment_two_bad === "yes") && <option value="2 Bed">2 Bed</option>}
-                                        {(current_society.apartment_three_bad === "yes") && <option value="3 Bed">3 Bed</option>}
-                                        {(current_society.apartment_four_bad === "yes") && <option value="4 Bed">4 Bed</option>}
-                                        {(current_society.apartment_five_bad === "yes") && <option value="5 Bed">5 Bed</option>}
-                                        {(current_society.apartment_penthouse === "yes") && <option value="Penthouse">Penthouse</option>}
-                                        {(current_society.apartment_duplex === "yes") && <option value="Duplex">Duplex</option>}
+                                        {(current_society.apartments_has_type_1_bed === "yes") && <option value="1 Bed">1 Bed</option>}
+                                        {(current_society.apartments_has_type_2_bed === "yes") && <option value="2 Bed">2 Bed</option>}
+                                        {(current_society.apartments_has_type_3_bed === "yes") && <option value="3 Bed">3 Bed</option>}
+                                        {(current_society.apartments_has_type_4_bed === "yes") && <option value="4 Bed">4 Bed</option>}
+                                        {(current_society.apartments_has_type_5_bed === "yes") && <option value="5 Bed">5 Bed</option>}
+                                        {(current_society.apartments_has_type_penthouse === "yes") && <option value="Penthouse">Penthouse</option>}
+                                        {(current_society.apartments_has_type_duplex === "yes") && <option value="Duplex">Duplex</option>}
                                     </select>
 
                                 </div>
