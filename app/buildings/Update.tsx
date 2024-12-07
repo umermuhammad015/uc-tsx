@@ -9,8 +9,8 @@ async function updateBuilding(data: FormData){
     const city = data.get("building-city")?.valueOf()
 
 
-    console.log(name)
-    console.log(city)
+    // console.log(name)
+    // console.log(city)
 
 
     if(typeof name !== "string" || name.length === 0){

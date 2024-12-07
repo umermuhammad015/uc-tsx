@@ -291,7 +291,7 @@ export default function UpdatePlotForm({ floor }: any) {
                                         min="0"
                                         onChange={(e) => {
                                             setSize_Min(Number(e.target.value))
-                                            console.log(e.target.value)
+                                            // console.log(e.target.value)
                                         }}
                                     />
 
@@ -320,7 +320,7 @@ export default function UpdatePlotForm({ floor }: any) {
                                         min="0"
                                         onChange={(e) => {
                                             setSize_Max(Number(e.target.value))
-                                            console.log(e.target.value)
+                                            // console.log(e.target.value)
                                         }}
                                     />
                                     <div className="m-4">
@@ -348,7 +348,7 @@ export default function UpdatePlotForm({ floor }: any) {
                                         min="0"
                                         onChange={(e) => {
                                             setAvg_Sale_Price(Number(e.target.value))
-                                            console.log(e.target.value)
+                                            // console.log(e.target.value)
                                         }}
                                     />
                                     <div className="m-4">
@@ -376,7 +376,7 @@ export default function UpdatePlotForm({ floor }: any) {
                                         min="0"
                                         onChange={(e) => {
                                             setAvg_Monthly_Rent(Number(e.target.value))
-                                            console.log(e.target.value)
+                                            // console.log(e.target.value)
                                         }}
                                     />
                                     <div className="m-4">
@@ -455,7 +455,7 @@ export default function UpdatePlotForm({ floor }: any) {
                                             min="0"
                                             onChange={(e) => {
                                                 setInstalment_Period(Number(e.target.value))
-                                                console.log(e.target.value)
+                                                // console.log(e.target.value)
                                             }}
                                         />
                                         <div className="m-4">
@@ -485,7 +485,7 @@ export default function UpdatePlotForm({ floor }: any) {
                                             min="0"
                                             onChange={(e) => {
                                                 setInstalment_Amount(Number(e.target.value))
-                                                console.log(e.target.value)
+                                                // console.log(e.target.value)
                                             }}
                                         />
                                         <div className="m-4">
@@ -513,7 +513,7 @@ export default function UpdatePlotForm({ floor }: any) {
                                             min="0"
                                             onChange={(e) => {
                                                 setDown_Payment_Amount(Number(e.target.value))
-                                                console.log(e.target.value)
+                                                // console.log(e.target.value)
                                             }}
                                         />
                                         <div className="m-4">
@@ -541,7 +541,7 @@ export default function UpdatePlotForm({ floor }: any) {
                                             min="0"
                                             onChange={(e) => {
                                                 setPossession_Amount(Number(e.target.value))
-                                                console.log(e.target.value)
+                                                // console.log(e.target.value)
                                             }}
                                         />
                                         <div className="m-4">

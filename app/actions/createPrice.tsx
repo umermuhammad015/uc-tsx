@@ -6,7 +6,7 @@ import { revalidatePath } from "next/cache";
 
 export default async function createPrice(data: FormData) {
 
-    console.log("🚀 ~ file: page.tsx:10 ~ createPlots ~ data:", data);
+    // console.log("🚀 ~ file: page.tsx:10 ~ createPlots ~ data:", data);
 
 
     const date = (new Date(data.get("date")?.valueOf() as string)).toISOString().substring(0, 10);

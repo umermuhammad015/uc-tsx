@@ -67,14 +67,14 @@ export default async function editForm(data: FormData) {
 
     const plot_size = parseInt(data.get("plot-size")?.valueOf() as string);
 
-    const apartments_studio = data.get("apartment-studio")?.valueOf() === undefined ? null : "yes";
-    const apartments_has_type_1_bed = data.get("apartment-has-type-1-bed")?.valueOf() === undefined ? null : "yes";
-    const apartments_has_type_2_bed = data.get("apartment-has-type-2-bed")?.valueOf() === undefined ? null : "yes";
-    const apartments_has_type_3_bed = data.get("apartment-has-type-3-bed")?.valueOf() === undefined ? null : "yes";
-    const apartments_has_type_4_bed = data.get("apartment-has-type-4-bed")?.valueOf() === undefined ? null : "yes";
-    const apartments_has_type_5_bed = data.get("apartment-has-type-5-bed")?.valueOf() === undefined ? null : "yes";
-    const apartments_has_type_duplex = data.get("apartment-has-type-duplex")?.valueOf() === undefined ? null : "yes";
-    const apartments_has_type_penthouse = data.get("apartment-has-type-penthouse")?.valueOf() === undefined ? null : "yes";
+    const apartments_studio = data.get("apartments-studio")?.valueOf() === undefined ? null : "yes";
+    const apartments_has_type_1_bed = data.get("apartments-has-type-1-bed")?.valueOf() === undefined ? null : "yes";
+    const apartments_has_type_2_bed = data.get("apartments-has-type-2-bed")?.valueOf() === undefined ? null : "yes";
+    const apartments_has_type_3_bed = data.get("apartments-has-type-3-bed")?.valueOf() === undefined ? null : "yes";
+    const apartments_has_type_4_bed = data.get("apartments-has-type-4-bed")?.valueOf() === undefined ? null : "yes";
+    const apartments_has_type_5_bed = data.get("apartments-has-type-5-bed")?.valueOf() === undefined ? null : "yes";
+    const apartments_has_type_duplex = data.get("apartments-has-type-duplex")?.valueOf() === undefined ? null : "yes";
+    const apartments_has_type_penthouse = data.get("apartments-has-type-penthouse")?.valueOf() === undefined ? null : "yes";
     const has_furnished = data.get("has-furnished")?.valueOf() === undefined ? null : "yes";
     const has_semi_furnished = data.get("has-semi-furnished")?.valueOf() === undefined ? null : "yes";
     const has_service_apartments = data.get("has-service-apartments")?.valueOf() === undefined ? null : "yes";
@@ -114,8 +114,8 @@ export default async function editForm(data: FormData) {
     // console.log(apartments_has_type_4_bed)
     // console.log(apartments_has_type_duplex)
     // console.log(apartments_has_type_penthouse)
-    console.log("Date is: ")
-    console.log(survey_date)
+    // console.log("Date is: ")
+    // console.log(survey_date)
 
 
 
@@ -199,8 +199,8 @@ export default async function editForm(data: FormData) {
         }
     }
 
-    console.log("Update Query is")
-    console.log(update_query)
+    // console.log("Update Query is")
+    // console.log(update_query)
 
     const updateBuilding = await prisma.buildings.update(update_query)
     redirect('/buildings')

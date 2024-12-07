@@ -141,7 +141,21 @@ export default function Page() {
             >
               Zone:
             </label>
-            <Select
+            <select
+              id="zone"
+              required
+              name="zone"
+              className="select  w-full text-sm pl-2 h-10 max-w-xs border-2 rounded border-gray-400 bg-background"
+
+            >
+              <option value="">Select</option>
+              <option value="East">East</option>
+              <option value="West">West</option>
+              <option value="North">North</option>
+              <option value="South">South</option>
+              <option value="Central">Central</option>
+            </select>
+            {/* <Select
               name="zone">
               <SelectTrigger
                 id="zone"
@@ -158,7 +172,7 @@ export default function Page() {
                   <SelectItem value="Central">Central</SelectItem>
                 </SelectGroup>
               </SelectContent>
-            </Select>
+            </Select> */}
           </div>
 
           {/* Area/Society  */}
@@ -309,7 +323,18 @@ export default function Page() {
             >
               Building Status:
             </label>
-            <Select
+            <select
+              id="building-status"
+              name="building-status"
+              className="select  w-full text-sm pl-2 h-10 max-w-xs border-2 rounded border-gray-400 bg-background"
+
+            >
+              <option value="">Select</option>
+              <option value="Pre-Launch">Pre-Launch</option>
+              <option value="Under Construction">Under Construction</option>
+              <option value="Constructed">Constructed</option>
+            </select>
+            {/* <Select
               name="building-status">
               <SelectTrigger
                 id="building-status"
@@ -324,7 +349,7 @@ export default function Page() {
                   <SelectItem value="Constructed">Constructed</SelectItem>
                 </SelectGroup>
               </SelectContent>
-            </Select>
+            </Select> */}
           </div>
 
           {/* Plot size  */}
@@ -345,7 +370,7 @@ export default function Page() {
                 placeholder="(Sq. Yards)"
                 onChange={(e) => {
                   setPlot_Size(Number(e.target.value))
-                  console.log(e.target.value)
+                  // console.log(e.target.value)
                 }}
               />
               <div className="m-4">
@@ -371,7 +396,7 @@ export default function Page() {
                 placeholder="(Sq. Yards)"
                 onChange={(e) => {
                   setConstruction_Area(Number(e.target.value))
-                  console.log(e.target.value)
+                  // console.log(e.target.value)
                 }}
               />
               <div className="m-4">
@@ -414,7 +439,7 @@ export default function Page() {
                 className="input input-bordered w-full max-w-xs border-2 border-gray-400"
                 onChange={(e) => {
                   setLaunch_year(Number(e.target.value))
-                  console.log(e.target.value)
+                  // console.log(e.target.value)
                 }}
               />
               {/* <div className="m-4">
@@ -450,7 +475,20 @@ export default function Page() {
             >
               Building Rank:
             </label>
-            <Select
+            <select
+              id="building-rank"
+              name="building-rank"
+              className="select  w-full text-sm pl-2 h-10 max-w-xs border-2 rounded border-gray-400 bg-background"
+
+            >
+              <option value="">Select</option>
+              <option value="A+">A+</option>
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+            </select>
+
+            {/* <Select
               name="building-rank">
               <SelectTrigger
                 id="building-rank"
@@ -460,13 +498,14 @@ export default function Page() {
               <SelectContent>
                 <SelectGroup>
                   <SelectLabel></SelectLabel>
+                  <SelectItem value=" ">select</SelectItem>
                   <SelectItem value="A+">A+</SelectItem>
                   <SelectItem value="A">A</SelectItem>
                   <SelectItem value="B">B</SelectItem>
                   <SelectItem value="C">C</SelectItem>
                 </SelectGroup>
               </SelectContent>
-            </Select>
+            </Select> */}
           </div>
 
           {/* Total Floors  */}
@@ -974,14 +1013,14 @@ export default function Page() {
               <div className="grid grid-cols-6 gap-4">
                 <div className="flex items-center mb-4 ml-2">
                   <input
-                    id="apartment-studio"
-                    name="apartment-studio"
+                    id="apartments-studio"
+                    name="apartments-studio"
                     type="checkbox"
                     value="yes"
                     className="checkbox checkbox-primary"
                   />
                   <label
-                    htmlFor="apartment-studio"
+                    htmlFor="apartments-studio"
                     className="ml-2 text-sm font-medium  "
                   >
                     Studio
@@ -990,14 +1029,14 @@ export default function Page() {
 
                 <div className="flex items-center mb-4 ml-2">
                   <input
-                    id="apartment-has-type-1-bed"
-                    name="apartment-has-type-1-bed"
+                    id="apartments-has-type-1-bed"
+                    name="apartments-has-type-1-bed"
                     type="checkbox"
                     value="yes"
                     className="checkbox checkbox-primary"
                   />
                   <label
-                    htmlFor="apartment-has-type-1-bed"
+                    htmlFor="apartments-has-type-1-bed"
                     className="ml-2 text-sm font-medium  "
                   >
                     1-Bed
@@ -1006,14 +1045,14 @@ export default function Page() {
 
                 <div className="flex items-center mb-4 ml-2">
                   <input
-                    id="apartment-has-type-2-bed"
-                    name="apartment-has-type-2-bed"
+                    id="apartments-has-type-2-bed"
+                    name="apartments-has-type-2-bed"
                     type="checkbox"
                     value="yes"
                     className="checkbox checkbox-primary"
                   />
                   <label
-                    htmlFor="apartment-has-type-2-bed"
+                    htmlFor="apartments-has-type-2-bed"
                     className="ml-2 text-sm font-medium  "
                   >
                     2-Bed
@@ -1022,14 +1061,14 @@ export default function Page() {
 
                 <div className="flex items-center mb-4 ml-2">
                   <input
-                    id="apartment-has-type-3-bed"
-                    name="apartment-has-type-3-bed"
+                    id="apartments-has-type-3-bed"
+                    name="apartments-has-type-3-bed"
                     type="checkbox"
                     value="yes"
                     className="checkbox checkbox-primary"
                   />
                   <label
-                    htmlFor="apartment-has-type-3-bed"
+                    htmlFor="apartments-has-type-3-bed"
                     className="ml-2 text-sm font-medium  "
                   >
                     3-Bed
@@ -1038,14 +1077,14 @@ export default function Page() {
 
                 <div className="flex items-center mb-4 ml-2">
                   <input
-                    id="apartment-has-type-4-bed"
-                    name="apartment-has-type-4-bed"
+                    id="apartments-has-type-4-bed"
+                    name="apartments-has-type-4-bed"
                     type="checkbox"
                     value="yes"
                     className="checkbox checkbox-primary"
                   />
                   <label
-                    htmlFor="apartment-has-type-4-bed"
+                    htmlFor="apartments-has-type-4-bed"
                     className="ml-2 text-sm font-medium  "
                   >
                     4-Bed
@@ -1053,14 +1092,14 @@ export default function Page() {
                 </div>
                 <div className="flex items-center mb-4 ml-2">
                   <input
-                    id="apartment-has-type-5-bed"
-                    name="apartment-has-type-5-bed"
+                    id="apartments-has-type-5-bed"
+                    name="apartments-has-type-5-bed"
                     type="checkbox"
                     value="yes"
                     className="checkbox checkbox-primary"
                   />
                   <label
-                    htmlFor="apartment-has-type-5-bed"
+                    htmlFor="apartments-has-type-5-bed"
                     className="ml-2 text-sm font-medium  "
                   >
                     5-Bed
@@ -1069,14 +1108,14 @@ export default function Page() {
 
                 <div className="flex items-center mb-4 ml-2">
                   <input
-                    id="apartment-has-type-duplex"
-                    name="apartment-has-type-duplex"
+                    id="apartments-has-type-duplex"
+                    name="apartments-has-type-duplex"
                     type="checkbox"
                     value="yes"
                     className="checkbox checkbox-primary"
                   />
                   <label
-                    htmlFor="apartment-has-type-duplex"
+                    htmlFor="apartments-has-type-duplex"
                     className="ml-2 text-sm font-medium  "
                   >
                     Duplex
@@ -1085,14 +1124,15 @@ export default function Page() {
 
                 <div className="flex items-center mb-4 ml-2">
                   <input
-                    id="apartment-has-type-penthouse"
-                    name="apartment-has-type-penthouse"
+                    id="apartments-has-type-penthouse"
+                    name="apartments-has-type-penthouse"
+                    
                     type="checkbox"
                     value="yes"
                     className="checkbox checkbox-primary"
                   />
                   <label
-                    htmlFor="apartment-has-type-penthouse"
+                    htmlFor="apartments-has-type-penthouse"
                     className="ml-2 text-sm font-medium  "
                   >
                     Penthouse
@@ -1173,7 +1213,7 @@ export default function Page() {
               htmlFor="apartment-has-servant-quarter"
               className="block mb-2 text-sm font-medium"
             >
-              Servant Quarter
+              Servant Quarter:
             </label>
 
             <select

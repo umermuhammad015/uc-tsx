@@ -39,8 +39,8 @@ export default async function AddPlot(entryDate: string, avg_sale_price: number,
             },
         });
 
-        console.log("plot inserted successfully")
-        console.log(crt)
+        // console.log("plot inserted successfully")
+        // console.log(crt)
 
         return ("created successfully")
 

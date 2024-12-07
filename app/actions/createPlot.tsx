@@ -18,7 +18,7 @@ export default async function createPlot(data: FormData) {
 
 
     
-    console.log("🚀 ~ file: page.tsx:10 ~ createPlots ~ data:", data);
+    // console.log("🚀 ~ file: page.tsx:10 ~ createPlots ~ data:", data);
 
 
     const plot_date = (new Date(data.get("plot-date")?.valueOf() as string)).toISOString().substring(0, 10);
@@ -58,16 +58,16 @@ export default async function createPlot(data: FormData) {
 
     const add_more = data.get("add-more-plots")
 
-    console.log(plot_date)
-    console.log("🚀 ~ file: page.tsx:9 ~ createPlots ~ society_id:", society_id);
-    console.log("🚀 ~ file: page.tsx:9 ~ createPlots ~ plot_type:", plot_type);
-    console.log("🚀 ~ file: page.tsx:9 ~ createPlots ~ type:", type);
-    console.log("🚀 ~ file: page.tsx:9 ~ createPlots ~ plot_size:", plot_size);
-    console.log("🚀 ~ file: page.tsx:9 ~ createPlots ~ apartment_size_ft:", apartment_size_ft);
-    console.log("🚀 ~ file: page.tsx:9 ~ createPlots ~ plot_price:", plot_price);
-    console.log("🚀 ~ file: page.tsx:9 ~ createPlots ~ plot_rent:", plot_rent);
-    console.log("🚀 ~ file: page.tsx:9 ~ createPlots ~ plot_remarks:", plot_remarks);
-    console.log("🚀 ~ file: page.tsx:9 ~ createPlots ~ add_more:", add_more);
+    // console.log(plot_date)
+    // console.log("🚀 ~ file: page.tsx:9 ~ createPlots ~ society_id:", society_id);
+    // console.log("🚀 ~ file: page.tsx:9 ~ createPlots ~ plot_type:", plot_type);
+    // console.log("🚀 ~ file: page.tsx:9 ~ createPlots ~ type:", type);
+    // console.log("🚀 ~ file: page.tsx:9 ~ createPlots ~ plot_size:", plot_size);
+    // console.log("🚀 ~ file: page.tsx:9 ~ createPlots ~ apartment_size_ft:", apartment_size_ft);
+    // console.log("🚀 ~ file: page.tsx:9 ~ createPlots ~ plot_price:", plot_price);
+    // console.log("🚀 ~ file: page.tsx:9 ~ createPlots ~ plot_rent:", plot_rent);
+    // console.log("🚀 ~ file: page.tsx:9 ~ createPlots ~ plot_remarks:", plot_remarks);
+    // console.log("🚀 ~ file: page.tsx:9 ~ createPlots ~ add_more:", add_more);
 
 
     await prisma.plots.create({

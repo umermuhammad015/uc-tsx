@@ -7,62 +7,62 @@ export default async function createCommercial(data: FormData) {
 
     
     const commercial_survey_date = (new Date(data.get("commercial-survey-date")?.valueOf() as string)).toISOString().substring(0, 10);
-    console.log(commercial_survey_date)
+    // console.log(commercial_survey_date)
 
     // const commercial_city = data.get("commercial-city")?.valueOf();
     // console.log(commercial_city)
 
     const commercial_city = data.get("commercial-city")?.valueOf();
-    console.log("🚀 ~ createcommercial ~ commercial_city:", commercial_city)
+    // console.log("🚀 ~ createcommercial ~ commercial_city:", commercial_city)
 
 
     const commercial_zone_name = data.get("commercial-zone-name")?.valueOf();
-    console.log("🚀 ~ createcommercial ~ commercial_zone_name:", commercial_zone_name)
+    // console.log("🚀 ~ createcommercial ~ commercial_zone_name:", commercial_zone_name)
 
     const commercial_zone = data.get("commercial-zone")?.valueOf();
-    console.log("🚀 ~ createcommercial ~ commercial_zone:", commercial_zone)
+    // console.log("🚀 ~ createcommercial ~ commercial_zone:", commercial_zone)
 
     const commercial_type = data.get("commercial-type")?.valueOf();
-    console.log("🚀 ~ createcommercial ~ commercial_type:", commercial_type)
+    // console.log("🚀 ~ createcommercial ~ commercial_type:", commercial_type)
 
     const commercial_location = data.get("commercial-location")?.valueOf();
-    console.log("🚀 ~ createcommercial ~ commercial_location:", commercial_location)
+    // console.log("🚀 ~ createcommercial ~ commercial_location:", commercial_location)
 
     const commercial_project_status = data.get("commercial-project-status")?.valueOf();
-    console.log("🚀 ~ createcommercial ~ commercial_project_status:", commercial_project_status)
+    // console.log("🚀 ~ createcommercial ~ commercial_project_status:", commercial_project_status)
 
     const commercial_launch_year = data.get("commercial-launch-year")?.valueOf();
-    console.log("🚀 ~ createcommercial ~ commercial_launch_year:", commercial_launch_year)
+    // console.log("🚀 ~ createcommercial ~ commercial_launch_year:", commercial_launch_year)
 
     const commercial_grade = data.get("commercial-grade")?.valueOf();
-    console.log("🚀 ~ createcommercial ~ commercial_grade:", commercial_grade)
+    // console.log("🚀 ~ createcommercial ~ commercial_grade:", commercial_grade)
 
     const commercial_area = data.get("commercial-area")?.valueOf();
-    console.log("🚀 ~ createcommercial ~ commercial_area:", commercial_area)
+    // console.log("🚀 ~ createcommercial ~ commercial_area:", commercial_area)
 
     const commercial_occupancy = parseInt(data.get("commercial-occupancy")?.valueOf() as string);
-    console.log("🚀 ~ createcommercial ~ commercial_occupancy:", commercial_occupancy)
+    // console.log("🚀 ~ createcommercial ~ commercial_occupancy:", commercial_occupancy)
 
     const total_plots = parseInt(data.get("total-plots")?.valueOf() as string);
-    console.log("🚀 ~ createcommercial ~ total_plots:", total_plots)
+    // console.log("🚀 ~ createcommercial ~ total_plots:", total_plots)
 
     const total_shops = parseInt(data.get("total-shops")?.valueOf() as string);
-    console.log("🚀 ~ createcommercial ~ total_shops:", total_shops)
+    // console.log("🚀 ~ createcommercial ~ total_shops:", total_shops)
 
     const total_offices = parseInt(data.get("total-offices")?.valueOf() as string);
-    console.log("🚀 ~ createcommercial ~ total_offices:", total_offices)
+    // console.log("🚀 ~ createcommercial ~ total_offices:", total_offices)
 
     const total_apartments = parseInt(data.get("total-apartments")?.valueOf() as string);
-    console.log("🚀 ~ createcommercial ~ total_apartments:", total_apartments)
+    // console.log("🚀 ~ createcommercial ~ total_apartments:", total_apartments)
 
     const property_feature = data.get("property-feature")?.valueOf();
-    console.log("🚀 ~ createcommercial ~ property_feature:", property_feature)
+    // console.log("🚀 ~ createcommercial ~ property_feature:", property_feature)
 
     const property_title = data.get("property-title")?.valueOf();
-    console.log("🚀 ~ createcommercial ~ property_title:", property_title)
+    // console.log("🚀 ~ createcommercial ~ property_title:", property_title)
 
     const remarks = data.get("remarks")?.valueOf();
-    console.log("🚀 ~ createcommercial ~ remarks:", remarks)
+    // console.log("🚀 ~ createcommercial ~ remarks:", remarks)
 
 
 

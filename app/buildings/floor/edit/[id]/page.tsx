@@ -19,7 +19,7 @@ type Props = {
 
 export default async function editFloorForm({ params }: Props) {
 
-    console.log(params)
+    // console.log(params)
 
     // building = prisma.buildings.find(
     //     {

@@ -61,28 +61,28 @@ export default async function createBuilding(data: FormData) {
 
   const apartments_count = parseInt(data.get("apartments-count")?.valueOf() as string);
 
-  const apartment_studio = data.get("apartment-studio")?.valueOf();
+  const apartments_studio = data.get("apartments-studio")?.valueOf();
 
-  const apartment_has_type_1_bed = data.get("apartment-has-type-1-bed")?.valueOf();
+  const apartments_has_type_1_bed = data.get("apartments-has-type-1-bed")?.valueOf();
 
-  const apartment_has_type_2_bed = data
-    .get("apartment-has-type-2-bed")
+  const apartments_has_type_2_bed = data
+    .get("apartments-has-type-2-bed")
     ?.valueOf();
 
-  const apartment_has_type_3_bed = data
-    .get("apartment-has-type-3-bed")
+  const apartments_has_type_3_bed = data
+    .get("apartments-has-type-3-bed")
     ?.valueOf();
 
-  const apartment_has_type_4_bed = data
-    .get("apartment-has-type-4-bed")
+  const apartments_has_type_4_bed = data
+    .get("apartments-has-type-4-bed")
     ?.valueOf();
 
-  const apartment_has_type_5_bed = data
-    .get("apartment-has-type-5-bed")
+  const apartments_has_type_5_bed = data
+    .get("apartments-has-type-5-bed")
     ?.valueOf();
 
-  const apartment_has_type_duplex = data
-    .get("apartment-has-type-duplex")
+  const apartments_has_type_duplex = data
+    .get("apartments-has-type-duplex")
     ?.valueOf();
 
   const has_furnished = data
@@ -158,158 +158,158 @@ export default async function createBuilding(data: FormData) {
     .get("building-survery-remarks")
     ?.valueOf();
 
-  console.log(
-    "🚀 ~ file: page.tsx:15 ~ createBuilding ~ is_centrally_air_conditioned:",
-    is_centrally_air_conditioned
-  );
-  console.log("🚀 ~ file: page.tsx:9 ~ createBuilding ~ name:", name);
-  console.log("🚀 ~ file: page.tsx:10 ~ createBuilding ~ city:", city);
-  console.log("🚀 ~ file: page.tsx:11 ~ createBuilding ~ status:", status);
-  console.log(
-    "🚀 ~ file: page.tsx:15 ~ createBuilding ~ is_centrally_air_conditioned:",
-    is_centrally_air_conditioned
-  );
-  console.log(
-    "🚀 ~ file: page.tsx:16 ~ createBuilding ~ has_security:",
-    has_security
-  );
-  console.log(
-    "🚀 ~ file: page.tsx:18 ~ createBuilding ~ has_escalators:",
-    has_escalators
-  );
-  console.log(
-    "🚀 ~ file: page.tsx:20 ~ createBuilding ~ has_food_court:",
-    has_food_court
-  );
-  console.log(
-    "🚀 ~ file: page.tsx:22 ~ createBuilding ~ has_entertainment_area:",
-    has_entertainment_area
-  );
-  console.log(
-    "🚀 ~ file: page.tsx:22 ~ createBuilding ~ has_none:",
-    has_none
-  );
+  // console.log(
+  //   "🚀 ~ file: page.tsx:15 ~ createBuilding ~ is_centrally_air_conditioned:",
+  //   is_centrally_air_conditioned
+  // );
+  // console.log("🚀 ~ file: page.tsx:9 ~ createBuilding ~ name:", name);
+  // console.log("🚀 ~ file: page.tsx:10 ~ createBuilding ~ city:", city);
+  // console.log("🚀 ~ file: page.tsx:11 ~ createBuilding ~ status:", status);
+  // console.log(
+  //   "🚀 ~ file: page.tsx:15 ~ createBuilding ~ is_centrally_air_conditioned:",
+  //   is_centrally_air_conditioned
+  // );
+  // console.log(
+  //   "🚀 ~ file: page.tsx:16 ~ createBuilding ~ has_security:",
+  //   has_security
+  // );
+  // console.log(
+  //   "🚀 ~ file: page.tsx:18 ~ createBuilding ~ has_escalators:",
+  //   has_escalators
+  // );
+  // console.log(
+  //   "🚀 ~ file: page.tsx:20 ~ createBuilding ~ has_food_court:",
+  //   has_food_court
+  // );
+  // console.log(
+  //   "🚀 ~ file: page.tsx:22 ~ createBuilding ~ has_entertainment_area:",
+  //   has_entertainment_area
+  // );
+  // console.log(
+  //   "🚀 ~ file: page.tsx:22 ~ createBuilding ~ has_none:",
+  //   has_none
+  // );
 
-  console.log(
-    "🚀 ~ file: page.tsx:26 ~ createBuilding ~ type_mixed_use:",
-    type_mixed_use
-  );
-  console.log(
-    "🚀 ~ file: page.tsx:28 ~ createBuilding ~ type_retail:",
-    type_retail
-  );
-  console.log(
-    "🚀 ~ file: page.tsx:30 ~ createBuilding ~ type_offices:",
-    type_offices
-  );
-  console.log(
-    "🚀 ~ file: page.tsx:32 ~ createBuilding ~ type_apartments:",
-    type_apartments
-  );
-  console.log(
-    "🚀 ~ file: page.tsx:34 ~ createBuilding ~ type_other:",
-    type_other
-  );
-  console.log("🚀 ~ file: page.tsx:36 ~ createBuilding ~ zone:", zone);
-  console.log("🚀 ~ file: page.tsx:38 ~ createBuilding ~ area:", area);
-  console.log("🚀 ~ file: page.tsx:40 ~ createBuilding ~ address:", address);
-  console.log(
-    "🚀 ~ file: page.tsx:42 ~ createBuilding ~ plot_size:",
-    plot_size
-  );
-  console.log(
-    "🚀 ~ file: page.tsx:44 ~ createBuilding ~ construction_area:",
-    construction_area
-  );
-  console.log(
-    "🚀 ~ file: page.tsx:46 ~ createBuilding ~ construction_year:",
-    construction_year
-  );
-  console.log(
-    "🚀 ~ file: page.tsx:48 ~ createBuilding ~ builder_name:",
-    builder_name
-  );
-  console.log("🚀 ~ file: page.tsx:50 ~ createBuilding ~ rank:", rank);
-  console.log(
-    "🚀 ~ file: page.tsx:52 ~ createBuilding ~ total_floors:",
-    total_floors
-  );
-  console.log(
-    "🚀 ~ file: page.tsx:54 ~ createBuilding ~ parking_floors:",
-    parking_floors
-  );
-  console.log(
-    "🚀 ~ file: page.tsx:56 ~ createBuilding ~ apartment_floors_count:",
-    apartment_floors_count
-  );
-  console.log(
-    "🚀 ~ file: page.tsx:58 ~ createBuilding ~ apartments_count:",
-    apartments_count
-  );
-  console.log(
-    "🚀 ~ file: page.tsx:60 ~ createBuilding ~ apartment_has_type_1_bed:",
-    apartment_has_type_1_bed
-  );
-  console.log(
-    "🚀 ~ file: page.tsx:62 ~ createBuilding ~ apartment_has_type_2_bed:",
-    apartment_has_type_2_bed
-  );
-  console.log(
-    "🚀 ~ file: page.tsx:64 ~ createBuilding ~ apartment_has_type_3_bed:",
-    apartment_has_type_3_bed
-  );
-  console.log(
-    "🚀 ~ file: page.tsx:66 ~ createBuilding ~ apartment_has_type_4_bed:",
-    apartment_has_type_4_bed
-  );
-  console.log(
-    "🚀 ~ file: page.tsx:68 ~ createBuilding ~ apartment_has_type_duplex:",
-    apartment_has_type_duplex
-  );
-  console.log(
-    "🚀 ~ file: page.tsx:70 ~ createBuilding ~ apartment_has_type_penthouse:",
-    apartment_has_type_penthouse
-  );
-  console.log(
-    "🚀 ~ file: page.tsx:72 ~ createBuilding ~ apartment_has_servant_quarter:",
-    apartment_has_servant_quarter
-  );
-  console.log(
-    "🚀 ~ file: page.tsx:74 ~ createBuilding ~ apartments_maintenance_fee:",
-    apartments_maintenance_fee
-  );
-  console.log(
-    "🚀 ~ file: page.tsx:76 ~ createBuilding ~ retail_floors_count:",
-    retail_floors_count
-  );
-  console.log(
-    "🚀 ~ file: page.tsx:78 ~ createBuilding ~ retail_floors_shops_count:",
-    retail_floors_shops_count
-  );
-  console.log(
-    "🚀 ~ file: page.tsx:80 ~ createBuilding ~ office_floors_count:",
-    office_floors_count
-  );
-  console.log(
-    "🚀 ~ file: page.tsx:82 ~ createBuilding ~ offices_count:",
-    offices_count
-  );
-  console.log(
-    "🚀 ~ file: page.tsx:84 ~ createBuilding ~ office_maintenance_fee:",
-    office_maintenance_fee
-  );
-  console.log(
-    "🚀 ~ file: page.tsx:86 ~ createBuilding ~ survey_date:",
-    survey_date
-  );
-  console.log(
-    "🚀 ~ file: page.tsx:88 ~ createBuilding ~ surveyor_name:",
-    surveyor_name
-  );
-  console.log(
-    "🚀 ~ file: page.tsx:90 ~ createBuilding ~ building_survery_remarks:",
-    building_survery_remarks
-  );
+  // console.log(
+  //   "🚀 ~ file: page.tsx:26 ~ createBuilding ~ type_mixed_use:",
+  //   type_mixed_use
+  // );
+  // console.log(
+  //   "🚀 ~ file: page.tsx:28 ~ createBuilding ~ type_retail:",
+  //   type_retail
+  // );
+  // console.log(
+  //   "🚀 ~ file: page.tsx:30 ~ createBuilding ~ type_offices:",
+  //   type_offices
+  // );
+  // console.log(
+  //   "🚀 ~ file: page.tsx:32 ~ createBuilding ~ type_apartments:",
+  //   type_apartments
+  // );
+  // console.log(
+  //   "🚀 ~ file: page.tsx:34 ~ createBuilding ~ type_other:",
+  //   type_other
+  // );
+  // console.log("🚀 ~ file: page.tsx:36 ~ createBuilding ~ zone:", zone);
+  // console.log("🚀 ~ file: page.tsx:38 ~ createBuilding ~ area:", area);
+  // console.log("🚀 ~ file: page.tsx:40 ~ createBuilding ~ address:", address);
+  // console.log(
+  //   "🚀 ~ file: page.tsx:42 ~ createBuilding ~ plot_size:",
+  //   plot_size
+  // );
+  // console.log(
+  //   "🚀 ~ file: page.tsx:44 ~ createBuilding ~ construction_area:",
+  //   construction_area
+  // );
+  // console.log(
+  //   "🚀 ~ file: page.tsx:46 ~ createBuilding ~ construction_year:",
+  //   construction_year
+  // );
+  // console.log(
+  //   "🚀 ~ file: page.tsx:48 ~ createBuilding ~ builder_name:",
+  //   builder_name
+  // );
+  // console.log("🚀 ~ file: page.tsx:50 ~ createBuilding ~ rank:", rank);
+  // console.log(
+  //   "🚀 ~ file: page.tsx:52 ~ createBuilding ~ total_floors:",
+  //   total_floors
+  // );
+  // console.log(
+  //   "🚀 ~ file: page.tsx:54 ~ createBuilding ~ parking_floors:",
+  //   parking_floors
+  // );
+  // console.log(
+  //   "🚀 ~ file: page.tsx:56 ~ createBuilding ~ apartment_floors_count:",
+  //   apartment_floors_count
+  // );
+  // console.log(
+  //   "🚀 ~ file: page.tsx:58 ~ createBuilding ~ apartments_count:",
+  //   apartments_count
+  // );
+  // console.log(
+  //   "🚀 ~ file: page.tsx:60 ~ createBuilding ~ apartments_has_type_1_bed:",
+  //   apartments_has_type_1_bed
+  // );
+  // console.log(
+  //   "🚀 ~ file: page.tsx:62 ~ createBuilding ~ apartments_has_type_2_bed:",
+  //   apartments_has_type_2_bed
+  // );
+  // console.log(
+  //   "🚀 ~ file: page.tsx:64 ~ createBuilding ~ apartments_has_type_3_bed:",
+  //   apartments_has_type_3_bed
+  // );
+  // console.log(
+  //   "🚀 ~ file: page.tsx:66 ~ createBuilding ~ apartments_has_type_4_bed:",
+  //   apartments_has_type_4_bed
+  // );
+  // console.log(
+  //   "🚀 ~ file: page.tsx:68 ~ createBuilding ~ apartment_has_type_duplex:",
+  //   apartments_has_type_duplex
+  // );
+  // console.log(
+  //   "🚀 ~ file: page.tsx:70 ~ createBuilding ~ apartment_has_type_penthouse:",
+  //   apartment_has_type_penthouse
+  // );
+  // console.log(
+  //   "🚀 ~ file: page.tsx:72 ~ createBuilding ~ apartment_has_servant_quarter:",
+  //   apartment_has_servant_quarter
+  // );
+  // console.log(
+  //   "🚀 ~ file: page.tsx:74 ~ createBuilding ~ apartments_maintenance_fee:",
+  //   apartments_maintenance_fee
+  // );
+  // console.log(
+  //   "🚀 ~ file: page.tsx:76 ~ createBuilding ~ retail_floors_count:",
+  //   retail_floors_count
+  // );
+  // console.log(
+  //   "🚀 ~ file: page.tsx:78 ~ createBuilding ~ retail_floors_shops_count:",
+  //   retail_floors_shops_count
+  // );
+  // console.log(
+  //   "🚀 ~ file: page.tsx:80 ~ createBuilding ~ office_floors_count:",
+  //   office_floors_count
+  // );
+  // console.log(
+  //   "🚀 ~ file: page.tsx:82 ~ createBuilding ~ offices_count:",
+  //   offices_count
+  // );
+  // console.log(
+  //   "🚀 ~ file: page.tsx:84 ~ createBuilding ~ office_maintenance_fee:",
+  //   office_maintenance_fee
+  // );
+  // console.log(
+  //   "🚀 ~ file: page.tsx:86 ~ createBuilding ~ survey_date:",
+  //   survey_date
+  // );
+  // console.log(
+  //   "🚀 ~ file: page.tsx:88 ~ createBuilding ~ surveyor_name:",
+  //   surveyor_name
+  // );
+  // console.log(
+  //   "🚀 ~ file: page.tsx:90 ~ createBuilding ~ building_survery_remarks:",
+  //   building_survery_remarks
+  // );
 
   if (typeof name !== "string" || name.length === 0) {
     throw new Error("Invalid name");
@@ -349,13 +349,13 @@ export default async function createBuilding(data: FormData) {
       parking_floors: parking_floors,
       apartment_floors: apartment_floors_count,
       apartments_count: apartments_count,
-      apartments_studio: apartment_studio as string,
-      apartments_has_type_1_bed: apartment_has_type_1_bed as string,
-      apartments_has_type_2_bed: apartment_has_type_2_bed as string,
-      apartments_has_type_3_bed: apartment_has_type_3_bed as string,
-      apartments_has_type_4_bed: apartment_has_type_4_bed as string,
-      apartments_has_type_5_bed: apartment_has_type_5_bed as string,
-      apartments_has_type_duplex: apartment_has_type_duplex as string,
+      apartments_studio: apartments_studio as string,
+      apartments_has_type_1_bed: apartments_has_type_1_bed as string,
+      apartments_has_type_2_bed: apartments_has_type_2_bed as string,
+      apartments_has_type_3_bed: apartments_has_type_3_bed as string,
+      apartments_has_type_4_bed: apartments_has_type_4_bed as string,
+      apartments_has_type_5_bed: apartments_has_type_5_bed as string,
+      apartments_has_type_duplex: apartments_has_type_duplex as string,
       apartments_has_type_penthouse: apartment_has_type_penthouse as string,
       has_furnished: has_furnished as string,
       has_semi_furnished: has_semi_furnished as string,
@@ -386,7 +386,7 @@ export default async function createBuilding(data: FormData) {
     },
   });
 
-  console.log("redirecting")
+  // console.log("redirecting")
 
   redirect("/buildings");
 }

@@ -36,7 +36,7 @@ type Props = {
 }
 
 export default async function ViewCommercail({ params }: Props) {
-    console.log(params);
+    // console.log(params);
 
     // Get commercial zone information
     const commercial = await prisma.commercial.findUnique({

@@ -24,7 +24,7 @@ type Props = {
 }
 
 export default async function ViewBuilding({ params }: Props) {
-  console.log(params);
+  // console.log(params);
 
   // Get building information
   const building = await prisma.buildings.findUnique({
@@ -33,7 +33,7 @@ export default async function ViewBuilding({ params }: Props) {
     },
   });
 
-  console.log(building);
+  // console.log(building);
 
   const Buildings = await prisma.buildings.findUnique({
     where: {
@@ -53,7 +53,7 @@ export default async function ViewBuilding({ params }: Props) {
     "use server";
 
     const floor_id = data.get("floor-id")?.valueOf();
-    console.log(floor_id);
+    // console.log(floor_id);
 
     await prisma.floors.delete({
       where: {
@@ -65,7 +65,7 @@ export default async function ViewBuilding({ params }: Props) {
     redirect("/buildings" + params.id);
   }
 
-  console.log(floors);
+  // console.log(floors);
 
   return (
     <>

@@ -337,7 +337,7 @@ export default function UpdatePlotForm({ building }: any) {
                                 defaultValue={building?.plot_size as number}
                                 onChange={(e) => {
                                     setPlot_Size(Number(e.target.value))
-                                    console.log(e.target.value)
+                                    // console.log(e.target.value)
                                 }}
                             />
                             <div className="m-4">
@@ -364,7 +364,7 @@ export default function UpdatePlotForm({ building }: any) {
                                 placeholder="(Sq. Yards)"
                                 onChange={(e) => {
                                     setConstruction_Area(Number(e.target.value))
-                                    console.log(e.target.value)
+                                    // console.log(e.target.value)
                                 }}
                             />
                             <div className="m-4">
@@ -409,7 +409,7 @@ export default function UpdatePlotForm({ building }: any) {
                                 defaultValue={building?.launch_year as number}
                                 onChange={(e) => {
                                     setLaunch_year(Number(e.target.value))
-                                    console.log(e.target.value)
+                                    // console.log(e.target.value)
                                 }}
                             />
                             <div className="m-4">
@@ -966,15 +966,15 @@ export default function UpdatePlotForm({ building }: any) {
                             <div className="grid grid-cols-6 gap-4">
                                 <div className="flex items-center mb-4 ml-2">
                                     <input
-                                        id="apartment-studio"
-                                        name="apartment-studio"
+                                        id="apartments-studio"
+                                        name="apartments-studio"
                                         type="checkbox"
                                         value="yes"
                                         defaultChecked={building?.apartments_studio ? true : false}
                                         className="checkbox checkbox-primary"
                                     />
                                     <label
-                                        htmlFor="apartment-studio"
+                                        htmlFor="apartments-studio"
                                         className="ml-2 text-sm font-medium  "
                                     >
                                         Studio
@@ -983,15 +983,15 @@ export default function UpdatePlotForm({ building }: any) {
 
                                 <div className="flex items-center mb-4 ml-2">
                                     <input
-                                        id="apartment-has-type-1-bed"
-                                        name="apartment-has-type-1-bed"
+                                        id="apartments-has-type-1-bed"
+                                        name="apartments-has-type-1-bed"
                                         type="checkbox"
                                         value="yes"
                                         defaultChecked={building?.apartments_has_type_1_bed ? true : false}
                                         className="checkbox checkbox-primary"
                                     />
                                     <label
-                                        htmlFor="apartment-has-type-1-bed"
+                                        htmlFor="apartments-has-type-1-bed"
                                         className="ml-2 text-sm font-medium  "
                                     >
                                         1-Bed
@@ -1000,15 +1000,15 @@ export default function UpdatePlotForm({ building }: any) {
 
                                 <div className="flex items-center mb-4 ml-2">
                                     <input
-                                        id="apartment-has-type-2-bed"
-                                        name="apartment-has-type-2-bed"
+                                        id="apartments-has-type-2-bed"
+                                        name="apartments-has-type-2-bed"
                                         type="checkbox"
                                         value="yes"
                                         defaultChecked={building?.apartments_has_type_2_bed ? true : false}
                                         className="checkbox checkbox-primary"
                                     />
                                     <label
-                                        htmlFor="apartment-has-type-2-bed"
+                                        htmlFor="apartments-has-type-2-bed"
                                         className="ml-2 text-sm font-medium  "
                                     >
                                         2-Bed
@@ -1017,15 +1017,15 @@ export default function UpdatePlotForm({ building }: any) {
 
                                 <div className="flex items-center mb-4 ml-2">
                                     <input
-                                        id="apartment-has-type-3-bed"
-                                        name="apartment-has-type-3-bed"
+                                        id="apartments-has-type-3-bed"
+                                        name="apartments-has-type-3-bed"
                                         type="checkbox"
                                         value="yes"
                                         defaultChecked={building?.apartments_has_type_3_bed ? true : false}
                                         className="checkbox checkbox-primary"
                                     />
                                     <label
-                                        htmlFor="apartment-has-type-3-bed"
+                                        htmlFor="apartments-has-type-3-bed"
                                         className="ml-2 text-sm font-medium  "
                                     >
                                         3-Bed
@@ -1034,15 +1034,15 @@ export default function UpdatePlotForm({ building }: any) {
 
                                 <div className="flex items-center mb-4 ml-2">
                                     <input
-                                        id="apartment-has-type-4-bed"
-                                        name="apartment-has-type-4-bed"
+                                        id="apartments-has-type-4-bed"
+                                        name="apartments-has-type-4-bed"
                                         type="checkbox"
                                         value="yes"
                                         defaultChecked={building?.apartments_has_type_4_bed ? true : false}
                                         className="checkbox checkbox-primary"
                                     />
                                     <label
-                                        htmlFor="apartment-has-type-4-bed"
+                                        htmlFor="apartments-has-type-4-bed"
                                         className="ml-2 text-sm font-medium  "
                                     >
                                         4-Bed
@@ -1050,15 +1050,15 @@ export default function UpdatePlotForm({ building }: any) {
                                 </div>
                                 <div className="flex items-center mb-4 ml-2">
                                     <input
-                                        id="apartment-has-type-5-bed"
-                                        name="apartment-has-type-5-bed"
+                                        id="apartments-has-type-5-bed"
+                                        name="apartments-has-type-5-bed"
                                         type="checkbox"
                                         value="yes"
                                         defaultChecked={building?.apartments_has_type_5_bed ? true : false}
                                         className="checkbox checkbox-primary"
                                     />
                                     <label
-                                        htmlFor="apartment-has-type-5-bed"
+                                        htmlFor="apartments-has-type-5-bed"
                                         className="ml-2 text-sm font-medium  "
                                     >
                                         5-Bed
@@ -1067,15 +1067,15 @@ export default function UpdatePlotForm({ building }: any) {
 
                                 <div className="flex items-center mb-4 ml-2">
                                     <input
-                                        id="apartment-has-type-duplex"
-                                        name="apartment-has-type-duplex"
+                                        id="apartments-has-type-duplex"
+                                        name="apartments-has-type-duplex"
                                         type="checkbox"
                                         value="yes"
                                         defaultChecked={building?.apartments_has_type_duplex ? true : false}
                                         className="checkbox checkbox-primary"
                                     />
                                     <label
-                                        htmlFor="apartment-has-type-duplex"
+                                        htmlFor="apartments-has-type-duplex"
                                         className="ml-2 text-sm font-medium  "
                                     >
                                         Duplex
@@ -1084,15 +1084,15 @@ export default function UpdatePlotForm({ building }: any) {
 
                                 <div className="flex items-center mb-4 ml-2">
                                     <input
-                                        id="apartment-has-type-penthouse"
-                                        name="apartment-has-type-penthouse"
+                                        id="apartments-has-type-penthouse"
+                                        name="apartments-has-type-penthouse"
                                         type="checkbox"
                                         value="yes"
                                         defaultChecked={building?.apartments_has_type_penthouse ? true : false}
                                         className="checkbox checkbox-primary"
                                     />
                                     <label
-                                        htmlFor="apartment-has-type-penthouse"
+                                        htmlFor="apartments-has-type-penthouse"
                                         className="ml-2 text-sm font-medium  "
                                     >
                                         Penthouse

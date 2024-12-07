@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import prisma from "../../../../db";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import { redirect } from "next/navigation";
 import AddFloorButton from "../../../components/AddFloorButton";
@@ -21,6 +21,7 @@ import {
 } from "@/components/ui/select"
 import AddPlot from "@/app/buildings/components/AddFloor";
 import { useToast } from "@/components/ui/use-toast";
+import FetchBuilding from "@/app/buildings/components/FetchBuilding";
 
 
 
@@ -97,15 +98,15 @@ type Props = {
   // searchParams: { [key: string]: string | string[] | undefined }
 }
 
-export default function Page({ params }: Props) {
-  console.log(params.id);
+export default function Page({ params }: Props, building: any) {
+  // console.log(params.id);
   const [entryDate, setEntryDate] = useState<string>((new Date).toISOString().split('T')[0]);
 
   const [isAdding, setIsAdding] = useState(false);
   const { toast } = useToast()
 
-  const [current_society, setCurrent_society] = useState<any>([]);
-
+  const [current_building, setCurrent_building] = useState<any>([]);
+  // const [apartment_size, setApartment_size] = useState<any>();
   const [avg_sale_price, setAvg_Sale_Price] = useState(0);
   const [avg_monthly_rent, setAvg_Monthly_Rent] = useState(0);
   const [down_payment_amount, setDown_Payment_Amount] = useState(0);
@@ -116,10 +117,46 @@ export default function Page({ params }: Props) {
   const [size_max, setSize_Max] = useState(0);
   const [floor_num, setFloor_num] = useState("");
   const [floor_type, setFloor_Type] = useState("");
-  const [unit_type, setUnit_type] = useState<any>();;
+  const [unit_type, setUnit_type] = useState<any>();
   const [instalment_plan, setInstalment_plan] = useState("");
   const [occupancy, setOccupancy] = useState(0);
   const [remarks, setRemarks] = useState<any>("");
+
+
+  useEffect(() => {
+
+    // console.log("use effect called")
+
+
+    const getBuildingData = async () => {
+
+      try {
+
+        // console.log("trying")
+        // console.log(params.id)
+
+        const Building_data = await FetchBuilding(params.id)
+
+        // console.log("Current_society_data")
+        // console.log(Building_data)
+
+
+        setCurrent_building(Building_data)
+
+      } catch (error) {
+
+        console.error('Error fetching society data:', error);
+
+        // setIsAdding(!isAdding)
+      }
+    };
+
+
+    getBuildingData();
+
+
+
+  }, []);
 
   const insertPlot = async () => {
 
@@ -190,7 +227,10 @@ export default function Page({ params }: Props) {
   };
 
   return (
-    <><div className="text-lg">Add Floor Information</div>
+    // 
+    <>
+      {/* <div className="text-lg">{building?.name}</div> */}
+      <div className="text-lg">Add Floor Information</div>
       <div className="container border-2  ">
 
         <div className="mx-4">
@@ -348,6 +388,7 @@ export default function Page({ params }: Props) {
                   onChange={(e) => setFloor_Type(e.target.value)}
                 >
 
+                  <option value="">Select</option>
                   <option value="Retails">Retails</option>
                   <option value="Penthouse">Penthouse</option>
                   <option value="Offices">Offices</option>
@@ -356,240 +397,242 @@ export default function Page({ params }: Props) {
                 </select>
               </div>
 
-              {/* Unit Type  */}
-              <div className="mt-4">
-                <label
-                  htmlFor="building-floor-unit-type"
-                  className="block mb-2 text-sm font-medium"
-                >
-                  Unit Type:
-                </label>
-                {/* <Input
-                  onChange={(e) => {
-                    setUnit_type(e.target.value)
-                    // console.log(e.target.value)
-                  }}
-                  type="text"
-                  id="building-floor-unit-type"
-                  name="building-floor-unit-type"
-                  value={unit_type}
-                  className="input input-bordered  w-full max-w-xs border-2 border-gray-400 "
-                  placeholder=""
-                /> */}
-
-                <select
-                  id="building-floor-unit-type"
-                  name="building-floor-unit-type"
-                  className="select  w-full text-sm pl-2 h-10 max-w-xs border-2 rounded border-gray-400 bg-background"
-                  value={unit_type}
-                  onChange={(e) => setUnit_type(e.target.value)}
-                >
-                  <option value="">Select</option>
-                  {(current_society.apartment_studio === "yes") && <option value="Studio">Studio</option>}
-                  {(current_society.apartment_one_bad === "yes") && <option value="1 Bed">1 Bed</option>}
-                  {(current_society.apartment_two_bad === "yes") && <option value="2 Bed">2 Bed</option>}
-                  {(current_society.apartment_three_bad === "yes") && <option value="3 Bed">3 Bed</option>}
-                  {(current_society.apartment_four_bad === "yes") && <option value="4 Bed">4 Bed</option>}
-                  {(current_society.apartment_five_bad === "yes") && <option value="5 Bed">5 Bed</option>}
-                  {(current_society.apartment_penthouse === "yes") && <option value="Penthouse">Penthouse</option>}
-                  {(current_society.apartment_duplex === "yes") && <option value="Duplex">Duplex</option>}
-                </select>
-
-                {/* <div className="grid grid-cols-6 gap-4">
-                  <div className="flex items-center mb-4 ml-2">
-                    <input
-                      id="apartment-studio"
-                      name="apartment-studio"
-                      type="checkbox"
-                      value="yes"
-                      className="checkbox checkbox-primary"
-                    />
+              {/* Apartment size  */}
+              {
+                floor_type === "Apartment" &&
+                <>
+                  {/* Unit Type  */}
+                  <div className="mt-4">
                     <label
-                      htmlFor="apartment-studio"
-                      className="ml-2 text-sm font-medium  "
+                      htmlFor="building-floor-unit-type"
+                      className="block mb-2 text-sm font-medium"
                     >
-                      Studio
+                      Unit Type:
                     </label>
-                  </div>
-
-                  <div className="flex items-center mb-4 ml-2">
-                    <input
-                      id="apartment-has-type-1-bed"
-                      name="apartment-has-type-1-bed"
-                      type="checkbox"
-                      value="yes"
-                      className="checkbox checkbox-primary"
-                    />
-                    <label
-                      htmlFor="apartment-has-type-1-bed"
-                      className="ml-2 text-sm font-medium  "
-                    >
-                      1-Bed
-                    </label>
-                  </div>
-
-                  <div className="flex items-center mb-4 ml-2">
-                    <input
-                      id="apartment-has-type-2-bed"
-                      name="apartment-has-type-2-bed"
-                      type="checkbox"
-                      value="yes"
-                      className="checkbox checkbox-primary"
-                    />
-                    <label
-                      htmlFor="apartment-has-type-2-bed"
-                      className="ml-2 text-sm font-medium  "
-                    >
-                      2-Bed
-                    </label>
-                  </div>
-
-                  <div className="flex items-center mb-4 ml-2">
-                    <input
-                      id="apartment-has-type-3-bed"
-                      name="apartment-has-type-3-bed"
-                      type="checkbox"
-                      value="yes"
-                      className="checkbox checkbox-primary"
-                    />
-                    <label
-                      htmlFor="apartment-has-type-3-bed"
-                      className="ml-2 text-sm font-medium  "
-                    >
-                      3-Bed
-                    </label>
-                  </div>
-
-                  <div className="flex items-center mb-4 ml-2">
-                    <input
-                      id="apartment-has-type-4-bed"
-                      name="apartment-has-type-4-bed"
-                      type="checkbox"
-                      value="yes"
-                      className="checkbox checkbox-primary"
-                    />
-                    <label
-                      htmlFor="apartment-has-type-4-bed"
-                      className="ml-2 text-sm font-medium  "
-                    >
-                      4-Bed
-                    </label>
-                  </div>
-                  <div className="flex items-center mb-4 ml-2">
-                    <input
-                      id="apartment-has-type-5-bed"
-                      name="apartment-has-type-5-bed"
-                      type="checkbox"
-                      value="yes"
-                      className="checkbox checkbox-primary"
-                    />
-                    <label
-                      htmlFor="apartment-has-type-5-bed"
-                      className="ml-2 text-sm font-medium  "
-                    >
-                      5-Bed
-                    </label>
-                  </div>
-
-                  <div className="flex items-center mb-4 ml-2">
-                    <input
-                      id="apartment-has-type-duplex"
-                      name="apartment-has-type-duplex"
-                      type="checkbox"
-                      value="yes"
-                      className="checkbox checkbox-primary"
-                    />
-                    <label
-                      htmlFor="apartment-has-type-duplex"
-                      className="ml-2 text-sm font-medium  "
-                    >
-                      Duplex
-                    </label>
-                  </div>
-
-                  <div className="flex items-center mb-4 ml-2">
-                    <input
-                      id="apartment-has-type-penthouse"
-                      name="apartment-has-type-penthouse"
-                      type="checkbox"
-                      value="yes"
-                      className="checkbox checkbox-primary"
-                    />
-                    <label
-                      htmlFor="apartment-has-type-penthouse"
-                      className="ml-2 text-sm font-medium  "
-                    >
-                      Penthouse
-                    </label>
-                  </div>
-
-                  <div className="flex items-center mb-4 ml-2">
-                    <input
-                      id="has-furnished"
-                      name="has-furnished"
-                      type="checkbox"
-                      value="yes"
-                      className="checkbox checkbox-primary"
-                    />
-                    <label
-                      htmlFor="has-furnished"
-                      className="ml-2 text-sm font-medium  "
-                    >
-                      Furnished
-                    </label>
-                  </div>
 
 
-                  <div className="flex items-center mb-4 ml-2">
-                    <input
-                      id="has-semi-furnished"
-                      name="has-semi-furnished"
-                      type="checkbox"
-                      value="yes"
-                      className="checkbox checkbox-primary"
-                    />
-                    <label
-                      htmlFor="has-semi-furnished"
-                      className="ml-2 text-sm font-medium  "
+                    <select
+                      id="building-floor-unit-type"
+                      name="building-floor-unit-type"
+                      className="select  w-full text-sm pl-2 h-10 max-w-xs border-2 rounded border-gray-400 bg-background"
+                      value={unit_type}
+                      onChange={(e) => setUnit_type(e.target.value)}
                     >
-                      Semi-Furnished
-                    </label>
-                  </div>
+                      <option value="">Select</option>
+                      {(current_building.apartments_studio === "yes") && <option value="Studio">Studio</option>}
+                      {(current_building.apartments_has_type_1_bed === "yes") && <option value="1 Bed">1 Bed</option>}
+                      {(current_building.apartments_has_type_2_bed === "yes") && <option value="2 Bed">2 Bed</option>}
+                      {(current_building.apartments_has_type_3_bed === "yes") && <option value="3 Bed">3 Bed</option>}
+                      {(current_building.apartments_has_type_4_bed === "yes") && <option value="4 Bed">4 Bed</option>}
+                      {(current_building.apartments_has_type_5_bed === "yes") && <option value="5 Bed">5 Bed</option>}
+                      {(current_building.apartments_has_type_penthouse === "yes") && <option value="Penthouse">Penthouse</option>}
+                      {(current_building.apartments_has_type_duplex === "yes") && <option value="Duplex">Duplex</option>}
+                      {(current_building.has_furnished === "yes") && <option value="Furished">Furished</option>}
+                      {(current_building.has_semi_furnished === "yes") && <option value="Semi Furnished">Semi Furnished</option>}
+                      {(current_building.has_service_apartments === "yes") && <option value="Service Apartments">Service Apartments</option>}
+                      {(current_building.has_hotel_suites_apartments === "yes") && <option value="Hotel Suites Apartments">Hotel Suites Apartments</option>}
+                    </select>
 
-                  <div className="flex items-center mb-4 ml-2">
-                    <input
-                      id="has-service-apartments"
-                      name="has-service-apartments"
-                      type="checkbox"
-                      value="yes"
-                      className="checkbox checkbox-primary"
-                    />
-                    <label
-                      htmlFor="has-service-apartments"
-                      className="ml-2 text-sm font-medium  "
-                    >
-                      Service Apartments
-                    </label>
-                  </div>
+                    <div className="grid grid-cols-6 gap-4">
+                      <div className="flex items-center mb-4 ml-2">
+                        <input
+                          id="apartment-studio"
+                          name="apartment-studio"
+                          type="checkbox"
+                          value="yes"
+                          className="checkbox checkbox-primary"
+                        />
+                        <label
+                          htmlFor="apartment-studio"
+                          className="ml-2 text-sm font-medium  "
+                        >
+                          Studio
+                        </label>
+                      </div>
 
-                  <div className="flex items-center mb-4 ml-2">
-                    <input
-                      id="has-hotel-suites-apartments"
-                      name="has-hotel-suites-apartments"
-                      type="checkbox"
-                      value="yes"
-                      className="checkbox checkbox-primary"
-                    />
-                    <label
-                      htmlFor="has-hotel-suites-apartments"
-                      className="ml-2 text-sm font-medium  "
-                    >
-                      Hotel Suites Apartments
-                    </label>
-                  </div>
-                </div> */}
+                      {/* <div className="flex items-center mb-4 ml-2">
+                        <input
+                          id="apartment-has-type-1-bed"
+                          name="apartment-has-type-1-bed"
+                          type="checkbox"
+                          value="yes"
+                          className="checkbox checkbox-primary"
+                        />
+                        <label
+                          htmlFor="apartment-has-type-1-bed"
+                          className="ml-2 text-sm font-medium  "
+                        >
+                          1-Bed
+                        </label>
+                      </div>
 
-              </div>
+                      <div className="flex items-center mb-4 ml-2">
+                        <input
+                          id="apartment-has-type-2-bed"
+                          name="apartment-has-type-2-bed"
+                          type="checkbox"
+                          value="yes"
+                          className="checkbox checkbox-primary"
+                        />
+                        <label
+                          htmlFor="apartment-has-type-2-bed"
+                          className="ml-2 text-sm font-medium  "
+                        >
+                          2-Bed
+                        </label>
+                      </div>
+
+                      <div className="flex items-center mb-4 ml-2">
+                        <input
+                          id="apartment-has-type-3-bed"
+                          name="apartment-has-type-3-bed"
+                          type="checkbox"
+                          value="yes"
+                          className="checkbox checkbox-primary"
+                        />
+                        <label
+                          htmlFor="apartment-has-type-3-bed"
+                          className="ml-2 text-sm font-medium  "
+                        >
+                          3-Bed
+                        </label>
+                      </div>
+
+                      <div className="flex items-center mb-4 ml-2">
+                        <input
+                          id="apartment-has-type-4-bed"
+                          name="apartment-has-type-4-bed"
+                          type="checkbox"
+                          value="yes"
+                          className="checkbox checkbox-primary"
+                        />
+                        <label
+                          htmlFor="apartment-has-type-4-bed"
+                          className="ml-2 text-sm font-medium  "
+                        >
+                          4-Bed
+                        </label>
+                      </div>
+                      <div className="flex items-center mb-4 ml-2">
+                        <input
+                          id="apartment-has-type-5-bed"
+                          name="apartment-has-type-5-bed"
+                          type="checkbox"
+                          value="yes"
+                          className="checkbox checkbox-primary"
+                        />
+                        <label
+                          htmlFor="apartment-has-type-5-bed"
+                          className="ml-2 text-sm font-medium  "
+                        >
+                          5-Bed
+                        </label>
+                      </div>
+
+                      <div className="flex items-center mb-4 ml-2">
+                        <input
+                          id="apartment-has-type-duplex"
+                          name="apartment-has-type-duplex"
+                          type="checkbox"
+                          value="yes"
+                          className="checkbox checkbox-primary"
+                        />
+                        <label
+                          htmlFor="apartment-has-type-duplex"
+                          className="ml-2 text-sm font-medium  "
+                        >
+                          Duplex
+                        </label>
+                      </div>
+
+                      <div className="flex items-center mb-4 ml-2">
+                        <input
+                          id="apartment-has-type-penthouse"
+                          name="apartment-has-type-penthouse"
+                          type="checkbox"
+                          value="yes"
+                          className="checkbox checkbox-primary"
+                        />
+                        <label
+                          htmlFor="apartment-has-type-penthouse"
+                          className="ml-2 text-sm font-medium  "
+                        >
+                          Penthouse
+                        </label>
+                      </div>
+
+                      <div className="flex items-center mb-4 ml-2">
+                        <input
+                          id="has-furnished"
+                          name="has-furnished"
+                          type="checkbox"
+                          value="yes"
+                          className="checkbox checkbox-primary"
+                        />
+                        <label
+                          htmlFor="has-furnished"
+                          className="ml-2 text-sm font-medium  "
+                        >
+                          Furnished
+                        </label>
+                      </div>
+
+
+                      <div className="flex items-center mb-4 ml-2">
+                        <input
+                          id="has-semi-furnished"
+                          name="has-semi-furnished"
+                          type="checkbox"
+                          value="yes"
+                          className="checkbox checkbox-primary"
+                        />
+                        <label
+                          htmlFor="has-semi-furnished"
+                          className="ml-2 text-sm font-medium  "
+                        >
+                          Semi-Furnished
+                        </label>
+                      </div>
+
+                      <div className="flex items-center mb-4 ml-2">
+                        <input
+                          id="has-service-apartments"
+                          name="has-service-apartments"
+                          type="checkbox"
+                          value="yes"
+                          className="checkbox checkbox-primary"
+                        />
+                        <label
+                          htmlFor="has-service-apartments"
+                          className="ml-2 text-sm font-medium  "
+                        >
+                          Service Apartments
+                        </label>
+                      </div>
+
+                      <div className="flex items-center mb-4 ml-2">
+                        <input
+                          id="has-hotel-suites-apartments"
+                          name="has-hotel-suites-apartments"
+                          type="checkbox"
+                          value="yes"
+                          className="checkbox checkbox-primary"
+                        />
+                        <label
+                          htmlFor="has-hotel-suites-apartments"
+                          className="ml-2 text-sm font-medium  "
+                        >
+                          Hotel Suites Apartments
+                        </label>
+                      </div> */}
+                    </div>
+
+                  </div>
+                </>
+
+              }
+
+
 
               {/* Building ID  */}
               {/* <div className="mt-4">
@@ -621,14 +664,14 @@ export default function Page({ params }: Props) {
                 </label>
                 <div className="flex">
                   <Input
-                    type="text"
+                    type="number"
                     id="building-floor-occupancy"
                     name="building-floor-occupancy"
                     className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
                     value={occupancy}
                     placeholder=""
-                    minLength={1}
-                    maxLength={2}
+                    min={1}
+                    max={2}
                     onChange={(e) => {
                       setOccupancy(Number(e.target.value))
                     }}
@@ -658,11 +701,11 @@ export default function Page({ params }: Props) {
                     min="0"
                     onChange={(e) => {
                       setSize_Min(Number(e.target.value))
-                      console.log(e.target.value)
+                      // console.log(e.target.value)
                     }}
                   />
                   <div className="m-4">
-                    {Number(size_min).toLocaleString()}
+                    {size_min ? Number(size_min).toLocaleString() : "0"}
                   </div>
                 </div>
 
@@ -678,7 +721,7 @@ export default function Page({ params }: Props) {
                 </label>
                 <div className="flex">
                   <Input
-                    type="text"
+                    type="number"
                     id="building-floor-size-max"
                     name="building-floor-size-max"
                     className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
@@ -687,7 +730,7 @@ export default function Page({ params }: Props) {
                     min="0"
                     onChange={(e) => {
                       setSize_Max(Number(e.target.value))
-                      console.log(e.target.value)
+                      // console.log(e.target.value)
                     }}
                   />
                   <div className="m-4">
@@ -706,7 +749,7 @@ export default function Page({ params }: Props) {
                 </label>
                 <div className="flex">
                   <Input
-                    type="text"
+                    type="number"
                     id="building-floor-avg-sale-price"
                     name="building-floor-avg-sale-price"
                     className="input input-bordered  w-full max-w-xs border-2 border-gray-400 "
@@ -715,7 +758,7 @@ export default function Page({ params }: Props) {
                     min="0"
                     onChange={(e) => {
                       setAvg_Sale_Price(Number(e.target.value))
-                      console.log(e.target.value)
+                      // console.log(e.target.value)
                     }}
                   />
                   <div className="m-4">
@@ -734,7 +777,7 @@ export default function Page({ params }: Props) {
                 </label>
                 <div className="flex">
                   <Input
-                    type="text"
+                    type="number"
                     id="building-floor-avg-monthly-rent"
                     name="building-floor-avg-monthly-rent"
                     className="input input-bordered  w-full max-w-xs border-2 border-gray-400 "
@@ -743,7 +786,7 @@ export default function Page({ params }: Props) {
                     min="0"
                     onChange={(e) => {
                       setAvg_Monthly_Rent(Number(e.target.value))
-                      console.log(e.target.value)
+                      // console.log(e.target.value)
                     }}
                   />
                   <div className="m-4">
@@ -796,7 +839,7 @@ export default function Page({ params }: Props) {
                     min="0"
                     onChange={(e) => {
                       setInstalment_Period(Number(e.target.value))
-                      console.log(e.target.value)
+                      // console.log(e.target.value)
                     }}
                   />
                   <div className="m-4">
@@ -817,7 +860,7 @@ export default function Page({ params }: Props) {
                 </label>
                 <div className="flex">
                   <Input
-                    type="text"
+                    type="number"
                     id="building-floor-instalment-amount"
                     name="building-floor-instalment-amount"
                     className="input input-bordered  w-full max-w-xs border-2 border-gray-400 "
@@ -826,7 +869,7 @@ export default function Page({ params }: Props) {
                     min="0"
                     onChange={(e) => {
                       setInstalment_Amount(Number(e.target.value))
-                      console.log(e.target.value)
+                      // console.log(e.target.value)
                     }}
                   />
                   <div className="m-4">
@@ -845,7 +888,7 @@ export default function Page({ params }: Props) {
                 </label>
                 <div className="flex">
                   <Input
-                    type="text"
+                    type="number"
                     id="building-floor-down-payment-amount"
                     name="building-floor-down-payment-amount"
                     className="input input-bordered  w-full max-w-xs border-2 border-gray-400 "
@@ -854,7 +897,7 @@ export default function Page({ params }: Props) {
                     min="0"
                     onChange={(e) => {
                       setDown_Payment_Amount(Number(e.target.value))
-                      console.log(e.target.value)
+                      // console.log(e.target.value)
                     }}
                   />
                   <div className="m-4">
@@ -873,7 +916,7 @@ export default function Page({ params }: Props) {
                 </label>
                 <div className="flex">
                   <Input
-                    type="text"
+                    type="number"
                     id="building-floor-possession-amount"
                     name="building-floor-possession-amount"
                     className="input input-bordered  w-full max-w-xs border-2 border-gray-400 "
@@ -882,7 +925,7 @@ export default function Page({ params }: Props) {
                     min="0"
                     onChange={(e) => {
                       setPossession_Amount(Number(e.target.value))
-                      console.log(e.target.value)
+                      // console.log(e.target.value)
                     }}
                   />
                   <div className="m-4">

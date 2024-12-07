@@ -198,8 +198,9 @@ export default async function List({ city, page, search, developer, society_grad
                 <div className="flex gap-5">
                     <CityInput />
                     {/* <DeveloperName /> */}
-                    <Grade />
                     <ProjectType />
+                    <Grade />
+
                 </div>
                 <div className="">
 

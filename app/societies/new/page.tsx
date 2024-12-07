@@ -210,7 +210,21 @@ export default function NewSocietyPage() {
             >
               Zone / Region:
             </label>
-            <Select
+            <select
+              id="societies-zone"
+              required
+              name="societies-zone"
+              className="select  w-full text-sm pl-2 h-10 max-w-xs border-2 rounded border-gray-400 bg-background"
+
+            >
+              <option value="">Select</option>
+              <option value="East">East</option>
+              <option value="West">West</option>
+              <option value="North">North</option>
+              <option value="South">South</option>
+              <option value="Central">Central</option>
+            </select>
+            {/* <Select
               name="societies-zone">
               <SelectTrigger
                 id="societies-zone"
@@ -227,7 +241,7 @@ export default function NewSocietyPage() {
                   <SelectItem value="Central">Central</SelectItem>
                 </SelectGroup>
               </SelectContent>
-            </Select>
+            </Select> */}
           </div>
 
           {/* Soceity/Project Name  */}
@@ -311,7 +325,21 @@ export default function NewSocietyPage() {
             >
               Project Status
             </label>
-            <Select
+            <select
+              id="societies-project-type"
+              name="societies-project-type"
+              className="select  w-full text-sm pl-2 h-10 max-w-xs border-2 rounded border-gray-400 bg-background"
+
+            >
+              <option value="">Select</option>
+              <option value="Developed">Developed</option>
+              <option value="Under Developed">Under Developed</option>
+              <option value="New Launch">New Launch</option>
+              <option value="Commercial Zone">Commercial Zone</option>
+              <option value="Residential Files">Residential Files</option>
+              <option value="Commercial Files">Commercial Files</option>
+            </select>
+            {/* <Select
               name="societies-project-type">
               <SelectTrigger
                 id="societies-project-type"
@@ -329,7 +357,7 @@ export default function NewSocietyPage() {
                   <SelectItem value="Commercial Files">Commercial Files</SelectItem>
                 </SelectGroup>
               </SelectContent>
-            </Select>
+            </Select> */}
 
             {/* <form className="max-w-sm mx-auto">
               <label
@@ -374,7 +402,20 @@ export default function NewSocietyPage() {
             >
               Grade
             </label>
-            <Select
+            <select
+              id="societies-grade"
+              name="societies-grade"
+              className="select  w-full text-sm pl-2 h-10 max-w-xs border-2 rounded border-gray-400 bg-background"
+
+            >
+              <option value="">Select</option>
+              <option value="A+">A+</option>
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <option value="D">D</option>
+            </select>
+            {/* <Select
               name="societies-grade">
               <SelectTrigger
                 id="societies-grade"
@@ -391,7 +432,7 @@ export default function NewSocietyPage() {
                   <SelectItem value="D">D</SelectItem>
                 </SelectGroup>
               </SelectContent>
-            </Select>
+            </Select> */}
           </div>
 
           {/* Total Area of Society (Acres) */}

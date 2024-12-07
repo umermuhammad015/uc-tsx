@@ -36,8 +36,8 @@ export default function DeleteSocietyDialog({ floor_id }: any) {
 
         setIsLoading(false)
 
-        console.log("logging floor_id")
-        console.log(deletefloor)
+        // console.log("logging floor_id")
+        // console.log(deletefloor)
         toast({
             className: "bg-red-600 rounded-lg",
             title: "Delete floor",

@@ -23,8 +23,8 @@ export default async function UpdateFloor(data: FormData) {
     const remarks = data.get("building-floor-remarks")?.valueOf();
 
 
-    console.log("unit_type is")
-    console.log(unit_type);
+    // console.log("unit_type is")
+    // console.log(unit_type);
 
 
     const update_query = {
