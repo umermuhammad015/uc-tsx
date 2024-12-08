@@ -229,7 +229,7 @@ export default async function List({ city, page, search, building_status }: any)
               </TableHead>
               <TableHead>
                 <div className="text-lg">Actions</div>
-                <Button asChild>
+                {/* <Button asChild>
                   <Link href="/api/tables/plots?format=xlsx"
                   >
 
@@ -249,7 +249,7 @@ export default async function List({ city, page, search, building_status }: any)
                     </svg>
                     <span className="ml-2">Export</span>
                   </Link>
-                </Button>
+                </Button> */}
               </TableHead>
             </TableRow>
           </TableHeader>
