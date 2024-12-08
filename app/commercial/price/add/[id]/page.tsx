@@ -216,6 +216,13 @@ export default function PriceAddPage({ params }: Props) {
                                         <option value="10,000">10,000</option>
                                         <option value="11,000">11,000</option>
                                         <option value="12,000">12,000</option>
+                                        <option value="13,000">13,000</option>
+                                        <option value="14,000">14,000</option>
+                                        <option value="15,000">15,000</option>
+                                        <option value="16,000">16,000</option>
+                                        <option value="17,000">17,000</option>
+                                        <option value="18,000">18,000</option>
+
 
                                     </select>
                                 </div>
@@ -267,6 +274,12 @@ export default function PriceAddPage({ params }: Props) {
                                         <option value="10,000">10,000</option>
                                         <option value="11,000">11,000</option>
                                         <option value="12,000">12,000</option>
+                                        <option value="13,000">13,000</option>
+                                        <option value="14,000">14,000</option>
+                                        <option value="15,000">15,000</option>
+                                        <option value="16,000">16,000</option>
+                                        <option value="17,000">17,000</option>
+                                        <option value="18,000">18,000</option>
                                     </select>
 
                                 </div>
@@ -447,6 +460,12 @@ export default function PriceAddPage({ params }: Props) {
                                         <option value="10,000">10,000</option>
                                         <option value="11,000">11,000</option>
                                         <option value="12,000">12,000</option>
+                                        <option value="13,000">13,000</option>
+                                        <option value="14,000">14,000</option>
+                                        <option value="15,000">15,000</option>
+                                        <option value="16,000">16,000</option>
+                                        <option value="17,000">17,000</option>
+                                        <option value="18,000">18,000</option>
                                     </select>
                                 </div>
                             </>
