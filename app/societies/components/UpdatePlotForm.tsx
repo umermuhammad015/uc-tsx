@@ -33,7 +33,7 @@ type Props = {
 
 export default function UpdatePlotForm({ plots }: any, { params }: Props) {
 
-    
+
     const [price, setPrice] = useState(plots?.plot_price)
     const [rent, setRent] = useState(plots?.plot_rent)
 
@@ -120,6 +120,38 @@ export default function UpdatePlotForm({ plots }: any, { params }: Props) {
 
                 />
             </div>
+            {/* Survey Date */}
+
+            <div className="relative max-w-sm mt-4">
+                <label
+                    htmlFor="surveyor-name"
+                    className="block mb-2 text-sm font-medium"
+                >
+                    Date:
+
+                </label>
+                <div className="absolute inset-y-0 right-0 flex items-center pr-20 pointer-events-none">
+                    <svg
+                        className="w-4 h-4 text-gray-500 dark:text-gray-400 mt-6"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                    >
+                        <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                    </svg>
+                </div>
+                <Input
+                    type="date"
+                    id="plot-date"
+                    name="plot-date"
+                    // defaultValue={societies?.survey_date as unknown as string}
+                    defaultValue={plots?.date as string}
+                    className="max-w-xs border-gray-400 border-2 text-sm rounded focus:ring-blue-500  block w-full p-2.5"
+                    placeholder="Survey date"
+                />
+            </div>
+
             {/* plot type */}
             <div className="mt-4">
                 <label
@@ -555,37 +587,6 @@ export default function UpdatePlotForm({ plots }: any, { params }: Props) {
 
             }
 
-            {/* Survey Date */}
-
-            <div className="relative max-w-sm mt-4">
-                <label
-                    htmlFor="surveyor-name"
-                    className="block mb-2 text-sm font-medium"
-                >
-                    Date:
-
-                </label>
-                <div className="absolute inset-y-0 right-0 flex items-center pr-20 pointer-events-none">
-                    <svg
-                        className="w-4 h-4 text-gray-500 dark:text-gray-400 mt-6"
-                        aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                    >
-                        <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
-                    </svg>
-                </div>
-                <Input
-                    type="date"
-                    id="plot-date"
-                    name="plot-date"
-                    // defaultValue={societies?.survey_date as unknown as string}
-                    defaultValue={plots?.date as string}
-                    className="max-w-xs border-gray-400 border-2 text-sm rounded focus:ring-blue-500  block w-full p-2.5"
-                    placeholder="Survey date"
-                />
-            </div>
 
 
             {/* Plot Remarks  */}

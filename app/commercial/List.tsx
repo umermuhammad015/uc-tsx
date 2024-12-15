@@ -30,7 +30,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 
-import { Pagination } from '../../components/pagination';
+// import { Pagination } from '../../components/pagination';
 
 
 
@@ -49,12 +49,21 @@ import DeleteCommercialDialog from "./components/DeleteCommercIalDialog";
 import CityInput from "./components/CityInput";
 import ProjectType from "./components/project_type";
 import Grade from "./components/Grade";
+import Pagination from "@/components/pagination";
 
 export const revalidate = 0; // revalidate the date at most every hour
 export const dynamic = "force-dynamic";
-const PAGE_SIZE = 10000;
+const PAGE_SIZE = 5;
 
-const GetCommercial = async ({ search_string = '', take = PAGE_SIZE, skip = 0, city = "", project_type = "", commercial_grade = "" }) => {
+const GetCommercial = async ({
+  pageNumber = 1,
+  search_string = '',
+  take = PAGE_SIZE,
+  skip = 0,
+  city = "",
+  project_type = "",
+  commercial_grade = ""
+}) => {
 
   // async function getBuildings({ search = '', take = PAGE_SIZE, skip = 0 }) {
   // console.log("GetSocieties");
@@ -88,6 +97,7 @@ const GetCommercial = async ({ search_string = '', take = PAGE_SIZE, skip = 0, c
     const return_object = {
       data: results,
       metadata: {
+        page: pageNumber,
         hasNextPage: skip + take < total,
         totalPages: Math.ceil(total / take),
       },
@@ -195,7 +205,7 @@ export default async function List({ city, page, search, project_type, commercia
   const search_string = search || ''
 
   // const buildings = await getBuildings({search, take, skip});
-  const { data, metadata } = await GetCommercial({ search_string, take, skip, city, project_type, commercial_grade });
+  const { data, metadata } = await GetCommercial({ pageNumber, search_string, take, skip, city, project_type, commercial_grade });
 
   // const searchedBuildings = await getSearchedBuildings()
 
@@ -365,9 +375,9 @@ export default async function List({ city, page, search, project_type, commercia
 
         </Table>
       </div>
-      {/* <div className="mt-6">
-        <Pagination {...props.searchParams} {...metadata} />
-      </div> */}
+      <div className="mt-6">
+        <Pagination metadata={metadata} />
+      </div>
 
     </>
   );

@@ -92,7 +92,18 @@ export default async function editForm(data: FormData) {
     console.log(update_query)
 
     const updateCommercial = await prisma.commercial.update(update_query)
-   
+
+
+    if (commercial_city === undefined) {
+
+        redirect('/buildings')
+
+    }
+    else if (commercial_city === commercial_city) {
+        redirect("/commercial?city=" + commercial_city)
+
+    }
+
     redirect('/commercial')
 
 }

@@ -3,7 +3,7 @@
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
-import UpdateFloor from "./UpdateFloor"
+import UpdateFloor from "@/app/buildings/components/UpdateFloor"
 import { useState } from "react"
 import UpdateFloorButton from "./UpdateFloorButton"
 import {
@@ -32,6 +32,12 @@ export default function UpdatePlotForm({ floor }: any) {
     const [size_min, setSize_Min] = useState(floor?.size_min)
     const [size_max, setSize_Max] = useState(floor?.size_max)
     const [occupancy, setOccupancy] = useState(floor?.occupancy);
+    // const [current_building, setCurrent_building] = useState(floor?.current_building);
+    const [floor_type, setFloor_Type] = useState(floor?.floor_type);
+
+    // console.log(current_building)
+
+
 
     return (
         <>
@@ -139,6 +145,35 @@ export default function UpdatePlotForm({ floor }: any) {
                                 </Select>
                             </div> */}
 
+                            {/* Survey Date */}
+                            <div className="relative max-w-sm mt-4">
+                                <label
+                                    htmlFor="floor-date"
+                                    className="block mb-2 text-sm font-medium "
+                                >
+                                    Date: (Month/Day/year)
+                                </label>
+                                <div className="absolute inset-y-0 right-0 flex items-center pr-20 pointer-events-none">
+                                    <svg
+                                        className="w-4 h-4 text-gray-500 dark:text-gray-400 mt-6"
+                                        aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="currentColor"
+                                        viewBox="0 0 20 20"
+                                    >
+                                        <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                                    </svg>
+                                </div>
+                                <Input
+                                    type="date"
+                                    id="floor-date"
+                                    name="floor-date"
+                                    defaultValue={floor?.date as string}
+                                    className="max-w-xs border-gray-400  border-2 text-sm rounded focus:ring-blue-500  block w-full p-2.5"
+                                    placeholder="Survey date"
+                                />
+                            </div>
+
                             <div className="mt-4">
                                 <label
                                     htmlFor="building-floor-no"
@@ -201,31 +236,30 @@ export default function UpdatePlotForm({ floor }: any) {
                                     Floor Type
                                 </label>
 
-                                <Select
+                                <select
+                                    id="building-floor-type"
+                                    name="building-floor-type"
+                                    className="select  w-full h-10 max-w-xs border-2 rounded border-gray-400 bg-background"
+                                    onChange={(e) => setFloor_Type(e.target.value)}
                                     defaultValue={floor?.floor_type as string}
-                                    name="building-floor-type">
-                                    <SelectTrigger
-                                        id="building-floor-type"
-                                        className="select w-full max-w-xs border-2 border-gray-400">
-                                        <SelectValue />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        <SelectGroup>
-                                            <SelectLabel></SelectLabel>
-                                            <SelectItem value="Retails">Retails</SelectItem>
-                                            <SelectItem value="Penthouse">Penthouse</SelectItem>
-                                            <SelectItem value="Offices">Offices</SelectItem>
-                                            <SelectItem value="Apartment">Apartment</SelectItem>
-                                            <SelectItem value="Other">Other</SelectItem>
-                                        </SelectGroup>
-                                    </SelectContent>
-                                </Select>
+                                >
+                                    <option value="Retails">Retails</option>
+                                    <option value="Penthouse">Penthouse</option>
+                                    <option value="Offices">Offices</option>
+                                    <option value="Apartment">Apartment</option>
+                                    <option value="Other">Other</option>
+                                    {/* <option value="Office">Office</option>
+                                    <option value="Files">Files</option> */}
+                                </select>
+
+
+
                             </div>
 
 
 
                             {/* Unit Type  */}
-                            <div className="mt-4">
+                            {/* <div className="mt-4">
                                 <label
                                     htmlFor="building-floor-unit-type"
                                     className="block mb-2 text-sm font-medium"
@@ -240,7 +274,252 @@ export default function UpdatePlotForm({ floor }: any) {
                                     placeholder=""
                                     defaultValue={floor?.unit_type as string}
                                 />
-                            </div>
+                            </div> */}
+
+                            {/* Apartment size  */}
+                            {
+                                floor_type === "Apartment" &&
+                                <>
+                                    {/* Unit Type  */}
+                                    <div className="mt-4">
+                                        <label
+                                            // htmlFor="building-floor-unit-type"
+                                            className="block mb-2 text-sm font-medium"
+                                        >
+                                            Unit Type:
+                                        </label>
+
+
+                                        {/* <select
+                      id="building-floor-unit-type"
+                      name="building-floor-unit-type"
+                      className="select  w-full text-sm pl-2 h-10 max-w-xs border-2 rounded border-gray-400 bg-background"
+                      value={unit_type}
+                      onChange={(e) => setUnit_type(e.target.value)}
+                    >
+                      <option value="">Select</option>
+                      {(current_building.apartments_studio === "yes") && <option value="Studio">Studio</option>}
+                      {(current_building.apartments_has_type_1_bed === "yes") && <option value="1 Bed">1 Bed</option>}
+                      {(current_building.apartments_has_type_2_bed === "yes") && <option value="2 Bed">2 Bed</option>}
+                      {(current_building.apartments_has_type_3_bed === "yes") && <option value="3 Bed">3 Bed</option>}
+                      {(current_building.apartments_has_type_4_bed === "yes") && <option value="4 Bed">4 Bed</option>}
+                      {(current_building.apartments_has_type_5_bed === "yes") && <option value="5 Bed">5 Bed</option>}
+                      {(current_building.apartments_has_type_penthouse === "yes") && <option value="Penthouse">Penthouse</option>}
+                      {(current_building.apartments_has_type_duplex === "yes") && <option value="Duplex">Duplex</option>}
+                      {(current_building.has_furnished === "yes") && <option value="Furished">Furished</option>}
+                      {(current_building.has_semi_furnished === "yes") && <option value="Semi Furnished">Semi Furnished</option>}
+                      {(current_building.has_service_apartments === "yes") && <option value="Service Apartments">Service Apartments</option>}
+                      {(current_building.has_hotel_suites_apartments === "yes") && <option value="Hotel Suites Apartments">Hotel Suites Apartments</option>}
+                    </select> */}
+
+                                        <div className="grid grid-cols-6 gap-4 mt-4">
+
+
+                                            {
+                                                floor_type === "Apartment" &&
+                                                <>
+
+                                                    <div className="flex items-center mb-4 ml-2">
+                                                        <input
+                                                            id="floor-apartments-studio"
+                                                            name="floor-apartments-studio"
+                                                            type="checkbox"
+                                                            value="yes"
+                                                            defaultChecked={floor?.floor_apartments_studio ? true : false}
+                                                            className="checkbox checkbox-primary"
+                                                        />
+                                                        <label
+                                                            htmlFor="floor-apartments-studio"
+                                                            className="ml-2 text-sm font-medium  "
+                                                        >
+                                                            Studio
+                                                        </label>
+                                                    </div>
+                                                    <div className="flex items-center mb-4 ml-2">
+                                                        <input
+                                                            id="floor-apartments-1-bed"
+                                                            name="floor-apartments-1-bed"
+                                                            type="checkbox"
+                                                            value="yes"
+                                                            defaultChecked={floor?.floor_apartments_1_bed ? true : false}
+                                                            className="checkbox checkbox-primary"
+                                                        />
+                                                        <label
+                                                            htmlFor="floor-apartments-1-bed"
+                                                            className="ml-2 text-sm font-medium  "
+                                                        >
+                                                            1 Bed
+                                                        </label>
+                                                    </div>
+                                                    <div className="flex items-center mb-4 ml-2">
+                                                        <input
+                                                            id="floor-apartments-2-bed"
+                                                            name="floor-apartments-2-bed"
+                                                            type="checkbox"
+                                                            defaultChecked={floor?.floor_apartments_2_bed ? true : false}
+                                                            value="yes"
+                                                            className="checkbox checkbox-primary"
+                                                        />
+                                                        <label
+                                                            htmlFor="floor-apartments-2-bed"
+                                                            className="ml-2 text-sm font-medium  "
+                                                        >
+                                                            2 Bed
+                                                        </label>
+                                                    </div>
+                                                    <div className="flex items-center mb-4 ml-2">
+                                                        <input
+                                                            id="floor-apartments-3-bed"
+                                                            name="floor-apartments-3-bed"
+                                                            type="checkbox"
+                                                            defaultChecked={floor?.floor_apartments_3_bed ? true : false}
+                                                            value="yes"
+                                                            className="checkbox checkbox-primary"
+                                                        />
+                                                        <label
+                                                            htmlFor="floor-apartments-3-bed"
+                                                            className="ml-2 text-sm font-medium  "
+                                                        >
+                                                            3 Bed
+                                                        </label>
+                                                    </div>
+                                                    <div className="flex items-center mb-4 ml-2">
+                                                        <input
+                                                            id="floor-apartments-4-bed"
+                                                            name="floor-apartments-4-bed"
+                                                            type="checkbox"
+                                                            defaultChecked={floor?.floor_apartments_4_bed ? true : false}
+                                                            value="yes"
+                                                            className="checkbox checkbox-primary"
+                                                        />
+                                                        <label
+                                                            htmlFor="floor-apartments-4-bed"
+                                                            className="ml-2 text-sm font-medium  "
+                                                        >
+                                                            4 Bed
+                                                        </label>
+                                                    </div>
+                                                    <div className="flex items-center mb-4 ml-2">
+                                                        <input
+                                                            id="floor-apartments-5-bed"
+                                                            name="floor-apartments-5-bed"
+                                                            type="checkbox"
+                                                            defaultChecked={floor?.floor_apartments_5_bed ? true : false}
+                                                            value="yes"
+                                                            className="checkbox checkbox-primary"
+                                                        />
+                                                        <label
+                                                            htmlFor="floor-apartments-5-bed"
+                                                            className="ml-2 text-sm font-medium  "
+                                                        >
+                                                            5 Bed
+                                                        </label>
+                                                    </div>
+                                                    <div className="flex items-center mb-4 ml-2">
+                                                        <input
+                                                            id="floor-apartments-duplex"
+                                                            name="floor-apartments-duplex"
+                                                            type="checkbox"
+                                                            defaultChecked={floor?.floor_apartments_duplex ? true : false}
+                                                            value="yes"
+                                                            className="checkbox checkbox-primary"
+                                                        />
+                                                        <label
+                                                            htmlFor="floor-apartments-duplex"
+                                                            className="ml-2 text-sm font-medium  "
+                                                        >
+                                                            Duplex
+                                                        </label>
+                                                    </div>
+                                                    <div className="flex items-center mb-4 ml-2">
+                                                        <input
+                                                            id="floor-apartments-penthouse"
+                                                            name="floor-apartments-penthouse"
+                                                            type="checkbox"
+                                                            defaultChecked={floor?.floor_apartments_penthouse ? true : false}
+                                                            value="yes"
+                                                            className="checkbox checkbox-primary"
+                                                        />
+                                                        <label
+                                                            htmlFor="floor-apartments-penthouse"
+                                                            className="ml-2 text-sm font-medium  "
+                                                        >
+                                                            Penthhouse
+                                                        </label>
+                                                    </div>
+                                                    <div className="flex items-center mb-4 ml-2">
+                                                        <input
+                                                            id="floor-has-furnished"
+                                                            name="floor-has-furnished"
+                                                            type="checkbox"
+                                                            value="yes"
+                                                            defaultChecked={floor?.floor_has_furnished ? true : false}
+                                                            className="checkbox checkbox-primary"
+                                                        />
+                                                        <label
+                                                            htmlFor="floor-has-furnished"
+                                                            className="ml-2 text-sm font-medium  "
+                                                        >
+                                                            Furnished
+                                                        </label>
+                                                    </div>
+                                                    <div className="flex items-center mb-4 ml-2">
+                                                        <input
+                                                            id="floor-has-semi-furnished"
+                                                            name="floor-has-semi-furnished"
+                                                            type="checkbox"
+                                                            value="yes"
+                                                            defaultChecked={floor?.floor_has_semi_furnished ? true : false}
+                                                            className="checkbox checkbox-primary"
+                                                        />
+                                                        <label
+                                                            htmlFor="floor-has-semi-furnished"
+                                                            className="ml-2 text-sm font-medium"
+                                                        >
+                                                            Semi Furnished
+                                                        </label>
+                                                    </div>
+                                                    <div className="flex items-center mb-4 ml-2">
+                                                        <input
+                                                            id="floor-has-service-apartments"
+                                                            name="floor-has-service-apartments"
+                                                            type="checkbox"
+                                                            value="yes"
+                                                            defaultChecked={floor?.floor_has_service_apartments ? true : false}
+                                                            className="checkbox checkbox-primary"
+                                                        />
+                                                        <label
+                                                            htmlFor="floor-has-service-apartments"
+                                                            className="ml-2 text-sm font-medium"
+                                                        >
+                                                            Service Apartments
+                                                        </label>
+                                                    </div>
+                                                    <div className="flex items-center mb-4 ml-2">
+                                                        <input
+                                                            id="floor-has-hotel-suites-apartments"
+                                                            name="floor-has-hotel-suites-apartments"
+                                                            type="checkbox"
+                                                            value="yes"
+                                                            defaultChecked={floor?.floor_has_hotel_suites_apartments ? true : false}
+                                                            className="checkbox checkbox-primary"
+                                                        />
+                                                        <label
+                                                            htmlFor="floor-has-hotel-suites-apartments"
+                                                            className="ml-2 text-sm font-medium"
+                                                        >
+                                                            Hotel Suites Apartments
+                                                        </label>
+                                                    </div>
+                                                </>
+
+                                            }
+                                        </div>
+
+                                    </div>
+                                </>
+
+                            }
 
 
 
@@ -260,14 +539,14 @@ export default function UpdatePlotForm({ floor }: any) {
                                         className="input input-bordered  w-full max-w-xs border border-gray-400 "
                                         placeholder=""
                                         defaultValue={floor?.occupancy as number}
-                                        minLength={1}
-                                        maxLength={2}
+                                        min={0}
+                                        max={100}
                                         onChange={(e) => {
                                             setOccupancy(Number(e.target.value))
                                         }}
                                     />
                                     <div className="m-4">
-                                        {occupancy + "%"}
+                                        {(occupancy + "%") === null ? 0 : (occupancy + "%")}
                                     </div>
                                 </div>
                             </div>
@@ -552,7 +831,7 @@ export default function UpdatePlotForm({ floor }: any) {
                             </div>
 
                             {/* Floor Remarks  */}
-                            <div className="mt-4">
+                            <div className="mt-4  mb-3">
                                 <label htmlFor="message" className="block mb-2 text-sm font-medium">
                                     Your Remarks
                                 </label>
@@ -566,7 +845,8 @@ export default function UpdatePlotForm({ floor }: any) {
                             </div>
 
                             {/* Submit button */}
-                            <div className="flex gap-6 justify-center mt-3 mb-3">
+                            {/* update button */}
+                            <div className="flex gap-6 justify-center mt-3">
                                 <UpdateFloorButton />
                                 {/* <Link href="/buildings" className="flex justify-center items-center border border-black px-2 py-1 rounded-xl bg-white text-black hover:bg-red-600 hover:text-white capitalize">Cancel</Link> */}
 
@@ -583,11 +863,16 @@ export default function UpdatePlotForm({ floor }: any) {
           Create
         </button> */}
                             </div>
+
                         </div>
+
                     </form>
+
                 </div>
 
             </div>
+
+
         </>
     )
 }

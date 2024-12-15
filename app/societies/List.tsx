@@ -19,7 +19,7 @@ import {
 
 
 import { revalidatePath } from "next/cache";
-import { Pagination } from "@/components/pagination";
+import Pagination from "@/components/pagination";
 import CityInput from "./components/CityInput";
 import DeveloperName from "./components/developerName";
 import Grade from "./components/Grade";
@@ -32,9 +32,10 @@ import ImageUpload from "../components/ImageUpload";
 
 export const revalidate = 1; // revalidate the date at most every hour
 export const dynamic = "force-dynamic";
-const PAGE_SIZE = 10000;
+const PAGE_SIZE = 5;
 
 const GetSocieties = async ({
+    pageNumber = 1,
     search_string = '',
     take = PAGE_SIZE,
     skip = 0,
@@ -76,6 +77,7 @@ const GetSocieties = async ({
         const return_object = {
             data: results,
             metadata: {
+                page: pageNumber,
                 hasNextPage: skip + take < total,
                 totalPages: Math.ceil(total / take),
             },
@@ -183,7 +185,7 @@ export default async function List({ city, page, search, developer, society_grad
     const search_string = search || ''
 
     // const buildings = await getBuildings({search, take, skip});
-    const { data, metadata } = await GetSocieties({ search_string, take, skip, city, developer, society_grade, project_type });
+    const { data, metadata } = await GetSocieties({ pageNumber, search_string, take, skip, city, developer, society_grade, project_type });
 
     // const searchedBuildings = await getSearchedBuildings()
 
@@ -283,7 +285,7 @@ export default async function List({ city, page, search, developer, society_grad
                             <TableCell className="text-center">{societies.grade}</TableCell>
                             <TableCell className="text-center">{Number(societies.area).toLocaleString()}</TableCell>
                             <TableCell className="text-center">
-                                {/* {(societies?.occupancy !== null || societies?.occupancy !== undefined || societies?.occupancy !== "") ? (societies?.occupancy + '%') : (societies?.occupancy)} */}
+                               
                                 {societies?.occupancy === "" ? (societies?.occupancy !== null) : (societies?.occupancy + '%')}
                             </TableCell>
                             <TableCell>
@@ -299,12 +301,7 @@ export default async function List({ city, page, search, developer, society_grad
                                             </Link>
                                         </Button>
 
-                                        {/* <Link
-                                                className=" flex justify-center items-center border border-slate-400 px-2 py-1 rounded hover:bg-cyan-800 outline-none hover:text-white "
-                                                href={"buildings/floor/add/" + societies.id}
-                                            >
-                                                Add floor information
-                                            </Link> */}
+                                        
                                     </div>
 
                                     <Button asChild>
@@ -313,45 +310,7 @@ export default async function List({ city, page, search, developer, society_grad
                                         </Link>
                                     </Button>
 
-                                    {/* <ImageUpload /> */}
-
-                                    {/* <Button asChild>
-                                            <Link href={"societies/houses/add/" + societies.id}>
-                                                Add Houses
-                                            </Link>
-                                        </Button> */}
-
-                                    {/* <form action={deleteSociety} className="hidden">
-                                            <input type="hidden" name="societies-id" value={societies.id} />
-                                            <DeleteSocietyButton />
-
-                                        </form> */}
-
-                                    {/* <AlertDialog>
-                                            <AlertDialogTrigger asChild>
-                                                <Button variant="destructive">Delete</Button>
-                                            </AlertDialogTrigger>
-                                            <AlertDialogContent>
-                                                <AlertDialogHeader>
-                                                    <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-                                                    <AlertDialogDescription>
-
-                                                    </AlertDialogDescription>
-                                                </AlertDialogHeader>
-                                                <AlertDialogFooter>
-                                                    <AlertDialogCancel>Cancel</AlertDialogCancel>
-
-                                                    <form action={deleteSociety}>
-                                                        <input type="hidden" name="societies-id" value={societies.id} />
-                                                        <DeleteSocietyButton />
-
-                                                    </form>
-
-                                                </AlertDialogFooter>
-                                            </AlertDialogContent>
-                                        </AlertDialog> */}
-
-                                    {/* <DeletePlotDialog /> */}
+                                    
                                     <DeleteSocietyDialog society_id={societies.id} />
 
 
@@ -368,7 +327,7 @@ export default async function List({ city, page, search, developer, society_grad
             {/* <LoadMore datas ={data} /> */}
 
             <div className="mt-6">
-                {/* <Pagination {...props.searchParams} {...metadata} /> */}
+                <Pagination metadata={metadata} />
             </div>
             {/* <div className="flex flex-col gap-4 ">
         {buildings.map((building) => (

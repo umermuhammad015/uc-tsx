@@ -34,8 +34,41 @@ export default function Page() {
 
             <form action={createCommercial}>
                 <div className="p-5 border-2 border-b-0 border-gray-200 dark:border-gray-700">
+                    {/* Survey Date */}
+
+                    <div className="relative max-w-sm">
+                        <label
+                            htmlFor="commercial-survey-date"
+                            className="block mb-2 text-sm font-medium "
+                        >
+                            Survey Date: (Month/Day/year)
+
+                        </label>
+                        <div className="absolute inset-y-0 right-0 flex items-center pr-20 pointer-events-none">
+                            <svg
+                                className="w-4 h-4  dark:text-gray-400 mt-6"
+                                aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="currentColor"
+                                viewBox="0 0 20 20"
+                            >
+                                <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                            </svg>
+                        </div>
+
+                        <Input
+                            type="date"
+                            id="commercial-survey-date"
+                            name="commercial-survey-date"
+                            // defaultValue="2024-12-13"
+                            defaultValue={(new Date).toISOString().split('T')[0]}
+                            // value="12/26/2024"
+                            className="max-w-xs border-gray-400  border-2 text-sm rounded focus:ring-blue-500  block w-full p-2.5"
+                            placeholder="Survey date"
+                        />
+                    </div>
                     {/* City */}
-                    <div className="">
+                    <div className="mt-4">
                         <label
                             htmlFor="commercial-city"
                             className="block mb-2 text-sm font-medium"
@@ -431,7 +464,7 @@ export default function Page() {
                             <option value="Main Boulevard Facing">Main Boulevard Facing</option>
                             <option value="Anchor Facing">Anchor Facing</option>
                             <option value="Rear Facing">Rear Facing</option>
-                            
+
                         </select>
                         {/* <Select
                             name="property-feature">
@@ -469,7 +502,7 @@ export default function Page() {
                             <option value="Ownership">Ownership</option>
                             <option value="Lease">Lease</option>
                             <option value="Unapproved">Unapproved</option>
-                            
+
                         </select>
                         {/* <Select
                             name="property-title">
@@ -489,39 +522,7 @@ export default function Page() {
                         </Select> */}
                     </div>
 
-                    {/* Survey Date */}
 
-                    <div className="relative max-w-sm mt-4">
-                        <label
-                            htmlFor="commercial-survey-date"
-                            className="block mb-2 text-sm font-medium "
-                        >
-                            Survey Date: (Month/Day/year)
-
-                        </label>
-                        <div className="absolute inset-y-0 right-0 flex items-center pr-20 pointer-events-none">
-                            <svg
-                                className="w-4 h-4  dark:text-gray-400 mt-6"
-                                aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="currentColor"
-                                viewBox="0 0 20 20"
-                            >
-                                <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
-                            </svg>
-                        </div>
-
-                        <Input
-                            type="date"
-                            id="commercial-survey-date"
-                            name="commercial-survey-date"
-                            // defaultValue="2024-12-13"
-                            defaultValue={(new Date).toISOString().split('T')[0]}
-                            // value="12/26/2024"
-                            className="max-w-xs border-gray-400  border-2 text-sm rounded focus:ring-blue-500  block w-full p-2.5"
-                            placeholder="Survey date"
-                        />
-                    </div>
 
                     {/* Remarks  */}
                     <div className="mt-4">

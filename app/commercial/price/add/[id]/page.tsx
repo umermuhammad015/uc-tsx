@@ -55,7 +55,7 @@ export default function PriceAddPage({ params }: Props) {
 
     const [payment_mode, setPayment_mode] = useState("Lumpsum Payment");
 
-    const insertPlot = async () => {
+    const insertPrice = async () => {
 
         try {
 
@@ -117,12 +117,12 @@ export default function PriceAddPage({ params }: Props) {
     return (
         <>
             <div className="text-lg">Price Information</div>
-            <div className="container border-2 ">
-
-                <div className="m-4">
-                    <form action={createPrice}>
+            <div className="">
 
 
+                <form action={createPrice}>
+
+                    <div className="p-4 container border-2 ">
 
                         <div className="mt-4 ">
                             <label
@@ -141,6 +141,41 @@ export default function PriceAddPage({ params }: Props) {
 
                             />
                         </div>
+
+                        {/*Date */}
+
+                        <div className="relative max-w-sm mt-4">
+                            <label
+                                htmlFor="surveyor-name"
+                                className="block mb-2 text-sm font-medium "
+                            >
+                                Date:
+                            </label>
+                            <div className="absolute inset-y-0 right-0 flex items-center pr-20 pointer-events-none">
+                                <svg
+                                    className="w-4 h-4  dark:text-gray-400 mt-6"
+                                    aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="currentColor"
+                                    viewBox="0 0 20 20"
+                                >
+                                    <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                                </svg>
+                            </div>
+
+                            <Input
+                                type="date"
+                                id="date"
+                                name="date"
+                                // defaultValue="2024-12-13"
+                                defaultValue={(new Date).toISOString().split('T')[0]}
+                                // value="12/26/2024"
+                                className="max-w-xs border-gray-400  border-2 text-sm rounded focus:ring-blue-500  block w-full p-2.5"
+                                onChange={(e) => setEntryDate(e.target.value)}
+                                placeholder="date"
+                            />
+                        </div>
+
 
                         {/* plot type */}
                         <div className="mt-4">
@@ -669,39 +704,6 @@ export default function PriceAddPage({ params }: Props) {
 
 
 
-                        {/*Date */}
-
-                        <div className="relative max-w-sm">
-                            <label
-                                htmlFor="surveyor-name"
-                                className="block mb-2 text-sm font-medium "
-                            >
-                                Date:
-                            </label>
-                            <div className="absolute inset-y-0 right-0 flex items-center pr-20 pointer-events-none">
-                                <svg
-                                    className="w-4 h-4  dark:text-gray-400 mt-6"
-                                    aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="currentColor"
-                                    viewBox="0 0 20 20"
-                                >
-                                    <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
-                                </svg>
-                            </div>
-
-                            <Input
-                                type="date"
-                                id="date"
-                                name="date"
-                                // defaultValue="2024-12-13"
-                                defaultValue={(new Date).toISOString().split('T')[0]}
-                                // value="12/26/2024"
-                                className="max-w-xs border-gray-400  border-2 text-sm rounded focus:ring-blue-500  block w-full p-2.5"
-                                onChange={(e) => setEntryDate(e.target.value)}
-                                placeholder="date"
-                            />
-                        </div>
 
                         {/* Plot Remarks  */}
                         <div className="mt-4">
@@ -721,37 +723,39 @@ export default function PriceAddPage({ params }: Props) {
 
 
 
-                    </form>
+                    </div>
+                    {/* Submit button */}
+                    <div className="flex gap-6 justify-center mt-3 mb-2">
+                        <AddPriceButton />
+                        {/* <Link href="/buildings" className="flex justify-center items-center border border-black px-2 py-1 rounded-xl bg-white text-black hover:bg-red-600 hover:text-white capitalize">Cancel</Link> */}
 
-                </div>
+                        <Button variant='outline'
+                            onClick={async (e) => {
 
-            </div>
+                                e.preventDefault();
+                                insertPrice()
 
-            {/* Submit button */}
-            <div className="flex gap-6 justify-center mt-3 mb-2">
-                <AddPriceButton />
-                {/* <Link href="/buildings" className="flex justify-center items-center border border-black px-2 py-1 rounded-xl bg-white text-black hover:bg-red-600 hover:text-white capitalize">Cancel</Link> */}
+                            }}
 
-                <Button variant='outline'
-                    onClick={async (e) => {
+                        >
+                            {isAdding ? "Saving...." : "Save and Add more"}
 
-                        e.preventDefault();
-                        insertPlot()
-
-                    }}
-
-                >
-                    {isAdding ? "Saving...." : "Save and Add more"}
-
-                </Button>
-                <Toaster />
-                <Button asChild className="bg-transparent text-primary hover:bg-primary-foreground">
-                    <Link href="/commercial" >Cancel</Link>
-                </Button>
+                        </Button>
+                        <Toaster />
+                        <Button asChild className="bg-transparent text-primary hover:bg-primary-foreground">
+                            <Link href="/commercial" >Cancel</Link>
+                        </Button>
 
 
 
-            </div>
+                    </div>
+                </form>
+
+
+
+            </div >
+
+
         </>
 
     )

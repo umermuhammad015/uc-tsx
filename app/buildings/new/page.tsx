@@ -1126,7 +1126,7 @@ export default function Page() {
                   <input
                     id="apartments-has-type-penthouse"
                     name="apartments-has-type-penthouse"
-                    
+
                     type="checkbox"
                     value="yes"
                     className="checkbox checkbox-primary"
@@ -1356,6 +1356,23 @@ export default function Page() {
               className="textarea  w-full border-2 border-gray-400  "
               placeholder="Leave a comment..."
             ></Textarea>
+          </div>
+
+
+          <div className="flex items-center mt-4 ml-2">
+            <input
+              id="building-draft"
+              name="building-draft"
+              type="checkbox"
+              value="yes"
+              className="checkbox checkbox-primary"
+            />
+            <label
+              htmlFor="building-draft"
+              className="ml-2 text-sm font-medium  "
+            >
+              Draft:
+            </label>
           </div>
         </div>
 

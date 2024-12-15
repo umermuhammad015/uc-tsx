@@ -70,6 +70,10 @@ export default async function ViewBuilding({ params }: Props) {
   return (
     <>
       <div className="flex justify-between mb-4">
+        {/* {
+          building?.building_draft === "yes" ? "This building has been drafted" : " " 
+
+        } */}
         <h1></h1>
         <Button asChild>
           <Link href={"/buildings/floor/add/" + params.id}
@@ -245,7 +249,7 @@ export default async function ViewBuilding({ params }: Props) {
                   // <div className="badge bg-emerald-700 text-white ">Centrally Airconditioned </div>
                   <Badge>Play Areas/Fitness Centers </Badge>
                 )}
-                
+
               </TableCell >
             </TableRow>
             <TableRow>
@@ -335,6 +339,20 @@ export default async function ViewBuilding({ params }: Props) {
             <TableRow>
               <TableCell >Your Remarks</TableCell > <TableCell >{building?.building_survery_remarks}</TableCell >
             </TableRow>
+            <TableRow>
+              <TableCell >Draft</TableCell > <TableCell > <div className="">
+                {/* {building?.building_draft} */}
+                {
+                  building?.building_draft === "yes" ? "yes" : "no"
+
+                }
+
+                {/* {plot?.type === 'Apartment' ? plot?.apartment_size : plot?.size} */}
+
+                {/* {plot?.type === 'Shop' ? plot?.shop_size : plot?.size} */}
+
+              </div></TableCell >
+            </TableRow>
             {/* <TableRow>
               <td>Remarks</td> <td>{building.building_survery_remarks}</td>
             </TableRow> */}
@@ -371,7 +389,7 @@ export default async function ViewBuilding({ params }: Props) {
               <TableHead >
                 <div className=" text-left">Floor No</div></TableHead >
               <TableHead >Type</TableHead >
-              <TableHead >Unit</TableHead >
+              {/* <TableHead >Unit</TableHead > */}
               <TableHead >Occupancy Ratio</TableHead >
               <TableHead >Min Size</TableHead >
               <TableHead >Max size</TableHead >
@@ -382,6 +400,7 @@ export default async function ViewBuilding({ params }: Props) {
               <TableHead >Down Payment</TableHead >
               <TableHead >Total Sale Price</TableHead >
               <TableHead >Possession Amount</TableHead >
+              <TableHead >Date</TableHead >
               <TableHead >Remarks</TableHead >
             </TableRow>
           </TableHeader>
@@ -393,7 +412,56 @@ export default async function ViewBuilding({ params }: Props) {
                 </TableCell >
                 <TableCell >
                   <div className="">{floor?.floor_type}</div></TableCell >
-                <TableCell >{floor?.unit_type}</TableCell >
+                {/* <TableCell >
+                  {floor?.floor_apartments_studio && (
+                    // <div className="badge bg-cyan-800 text-white">1 Bed</div>
+                    <Badge>Studio</Badge>
+                  )}
+                  {floor?.floor_apartments_1_bed && (
+                    // <div className="badge bg-cyan-800 text-white">1 Bed</div>
+                    <Badge>1 Bed</Badge>
+                  )}
+                  {floor?.floor_apartments_2_bed && (
+                    // <div className="badge bg-cyan-800 text-white">2 Bed</div>
+                    <Badge>2 Bed</Badge>
+                  )}
+                  {floor?.floor_apartments_3_bed && (
+                    // <div className="badge bg-cyan-800 text-white">3 Bed</div>
+                    <Badge>3 Bed</Badge>
+                  )}
+                  {floor?.floor_apartments_4_bed && (
+                    // <div className="badge bg-cyan-800 text-white">4 Bed</div>
+                    <Badge>4 Bed</Badge>
+                  )}
+                  {floor?.floor_apartments_5_bed && (
+                    // <div className="badge bg-cyan-800 text-white">4 Bed</div>
+                    <Badge>5 Bed</Badge>
+                  )}
+                  {floor?.floor_apartments_duplex && (
+                    // <div className="badge bg-cyan-800 text-white">Duplex</div>
+                    <Badge>Duplex</Badge>
+                  )}
+                  {floor?.floor_apartments_penthouse && (
+                    // <div className="badge bg-cyan-800 text-white">Penthouse</div>
+                    <Badge>Penthouse</Badge>
+                  )}
+                  {floor?.floor_has_furnished && (
+                    // <div className="badge bg-cyan-800 text-white">Penthouse</div>
+                    <Badge>Furnished</Badge>
+                  )}
+                  {floor?.floor_has_semi_furnished && (
+                    // <div className="badge bg-cyan-800 text-white">Penthouse</div>
+                    <Badge>Semi Furnished</Badge>
+                  )}
+                  {floor?.floor_has_service_apartments && (
+                    // <div className="badge bg-cyan-800 text-white">Penthouse</div>
+                    <Badge>Service Apartments</Badge>
+                  )}
+                  {floor?.floor_has_hotel_suites_apartments && (
+                    // <div className="badge bg-cyan-800 text-white">Penthouse</div>
+                    <Badge>Hotel Suites Apartments</Badge>
+                  )}
+                </TableCell > */}
                 {/* <TableCell >{floor?.occupancy}</TableCell > */}
                 <TableCell>{(floor?.occupancy === null ? "0%" : floor?.occupancy + "%")}</TableCell>
                 <TableCell >{Number(floor?.size_min).toLocaleString()}</TableCell >
@@ -405,6 +473,7 @@ export default async function ViewBuilding({ params }: Props) {
                 <TableCell >{Number(floor?.down_payment_amount).toLocaleString()}</TableCell >
                 <TableCell >{Number(floor?.instalment_amount).toLocaleString()}</TableCell >
                 <TableCell >{Number(floor?.possession_amount).toLocaleString()}</TableCell >
+                <TableCell>{floor?.date}</TableCell>
                 <TableCell >{floor?.remarks}</TableCell >
                 <TableCell >
                   {/* <div className="flex justify-center items-center border border-slate-400 px-2 py-1 rounded hover:bg-cyan-800 outline-none hover:text-white">

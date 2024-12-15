@@ -158,6 +158,8 @@ export default async function createBuilding(data: FormData) {
     .get("building-survery-remarks")
     ?.valueOf();
 
+  const building_draft = data.get("building-draft")?.valueOf();
+
   // console.log(
   //   "🚀 ~ file: page.tsx:15 ~ createBuilding ~ is_centrally_air_conditioned:",
   //   is_centrally_air_conditioned
@@ -383,6 +385,7 @@ export default async function createBuilding(data: FormData) {
       survey_date: survey_date,
       surveyor_name: surveyor_name as string,
       building_survery_remarks: building_survery_remarks as string,
+      building_draft: building_draft as string,
     },
   });
 

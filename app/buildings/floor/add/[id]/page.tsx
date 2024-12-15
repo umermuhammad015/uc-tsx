@@ -116,6 +116,18 @@ export default function Page({ params }: Props, building: any) {
   const [size_min, setSize_Min] = useState(0);
   const [size_max, setSize_Max] = useState(0);
   const [floor_num, setFloor_num] = useState("");
+  const [apart_studio, setApart_studio] = useState("");
+  const [apart_1_bed, setApart_1_bed] = useState("");
+  const [apart_2_bed, setApart_2_bed] = useState("");
+  const [apart_3_bed, setApart_3_bed] = useState("");
+  const [apart_4_bed, setApart_4_bed] = useState("");
+  const [apart_5_bed, setApart_5_bed] = useState("");
+  const [apart_duplex, setApart_duplex] = useState("");
+  const [apart_penthouse, setApart_penthouse] = useState("");
+  const [apart_furnished, setApart_furnished] = useState("");
+  const [apart_semi_furnished, setApart_semi_furnished] = useState("");
+  const [service_apartment, setService_apartment] = useState("");
+  const [hotel_suites_apartment, setHotel_suites_apartment] = useState("");
   const [floor_type, setFloor_Type] = useState("");
   const [unit_type, setUnit_type] = useState<any>();
   const [instalment_plan, setInstalment_plan] = useState("");
@@ -168,11 +180,12 @@ export default function Page({ params }: Props, building: any) {
       // console.log(params.id)
 
       const add_plot_output = await AddPlot(entryDate, avg_sale_price, params.id, avg_monthly_rent, down_payment_amount,
-        instalment_period, instalment_amount, possession_amount, size_min, size_max, floor_num, floor_type,
-        unit_type, instalment_plan, occupancy, remarks)
+        instalment_period, instalment_amount, possession_amount, size_min, size_max, floor_num, floor_type, apart_studio,
+        apart_1_bed, apart_2_bed, apart_3_bed, apart_4_bed, apart_5_bed, apart_duplex, apart_penthouse, apart_furnished,
+        apart_semi_furnished, service_apartment, hotel_suites_apartment, unit_type, instalment_plan, occupancy, remarks)
 
-      // console.log("Plot added")
-      // console.log(add_plot_output)
+      console.log("Plot added")
+      console.log(add_plot_output)
 
       toast({
         className: "bg-green-600 rounded-lg",
@@ -204,6 +217,19 @@ export default function Page({ params }: Props, building: any) {
       setFloor_num("")
       setFloor_Type("")
       setUnit_type("")
+      setApart_studio("")
+      setApart_1_bed("")
+      setApart_2_bed("")
+      setApart_3_bed("")
+      setApart_4_bed("")
+      setApart_5_bed("")
+      setApart_duplex("")
+      setApart_penthouse("")
+      setApart_furnished("")
+      setApart_semi_furnished("")
+      setService_apartment("")
+      setHotel_suites_apartment("")
+
 
 
 
@@ -235,6 +261,7 @@ export default function Page({ params }: Props, building: any) {
 
         <div className="mx-4">
           <form action={createFloor}>
+
             {/* Building ID  */}
             <div className="">
 
@@ -404,14 +431,14 @@ export default function Page({ params }: Props, building: any) {
                   {/* Unit Type  */}
                   <div className="mt-4">
                     <label
-                      htmlFor="building-floor-unit-type"
+                      // htmlFor="building-floor-unit-type"
                       className="block mb-2 text-sm font-medium"
                     >
                       Unit Type:
                     </label>
 
 
-                    <select
+                    {/* <select
                       id="building-floor-unit-type"
                       name="building-floor-unit-type"
                       className="select  w-full text-sm pl-2 h-10 max-w-xs border-2 rounded border-gray-400 bg-background"
@@ -431,24 +458,293 @@ export default function Page({ params }: Props, building: any) {
                       {(current_building.has_semi_furnished === "yes") && <option value="Semi Furnished">Semi Furnished</option>}
                       {(current_building.has_service_apartments === "yes") && <option value="Service Apartments">Service Apartments</option>}
                       {(current_building.has_hotel_suites_apartments === "yes") && <option value="Hotel Suites Apartments">Hotel Suites Apartments</option>}
-                    </select>
+                    </select> */}
 
-                    <div className="grid grid-cols-6 gap-4">
-                      <div className="flex items-center mb-4 ml-2">
-                        <input
-                          id="apartment-studio"
-                          name="apartment-studio"
-                          type="checkbox"
-                          value="yes"
-                          className="checkbox checkbox-primary"
-                        />
-                        <label
-                          htmlFor="apartment-studio"
-                          className="ml-2 text-sm font-medium  "
-                        >
-                          Studio
-                        </label>
-                      </div>
+                    <div className="grid grid-cols-6 gap-4 mt-4">
+
+
+                      {
+                        floor_type === "Apartment" &&
+                        <>
+                          {
+                            current_building.apartments_studio === "yes" &&
+                            <>
+                              <div className="flex items-center mb-4 ml-2">
+                                <input
+                                  id="floor-apartments-studio"
+                                  name="floor-apartments-studio"
+                                  type="checkbox"
+                                  // value="yes"
+                                  value="yes"
+                                  onChange={(e) => setApart_studio(e.target.value)}
+                                  className="checkbox checkbox-primary"
+                                />
+                                <label
+                                  htmlFor="floor-apartments-studio"
+                                  className="ml-2 text-sm font-medium  "
+                                >
+                                  Studio
+                                </label>
+                              </div>
+                            </>
+
+                          }
+                          {
+                            current_building.apartments_has_type_1_bed === "yes" &&
+                            <>
+                              <div className="flex items-center mb-4 ml-2">
+                                <input
+                                  id="floor-apartments-1-bed"
+                                  name="floor-apartments-1-bed"
+                                  type="checkbox"
+                                  value="yes"
+                                  // value={apart_1_bed}
+                                  onChange={(e) => setApart_1_bed(e.target.value)}
+                                  className="checkbox checkbox-primary"
+                                />
+                                <label
+                                  htmlFor="floor-apartments-1-bed"
+                                  className="ml-2 text-sm font-medium  "
+                                >
+                                  1 Bed
+                                </label>
+                              </div>
+                            </>
+
+                          }
+                          {
+                            current_building.apartments_has_type_2_bed === "yes" &&
+                            <>
+                              <div className="flex items-center mb-4 ml-2">
+                                <input
+                                  id="floor-apartments-2-bed"
+                                  name="floor-apartments-2-bed"
+                                  type="checkbox"
+                                  value="yes"
+                                  // value={apart_2_bed}
+                                  onChange={(e) => setApart_2_bed(e.target.value)}
+                                  className="checkbox checkbox-primary"
+                                />
+                                <label
+                                  htmlFor="floor-apartments-2-bed"
+                                  className="ml-2 text-sm font-medium  "
+                                >
+                                  2 Bed
+                                </label>
+                              </div>
+                            </>
+
+                          }
+                          {
+                            current_building.apartments_has_type_3_bed === "yes" &&
+                            <>
+                              <div className="flex items-center mb-4 ml-2">
+                                <input
+                                  id="floor-apartments-3-bed"
+                                  name="floor-apartments-3-bed"
+                                  // value={apart_3_bed}
+                                  onChange={(e) => setApart_3_bed(e.target.value)}
+                                  type="checkbox"
+                                  value="yes"
+                                  className="checkbox checkbox-primary"
+                                />
+                                <label
+                                  htmlFor="floor-apartments-3-bed"
+                                  className="ml-2 text-sm font-medium  "
+                                >
+                                  3 Bed
+                                </label>
+                              </div>
+                            </>
+
+                          }
+                          {
+                            current_building.apartments_has_type_4_bed === "yes" &&
+                            <>
+                              <div className="flex items-center mb-4 ml-2">
+                                <input
+                                  id="floor-apartments-4-bed"
+                                  name="floor-apartments-4-bed"
+                                  type="checkbox"
+                                  value="yes"
+                                  // value={apart_4_bed}
+                                  onChange={(e) => setApart_4_bed(e.target.value)}
+                                  className="checkbox checkbox-primary"
+                                />
+                                <label
+                                  htmlFor="floor-apartments-4-bed"
+                                  className="ml-2 text-sm font-medium  "
+                                >
+                                  4 Bed
+                                </label>
+                              </div>
+                            </>
+
+                          }
+                          {
+                            current_building.apartments_has_type_5_bed === "yes" &&
+                            <>
+                              <div className="flex items-center mb-4 ml-2">
+                                <input
+                                  id="floor-apartments-5-bed"
+                                  name="floor-apartments-5-bed"
+                                  type="checkbox"
+                                  value="yes"
+                                  // value={apart_5_bed}
+                                  onChange={(e) => setApart_5_bed(e.target.value)}
+                                  className="checkbox checkbox-primary"
+                                />
+                                <label
+                                  htmlFor="floor-apartments-5-bed"
+                                  className="ml-2 text-sm font-medium  "
+                                >
+                                  5 Bed
+                                </label>
+                              </div>
+                            </>
+
+                          }
+                          {
+                            current_building.apartments_has_type_duplex === "yes" &&
+                            <>
+                              <div className="flex items-center mb-4 ml-2">
+                                <input
+                                  id="floor-apartments-duplex"
+                                  name="floor-apartments-duplex"
+                                  type="checkbox"
+                                  value="yes"
+                                  // value={apart_duplex}
+                                  onChange={(e) => setApart_duplex(e.target.value)}
+                                  className="checkbox checkbox-primary"
+                                />
+                                <label
+                                  htmlFor="floor-apartments-duplex"
+                                  className="ml-2 text-sm font-medium  "
+                                >
+                                  Duplex
+                                </label>
+                              </div>
+                            </>
+
+                          }
+                          {
+                            current_building.apartments_has_type_penthouse === "yes" &&
+                            <>
+                              <div className="flex items-center mb-4 ml-2">
+                                <input
+                                  id="floor-apartments-penthouse"
+                                  name="floor-apartments-penthouse"
+                                  type="checkbox"
+                                  value="yes"
+                                  // value={apart_penthouse}
+                                  onChange={(e) => setApart_penthouse(e.target.value)}
+                                  className="checkbox checkbox-primary"
+                                />
+                                <label
+                                  htmlFor="floor-apartments-penthouse"
+                                  className="ml-2 text-sm font-medium  "
+                                >
+                                  Penthhouse
+                                </label>
+                              </div>
+                            </>
+
+                          }
+                          {
+                            current_building.has_furnished === "yes" &&
+                            <>
+                              <div className="flex items-center mb-4 ml-2">
+                                <input
+                                  id="floor-has-furnished"
+                                  name="floor-has-furnished"
+                                  type="checkbox"
+                                  value="yes"
+                                  // value={apart_furnished}
+                                  onChange={(e) => setApart_furnished(e.target.value)}
+                                  className="checkbox checkbox-primary"
+                                />
+                                <label
+                                  htmlFor="floor-has-furnished"
+                                  className="ml-2 text-sm font-medium  "
+                                >
+                                  Furnished
+                                </label>
+                              </div>
+                            </>
+
+                          }
+                          {
+                            current_building.has_semi_furnished === "yes" &&
+                            <>
+                              <div className="flex items-center mb-4 ml-2">
+                                <input
+                                  id="floor-has-semi-furnished"
+                                  name="floor-has-semi-furnished"
+                                  type="checkbox"
+                                  value="yes"
+                                  // value={apart_semi_furnished}
+                                  onChange={(e) => setApart_semi_furnished(e.target.value)}
+                                  className="checkbox checkbox-primary"
+                                />
+                                <label
+                                  htmlFor="floor-has-semi-furnished"
+                                  className="ml-2 text-sm font-medium"
+                                >
+                                  Semi Furnished
+                                </label>
+                              </div>
+                            </>
+
+                          }
+                          {
+                            current_building.has_service_apartments === "yes" &&
+                            <>
+                              <div className="flex items-center mb-4 ml-2">
+                                <input
+                                  id="floor-has-service-apartments"
+                                  name="floor-has-service-apartments"
+                                  type="checkbox"
+                                  value="yes"
+                                  // value={service_apartment}
+                                  onChange={(e) => setService_apartment(e.target.value)}
+                                  className="checkbox checkbox-primary"
+                                />
+                                <label
+                                  htmlFor="floor-has-service-apartments"
+                                  className="ml-2 text-sm font-medium"
+                                >
+                                  Service Apartments
+                                </label>
+                              </div>
+                            </>
+
+                          }
+                          {
+                            current_building.has_hotel_suites_apartments === "yes" &&
+                            <>
+                              <div className="flex items-center mb-4 ml-2">
+                                <input
+                                  id="floor-has-hotel-suites-apartments"
+                                  name="floor-has-hotel-suites-apartments"
+                                  type="checkbox"
+                                  value="yes"
+                                  // value={hotel_suites_apartment}
+                                  onChange={(e) => setHotel_suites_apartment(e.target.value)}
+                                  className="checkbox checkbox-primary"
+                                />
+                                <label
+                                  htmlFor="floor-has-hotel-suites-apartments"
+                                  className="ml-2 text-sm font-medium"
+                                >
+                                  Hotel Suites Apartments
+                                </label>
+                              </div>
+                            </>
+
+                          }
+                        </>
+
+                      }
 
                       {/* <div className="flex items-center mb-4 ml-2">
                         <input
@@ -670,8 +966,8 @@ export default function Page({ params }: Props, building: any) {
                     className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
                     value={occupancy}
                     placeholder=""
-                    min={1}
-                    max={2}
+                    min={0}
+                    max={100}
                     onChange={(e) => {
                       setOccupancy(Number(e.target.value))
                     }}
@@ -939,7 +1235,7 @@ export default function Page({ params }: Props, building: any) {
 
 
             {/* Floor Remarks  */}
-            <div className="mt-4">
+            <div className="mt-4 mb-4">
               <label htmlFor="message" className="block mb-2 text-sm font-medium">
                 Your Remarks
               </label>
@@ -1008,9 +1304,11 @@ export default function Page({ params }: Props, building: any) {
             Create
           </button> */}
             </div>
+
           </form>
         </div>
       </div>
+
     </>
   );
 }

@@ -1328,6 +1328,22 @@ export default function UpdatePlotForm({ building }: any) {
                             placeholder="Leave a comment..."
                         ></Textarea>
                     </div>
+
+                    <div className="flex items-center mt-4 ml-2">
+                        <input
+                            id="building-draft"
+                            name="building-draft"
+                            type="checkbox"
+                            defaultChecked={building?.building_draft ? true : false}
+                            className="checkbox checkbox-primary"
+                        />
+                        <label
+                            htmlFor="building-draft"
+                            className="ml-2 text-sm font-medium  "
+                        >
+                            Draft:
+                        </label>
+                    </div>
                 </div>
 
                 <div className="flex gap-1 justify-end mt-3">

@@ -10,7 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import ThemeToggleButton from "@/components/ThemeToggleButton";
 import { useSearchParams } from 'next/navigation'
-import { Pagination } from '../../components/pagination';
+// import { Pagination } from '../../components/pagination';
 
 
 
@@ -27,12 +27,20 @@ import { revalidatePath } from "next/cache";
 import CityInput from "./components/CityInput";
 import DeleteBuildingDialog from "./components/DeleteBuildingDialog";
 import BuildingStatus from "./components/Building_status";
+import Pagination from "@/components/pagination";
 
 export const revalidate = 0; // revalidate the date at most every hour
 export const dynamic = "force-dynamic";
-const PAGE_SIZE = 10000;
+const PAGE_SIZE = 5;
 
-const getBuildings = async ({ search_string = '', take = PAGE_SIZE, skip = 0, city = "", building_status = "" }) => {
+const getBuildings = async ({
+  pageNumber = 1,
+  search_string = '',
+  take = PAGE_SIZE,
+  skip = 0,
+  city = "",
+  building_status = ""
+}) => {
 
   // async function getBuildings({ search = '', take = PAGE_SIZE, skip = 0 }) {
   // console.log("GetSocieties");
@@ -65,6 +73,7 @@ const getBuildings = async ({ search_string = '', take = PAGE_SIZE, skip = 0, ci
     const return_object = {
       data: results,
       metadata: {
+        page: pageNumber,
         hasNextPage: skip + take < total,
         totalPages: Math.ceil(total / take),
       },
@@ -178,7 +187,7 @@ export default async function List({ city, page, search, building_status }: any)
   const search_string = search || ''
 
   // const buildings = await getBuildings({search, take, skip});
-  const { data, metadata } = await getBuildings({ search_string, take, skip, city, building_status });
+  const { data, metadata } = await getBuildings({ pageNumber, search_string, take, skip, city, building_status });
 
   return (
     <>
@@ -230,7 +239,7 @@ export default async function List({ city, page, search, building_status }: any)
               <TableHead>
                 <div className="text-lg">Actions</div>
                 {/* <Button asChild>
-                  <Link href="/api/tables/plots?format=xlsx"
+                  <Link href="/api/tables/floor?format=xlsx"
                   >
 
                     <svg xmlns="http://www.w3.org/2000/svg"
@@ -322,9 +331,9 @@ export default async function List({ city, page, search, building_status }: any)
 
         </Table>
       </div>
-      {/* <div className="mt-6">
-        <Pagination {...props.searchParams} {...metadata} />
-      </div> */}
+      <div className="mt-6">
+        <Pagination metadata={metadata} />
+      </div>
 
     </>
   );

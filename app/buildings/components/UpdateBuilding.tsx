@@ -96,6 +96,7 @@ export default async function editForm(data: FormData) {
     const parking_floors = parseInt(data.get("parking-floors")?.valueOf() as string);
     const apartments_count = parseInt(data.get("apartments-count")?.valueOf() as string);
     const building_survery_remarks = data.get("building-survery-remarks")?.valueOf();
+    const building_draft = data.get("building-draft")?.valueOf() === undefined ? null : "yes";
 
 
 
@@ -195,7 +196,8 @@ export default async function editForm(data: FormData) {
             has_hotel_suites_apartments: has_hotel_suites_apartments,
             apartments_count: apartments_count,
             building_survery_remarks: building_survery_remarks,
-            survey_date: survey_date
+            survey_date: survey_date,
+            building_draft: building_draft
         }
     }
 
@@ -203,6 +205,16 @@ export default async function editForm(data: FormData) {
     // console.log(update_query)
 
     const updateBuilding = await prisma.buildings.update(update_query)
-    redirect('/buildings')
+
+    if (city === undefined) {
+
+        redirect('/buildings')
+
+    }
+    else if (city === city) {
+        redirect("/buildings?city=" + city)
+
+    }
+    // redirect('/buildings')
 
 }
