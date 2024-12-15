@@ -1,8 +1,8 @@
 import prisma from "../app/db";
 import React from 'react'
 
-import { Pagination } from "@/components/pagination";
 import { revalidatePath } from "next/cache";
+import Pagination from "./pagination";
 
 export type FetchBuildingsType = typeof fetchBuildings;
 
