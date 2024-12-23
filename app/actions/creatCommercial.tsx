@@ -5,7 +5,7 @@ import prisma from "../db";
 
 export default async function createCommercial(data: FormData) {
 
-    
+
     const commercial_survey_date = (new Date(data.get("commercial-survey-date")?.valueOf() as string)).toISOString().substring(0, 10);
     // console.log(commercial_survey_date)
 
@@ -75,7 +75,7 @@ export default async function createCommercial(data: FormData) {
     //     throw new Error ("Invalid city")
     // }
 
-    await prisma.commercial.create({
+    const created_commercial :any = await prisma.commercial.create({
         data: {
             survey_date: commercial_survey_date,
             city: commercial_city as string,
@@ -95,10 +95,24 @@ export default async function createCommercial(data: FormData) {
             property_feature: property_feature as string,
             property_title: property_title as string,
             remarks: remarks as string
-           
+
 
         },
     });
+    // console.log("created_building")
+    // console.log(created_building)
+
+    created_commercial.commercial_id = created_commercial.id; // Copy the value of 'id' to 'building_id'
+    delete created_commercial.id; // Remove the old 'id' key
+
+    // console.log(created_commerial)
+
+    const created_commerial_copy = await prisma.commercial_history.create({
+        data: created_commercial
+    })
+
+    // console.log("created_commerial_copy")
+    // console.log(created_commerial)
 
     // console.log("Hi")
 

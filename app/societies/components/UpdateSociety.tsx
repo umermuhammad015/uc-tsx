@@ -283,10 +283,103 @@ export default async function editForm(data: FormData) {
         }
     }
 
+    const updateSociety = await prisma.societies.update(update_query)
+
+    const created_society_copy = await prisma.societies_history.create({
+        data: {
+
+            // city: city
+            society_id: Number(society_id) as number,
+            city: city as string,
+            type: project_type as string,
+            name: project_name as string,
+            zone: zone as string,
+            address: address as string,
+            blocks: blocks as string,
+            grade: grade as string,
+            occupancy: occupancy as string,
+            area: area as string,
+            population,
+            launch_year,
+            total_plots_residential,
+            plot_sizes_residential,
+            plot_sizes_residential_87_5,
+            plot_sizes_residential_125,
+            plot_sizes_residential_200,
+            plot_sizes_residential_250,
+            plot_sizes_residential_300,
+            plot_sizes_residential_400,
+            plot_sizes_residential_500,
+            plot_sizes_residential_600,
+            plot_sizes_residential_800,
+            plot_sizes_residential_1000,
+            plot_sizes_residential_2000,
+            total_plots_commercial,
+            plot_sizes_commercial,
+            plot_sizes_commercial_87_5,
+            plot_sizes_commercial_100,
+            plot_sizes_commercial_125,
+            plot_sizes_commercial_200,
+            plot_sizes_commercial_250,
+            plot_sizes_commercial_500,
+            plot_sizes_commercial_1000,
+            plot_sizes_commercial_2000,
+            total_apartments: societies_total_apartments,
+            societies_apartment_size,
+            apartment_studio,
+            apartment_one_bad,
+            apartment_two_bad,
+            apartment_three_bad,
+            apartment_four_bad,
+            apartment_five_bad,
+            apartment_penthouse,
+            apartment_duplex,
+            plot_size: societies_plot_size,
+            plot_price: societies_plot_price,
+            vilas_size,
+            vilas_price,
+            vilas_monthly_rent,
+            commercial_plot_size,
+            commercial_plot_price,
+            apartment_size,
+            min_apartments_price,
+            max_apartments_price,
+            min_apartments_monthly_rent,
+            max_apartments_monthly_rent,
+            payment_terms: payment_terms as string,
+            instalment_total_amount,
+            instalment_down_payment,
+            instalment_possession_Amount,
+            instalment_period,
+            features_type_parks,
+            features_type_school,
+            features_type_university,
+            features_type_hospital,
+            features_type_commercial_market,
+            features_type_zoo,
+            features_type_food_arena,
+            features_type_gated_community,
+            features_type_college,
+            features_type_graveyard,
+            features_type_masjid,
+            features_type_community_club,
+            features_type_grid_station,
+            utilities_type_underground_electrification,
+            utilities_type_gas,
+            utilities_type_water,
+            utilities_type_utilities_electricity,
+            utilities_type_drainage,
+            developer_name: developer_name as string,
+            contact_no: contact_no as string,
+            survery_remarks: societies_survery_remarks as string,
+            survey_date: societies_survey_date
+
+
+        }
+    })
+
     console.log("Update Query is")
     console.log(update_query)
-
-    const updateSociety = await prisma.societies.update(update_query)
 
     if (city === undefined) {
 
@@ -298,19 +391,5 @@ export default async function editForm(data: FormData) {
 
     }
 
-    // redirect('/societies')
 
-
-    // function getFormattedDate(date: Date) {
-    //     // var year = date.getFullYear();
-
-    //     // var month = (1 + date.getMonth()).toString();
-    //     // month = month.length > 1 ? month : '0' + month;
-
-    //     // var day = date.getDate().toString();
-    //     // day = day.length > 1 ? day : '0' + day;
-
-    //     // return month + '/' + day + '/' + year;
-    //     return date
-    // }
 }

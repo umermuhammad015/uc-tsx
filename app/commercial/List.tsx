@@ -3,33 +3,13 @@ import { Input } from "@/components/ui/input"
 import prisma from "../db";
 import { Feed } from "@/components/feed";
 import SearchInput from "./components/SearchInput";
-// import { PageProps } from '../commercial/page';
+// import { PageProps } from '../buildings/page';
 import { redirect } from "next/navigation";
-// import DeleteBuildingButton from "./components/DeleteBuildingButton";
-// import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog"
-import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog"
 
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import ThemeToggleButton from "@/components/ThemeToggleButton";
+import { useSearchParams } from 'next/navigation'
 // import { Pagination } from '../../components/pagination';
 
 
@@ -44,25 +24,28 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { revalidatePath } from "next/cache";
-import DeleteCommercialButton from "./components/DeleteCommercialButton";
-import DeleteCommercialDialog from "./components/DeleteCommercIalDialog";
-import CityInput from "./components/CityInput";
-import ProjectType from "./components/project_type";
-import Grade from "./components/Grade";
-import Pagination from "@/components/pagination";
 
-export const revalidate = 0; // revalidate the date at most every hour
+
+
+import Pagination from "@/components/pagination";
+import DeleteCommercialDialog from "./components/DeleteCommercIalDialog";
+import CommercialPagination from "./components/commercialPagination";
+
+
+export const revalidate = 0; 
 export const dynamic = "force-dynamic";
-const PAGE_SIZE = 5;
+const PAGE_SIZE = 3;
 
 const GetCommercial = async ({
   pageNumber = 1,
-  search_string = '',
+  search_string = undefined,
   take = PAGE_SIZE,
   skip = 0,
-  city = "",
+  city = undefined,
   project_type = "",
-  commercial_grade = ""
+  commercial_grade = "",
+  survey_from_date = undefined,
+  survey_to_date = undefined
 }) => {
 
   // async function getBuildings({ search = '', take = PAGE_SIZE, skip = 0 }) {
@@ -70,116 +53,107 @@ const GetCommercial = async ({
 
   // console.log("developer_name GetSocieties")
   // console.log(developer)
+  // console.log("Fetching data for Building params")
+  // console.log('city=', city, "page=", pageNumber,
+  //   "skip=", skip, "take=", take
+  // )
 
-  if (search_string === null || search_string === '') {
+  // console.log("developer inside if")
+  // console.log(developer)
 
-    // console.log("developer inside if")
-    // console.log(developer)
-
-    const results = await prisma.commercial.findMany({
-      take,
-      skip,
-      where: {
-        city: city === "" ? undefined : city,
-        project_status: project_type === "" ? undefined : project_type,
-        grade: commercial_grade === "" ? undefined : commercial_grade,
-
-      },
-      orderBy: {
-        commercial_zone_name: 'asc',
-      },
-    });
-
-    const total = await prisma.commercial.count();
-
-    revalidatePath('/commercial');
-
-    const return_object = {
-      data: results,
-      metadata: {
-        page: pageNumber,
-        hasNextPage: skip + take < total,
-        totalPages: Math.ceil(total / take),
-      },
-    };
-
-    // console.log("RO")
-    // console.log(return_object)
-
-    return return_object
-
-  } else {
-
-    // console.log("inside else developer_name");
-    // console.log(developer_name);
-
-    const results = await prisma.commercial.findMany({
-      take,
-      skip,
-      where: {
-        OR: [
-          {
-            commercial_zone_name: {
-              contains: search_string,
-              mode: 'insensitive',
-            },
+  const prisma_query: any = {
+    take,
+    skip,
+    where: {
+      OR: [
+        {
+          commercial_zone_name: {
+            contains: search_string,
+            mode: 'insensitive',
           },
-          {
-            city: {
-              contains: search_string,
-              mode: 'insensitive',
-            },
+        },
+        {
+          city: {
+            contains: search_string,
+            mode: 'insensitive',
           },
-        ],
-        city: city === "" ? undefined : city,
-        project_status: project_type === "" ? undefined : project_type,
-        grade: commercial_grade === "" ? undefined : commercial_grade,
-
+        },
+      ],
+      // city: city === "" ? undefined : city,
+      city: city,
+      "survey_date": {
+        "gte": survey_from_date,
+        "lte": survey_to_date
       },
-    })
+      project_status: project_type === "" ? undefined : project_type,
+      grade: commercial_grade === "" ? undefined : commercial_grade,
+      // survey_date: survey_from_date === "" ? undefined : survey_date,
 
-    // console.log(results);
-
-    const total = await prisma.commercial.count({
-      take,
-      skip,
-      where: {
-        OR: [
-          {
-            commercial_zone_name: {
-              contains: search_string,
-              mode: 'insensitive',
-            },
+    },
+    orderBy: {
+      commercial_zone_name: 'asc',
+    },
+  }
+  const prisma_counts_query: any = {
+    where: {
+      OR: [
+        {
+          commercial_zone_name: {
+            contains: search_string,
+            mode: 'insensitive',
           },
-          {
-            city: {
-              contains: search_string,
-              mode: 'insensitive',
-            },
+        },
+        {
+          city: {
+            contains: search_string,
+            mode: 'insensitive',
           },
-        ]
+        },
+      ],
+      // city: city === "" ? undefined : city,
+      city: city,
+      "survey_date": {
+        "gte": survey_from_date,
+        "lte": survey_to_date
       },
-    });
+      project_status: project_type === "" ? undefined : project_type,
+      grade: commercial_grade === "" ? undefined : commercial_grade,
 
-    revalidatePath('/commercial');
-
-    const return_object = {
-      data: results,
-      metadata: {
-        hasNextPage: skip + take < total,
-        totalPages: Math.ceil(total / take),
-      },
-    };
-
-    // console.log("RO")
-    // console.log(return_object)
-
-
-    return return_object
-
+    },
+    orderBy: {
+      commercial_zone_name: 'asc',
+    },
   }
 
+ 
 
+  const results = await prisma.commercial.findMany(prisma_query);
+
+
+
+  const rows_count = await prisma.commercial.count(prisma_counts_query);
+
+
+
+  revalidatePath('/commercial');
+
+  const return_object = {
+    data: results,
+    metadata: {
+      page: pageNumber,
+      survey_to_date,
+      hasNextPage: skip + take < rows_count,
+      totalPages: Math.ceil(rows_count / take),
+      rows_count: rows_count
+
+
+    },
+  };
+
+  // console.log("RO")
+  // console.log(return_object)
+
+  return return_object
 
 }
 
@@ -191,7 +165,7 @@ type Props = {
 
 
 // export default async function List(props: PageProps) {
-export default async function List({ city, page, search, project_type, commercial_grade }: any) {
+export default async function List({ city, page, search, project_type, commercial_grade, survey_from_date, survey_to_date }: any) {
 
   // console.log("developer list ")
   // console.log(developer)
@@ -205,50 +179,12 @@ export default async function List({ city, page, search, project_type, commercia
   const search_string = search || ''
 
   // const buildings = await getBuildings({search, take, skip});
-  const { data, metadata } = await GetCommercial({ pageNumber, search_string, take, skip, city, project_type, commercial_grade });
-
-  // const searchedBuildings = await getSearchedBuildings()
-
-  // Function to delete building
-
-
-  // await prisma.buildings.create({
-  //   data:{
-  //     name: "Hafeez Center",
-  //     city: "Lahore"
-  //   }})
-
-  // console.log(searchParams);
+  const { data, metadata } = await GetCommercial({ pageNumber, search_string, take, skip, city, project_type, commercial_grade, survey_from_date, survey_to_date });
 
   return (
     <>
-      <SearchInput />
-
-      <header className="flex justify-between items-center mt-4 ">
-        <div className="flex gap-5">
-          <CityInput />
-          <ProjectType />
-          <Grade />
-          {/* <DeveloperName /> */}
-          {/* <Grade />
-                    <ProjectType /> */}
-        </div>
-        <div className="">
 
 
-
-          <Button asChild>
-            <Link href="/commercial/new"
-            >
-              <span>+</span>
-              <span className="ml-2">Add New</span></Link>
-          </Button>
-
-        </div>
-
-
-
-      </header>
       <div className="mt-4">
         <Table className="table text-base ">
           <TableHeader>
@@ -260,8 +196,8 @@ export default async function List({ city, page, search, project_type, commercia
                 <div className="text-lg">Location</div>
               </TableHead>
               {/* <TableHead>
-                <div className="text-lg">Project Status</div>
-              </TableHead> */}
+          <div className="text-lg">Project Status</div>
+        </TableHead> */}
               <TableHead>
                 <div className="text-lg">Grade</div>
               </TableHead>
@@ -324,45 +260,45 @@ export default async function List({ city, page, search, project_type, commercia
                         </Button>
 
                         {/* <Button asChild>
-                          <Link href={"building/floor/add/" + commercial.id}>
-                            Add floor information
-                          </Link>
-                        </Button> */}
+                    <Link href={"building/floor/add/" + commercial.id}>
+                      Add floor information
+                    </Link>
+                  </Button> */}
 
 
 
                         {/* <Dialog>
-                          <DialogTrigger asChild>
-                            <Button variant="destructive">Delete</Button>
-                          </DialogTrigger>
-                          <DialogContent className="sm:max-w-md">
-                            <DialogHeader>
-                              <DialogTitle>Delete Society</DialogTitle>
-                              <DialogDescription>
-                                Are you absolutely sure?
-                              </DialogDescription>
-                            </DialogHeader>
-                            <div className="flex items-center space-x-2">
+                    <DialogTrigger asChild>
+                      <Button variant="destructive">Delete</Button>
+                    </DialogTrigger>
+                    <DialogContent className="sm:max-w-md">
+                      <DialogHeader>
+                        <DialogTitle>Delete Society</DialogTitle>
+                        <DialogDescription>
+                          Are you absolutely sure?
+                        </DialogDescription>
+                      </DialogHeader>
+                      <div className="flex items-center space-x-2">
 
-                            </div>
-                            <DialogFooter className="sm:justify-start">
-                              <DialogClose asChild>
-                                <Button type="button" variant="secondary">
-                                  Close
-                                </Button>
+                      </div>
+                      <DialogFooter className="sm:justify-start">
+                        <DialogClose asChild>
+                          <Button type="button" variant="secondary">
+                            Close
+                          </Button>
 
-                              </DialogClose>
-                              <form action={deleteCommercial}>
-                                <input
-                                  type="hidden"
-                                  name="commercial-id"
-                                  value={commercial.id}
-                                />
-                                <DeleteCommercialButton />
-                              </form>
-                            </DialogFooter>
-                          </DialogContent>
-                        </Dialog> */}
+                        </DialogClose>
+                        <form action={deleteCommercial}>
+                          <input
+                            type="hidden"
+                            name="commercial-id"
+                            value={commercial.id}
+                          />
+                          <DeleteCommercialButton />
+                        </form>
+                      </DialogFooter>
+                    </DialogContent>
+                  </Dialog> */}
                         <DeleteCommercialDialog commercial_id={commercial.id} />
 
                       </div>
@@ -376,9 +312,13 @@ export default async function List({ city, page, search, project_type, commercia
         </Table>
       </div>
       <div className="mt-6">
-        <Pagination metadata={metadata} />
+        <CommercialPagination metadata={metadata}
+          city={city}
+          project_type={project_type}
+          commercial_grade={commercial_grade}
+          survey_from_date={survey_from_date}
+          survey_to_date={survey_to_date} />
       </div>
-
     </>
   );
 }

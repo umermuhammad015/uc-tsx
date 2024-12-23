@@ -93,6 +93,34 @@ export default async function editForm(data: FormData) {
 
     const updateCommercial = await prisma.commercial.update(update_query)
 
+    // const updateBuilding = await prisma.buildings.update(update_query)
+
+    const created_commercial_copy = await prisma.commercial_history.create({
+        data: {
+            // name: name,
+            // city: city
+            commercial_id : Number(commercial_id) as number,
+            survey_date: commercial_survey_date,
+            city: commercial_city as string,
+            commercial_zone_name: commercial_zone_name as string,
+            zone: commercial_zone as string,
+            type: commercial_type as string,
+            location: commercial_location as string,
+            project_status: commercial_project_status as string,
+            launch_year: commercial_launch_year as string,
+            grade: commercial_grade as string, 
+            area: commercial_area as string,
+            occupancy: commercial_occupancy,
+            total_plots,
+            total_shops,
+            total_offices,
+            total_apartments,
+            property_feature :property_feature as string,
+            property_title: property_title as string,
+            remarks:remarks as string
+        }
+    })
+
 
     if (commercial_city === undefined) {
 

@@ -440,6 +440,20 @@ export default async function ViewBuilding({ params }: Props) {
                             <TableCell>Your Remarks</TableCell>{" "}
                             <TableCell>{society?.survery_remarks}</TableCell>
                         </TableRow>
+                        <TableRow>
+                            <TableCell >Draft</TableCell > <TableCell > <div className="">
+                                {/* {building?.building_draft} */}
+                                {
+                                    societies?.societies_draft === "yes" ? "yes" : "no"
+
+                                }
+
+                                {/* {plot?.type === 'Apartment' ? plot?.apartment_size : plot?.size} */}
+
+                                {/* {plot?.type === 'Shop' ? plot?.shop_size : plot?.size} */}
+
+                            </div></TableCell >
+                        </TableRow>
                     </TableBody>
                 </Table>
 
@@ -494,7 +508,7 @@ export default async function ViewBuilding({ params }: Props) {
                                                 : plot?.type === 'Shop' ? plot?.shop_size
                                                     : plot?.type === 'Office' ? plot?.office_size
                                                         : plot?.size
-                                                        
+
                                         }
 
                                         {/* {plot?.type === 'Apartment' ? plot?.apartment_size : plot?.size} */}

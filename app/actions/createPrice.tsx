@@ -63,13 +63,13 @@ export default async function createPrice(data: FormData) {
     // console.log("🚀 ~ file: page.tsx:9 ~ createPlots ~ add_more:", add_more);
 
 
-    await prisma.price.create({
+    const created_price: any = await prisma.price.create({
         data: {
             date: date,
             commercial_id: Number(commercial_id) as number,
             property_type: property_type as string,
-            plot_size :plot_size as string,
-            building_size :building_size as string,
+            plot_size: plot_size as string,
+            building_size: building_size as string,
             total_floor: total_floor as string,
             building_size_sq: building_size_sq as string,
             shop_size: shop_size as string,
@@ -92,6 +92,15 @@ export default async function createPrice(data: FormData) {
 
         },
     });
+
+    created_price.price_id = created_price.id; // Copy the value of 'id' to 'building_id'
+    delete created_price.id; // Remove the old 'id' key
+
+    // console.log(created_floor)
+
+    const created_price_copy = await prisma.price_history.create({
+        data: created_price
+    })
 
     redirect("/commercial");
 

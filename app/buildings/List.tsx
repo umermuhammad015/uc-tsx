@@ -24,22 +24,26 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { revalidatePath } from "next/cache";
-import CityInput from "./components/CityInput";
+
 import DeleteBuildingDialog from "./components/DeleteBuildingDialog";
-import BuildingStatus from "./components/Building_status";
+
 import Pagination from "@/components/pagination";
+// import DatePickerWithRange from "./components/date";
+// import BuildingChart from "./components/BuildingChart";
 
 export const revalidate = 0; // revalidate the date at most every hour
 export const dynamic = "force-dynamic";
-const PAGE_SIZE = 5;
+const PAGE_SIZE = 3;
 
 const getBuildings = async ({
   pageNumber = 1,
-  search_string = '',
+  search_string = undefined,
   take = PAGE_SIZE,
   skip = 0,
-  city = "",
-  building_status = ""
+  city = undefined,
+  building_status = "",
+  survey_from_date = undefined,
+  survey_to_date = undefined
 }) => {
 
   // async function getBuildings({ search = '', take = PAGE_SIZE, skip = 0 }) {
@@ -47,121 +51,113 @@ const getBuildings = async ({
 
   // console.log("developer_name GetSocieties")
   // console.log(developer)
+  // console.log("Fetching data for Building params")
+  // console.log('city=', city, "page=", pageNumber,
+  //   "skip=", skip, "take=", take
+  // )
 
-  if (search_string === null || search_string === '') {
+  // console.log("developer inside if")
+  // console.log(developer)
 
-    // console.log("developer inside if")
-    // console.log(developer)
-
-    const results = await prisma.buildings.findMany({
-      take,
-      skip,
-      where: {
-        city: city === "" ? undefined : city,
-        status: building_status === "" ? undefined : building_status,
-
-      },
-      orderBy: {
-        name: 'asc',
-      },
-    });
-
-    const total = await prisma.buildings.count();
-
-    revalidatePath('/commercial');
-
-    const return_object = {
-      data: results,
-      metadata: {
-        page: pageNumber,
-        hasNextPage: skip + take < total,
-        totalPages: Math.ceil(total / take),
-      },
-    };
-
-    // console.log("RO")
-    // console.log(return_object)
-
-    return return_object
-
-  } else {
-
-    // console.log("inside else developer_name");
-    // console.log(developer_name);
-
-    const results = await prisma.buildings.findMany({
-      take,
-      skip,
-      where: {
-        OR: [
-          {
-            name: {
-              contains: search_string,
-              mode: 'insensitive',
-            },
+  const prisma_query: any = {
+    take,
+    skip,
+    where: {
+      OR: [
+        {
+          name: {
+            contains: search_string,
+            mode: 'insensitive',
           },
-          {
-            city: {
-              contains: search_string,
-              mode: 'insensitive',
-            },
+        },
+        {
+          city: {
+            contains: search_string,
+            mode: 'insensitive',
           },
-          {
-            area: {
-              contains: search_string,
-              mode: 'insensitive',
-            },
-          },
-        ],
-        city: city === "" ? undefined : city,
-        status: building_status === "" ? undefined : building_status,
-
+        },
+      ],
+      // city: city === "" ? undefined : city,
+      city: city,
+      "survey_date": {
+        "gte": survey_from_date,
+        "lte": survey_to_date
       },
-    })
+      status: building_status === "" ? undefined : building_status,
+      // survey_date: survey_from_date === "" ? undefined : survey_date,
 
-    // console.log(results);
-
-    const total = await prisma.buildings.count({
-      take,
-      skip,
-      where: {
-        OR: [
-          {
-            name: {
-              contains: search_string,
-              mode: 'insensitive',
-            },
+    },
+    orderBy: {
+      name: 'asc',
+    },
+  }
+  const prisma_counts_query: any = {
+    where: {
+      OR: [
+        {
+          name: {
+            contains: search_string,
+            mode: 'insensitive',
           },
-          {
-            city: {
-              contains: search_string,
-              mode: 'insensitive',
-            },
+        },
+        {
+          city: {
+            contains: search_string,
+            mode: 'insensitive',
           },
-
-        ]
+        },
+      ],
+      // city: city === "" ? undefined : city,
+      city: city,
+      "survey_date": {
+        "gte": survey_from_date,
+        "lte": survey_to_date
       },
-    });
+      status: building_status === "" ? undefined : building_status,
+      // survey_date: survey_from_date === "" ? undefined : survey_date,
 
-    revalidatePath('/buildings');
-
-    const return_object = {
-      data: results,
-      metadata: {
-        hasNextPage: skip + take < total,
-        totalPages: Math.ceil(total / take),
-      },
-    };
-
-    // console.log("RO")
-    // console.log(return_object)
-
-
-    return return_object
-
+    },
+    orderBy: {
+      name: 'asc',
+    },
   }
 
+  // console.log("prisma_query if true");
+  // console.log(prisma_query);
 
+  const results = await prisma.buildings.findMany(prisma_query);
+
+  // console.log("building results")
+  // console.log(results)
+
+  const rows_count = await prisma.buildings.count(prisma_counts_query);
+
+
+  // const rows_count = Object.keys(results_counts_query).length;
+  // console.log("rows_count")
+  // console.log(rows_count)
+
+  // const total = await prisma.buildings.count();
+
+  revalidatePath('/buildings');
+
+  const return_object = {
+    data: results,
+    metadata: {
+      page: pageNumber,
+      survey_to_date,
+      hasNextPage: skip + take < rows_count,
+      totalPages: Math.ceil(rows_count / take),
+      rows_count: rows_count
+
+
+    },
+  };
+
+  // console.log("RO")
+  // console.log(return_object)
+
+  return return_object
 
 }
 
@@ -173,7 +169,7 @@ type Props = {
 
 
 // export default async function List(props: PageProps) {
-export default async function List({ city, page, search, building_status }: any) {
+export default async function List({ city, page, search, building_status, survey_from_date, survey_to_date }: any) {
 
   // console.log("developer list ")
   // console.log(developer)
@@ -187,33 +183,11 @@ export default async function List({ city, page, search, building_status }: any)
   const search_string = search || ''
 
   // const buildings = await getBuildings({search, take, skip});
-  const { data, metadata } = await getBuildings({ pageNumber, search_string, take, skip, city, building_status });
+  const { data, metadata } = await getBuildings({ pageNumber, search_string, take, skip, city, building_status, survey_from_date, survey_to_date });
 
   return (
     <>
-      <SearchInput />
 
-      <header className="flex justify-between items-center mt-4 ">
-        <div className="flex gap-5">
-          <CityInput />
-          <BuildingStatus />
-          {/* <DeveloperName /> */}
-          {/* <Grade />
-                    <ProjectType /> */}
-        </div>
-        <div className="">
-
-
-
-          <Button asChild>
-            <Link href="/buildings/new"
-            >
-              <span>+</span>
-              <span className="ml-2">Add New Buildings</span></Link>
-          </Button>
-
-        </div>
-      </header>
       <div className="mt-4">
         <Table className="table text-base ">
           <TableHeader>
@@ -221,20 +195,29 @@ export default async function List({ city, page, search, building_status }: any)
               <TableHead>
                 <div className=" text-lg">Building Names</div>
               </TableHead>
+              {/* City */}
+              <TableHead>
+                <div className="text-lg">City</div>
+              </TableHead>
+              {/* location */}
               <TableHead>
                 <div className="text-lg">Location</div>
               </TableHead>
-              <TableHead>
+              {/* Building type */}
+              {/* <TableHead>
                 <div className="text-lg">Building Type</div>
-              </TableHead>
+              </TableHead> */}
               <TableHead>
-                <div className="text-lg">Grade</div>
+                <div className="text-lg">Building_Status</div>
               </TableHead>
-              <TableHead>
+              {/* <TableHead>
                 <div className="text-lg">Plot Size</div>
               </TableHead>
               <TableHead>
                 <div className="text-lg">Constructed Area</div>
+              </TableHead> */}
+              <TableHead>
+                <div className="text-lg">date</div>
               </TableHead>
               <TableHead>
                 <div className="text-lg">Actions</div>
@@ -270,8 +253,11 @@ export default async function List({ city, page, search, building_status }: any)
                   <TableCell>
                     <Link href={"buildings/" + building.id}>{building.name}</Link>
                   </TableCell>
-                  <TableCell>{building.area}</TableCell>
                   <TableCell>
+                    {building.city}
+                  </TableCell>
+                  <TableCell>{building.area}</TableCell>
+                  {/* <TableCell>
                     {building?.type_retail && (
                       // <div className="badge bg-cyan-800 text-white">1 Bed</div>
                       <Badge>Retail</Badge>
@@ -284,10 +270,11 @@ export default async function List({ city, page, search, building_status }: any)
                       // <div className="badge bg-cyan-800 text-white">2 Bed</div>
                       <Badge>office</Badge>
                     )}
-                  </TableCell>
-                  <TableCell>{building.building_rank}</TableCell>
-                  <TableCell>{building.plot_size}</TableCell>
-                  <TableCell>{building.construction_area}</TableCell>
+                  </TableCell> */}
+                  <TableCell>{building.status}</TableCell>
+                  {/* <TableCell>{building.plot_size}</TableCell> */}
+                  {/* <TableCell>{Number(building.construction_area).toLocaleString()}</TableCell> */}
+                  <TableCell>{(building.survey_date)}</TableCell>
                   <TableCell>
                     <div className="flex justify-around">
                       <div className="flex gap-4">
@@ -313,6 +300,26 @@ export default async function List({ city, page, search, building_status }: any)
                           </Link>
                         </Button>
 
+                        {/* <Button asChild>
+                          <Link href={"buildings/building_history/" + building.id}>
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke-width="1.5"
+                              stroke="currentColor"
+                              className="w-6 h-6"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
+                              />
+                            </svg>
+                            Building History
+                          </Link>
+                        </Button> */}
+
                         <Button asChild>
                           <Link href={"buildings/floor/add/" + building.id}>
                             Add floor information
@@ -331,10 +338,15 @@ export default async function List({ city, page, search, building_status }: any)
 
         </Table>
       </div>
-      <div className="mt-6">
-        <Pagination metadata={metadata} />
-      </div>
 
+      <div className="mt-6">
+        <Pagination metadata={metadata}
+          building_status={building_status}
+          city={city}
+          survey_from_date={survey_from_date}
+          survey_to_date={survey_to_date}
+        />
+      </div>
     </>
   );
 }

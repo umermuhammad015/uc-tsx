@@ -153,7 +153,7 @@ export default async function createFloor(data: FormData) {
   //   floor_remarks
   // );
 
-  await prisma.floors.create({
+  const created_floor: any = await prisma.floors.create({
     data: {
       date: floor_date,
       building_id: Number(building_id) as number,
@@ -186,6 +186,24 @@ export default async function createFloor(data: FormData) {
 
     },
   });
+
+  created_floor.floor_id = created_floor.id; // Copy the value of 'id' to 'building_id'
+  delete created_floor.id; // Remove the old 'id' key
+
+  // console.log(created_floor)
+
+  const created_building_copy = await prisma.floors_history.create({
+    data: created_floor
+  })
+
+  // if (add_more === "yes") {
+
+  //   revalidatePath("/societies/plots/add/" + society_id,) // Update cached posts
+  //   redirect("/societies/plots/add/" + society_id)
+
+  // } else {
+  //   redirect("/societies/" + society_id)
+  // }
 
   redirect("/buildings");
 }

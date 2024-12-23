@@ -30,17 +30,17 @@ export default function ProjectType() {
 
     useEffect(() => {
 
-        
+
         // if (debouncedNameKeywords !== "") {
         const fetchData = async () => {
-            
+
 
             try {
                 const types = await FetchType()
                 // console.log(deve_name);
 
                 setType_List(types);
-                
+
 
             } catch (error) {
 
@@ -81,7 +81,14 @@ export default function ProjectType() {
                             // setTeamsList(await FetchTeams(e.target.value))
                         }}>
                         <option value='' selected>All</option>
-                        {type_List.length > 0 && type_List.map((g: { type: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | React.PromiseLikeOfReactNode | null | undefined; }, i: React.Key | null | undefined) => <option key={i}>{g.type}</option>)}
+                        <option value="Developed">Developed</option>
+                        <option value="Under Developed">Under Developed</option>
+                        <option value="New Launch">New Launch</option>
+                        <option value="Commercial Zone">Commercial Zone</option>
+                        <option value="Residential Files">Residential Files</option>
+                        <option value="Commercial Files">Commercial Files</option>
+                       
+                        {/* {type_List.length > 0 && type_List.map((g: { type: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | React.PromiseLikeOfReactNode | null | undefined; }, i: React.Key | null | undefined) => <option key={i}>{g.type}</option>)} */}
                     </select>
                 </div>
             </div>

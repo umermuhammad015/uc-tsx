@@ -53,7 +53,7 @@ export default async function UpdateFloor(data: FormData) {
             // name: name,
             // city: city
 
-            // unit_type: unit_type as string,
+
             occupancy: occupancy,
             size_min: size_min,
             floor_no: floor_no as string,
@@ -84,8 +84,51 @@ export default async function UpdateFloor(data: FormData) {
         }
     }
 
+    const updateFloor = await prisma.floors.update(update_query)
+
+    const created_floor_copy = await prisma.floors_history.create({
+        data: {
+            // name: name,
+            // city: city
+
+            floor_id: Number(floor_id) as number,
+            building_id: Number(building_id) as number,
+            occupancy: occupancy,
+            size_min: size_min,
+            floor_no: floor_no as string,
+            floor_type: floor_type as string,
+            floor_apartments_studio: floor_apartments_studio as string,
+            floor_apartments_1_bed: floor_apartments_1_bed as string,
+            floor_apartments_2_bed: floor_apartments_2_bed as string,
+            floor_apartments_3_bed: floor_apartments_3_bed as string,
+            floor_apartments_4_bed: floor_apartments_4_bed as string,
+            floor_apartments_5_bed: floor_apartments_5_bed as string,
+            floor_apartments_duplex: floor_apartments_duplex as string,
+            floor_apartments_penthouse: floor_apartments_penthouse as string,
+            floor_has_furnished: floor_has_furnished as string,
+            floor_has_semi_furnished: floor_has_semi_furnished as string,
+            floor_has_service_apartments: floor_has_service_apartments as string,
+            floor_has_hotel_suites_apartments: floor_has_hotel_suites_apartments as string,
+            size_max: size_max,
+            avg_sale_price: avg_sale_price,
+            avg_monthly_rent: avg_monthly_rent,
+            instalment_plan: instalment_plan as string,
+            instalment_period: instalment_period,
+            down_payment_amount: down_payment_amount,
+            instalment_amount: instalment_amount,
+            possession_amount: possession_amount,
+            remarks: remarks as string,
+            date: floor_date
+
+        }
+    })
+
+
+
     console.log("Update Query is")
     console.log(update_query)
+    console.log("created_floor_copy")
+    console.log(created_floor_copy)
 
     // const updateBuilding = await prisma.floors.update(update_query)
     // redirect('/buildings/')

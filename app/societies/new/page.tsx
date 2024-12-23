@@ -1932,6 +1932,22 @@ export default function NewSocietyPage() {
             ></Textarea>
           </div>
 
+          <div className="flex items-center mt-4 ml-2">
+            <input
+              id="societies-draft"
+              name="societies-draft"
+              type="checkbox"
+              value="yes"
+              className="checkbox checkbox-primary"
+            />
+            <label
+              htmlFor="societies-draft"
+              className="ml-2 text-sm font-medium  "
+            >
+              Draft:
+            </label>
+          </div>
+
         </div >
 
         {/* <Popover>

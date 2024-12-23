@@ -1,11 +1,19 @@
 import Link from "next/link";
+import { Input } from "@/components/ui/input"
 import prisma from "../db";
+import { Feed } from "@/components/feed";
 import SearchInput from "./components/SearchInput";
-import { redirect } from "next/navigation";
-import useDebounce from "@/components/debouce";
 // import { PageProps } from '../buildings/page';
-import DeleteSocietyButton from "./components/DeleteSocietyButton";
-import { Button } from "@/components/ui/button"
+import { redirect } from "next/navigation";
+
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import ThemeToggleButton from "@/components/ThemeToggleButton";
+import { useSearchParams } from 'next/navigation'
+// import { Pagination } from '../../components/pagination';
+
+
+
 import {
     Table,
     TableBody,
@@ -14,35 +22,32 @@ import {
     TableHead,
     TableHeader,
     TableRow,
-} from "@/components/ui/table"
-
-
-
+} from "@/components/ui/table";
 import { revalidatePath } from "next/cache";
-import Pagination from "@/components/pagination";
-import CityInput from "./components/CityInput";
-import DeveloperName from "./components/developerName";
-import Grade from "./components/Grade";
-import ProjectType from "./components/Project_type";
-import DeletePlotDialog from "./components/DeleteSocietyDialog";
-import DeleteSocietyDialog from "./components/DeleteSocietyDialog";
-import LoadMore from "./components/Loadmore";
-import ImageUpload from "../components/ImageUpload";
-// import LoadMore from "./components/Loadmore";
 
-export const revalidate = 1; // revalidate the date at most every hour
+// import DeleteBuildingDialog from "./components/DeleteBuildingDialog";
+
+import Pagination from "@/components/pagination";
+import DeleteSocietyDialog from "./components/DeleteSocietyDialog";
+import SocietyPagination from "./components/Societypagination";
+// import DatePickerWithRange from "./components/date";
+// import BuildingChart from "./components/BuildingChart";
+
+export const revalidate = 0; // revalidate the date at most every hour
 export const dynamic = "force-dynamic";
-const PAGE_SIZE = 5;
+const PAGE_SIZE = 3;
 
 const GetSocieties = async ({
     pageNumber = 1,
-    search_string = '',
+    search_string = undefined,
     take = PAGE_SIZE,
     skip = 0,
-    city = "",
+    city = undefined,
     developer = "",
     society_grade = "",
-    project_type = ""
+    project_type = "",
+    survey_from_date = undefined,
+    survey_to_date = undefined
 }) => {
 
     // async function getBuildings({ search = '', take = PAGE_SIZE, skip = 0 }) {
@@ -50,116 +55,117 @@ const GetSocieties = async ({
 
     // console.log("developer_name GetSocieties")
     // console.log(developer)
+    // console.log("Fetching data for Building params")
+    // console.log('city=', city, "page=", pageNumber,
+    //   "skip=", skip, "take=", take
+    // )
 
-    if (search_string === null || search_string === '') {
+    // console.log("developer inside if")
+    // console.log(developer)
 
-        // console.log("developer inside if")
-        // console.log(developer)
-
-        const results = await prisma.societies.findMany({
-            take,
-            skip,
-            where: {
-                city: city === "" ? undefined : city,
-                developer_name: developer === "" ? undefined : developer,
-                grade: society_grade === "" ? undefined : society_grade,
-                type: project_type === "" ? undefined : project_type,
-            },
-            orderBy: {
-                name: 'asc',
-            },
-        });
-
-        const total = await prisma.societies.count();
-
-        revalidatePath('/societies');
-
-        const return_object = {
-            data: results,
-            metadata: {
-                page: pageNumber,
-                hasNextPage: skip + take < total,
-                totalPages: Math.ceil(total / take),
-            },
-        };
-
-        // console.log("RO")
-        // console.log(return_object)
-
-        return return_object
-
-    } else {
-
-        // console.log("inside else developer_name");
-        // console.log(developer_name);
-
-        const results = await prisma.societies.findMany({
-            take,
-            skip,
-            where: {
-                OR: [
-                    {
-                        name: {
-                            contains: search_string,
-                            mode: 'insensitive',
-                        },
+    const prisma_query: any = {
+        take,
+        skip,
+        where: {
+            OR: [
+                {
+                    name: {
+                        contains: search_string,
+                        mode: 'insensitive',
                     },
-                    {
-                        city: {
-                            contains: search_string,
-                            mode: 'insensitive',
-                        },
+                },
+                {
+                    city: {
+                        contains: search_string,
+                        mode: 'insensitive',
                     },
-                ],
-                city: city === "" ? undefined : city,
-                developer_name: developer === "" ? undefined : developer,
-                grade: society_grade === "" ? undefined : society_grade,
-                type: project_type === "" ? undefined : project_type,
+                },
+            ],
+            // city: city === "" ? undefined : city,
+            city: city,
+            "survey_date": {
+                "gte": survey_from_date,
+                "lte": survey_to_date
             },
-        })
+            developer_name: developer === "" ? undefined : developer,
+            grade: society_grade === "" ? undefined : society_grade,
+            type: project_type === "" ? undefined : project_type,
 
-        // console.log(results);
-
-        const total = await prisma.societies.count({
-            take,
-            skip,
-            where: {
-                OR: [
-                    {
-                        name: {
-                            contains: search_string,
-                            mode: 'insensitive',
-                        },
+        },
+        orderBy: {
+            name: 'asc',
+        },
+    }
+    const prisma_counts_query: any = {
+        where: {
+            OR: [
+                {
+                    name: {
+                        contains: search_string,
+                        mode: 'insensitive',
                     },
-                    {
-                        city: {
-                            contains: search_string,
-                            mode: 'insensitive',
-                        },
+                },
+                {
+                    city: {
+                        contains: search_string,
+                        mode: 'insensitive',
                     },
-                ]
+                },
+            ],
+            // city: city === "" ? undefined : city,
+            city: city,
+            "survey_date": {
+                "gte": survey_from_date,
+                "lte": survey_to_date
             },
-        });
+            developer_name: developer === "" ? undefined : developer,
+            grade: society_grade === "" ? undefined : society_grade,
+            type: project_type === "" ? undefined : project_type,
+            // survey_date: survey_from_date === "" ? undefined : survey_date,
 
-        revalidatePath('/societies');
-
-        const return_object = {
-            data: results,
-            metadata: {
-                hasNextPage: skip + take < total,
-                totalPages: Math.ceil(total / take),
-            },
-        };
-
-        // console.log("RO")
-        // console.log(return_object)
-
-
-        return return_object
-
+        },
+        orderBy: {
+            name: 'asc',
+        },
     }
 
+    // console.log("prisma_query if true");
+    // console.log(prisma_query);
 
+    const results = await prisma.societies.findMany(prisma_query);
+
+    // console.log("building results")
+    // console.log(results)
+
+    const rows_count = await prisma.societies.count(prisma_counts_query);
+
+
+    // const rows_count = Object.keys(results_counts_query).length;
+    // console.log("rows_count")
+    // console.log(rows_count)
+
+    // const total = await prisma.buildings.count();
+
+    revalidatePath('/societies');
+
+    const return_object = {
+        data: results,
+        metadata: {
+            page: pageNumber,
+            survey_to_date,
+            hasNextPage: skip + take < rows_count,
+            totalPages: Math.ceil(rows_count / take),
+            rows_count: rows_count
+
+
+
+        },
+    };
+
+    // console.log("RO")
+    // console.log(return_object)
+
+    return return_object
 
 }
 
@@ -171,58 +177,21 @@ type Props = {
 
 
 // export default async function List(props: PageProps) {
-export default async function List({ city, page, search, developer, society_grade, project_type }: any) {
+export default async function List({ city, page, search, developer, society_grade, project_type, survey_from_date, survey_to_date }: any) {
 
-    // console.log("developer list ")
-    // console.log(developer)
 
-    // const pageNumber = Number(props?.searchParams?.page || 1); // Get the page number. Default to 1 if not provided.
     const pageNumber = Number(page || 1); // Get the page number. Default to 1 if not provided.
 
     const take = PAGE_SIZE;
     const skip = (pageNumber - 1) * take; // Calculate skip based on page number.
-    // const search = props?.searchParams?.search || ''
+
     const search_string = search || ''
 
-    // const buildings = await getBuildings({search, take, skip});
-    const { data, metadata } = await GetSocieties({ pageNumber, search_string, take, skip, city, developer, society_grade, project_type });
 
-    // const searchedBuildings = await getSearchedBuildings()
-
-    // Function to delete building
-
+    const { data, metadata } = await GetSocieties({ pageNumber, search_string, take, skip, city, developer, society_grade, project_type, survey_from_date, survey_to_date });
 
     return (
         <>
-
-            <SearchInput />
-            <header className="flex justify-between items-center my-4 ">
-                <div className="flex gap-5">
-                    <CityInput />
-                    {/* <DeveloperName /> */}
-                    <ProjectType />
-                    <Grade />
-
-                </div>
-                <div className="">
-
-
-
-                    <Button asChild>
-                        <Link href="/societies/new"
-                        >
-                            <span>+</span>
-                            <span className="ml-2">Add Society</span></Link>
-                    </Button>
-
-                </div>
-
-
-
-            </header>
-            <div className="flex justify-end">
-
-            </div>
 
             <Table className="table text-base">
                 <TableHeader>
@@ -285,7 +254,7 @@ export default async function List({ city, page, search, developer, society_grad
                             <TableCell className="text-center">{societies.grade}</TableCell>
                             <TableCell className="text-center">{Number(societies.area).toLocaleString()}</TableCell>
                             <TableCell className="text-center">
-                               
+
                                 {societies?.occupancy === "" ? (societies?.occupancy !== null) : (societies?.occupancy + '%')}
                             </TableCell>
                             <TableCell>
@@ -301,7 +270,7 @@ export default async function List({ city, page, search, developer, society_grad
                                             </Link>
                                         </Button>
 
-                                        
+
                                     </div>
 
                                     <Button asChild>
@@ -310,7 +279,7 @@ export default async function List({ city, page, search, developer, society_grad
                                         </Link>
                                     </Button>
 
-                                    
+
                                     <DeleteSocietyDialog society_id={societies.id} />
 
 
@@ -327,38 +296,20 @@ export default async function List({ city, page, search, developer, society_grad
             {/* <LoadMore datas ={data} /> */}
 
             <div className="mt-6">
-                <Pagination metadata={metadata} />
+                <SocietyPagination metadata={metadata}
+                    city={city}
+                    search={search}
+                    page={page}
+                    developer={developer}
+                    society_grade={society_grade}
+                    project_type={project_type}
+                    survey_from_date={survey_from_date}
+                    survey_to_date={survey_to_date}
+                   
+
+                    />
+                    
             </div>
-            {/* <div className="flex flex-col gap-4 ">
-        {buildings.map((building) => (
-          <div className="flex justify-between gap-4">
-            <Link href={"buildings/" + building.id}>{building.name}</Link> : {building.status} {building.city}
-            <div className="flex gap-4">
-              <button className="btn btn-primary">
-                <Link href={"buildings/edit/" + building.id}>Edit</Link>
-              </button>
-              <form action={deleteBuilding}>
-                <input type="hidden" name="building-id" value={building.id} />
-                <button type="submit" className="btn btn-secondary  border">
-                  Delete
-                </button>
-              </form>
-              <Link href={"buildings/floor/add/" + building.id}>
-                <button className="btn btn-primary">Add Floor Information</button>
-              </Link>
-            </div>
-          </div>
-          // <BuildingsList key={building.id} {...building} />
-        ))}
-      </div>
-      <div className="flex flex-col gap-4">
-        <div>
-          <input type="text" placeholder="Building Name" className="input input-bordered w-full max-w-xs" />
-        </div>
-        <div className="class">
-          <input type="text" placeholder="City" className="input input-bordered w-full max-w-xs" />
-        </div>
-      </div> */}
         </>
     );
 }

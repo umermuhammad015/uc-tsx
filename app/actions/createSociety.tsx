@@ -255,6 +255,8 @@ export default async function createSociety(data: FormData) {
   const societies_survery_remarks = data.get("societies-survery-remarks")?.valueOf();
   console.log("🚀 ~ createsocieties ~ societies_survery_remarks:", societies_survery_remarks)
 
+  const societies_draft = data.get("societies-draft")?.valueOf();
+
 
 
 
@@ -267,7 +269,7 @@ export default async function createSociety(data: FormData) {
   //     throw new Error ("Invalid city")
   // }
 
-  const created_society = await prisma.societies.create({
+  const created_society :any = await prisma.societies.create({
     data: {
       survey_date: societies_survey_date,
       city: societies_city as string,
@@ -351,13 +353,25 @@ export default async function createSociety(data: FormData) {
       utilities_type_drainage: utilities_type_drainage as string,
       developer_name: developer_name as string,
       contact_no: contact_no as string,
-      survery_remarks: societies_survery_remarks as string
+      survery_remarks: societies_survery_remarks as string,
+      societies_draft: societies_draft as string,
 
     },
   });
 
+  created_society.society_id = created_society.id; // Copy the value of 'id' to 'building_id'
+  delete created_society.id; // Remove the old 'id' key
+
+  console.log(created_society)
+
+  const created_society_copy = await prisma.societies_history.create({
+    data: created_society
+  })
+
+
   // console.log("created_society")
   // console.log(created_society)
 
-  redirect("/societies/" + created_society.id);
+  // redirect("/societies/" + created_society.id);
+  redirect("/societies");
 }

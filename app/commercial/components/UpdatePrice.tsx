@@ -58,8 +58,8 @@ export default async function UpdatePrice(data: FormData) {
         data: {
             date: date,
             property_type: property_type as string,
-            plot_size :plot_size as string,
-            building_size :building_size as string,
+            plot_size: plot_size as string,
+            building_size: building_size as string,
             total_floor: total_floor as string,
             building_size_sq: building_size_sq as string,
             shop_size: shop_size as string,
@@ -83,11 +83,44 @@ export default async function UpdatePrice(data: FormData) {
         },
     }
 
+
+    const created_price_copy = await prisma.price_history.create({
+        data: {
+            // name: name,
+            // city: city
+
+            price_id: Number(price_id) as number,
+            commercial_id: Number(commercial_id) as number,
+            date: date,
+            property_type: property_type as string,
+            plot_size: plot_size as string,
+            building_size: building_size as string,
+            total_floor: total_floor as string,
+            building_size_sq: building_size_sq as string,
+            shop_size: shop_size as string,
+            office_size: office_size as string,
+            apartment_size: apartment_size as string,
+            warehouse_size: warehouse_size as string,
+            total_bed: total_bed as string,
+            payment_mode: payment_mode as string,
+            price: price,
+            rent: rent,
+            total_price: total_price,
+            installment_period: installment_period,
+            down_payment: down_payment,
+            possession_amount: possession_amount,
+            remarks: remarks as string,
+
+        }
+    })
+
+
+
     console.log("Update Query is")
     console.log("update_query")
 
     const UpdateCommercial = await prisma.price.update(update_query)
-    redirect("/commercial/"+ commercial_id)
+    redirect("/commercial/" + commercial_id)
 
     // if (add_more === "yes") {
 

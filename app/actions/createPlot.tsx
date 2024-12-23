@@ -17,7 +17,7 @@ import { z } from "zod"
 export default async function createPlot(data: FormData) {
 
 
-    
+
     // console.log("🚀 ~ file: page.tsx:10 ~ createPlots ~ data:", data);
 
 
@@ -42,17 +42,17 @@ export default async function createPlot(data: FormData) {
 
     const payment_mode = data.get("payment-mode")?.valueOf();
 
-    const plot_price =  parseInt(data.get("plot-price")?.valueOf() as string);
+    const plot_price = parseInt(data.get("plot-price")?.valueOf() as string);
 
-    const plot_rent =  parseInt(data.get("plot-rent")?.valueOf() as string);
+    const plot_rent = parseInt(data.get("plot-rent")?.valueOf() as string);
 
-    const ins_total_price =  parseInt(data.get("ins-total-price")?.valueOf() as string);
+    const ins_total_price = parseInt(data.get("ins-total-price")?.valueOf() as string);
 
-    const ins_down_payment =  parseInt(data.get("ins-down-payment")?.valueOf() as string);
+    const ins_down_payment = parseInt(data.get("ins-down-payment")?.valueOf() as string);
 
-    const ins_possession_Amount =  parseInt(data.get("ins-possession-Amount")?.valueOf() as string);
+    const ins_possession_Amount = parseInt(data.get("ins-possession-Amount")?.valueOf() as string);
 
-    const ins_period =  parseInt(data.get("ins-period")?.valueOf() as string);
+    const ins_period = parseInt(data.get("ins-period")?.valueOf() as string);
 
     const plot_remarks = data.get("plot-remarks")
 
@@ -70,7 +70,7 @@ export default async function createPlot(data: FormData) {
     // console.log("🚀 ~ file: page.tsx:9 ~ createPlots ~ add_more:", add_more);
 
 
-    await prisma.plots.create({
+    const created_plot: any = await prisma.plots.create({
         data: {
             date: plot_date,
             society_id: Number(society_id) as number,
@@ -92,6 +92,15 @@ export default async function createPlot(data: FormData) {
         },
     });
 
+    created_plot.plot_id = created_plot.id; // Copy the value of 'id' to 'building_id'
+    delete created_plot.id; // Remove the old 'id' key
+
+    console.log(created_plot)
+
+    const created_plot_copy = await prisma.plots_history.create({
+        data: created_plot
+    })
+
     if (add_more === "yes") {
 
         revalidatePath("/societies/plots/add/" + society_id,) // Update cached posts
@@ -100,6 +109,10 @@ export default async function createPlot(data: FormData) {
     } else {
         redirect("/societies/" + society_id)
     }
+
+
+
+
 
 }
 

@@ -70,12 +70,39 @@ export default async function UpdatePlot(data: FormData) {
         }
     }
 
+    const created_plot_copy = await prisma.plots_history.create({
+        data: {
+            // name: name,
+            // city: city
+
+            plot_id: Number(plot_id) as number,
+            society_id: Number(society_id) as number,
+            plot_type: plot_type as string,
+            type: type as string,
+            apartment_size: apartment_size as string,
+            apartment_size_ft: apartment_size_ft as string,
+            shop_size: shop_size as string,
+            office_size: office_size as string,
+            payment_mode: payment_mode as string,
+            size: plot_size as string,
+            plot_price: plot_price,
+            plot_rent: plot_rent,
+            ins_down_payment: ins_down_payment,
+            ins_total_price: ins_total_price,
+            ins_period: ins_period,
+            ins_possession_Amount: ins_possession_Amount,
+            remarks: plot_remarks as string,
+            date: plot_date
+
+        }
+    })
+
     // console.log("Update Query is")
     // console.log("update_query")
 
     const updateSociety = await prisma.plots.update(update_query)
-    
-    redirect("/societies/"+ society_id)
+
+    redirect("/societies/" + society_id)
 
     // if (add_more === "yes") {
 

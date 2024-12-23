@@ -102,10 +102,46 @@ export default function CityInput() {
                     <option value="Quetta">Quetta</option>
                 </select>
 
+                {/* <Select
+                    name="commercial-city"
+                    onValueChange={(value) => setCity(value)}>
+                    <SelectTrigger
+                        id="commercial-city"
+                        className="select  w-full max-w-xs border-2 border-gray-400">
+                        <SelectValue placeholder="Select city" />
+                    </SelectTrigger>
+                    <SelectContent>
+                        <SelectGroup>
+                            <SelectLabel className="text-lg">Punjab</SelectLabel>
+                            <SelectItem value="All">All</SelectItem>
+                            <SelectItem value="Bahawalpur">Bahawalpur</SelectItem>
+                            <SelectItem value="Faisalabad">Faisalabad</SelectItem>
+                            <SelectItem value="Gujranwala">Gujranwala</SelectItem>
+                            <SelectItem value="Islamabad">Islamabad</SelectItem>
+                            <SelectItem value="Lahore">Lahore</SelectItem>
+                            <SelectItem value="Multan">Multan</SelectItem>
+                            <SelectItem value="Rawalpindi">Rawalpindi</SelectItem>
+                        </SelectGroup>
+                        <SelectGroup>
+                            <SelectLabel className="text-lg">Sindh</SelectLabel>
+                            <SelectItem value="Hyderabad">Hyderabad</SelectItem>
+                            <SelectItem value="Karachi">Karachi</SelectItem>
+                        </SelectGroup>
+                        <SelectGroup>
+                            <SelectLabel className="text-lg">KPK</SelectLabel>
+                            <SelectItem value="Peshawar">Peshawar</SelectItem>
+                        </SelectGroup>
+                        <SelectGroup>
+                            <SelectLabel className="text-lg">Balochistan</SelectLabel>
+                            <SelectItem value="Quetta">Quetta</SelectItem>
+                        </SelectGroup>
+                    </SelectContent>
+                </Select> */}
+
 
 
             </div>
-           
+
         </>
     )
 }
