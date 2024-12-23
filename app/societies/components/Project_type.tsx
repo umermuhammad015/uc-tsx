@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import qs from 'query-string'
 import FetchType from './FetchProjectType';
+import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 export default function ProjectType() {
 
@@ -71,10 +72,10 @@ export default function ProjectType() {
                     >
                         Project Status
                     </label>
-                    <select
+                    {/* <select
                         name="societies-project-type"
                         className="bg-gray-50 border border-gray-300 w-28 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        defaultValue={project_type}
+                        // defaultValue={project_type}
                         onChange={e => {
                             setProject_type(e.target.value)
 
@@ -87,9 +88,31 @@ export default function ProjectType() {
                         <option value="Commercial Zone">Commercial Zone</option>
                         <option value="Residential Files">Residential Files</option>
                         <option value="Commercial Files">Commercial Files</option>
+
                        
-                        {/* {type_List.length > 0 && type_List.map((g: { type: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | React.PromiseLikeOfReactNode | null | undefined; }, i: React.Key | null | undefined) => <option key={i}>{g.type}</option>)} */}
-                    </select>
+                    </select> */}
+                    <Select
+                        name="societies-project-type"
+                        onValueChange={(value) => setProject_type(value)}>
+                        <SelectTrigger
+                            id="societies-project-type"
+                            className="select w-40 max-w-xs border-2 border-gray-400">
+                            <SelectValue placeholder="Select city" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectGroup>
+                                <SelectItem value="All">All</SelectItem>
+                                <SelectItem value="Developed">Developed</SelectItem>
+                                <SelectItem value="Under Developed">Under Developed</SelectItem>
+                                <SelectItem value="New Launch">New Launch</SelectItem>
+                                <SelectItem value="Commercial Zone">Commercial Zone</SelectItem>
+                                <SelectItem value="Residential Files">Residential Files</SelectItem>
+                                <SelectItem value="Commercial Files">Commercial Files</SelectItem>
+
+                            </SelectGroup>
+
+                        </SelectContent>
+                    </Select>
                 </div>
             </div>
 

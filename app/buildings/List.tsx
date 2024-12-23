@@ -33,7 +33,7 @@ import Pagination from "@/components/pagination";
 
 export const revalidate = 0; // revalidate the date at most every hour
 export const dynamic = "force-dynamic";
-const PAGE_SIZE = 3;
+const PAGE_SIZE = 5;
 
 const getBuildings = async ({
   pageNumber = 1,
@@ -41,7 +41,7 @@ const getBuildings = async ({
   take = PAGE_SIZE,
   skip = 0,
   city = undefined,
-  building_status = "",
+  building_status = undefined,
   survey_from_date = undefined,
   survey_to_date = undefined
 }) => {
@@ -78,12 +78,12 @@ const getBuildings = async ({
         },
       ],
       // city: city === "" ? undefined : city,
-      city: city,
+      city: city === "All" ? undefined : city,
       "survey_date": {
         "gte": survey_from_date,
         "lte": survey_to_date
       },
-      status: building_status === "" ? undefined : building_status,
+      status: building_status === "All" ? undefined : building_status,
       // survey_date: survey_from_date === "" ? undefined : survey_date,
 
     },
@@ -108,12 +108,12 @@ const getBuildings = async ({
         },
       ],
       // city: city === "" ? undefined : city,
-      city: city,
+      city: city === "All" ? undefined : city,
       "survey_date": {
         "gte": survey_from_date,
         "lte": survey_to_date
       },
-      status: building_status === "" ? undefined : building_status,
+      status: building_status === "All" ? undefined : building_status,
       // survey_date: survey_from_date === "" ? undefined : survey_date,
 
     },
@@ -196,29 +196,29 @@ export default async function List({ city, page, search, building_status, survey
                 <div className=" text-lg">Building Names</div>
               </TableHead>
               {/* City */}
-              <TableHead>
+              {/* <TableHead>
                 <div className="text-lg">City</div>
-              </TableHead>
+              </TableHead> */}
               {/* location */}
               <TableHead>
                 <div className="text-lg">Location</div>
               </TableHead>
               {/* Building type */}
-              {/* <TableHead>
-                <div className="text-lg">Building Type</div>
-              </TableHead> */}
               <TableHead>
-                <div className="text-lg">Building_Status</div>
+                <div className="text-lg">Building Type</div>
               </TableHead>
               {/* <TableHead>
+                <div className="text-lg">Building_Status</div>
+              </TableHead> */}
+              {/* {/* <TableHead>
                 <div className="text-lg">Plot Size</div>
-              </TableHead>
+              </TableHead> */}
               <TableHead>
                 <div className="text-lg">Constructed Area</div>
-              </TableHead> */}
-              <TableHead>
-                <div className="text-lg">date</div>
               </TableHead>
+              {/* <TableHead>
+                <div className="text-lg">date</div>
+              </TableHead> */}
               <TableHead>
                 <div className="text-lg">Actions</div>
                 {/* <Button asChild>
@@ -253,11 +253,11 @@ export default async function List({ city, page, search, building_status, survey
                   <TableCell>
                     <Link href={"buildings/" + building.id}>{building.name}</Link>
                   </TableCell>
-                  <TableCell>
-                    {building.city}
-                  </TableCell>
-                  <TableCell>{building.area}</TableCell>
                   {/* <TableCell>
+                    {building.city}
+                  </TableCell> */}
+                  <TableCell>{building.area}</TableCell>
+                  <TableCell>
                     {building?.type_retail && (
                       // <div className="badge bg-cyan-800 text-white">1 Bed</div>
                       <Badge>Retail</Badge>
@@ -270,11 +270,11 @@ export default async function List({ city, page, search, building_status, survey
                       // <div className="badge bg-cyan-800 text-white">2 Bed</div>
                       <Badge>office</Badge>
                     )}
-                  </TableCell> */}
-                  <TableCell>{building.status}</TableCell>
-                  {/* <TableCell>{building.plot_size}</TableCell> */}
-                  {/* <TableCell>{Number(building.construction_area).toLocaleString()}</TableCell> */}
-                  <TableCell>{(building.survey_date)}</TableCell>
+                  </TableCell>
+                  {/* <TableCell>{building.status}</TableCell> */}
+                  <TableCell>{building.plot_size}</TableCell>
+                  <TableCell>{Number(building.construction_area).toLocaleString()}</TableCell>
+                  {/* <TableCell>{(building.survey_date)}</TableCell> */}
                   <TableCell>
                     <div className="flex justify-around">
                       <div className="flex gap-4">

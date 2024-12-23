@@ -60,12 +60,12 @@ export default function SocietyPagination({ metadata, city = "",
     return (
 
 
-        <div className="flex items-center space-x-10 justify-center text-black">
+        <div className="flex items-center justify-between space-x-10  text-black">
 
-            <Button className="">
+            <div className="dark:text-white">
                 Rows found: {rows_count}
 
-            </Button>
+            </div>
             <div className=" space-x-6">
                 <Link
                     className={cn(
@@ -139,6 +139,8 @@ export default function SocietyPagination({ metadata, city = "",
 
 
             </div>
+
+            <h1></h1>
         </div>
     );
 };

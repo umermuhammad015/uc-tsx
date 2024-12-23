@@ -1,3 +1,5 @@
+"use server"
+
 import Link from "next/link";
 import { Input } from "@/components/ui/input"
 import prisma from "../db";
@@ -33,9 +35,9 @@ import SocietyPagination from "./components/Societypagination";
 // import DatePickerWithRange from "./components/date";
 // import BuildingChart from "./components/BuildingChart";
 
-export const revalidate = 0; // revalidate the date at most every hour
-export const dynamic = "force-dynamic";
-const PAGE_SIZE = 3;
+// export const revalidate = 0; // revalidate the date at most every hour
+// export const dynamic = "force-dynamic";
+const PAGE_SIZE = 5;
 
 const GetSocieties = async ({
     pageNumber = 1,
@@ -44,8 +46,8 @@ const GetSocieties = async ({
     skip = 0,
     city = undefined,
     developer = "",
-    society_grade = "",
-    project_type = "",
+    society_grade = undefined,
+    project_type = undefined,
     survey_from_date = undefined,
     survey_to_date = undefined
 }) => {
@@ -82,14 +84,14 @@ const GetSocieties = async ({
                 },
             ],
             // city: city === "" ? undefined : city,
-            city: city,
+            city: city  === "All" ? undefined : city,
             "survey_date": {
                 "gte": survey_from_date,
                 "lte": survey_to_date
             },
             developer_name: developer === "" ? undefined : developer,
-            grade: society_grade === "" ? undefined : society_grade,
-            type: project_type === "" ? undefined : project_type,
+            grade: society_grade === "All" ? undefined : society_grade,
+            type: project_type === "All" ? undefined : project_type,
 
         },
         orderBy: {
@@ -113,14 +115,14 @@ const GetSocieties = async ({
                 },
             ],
             // city: city === "" ? undefined : city,
-            city: city,
+            city: city === "All" ? undefined : city ,
             "survey_date": {
                 "gte": survey_from_date,
                 "lte": survey_to_date
             },
             developer_name: developer === "" ? undefined : developer,
-            grade: society_grade === "" ? undefined : society_grade,
-            type: project_type === "" ? undefined : project_type,
+            grade: society_grade === "All" ? undefined : society_grade,
+            type: project_type === "All" ? undefined : project_type,
             // survey_date: survey_from_date === "" ? undefined : survey_date,
 
         },

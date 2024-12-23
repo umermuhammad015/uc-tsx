@@ -77,16 +77,14 @@ export default function CityInput() {
                 >
                     City
                 </label>
-                <select
+
+                {/* <select
                     name="societies-city"
                     className="bg-gray-50 border border-gray-300 w-28 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     onChange={e => setCity(e.target.value)}
 
                 >
-                    {/* <option value='' className='' selected>All</option>
-                    {cityList.length > 0 && cityList.map((c: { city: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | PromiseLikeOfReactNode | null | undefined }, i: Key | null | undefined) =>
-                        <option key={i}>{c.city}</option>
-                    )} */}
+                    
 
                     <option value="">All</option>
                     <option value="Bahawalpur">Bahawalpur</option>
@@ -100,20 +98,20 @@ export default function CityInput() {
                     <option value="Karachi">Karachi</option>
                     <option value="Peshawar">Peshawar</option>
                     <option value="Quetta">Quetta</option>
-                </select>
+                </select> */}
 
-                {/* <Select
+                <Select
                     name="commercial-city"
                     onValueChange={(value) => setCity(value)}>
                     <SelectTrigger
                         id="commercial-city"
-                        className="select  w-full max-w-xs border-2 border-gray-400">
+                        className="select  w-40 max-w-xs border-2 border-gray-400">
                         <SelectValue placeholder="Select city" />
                     </SelectTrigger>
                     <SelectContent>
                         <SelectGroup>
-                            <SelectLabel className="text-lg">Punjab</SelectLabel>
                             <SelectItem value="All">All</SelectItem>
+                            <SelectLabel className="text-lg">Punjab</SelectLabel>
                             <SelectItem value="Bahawalpur">Bahawalpur</SelectItem>
                             <SelectItem value="Faisalabad">Faisalabad</SelectItem>
                             <SelectItem value="Gujranwala">Gujranwala</SelectItem>
@@ -136,7 +134,7 @@ export default function CityInput() {
                             <SelectItem value="Quetta">Quetta</SelectItem>
                         </SelectGroup>
                     </SelectContent>
-                </Select> */}
+                </Select>
 
 
 

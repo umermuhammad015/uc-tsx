@@ -63,13 +63,13 @@ export default function CommercialPagination({ metadata, city = "",
             <div className="">
 
 
-                <div className="flex items-center space-x-10 justify-center text-black">
+                <div className="flex items-center justify-between space-x-10  text-black">
 
-                    <Button className="">
+                    <div className="dark:text-white">
                         Rows found: {rows_count}
 
-                    </Button>
-                    <div className=" space-x-6">
+                    </div>
+                    <div className="space-x-6">
                         <Link
                             className={cn(
                                 'rounded-md border border-gray-300 px-3 py-2 text-sm font-medium hover:bg-gray-50',
@@ -137,6 +137,7 @@ export default function CommercialPagination({ metadata, city = "",
                             Next
                         </Link>
                     </div>
+                    <h1></h1>
 
                 </div>
             </div>

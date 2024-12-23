@@ -32,9 +32,9 @@ import DeleteCommercialDialog from "./components/DeleteCommercIalDialog";
 import CommercialPagination from "./components/commercialPagination";
 
 
-export const revalidate = 0; 
+export const revalidate = 0;
 export const dynamic = "force-dynamic";
-const PAGE_SIZE = 3;
+const PAGE_SIZE = 5;
 
 const GetCommercial = async ({
   pageNumber = 1,
@@ -42,8 +42,8 @@ const GetCommercial = async ({
   take = PAGE_SIZE,
   skip = 0,
   city = undefined,
-  project_type = "",
-  commercial_grade = "",
+  project_type = undefined,
+  commercial_grade = undefined,
   survey_from_date = undefined,
   survey_to_date = undefined
 }) => {
@@ -58,8 +58,8 @@ const GetCommercial = async ({
   //   "skip=", skip, "take=", take
   // )
 
-  // console.log("developer inside if")
-  // console.log(developer)
+  console.log("city inside if")
+  console.log(project_type)
 
   const prisma_query: any = {
     take,
@@ -80,13 +80,13 @@ const GetCommercial = async ({
         },
       ],
       // city: city === "" ? undefined : city,
-      city: city,
+      city: city === "All" ? undefined : city,
       "survey_date": {
         "gte": survey_from_date,
         "lte": survey_to_date
       },
-      project_status: project_type === "" ? undefined : project_type,
-      grade: commercial_grade === "" ? undefined : commercial_grade,
+      project_status: project_type === "All" ? undefined : project_type,
+      grade: commercial_grade === "All" ? undefined : commercial_grade,
       // survey_date: survey_from_date === "" ? undefined : survey_date,
 
     },
@@ -111,13 +111,13 @@ const GetCommercial = async ({
         },
       ],
       // city: city === "" ? undefined : city,
-      city: city,
+      city: city === "All" ? undefined : city,
       "survey_date": {
         "gte": survey_from_date,
         "lte": survey_to_date
       },
-      project_status: project_type === "" ? undefined : project_type,
-      grade: commercial_grade === "" ? undefined : commercial_grade,
+      project_status: project_type === "All" ? undefined : project_type,
+      grade: commercial_grade === "All" ? undefined : commercial_grade,
 
     },
     orderBy: {
@@ -125,7 +125,7 @@ const GetCommercial = async ({
     },
   }
 
- 
+
 
   const results = await prisma.commercial.findMany(prisma_query);
 

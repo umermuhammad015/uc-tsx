@@ -3,6 +3,15 @@
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import qs from 'query-string'
+import {
+    Select,
+    SelectContent,
+    SelectGroup,
+    SelectItem,
+    SelectLabel,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select"
 // import FetchType from './FetchProjectType';
 import FetchBuildingStatus from './FetchBuildingstatus';
 
@@ -72,23 +81,39 @@ export default function BuildingStatus() {
                     >
                         Building Status
                     </label>
-                    <select
+                    {/* <select
                         name="societies-city"
                         className="bg-gray-50 border border-gray-300 w-28 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         onChange={e => setBuilding_status(e.target.value)}
 
                     >
-                        {/* <option value='' className='' selected>All</option>
-                    {cityList.length > 0 && cityList.map((c: { city: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | PromiseLikeOfReactNode | null | undefined }, i: Key | null | undefined) =>
-                        <option key={i}>{c.city}</option>
-                    )} */}
+    
 
                         <option value="">All</option>
                         <option value="Pre-Launch">Pre-Launch</option>
                         <option value="Under Construction">Under Construction</option>
                         <option value="Constructed">Constructed</option>
-                    </select>
-                   
+                    </select> */}
+
+                    <Select
+                        name="societies-project-type"
+                        onValueChange={(value) => setBuilding_status(value)}>
+                        <SelectTrigger
+                            id="societies-project-type"
+                            className="select w-40 max-w-xs border-2 border-gray-400">
+                            <SelectValue placeholder="Select city" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectGroup>
+                                <SelectItem value="All">All</SelectItem>
+                                <SelectItem value="Pre-Launch">Pre-Launch</SelectItem>
+                                <SelectItem value="Under Construction">Under Construction</SelectItem>
+                                <SelectItem value="Constructed">Constructed</SelectItem>
+
+                            </SelectGroup>
+
+                        </SelectContent>
+                    </Select>
                 </div>
             </div>
 

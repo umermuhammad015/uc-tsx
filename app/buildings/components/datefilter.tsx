@@ -134,7 +134,7 @@ export default function DateFilter() {
                             <Button
                                 variant={"outline"}
                                 className={cn(
-                                    "w-[240px] justify-start text-left font-normal",
+                                    "w-[240px] justify-start text-left font-normal border-2 border-gray-400 rounded-md",
                                     !survey_date_from && "text-muted-foreground"
                                 )}
                             >
@@ -159,7 +159,7 @@ export default function DateFilter() {
                             <Button
                                 variant={"outline"}
                                 className={cn(
-                                    "w-[240px] justify-start text-left font-normal",
+                                    "w-[240px] justify-start text-left font-normal border-2 border-gray-400 rounded-md",
                                     !survey_date_to && "text-muted-foreground"
                                 )}
                             >

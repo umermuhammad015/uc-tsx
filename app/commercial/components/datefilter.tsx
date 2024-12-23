@@ -91,29 +91,31 @@ export default function DateFilter() {
             {/* Soceity/Project Name  */}
             <div className={cn("flex gap-2")}>
                 <div className="">
-                    <div>Survey Period</div>
-                    <Popover>
-                        <PopoverTrigger asChild>
-                            <Button
-                                variant={"outline"}
-                                className={cn(
-                                    "w-[240px] justify-start text-left font-normal",
-                                    !survey_date_from && "text-muted-foreground"
-                                )}
-                            >
-                                <CalendarIcon />
-                                {survey_date_from ? format(survey_date_from, "PPP") : <span>Pick a date</span>}
-                            </Button>
-                        </PopoverTrigger>
-                        <PopoverContent className="w-auto p-0" align="start">
-                            <Calendar
-                                mode="single"
-                                selected={survey_date_from}
-                                onSelect={handleFromDateChange}
-                                initialFocus
-                            />
-                        </PopoverContent>
-                    </Popover>
+                    <div>Survey Period dd</div>
+                    <div className="">
+                        <Popover>
+                            <PopoverTrigger asChild>
+                                <Button
+                                    variant={"outline"}
+                                    className={cn(
+                                        "w-[240px] justify-start text-left font-normal border-2 border-gray-400 rounded-md",
+                                        !survey_date_from && "text-muted-foreground"
+                                    )}
+                                >
+                                    <CalendarIcon />
+                                    {survey_date_from ? format(survey_date_from, "PPP") : <span>Pick a date</span>}
+                                </Button>
+                            </PopoverTrigger>
+                            <PopoverContent className="w-auto p-0" align="start">
+                                <Calendar
+                                    mode="single"
+                                    selected={survey_date_from}
+                                    onSelect={handleFromDateChange}
+                                    initialFocus
+                                />
+                            </PopoverContent>
+                        </Popover>
+                    </div>
                 </div>
                 <div className="">
                     <div>-</div>
@@ -122,7 +124,7 @@ export default function DateFilter() {
                             <Button
                                 variant={"outline"}
                                 className={cn(
-                                    "w-[240px] justify-start text-left font-normal",
+                                    "w-[240px] justify-start text-left font-normal border-2 border-gray-400 rounded-md",
                                     !survey_date_to && "text-muted-foreground"
                                 )}
                             >

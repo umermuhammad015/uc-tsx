@@ -8,6 +8,7 @@ import ProjectType from "./components/project_type";
 import Grade from "./components/Grade";
 import SearchInput from "./components/SearchInput";
 import DateFilter from "./components/datefilter";
+import { Suspense } from "react";
 
 export const revalidate = 1; // revalidate the date at most every hour
 export const dynamic = "force-dynamic";
@@ -29,13 +30,23 @@ export default function Page({
 }) {
 
 
+    const suspenseKey = JSON.stringify({
+        city,
+        page,
+        search,
+        commercial_grade,
+        project_type,
+        survey_from_date,
+        survey_to_date
+    });
+
     return (
         <>
             <h1></h1>
             <SearchInput />
 
             <header className="flex justify-between items-center mt-4 ">
-                <div className="flex gap-5">
+                <div className="flex gap-3">
                     <CityInput />
                     <ProjectType />
                     <Grade />
@@ -60,15 +71,21 @@ export default function Page({
 
 
             </header>
-            <CommercialsList city={city}
-                search={search}
-                page={page}
-                project_type={project_type}
-                commercial_grade={commercial_grade}
-                survey_from_date={survey_from_date}
-                survey_to_date={survey_to_date}
 
-            />
+
+            <Suspense
+                key={suspenseKey}
+                fallback={<div className="mt-4">Loading....</div>}>
+                <CommercialsList city={city}
+                    search={search}
+                    page={page}
+                    project_type={project_type}
+                    commercial_grade={commercial_grade}
+                    survey_from_date={survey_from_date}
+                    survey_to_date={survey_to_date}
+
+                />
+            </Suspense>
 
 
         </>

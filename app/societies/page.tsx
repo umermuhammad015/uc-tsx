@@ -7,6 +7,7 @@ import CityInput from "./components/CityInput";
 import ProjectType from "./components/Project_type";
 import Grade from "./components/Grade";
 import DateFilter from "./components/datefilter";
+import { Suspense } from "react";
 
 export const revalidate = 1; // revalidate the date at most every hour
 export const dynamic = "force-dynamic";
@@ -18,7 +19,7 @@ export type PageProps = {
 };
 
 // export default function Page(props: PageProps ) {
-export default function Page({
+export default async function Page({
     // params, 
     searchParams: { city, page, search, developer, society_grade, project_type, survey_from_date, survey_to_date }
 
@@ -27,8 +28,16 @@ export default function Page({
     searchParams: { [key: string]: string | string[] | undefined }
 }) {
 
-    // console.log("developer_name socities page");
-    // console.log(developer_name);
+    const suspenseKey = JSON.stringify({
+        city,
+        page,
+        search,
+        developer,
+        society_grade,
+        project_type,
+        survey_from_date,
+        survey_to_date
+    });
 
     return (
         <>
@@ -36,7 +45,7 @@ export default function Page({
 
             <SearchInput />
             <header className="flex justify-between items-center my-4 ">
-                <div className="flex gap-5">
+                <div className="flex gap-3">
                     <CityInput />
                     {/* <DeveloperName /> */}
                     <ProjectType />
@@ -63,16 +72,21 @@ export default function Page({
             </header>
 
             {/* <SocietiesList city={city} {...props} /> */}
-            <SocietiesList city={city}
-                search={search}
-                page={page}
-                developer={developer}
-                society_grade={society_grade}
-                project_type={project_type}
-                survey_from_date={survey_from_date}
-                survey_to_date={survey_to_date}
-            // props
-            />
+            <Suspense
+                key={suspenseKey}
+                fallback={<div className="mt-4">Loading....</div>}>
+                <SocietiesList
+                    city={city}
+                    search={search}
+                    page={page}
+                    developer={developer}
+                    society_grade={society_grade}
+                    project_type={project_type}
+                    survey_from_date={survey_from_date}
+                    survey_to_date={survey_to_date}
+                // props
+                />
+            </Suspense>
 
 
 
