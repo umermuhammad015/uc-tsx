@@ -29,7 +29,7 @@ import deleteSociety from "./DeleteSociety";
 import DeleteSocietyButton from "./DeleteSocietyButton";
 
 import prisma from "@/app/db";
-import { revalidate } from "../List";
+// import { revalidate } from "../List";
 import { revalidatePath } from "next/cache";
 
 

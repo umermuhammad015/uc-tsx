@@ -27,8 +27,8 @@ import { useToast } from "@/components/ui/use-toast"
 import { Button } from "@/components/ui/button"
 
 import prisma from "@/app/db";
-import { revalidate } from "../List";
-import { revalidatePath } from "next/cache";
+// import { revalidate } from "../List";
+// import { revalidatePath } from "next/cache";
 import deleteCommercial from "./DeleteCommercial";
 
 
