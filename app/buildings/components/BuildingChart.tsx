@@ -44,7 +44,7 @@ export default function BuildingChart() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await FetchBuildingChart();
+                const response :any = await FetchBuildingChart();
                 // console.log("response")
                 // console.log(response)
                 setChartData(response);
