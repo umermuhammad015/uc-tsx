@@ -14,48 +14,63 @@ export default function ProjectType() {
     const [project_type, setProject_type] = useState('');
     const [type_List, setType_List] = useState<any>([])
 
-    useEffect(() => {
+    // useEffect(() => {
+
+    //     const query = {
+    //         project_type: project_type === "All" ? undefined : project_type,
+
+    //     }
+    //     const url = qs.stringifyUrl({
+    //         url: window.location.href,
+    //         query
+    //     }, { skipNull: true, skipEmptyString: true })
+
+    //     router.push(url)
+
+    // }, [project_type])
+
+    // useEffect(() => {
+
+
+    //     // if (debouncedNameKeywords !== "") {
+    //     const fetchData = async () => {
+
+
+    //         try {
+    //             const types = await FetchType()
+    //             // console.log(deve_name);
+
+    //             setType_List(types);
+
+
+    //         } catch (error) {
+
+    //             console.error('Error fetching city list based on keywords:', error);
+    //         }
+    //     };
+
+    //     fetchData();
+    //     // console.log("nameKeywords2");
+    //     // }
+
+    // }, []);
+
+
+    function handleChange(value: any) {
+        console.log(value)
 
         const query = {
-            project_type: project_type,
-
+            project_type: value === "All" ? undefined : value,
+            page: undefined,
         }
+
         const url = qs.stringifyUrl({
             url: window.location.href,
             query
         }, { skipNull: true, skipEmptyString: true })
 
         router.push(url)
-
-    }, [project_type])
-
-    useEffect(() => {
-
-
-        // if (debouncedNameKeywords !== "") {
-        const fetchData = async () => {
-
-
-            try {
-                const types = await FetchType()
-                // console.log(deve_name);
-
-                setType_List(types);
-
-
-            } catch (error) {
-
-                console.error('Error fetching city list based on keywords:', error);
-            }
-        };
-
-        fetchData();
-        // console.log("nameKeywords2");
-        // }
-
-    }, []);
-
-
+    }
 
     return (
         <>
@@ -93,11 +108,11 @@ export default function ProjectType() {
                     </select> */}
                     <Select
                         name="societies-project-type"
-                        onValueChange={(value) => setProject_type(value)}>
+                        onValueChange={handleChange}>
                         <SelectTrigger
                             id="societies-project-type"
                             className="select w-40 max-w-xs border-2 border-gray-400">
-                            <SelectValue placeholder="Select city" />
+                            <SelectValue placeholder="Select Status" />
                         </SelectTrigger>
                         <SelectContent>
                             <SelectGroup>

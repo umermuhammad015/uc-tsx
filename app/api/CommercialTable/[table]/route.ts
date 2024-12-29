@@ -14,7 +14,7 @@ export async function GET(
   { params }: { params: { table: string } }
 ) {
   // Check auth & permission here
-  console.log("helo");
+  // console.log("helo");
 
   // const searchParams = request.nextUrl.searchParams;
   const { searchParams } = new URL(request.url);
@@ -23,7 +23,7 @@ export async function GET(
   // const search_string = searchParams.get("search") || undefined;
   const city = searchParams.get("city") || undefined;
   const project_type = searchParams.get("project_type") || undefined;
-  const society_grade = searchParams.get("society_grade") || undefined;
+  const commercial_grade = searchParams.get("commercial_grade") || undefined;
   const survey_from_date = searchParams.get("survey_from_date") || undefined;
   const survey_to_date = searchParams.get("survey_to_date") || undefined;
 
@@ -50,7 +50,7 @@ export async function GET(
 
     //
     // Loading example data
-    const file = await prisma.societies.findMany({
+    const file = await prisma.commercial.findMany({
       where: {
         // OR: [
         //   {
@@ -67,8 +67,8 @@ export async function GET(
         //   },
         // ],
         city: city as string,
-        type: project_type as string,
-        grade: society_grade as string,
+        project_status: project_type as string,
+        grade: commercial_grade as string,
         survey_date: {
           gte: survey_from_date,
           lte: survey_to_date,
@@ -122,7 +122,7 @@ export async function GET(
     return new Response(buf, {
       status: 200,
       headers: {
-        "Content-Disposition": `attachment; filename="${"Societies"}.xlsx"`,
+        "Content-Disposition": `attachment; filename="${"Commercial"}.xlsx"`,
         "Content-Type": "application/vnd.ms-excel",
       },
     });
@@ -136,7 +136,7 @@ export async function GET(
     // return new Response(csv, {
     //   status: 200,
     //   headers: {
-    //     "Content-Disposition": `attachment; filename="Socities.csv"`,
+    //     "Content-Disposition": `attachment; filename="Commercial.csv"`,
     //     "Content-Type": "text/csv",
     //   },
     // });

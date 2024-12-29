@@ -23,20 +23,38 @@ export default function ProjectType() {
     const [project_type, setProject_type] = useState('');
     // const [type_List, setType_List] = useState<any>([])
 
-    useEffect(() => {
+    // useEffect(() => {
+
+    //     const query = {
+    //         project_type: project_type,
+
+    //     }
+    //     const url = qs.stringifyUrl({
+    //         url: window.location.href,
+    //         query
+    //     }, { skipNull: true, skipEmptyString: true })
+
+    //     router.push(url)
+
+
+
+    // }, [project_type])
+
+    function handleChange(value: any) {
+        console.log(value)
 
         const query = {
-            project_type: project_type,
-
+            project_type: value === "All" ? undefined : value,
+            page: undefined,
         }
+
         const url = qs.stringifyUrl({
             url: window.location.href,
             query
         }, { skipNull: true, skipEmptyString: true })
 
         router.push(url)
-
-    }, [project_type])
+    }
 
     // useEffect(() => {
 
@@ -99,7 +117,7 @@ export default function ProjectType() {
 
                     <Select
                         name="commercial-project-status"
-                        onValueChange={(value) => setProject_type(value)}>
+                        onValueChange={handleChange}>
                         <SelectTrigger
                             id="commercial-project-status"
                             className="select w-40 max-w-xs border-2 border-gray-400">

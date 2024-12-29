@@ -102,7 +102,9 @@ export default async function createPrice(data: FormData) {
         data: created_price
     })
 
-    redirect("/commercial");
+    // redirect("/commercial");
+    redirect("/commercial/" + commercial_id);
+
 
 }
 

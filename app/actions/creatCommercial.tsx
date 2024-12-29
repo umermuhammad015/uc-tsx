@@ -75,7 +75,7 @@ export default async function createCommercial(data: FormData) {
     //     throw new Error ("Invalid city")
     // }
 
-    const created_commercial :any = await prisma.commercial.create({
+    const created_commercial: any = await prisma.commercial.create({
         data: {
             survey_date: commercial_survey_date,
             city: commercial_city as string,
@@ -116,5 +116,6 @@ export default async function createCommercial(data: FormData) {
 
     // console.log("Hi")
 
-    redirect("/commercial");
+    redirect("/commercial/" + created_commercial.commercial_id);
+    // redirect("/commercial");
 }

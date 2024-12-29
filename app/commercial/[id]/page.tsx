@@ -35,7 +35,11 @@ type Props = {
     // searchParams: { [key: string]: string | string[] | undefined }
 }
 
-export default async function ViewCommercail({ params }: Props) {
+export default async function ViewCommercail({ params, searchParams }:
+    {
+        params: { [key: string]: string },
+        searchParams: { [key: string]: string | string[] | undefined }
+    }) {
     // console.log(params);
 
     // Get commercial zone information
@@ -58,6 +62,19 @@ export default async function ViewCommercail({ params }: Props) {
         },
     });
 
+    const queryParams = new URLSearchParams();
+
+    Object.entries(searchParams).forEach(([key, value]) => {
+        if (value) {
+            if (Array.isArray(value)) {
+                // If the value is an array, append all values
+                value.forEach((v) => queryParams.append(key, v));
+            } else {
+                // If the value is a string, append it
+                queryParams.append(key, value);
+            }
+        }
+    });
 
 
     return (
@@ -239,7 +256,8 @@ export default async function ViewCommercail({ params }: Props) {
                     </Link>
                 </Button>
                 <Button asChild>
-                    <Link href="/commercial">Go Back</Link>
+                    {/* <Link href="/commercial">Go Back</Link> */}
+                    <Link href={`/commercial${queryParams.toString() ? `?${queryParams.toString()}` : ""}`}>Go Back</Link>
                 </Button>
                 {/* <button type="submit" className="border border-gray-300 text-sm rounded-lg block p-2.5">Update</button> */}
             </div >

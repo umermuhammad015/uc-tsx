@@ -24,6 +24,16 @@ datasource db {
   // directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
 
+model User {
+  id        Int      @id @default(autoincrement()) // Primary key
+  name      String   @db.VarChar(100) // User's full name
+  email     String   @unique @db.VarChar(255) // User's email (unique)
+  contact   String?  @db.VarChar(15) // Contact number (optional)
+  isActive  Boolean  @default(true) // Account active status
+  createdAt DateTime @default(now()) // Record creation timestamp
+  updatedAt DateTime @updatedAt // Automatically updates on modification
+}
+
 model Buildings {
   // id                             String  @id @default(auto()) @map("_id") @db.ObjectId
   id                             Int     @id @default(autoincrement())
@@ -257,6 +267,7 @@ model Societies {
   zone                                       String?
   address                                    String?
   blocks                                     String?
+  phase                                      String?
   grade                                      String?
   occupancy                                  String?
   area                                       String?
@@ -355,6 +366,7 @@ model Societies_history {
   zone                                       String?
   address                                    String?
   blocks                                     String?
+  phase                                      String?
   grade                                      String?
   occupancy                                  String?
   area                                       String?

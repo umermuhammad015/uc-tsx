@@ -250,9 +250,9 @@ export default async function createBuilding(data: FormData) {
     data: created_building
   })
 
-  // console.log("created_building_copy")
-  // console.log(created_building_copy)
+  console.log("created building ID")
+  console.log(created_building.building_id)
 
   
-  redirect("/buildings");
+  redirect("/buildings/" + created_building.building_id);
 }

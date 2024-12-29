@@ -23,7 +23,11 @@ type Props = {
   // searchParams: { [key: string]: string | string[] | undefined }
 }
 
-export default async function ViewBuilding({ params }: Props) {
+export default async function ViewBuilding({ params, searchParams }:
+  {
+    params: { [key: string]: string },
+    searchParams: { [key: string]: string | string[] | undefined }
+  }) {
   // console.log(params);
 
   // Get building information
@@ -64,6 +68,20 @@ export default async function ViewBuilding({ params }: Props) {
     revalidatePath("/");
     redirect("/buildings" + params.id);
   }
+
+  const queryParams = new URLSearchParams();
+
+  Object.entries(searchParams).forEach(([key, value]) => {
+    if (value) {
+      if (Array.isArray(value)) {
+        // If the value is an array, append all values
+        value.forEach((v) => queryParams.append(key, v));
+      } else {
+        // If the value is a string, append it
+        queryParams.append(key, value);
+      }
+    }
+  });
 
   // console.log(floors);
 
@@ -529,7 +547,8 @@ export default async function ViewBuilding({ params }: Props) {
             Add floor information</Link>
         </Button>
         <Button asChild>
-          <Link href="/buildings">Go Back</Link>
+          {/* <Link href="/buildings">Go Back</Link> */}
+          <Link href={`/buildings${queryParams.toString() ? `?${queryParams.toString()}` : ""}`}>Go Back</Link>
         </Button>
       </div>
 

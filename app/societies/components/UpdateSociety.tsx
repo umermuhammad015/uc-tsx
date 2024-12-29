@@ -24,6 +24,8 @@ export default async function editForm(data: FormData) {
 
     const blocks = data.get("societies-blocks")?.valueOf();
 
+    const phase = data.get("societies-phase")?.valueOf();
+
     const grade = data.get("societies-grade")?.valueOf();
 
     const occupancy = data.get("societies-occupancy")?.valueOf();
@@ -201,6 +203,7 @@ export default async function editForm(data: FormData) {
             zone,
             address,
             blocks,
+            phase,
             grade,
             occupancy,
             area,
@@ -296,6 +299,7 @@ export default async function editForm(data: FormData) {
             zone: zone as string,
             address: address as string,
             blocks: blocks as string,
+            phase: blocks as string,
             grade: grade as string,
             occupancy: occupancy as string,
             area: area as string,

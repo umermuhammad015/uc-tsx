@@ -563,7 +563,7 @@ export default function UpdatePlotForm({ plots }: any, { params }: Props) {
                             htmlFor="ins-period"
                             className="block mb-2 text-sm font-medium"
                         >
-                            Instalment Period Years:
+                            Installment Period (Month):
                         </label>
                         <div className="flex">
                             <Input

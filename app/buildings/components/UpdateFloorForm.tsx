@@ -223,6 +223,36 @@ export default function UpdatePlotForm({ floor }: any) {
                                     <option value="28th">28th</option>
                                     <option value="29th">29th</option>
                                     <option value="30th">30th</option>
+                                    <option value="31st">31st</option>
+                                    <option value="32nd">32nd</option>
+                                    <option value="33rd">33rd</option>
+                                    <option value="34th">34th</option>
+                                    <option value="35th">35th</option>
+                                    <option value="36th">36th</option>
+                                    <option value="37th">37th</option>
+                                    <option value="38th">38th</option>
+                                    <option value="39th">39th</option>
+                                    <option value="40th">40th</option>
+                                    <option value="41st">41st</option>
+                                    <option value="42nd">42nd</option>
+                                    <option value="43rd">43rd</option>
+                                    <option value="44th">44th</option>
+                                    <option value="45th">45th</option>
+                                    <option value="46th">46th</option>
+                                    <option value="47th">47th</option>
+                                    <option value="48th">48th</option>
+                                    <option value="49th">49th</option>
+                                    <option value="50th">50th</option>
+                                    <option value="51st">51st</option>
+                                    <option value="52nd">52nd</option>
+                                    <option value="53rd">53rd</option>
+                                    <option value="54th">54th</option>
+                                    <option value="55th">55th</option>
+                                    <option value="56th">56th</option>
+                                    <option value="57th">57th</option>
+                                    <option value="58th">58th</option>
+                                    <option value="59th">59th</option>
+                                    <option value="60th">60th</option>
                                 </select>
 
                             </div>
@@ -745,33 +775,7 @@ export default function UpdatePlotForm({ floor }: any) {
 
 
 
-                                {/* Instalment Amount */}
-                                <div className="mt-4">
-                                    <label
-                                        htmlFor="building-floor-instalment-amount"
-                                        className="block mb-2 text-sm font-medium"
-                                    >
-                                        Total Sale Price
-                                    </label>
-                                    <div className="flex">
-                                        <Input
-                                            type="number"
-                                            id="building-floor-instalment-amount"
-                                            name="building-floor-instalment-amount"
-                                            className="input input-bordered w-full max-w-xs border border-gray-400 "
-                                            defaultValue={floor?.instalment_amount as number}
-                                            placeholder=""
-                                            min="0"
-                                            onChange={(e) => {
-                                                setInstalment_Amount(Number(e.target.value))
-                                                // console.log(e.target.value)
-                                            }}
-                                        />
-                                        <div className="m-4">
-                                            {Number(instalment_amount).toLocaleString()}
-                                        </div>
-                                    </div>
-                                </div>
+
 
                                 {/* Down Payment */}
                                 <div className="mt-4">
@@ -797,6 +801,34 @@ export default function UpdatePlotForm({ floor }: any) {
                                         />
                                         <div className="m-4">
                                             {Number(down_payment_amount).toLocaleString()}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Instalment Amount */}
+                                <div className="mt-4">
+                                    <label
+                                        htmlFor="building-floor-instalment-amount"
+                                        className="block mb-2 text-sm font-medium"
+                                    >
+                                        Total Sale Price
+                                    </label>
+                                    <div className="flex">
+                                        <Input
+                                            type="number"
+                                            id="building-floor-instalment-amount"
+                                            name="building-floor-instalment-amount"
+                                            className="input input-bordered w-full max-w-xs border border-gray-400 "
+                                            defaultValue={floor?.instalment_amount as number}
+                                            placeholder=""
+                                            min="0"
+                                            onChange={(e) => {
+                                                setInstalment_Amount(Number(e.target.value))
+                                                // console.log(e.target.value)
+                                            }}
+                                        />
+                                        <div className="m-4">
+                                            {Number(instalment_amount).toLocaleString()}
                                         </div>
                                     </div>
                                 </div>

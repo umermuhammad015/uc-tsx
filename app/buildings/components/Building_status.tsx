@@ -23,20 +23,36 @@ export default function BuildingStatus() {
     const [building_status, setBuilding_status] = useState('');
     const [status_List, setStatus_List] = useState<any>([])
 
-    useEffect(() => {
+    // useEffect(() => {
+
+    //     const query = {
+    //         building_status: building_status,
+
+    //     }
+    //     const url = qs.stringifyUrl({
+    //         url: window.location.href,
+    //         query
+    //     }, { skipNull: true, skipEmptyString: true })
+
+    //     router.push(url)
+
+    // }, [building_status])
+
+    function handleChange(value: any) {
+        // console.log(value)
 
         const query = {
-            building_status: building_status,
-
+            building_status: value === "All" ? undefined : value,
+            page: undefined,
         }
+
         const url = qs.stringifyUrl({
             url: window.location.href,
             query
         }, { skipNull: true, skipEmptyString: true })
 
         router.push(url)
-
-    }, [building_status])
+    }
 
     // useEffect(() => {
 
@@ -97,11 +113,11 @@ export default function BuildingStatus() {
 
                     <Select
                         name="societies-project-type"
-                        onValueChange={(value) => setBuilding_status(value)}>
+                        onValueChange={handleChange}>
                         <SelectTrigger
                             id="societies-project-type"
                             className="select w-40 max-w-xs border-2 border-gray-400">
-                            <SelectValue placeholder="Select city" />
+                            <SelectValue placeholder="Select Status" />
                         </SelectTrigger>
                         <SelectContent>
                             <SelectGroup>

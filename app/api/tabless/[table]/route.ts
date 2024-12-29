@@ -14,23 +14,24 @@ export async function GET(
   { params }: { params: { table: string } }
 ) {
   // Check auth & permission here
-  console.log("helo");
+  // console.log("helo");
 
   // const searchParams = request.nextUrl.searchParams;
   const { searchParams } = new URL(request.url);
 
   const file_format = searchParams.get("format");
-  // const search_string = searchParams.get("search") || undefined;
+  const search_string = searchParams.get("search_string") || undefined;
   const city = searchParams.get("city") || undefined;
-  const project_type = searchParams.get("project_type") || undefined;
-  const society_grade = searchParams.get("society_grade") || undefined;
+  const building_status = searchParams.get("building_status") || undefined;
   const survey_from_date = searchParams.get("survey_from_date") || undefined;
   const survey_to_date = searchParams.get("survey_to_date") || undefined;
 
-  // console.log("search");
-  // console.log(search);
-  // console.log(project_type)
-  // console.log(file_format)
+  console.log("search");
+  console.log(search_string);
+  // console.log(city);
+  // console.log(building_status);
+  // console.log(survey_from_date);
+  // console.log(survey_to_date);
 
   try {
     // const { table } = params;
@@ -50,7 +51,37 @@ export async function GET(
 
     //
     // Loading example data
-    const file = await prisma.societies.findMany({
+    // const prisma_query: any = {
+    //   where: {
+    //     OR: [
+    //       {
+    //         name: {
+    //           contains: search_string,
+    //           mode: "insensitive",
+    //         },
+    //       },
+    //       {
+    //         city: {
+    //           contains: search_string,
+    //           mode: "insensitive",
+    //         },
+    //       },
+    //     ],
+    //     // city: city === "" ? undefined : city,
+    //     city: city === "All" ? undefined : city,
+    //     survey_date: {
+    //       gte: survey_from_date,
+    //       lte: survey_to_date,
+    //     },
+    //     status: building_status === "All" ? undefined : building_status,
+    //     // survey_date: survey_from_date === "" ? undefined : survey_date,
+    //   },
+    //   orderBy: {
+    //     name: "asc",
+    //   },
+    // };
+
+    const prisma_query: any = {
       where: {
         // OR: [
         //   {
@@ -66,15 +97,46 @@ export async function GET(
         //     },
         //   },
         // ],
-        city: city as string,
-        type: project_type as string,
-        grade: society_grade as string,
+        city: city === "All" ? undefined : city,
         survey_date: {
           gte: survey_from_date,
           lte: survey_to_date,
         },
+        status: building_status === "All" ? undefined : building_status,
       },
-    });
+      // orderBy: {
+      //   name: "asc",
+      // },
+    };
+
+    // console.log(prisma_query);
+
+    const file = await prisma.buildings.findMany(prisma_query);
+
+    // const file = await prisma.prisma_query.findMany({
+    //   where: {
+    //     OR: [
+    //       {
+    //         name: {
+    //           contains: search_string === "" ? undefined : search_string,
+    //           mode: "insensitive",
+    //         },
+    //       },
+    //       {
+    //         city: {
+    //           contains: search_string === "" ? undefined : search_string,
+    //           mode: "insensitive",
+    //         },
+    //       },
+    //     ],
+    //     city: city as string,
+    //     status: building_status as string,
+    //     survey_date: {
+    //       gte: survey_from_date,
+    //       lte: survey_to_date,
+    //     },
+    //   },
+    // });
 
     // const prisma_query: any = {
     //   where: {
@@ -112,20 +174,31 @@ export async function GET(
     // console.log(jsonTableData)
     // console.log(file)
 
-    const worksheet = XLSX.utils.json_to_sheet(file);
-    const workbook = XLSX.utils.book_new();
+    const worksheet = XLSX.utils.json_to_sheet(file)
+    const workbook = XLSX.utils.book_new()
 
-    XLSX.utils.book_append_sheet(workbook, worksheet, "MySheet");
+    XLSX.utils.book_append_sheet(workbook, worksheet, "MySheet")
 
-    const buf = XLSX.write(workbook, { type: "buffer", bookType: "xlsx" });
+    const buf = XLSX.write(workbook, { type: "buffer", bookType: "xlsx" })
 
     return new Response(buf, {
-      status: 200,
-      headers: {
-        "Content-Disposition": `attachment; filename="${"Societies"}.xlsx"`,
-        "Content-Type": "application/vnd.ms-excel",
-      },
-    });
+        status: 200,
+        headers: {
+            'Content-Disposition': `attachment; filename="${"Building"}.xlsx"`,
+            'Content-Type': 'application/vnd.ms-excel',
+        }
+    })
+
+
+
+
+
+
+
+
+
+
+
 
     // const worksheet = XLSX.utils.json_to_sheet(file);
 
@@ -136,10 +209,17 @@ export async function GET(
     // return new Response(csv, {
     //   status: 200,
     //   headers: {
-    //     "Content-Disposition": `attachment; filename="Socities.csv"`,
+    //     "Content-Disposition": `attachment; filename="Building.csv"`,
     //     "Content-Type": "text/csv",
     //   },
     // });
+
+
+
+
+
+
+
 
     //     const jsonTableData = JSON.parse(file);
 

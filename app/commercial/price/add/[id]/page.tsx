@@ -623,7 +623,7 @@ export default function PriceAddPage({ params }: Props) {
                                         htmlFor="installment-period"
                                         className="block mb-2 text-sm font-medium"
                                     >
-                                        Installment Period:
+                                        Installment Period (Month):
                                     </label>
                                     <div className="flex">
                                         <Input

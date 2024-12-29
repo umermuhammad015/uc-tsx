@@ -224,13 +224,31 @@ export default function UpdatePlotForm({ societies }: any) {
                     {/* Total Phase/ Sectors/ Blocks*/}
                     <div className="mt-4">
                         <label
-                            htmlFor="societies-blocks"
+                            htmlFor="societies-phase"
                             className="block mb-2 text-sm font-medium"
                         >
                             Total phase / sectors :
                         </label>
                         <Input
                             type="text"
+                            id="societies-phase"
+                            name="societies-phase"
+                            className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+                            defaultValue={societies?.phase as string}
+                            placeholder=""
+                        />
+                    </div>
+
+                    {/* Total Blocks*/}
+                    <div className="mt-4">
+                        <label
+                            htmlFor="societies-blocks"
+                            className="block mb-2 text-sm font-medium"
+                        >
+                            Total Blocks :
+                        </label>
+                        <Input
+                            type="number"
                             id="societies-blocks"
                             name="societies-blocks"
                             className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
@@ -400,7 +418,7 @@ export default function UpdatePlotForm({ societies }: any) {
                         </label>
                         <div className="flex">
                             <Input
-                                type="text"
+                                type="number"
                                 id="societies-population"
                                 name="societies-population"
                                 className="input input-bordered w-full max-w-xs border-2 border-gray-400  "
@@ -430,7 +448,7 @@ export default function UpdatePlotForm({ societies }: any) {
                             Total Plots Residential:
                         </label>
                         <Input
-                            type="text"
+                            type="number"
                             id="total-plots-residential"
                             name="total-plots-residential"
                             className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
@@ -680,7 +698,7 @@ export default function UpdatePlotForm({ societies }: any) {
                             Total Plots Commercial :
                         </label>
                         <Input
-                            type="text"
+                            type="number"
                             id="total-plots-commercial"
                             name="total-plots-commercial"
                             className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
@@ -883,7 +901,7 @@ export default function UpdatePlotForm({ societies }: any) {
                             Total No. of Apartments:
                         </label>
                         <Input
-                            type="text"
+                            type="number"
                             id="societies-total-apartments"
                             name="societies-total-apartments"
                             className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
@@ -1930,7 +1948,7 @@ export default function UpdatePlotForm({ societies }: any) {
                             Contact No:
                         </label>
                         <Input
-                            type="text"
+                            type="number"
                             id="contact-no"
                             name="contact-no"
                             className="input input-bordered w-full max-w-xs border-2 border-gray-400  "

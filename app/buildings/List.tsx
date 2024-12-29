@@ -88,8 +88,8 @@ const getBuildings = async ({
 
     },
     orderBy: {
-      name: 'asc',
-    },
+      updatedAt: 'desc', // Sort by "updatedAt" in descending order
+    }
   }
   const prisma_counts_query: any = {
     where: {
@@ -185,6 +185,14 @@ export default async function List({ city, page, search, building_status, survey
   // const buildings = await getBuildings({search, take, skip});
   const { data, metadata } = await getBuildings({ pageNumber, search_string, take, skip, city, building_status, survey_from_date, survey_to_date });
 
+
+  const queryParams = new URLSearchParams();
+
+  if (city) queryParams.append("city", city);
+  if (building_status) queryParams.append("building_status", building_status);
+  if (survey_from_date) queryParams.append("survey_from_date", survey_from_date);
+  if (survey_to_date) queryParams.append("survey_to_date", survey_to_date);
+
   return (
     <>
 
@@ -210,19 +218,50 @@ export default async function List({ city, page, search, building_status, survey
               {/* <TableHead>
                 <div className="text-lg">Building_Status</div>
               </TableHead> */}
-              {/* {/* <TableHead>
+              <TableHead>
                 <div className="text-lg">Plot Size</div>
-              </TableHead> */}
+              </TableHead>
               <TableHead>
                 <div className="text-lg">Constructed Area</div>
               </TableHead>
               {/* <TableHead>
                 <div className="text-lg">date</div>
               </TableHead> */}
-              <TableHead>
-                <div className="text-lg">Actions</div>
-                {/* <Button asChild>
-                  <Link href="/api/tables/floor?format=xlsx"
+              <TableHead className="flex justify-between">
+                <div className="text-lg mt-2">Actions</div>
+                <Button asChild>
+                  {/* <Link href="/api/tabless/buildings?format=xlsx"
+                  >
+
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      className="lucide lucide-download">
+                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                      <polyline points="7 10 12 15 17 10" />
+                      <line x1="12" x2="12" y1="15" y2="3" />
+                    </svg>
+                    <span className="ml-2">Export</span>
+                  </Link> */}
+                  <Link
+                    href={
+                      "/api/tabless/buildings?format=xlsx" +
+                      [
+                        search && search !== "undefined" ? `&search=${search}` : "",
+                        city && city !== "undefined" ? `&city=${city}` : "",
+                        building_status && building_status !== "undefined" ? `&building_status=${building_status}` : "",
+                        survey_from_date && survey_from_date !== "undefined" ? `&survey_from_date=${survey_from_date}` : "",
+                        survey_to_date && survey_to_date !== "undefined" ? `&survey_to_date=${survey_to_date}` : "",
+                      ]
+                        .filter(Boolean) // Remove empty strings
+                        .join("") // Join parameters with '&'
+                    }
                   >
 
                     <svg xmlns="http://www.w3.org/2000/svg"
@@ -241,7 +280,7 @@ export default async function List({ city, page, search, building_status, survey
                     </svg>
                     <span className="ml-2">Export</span>
                   </Link>
-                </Button> */}
+                </Button>
               </TableHead>
             </TableRow>
           </TableHeader>
@@ -251,7 +290,8 @@ export default async function List({ city, page, search, building_status, survey
               {data.map((building) => (
                 <TableRow key={building.id} className="">
                   <TableCell>
-                    <Link href={"buildings/" + building.id}>{building.name}</Link>
+                    {/* <Link href={"buildings/" + building.id}>{building.name}</Link> */}
+                    <Link href={`buildings/${building.id}${queryParams.toString() ? `?${queryParams.toString()}` : ""}`}>{building.name}</Link>
                   </TableCell>
                   {/* <TableCell>
                     {building.city}
@@ -272,8 +312,8 @@ export default async function List({ city, page, search, building_status, survey
                     )}
                   </TableCell>
                   {/* <TableCell>{building.status}</TableCell> */}
-                  <TableCell>{building.plot_size}</TableCell>
-                  <TableCell>{Number(building.construction_area).toLocaleString()}</TableCell>
+                  <TableCell className="text-right">{Number(building.plot_size).toLocaleString()}</TableCell>
+                  <TableCell className="text-right">{Number(building.construction_area).toLocaleString()}</TableCell>
                   {/* <TableCell>{(building.survey_date)}</TableCell> */}
                   <TableCell>
                     <div className="flex justify-around">

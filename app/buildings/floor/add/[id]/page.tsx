@@ -94,16 +94,18 @@ import FetchBuilding from "@/app/buildings/components/FetchBuilding";
 // }
 
 type Props = {
-  params: { id: number }
+  params: { id: number, name: string }
   // searchParams: { [key: string]: string | string[] | undefined }
 }
 
-export default function Page({ params }: Props, building: any) {
+export default function Page({ params }: Props) {
   // console.log(params.id);
   const [entryDate, setEntryDate] = useState<string>((new Date).toISOString().split('T')[0]);
 
   const [isAdding, setIsAdding] = useState(false);
   const { toast } = useToast()
+
+  // const[currentBuildingData, setCurrentBuildingData] = useState<any>({})
 
   const [current_building, setCurrent_building] = useState<any>([]);
   // const [apartment_size, setApartment_size] = useState<any>();
@@ -149,8 +151,8 @@ export default function Page({ params }: Props, building: any) {
 
         const Building_data = await FetchBuilding(params.id)
 
-        // console.log("Current_society_data")
-        // console.log(Building_data)
+        console.log("Current building data")
+        console.log(Building_data)
 
 
         setCurrent_building(Building_data)
@@ -258,7 +260,7 @@ export default function Page({ params }: Props, building: any) {
       {/* <div className="text-lg">{building?.name}</div> */}
       <div className="text-lg">Add Floor Information</div>
       <div className="container border-2  ">
-
+        {/* {building?.name} */}
         <div className="mx-4">
           <form action={createFloor}>
 
@@ -276,7 +278,7 @@ export default function Page({ params }: Props, building: any) {
                   type="text"
                   id="building-id"
                   name="building-id"
-                  className="input input-bordered  w-full max-w-xs border-2 border-gray-400 cursor-not-allowed disabled:bg-gray-200"
+                  className="input input-bordered dark:bg-slate-700  w-full max-w-xs border-2 bg-gray-400 border-gray-400 cursor-not-allowed disabled:bg-gray-200"
                   placeholder=""
                   value={params?.id}
                 // defaultValue={building?.id}
@@ -285,6 +287,30 @@ export default function Page({ params }: Props, building: any) {
                 // disabled
                 />
               </div>
+
+              <div className="mt-4 ">
+                <label
+                  htmlFor="building-name"
+                  className="block mb-2 text-sm font-medium "
+                >
+                  Building Name:
+                </label>
+                <Input
+                  type="text"
+                  id="building-name"
+                  name="building-name"
+                  value={current_building.name}
+                  className="input input-bordered dark:bg-slate-700  w-full max-w-xs border-2 bg-gray-400 border-gray-400 cursor-not-allowed disabled:bg-gray-200"
+                  placeholder=""
+                  // value={params?.name}
+                // defaultValue={building?.id}
+                // value="hi"
+                // defaultValue="hello"
+                // disabled
+                />
+              </div>
+
+
 
               {/*Date */}
 
@@ -394,6 +420,36 @@ export default function Page({ params }: Props, building: any) {
                   <option value="28th">28th</option>
                   <option value="29th">29th</option>
                   <option value="30th">30th</option>
+                  <option value="31st">31st</option>
+                  <option value="32nd">32nd</option>
+                  <option value="33rd">33rd</option>
+                  <option value="34th">34th</option>
+                  <option value="35th">35th</option>
+                  <option value="36th">36th</option>
+                  <option value="37th">37th</option>
+                  <option value="38th">38th</option>
+                  <option value="39th">39th</option>
+                  <option value="40th">40th</option>
+                  <option value="41st">41st</option>
+                  <option value="42nd">42nd</option>
+                  <option value="43rd">43rd</option>
+                  <option value="44th">44th</option>
+                  <option value="45th">45th</option>
+                  <option value="46th">46th</option>
+                  <option value="47th">47th</option>
+                  <option value="48th">48th</option>
+                  <option value="49th">49th</option>
+                  <option value="50th">50th</option>
+                  <option value="51st">51st</option>
+                  <option value="52nd">52nd</option>
+                  <option value="53rd">53rd</option>
+                  <option value="54th">54th</option>
+                  <option value="55th">55th</option>
+                  <option value="56th">56th</option>
+                  <option value="57th">57th</option>
+                  <option value="58th">58th</option>
+                  <option value="59th">59th</option>
+                  <option value="60th">60th</option>
                 </select>
 
               </div>
@@ -1146,33 +1202,7 @@ export default function Page({ params }: Props, building: any) {
 
 
 
-              {/* Instalment Amount */}
-              <div className="mt-4">
-                <label
-                  htmlFor="building-floor-instalment-amount"
-                  className="block mb-2 text-sm font-medium"
-                >
-                  Total Sale Price
-                </label>
-                <div className="flex">
-                  <Input
-                    type="number"
-                    id="building-floor-instalment-amount"
-                    name="building-floor-instalment-amount"
-                    className="input input-bordered  w-full max-w-xs border-2 border-gray-400 "
-                    placeholder="Rs."
-                    value={instalment_amount}
-                    min="0"
-                    onChange={(e) => {
-                      setInstalment_Amount(Number(e.target.value))
-                      // console.log(e.target.value)
-                    }}
-                  />
-                  <div className="m-4">
-                    {Number(instalment_amount).toLocaleString()}
-                  </div>
-                </div>
-              </div>
+
 
               {/* Down Payment */}
               <div className="mt-4">
@@ -1198,6 +1228,34 @@ export default function Page({ params }: Props, building: any) {
                   />
                   <div className="m-4">
                     {Number(down_payment_amount).toLocaleString()}
+                  </div>
+                </div>
+              </div>
+
+              {/* Instalment Amount */}
+              <div className="mt-4">
+                <label
+                  htmlFor="building-floor-instalment-amount"
+                  className="block mb-2 text-sm font-medium"
+                >
+                  Total Sale Price
+                </label>
+                <div className="flex">
+                  <Input
+                    type="number"
+                    id="building-floor-instalment-amount"
+                    name="building-floor-instalment-amount"
+                    className="input input-bordered  w-full max-w-xs border-2 border-gray-400 "
+                    placeholder="Rs."
+                    value={instalment_amount}
+                    min="0"
+                    onChange={(e) => {
+                      setInstalment_Amount(Number(e.target.value))
+                      // console.log(e.target.value)
+                    }}
+                  />
+                  <div className="m-4">
+                    {Number(instalment_amount).toLocaleString()}
                   </div>
                 </div>
               </div>

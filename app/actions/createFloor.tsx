@@ -205,5 +205,7 @@ export default async function createFloor(data: FormData) {
   //   redirect("/societies/" + society_id)
   // }
 
-  redirect("/buildings");
+ 
+  redirect("/buildings/" + building_id);
+
 }

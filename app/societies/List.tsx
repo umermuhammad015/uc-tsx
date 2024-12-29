@@ -44,8 +44,8 @@ const GetSocieties = async ({
     search_string = undefined,
     take = PAGE_SIZE,
     skip = 0,
-    city = undefined,
     developer = "",
+    city = undefined,
     society_grade = undefined,
     project_type = undefined,
     survey_from_date = undefined,
@@ -84,7 +84,7 @@ const GetSocieties = async ({
                 },
             ],
             // city: city === "" ? undefined : city,
-            city: city  === "All" ? undefined : city,
+            city: city === "All" ? undefined : city,
             "survey_date": {
                 "gte": survey_from_date,
                 "lte": survey_to_date
@@ -95,8 +95,8 @@ const GetSocieties = async ({
 
         },
         orderBy: {
-            name: 'asc',
-        },
+            updatedAt: 'desc', // Sort by "updatedAt" in descending order
+        }
     }
     const prisma_counts_query: any = {
         where: {
@@ -115,7 +115,8 @@ const GetSocieties = async ({
                 },
             ],
             // city: city === "" ? undefined : city,
-            city: city === "All" ? undefined : city ,
+            // city: city === "All" ? undefined : city ,
+            city: city === "All" ? undefined : city,
             "survey_date": {
                 "gte": survey_from_date,
                 "lte": survey_to_date
@@ -189,8 +190,21 @@ export default async function List({ city, page, search, developer, society_grad
 
     const search_string = search || ''
 
+    // console.log("city param")
+    // console.log(city)
 
     const { data, metadata } = await GetSocieties({ pageNumber, search_string, take, skip, city, developer, society_grade, project_type, survey_from_date, survey_to_date });
+
+    const queryParams = new URLSearchParams();
+
+    if (search) queryParams.append("search_string", search);
+    if (city) queryParams.append("city", city);
+    if (society_grade) queryParams.append("society_grade", society_grade);
+    if (project_type) queryParams.append("project_type", project_type);
+    if (survey_from_date) queryParams.append("survey_from_date", survey_from_date);
+    if (survey_to_date) queryParams.append("survey_to_date", survey_to_date);
+
+
 
     return (
         <>
@@ -220,7 +234,21 @@ export default async function List({ city, page, search, developer, society_grad
                         <TableHead className="flex justify-between">
                             <div className="text-lg mt-2">Action</div>
                             <Button asChild>
-                                <Link href="/api/tables/plots?format=xlsx"
+                                <Link
+                                    href={
+                                        "/api/tables/plots?format=xlsx" +
+                                        [
+                                            search && search !== "undefined" ? `&search=${search}` : "",
+                                            city && city !== "undefined" ? `&city=${city}` : "",
+                                            developer && developer !== "undefined" ? `&developer=${developer}` : "",
+                                            society_grade && society_grade !== "undefined" ? `&society_grade=${society_grade}` : "",
+                                            project_type && project_type !== "undefined" ? `&project_type=${project_type}` : "",
+                                            survey_from_date && survey_from_date !== "undefined" ? `&survey_from_date=${survey_from_date}` : "",
+                                            survey_to_date && survey_to_date !== "undefined" ? `&survey_to_date=${survey_to_date}` : "",
+                                        ]
+                                            .filter(Boolean) // Remove empty strings
+                                            .join("") // Join parameters with '&'
+                                    }
                                 >
 
                                     <svg xmlns="http://www.w3.org/2000/svg"
@@ -249,7 +277,8 @@ export default async function List({ city, page, search, developer, society_grad
                 <TableBody>
                     {data.map((societies: { id: React.Key | null | undefined; name: any; address: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | React.PromiseLikeOfReactNode | null | undefined; type: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | React.PromiseLikeOfReactNode | null | undefined; grade: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | React.PromiseLikeOfReactNode | null | undefined; area: any; occupancy: string | null; }) => (
                         <TableRow key={societies.id} className="">
-                            <TableCell><Link href={"societies/" + societies.id}>{societies.name}</Link></TableCell>
+                            {/* <TableCell><Link href={"societies/" + societies.id + "?"}>{societies.name}</Link></TableCell> */}
+                            <TableCell><Link href={`societies/${societies.id}${queryParams.toString() ? `?${queryParams.toString()}` : ""}`}>{societies.name}</Link></TableCell>
                             <TableCell>{societies.address}</TableCell>
                             <TableCell>{societies.type}</TableCell>
 
@@ -307,10 +336,10 @@ export default async function List({ city, page, search, developer, society_grad
                     project_type={project_type}
                     survey_from_date={survey_from_date}
                     survey_to_date={survey_to_date}
-                   
 
-                    />
-                    
+
+                />
+
             </div>
         </>
     );

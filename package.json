@@ -9,8 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@headlessui/react": "^2.2.0",
     "@hookform/resolvers": "^3.3.4",
-    "@kinde-oss/kinde-auth-nextjs": "^2.1.15",
+    "@kinde-oss/kinde-auth-nextjs": "^2.4.6",
     "@prisma/client": "^5.11.0",
     "@radix-ui/react-accordion": "^1.1.2",
     "@radix-ui/react-alert-dialog": "^1.0.5",

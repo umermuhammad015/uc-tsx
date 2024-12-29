@@ -64,7 +64,8 @@ export default function DateFilter() {
         // Create a new URLSearchParams instance to merge query params
         const params = new URLSearchParams(searchParams.toString());
         params.set("survey_to_date", formattedDate); // Add or update the "date" parameter
-
+        params.delete("page");
+        
         // Push the updated query string to the router
         router.push(`?${params.toString()}`);
     }
@@ -79,6 +80,7 @@ export default function DateFilter() {
         // Create a new URLSearchParams instance to merge query params
         const params = new URLSearchParams(searchParams.toString());
         params.set("survey_from_date", formattedDate); // Add or update the "date" parameter
+        params.delete("page");
 
         // Push the updated query string to the router
         router.push(`?${params.toString()}`);
@@ -91,7 +93,7 @@ export default function DateFilter() {
             {/* Soceity/Project Name  */}
             <div className={cn("flex gap-2")}>
                 <div className="">
-                    <div>Survey Period dd</div>
+                    <div>Survey Period</div>
                     <div className="">
                         <Popover>
                             <PopoverTrigger asChild>
@@ -111,6 +113,7 @@ export default function DateFilter() {
                                     mode="single"
                                     selected={survey_date_from}
                                     onSelect={handleFromDateChange}
+                                    defaultMonth={survey_date_from}
                                     initialFocus
                                 />
                             </PopoverContent>

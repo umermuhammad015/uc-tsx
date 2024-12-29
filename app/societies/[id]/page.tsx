@@ -35,8 +35,16 @@ type Props = {
     // searchParams: { [key: string]: string | string[] | undefined }
 }
 
-export default async function ViewBuilding({ params }: Props) {
+// export default async function ViewBuilding({ params }: Props) {
+export default async function ViewBuilding({ params, searchParams }:
+    {
+        params: { [key: string]: string },
+        searchParams: { [key: string]: string | string[] | undefined }
+    }) {
     console.log(params);
+    console.log(searchParams.city);
+
+
 
     // Get building information
     const society = await prisma.societies.findUnique({
@@ -129,6 +137,23 @@ export default async function ViewBuilding({ params }: Props) {
         redirect("/societies/" + params.id);
     }
 
+    const queryParams = new URLSearchParams();
+
+    Object.entries(searchParams).forEach(([key, value]) => {
+        if (value) {
+            if (Array.isArray(value)) {
+                // If the value is an array, append all values
+                value.forEach((v) => queryParams.append(key, v));
+            } else {
+                // If the value is a string, append it
+                queryParams.append(key, value);
+            }
+        }
+    });
+
+    // const href = `/societies${queryParams.toString() ? `?${queryParams.toString()}` : ""}`;
+
+
 
     return (
         <>
@@ -142,6 +167,9 @@ export default async function ViewBuilding({ params }: Props) {
             <div className="border border-gray-400 ">
                 <Table className="">
                     <TableBody>
+                        <TableRow>
+                            <TableCell>Date </TableCell> <TableCell>{society?.survey_date}</TableCell>
+                        </TableRow>
                         <TableRow>
                             <TableCell>City </TableCell> <TableCell>{society?.city}</TableCell>
                         </TableRow>
@@ -167,7 +195,10 @@ export default async function ViewBuilding({ params }: Props) {
                             <TableCell>Total Area of Society (Acres)</TableCell> <TableCell>{society?.area}</TableCell>
                         </TableRow>
                         <TableRow>
-                            <TableCell>Total Phase/ Sectors/ Blocks</TableCell> <TableCell>{society?.blocks}</TableCell>
+                            <TableCell>Total Phase/ Sectors</TableCell> <TableCell>{society?.phase}</TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell>Total Blocks</TableCell> <TableCell>{society?.blocks}</TableCell>
                         </TableRow>
                         <TableRow>
                             <TableCell>Occupancy Ratio</TableCell> <TableCell>{society?.occupancy === "" ? (society?.occupancy !== null) : (society?.occupancy + '%')}</TableCell>
@@ -486,7 +517,7 @@ export default async function ViewBuilding({ params }: Props) {
                             <TableHead>Payment Mode</TableHead>
                             <TableHead>Price</TableHead>
                             <TableHead>Monthly Rent</TableHead>
-                            <TableHead>Total Price</TableHead>
+                            <TableHead>Installment Amount</TableHead>
                             <TableHead>Down Payment</TableHead>
                             <TableHead>Possession Amount</TableHead>
                             <TableHead>Instalment Period Years</TableHead>
@@ -693,7 +724,8 @@ export default async function ViewBuilding({ params }: Props) {
                 </Button>
                 {/* <Link href="/societies" className="flex justify-center items-center border border-black px-2 py-1 rounded-xl bg-white text-black hover:bg-blue-400 hover:text-white capitalize">Go Back</Link> */}
                 <Button asChild>
-                    <Link href="/societies">Go Back</Link>
+                    {/* <Link href="/societies">Go Back</Link> */}
+                    <Link href={`/societies${queryParams.toString() ? `?${queryParams.toString()}` : ""}`}>Go Back</Link>
                 </Button>
                 {/* <button type="submit" className="border border-gray-300 text-sm rounded-lg block p-2.5">Update</button> */}
             </div >

@@ -58,8 +58,8 @@ const GetCommercial = async ({
   //   "skip=", skip, "take=", take
   // )
 
-  console.log("city inside if")
-  console.log(project_type)
+  // console.log("city inside if")
+  // console.log(project_type)
 
   const prisma_query: any = {
     take,
@@ -91,8 +91,8 @@ const GetCommercial = async ({
 
     },
     orderBy: {
-      commercial_zone_name: 'asc',
-    },
+      updatedAt: 'desc', // Sort by "updatedAt" in descending order
+    }
   }
   const prisma_counts_query: any = {
     where: {
@@ -181,6 +181,15 @@ export default async function List({ city, page, search, project_type, commercia
   // const buildings = await getBuildings({search, take, skip});
   const { data, metadata } = await GetCommercial({ pageNumber, search_string, take, skip, city, project_type, commercial_grade, survey_from_date, survey_to_date });
 
+  const queryParams = new URLSearchParams();
+
+  if (city) queryParams.append("city", city);
+  if (commercial_grade) queryParams.append("commercial_grade", commercial_grade);
+  if (project_type) queryParams.append("project_type", project_type);
+  if (survey_from_date) queryParams.append("survey_from_date", survey_from_date);
+  if (survey_to_date) queryParams.append("survey_to_date", survey_to_date);
+
+
   return (
     <>
 
@@ -207,8 +216,62 @@ export default async function List({ city, page, search, project_type, commercia
               <TableHead>
                 <div className="text-lg">Occupancy</div>
               </TableHead>
-              <TableHead>
-                <div className="text-lg">Action</div>
+              <TableHead className="flex justify-between">
+                <div className="text-lg mt-2">Action</div>
+
+                <Button asChild>
+                  {/* <Link href="/api/CommercialTable/commercials?format=xlsx"
+                  >
+
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      className="lucide lucide-download">
+                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                      <polyline points="7 10 12 15 17 10" />
+                      <line x1="12" x2="12" y1="15" y2="3" />
+                    </svg>
+                    <span className="ml-2">Export</span>
+                  </Link> */}
+                  <Link
+                    href={
+                      "/api/CommercialTable/commercials?format=xlsx" +
+                      [
+                        search && search !== "undefined" ? `&search=${search}` : "",
+                        city && city !== "undefined" ? `&city=${city}` : "",
+                        commercial_grade && commercial_grade !== "undefined" ? `&commercial_grade=${commercial_grade}` : "",
+                        project_type && project_type !== "undefined" ? `&project_type=${project_type}` : "",
+                        survey_from_date && survey_from_date !== "undefined" ? `&survey_from_date=${survey_from_date}` : "",
+                        survey_to_date && survey_to_date !== "undefined" ? `&survey_to_date=${survey_to_date}` : "",
+                      ]
+                        .filter(Boolean) // Remove empty strings
+                        .join("") // Join parameters with '&'
+                    }
+                  >
+
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      className="lucide lucide-download">
+                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                      <polyline points="7 10 12 15 17 10" />
+                      <line x1="12" x2="12" y1="15" y2="3" />
+                    </svg>
+                    <span className="ml-2">Export</span>
+                  </Link>
+                </Button>
               </TableHead>
             </TableRow>
           </TableHeader>
@@ -218,7 +281,8 @@ export default async function List({ city, page, search, project_type, commercia
               {data.map((commercial) => (
                 <TableRow key={commercial.id} className="">
                   <TableCell>
-                    <Link href={"commercial/" + commercial.id}>{commercial.commercial_zone_name}</Link>
+                    {/* <Link href={"commercial/" + commercial.id}>{commercial.commercial_zone_name}</Link> */}
+                    <Link href={`commercial/${commercial.id}${queryParams.toString() ? `?${queryParams.toString()}` : ""}`}>{commercial.commercial_zone_name}</Link>
                   </TableCell>
                   <TableCell>{commercial.location}</TableCell>
                   {/* <TableCell>{commercial.location}</TableCell> */}

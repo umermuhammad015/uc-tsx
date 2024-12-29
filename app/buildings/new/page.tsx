@@ -19,8 +19,15 @@ import {
 
 import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import { z } from "zod";
 
 
+const areaSchema = z.object({
+  area: z
+    .string()
+    .regex(/^[a-zA-Z\s]+$/, "Area must contain characters only.")
+    .min(1, "Area is required."),
+});
 
 export default function Page() {
 
@@ -38,11 +45,30 @@ export default function Page() {
   //   setBuildingStatus(e.target.value)
   // }
 
+  // const handleSubmit = async (e: React.FormEvent) => {
+  //   e.preventDefault();
+
+  //   // Validate using Zod
+  //   const validation = areaSchema.safeParse(formData);
+  //   if (!validation.success) {
+  //     setError(validation.error.errors[0].message);
+  //     return;
+  //   }
+
+  //   setError(null);
+
+  //   // Proceed with form submission logic (e.g., server-side submission)
+  //   console.log("Form is valid, submitting data:", formData);
+  // };
+
   return (
     <>
       <Link href="/buildings" className="text-lg">Buildings</Link>
 
-      <form action={createBuilding}>
+      <form 
+      action={createBuilding} 
+      // onSubmit={handleSubmit}
+      >
         <div className="p-5 border-2 border-b-0 border-gray-200 dark:border-gray-700">
 
           {/* Survey Date */}
@@ -431,7 +457,7 @@ export default function Page() {
             </label>
             <div className="flex">
               <Input
-                type="text"
+                type="number"
                 id="launch-year"
                 name="launch-year"
                 minLength={1}
@@ -1397,3 +1423,7 @@ export default function Page() {
     </>
   );
 }
+function setError(message: string) {
+  throw new Error("Function not implemented.");
+}
+

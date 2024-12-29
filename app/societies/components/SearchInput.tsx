@@ -60,7 +60,7 @@ function SearchInput() {
           value={search}
           onInput={e => setSearch((e.target as HTMLInputElement).value)}
         />
-        <Button onClick={handleSearch} style={{ height: '43px' }}>Search</Button>
+        {/* <Button onClick={handleSearch} style={{ height: '43px' }}>Search</Button> */}
       </div>
 
       {/* <div>

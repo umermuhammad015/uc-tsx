@@ -29,6 +29,8 @@ export default function DateFilter() {
     const [survey_date_from, setSurvey_date_from] = React.useState<Date>(new Date('2024-01-01'))
     const [survey_date_to, setSurvey_date_to] = React.useState<Date>(new Date('2024-12-31'))
 
+    // console.log(survey_date_from)
+
 
 
     // const [status_List, setStatus_List] = useState<any>([])
@@ -59,12 +61,15 @@ export default function DateFilter() {
     const handleToDateChange = (date: Date | undefined) => {
 
         if (!date) return;
+
         setSurvey_date_to(date);
         const formattedDate = format(date, "yyyy-MM-dd");
+        
 
         // Create a new URLSearchParams instance to merge query params
         const params = new URLSearchParams(searchParams.toString());
         params.set("survey_to_date", formattedDate); // Add or update the "date" parameter
+        params.delete("page"); // Add or update the "page" parameter
 
         // Push the updated query string to the router
         router.push(`?${params.toString()}`);
@@ -78,6 +83,7 @@ export default function DateFilter() {
         // Create a new URLSearchParams instance to merge query params
         const params = new URLSearchParams(searchParams.toString());
         params.set("survey_from_date", formattedDate); // Add or update the "date" parameter
+        params.delete("page"); // Add or update the "page" parameter
 
         // Push the updated query string to the router
         router.push(`?${params.toString()}`);
@@ -145,6 +151,7 @@ export default function DateFilter() {
                         <PopoverContent className="w-auto p-0" align="start">
                             <Calendar
                                 mode="single"
+                                defaultMonth={survey_date_from}
                                 selected={survey_date_from}
                                 onSelect={handleFromDateChange}
                                 initialFocus

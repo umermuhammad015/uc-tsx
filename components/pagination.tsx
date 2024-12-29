@@ -65,8 +65,8 @@ export default function Pagination({ metadata, city = "", building_status = "", 
 			<div className=" space-x-6">
 				<Link
 					className={cn(
-						'rounded-md border border-gray-300 px-3 py-2 text-sm font-medium dark:hover:bg-gray-50 dark:hover:text-black ',
-						currentPage === 1 ? 'pointer-events-none bg-gray-100 text-black' : 'dark:text-white ',
+						'rounded-md border border-gray-300 px-3 py-2 text-sm font-medium dark:hover:bg-gray-50 dark:hover:text-black hover:bg-gray-300',
+						currentPage === 1 ? 'pointer-events-none bg-gray-100 text-black ' : 'dark:text-white ',
 					)}
 					// href={`?page=${currentPage - 1}`}
 					href={'?' + (page !== undefined && ('page=' + (page - 1))) +
@@ -91,10 +91,10 @@ export default function Pagination({ metadata, city = "", building_status = "", 
 							className={cn(
 								'relative inline-flex items-center border border-gray-300 px-4 py-2 text-sm font-medium dark:hover:bg-gray-50 hover:text-black text-black ',
 								p === currentPage
-									? 'pointer-events-none bg-gray-600'
+									? 'pointer-events-none bg-gray-600 hover:text-black text-white dark:hover:text-black hover:bg-gray-300'
 									: '',
-								i === 0 ? 'rounded-l-md  ' : 'dark:hover:bg-gray-50 hover:text-black text-black',
-								i === pages.length - 1 ? 'rounded-r-md text-black  ' : 'dark:text-white',
+								i === 0 ? 'rounded-l-md  dark:hover:text-black hover:bg-gray-300' : 'hover:bg-gray-300 dark:hover:bg-gray-50 dark:hover:text-black dark:text-white',
+								i === pages.length - 1 ? 'rounded-r-md dark:hover:text-black' : 'dark:text-white hover:text-black',
 							)}
 							// href={`?page=${p}`}
 
@@ -114,7 +114,7 @@ export default function Pagination({ metadata, city = "", building_status = "", 
 				<Link
 					className={cn(
 						'rounded-md border border-gray-300 px-3 py-2 text-sm font-medium dark:hover:bg-gray-50 dark:hover:text-black ',
-						!hasNextPage ? 'pointer-events-none bg-gray-100 text-black' : 'dark:text-white '
+						!hasNextPage ? 'pointer-events-none bg-gray-100 text-black ' : 'dark:text-white hover:bg-gray-300'
 					)}
 					// href={`?page=${currentPage + 1}`}
 					href={'?' + (page !== undefined && ('page=' + (page + 1))) +

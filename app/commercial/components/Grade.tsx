@@ -22,20 +22,36 @@ export default function Grade() {
     const [commercial_grade, setCommercial_grade] = useState('');
     // const [grade_List, setGrade_List] = useState<any>([])
 
-    useEffect(() => {
+    // useEffect(() => {
+
+    //     const query = {
+    //         commercial_grade: commercial_grade,
+
+    //     }
+    //     const url = qs.stringifyUrl({
+    //         url: window.location.href,
+    //         query
+    //     }, { skipNull: true, skipEmptyString: true })
+
+    //     router.push(url)
+
+    // }, [commercial_grade])
+
+    function handleChange(value: any) {
+        console.log(value)
 
         const query = {
-            commercial_grade: commercial_grade,
-
+            commercial_grade: value === "All" ? undefined : value,
+            page: undefined,
         }
+
         const url = qs.stringifyUrl({
             url: window.location.href,
             query
         }, { skipNull: true, skipEmptyString: true })
 
         router.push(url)
-
-    }, [commercial_grade])
+    }
 
     // useEffect(() => {
 
@@ -100,7 +116,7 @@ export default function Grade() {
 
                     <Select
                         name="commercial-grade"
-                        onValueChange={(value) => setCommercial_grade(value)}>
+                        onValueChange={handleChange}>
                         <SelectTrigger
                             id="commercial-grade"
                             className="select w-40 max-w-xs border-2 border-gray-400">

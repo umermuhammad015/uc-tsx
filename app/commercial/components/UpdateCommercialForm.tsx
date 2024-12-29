@@ -350,7 +350,7 @@ export default function UpdateCommercialForm({ commercial }: any) {
                         </label>
                         <div className="flex">
                             <Input
-                                type="text"
+                                type="number"
                                 id="commercial-area"
                                 name="commercial-area"
                                 className="input input-bordered w-full max-w-xs border-2 border-gray-400  "
@@ -409,7 +409,7 @@ export default function UpdateCommercialForm({ commercial }: any) {
                             No of Plots:
                         </label>
                         <Input
-                            type="text"
+                            type="number"
                             id="total-plots"
                             name="total-plots"
                             className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
@@ -427,7 +427,7 @@ export default function UpdateCommercialForm({ commercial }: any) {
                             No of Shops:
                         </label>
                         <Input
-                            type="text"
+                            type="number"
                             id="total-shops"
                             name="total-shops"
                             className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
@@ -445,7 +445,7 @@ export default function UpdateCommercialForm({ commercial }: any) {
                             No of Offices:
                         </label>
                         <Input
-                            type="text"
+                            type="number"
                             id="total-offices"
                             name="total-offices"
                             className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
@@ -463,7 +463,7 @@ export default function UpdateCommercialForm({ commercial }: any) {
                             No of Apartments:
                         </label>
                         <Input
-                            type="text"
+                            type="number"
                             id="total-apartments"
                             name="total-apartments"
                             className="input input-bordered w-full max-w-xs border-2 border-gray-400 "

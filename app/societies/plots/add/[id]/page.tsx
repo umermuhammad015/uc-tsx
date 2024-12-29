@@ -203,7 +203,7 @@ export default function PlotAddPage({ params }: Props) {
 
     return (
         <>
-            <div className="text-lg">Plots/Bungalow Information</div>
+            <div className="text-lg">Pricing Information</div>
             <div className="container border-2 ">
 
                 <div className="mx-4">
@@ -222,10 +222,32 @@ export default function PlotAddPage({ params }: Props) {
                                 type="text"
                                 id="society-id"
                                 name="society-id"
-                                className="input input-bordered  w-full max-w-xs border-2 border-gray-400 cursor-not-allowed disabled:bg-gray-200"
+                                className="input input-bordered dark:bg-slate-700  w-full max-w-xs border-2 bg-gray-400 border-gray-400 cursor-not-allowed disabled:bg-gray-200"
                                 placeholder=""
                                 value={params?.id}
 
+                            />
+                        </div>
+
+                        <div className="mt-4 ">
+                            <label
+                                htmlFor="building-name"
+                                className="block mb-2 text-sm font-medium "
+                            >
+                                Building Name:
+                            </label>
+                            <Input
+                                type="text"
+                                id="building-name"
+                                name="building-name"
+                                value={current_society.name}
+                                className="input input-bordered dark:bg-slate-700  w-full max-w-xs border-2 bg-gray-400 border-gray-400 cursor-not-allowed disabled:bg-gray-200"
+                                placeholder=""
+                            // value={params?.name}
+                            // defaultValue={building?.id}
+                            // value="hi"
+                            // defaultValue="hello"
+                            // disabled
                             />
                         </div>
                         {/*Date */}
@@ -288,7 +310,8 @@ export default function PlotAddPage({ params }: Props) {
                                 <option value="Apartment">Apartment</option>
                                 <option value="Shop">Shop</option>
                                 <option value="Office">Office</option>
-                                <option value="Files">Files</option>
+                                <option value="Residential Files">Residential Files</option>
+                                <option value="Commercial Files">Commercial Files</option>
                             </select>
                             {/* <Select
                                     id="type"
@@ -313,7 +336,7 @@ export default function PlotAddPage({ params }: Props) {
 
                         {
                             (plotType === "Residential Plot" || plotType === 'Commercial Plot' || plotType === 'Bungalow' ||
-                                plotType === 'Files') &&
+                                plotType === 'Commercial Files' || plotType === 'Residential Files') &&
                             <>
                                 <div className="mt-4">
                                     <label
@@ -743,7 +766,7 @@ export default function PlotAddPage({ params }: Props) {
                                         htmlFor="ins-period"
                                         className="block mb-2 text-sm font-medium"
                                     >
-                                        Instalment Period Years:
+                                        Installment Period (Month):
                                     </label>
                                     <div className="flex">
                                         <Input
