@@ -1,13 +1,13 @@
 // import { type NextRequest } from "next/server";
 import { NextRequest, NextResponse } from "next/server";
 import * as XLSX from "xlsx";
-import { useSearchParams } from "next/navigation";
+// import { useSearchParams } from "next/navigation";
 
 import prisma from "@/app/db";
 
 // For loading example data
-import { promises as fs } from "fs";
-import { format } from "path";
+// import { promises as fs } from "fs";
+// import { format } from "path";
 
 export async function GET(
   request: NextRequest,
