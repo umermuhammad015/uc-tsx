@@ -8,10 +8,6 @@
     "start": "next start",
     "lint": "next lint"
   },
-  "overrides": {
-    "react": "$react",
-    "react-dom": "$react-dom"
-  },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
     "@prisma/client": "^6.1.0",
