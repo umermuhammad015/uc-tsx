@@ -1,0 +1,677 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+//npm i prisma --save-dev
+// npm prisma init --datasource-provider mongodb
+// npx prisma migrate dev --name init
+// npm prisma init
+
+// npx prisma init
+
+// npx prisma db push
+// npx prisma generate
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  // // provider = "mongodb"
+  // provider = "postgres"
+  url      = env("DATABASE_URL")
+  provider = "postgresql"
+  // url = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  // directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+}
+
+model User {
+  id        Int      @id @default(autoincrement()) // Primary key
+  name      String   @db.VarChar(100) // User's full name
+  email     String   @unique @db.VarChar(255) // User's email (unique)
+  contact   String?  @db.VarChar(15) // Contact number (optional)
+  isActive  Boolean  @default(true) // Account active status
+  createdAt DateTime @default(now()) // Record creation timestamp
+  updatedAt DateTime @updatedAt // Automatically updates on modification
+}
+
+model Buildings {
+  // id                             String  @id @default(auto()) @map("_id") @db.ObjectId
+  id                             Int     @id @default(autoincrement())
+  name                           String
+  city                           String
+  status                         String?
+  is_centrally_air_conditioned   String?
+  has_security                   String?
+  has_escalators                 String?
+  has_food_court                 String?
+  has_entertainment_area         String?
+  has_none                       String?
+  type_mixed_use                 String?
+  type_retail                    String?
+  type_offices                   String?
+  type_apartments                String?
+  type_other                     String?
+  zone                           String?
+  area                           String?
+  address                        String?
+  plot_size                      Int?
+  construction_area              Int?
+  construction_year              Int?
+  launch_year                    Int?
+  builder_name                   String?
+  building_rank                  String?
+  total_floors                   Int?
+  parking_floors                 Int?
+  apartment_floors               Int?
+  apartments_count               Int?
+  apartments_studio              String?
+  apartments_has_type_1_bed      String?
+  apartments_has_type_2_bed      String?
+  apartments_has_type_3_bed      String?
+  apartments_has_type_4_bed      String?
+  apartments_has_type_5_bed      String?
+  apartments_has_type_duplex     String?
+  apartments_has_type_penthouse  String?
+  apartments_has_servant_quarter String?
+  has_furnished                  String?
+  has_semi_furnished             String?
+  has_service_apartments         String?
+  has_hotel_suites_apartments    String?
+  apartments_maintenance_fee     Int?
+  retail_floors_count            Int?
+  retail_floors_shops_count      Int?
+  retail_floors_maintenance_fee  Int?
+  retail_floors_brands           String?
+  has_fashion_health             String?
+  has_electronics_appliancecs    String?
+  has_home_living                String?
+  has_restaurants_courts         String?
+  has_bakery_ice                 String?
+  has_grocery_supermarkets       String?
+  has_banks_atm                  String?
+  has_real_estate                String?
+  has_labs_pharmacies            String?
+  has_play_fitness               String?
+  has_swimming_pool              String?
+  has_cinema                     String?
+  office_floors_count            Int?
+  offices_count                  Int?
+  office_maintenance_fee         Int?
+  // survey_date                    DateTime? @db.Date
+  survey_date                    String?
+  surveyor_name                  String?
+  building_survery_remarks       String?
+  building_draft                 String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  floors Floors[]
+}
+
+model Buildings_history {
+  id                             Int     @id @default(autoincrement())
+  building_id                    Int
+  name                           String
+  city                           String
+  status                         String?
+  is_centrally_air_conditioned   String?
+  has_security                   String?
+  has_escalators                 String?
+  has_food_court                 String?
+  has_entertainment_area         String?
+  has_none                       String?
+  type_mixed_use                 String?
+  type_retail                    String?
+  type_offices                   String?
+  type_apartments                String?
+  type_other                     String?
+  zone                           String?
+  area                           String?
+  address                        String?
+  plot_size                      Int?
+  construction_area              Int?
+  construction_year              Int?
+  launch_year                    Int?
+  builder_name                   String?
+  building_rank                  String?
+  total_floors                   Int?
+  parking_floors                 Int?
+  apartment_floors               Int?
+  apartments_count               Int?
+  apartments_studio              String?
+  apartments_has_type_1_bed      String?
+  apartments_has_type_2_bed      String?
+  apartments_has_type_3_bed      String?
+  apartments_has_type_4_bed      String?
+  apartments_has_type_5_bed      String?
+  apartments_has_type_duplex     String?
+  apartments_has_type_penthouse  String?
+  apartments_has_servant_quarter String?
+  has_furnished                  String?
+  has_semi_furnished             String?
+  has_service_apartments         String?
+  has_hotel_suites_apartments    String?
+  apartments_maintenance_fee     Int?
+  retail_floors_count            Int?
+  retail_floors_shops_count      Int?
+  retail_floors_maintenance_fee  Int?
+  retail_floors_brands           String?
+  has_fashion_health             String?
+  has_electronics_appliancecs    String?
+  has_home_living                String?
+  has_restaurants_courts         String?
+  has_bakery_ice                 String?
+  has_grocery_supermarkets       String?
+  has_banks_atm                  String?
+  has_real_estate                String?
+  has_labs_pharmacies            String?
+  has_play_fitness               String?
+  has_swimming_pool              String?
+  has_cinema                     String?
+  office_floors_count            Int?
+  offices_count                  Int?
+  office_maintenance_fee         Int?
+  // survey_date                    DateTime? @db.Date
+  survey_date                    String?
+  surveyor_name                  String?
+  building_survery_remarks       String?
+  building_draft                 String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Floors {
+  // id String @id @default(auto()) @map("_id") @db.ObjectId
+  id Int @id @default(autoincrement())
+
+  building_id Int
+  buildings   Buildings @relation(fields: [building_id], references: [id], onDelete: Cascade)
+
+  floor_no                          String
+  floor_type                        String
+  unit_type                         String?
+  floor_apartments_studio           String?
+  floor_apartments_1_bed            String?
+  floor_apartments_2_bed            String?
+  floor_apartments_3_bed            String?
+  floor_apartments_4_bed            String?
+  floor_apartments_5_bed            String?
+  floor_apartments_duplex           String?
+  floor_apartments_penthouse        String?
+  floor_has_furnished               String?
+  floor_has_semi_furnished          String?
+  floor_has_service_apartments      String?
+  floor_has_hotel_suites_apartments String?
+  occupancy                         Int?
+  size_min                          Int?
+  size_max                          Int?
+  avg_sale_price                    Int?
+  avg_monthly_rent                  Int?
+  instalment_plan                   String?
+  instalment_period                 Int?
+  down_payment_amount               Int?
+  instalment_amount                 Int?
+  possession_amount                 Int?
+  date                              String?
+  remarks                           String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Floors_history {
+  // id String @id @default(auto()) @map("_id") @db.ObjectId
+  id Int @id @default(autoincrement())
+
+  building_id Int
+  floor_id    Int
+  // buildings   Buildings @relation(fields: [building_id], references: [id], onDelete: Cascade)
+
+  floor_no                          String
+  floor_type                        String
+  unit_type                         String?
+  floor_apartments_studio           String?
+  floor_apartments_1_bed            String?
+  floor_apartments_2_bed            String?
+  floor_apartments_3_bed            String?
+  floor_apartments_4_bed            String?
+  floor_apartments_5_bed            String?
+  floor_apartments_duplex           String?
+  floor_apartments_penthouse        String?
+  floor_has_furnished               String?
+  floor_has_semi_furnished          String?
+  floor_has_service_apartments      String?
+  floor_has_hotel_suites_apartments String?
+  occupancy                         Int?
+  size_min                          Int?
+  size_max                          Int?
+  avg_sale_price                    Int?
+  avg_monthly_rent                  Int?
+  instalment_plan                   String?
+  instalment_period                 Int?
+  down_payment_amount               Int?
+  instalment_amount                 Int?
+  possession_amount                 Int?
+  date                              String?
+  remarks                           String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Societies {
+  id                                         Int     @id @default(autoincrement())
+  // survey_date                                DateTime? @db.Date
+  survey_date                                String?
+  city                                       String
+  type                                       String?
+  name                                       String?
+  zone                                       String?
+  address                                    String?
+  blocks                                     Int?
+  phase                                      Int?
+  grade                                      String?
+  occupancy                                  Int?
+  area                                       Int?
+  population                                 Int?
+  launch_year                                Int?
+  total_plots_residential                    Int?
+  plot_sizes_residential                     Int?
+  plot_sizes_residential_87_5                String?
+  plot_sizes_residential_125                 String?
+  plot_sizes_residential_200                 String?
+  plot_sizes_residential_250                 String?
+  plot_sizes_residential_300                 String?
+  plot_sizes_residential_400                 String?
+  plot_sizes_residential_500                 String?
+  plot_sizes_residential_600                 String?
+  plot_sizes_residential_800                 String?
+  plot_sizes_residential_1000                String?
+  plot_sizes_residential_2000                String?
+  total_plots_commercial                     Int?
+  plot_sizes_commercial                      Int?
+  plot_sizes_commercial_87_5                 String?
+  plot_sizes_commercial_100                  String?
+  plot_sizes_commercial_125                  String?
+  plot_sizes_commercial_200                  String?
+  plot_sizes_commercial_250                  String?
+  plot_sizes_commercial_500                  String?
+  plot_sizes_commercial_1000                 String?
+  plot_sizes_commercial_2000                 String?
+  total_apartments                           Int?
+  societies_apartment_size                   Int?
+  apartment_studio                           String?
+  apartment_one_bad                          String?
+  apartment_two_bad                          String?
+  apartment_three_bad                        String?
+  apartment_four_bad                         String?
+  apartment_five_bad                         String?
+  apartment_penthouse                        String?
+  apartment_duplex                           String?
+  plot_size                                  Int?
+  plot_price                                 Int?
+  vilas_size                                 Int?
+  vilas_price                                Int?
+  vilas_monthly_rent                         Int?
+  commercial_plot_size                       Int?
+  commercial_plot_price                      Int?
+  apartment_size                             Int?
+  min_apartments_price                       Int?
+  max_apartments_price                       Int?
+  min_apartments_monthly_rent                Int?
+  max_apartments_monthly_rent                Int?
+  payment_terms                              String?
+  instalment_total_amount                    Int?
+  instalment_down_payment                    Int?
+  instalment_possession_Amount               Int?
+  instalment_period                          Int?
+  features_type_parks                        String?
+  features_type_school                       String?
+  features_type_university                   String?
+  features_type_hospital                     String?
+  features_type_commercial_market            String?
+  features_type_zoo                          String?
+  features_type_food_arena                   String?
+  features_type_college                      String?
+  features_type_graveyard                    String?
+  features_type_grid_station                 String?
+  features_type_masjid                       String?
+  features_type_community_club               String?
+  features_type_gated_community              String?
+  utilities_type_underground_electrification String?
+  utilities_type_gas                         String?
+  utilities_type_water                       String?
+  utilities_type_utilities_electricity       String?
+  utilities_type_drainage                    String?
+  developer_name                             String?
+  contact_no                                 Int?
+  survery_remarks                            String?
+  imagePath                                  String?
+  societies_draft                            String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  Plots  Plots[]
+  Houses Houses[]
+  // Homes  Homes[]
+}
+
+model Societies_history {
+  id                                         Int     @id @default(autoincrement())
+  society_id                                 Int
+  // survey_date                                DateTime? @db.Date
+  survey_date                                String?
+  city                                       String
+  type                                       String?
+  name                                       String?
+  zone                                       String?
+  address                                    String?
+  blocks                                     Int?
+  phase                                      Int?
+  grade                                      String?
+  occupancy                                  Int?
+  area                                       Int?
+  population                                 Int?
+  launch_year                                Int?
+  total_plots_residential                    Int?
+  plot_sizes_residential                     Int?
+  plot_sizes_residential_87_5                String?
+  plot_sizes_residential_125                 String?
+  plot_sizes_residential_200                 String?
+  plot_sizes_residential_250                 String?
+  plot_sizes_residential_300                 String?
+  plot_sizes_residential_400                 String?
+  plot_sizes_residential_500                 String?
+  plot_sizes_residential_600                 String?
+  plot_sizes_residential_800                 String?
+  plot_sizes_residential_1000                String?
+  plot_sizes_residential_2000                String?
+  total_plots_commercial                     Int?
+  plot_sizes_commercial                      Int?
+  plot_sizes_commercial_87_5                 String?
+  plot_sizes_commercial_100                  String?
+  plot_sizes_commercial_125                  String?
+  plot_sizes_commercial_200                  String?
+  plot_sizes_commercial_250                  String?
+  plot_sizes_commercial_500                  String?
+  plot_sizes_commercial_1000                 String?
+  plot_sizes_commercial_2000                 String?
+  total_apartments                           Int?
+  societies_apartment_size                   Int?
+  apartment_studio                           String?
+  apartment_one_bad                          String?
+  apartment_two_bad                          String?
+  apartment_three_bad                        String?
+  apartment_four_bad                         String?
+  apartment_five_bad                         String?
+  apartment_penthouse                        String?
+  apartment_duplex                           String?
+  plot_size                                  Int?
+  plot_price                                 Int?
+  vilas_size                                 Int?
+  vilas_price                                Int?
+  vilas_monthly_rent                         Int?
+  commercial_plot_size                       Int?
+  commercial_plot_price                      Int?
+  apartment_size                             Int?
+  min_apartments_price                       Int?
+  max_apartments_price                       Int?
+  min_apartments_monthly_rent                Int?
+  max_apartments_monthly_rent                Int?
+  payment_terms                              String?
+  instalment_total_amount                    Int?
+  instalment_down_payment                    Int?
+  instalment_possession_Amount               Int?
+  instalment_period                          Int?
+  features_type_parks                        String?
+  features_type_school                       String?
+  features_type_university                   String?
+  features_type_hospital                     String?
+  features_type_commercial_market            String?
+  features_type_zoo                          String?
+  features_type_food_arena                   String?
+  features_type_college                      String?
+  features_type_graveyard                    String?
+  features_type_grid_station                 String?
+  features_type_masjid                       String?
+  features_type_community_club               String?
+  features_type_gated_community              String?
+  utilities_type_underground_electrification String?
+  utilities_type_gas                         String?
+  utilities_type_water                       String?
+  utilities_type_utilities_electricity       String?
+  utilities_type_drainage                    String?
+  developer_name                             String?
+  contact_no                                 Int?
+  survery_remarks                            String?
+  imagePath                                  String?
+  societies_draft                            String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Commercial {
+  id                   Int     @id @default(autoincrement())
+  survey_date          String?
+  city                 String?
+  commercial_zone_name String?
+  zone                 String?
+  type                 String?
+  location             String?
+  project_status       String?
+  launch_year          Int?
+  grade                String?
+  area                 Int?
+  occupancy            Int?
+  total_plots          Int?
+  total_shops          Int?
+  total_offices        Int?
+  total_apartments     Int?
+  property_feature     String?
+  property_title       String?
+  remarks              String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  Price Price[]
+}
+
+model Commercial_history {
+  id                   Int     @id @default(autoincrement())
+  commercial_id        Int
+  survey_date          String?
+  city                 String?
+  commercial_zone_name String?
+  zone                 String?
+  type                 String?
+  location             String?
+  project_status       String?
+  launch_year          String?
+  grade                String?
+  area                 Int?
+  occupancy            Int?
+  total_plots          Int?
+  total_shops          Int?
+  total_offices        Int?
+  total_apartments     Int?
+  property_feature     String?
+  property_title       String?
+  remarks              String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// model Plots {
+//   // id String @id @default(auto()) @map("_id") @db.ObjectId
+//   id Int @id @default(autoincrement())
+
+//   society_id Int
+//   societies  Societies @relation(fields: [society_id], references: [id], onDelete: Cascade)
+
+//   type              String?
+//   size              String?
+//   price             String?
+//   direction         String?
+//   is_corner         String?
+//   instalment_period String?
+//   instalment_plan   String?
+//   remarks           String?
+
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+// }
+
+model Houses {
+  // id String @id @default(auto()) @map("_id") @db.ObjectId
+  id Int @id @default(autoincrement())
+
+  society_id Int
+  societies  Societies @relation(fields: [society_id], references: [id], onDelete: Cascade)
+
+  type              String?
+  size              String?
+  price             String?
+  direction         String?
+  is_corner         String?
+  condition         String?
+  floors            String?
+  has_basement      String?
+  construction_year String?
+  remarks           String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Plots {
+  // id String @id @default(auto()) @map("_id") @db.ObjectId
+  id Int @id @default(autoincrement())
+
+  society_id Int
+  societies  Societies @relation(fields: [society_id], references: [id], onDelete: Cascade)
+
+  date                  String?
+  plot_type             String?
+  type                  String?
+  size                  String?
+  apartment_size        String?
+  apartment_size_ft     String?
+  shop_size             String?
+  office_size           String?
+  plot_price            Int?
+  plot_rent             Int?
+  banglow_price         String?
+  banglow_rent          String?
+  direction             String?
+  is_corner             String?
+  payment_mode          String?
+  ins_total_price       Int?
+  ins_down_payment      Int?
+  ins_possession_Amount Int?
+  ins_period            Int?
+  remarks               String?
+  imagePath             String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Plots_history {
+  // id String @id @default(auto()) @map("_id") @db.ObjectId
+  id Int @id @default(autoincrement())
+
+  society_id            Int
+  plot_id               Int
+  date                  String?
+  plot_type             String?
+  type                  String?
+  size                  String?
+  apartment_size        String?
+  apartment_size_ft     String?
+  shop_size             String?
+  office_size           String?
+  plot_price            Int?
+  plot_rent             Int?
+  banglow_price         String?
+  banglow_rent          String?
+  direction             String?
+  is_corner             String?
+  payment_mode          String?
+  ins_total_price       Int?
+  ins_down_payment      Int?
+  ins_possession_Amount Int?
+  ins_period            Int?
+  remarks               String?
+  imagePath             String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Price {
+  // id String @id @default(auto()) @map("_id") @db.ObjectId
+  id Int @id @default(autoincrement())
+
+  commercial_id Int
+  commercial    Commercial @relation(fields: [commercial_id], references: [id], onDelete: Cascade)
+
+  date               String?
+  property_type      String?
+  plot_size          String?
+  building_size      String?
+  total_floor        String?
+  building_size_sq   String?
+  shop_size          String?
+  office_size        String?
+  apartment_size     String?
+  warehouse_size     String?
+  total_bed          String?
+  payment_mode       String?
+  price              Int?
+  rent               Int?
+  total_price        Int?
+  installment_period Int?
+  down_payment       Int?
+  possession_amount  Int?
+  remarks            String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Price_history {
+  // id String @id @default(auto()) @map("_id") @db.ObjectId
+  id Int @id @default(autoincrement())
+
+  commercial_id Int
+
+  price_id           Int
+  date               String?
+  property_type      String?
+  plot_size          String?
+  building_size      String?
+  total_floor        String?
+  building_size_sq   String?
+  shop_size          String?
+  office_size        String?
+  apartment_size     String?
+  warehouse_size     String?
+  total_bed          String?
+  payment_mode       String?
+  price              Int?
+  rent               Int?
+  total_price        Int?
+  installment_period Int?
+  down_payment       Int?
+  possession_amount  Int?
+  remarks            String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
