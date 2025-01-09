@@ -116,7 +116,7 @@ export default function NewSocietyPage() {
       console.log("2");
 
 
-      const newErrors = {};
+      // const newErrors = {};
       let isValid = true;
       for (const field of allFields) {
         const result = field.schema.safeParse(field.value === "" ? null : Number(field.value));

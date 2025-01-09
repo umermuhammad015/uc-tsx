@@ -4,16 +4,16 @@ import { cn } from '@/lib/utils';
 // import { cn } from '@/lib/cn';
 import Link from 'next/link';
 import React from 'react';
-import { Button } from './ui/button';
+// import { Button } from './ui/button';
 
-type PaginationProps = {
-	page?: string;
-	totalPages: number;
-	hasNextPage: boolean;
-};
+// type PaginationProps = {
+// 	page?: string;
+// 	totalPages: number;
+// 	hasNextPage: boolean;
+// };
 
-export default function Pagination({ metadata, city = "", building_status = "", survey_from_date = "",
-	survey_to_date = "" }: any) {
+export default function Pagination({ metadata } :any, city = "", building_status = "", survey_from_date = "",
+	survey_to_date = "" ) {
 	const { page, totalPages, hasNextPage, rows_count } = metadata;
 
 	// console.log("jhghjgh")
@@ -133,7 +133,7 @@ export default function Pagination({ metadata, city = "", building_status = "", 
 		</div>
 	);
 };
-function useState(arg0: string): [any, any] {
-	throw new Error('Function not implemented.');
-}
+// function useState(arg0: string): [any, any] {
+// 	throw new Error('Function not implemented.');
+// }
 
