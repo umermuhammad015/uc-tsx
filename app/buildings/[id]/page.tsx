@@ -229,7 +229,7 @@ export default async function ViewBuilding({ params, searchParams }:
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>Food & Beverage Categories</TableCell>
+              <TableCell>Food & Beverage Categorie</TableCell>
               <TableCell>
                 {building?.has_restaurants_courts && (
                   // <div className="badge bg-emerald-700 text-white ">Centrally Airconditioned </div>
