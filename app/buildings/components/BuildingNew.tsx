@@ -466,7 +466,7 @@ export default function BuildingNew({ building_id }: any) {
                         >
                             Zone: <span className="text-red-700">*</span>
                         </label>
-                        <select
+                        {/* <select
                             id="zone"
                             required
                             name="zone"
@@ -479,25 +479,25 @@ export default function BuildingNew({ building_id }: any) {
                             <option value="North">North</option>
                             <option value="South">South</option>
                             <option value="Central">Central</option>
-                        </select>
-                        {/* <Select
-              name="zone">
-              <SelectTrigger
-                id="zone"
-                className="select  w-full max-w-xs border-2 border-gray-400">
-                <SelectValue placeholder="Select Zone" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectGroup>
-                  <SelectLabel></SelectLabel>
-                  <SelectItem value="East">East</SelectItem>
-                  <SelectItem value="West">West</SelectItem>
-                  <SelectItem value="North">North</SelectItem>
-                  <SelectItem value="South">South</SelectItem>
-                  <SelectItem value="Central">Central</SelectItem>
-                </SelectGroup>
-              </SelectContent>
-            </Select> */}
+                        </select> */}
+                        <Select
+                            name="zone">
+                            <SelectTrigger
+                                id="zone"
+                                className="select  w-full max-w-xs border-2 border-gray-400">
+                                <SelectValue placeholder="Select Zone" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectGroup>
+                                    <SelectLabel></SelectLabel>
+                                    <SelectItem value="East">East</SelectItem>
+                                    <SelectItem value="West">West</SelectItem>
+                                    <SelectItem value="North">North</SelectItem>
+                                    <SelectItem value="South">South</SelectItem>
+                                    <SelectItem value="Central">Central</SelectItem>
+                                </SelectGroup>
+                            </SelectContent>
+                        </Select>
                     </div>
 
                     {/* Area/Society  */}
@@ -797,14 +797,14 @@ export default function BuildingNew({ building_id }: any) {
                     </div>
 
                     {/* Building Rank  */}
-                    <div className="mt-4">
+                    <div className="">
                         <label
                             htmlFor="building-rank"
                             className="block mb-2 text-sm font-medium"
                         >
                             Building Rank:
                         </label>
-                        <select
+                        {/* <select
                             id="building-rank"
                             name="building-rank"
                             className="select  w-full text-sm pl-2 h-10 max-w-xs border-2 rounded border-gray-400 bg-background"
@@ -815,26 +815,25 @@ export default function BuildingNew({ building_id }: any) {
                             <option value="A">A</option>
                             <option value="B">B</option>
                             <option value="C">C</option>
-                        </select>
+                        </select> */}
 
-                        {/* <Select
-              name="building-rank">
-              <SelectTrigger
-                id="building-rank"
-                className="select w-full max-w-xs border-2 border-gray-400  ">
-                <SelectValue placeholder="Select Rank" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectGroup>
-                  <SelectLabel></SelectLabel>
-                  <SelectItem value=" ">select</SelectItem>
-                  <SelectItem value="A+">A+</SelectItem>
-                  <SelectItem value="A">A</SelectItem>
-                  <SelectItem value="B">B</SelectItem>
-                  <SelectItem value="C">C</SelectItem>
-                </SelectGroup>
-              </SelectContent>
-            </Select> */}
+                        <Select
+                            name="building-rank">
+                            <SelectTrigger
+                                id="building-rank"
+                                className="select w-full max-w-xs border-2 border-gray-400  ">
+                                <SelectValue placeholder="Select Rank" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectGroup>
+                                    <SelectLabel></SelectLabel>
+                                    <SelectItem value="A+">A+</SelectItem>
+                                    <SelectItem value="A">A</SelectItem>
+                                    <SelectItem value="B">B</SelectItem>
+                                    <SelectItem value="C">C</SelectItem>
+                                </SelectGroup>
+                            </SelectContent>
+                        </Select>
                     </div>
 
                     {/* Total Floors  */}
@@ -1030,27 +1029,29 @@ export default function BuildingNew({ building_id }: any) {
                     </div>
 
                     {/* No. of Shops  */}
-                    <div className="mt-4">
+                    <div className="">
                         <label
                             htmlFor="retail-floors-shops-count"
                             className="block mb-2 text-sm font-medium"
                         >
                             No. of Shops:
                         </label>
-                        <Input
-                            type="text"
-                            id="retail-floors-shops-count"
-                            name="retail-floors-shops-count"
-                            min="0"
-                            className="input input-bordered  w-full max-w-xs border-2 border-gray-400 "
-                            placeholder=""
-                            value={shop_num}
-                            onChange={(e) => setShop_num(e.target.value)}
-                        />
-                        {/* {errors["building-floor-avg-monthly-rent"] && <p className="text-red-500 text-sm mt-1">{errors["building-floor-avg-monthly-rent"]}</p>} */}
-                        <div className="m-4">
-                            {isNaN(Number(shop_num)) ? <span className="text-red-500 text-sm mt-1">Enter number only</span> : Number(shop_num)}
-                            {/* {Number(avg_sale_price).toLocaleString()} */}
+                        <div className="flex">
+                            <Input
+                                type="text"
+                                id="retail-floors-shops-count"
+                                name="retail-floors-shops-count"
+                                min="0"
+                                className="input input-bordered  w-full max-w-xs border-2 border-gray-400 "
+                                placeholder=""
+                                value={shop_num}
+                                onChange={(e) => setShop_num(e.target.value)}
+                            />
+                            {/* {errors["building-floor-avg-monthly-rent"] && <p className="text-red-500 text-sm mt-1">{errors["building-floor-avg-monthly-rent"]}</p>} */}
+                            <div className="m-4">
+                                {isNaN(Number(shop_num)) ? <span className="text-red-500 text-sm mt-1">Enter number only</span> : Number(shop_num)}
+                                {/* {Number(avg_sale_price).toLocaleString()} */}
+                            </div>
                         </div>
                     </div>
 
@@ -1628,7 +1629,7 @@ export default function BuildingNew({ building_id }: any) {
                             Servant Quarter:
                         </label>
 
-                        <select
+                        {/* <select
                             id="apartment-has-servant-quarter"
                             name="apartment-has-servant-quarter"
                             className="select  w-full text-sm pl-2 h-10 max-w-xs border-2 rounded border-gray-400 bg-background"
@@ -1637,7 +1638,23 @@ export default function BuildingNew({ building_id }: any) {
                             <option value="">Select</option>
                             <option value="Yes">Yes</option>
                             <option value="No">No</option>
-                        </select>
+                        </select> */}
+
+                        <Select
+                            name="apartment-has-servant-quarter">
+                            <SelectTrigger
+                                id="apartment-has-servant-quarter"
+                                className="select w-full max-w-xs border-2 border-gray-400  ">
+                                <SelectValue placeholder="Select" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectGroup>
+                                    <SelectLabel></SelectLabel>
+                                    <SelectItem value="Yes">Yes</SelectItem>
+                                    <SelectItem value="No">No</SelectItem>
+                                </SelectGroup>
+                            </SelectContent>
+                        </Select>
 
                     </div>
 

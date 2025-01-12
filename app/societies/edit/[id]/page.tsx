@@ -1,13 +1,7 @@
-import Link from "next/link";
-import prisma from "../../../db";
+
 import FetchSociety from '@/app/societies/components/FatchSociety'
 import UpdateSocietyForm from '@/app/societies/components/UpdateSocietyForm';
-import { redirect } from "next/navigation"
-import UpdateButton from "../../components/UpdateButton";
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Checkbox } from "@/components/ui/checkbox"
+
 
 
 

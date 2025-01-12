@@ -132,7 +132,7 @@ export default function Header() {
                             {/* {email} */}
                             <ThemeToggleButton />
 
-                            <div className="flex justify-center items-center px-4 h-full gap-1 hover:bg-red-800">
+                            {/* <div className="flex justify-center items-center px-4 h-full gap-1 hover:bg-red-800"> */}
                                 {/* <DropdownMenu>
                                     <DropdownMenuTrigger asChild>
                                         <Button variant="outline">Open</Button>
@@ -162,7 +162,7 @@ export default function Header() {
 
                                 {/* <LogoutButton /> */}
 
-                            </div>
+                            {/* </div> */}
 
 
                         </div>

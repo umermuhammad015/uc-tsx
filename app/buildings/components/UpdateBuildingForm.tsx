@@ -599,7 +599,7 @@ export default function UpdatePlotForm({ building }: any) {
                     </div>
 
                     {/* Total Covered Area of Building (Sq. Yards)  */}
-                    <div className="mt-4">
+                    <div className="">
                         <label
                             htmlFor="construction-area"
                             className="block mb-2 text-sm font-medium"
@@ -626,7 +626,7 @@ export default function UpdatePlotForm({ building }: any) {
                     </div>
 
                     {/* Builder Name  */}
-                    <div className="mt-4">
+                    <div className="">
                         <label
                             htmlFor="builder-name"
                             className="block mb-2 text-sm font-medium"
@@ -671,7 +671,7 @@ export default function UpdatePlotForm({ building }: any) {
                     </div>
 
                     {/* Construction Year  */}
-                    <div className="mt-4">
+                    <div className="">
                         <label
                             htmlFor="construction-year"
                             className="block mb-2 text-sm font-medium"
@@ -1484,7 +1484,7 @@ export default function UpdatePlotForm({ building }: any) {
                     </div> */}
 
 
-                    <div className="mt-4">
+                    <div className="">
                         <label
                             htmlFor="apartment-has-servant-quarter"
                             className="block mb-2 text-sm font-medium"

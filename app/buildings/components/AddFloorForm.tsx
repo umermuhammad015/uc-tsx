@@ -516,25 +516,6 @@ export default function AddFloorForm({ building_id }: any) {
                         <div className="">
                             {/* <Link href={'/buildings/' + building_id}>{building_id}</Link> */}
 
-                            <div className="mt-4 ">
-                                <label
-                                    htmlFor="building-id"
-                                    className="block mb-2 text-sm font-medium "
-                                >
-                                    Building ID:
-                                </label>
-                                <Input
-                                    type="text"
-                                    id="building-id"
-                                    name="building-id"
-                                    className="input input-bordered dark:bg-slate-700  w-full max-w-xs border-2 bg-gray-400 border-gray-400 cursor-not-allowed disabled:bg-gray-200"
-                                    placeholder=""
-                                    value={building_id}
-                                    // defaultValue={building_id}
-                                    onChange={() => (building_id)}
-
-                                />
-                            </div>
 
                             <div className="mt-4 ">
                                 <label
@@ -556,6 +537,27 @@ export default function AddFloorForm({ building_id }: any) {
 
                                 /> */}
                             </div>
+
+                            <div className="mt-4 ">
+                                <label
+                                    htmlFor="building-id"
+                                    className="block mb-2 text-sm font-medium "
+                                >
+                                    Building ID:
+                                </label>
+                                <Input
+                                    type="text"
+                                    id="building-id"
+                                    name="building-id"
+                                    className="input input-bordered dark:bg-slate-700  w-full max-w-xs border-2 bg-gray-400 border-gray-400 cursor-not-allowed disabled:bg-gray-200"
+                                    placeholder=""
+                                    value={building_id}
+                                    // defaultValue={building_id}
+                                    onChange={() => (building_id)}
+
+                                />
+                            </div>
+
 
 
 
@@ -680,6 +682,88 @@ export default function AddFloorForm({ building_id }: any) {
                                     <option value="59th">59th</option>
                                     <option value="60th">60th</option>
                                 </select>
+
+                                {/* <Select
+                                    key={Math.random()}
+                                    value={floor_num}
+                                    // defaultValue={floor_num}
+                                    onValueChange={(e) => setFloor_num(e.target.value)}
+                                    name="building-floor-no">
+                                    <SelectTrigger
+                                        id="building-floor-no"
+                                        className="select  w-full max-w-xs border-2 border-gray-400">
+                                        <SelectValue placeholder="" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectGroup>
+                                            <SelectLabel></SelectLabel>
+                                            <SelectItem value="Basement">Basement</SelectItem>
+                                            <SelectItem value="Lower Ground">Lower Ground</SelectItem>
+                                            <SelectItem value="Ground">Ground</SelectItem>
+                                            <SelectItem value="mezzanine">mezzanine</SelectItem>
+                                            <SelectItem value="1st">1st</SelectItem>
+                                            <SelectItem value="2nd">2nd</SelectItem>
+                                            <SelectItem value="3rd">3rd</SelectItem>
+                                            <SelectItem value="4th">4th</SelectItem>
+                                            <SelectItem value="5th">5th</SelectItem>
+                                            <SelectItem value="6th">6th</SelectItem>
+                                            <SelectItem value="7th">7th</SelectItem>
+                                            <SelectItem value="8th">8th</SelectItem>
+                                            <SelectItem value="9th">9th</SelectItem>
+                                            <SelectItem value="10th">10th</SelectItem>
+                                            <SelectItem value="11th">11th</SelectItem>
+                                            <SelectItem value="12th">12th</SelectItem>
+                                            <SelectItem value="13th">13th</SelectItem>
+                                            <SelectItem value="14th">14th</SelectItem>
+                                            <SelectItem value="15th">15th</SelectItem>
+                                            <SelectItem value="16th">16th</SelectItem>
+                                            <SelectItem value="17th">17th</SelectItem>
+                                            <SelectItem value="18th">18th</SelectItem>
+                                            <SelectItem value="19th">19th</SelectItem>
+                                            <SelectItem value="20th">20th</SelectItem>
+                                            <SelectItem value="21st">21st</SelectItem>
+                                            <SelectItem value="22nd">22nd</SelectItem>
+                                            <SelectItem value="23rd">23rd</SelectItem>
+                                            <SelectItem value="24th">24th</SelectItem>
+                                            <SelectItem value="25th">25th</SelectItem>
+                                            <SelectItem value="26th">26th</SelectItem>
+                                            <SelectItem value="27th">27th</SelectItem>
+                                            <SelectItem value="28th">28th</SelectItem>
+                                            <SelectItem value="29th">29th</SelectItem>
+                                            <SelectItem value="30th">30th</SelectItem>
+                                            <SelectItem value="31st">31st</SelectItem>
+                                            <SelectItem value="32nd">32nd</SelectItem>
+                                            <SelectItem value="33rd">33rd</SelectItem>
+                                            <SelectItem value="34th">34th</SelectItem>
+                                            <SelectItem value="35th">35th</SelectItem>
+                                            <SelectItem value="36th">36th</SelectItem>
+                                            <SelectItem value="37th">37th</SelectItem>
+                                            <SelectItem value="38th">38th</SelectItem>
+                                            <SelectItem value="39th">39th</SelectItem>
+                                            <SelectItem value="40th">40th</SelectItem>
+                                            <SelectItem value="41st">41st</SelectItem>
+                                            <SelectItem value="42nd">42nd</SelectItem>
+                                            <SelectItem value="43rd">43rd</SelectItem>
+                                            <SelectItem value="44th">44th</SelectItem>
+                                            <SelectItem value="45th">45th</SelectItem>
+                                            <SelectItem value="46th">46th</SelectItem>
+                                            <SelectItem value="47th">47th</SelectItem>
+                                            <SelectItem value="48th">48th</SelectItem>
+                                            <SelectItem value="49th">49th</SelectItem>
+                                            <SelectItem value="50th">50th</SelectItem>
+                                            <SelectItem value="51st">51st</SelectItem>
+                                            <SelectItem value="52nd">52nd</SelectItem>
+                                            <SelectItem value="53rd">53rd</SelectItem>
+                                            <SelectItem value="54th">54th</SelectItem>
+                                            <SelectItem value="55th">55th</SelectItem>
+                                            <SelectItem value="56th">56th</SelectItem>
+                                            <SelectItem value="57th">57th</SelectItem>
+                                            <SelectItem value="58th">58th</SelectItem>
+                                            <SelectItem value="59th">59th</SelectItem>
+                                            <SelectItem value="60th">60th</SelectItem>
+                                        </SelectGroup>
+                                    </SelectContent>
+                                </Select> */}
                             </div>
 
                             {/* Floor Type  */}
@@ -707,6 +791,7 @@ export default function AddFloorForm({ building_id }: any) {
                                     <option value="Apartment">Apartment</option>
                                     <option value="Other">Other</option>
                                 </select>
+                                
                             </div>
 
                             {/* Apartment size  */}

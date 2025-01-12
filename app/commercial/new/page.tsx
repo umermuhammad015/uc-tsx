@@ -383,7 +383,7 @@ export default function Page() {
                         >
                             Zone:<span className="text-red-700">*</span>
                         </label>
-                        <select
+                        {/* <select
                             id="commercial-zone"
                             required
                             name="commercial-zone"
@@ -396,8 +396,8 @@ export default function Page() {
                             <option value="North">North</option>
                             <option value="South">South</option>
                             <option value="Central">Central</option>
-                        </select>
-                        {/* <Select
+                        </select> */}
+                        <Select
                             name="commercial-zone">
                             <SelectTrigger
                                 id="commercial-zone"
@@ -414,7 +414,7 @@ export default function Page() {
                                     <SelectItem value="Central">Central</SelectItem>
                                 </SelectGroup>
                             </SelectContent>
-                        </Select> */}
+                        </Select>
                     </div>
                 </div>
 
@@ -427,7 +427,7 @@ export default function Page() {
                         >
                             Type:<span className="text-red-700">*</span>
                         </label>
-                        <select
+                        {/* <select
                             id="commercial-type"
                             required
                             name="commercial-type"
@@ -441,13 +441,13 @@ export default function Page() {
                             <option value="Specialized Market">Specialized Market</option>
                             <option value="Highway Oriented Ribbons">Highway Oriented Ribbons</option>
                             <option value="Occasional Bazar">Occasional Bazar</option>
-                        </select>
-                        {/* <Select
+                        </select> */}
+                        <Select
                             name="commercial-type">
                             <SelectTrigger
                                 id="commercial-type"
                                 className="select  w-full max-w-xs border-2 border-gray-400 ">
-                                <SelectValue />
+                                <SelectValue placeholder="Select Type" />
                             </SelectTrigger>
                             <SelectContent>
                                 <SelectGroup>
@@ -460,7 +460,7 @@ export default function Page() {
                                     <SelectItem value="Occasional Bazar">Occasional Bazar</SelectItem>
                                 </SelectGroup>
                             </SelectContent>
-                        </Select> */}
+                        </Select>
                     </div>
 
                     {/* Location/Address  */}
@@ -490,7 +490,7 @@ export default function Page() {
                             <SelectTrigger
                                 id="commercial-project-status"
                                 className="select  w-full max-w-xs border-2 border-gray-400 ">
-                                <SelectValue />
+                                <SelectValue placeholder="Select Status" />
                             </SelectTrigger>
                             <SelectContent>
                                 <SelectGroup>
@@ -540,7 +540,7 @@ export default function Page() {
                         >
                             Grade
                         </label>
-                        <select
+                        {/* <select
                             id="commercial-grade"
                             name="commercial-grade"
                             className="select  w-full text-sm pl-2 h-10 max-w-xs border-2 rounded border-gray-400 bg-background"
@@ -552,8 +552,8 @@ export default function Page() {
                             <option value="B">B</option>
                             <option value="C">C</option>
                             <option value="D">D</option>
-                        </select>
-                        {/* <Select
+                        </select> */}
+                        <Select
                             name="commercial-grade">
                             <SelectTrigger
                                 id="commercial-grade"
@@ -570,7 +570,7 @@ export default function Page() {
                                     <SelectItem value="D">D</SelectItem>
                                 </SelectGroup>
                             </SelectContent>
-                        </Select> */}
+                        </Select>
                     </div>
 
                     {/* Total Area of Society (Acres) */}
@@ -733,7 +733,7 @@ export default function Page() {
                         >
                             Property Feature
                         </label>
-                        <select
+                        {/* <select
                             id="property-feature"
                             name="property-feature"
                             className="select  w-full text-sm pl-2 h-10 max-w-xs border-2 rounded border-gray-400 bg-background"
@@ -744,8 +744,8 @@ export default function Page() {
                             <option value="Anchor Facing">Anchor Facing</option>
                             <option value="Rear Facing">Rear Facing</option>
 
-                        </select>
-                        {/* <Select
+                        </select> */}
+                        <Select
                             name="property-feature">
                             <SelectTrigger
                                 id="property-feature"
@@ -760,7 +760,7 @@ export default function Page() {
                                     <SelectItem value="Rear Facing">Rear Facing</SelectItem>
                                 </SelectGroup>
                             </SelectContent>
-                        </Select> */}
+                        </Select>
                     </div>
 
                     {/* Property Title */}
@@ -771,7 +771,7 @@ export default function Page() {
                         >
                             Property Title
                         </label>
-                        <select
+                        {/* <select
                             id="property-title"
                             name="property-title"
                             className="select  w-full text-sm pl-2 h-10 max-w-xs border-2 rounded border-gray-400 bg-background"
@@ -782,8 +782,8 @@ export default function Page() {
                             <option value="Lease">Lease</option>
                             <option value="Unapproved">Unapproved</option>
 
-                        </select>
-                        {/* <Select
+                        </select> */}
+                        <Select
                             name="property-title">
                             <SelectTrigger
                                 id="property-title"
@@ -798,7 +798,7 @@ export default function Page() {
                                     <SelectItem value="Unapproved">Unapproved</SelectItem>
                                 </SelectGroup>
                             </SelectContent>
-                        </Select> */}
+                        </Select>
                     </div>
 
 

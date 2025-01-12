@@ -300,7 +300,7 @@ export default function NewSocietyPage() {
 
       <div className="text-lg">Societies</div>
       <form
-      
+
         onSubmit={handleSubmit}
       >
         <div className="p-5 border-2 border-gray-200 dark:border-gray-700 flex flex-col">
@@ -390,7 +390,7 @@ export default function NewSocietyPage() {
             >
               Zone / Region:<span className="text-red-700">*</span>
             </label>
-            <select
+            {/* <select
               id="societies-zone"
               required
               name="societies-zone"
@@ -403,8 +403,8 @@ export default function NewSocietyPage() {
               <option value="North">North</option>
               <option value="South">South</option>
               <option value="Central">Central</option>
-            </select>
-            {/* <Select
+            </select> */}
+            <Select
               name="societies-zone">
               <SelectTrigger
                 id="societies-zone"
@@ -421,7 +421,7 @@ export default function NewSocietyPage() {
                   <SelectItem value="Central">Central</SelectItem>
                 </SelectGroup>
               </SelectContent>
-            </Select> */}
+            </Select>
           </div>
 
           {/* Soceity/Project Name  */}
@@ -592,7 +592,7 @@ export default function NewSocietyPage() {
             >
               Project Status
             </label>
-            <select
+            {/* <select
               id="societies-project-type"
               name="societies-project-type"
               className="select  w-full text-sm pl-2 h-10 max-w-xs border-2 rounded border-gray-400 bg-background"
@@ -605,8 +605,8 @@ export default function NewSocietyPage() {
               <option value="Commercial Zone">Commercial Zone</option>
               <option value="Residential Files">Residential Files</option>
               <option value="Commercial Files">Commercial Files</option>
-            </select>
-            {/* <Select
+            </select> */}
+            <Select
               name="societies-project-type">
               <SelectTrigger
                 id="societies-project-type"
@@ -624,7 +624,7 @@ export default function NewSocietyPage() {
                   <SelectItem value="Commercial Files">Commercial Files</SelectItem>
                 </SelectGroup>
               </SelectContent>
-            </Select> */}
+            </Select>
 
             {/* <form className="max-w-sm mx-auto">
               <label
@@ -676,7 +676,7 @@ export default function NewSocietyPage() {
             >
               Grade
             </label>
-            <select
+            {/* <select
               id="societies-grade"
               name="societies-grade"
               className="select  w-full text-sm pl-2 h-10 max-w-xs border-2 rounded border-gray-400 bg-background"
@@ -688,8 +688,8 @@ export default function NewSocietyPage() {
               <option value="B">B</option>
               <option value="C">C</option>
               <option value="D">D</option>
-            </select>
-            {/* <Select
+            </select> */}
+            <Select
               name="societies-grade">
               <SelectTrigger
                 id="societies-grade"
@@ -706,7 +706,7 @@ export default function NewSocietyPage() {
                   <SelectItem value="D">D</SelectItem>
                 </SelectGroup>
               </SelectContent>
-            </Select> */}
+            </Select>
           </div>
 
           {/* Total Area of Society (Acres) */}
