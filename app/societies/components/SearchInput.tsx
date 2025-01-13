@@ -56,7 +56,7 @@ function SearchInput() {
     <>
       <div className="flex gap-2">
         <Input type="search"
-          placeholder="Search"
+          placeholder="Searchs"
           value={search}
           onInput={e => setSearch((e.target as HTMLInputElement).value)}
         />
