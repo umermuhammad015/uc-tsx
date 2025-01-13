@@ -28,7 +28,7 @@ export default async function editForm(data: FormData) {
 
     const grade = data.get("societies-grade")?.valueOf();
 
-    const occupancy = data.get("societies-occupancy")?.valueOf();
+    const occupancy = data.get("societies-occupancy")?.valueOf() as string;
 
     const area = data.get("societies-area")?.valueOf();
 
@@ -298,11 +298,11 @@ export default async function editForm(data: FormData) {
             name: project_name as string,
             zone: zone as string,
             address: address as string,
-            blocks: blocks as string,
-            phase: blocks as string,
+            blocks: blocks as number,
+            phase: phase as number,
             grade: grade as string,
-            occupancy: occupancy as string,
-            area: area as string,
+            occupancy,
+            area: area as number,
             population,
             launch_year,
             total_plots_residential,
@@ -374,7 +374,7 @@ export default async function editForm(data: FormData) {
             utilities_type_utilities_electricity,
             utilities_type_drainage,
             developer_name: developer_name as string,
-            contact_no: contact_no as string,
+            contact_no: contact_no as number,
             survery_remarks: societies_survery_remarks as string,
             survey_date: societies_survey_date
 

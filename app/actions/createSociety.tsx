@@ -33,7 +33,7 @@ export default async function createSociety(data: FormData) {
   const societies_grade = data.get("societies-grade")?.valueOf();
   console.log("🚀 ~ createsocieties ~ societies_grade:", societies_grade)
 
-  const societies_occupancy = data.get("societies-occupancy")?.valueOf();
+  const societies_occupancy = data.get("societies-occupancy")?.valueOf() as string;
   console.log("🚀 ~ createsocieties ~ societies_occupancy:", societies_occupancy)
 
   const societies_area = data.get("societies-area")?.valueOf();
@@ -283,7 +283,7 @@ export default async function createSociety(data: FormData) {
       blocks: societies_blocks as number,
       phase: societies_phase as number,
       grade: societies_grade as string,
-      occupancy: societies_occupancy as number,
+      occupancy: societies_occupancy as string,
       area: societies_area as number,
       population: societies_population,
       launch_year: societies_launch_year,

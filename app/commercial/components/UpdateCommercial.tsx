@@ -25,7 +25,7 @@ export default async function editForm(data: FormData) {
 
     const commercial_grade = data.get("commercial-grade")?.valueOf();
 
-    const commercial_area = data.get("commercial-area")?.valueOf();
+    const commercial_area = data.get("commercial-area")?.valueOf() as string;
 
     const commercial_occupancy = parseInt(data.get("commercial-occupancy")?.valueOf() as string);
 
@@ -99,7 +99,7 @@ export default async function editForm(data: FormData) {
         data: {
             // name: name,
             // city: city
-            commercial_id : Number(commercial_id) as number,
+            commercial_id: Number(commercial_id) as number,
             survey_date: commercial_survey_date,
             city: commercial_city as string,
             commercial_zone_name: commercial_zone_name as string,
@@ -108,23 +108,25 @@ export default async function editForm(data: FormData) {
             location: commercial_location as string,
             project_status: commercial_project_status as string,
             launch_year: commercial_launch_year as string,
-            grade: commercial_grade as string, 
-            area: commercial_area as string,
+            grade: commercial_grade as string,
+            area: commercial_area,
             occupancy: commercial_occupancy,
             total_plots,
             total_shops,
             total_offices,
             total_apartments,
-            property_feature :property_feature as string,
+            property_feature: property_feature as string,
             property_title: property_title as string,
-            remarks:remarks as string
+            remarks: remarks as string
         }
     })
+
+    console.log(created_commercial_copy)
 
 
     if (commercial_city === undefined) {
 
-        redirect('/buildings')
+        redirect('/commercial')
 
     }
     else if (commercial_city === commercial_city) {

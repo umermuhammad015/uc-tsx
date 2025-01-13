@@ -31,17 +31,16 @@ type Props = {
 
 export default async function editForm({ params }: any) {
 
-    // console.log(params)
+    const { id } = await params;
 
-    const societies = await FetchSociety(params.id)
-
+    const societies = await FetchSociety(id)
     return (
         <>
             <div className="text-lg"></div>
             <div className="container">
 
                 <div className="mx-4">
-                <UpdateSocietyForm societies={societies} />
+                    <UpdateSocietyForm societies={societies} />
                 </div>
             </div>
         </>

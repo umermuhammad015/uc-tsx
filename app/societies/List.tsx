@@ -283,10 +283,10 @@ export default async function List({ city, page, search, developer, society_grad
                             <TableCell>{societies.type}</TableCell>
 
                             <TableCell className="text-center">{societies.grade}</TableCell>
-                            <TableCell className="text-center">{Number(societies.area).toLocaleString() === "0" ? "-" :Number(societies.area).toLocaleString()}</TableCell>
+                            <TableCell className="text-center">{Number(societies.area).toLocaleString() === "0" ? "-" : Number(societies.area).toLocaleString()}</TableCell>
                             <TableCell className="text-center">
 
-                                {societies?.occupancy === "" ? (societies?.occupancy !== null) : (societies?.occupancy + '%')}
+                                {(societies?.occupancy === null ? "0%" : societies?.occupancy + "%")}
                             </TableCell>
                             <TableCell>
                                 <div className="flex justify-around gap-2">

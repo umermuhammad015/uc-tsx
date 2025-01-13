@@ -379,7 +379,7 @@ export default function UpdatePlotForm({ societies }: any) {
 
 
                     {/* Occupancy Ratio */}
-                    <div className="mt-4">
+                    <div className="">
                         <label
                             htmlFor="societies-occupancy"
                             className="block mb-2 text-sm font-medium"
@@ -409,7 +409,7 @@ export default function UpdatePlotForm({ societies }: any) {
 
 
                     {/* Population*/}
-                    <div className="mt-4">
+                    <div className="">
                         <label
                             htmlFor="societies-population"
                             className="block mb-2 text-sm font-medium"
@@ -429,7 +429,7 @@ export default function UpdatePlotForm({ societies }: any) {
                                     console.log(e.target.value)
                                 }}
                             />
-                            <div className="m-4">
+                            <div className="m-4 mb-0">
                                 {Number(population).toLocaleString()}
                             </div>
                         </div>
@@ -440,7 +440,7 @@ export default function UpdatePlotForm({ societies }: any) {
 
                 {/* Total Plots Residential*/}
                 <div className="p-5 border-2 border-t-0 border-gray-200 dark:border-gray-700">
-                    <div className="mt-4">
+                    <div className="">
                         <label
                             htmlFor="total-plots-residential"
                             className="block mb-2 text-sm font-medium"
