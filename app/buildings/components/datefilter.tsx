@@ -26,7 +26,7 @@ export default function DateFilter() {
 
 
     // const [survey_date, setSurvey_date] = useState('');
-    const [survey_date_from, setSurvey_date_from] = React.useState<Date>(new Date('2024-01-01'))
+    const [survey_date_from, setSurvey_date_from] = React.useState<Date>((new Date('2024-01-01')))
     const [survey_date_to, setSurvey_date_to] = React.useState<Date>(new Date('2024-12-31'))
 
     // console.log(survey_date_from)

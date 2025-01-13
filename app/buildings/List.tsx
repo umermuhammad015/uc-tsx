@@ -46,19 +46,6 @@ const getBuildings = async ({
   survey_to_date = undefined
 }) => {
 
-  // async function getBuildings({ search = '', take = PAGE_SIZE, skip = 0 }) {
-  // console.log("GetSocieties");
-
-  // console.log("developer_name GetSocieties")
-  // console.log(developer)
-  // console.log("Fetching data for Building params")
-  // console.log('city=', city, "page=", pageNumber,
-  //   "skip=", skip, "take=", take
-  // )
-
-  // console.log("developer inside if")
-  // console.log(developer)
-
   const prisma_query: any = {
     take,
     skip,
@@ -293,8 +280,8 @@ export default async function List({ city, page, search, building_status, survey
                     )}
                   </TableCell>
                   {/* <TableCell>{building.status}</TableCell> */}
-                  <TableCell className="text-right">{Number(building.plot_size).toLocaleString() === "0" ? "-" :Number(building.plot_size).toLocaleString()}</TableCell>
-                  <TableCell className="text-right">{Number(building.construction_area).toLocaleString() === "0" ? "-" :Number(building.construction_area).toLocaleString()}</TableCell>
+                  <TableCell className="text-right">{Number(building.plot_size).toLocaleString() === "0" ? "-" : Number(building.plot_size).toLocaleString()}</TableCell>
+                  <TableCell className="text-right">{Number(building.construction_area).toLocaleString() === "0" ? "-" : Number(building.construction_area).toLocaleString()}</TableCell>
                   {/* <TableCell>{(building.survey_date)}</TableCell> */}
                   <TableCell>
                     <div className="flex justify-around">

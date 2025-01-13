@@ -91,8 +91,7 @@ export default function BuildingStatus() {
                 {/* league */}
                 <div className="">
                     <label
-                        htmlFor="societies-project-type"
-                        id="societies-project-type"
+                        htmlFor="building-status"
                         className="select  w-full max-w-xs "
                     >
                         Building Status
@@ -112,10 +111,10 @@ export default function BuildingStatus() {
                     </select> */}
 
                     <Select
-                        name="societies-project-type"
+                        name="building-status"
                         onValueChange={handleChange}>
                         <SelectTrigger
-                            id="societies-project-type"
+                            id="building-status"
                             className="select w-40 max-w-xs border-2 border-gray-400">
                             <SelectValue placeholder="Select Status" />
                         </SelectTrigger>
