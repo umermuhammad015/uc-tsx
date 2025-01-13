@@ -91,9 +91,8 @@ export default async function ViewBuilding({ params, searchParams }:
     <>
       <div className="flex justify-between mb-4">
         {/* {
-          building?.building_draft === "yes" ? "This building has been drafted" : " " 
-
-        } */}
+  building?.building_draft === "yes" ? "This building has been drafted" : " " 
+  } */}
         <h1></h1>
         <Button asChild>
           <Link href={"/buildings/floor/add/" + id}>
@@ -152,7 +151,8 @@ export default async function ViewBuilding({ params, searchParams }:
               <TableCell>{Number(building?.construction_area).toLocaleString()}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>Builder Name</TableCell> <TableCell>{building?.builder_name}</TableCell>
+              <TableCell>Builder Name</TableCell>
+              <TableCell>{building?.builder_name}</TableCell>
             </TableRow>
             <TableRow>
               <TableCell>Launch Year </TableCell>
@@ -178,27 +178,21 @@ export default async function ViewBuilding({ params, searchParams }:
               <TableCell>Facilities </TableCell>
               <TableCell>
                 {building?.is_centrally_air_conditioned && (
-                  // <div className="badge bg-emerald-700 text-white ">Centrally Airconditioned </div>
                   <Badge>Centrally Air conditioned </Badge>
                 )}
                 {building?.has_security && (
-                  // <div className="badge bg-emerald-700 text-white">Security</div>
                   <Badge>Security</Badge>
                 )}
                 {building?.has_escalators && (
-                  // <div className="badge bg-emerald-700 text-white">Escalators</div>
                   <Badge>Escalators</Badge>
                 )}
                 {building?.has_food_court && (
-                  // <div className="badge bg-emerald-700 text-white">Entertainment Area</div>
                   <Badge>Food Court</Badge>
                 )}
                 {building?.has_entertainment_area && (
-                  // <div className="badge bg-emerald-700 text-white">Entertainment Area</div>
                   <Badge>Entertainment Area</Badge>
                 )}
                 {building?.has_none && (
-                  // <div className="badge bg-emerald-700 text-white">Entertainment Area</div>
                   <Badge>None of these</Badge>
                 )}
               </TableCell>
@@ -215,15 +209,12 @@ export default async function ViewBuilding({ params, searchParams }:
               <TableCell>Retail Categories </TableCell>
               <TableCell>
                 {building?.has_fashion_health && (
-                  // <div className="badge bg-emerald-700 text-white ">Centrally Airconditioned </div>
                   <Badge>Fashion & Health</Badge>
                 )}
                 {building?.has_electronics_appliancecs && (
-                  // <div className="badge bg-emerald-700 text-white">Security</div>
                   <Badge>Electronics & Appliances</Badge>
                 )}
                 {building?.has_home_living && (
-                  // <div className="badge bg-emerald-700 text-white">Escalators</div>
                   <Badge>Home & Living</Badge>
                 )}
               </TableCell>
@@ -232,15 +223,12 @@ export default async function ViewBuilding({ params, searchParams }:
               <TableCell>Food & Beverage Categorie</TableCell>
               <TableCell>
                 {building?.has_restaurants_courts && (
-                  // <div className="badge bg-emerald-700 text-white ">Centrally Airconditioned </div>
                   <Badge>Restaurants/Food courts</Badge>
                 )}
                 {building?.has_bakery_ice && (
-                  // <div className="badge bg-emerald-700 text-white">Security</div>
                   <Badge>Bakery/Ice cream</Badge>
                 )}
                 {building?.has_grocery_supermarkets && (
-                  // <div className="badge bg-emerald-700 text-white">Escalators</div>
                   <Badge>Grocery & Supermarkets</Badge>
                 )}
               </TableCell>
@@ -249,15 +237,12 @@ export default async function ViewBuilding({ params, searchParams }:
               <TableCell>Services Categories</TableCell>
               <TableCell>
                 {building?.has_banks_atm && (
-                  // <div className="badge bg-emerald-700 text-white ">Centrally Airconditioned </div>
                   <Badge>Banks & ATMs</Badge>
                 )}
                 {building?.has_real_estate && (
-                  // <div className="badge bg-emerald-700 text-white">Security</div>
                   <Badge>Real Estate Agencies</Badge>
                 )}
                 {building?.has_labs_pharmacies && (
-                  // <div className="badge bg-emerald-700 text-white">Escalators</div>
                   <Badge>Labs/Pharmacies</Badge>
                 )}
               </TableCell>
@@ -266,15 +251,12 @@ export default async function ViewBuilding({ params, searchParams }:
               <TableCell>Entertainment & Leisure</TableCell>
               <TableCell>
                 {building?.has_play_fitness && (
-                  // <div className="badge bg-emerald-700 text-white ">Centrally Airconditioned </div>
                   <Badge>Play Areas/Fitness Centers </Badge>
                 )}
                 {building?.has_swimming_pool && (
-                  // <div className="badge bg-emerald-700 text-white ">Centrally Airconditioned </div>
                   <Badge>Swimming Pool</Badge>
                 )}
                 {building?.has_cinema && (
-                  // <div className="badge bg-emerald-700 text-white ">Centrally Airconditioned </div>
                   <Badge> cinema</Badge>
                 )}
               </TableCell>
@@ -312,7 +294,6 @@ export default async function ViewBuilding({ params, searchParams }:
                   <Badge>Duplex</Badge>
                 )}
                 {building?.apartments_has_type_penthouse && (
-                  // <div className="badge bg-cyan-800 text-white">Penthouse</div>
                   <Badge>Penthouse</Badge>
                 )}
                 {building?.has_furnished && (
@@ -352,7 +333,6 @@ export default async function ViewBuilding({ params, searchParams }:
           </TableBody>
         </Table>
       </div>
-
       <div className="flex gap-2 justify-end mt-3">
         <Button asChild>
           <Link href={"edit/" + Buildings?.id}>
@@ -363,8 +343,7 @@ export default async function ViewBuilding({ params, searchParams }:
           </Link>
         </Button>
       </div>
-
-      <div className="mt-4 ">
+      <div className="mt-4">
         Building Form
       </div>
       <div className="border text-center border-gray-400 overflow-auto">
@@ -372,7 +351,8 @@ export default async function ViewBuilding({ params, searchParams }:
           <TableHeader className=" text-center">
             <TableRow>
               <TableHead>
-                Floor No</TableHead>
+                Floor No
+              </TableHead>
               <TableHead>Type</TableHead>
               <TableHead>Occupancy Ratio</TableHead>
               <TableHead>Min Size</TableHead>
@@ -392,10 +372,11 @@ export default async function ViewBuilding({ params, searchParams }:
             {floors.map((floor) => (
               <TableRow key={floor?.id} className="border-b border-gray-400 text-center">
                 <TableCell>
-                  <div className=" text-left w-28">{floor?.floor_no}</div>
+                  {floor?.floor_no}
                 </TableCell>
                 <TableCell>
-                  <div className="">{floor?.floor_type}</div></TableCell>
+                  {floor?.floor_type}
+                </TableCell>
                 <TableCell>{(floor?.occupancy === null ? "0%" : floor?.occupancy + "%")}</TableCell>
                 <TableCell>{Number(floor?.size_min).toLocaleString()}</TableCell>
                 <TableCell>{Number(floor?.size_max).toLocaleString()}</TableCell>
@@ -409,7 +390,6 @@ export default async function ViewBuilding({ params, searchParams }:
                 <TableCell>{floor?.date}</TableCell>
                 <TableCell>{floor?.remarks}</TableCell>
                 <TableCell>
-
                   <Button asChild>
                     <Link href={"/buildings/floor/edit/" + floor?.id}>
                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
@@ -420,35 +400,29 @@ export default async function ViewBuilding({ params, searchParams }:
                   </Button>
                 </TableCell>
                 <TableCell>
-
                   <DeleteFloorDialog floor_id={floor.id} />
                 </TableCell>
-
               </TableRow>
-
-
             ))}
           </TableBody>
         </Table>
-
       </div>
       <div className="flex justify-end mt-2 gap-2">
-        {/* <Link href={"/buildings/floor/add/" + id}>
-
-          <button className="btn mt-2 bg-white text-black hover:bg-cyan-800 hover:text-white capitalize mb-2 text-base">Add Floor Information</button>
-        </Link> */}
-
+        {/* 
+  <Link href={"/buildings/floor/add/" + id}>
+  <button className="btn mt-2 bg-white text-black hover:bg-cyan-800 hover:text-white capitalize mb-2 text-base">Add Floor Information</button>
+  </Link> */}
         <Button asChild>
           <Link href={"/buildings/floor/add/" + id}>
             Add floor information</Link>
         </Button>
         <Button asChild>
-          {/* <Link href="/buildings">Go Back</Link> */}
+          {/* 
+    <Link href="/buildings">
+    Go Back</Link> */}
           <Link href={`/buildings${queryParams.toString() ? `?${queryParams.toString()}` : ""}`}>Go Back</Link>
         </Button>
       </div>
-
-
     </>
   );
 }

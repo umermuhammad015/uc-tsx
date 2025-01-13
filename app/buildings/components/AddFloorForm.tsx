@@ -525,7 +525,9 @@ export default function AddFloorForm({ building_id }: any) {
                                     Building Name: <Link href={'/buildings/' + building_id}>{current_building.name}</Link>
                                 </label>
 
-                                {/* <Input
+                                
+                            </div>
+                            {/* <Input
                                     type="text"
                                     id="building-name"
                                     name="building-name"
@@ -536,7 +538,6 @@ export default function AddFloorForm({ building_id }: any) {
                                     placeholder=""
 
                                 /> */}
-                            </div>
 
                             <div className="mt-4 ">
                                 <label

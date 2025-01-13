@@ -160,57 +160,64 @@ export default async function ViewBuilding({ params, searchParams }:
 
     return (
         <>
-            {/* <div className="flex justify-between">
-                <h1></h1>
-                <Link href={"/buildings/floor/add/" + params.id}>
-
-                    <button className="btn bg-white text-black hover:bg-cyan-800 hover:text-white capitalize mb-2 text-base">Add Floor Information</button>
-                </Link>
-            </div> */}
-            <div className="border border-gray-400 ">
+            <div className="border border-gray-400">
                 <Table className="">
                     <TableBody>
                         <TableRow>
-                            <TableCell>Date </TableCell> <TableCell>{society?.survey_date}</TableCell>
+                            <TableCell>Date </TableCell>
+                            <TableCell>{society?.survey_date}</TableCell>
                         </TableRow>
                         <TableRow>
-                            <TableCell>City </TableCell> <TableCell>{society?.city}</TableCell>
+                            <TableCell>City </TableCell>
+                            <TableCell>{society?.city}</TableCell>
                         </TableRow>
                         <TableRow>
-                            <TableCell>Zone/ Region </TableCell> <TableCell>{society?.zone}</TableCell>
+                            <TableCell>Zone/ Region </TableCell>
+                            <TableCell>{society?.zone}</TableCell>
                         </TableRow>
                         <TableRow>
-                            <TableCell>Soceity/Project Name </TableCell> <TableCell>{society?.name}</TableCell>
+                            <TableCell>Soceity/Project Name </TableCell>
+                            <TableCell>{society?.name}</TableCell>
                         </TableRow>
                         <TableRow>
-                            <TableCell>Location/Address</TableCell> <TableCell>{society?.address}</TableCell>
+                            <TableCell>Location/Address</TableCell>
+                            <TableCell>{society?.address}</TableCell>
                         </TableRow>
                         <TableRow>
-                            <TableCell>Project Status</TableCell> <TableCell>{society?.type}</TableCell>
+                            <TableCell>Project Status</TableCell>
+                            <TableCell>{society?.type}</TableCell>
                         </TableRow>
                         <TableRow>
-                            <TableCell>Launch Year</TableCell> <TableCell>{society?.launch_year}</TableCell>
+                            <TableCell>Launch Year</TableCell>
+                            <TableCell>{society?.launch_year}</TableCell>
                         </TableRow>
                         <TableRow>
-                            <TableCell>Grade</TableCell> <TableCell>{society?.grade}</TableCell>
+                            <TableCell>Grade</TableCell>
+                            <TableCell>{society?.grade}</TableCell>
                         </TableRow>
                         <TableRow>
-                            <TableCell>Total Area of Society (Acres)</TableCell> <TableCell>{society?.area}</TableCell>
+                            <TableCell>Total Area of Society (Acres)</TableCell>
+                            <TableCell>{society?.area}</TableCell>
                         </TableRow>
                         <TableRow>
-                            <TableCell>Total Phase/ Sectors</TableCell> <TableCell>{society?.phase}</TableCell>
+                            <TableCell>Total Phase/ Sectors</TableCell>
+                            <TableCell>{society?.phase}</TableCell>
                         </TableRow>
                         <TableRow>
-                            <TableCell>Total Blocks</TableCell> <TableCell>{society?.blocks}</TableCell>
+                            <TableCell>Total Blocks</TableCell>
+                            <TableCell>{society?.blocks}</TableCell>
                         </TableRow>
                         <TableRow>
-                            <TableCell>Occupancy Ratio</TableCell> <TableCell>{society?.occupancy === "" ? (society?.occupancy !== null) : (society?.occupancy + '%')}</TableCell>
+                            <TableCell>Occupancy Ratio</TableCell>
+                            <TableCell>{society?.occupancy === "" ? (society?.occupancy !== null) : (society?.occupancy + '%')}</TableCell>
                         </TableRow>
                         <TableRow>
-                            <TableCell>Population</TableCell> <TableCell>{Number(society?.population).toLocaleString()}</TableCell>
+                            <TableCell>Population</TableCell>
+                            <TableCell>{Number(society?.population).toLocaleString()}</TableCell>
                         </TableRow>
                         <TableRow>
-                            <TableCell>Total Plots Residential</TableCell> <TableCell>{Number(society?.total_plots_residential).toLocaleString()}</TableCell>
+                            <TableCell>Total Plots Residential</TableCell>
+                            <TableCell>{Number(society?.total_plots_residential).toLocaleString()}</TableCell>
                         </TableRow>
                         <TableRow>
                             <TableCell>Plot Sizes Residential (Sq. Yards)</TableCell>
@@ -251,7 +258,8 @@ export default async function ViewBuilding({ params, searchParams }:
                             </TableCell>
                         </TableRow>
                         <TableRow>
-                            <TableCell>Total Plots Commercial </TableCell> <TableCell>{society?.total_plots_commercial}</TableCell>
+                            <TableCell>Total Plots Commercial </TableCell>
+                            <TableCell>{society?.total_plots_commercial}</TableCell>
                         </TableRow>
                         <TableRow>
                             <TableCell>Plot Sizes Commercial (Sq. Yards)</TableCell>
@@ -283,7 +291,8 @@ export default async function ViewBuilding({ params, searchParams }:
                             </TableCell>
                         </TableRow>
                         <TableRow>
-                            <TableCell>Total No. of Apartment</TableCell> <TableCell>{society?.total_apartments}</TableCell>
+                            <TableCell>Total No. of Apartment</TableCell>
+                            <TableCell>{society?.total_apartments}</TableCell>
                         </TableRow>
                         <TableRow>
                             <TableCell> Apartment Type</TableCell>
@@ -312,45 +321,36 @@ export default async function ViewBuilding({ params, searchParams }:
                                 {society?.apartment_duplex && (
                                     <Badge>Duplex</Badge>
                                 )}
-
                             </TableCell>
                         </TableRow>
                         <TableRow>
                             <TableCell>Features</TableCell>
                             <TableCell>
                                 {society?.features_type_parks && (
-                                    
                                     <Badge>Park</Badge>
                                 )}
                                 {society?.features_type_school && (
-                                    
                                     <Badge>School</Badge>
                                 )}
                                 {society?.features_type_university && (
                                     <Badge>University</Badge>
                                 )}
                                 {society?.features_type_hospital && (
-                                    
                                     <Badge>Hospital</Badge>
                                 )}
                                 {society?.features_type_commercial_market && (
-                                   
                                     <Badge>Commercial Market</Badge>
                                 )}
                                 {society?.features_type_zoo && (
-                                    
                                     <Badge>Zoo</Badge>
                                 )}
                                 {society?.features_type_food_arena && (
-                                   
                                     <Badge>Food Arena</Badge>
                                 )}
                                 {society?.features_type_college && (
-                                   
                                     <Badge>College</Badge>
                                 )}
                                 {society?.features_type_graveyard && (
-                                    
                                     <Badge>Graveyard</Badge>
                                 )}
                                 {society?.features_type_grid_station && (
@@ -365,7 +365,6 @@ export default async function ViewBuilding({ params, searchParams }:
                                 {society?.features_type_gated_community && (
                                     <Badge>Gated Community</Badge>
                                 )}
-
                             </TableCell>
                         </TableRow>
                         {/* Utility */}
@@ -390,27 +389,27 @@ export default async function ViewBuilding({ params, searchParams }:
                             </TableCell>
                         </TableRow>
                         <TableRow>
-                            <TableCell>Developer Name</TableCell>{" "}
+                            <TableCell>Developer Name</TableCell>
                             <TableCell>{society?.developer_name}</TableCell>
                         </TableRow>
                         <TableRow>
-                            <TableCell>Contact No</TableCell>{" "}
+                            <TableCell>Contact No</TableCell>
                             <TableCell>{society?.contact_no}</TableCell>
                         </TableRow>
                         <TableRow>
-                            <TableCell>Your Remarks</TableCell>{" "}
+                            <TableCell>Your Remarks</TableCell>
                             <TableCell>{society?.survery_remarks}</TableCell>
                         </TableRow>
                         <TableRow>
-                            <TableCell>Draft</TableCell> <TableCell> 
+                            <TableCell>Draft</TableCell>
+                            <TableCell>
                                 {
                                     societies?.societies_draft === "yes" ? "yes" : "no"
                                 }
-                           </TableCell>
+                            </TableCell>
                         </TableRow>
                     </TableBody>
                 </Table>
-
             </div >
             <div className="flex gap-2 justify-end mt-3">
                 <Button asChild>
@@ -423,13 +422,10 @@ export default async function ViewBuilding({ params, searchParams }:
                     </Link>
                 </Button>
             </div>
-
-
             <div className="my-2 flex justify-between">
                 <div className="text-center">
                     Property Prices
                 </div>
-
             </div>
             <div className="border border-gray-400 overflow-auto" >
                 <Table className="">
@@ -460,12 +456,10 @@ export default async function ViewBuilding({ params, searchParams }:
                                             : plot?.type === 'Shop' ? plot?.shop_size
                                                 : plot?.type === 'Office' ? plot?.office_size
                                                     : plot?.size
-
                                     }
-
                                 </TableCell>
                                 <TableCell>
-                                   {plot?.payment_mode}
+                                    {plot?.payment_mode}
                                 </TableCell>
                                 <TableCell>{Number(plot?.plot_price).toLocaleString()}</TableCell>
                                 <TableCell>{Number(plot?.plot_rent).toLocaleString()}</TableCell>
@@ -485,20 +479,14 @@ export default async function ViewBuilding({ params, searchParams }:
                                             Edit
                                         </Link>
                                     </Button>
-
                                 </TableCell>
                                 <TableCell>
-
                                     <DeletePlotDialog plot_id={plot.id} />
                                 </TableCell>
-
                             </TableRow>
-
-
                         ))}
                     </TableBody>
                 </Table>
-
             </div>
             < div className="flex gap-2 justify-end mt-3" >
                 <Button className="bg-cyan-950 text-white">
@@ -506,19 +494,17 @@ export default async function ViewBuilding({ params, searchParams }:
                         Add Price
                     </Link>
                 </Button>
-                {/* <Link href="/societies" className="flex justify-center items-center border border-black px-2 py-1 rounded-xl bg-white text-black hover:bg-blue-400 hover:text-white capitalize">Go Back</Link> */}
+                {/* 
+<Link href="/societies" className="flex justify-center items-center border border-black px-2 py-1 rounded-xl bg-white text-black hover:bg-blue-400 hover:text-white capitalize">
+Go Back</Link> */}
                 <Button asChild>
-                    {/* <Link href="/societies">Go Back</Link> */}
+                    {/* 
+  <Link href="/societies">
+  Go Back</Link> */}
                     <Link href={`/societies${queryParams.toString() ? `?${queryParams.toString()}` : ""}`}>Go Back</Link>
                 </Button>
                 {/* <button type="submit" className="border border-gray-300 text-sm rounded-lg block p-2.5">Update</button> */}
             </div >
-
-
-
-
-
-
         </>
     );
 }

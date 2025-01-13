@@ -90,58 +90,74 @@ export default async function ViewCommercail({ params, searchParams }:
                 <Table className="">
                     <TableBody>
                         <TableRow>
-                            <TableCell>City </TableCell> <TableCell>{commercial?.city}</TableCell>
+                            <TableCell>City </TableCell>
+                            <TableCell>{commercial?.city}</TableCell>
                         </TableRow>
                         <TableRow>
-                            <TableCell>Commercial Zone name</TableCell> <TableCell>{commercial?.commercial_zone_name}</TableCell>
+                            <TableCell>Commercial Zone name</TableCell>
+                            <TableCell>{commercial?.commercial_zone_name}</TableCell>
                         </TableRow>
                         <TableRow>
-                            <TableCell>Zone</TableCell> <TableCell>{commercial?.zone}</TableCell>
+                            <TableCell>Zone</TableCell>
+                            <TableCell>{commercial?.zone}</TableCell>
                         </TableRow>
                         <TableRow>
-                            <TableCell>Type</TableCell> <TableCell>{commercial?.type}</TableCell>
+                            <TableCell>Type</TableCell>
+                            <TableCell>{commercial?.type}</TableCell>
                         </TableRow>
                         <TableRow>
-                            <TableCell>Location</TableCell> <TableCell>{commercial?.location}</TableCell>
+                            <TableCell>Location</TableCell>
+                            <TableCell>{commercial?.location}</TableCell>
                         </TableRow>
                         <TableRow>
-                            <TableCell>Project Status</TableCell> <TableCell>{commercial?.project_status}</TableCell>
+                            <TableCell>Project Status</TableCell>
+                            <TableCell>{commercial?.project_status}</TableCell>
                         </TableRow>
                         <TableRow>
-                            <TableCell>Launch Year</TableCell> <TableCell>{commercial?.launch_year}</TableCell>
+                            <TableCell>Launch Year</TableCell>
+                            <TableCell>{commercial?.launch_year}</TableCell>
                         </TableRow>
                         <TableRow>
-                            <TableCell>Grade</TableCell> <TableCell>{commercial?.grade}</TableCell>
+                            <TableCell>Grade</TableCell>
+                            <TableCell>{commercial?.grade}</TableCell>
                         </TableRow>
                         <TableRow>
-                            <TableCell>Total Area of Society (Acres)</TableCell> <TableCell>{commercial?.area}</TableCell>
+                            <TableCell>Total Area of Society (Acres)</TableCell>
+                            <TableCell>{commercial?.area}</TableCell>
                         </TableRow>
                         <TableRow>
-                            <TableCell>Occupancy Ratio</TableCell> <TableCell>{(commercial?.occupancy === null ? "0%" : commercial?.occupancy + "%")}</TableCell>
+                            <TableCell>Occupancy Ratio</TableCell>
+                            <TableCell>{(commercial?.occupancy === null ? "0%" : commercial?.occupancy + "%")}</TableCell>
 
                         </TableRow>
                         <TableRow>
-                            <TableCell>No of Plots</TableCell> <TableCell>{Number(commercial?.total_plots).toLocaleString()}</TableCell>
+                            <TableCell>No of Plots</TableCell>
+                            <TableCell>{Number(commercial?.total_plots).toLocaleString()}</TableCell>
                         </TableRow>
 
                         <TableRow>
-                            <TableCell>No of Shops</TableCell> <TableCell>{Number(commercial?.total_shops).toLocaleString()}</TableCell>
+                            <TableCell>No of Shops</TableCell>
+                            <TableCell>{Number(commercial?.total_shops).toLocaleString()}</TableCell>
                         </TableRow>
                         <TableRow>
-                            <TableCell>No of Offices</TableCell> <TableCell>{Number(commercial?.total_offices).toLocaleString()}</TableCell>
+                            <TableCell>No of Offices</TableCell>
+                            <TableCell>{Number(commercial?.total_offices).toLocaleString()}</TableCell>
                         </TableRow>
                         <TableRow>
-                            <TableCell>No of Apartments</TableCell> <TableCell>{Number(commercial?.total_apartments).toLocaleString()}</TableCell>
+                            <TableCell>No of Apartments</TableCell>
+                            <TableCell>{Number(commercial?.total_apartments).toLocaleString()}</TableCell>
                         </TableRow>
                         <TableRow>
-                            <TableCell>Property Feature</TableCell> <TableCell>{commercial?.property_feature}</TableCell>
+                            <TableCell>Property Feature</TableCell>
+                            <TableCell>{commercial?.property_feature}</TableCell>
                         </TableRow>
                         <TableRow>
-                            <TableCell>Property Title</TableCell> <TableCell>{commercial?.property_title}</TableCell>
+                            <TableCell>Property Title</TableCell>
+                            <TableCell>{commercial?.property_title}</TableCell>
                         </TableRow>
 
                         <TableRow>
-                            <TableCell>Your Remarks</TableCell>{" "}
+                            <TableCell>Your Remarks</TableCell>
                             <TableCell>{commercial?.remarks}</TableCell>
                         </TableRow>
                     </TableBody>
@@ -188,7 +204,7 @@ export default async function ViewCommercail({ params, searchParams }:
                         {price.map((price) => (
                             <TableRow key={price?.id} className="border-b border-gray-400 ">
                                 <TableCell>
-                                    <div className="">{price?.property_type}</div>
+                                   {price?.property_type}
                                 </TableCell>
                                 <TableCell>
                                     {/* <div className="">{price?.property_type === 'Apartments' ? price?.apartment_size : price?.plot_size}</div>
@@ -206,7 +222,7 @@ export default async function ViewCommercail({ params, searchParams }:
 
                                 </TableCell>
                                 <TableCell>
-                                    <div className="">{price?.payment_mode}</div>
+                                    {price?.payment_mode}
                                 </TableCell>
                                 <TableCell>{Number(price?.price).toLocaleString()}</TableCell>
                                 <TableCell>{Number(price?.rent).toLocaleString()}</TableCell>

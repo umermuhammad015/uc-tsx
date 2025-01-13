@@ -19,9 +19,12 @@ type Props = {
 
 export default async function editFloorForm({ params }: Props) {
 
+    const { id } = await params;
+    
+
     // const { id } = await params;
 
-    const floors = await FetchFloor(params.id)
+    const floors = await FetchFloor(id)
 
 
     return (

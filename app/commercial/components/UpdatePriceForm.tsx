@@ -30,7 +30,7 @@ type Props = {
     // searchParams: { [key: string]: string | string[] | undefined }
 }
 
-export default function UpdatePlotForm({ price }: any, { params }: Props) {
+export default function UpdatePlotForm({ price }: any) {
 
     const [property_type, setProperty_type] = useState(price?.property_type);
     const [payment_mode, setPayment_mode] = useState(price?.payment_mode);
@@ -60,6 +60,7 @@ export default function UpdatePlotForm({ price }: any, { params }: Props) {
                     name="price-id"
                     className="input input-bordered  w-full max-w-xs border-2 border-gray-400 cursor-not-allowed disabled:bg-gray-200"
                     placeholder=""
+                    onChange={() => (price)}
                     value={price?.id}
 
                 />
@@ -79,6 +80,7 @@ export default function UpdatePlotForm({ price }: any, { params }: Props) {
                     name="commercial-id"
                     className="input input-bordered  w-full max-w-xs border-2 border-gray-400 cursor-not-allowed disabled:bg-gray-200"
                     placeholder=""
+                    onChange={() => (price)}
                     value={price?.commercial_id}
 
                 />

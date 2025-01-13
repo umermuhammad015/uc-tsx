@@ -22,18 +22,9 @@ type Props = {
 
 export default async function editPriceForm({ params }: Props) {
 
+ const { id } = await params;
 
-    // console.log(params)
-
-    // const homes = await prisma.homes.findUnique({
-    //     where: {
-    //         id: Number(params.id) as number
-    //     },
-    // })
-
-    const price = await FetchPrice(params.id)
-
-
+    const price = await FetchPrice(id)
 
     
     return (
