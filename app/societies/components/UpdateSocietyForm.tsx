@@ -73,6 +73,7 @@ export default function UpdatePlotForm({ societies }: any) {
                             name="societies-id"
                             // defaultValue={societies?.survey_date as unknown as string}
                             value={societies?.id as string}
+                            onChange={() => (societies)}
                             className="max-w-xs border-gray-400 border-2 text-sm rounded focus:ring-blue-500  block w-full p-2.5"
                             placeholder="ID"
                         />

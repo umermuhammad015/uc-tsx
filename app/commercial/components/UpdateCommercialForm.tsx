@@ -51,6 +51,7 @@ export default function UpdateCommercialForm({ commercial }: any) {
                             name="commercial-id"
                             // defaultValue={societies?.survey_date as unknown as string}
                             value={commercial?.id as string}
+                            onChange={() => (commercial)}
                             className="max-w-xs border-gray-400 border-2 text-sm rounded focus:ring-blue-500  block w-full p-2.5"
                             placeholder="ID"
                         />

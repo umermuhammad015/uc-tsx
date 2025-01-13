@@ -13,7 +13,7 @@ import { redirect } from "next/navigation"
 
 type Props = {
     params: { id: string }
-    
+
     // searchParams: { [key: string]: string | string[] | undefined }
 }
 
@@ -21,27 +21,25 @@ type Props = {
 
 export default async function editPlotForm({ params }: Props) {
 
+    const { id } = await params;
 
-    // console.log(params)
 
-    // const homes = await prisma.homes.findUnique({
-    //     where: {
-    //         id: Number(params.id) as number
-    //     },
-    // })
+    // const { id } = await params;
 
-    const plots = await FetchPlot(params.id)
+    // const floors = await FetchFloor(id)
+
+    const plots = await FetchPlot(id)
 
 
 
-    
+
     return (
         <>
             <div className="text-lg">Plots/Bungalows Information</div>
             <div className="container border-2 ">
 
                 <div className="mx-4">
-                <UpdatePlotForm plots={plots} />
+                    <UpdatePlotForm plots={plots} />
                 </div>
             </div>
         </>

@@ -17,10 +17,10 @@ type Props = {
 
 export default async function editForm({ params }: any) {
 
-    // console.log("params")
-    // console.log(params)
-
-    const commercial = await FetchCommercial(params.id)
+    const { id } = await params;
+   
+    //    const price = await FetchPrice(id)
+    const commercial = await FetchCommercial(id)
 
     // console.log("params")
     // console.log(commercial)

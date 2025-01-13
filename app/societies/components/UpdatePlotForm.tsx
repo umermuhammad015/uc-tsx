@@ -99,6 +99,7 @@ export default function UpdatePlotForm({ plots }: any) {
                     name="plot-id"
                     className="input input-bordered  w-full max-w-xs border-2 border-gray-400 cursor-not-allowed disabled:bg-gray-200"
                     placeholder=""
+                    onChange={() => (plots)}
                     value={plots?.id}
 
                 />
@@ -117,6 +118,7 @@ export default function UpdatePlotForm({ plots }: any) {
                     name="society-id"
                     className="input input-bordered w-full max-w-xs border-2 border-gray-400 cursor-not-allowed disabled:bg-gray-200"
                     placeholder=""
+                    onChange={() => (plots)}
                     value={plots?.society_id}
 
                 />
