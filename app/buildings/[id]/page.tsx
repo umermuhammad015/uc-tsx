@@ -96,20 +96,20 @@ export default async function ViewBuilding({ params, searchParams }:
         } */}
         <h1></h1>
         <Button asChild>
-          <Link href={"/buildings/floor/add/" + id}
-          >
+          <Link href={"/buildings/floor/add/" + id}>
             Add floor information</Link>
         </Button>
       </div>
       <div className="border border-gray-400 ">
         <Table>
           <TableBody>
-
             <TableRow>
-              <TableCell  >Name </TableCell> <TableCell>{building?.name}</TableCell>
+              <TableCell>Name </TableCell>
+              <TableCell>{building?.name}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>City </TableCell> <TableCell>{building?.city}</TableCell>
+              <TableCell>City </TableCell>
+              <TableCell>{building?.city}</TableCell>
             </TableRow>
             {/* Facilities */}
             <TableRow>
@@ -122,7 +122,8 @@ export default async function ViewBuilding({ params, searchParams }:
               <TableCell>{building?.area}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>Building Name </TableCell> <TableCell>{building?.address}</TableCell>
+              <TableCell>Building Name </TableCell>
+              <TableCell>{building?.address}</TableCell>
             </TableRow>
             <TableRow>
               <TableCell>Building Type </TableCell>
@@ -143,29 +144,35 @@ export default async function ViewBuilding({ params, searchParams }:
               <TableCell>{building?.status}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>Plot Size (Sq. Yards)</TableCell> <TableCell>{Number(building?.plot_size).toLocaleString()}</TableCell>
-
+              <TableCell>Plot Size (Sq. Yards)</TableCell>
+              <TableCell>{Number(building?.plot_size).toLocaleString()}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>Total Covered Area of Building (Sq Ft)</TableCell> <TableCell>{Number(building?.construction_area).toLocaleString()}</TableCell>
+              <TableCell>Total Covered Area of Building (Sq Ft)</TableCell>
+              <TableCell>{Number(building?.construction_area).toLocaleString()}</TableCell>
             </TableRow>
             <TableRow>
               <TableCell>Builder Name</TableCell> <TableCell>{building?.builder_name}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>Launch Year </TableCell> <TableCell>{building?.launch_year}</TableCell>
+              <TableCell>Launch Year </TableCell>
+              <TableCell>{building?.launch_year}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>Construction Year </TableCell> <TableCell>{building?.construction_year}</TableCell>
+              <TableCell>Construction Year </TableCell>
+              <TableCell>{building?.construction_year}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>Building Rank</TableCell> <TableCell>{building?.building_rank}</TableCell>
+              <TableCell>Building Rank</TableCell>
+              <TableCell>{building?.building_rank}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>Total Floors</TableCell> <TableCell>{building?.total_floors}</TableCell>
+              <TableCell>Total Floors</TableCell>
+              <TableCell>{building?.total_floors}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>Parking Floors</TableCell> <TableCell>{building?.parking_floors}</TableCell>
+              <TableCell>Parking Floors</TableCell>
+              <TableCell>{building?.parking_floors}</TableCell>
             </TableRow>
             <TableRow>
               <TableCell>Facilities </TableCell>
@@ -197,20 +204,13 @@ export default async function ViewBuilding({ params, searchParams }:
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>No. of Retail Floors</TableCell>{" "}
+              <TableCell>No. of Retail Floors</TableCell>
               <TableCell>{building?.retail_floors_count}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>Retails shops</TableCell>{" "}
+              <TableCell>Retails shops</TableCell>
               <TableCell>{building?.retail_floors_shops_count}</TableCell>
             </TableRow>
-            {/* <TableRow>
-              <TableCell>Shop Maintenance Fee Rs. (Per Sq. Ft.)</TableCell>{" "}
-              <TableCell>{Number(building?.apartments_maintenance_fee).toLocaleString()}</TableCell>
-            </TableRow> */}
-            {/* <TableRow>
-              <TableCell>Brands</TableCell> <TableCell>{building?.retail_floors_brands}</TableCell>
-            </TableRow> */}
             <TableRow>
               <TableCell>Retail Categories </TableCell>
               <TableCell>
@@ -277,14 +277,15 @@ export default async function ViewBuilding({ params, searchParams }:
                   // <div className="badge bg-emerald-700 text-white ">Centrally Airconditioned </div>
                   <Badge> cinema</Badge>
                 )}
-
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>Apartment Floors</TableCell> <TableCell>{building?.apartment_floors}</TableCell>
+              <TableCell>Apartment Floors</TableCell>
+              <TableCell>{building?.apartment_floors}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>No. of Apartment</TableCell> <TableCell>{building?.apartments_count}</TableCell>
+              <TableCell>No. of Apartment</TableCell>
+              <TableCell>{building?.apartments_count}</TableCell>
             </TableRow>
             <TableRow>
               <TableCell>Apartment Types</TableCell>
@@ -329,44 +330,32 @@ export default async function ViewBuilding({ params, searchParams }:
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>Servant Quarter</TableCell>{" "}
+              <TableCell>Servant Quarter</TableCell>
               <TableCell>{building?.apartments_has_servant_quarter}</TableCell>
             </TableRow>
-
-
-
-
             <TableRow>
-              <TableCell>Office Floors</TableCell> <TableCell>{building?.office_floors_count}</TableCell>
+              <TableCell>Office Floors</TableCell>
+              <TableCell>{building?.office_floors_count}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>Offices</TableCell> <TableCell>{building?.office_floors_count}</TableCell>
+              <TableCell>Offices</TableCell>
+              <TableCell>{building?.office_floors_count}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>surveyor name</TableCell> <TableCell>{building?.surveyor_name}</TableCell>
+              <TableCell>surveyor name</TableCell>
+              <TableCell>{building?.surveyor_name}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>Your Remarks</TableCell> <TableCell>{building?.building_survery_remarks}</TableCell>
+              <TableCell>Your Remarks</TableCell>
+              <TableCell>{building?.building_survery_remarks}</TableCell>
             </TableRow>
-            <TableRow>
-              <TableCell>Draft</TableCell> <TableCell>
-
-                {
-                  building?.building_draft === "yes" ? "yes" : "no"
-
-                }
-
-              </TableCell>
-            </TableRow>
-
           </TableBody>
         </Table>
       </div>
 
       <div className="flex gap-2 justify-end mt-3">
         <Button asChild>
-          <Link href={"edit/" + Buildings?.id}
-          >
+          <Link href={"edit/" + Buildings?.id}>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
               <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
             </svg>
@@ -378,26 +367,25 @@ export default async function ViewBuilding({ params, searchParams }:
       <div className="mt-4 ">
         Building Form
       </div>
-      <div className="border text-center border-gray-400 overflow-auto" >
+      <div className="border text-center border-gray-400 overflow-auto">
         <Table className="">
           <TableHeader className=" text-center">
             <TableRow>
-              <TableHead >
-                <div className=" text-left">Floor No</div></TableHead >
-              <TableHead >Type</TableHead >
-
-              <TableHead >Occupancy Ratio</TableHead >
-              <TableHead >Min Size</TableHead >
-              <TableHead >Max size</TableHead >
-              <TableHead >Avg. Sale Price</TableHead >
-              <TableHead >Monthly Rent</TableHead >
-              <TableHead >Instalment Plan</TableHead >
-              <TableHead >Instalment Period</TableHead >
-              <TableHead >Down Payment</TableHead >
-              <TableHead >Total Sale Price</TableHead >
-              <TableHead >Possession Amount</TableHead >
-              <TableHead >Date</TableHead >
-              <TableHead >Remarks</TableHead >
+              <TableHead>
+                Floor No</TableHead>
+              <TableHead>Type</TableHead>
+              <TableHead>Occupancy Ratio</TableHead>
+              <TableHead>Min Size</TableHead>
+              <TableHead>Max size</TableHead>
+              <TableHead>Avg. Sale Price</TableHead>
+              <TableHead>Monthly Rent</TableHead>
+              <TableHead>Instalment Plan</TableHead>
+              <TableHead>Instalment Period</TableHead>
+              <TableHead>Down Payment</TableHead>
+              <TableHead>Total Sale Price</TableHead>
+              <TableHead>Possession Amount</TableHead>
+              <TableHead>Date</TableHead>
+              <TableHead>Remarks</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody className="">
@@ -408,7 +396,6 @@ export default async function ViewBuilding({ params, searchParams }:
                 </TableCell>
                 <TableCell>
                   <div className="">{floor?.floor_type}</div></TableCell>
-
                 <TableCell>{(floor?.occupancy === null ? "0%" : floor?.occupancy + "%")}</TableCell>
                 <TableCell>{Number(floor?.size_min).toLocaleString()}</TableCell>
                 <TableCell>{Number(floor?.size_max).toLocaleString()}</TableCell>
@@ -424,8 +411,7 @@ export default async function ViewBuilding({ params, searchParams }:
                 <TableCell>
 
                   <Button asChild>
-                    <Link href={"/buildings/floor/edit/" + floor?.id}
-                    >
+                    <Link href={"/buildings/floor/edit/" + floor?.id}>
                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
                       </svg>
@@ -437,10 +423,6 @@ export default async function ViewBuilding({ params, searchParams }:
 
                   <DeleteFloorDialog floor_id={floor.id} />
                 </TableCell>
-
-
-
-
 
               </TableRow>
 
@@ -457,8 +439,7 @@ export default async function ViewBuilding({ params, searchParams }:
         </Link> */}
 
         <Button asChild>
-          <Link href={"/buildings/floor/add/" + id}
-          >
+          <Link href={"/buildings/floor/add/" + id}>
             Add floor information</Link>
         </Button>
         <Button asChild>
