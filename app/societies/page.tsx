@@ -1,23 +1,22 @@
 
 import Link from "next/link"
-// import Create from "./Create"
-import CommercialsList from "./List"
+import SocietiesList from "./List"
 import { Button } from "@/components/ui/button";
-import CityInput from "./components/CityInput";
-import ProjectType from "./components/project_type";
-import Grade from "./components/Grade";
 import SearchInput from "./components/SearchInput";
+import CityInput from "./components/CityInput";
+import ProjectType from "./components/Project_type";
+import Grade from "./components/Grade";
 import DateFilter from "./components/datefilter";
 import { Suspense } from "react";
 
 export const revalidate = 1; // revalidate the date at most every hour
 export const dynamic = "force-dynamic";
 
-// export type PageProps = {
-// 	params: { [key: string]: string | string[] | undefined };
-// 	searchParams?: { [key: string]: string | undefined };
-// 	// searchParams?: { city: string };
-// };
+export type PageProps = {
+    params: { [key: string]: string | string[] | undefined };
+    searchParams?: { [key: string]: string | undefined };
+    // searchParams?: { city: string };
+};
 
 // export default function Page(props: PageProps ) {
 export default async function Page({
@@ -25,18 +24,19 @@ export default async function Page({
     searchParams
 
 }: {
-
+    // params: { slug: string }
     searchParams: { [key: string]: string | string[] | undefined }
 }) {
 
-    const { city, page, search, project_type, commercial_grade, survey_from_date, survey_to_date } = await searchParams;
+    const { city, page, search, developer, society_grade, project_type, survey_from_date, survey_to_date } = await searchParams;
 
 
     const suspenseKey = JSON.stringify({
         city,
         page,
         search,
-        commercial_grade,
+        developer,
+        society_grade,
         project_type,
         survey_from_date,
         survey_to_date
@@ -45,27 +45,27 @@ export default async function Page({
     return (
         <>
             <h1></h1>
-            <SearchInput />
 
-            <header className="flex justify-between items-center mt-4 ">
+            <SearchInput />
+            <header className="flex justify-between items-center my-4 ">
                 <div className="flex gap-3">
                     <CityInput />
+                    {/* <DeveloperName /> */}
                     <ProjectType />
                     <Grade />
                     <DateFilter />
-                    {/* <DeveloperName /> */}
-                    {/* <Grade />
-        <ProjectType /> */}
+
+
                 </div>
                 <div className="mt-6">
 
 
 
                     <Button asChild>
-                        <Link href="/commercial/new"
+                        <Link href="/societies/new"
                         >
                             <span>+</span>
-                            <span className="ml-2">Add New</span></Link>
+                            <span className="ml-2">Add Society</span></Link>
                     </Button>
 
                 </div>
@@ -74,20 +74,24 @@ export default async function Page({
 
             </header>
 
-
+            {/* <SocietiesList city={city} {...props} /> */}
             <Suspense
                 key={suspenseKey}
                 fallback={<div className="mt-4">Loading....</div>}>
-                <CommercialsList city={city}
+                <SocietiesList
+                    city={city}
                     search={search}
                     page={page}
+                    developer={developer}
+                    society_grade={society_grade}
                     project_type={project_type}
-                    commercial_grade={commercial_grade}
                     survey_from_date={survey_from_date}
                     survey_to_date={survey_to_date}
-
+                // props
                 />
             </Suspense>
+
+
 
 
         </>

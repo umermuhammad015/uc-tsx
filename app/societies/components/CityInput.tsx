@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { JSXElementConstructor, Key, PromiseLikeOfReactNode, ReactElement, ReactNode, ReactPortal, useEffect, useState } from "react"
 import { useRouter } from 'next/navigation'
 import { Button } from "@/components/ui/button"
 import qs from 'query-string'
@@ -14,7 +14,10 @@ import {
     SelectValue,
 } from "@/components/ui/select"
 // import FetchCity from "./fetchCity"
-// import FetchCity from "./FetchCity"
+import FetchCity from "./FetchCity"
+import router from "next/router"
+
+
 
 export default function CityInput() {
 
@@ -23,14 +26,14 @@ export default function CityInput() {
     // const { pending } = useFormStatus()
 
     const [city, setCity] = useState('');
-    const [cityList, setCityList] = useState<any>([])
+    // const [cityList, setCityList] = useState<any>([])
     // console.log(city)
 
 
     // useEffect(() => {
 
     //     const query = {
-    //         city: city,
+    //         city: city === "All" ? undefined : city,
 
     //     }
     //     const url = qs.stringifyUrl({
@@ -41,22 +44,6 @@ export default function CityInput() {
     //     router.push(url)
 
     // }, [city])
-
-    function handleChange(value: any) {
-        console.log(value)
-
-        const query = {
-            city: value === "All" ? undefined : value,
-            page: undefined,
-        }
-
-        const url = qs.stringifyUrl({
-            url: window.location.href,
-            query
-        }, { skipNull: true, skipEmptyString: true })
-
-        router.push(url)
-    }
 
     // useEffect(() => {
 
@@ -79,7 +66,22 @@ export default function CityInput() {
 
     // }, []);
 
+    function handleChange(value: any){
+        console.log(value)
 
+        const query = {
+            city: value === "All" ? undefined : value,
+            page: undefined,
+        }
+
+        const url = qs.stringifyUrl({
+            url: window.location.href,
+            query
+        }, { skipNull: true, skipEmptyString: true })
+
+        router.push(url)
+
+    }
 
 
     return (
@@ -93,7 +95,6 @@ export default function CityInput() {
                 >
                     City
                 </label>
-
                 {/* <select
                     name="societies-city"
                     className="bg-gray-50 border border-gray-300 w-28 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -118,6 +119,7 @@ export default function CityInput() {
 
                 <Select
                     name="commercial-city"
+                    // onValueChange={(value) => setCity(value)}>
                     onValueChange={handleChange}>
                     <SelectTrigger
                         id="commercial-city"

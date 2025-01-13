@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { BuildingsList } from "./components/BuildingsList";
+
 // import { RegisterLink, LoginLink } from "@kinde-oss/kinde-auth-nextjs/components";
 import prisma from "./db";
 import * as React from "react"

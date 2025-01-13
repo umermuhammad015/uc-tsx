@@ -35,46 +35,46 @@ type Props = {
     // searchParams: { [key: string]: string | string[] | undefined }
 }
 
-export default async function ViewCommercail({ params, searchParams }:
+export default async function ViewCommercail({ params }:
     {
         params: { [key: string]: string },
         searchParams: { [key: string]: string | string[] | undefined }
     }) {
     // console.log(params);
-
+    const { id } = await params;
     // Get commercial zone information
     const commercial = await prisma.commercial.findUnique({
         where: {
-            id: Number(params.id) as number
+            id: Number(id) as number
         },
     });
 
     // Eidt
     const commercials = await prisma.commercial.findUnique({
         where: {
-            id: Number(params.id) as number
+            id: Number(id) as number
         },
     });
 
     const price = await prisma.price.findMany({
         where: {
-            commercial_id: Number(params.id) as number
+            commercial_id: Number(id) as number
         },
     });
 
     const queryParams = new URLSearchParams();
 
-    Object.entries(searchParams).forEach(([key, value]) => {
-        if (value) {
-            if (Array.isArray(value)) {
-                // If the value is an array, append all values
-                value.forEach((v) => queryParams.append(key, v));
-            } else {
-                // If the value is a string, append it
-                queryParams.append(key, value);
-            }
-        }
-    });
+    // Object.entries(searchParams).forEach(([key, value]) => {
+    //     if (value) {
+    //         if (Array.isArray(value)) {
+    //             // If the value is an array, append all values
+    //             value.forEach((v) => queryParams.append(key, v));
+    //         } else {
+    //             // If the value is a string, append it
+    //             queryParams.append(key, value);
+    //         }
+    //     }
+    // });
 
 
     return (
@@ -204,7 +204,7 @@ export default async function ViewCommercail({ params, searchParams }:
                         {price.map((price) => (
                             <TableRow key={price?.id} className="border-b border-gray-400 ">
                                 <TableCell>
-                                   {price?.property_type}
+                                    {price?.property_type}
                                 </TableCell>
                                 <TableCell>
                                     {/* <div className="">{price?.property_type === 'Apartments' ? price?.apartment_size : price?.plot_size}</div>
@@ -267,7 +267,7 @@ export default async function ViewCommercail({ params, searchParams }:
 
             < div className="flex gap-2 justify-end mt-3" >
                 <Button className="bg-cyan-950 text-white">
-                    <Link href={"/commercial/price/add/" + params.id}>
+                    <Link href={"/commercial/price/add/" + id}>
                         Add Price
                     </Link>
                 </Button>

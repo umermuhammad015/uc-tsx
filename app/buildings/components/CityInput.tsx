@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+// import { JSXElementConstructor, Key, PromiseLikeOfReactNode, ReactElement, ReactNode, ReactPortal, useEffect, useState } from "react"
 import { useRouter } from 'next/navigation'
 import { Button } from "@/components/ui/button"
 import qs from 'query-string'
@@ -22,8 +22,8 @@ export default function CityInput() {
 
     // const { pending } = useFormStatus()
 
-    const [city, setCity] = useState('');
-    const [cityList, setCityList] = useState<any>([])
+    // const [city, setCity] = useState('');
+    // const [cityList, setCityList] = useState<any>([])
     // console.log(city)
 
 
@@ -41,13 +41,13 @@ export default function CityInput() {
     //     router.push(url)
 
     // }, [city])
-
     function handleChange(value: any) {
         console.log(value)
 
         const query = {
             city: value === "All" ? undefined : value,
             page: undefined,
+            
         }
 
         const url = qs.stringifyUrl({
@@ -87,15 +87,14 @@ export default function CityInput() {
             <div className="">
 
                 <label
-                    htmlFor="societies-city"
-                    id="societies-city"
+                    htmlFor="building-city"
+                    id="building-city"
                     className="select  w-full max-w-xs "
                 >
                     City
                 </label>
-
                 {/* <select
-                    name="societies-city"
+                    name="building-city"
                     className="bg-gray-50 border border-gray-300 w-28 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     onChange={e => setCity(e.target.value)}
 
@@ -117,10 +116,10 @@ export default function CityInput() {
                 </select> */}
 
                 <Select
-                    name="commercial-city"
+                    name="building-city"
                     onValueChange={handleChange}>
                     <SelectTrigger
-                        id="commercial-city"
+                        id="building-city"
                         className="select  w-40 max-w-xs border-2 border-gray-400">
                         <SelectValue placeholder="Select city" />
                     </SelectTrigger>
