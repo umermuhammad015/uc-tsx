@@ -34,20 +34,19 @@ export default function UpdatePlotForm({ building }: any) {
     // const [launch_year, setLaunch_year] = useState(building?.construction_area)
 
     // const router = useRouter()
-    const [current_building, setCurrent_building] = useState<any>([]);
     const [isAdding, setIsAdding] = useState(false);
     const [plot_size, setPlot_Size] = useState<any>(building?.plot_size);
     const [construction_area, setConstruction_Area] = useState<any>(building?.construction_area);
     const [launch_year, setLaunch_year] = useState<any>(building?.launch_year);
-    const [construction_year, setConstruction_year] = useState<any>(building?.construction_year);
-    const [total_floors, setTotal_floors] = useState<any>(building?.total_floors);
-    const [parking_floor, setParking_floor] = useState<any>(building?.parking_floor);
-    const [retail_floors_num, setRetail_floors_num] = useState<any>(building?.retail_floors_num);
-    const [shop_num, setShop_num] = useState<any>(building?.shop_num);
-    const [apartment_floor_num, setApartment_floor_num] = useState<any>(building?.apartment_floor_num);
-    const [apartment_num, setApartment_num] = useState<any>(building?.apartment_num);
-    const [office_floor_num, setOffice_floor_num] = useState<any>(building?.office_floor_num);
-    const [office_num, setOffice_num] = useState<any>(building?.office_num);
+    // const [construction_year, setConstruction_year] = useState<any>(building?.construction_year);
+    // const [total_floors, setTotal_floors] = useState<any>(building?.total_floors);
+    // const [parking_floor, setParking_floor] = useState<any>(building?.parking_floor);
+    // const [retail_floors_num, setRetail_floors_num] = useState<any>(building?.retail_floors_num);
+    // const [shop_num, setShop_num] = useState<any>(building?.shop_num);
+    // const [apartment_floor_num, setApartment_floor_num] = useState<any>(building?.apartment_floor_num);
+    // const [apartment_num, setApartment_num] = useState<any>(building?.apartment_num);
+    // const [office_floor_num, setOffice_floor_num] = useState<any>(building?.office_floor_num);
+    // const [office_num, setOffice_num] = useState<any>(building?.office_num);
 
     // const [entryDate, setEntryDate] = useState<string>((new Date).toISOString().split('T')[0]);
     // const [city, setCity] = useState("");
@@ -123,23 +122,23 @@ export default function UpdatePlotForm({ building }: any) {
             const allFields = [
                 // { name: "building-floor-no", value: floor_num, schema: stringSchema },
                 { name: "launch-year", value: launch_year, schema: yearSchema },
-                { name: "construction-year", value: construction_year, schema: yearSchema },
                 { name: "construction-area", value: construction_area, schema: numberSchema },
-                { name: "total-floors", value: total_floors, schema: numberSchema },
-                { name: "parking-floors", value: parking_floor, schema: numberSchema },
-                { name: "apartment-floors-count", value: apartment_floor_num, schema: numberSchema },
-                { name: "apartments-count", value: apartment_num, schema: numberSchema },
-                { name: "office-floors-count", value: office_floor_num, schema: numberSchema },
-                { name: "offices-count", value: office_num, schema: numberSchema },
-                { name: "retail-floors-count", value: retail_floors_num, schema: numberSchema },
-                { name: "retail-floors-shops-count", value: shop_num, schema: numberSchema },
+                // { name: "construction-year", value: construction_year, schema: yearSchema },             
+                // { name: "total-floors", value: total_floors, schema: numberSchema },
+                // { name: "parking-floors", value: parking_floor, schema: numberSchema },
+                // { name: "apartment-floors-count", value: apartment_floor_num, schema: numberSchema },
+                // { name: "apartments-count", value: apartment_num, schema: numberSchema },
+                // { name: "office-floors-count", value: office_floor_num, schema: numberSchema },
+                // { name: "offices-count", value: office_num, schema: numberSchema },
+                // { name: "retail-floors-count", value: retail_floors_num, schema: numberSchema },
+                // { name: "retail-floors-shops-count", value: shop_num, schema: numberSchema },
 
             ];
 
             console.log("2");
 
 
-            const newErrors = {};
+            // const newErrors = {};
             let isValid = true;
             for (const field of allFields) {
                 const result = field.schema.safeParse(field.value === "" ? null : Number(field.value));

@@ -3,10 +3,10 @@ import React from 'react'
 import BuildingNew from '../components/BuildingNew'
 
 
-type Props = {
-  params: { id: number, name: string }
-  // searchParams: { [key: string]: string | string[] | undefined }
-}
+// type Props = {
+//   params: { id: number, name: string }
+//   // searchParams: { [key: string]: string | string[] | undefined }
+// }
 
 
 

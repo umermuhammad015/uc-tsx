@@ -11,16 +11,16 @@ import useDebounce from "@/components/debouce";
 
 function SearchInput() {
 
-  const searchParams = useSearchParams();
-  const params = new URLSearchParams(searchParams.toString());
+  // const searchParams = useSearchParams();
+  // const params = new URLSearchParams(searchParams.toString());
 
   const router = useRouter()
 
   // const { pending } = useFormStatus()
 
   const [search, setSearch] = useState('');
-  const debouncedSearchKeywords = useDebounce(search, 500)
-  const [results, setResults] = useState({});
+  // const debouncedSearchKeywords = useDebounce(search, 500)
+  // const [results, setResults] = useState({});
 
 
   // useEffect(() => {

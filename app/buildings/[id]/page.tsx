@@ -7,7 +7,6 @@ export const revalidate = 3600 // revalidate the date at most every hour
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,

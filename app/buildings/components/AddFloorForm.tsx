@@ -373,7 +373,7 @@ export default function AddFloorForm({ building_id }: any) {
         // console.log("2");
 
 
-        const newErrors = {};
+        // const newErrors = {};
         let isValid = true;
         for (const field of allFields) {
             const result = field.schema.safeParse(field.value === "" ? null : Number(field.value));
@@ -434,7 +434,7 @@ export default function AddFloorForm({ building_id }: any) {
             // console.log("plot_object")
             // console.log(plot_object)
 
-            const add_plot_output = await AddPlot(plot_object)
+            await AddPlot(plot_object)
             // console.log("add_plot_output")
             // console.log(add_plot_output)
 
@@ -508,7 +508,7 @@ export default function AddFloorForm({ building_id }: any) {
                                     Building Name: <Link href={'/buildings/' + building_id}>{current_building.name}</Link>
                                 </label>
 
-                                
+
                             </div>
                             {/* <Input
                                     type="text"
@@ -775,7 +775,7 @@ export default function AddFloorForm({ building_id }: any) {
                                     <option value="Apartment">Apartment</option>
                                     <option value="Other">Other</option>
                                 </select>
-                                
+
                             </div>
 
                             {/* Apartment size  */}

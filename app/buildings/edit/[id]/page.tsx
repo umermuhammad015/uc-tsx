@@ -3,10 +3,10 @@ import FetchBuilding from '@/app/buildings/components/FetchBuilding'
 import UpdateBuildingForm from '@/app/buildings/components/UpdateBuildingForm';
 
 
-type Props = {
-    params: { id: number }
-    // searchParams: { [key: string]: string | string[] | undefined }
-}
+// type Props = {
+//     params: { id: number }
+//     // searchParams: { [key: string]: string | string[] | undefined }
+// }
 
 export default async function editForm({ params }: any) {
 

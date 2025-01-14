@@ -6,11 +6,11 @@ import Link from 'next/link';
 import React from 'react';
 
 
-type PaginationProps = {
-    page?: string;
-    totalPages: number;
-    hasNextPage: boolean;
-};
+// type PaginationProps = {
+//     page?: string;
+//     totalPages: number;
+//     hasNextPage: boolean;
+// };
 
 export default function CommercialPagination({ metadata, city = "",
 

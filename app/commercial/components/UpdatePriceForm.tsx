@@ -16,10 +16,10 @@ import UpdatePriceButton from "./UpdatePriceButton"
 // type Props = {
 //     plots: { id: number }
 // }
-type Props = {
-    params: { id: number }
-    // searchParams: { [key: string]: string | string[] | undefined }
-}
+// type Props = {
+//     params: { id: number }
+//     // searchParams: { [key: string]: string | string[] | undefined }
+// }
 
 export default function UpdatePlotForm({ price }: any) {
 

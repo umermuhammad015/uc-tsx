@@ -15,10 +15,10 @@ export default async function createFloor(data: FormData) {
   //   building_id
   // );
 
-  const building_test = data.get("building_test")?.valueOf();
-  // console.log("building_test", building_test);
+  // const building_test = data.get("building_test")?.valueOf();
+  // // console.log("building_test", building_test);
 
-  const building_name = data.get("building-name")?.valueOf();
+  // const building_name = data.get("building-name")?.valueOf();
 
   const floor_no = data.get("building-floor-no")?.valueOf();
 
@@ -192,7 +192,7 @@ export default async function createFloor(data: FormData) {
 
   // console.log(created_floor)
 
-  const created_building_copy = await prisma.floors_history.create({
+  await prisma.floors_history.create({
     data: created_floor
   })
 
@@ -205,7 +205,7 @@ export default async function createFloor(data: FormData) {
   //   redirect("/societies/" + society_id)
   // }
 
- 
+
   redirect("/buildings/" + building_id);
 
 }

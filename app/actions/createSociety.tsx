@@ -33,7 +33,7 @@ export default async function createSociety(data: FormData) {
   const societies_grade = data.get("societies-grade")?.valueOf();
   console.log("🚀 ~ createsocieties ~ societies_grade:", societies_grade)
 
-  const societies_occupancy = data.get("societies-occupancy")?.valueOf() as string;
+  const societies_occupancy = data.get("societies-occupancy")?.valueOf();
   console.log("🚀 ~ createsocieties ~ societies_occupancy:", societies_occupancy)
 
   const societies_area = data.get("societies-area")?.valueOf();

@@ -107,7 +107,7 @@ export default async function createCommercial(data: FormData) {
 
     // console.log(created_commerial)
 
-    const created_commerial_copy = await prisma.commercial_history.create({
+    await prisma.commercial_history.create({
         data: created_commercial
     })
 

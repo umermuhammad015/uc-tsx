@@ -22,15 +22,15 @@ export default async function editForm(data: FormData) {
     const address = data.get("societies-address")?.valueOf();
 
 
-    const blocks = data.get("societies-blocks")?.valueOf();
+    const blocks = data.get("societies-blocks")?.valueOf() as string;
 
-    const phase = data.get("societies-phase")?.valueOf();
+    const phase = data.get("societies-phase")?.valueOf() as string;
 
     const grade = data.get("societies-grade")?.valueOf();
 
     const occupancy = data.get("societies-occupancy")?.valueOf() as string;
 
-    const area = data.get("societies-area")?.valueOf();
+    const area = data.get("societies-area")?.valueOf() as string;
 
     const population = parseInt(data.get("societies-population")?.valueOf() as string);
 
@@ -202,11 +202,11 @@ export default async function editForm(data: FormData) {
             name: project_name,
             zone,
             address,
-            blocks,
-            phase,
+            blocks: blocks,
+            phase: phase,
             grade,
             occupancy,
-            area,
+            area: area,
             population,
             launch_year,
             total_plots_residential,
@@ -298,11 +298,11 @@ export default async function editForm(data: FormData) {
             name: project_name as string,
             zone: zone as string,
             address: address as string,
-            blocks: blocks as number,
-            phase: phase as number,
+            blocks: blocks as unknown as number,
+            phase: phase as unknown as number,
             grade: grade as string,
             occupancy,
-            area: area as number,
+            area: area as unknown as number,
             population,
             launch_year,
             total_plots_residential,
