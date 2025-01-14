@@ -1,29 +1,8 @@
-import Link from "next/link";
+
 
 // import { RegisterLink, LoginLink } from "@kinde-oss/kinde-auth-nextjs/components";
 import prisma from "./db";
 import * as React from "react"
-
-import { Button } from "@/components/ui/button"
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
-// import UserButton from "./components/UserButton";
-// import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 
 export const revalidate = 1; // revalidate the date at most every hour
 export const dynamic = "force-dynamic";

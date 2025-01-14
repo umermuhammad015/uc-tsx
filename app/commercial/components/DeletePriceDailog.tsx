@@ -22,7 +22,6 @@ import deleteprice from "./DeletePrice";
 export default function DeletePriceDialog({ price_id }: any) {
 
     const { toast } = useToast()
-    const [open, setOpen] = useState(false);
     const [isConfirmOpen, setIsConfirmOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(false)
 

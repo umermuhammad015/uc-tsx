@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
 import UpdatePlot from "./UpdatePlot"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import UpdateHomeButton from "./UpdateHomeButton"
 import Link from 'next/link'
 import {
@@ -16,7 +16,6 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
-import FetchSociety from "./FatchSociety"
 
 // type PlotProps = {
 //     id: number,

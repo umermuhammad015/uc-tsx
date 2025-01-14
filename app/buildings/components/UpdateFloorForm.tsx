@@ -6,15 +6,6 @@ import { Textarea } from "@/components/ui/textarea"
 import UpdateFloor from "@/app/buildings/components/UpdateFloor"
 import { useState } from "react"
 import UpdateFloorButton from "./UpdateFloorButton"
-import {
-    Select,
-    SelectContent,
-    SelectGroup,
-    SelectItem,
-    SelectLabel,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select"
 
 
 import Link from 'next/link'

@@ -2,9 +2,6 @@
 
 import { useFormStatus } from 'react-dom'
 import { Button } from "@/components/ui/button"
-import { useEffect } from 'react'
-
-
 
 function DeleteSocietyButton() {
   const { pending } = useFormStatus()

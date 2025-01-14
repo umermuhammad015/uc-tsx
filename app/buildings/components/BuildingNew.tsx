@@ -1,10 +1,8 @@
 "use client"
 
 import Link from "next/link";
-import { Button } from "@/components/ui/button"
-import AddButton from "../components/AddButton";
+import { Button } from "@/components/ui/button";
 import { FormEvent, useEffect, useState } from "react";
-import createBuilding from "../../actions/createBuilding"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import {
@@ -18,15 +16,14 @@ import {
 } from "@/components/ui/select"
 
 import FetchBuildingName from "../components/FetchBuildingName";
-import clsx from "clsx";
 import { Command, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
 import { useRouter } from "next/navigation";
 
 import { z } from "zod";
 import AddBuilding from "../components/AddBuilding";
-import FetchBuilding from "../components/FetchBuilding";
 
-const stringSchema = z.string().min(1, "Address is required").max(255, "Address cannot exceed 255 characters");
+
+// const stringSchema = z.string().min(1, "Address is required").max(255, "Address cannot exceed 255 characters");
 const numberSchema = z.number().nonnegative("Value must be a positive number").nullable();
 const yearSchema = z
     .number()
@@ -37,7 +34,6 @@ const yearSchema = z
 export default function BuildingNew({ building_id }: any) {
 
     const router = useRouter()
-    const [current_building, setCurrent_building] = useState<any>([]);
     const [isAdding, setIsAdding] = useState(false);
     const [plot_size, setPlot_Size] = useState<any>("");
     const [construction_area, setConstruction_Area] = useState<any>("");
@@ -99,9 +95,6 @@ export default function BuildingNew({ building_id }: any) {
     // const [remarks, setRemarks] = useState("");
 
 
-
-
-    const [open, setOpen] = useState(false);
 
     const [isSearching, setSearching] = useState(false);
     const [buildingNames, setBuildingNames] = useState<any>([])

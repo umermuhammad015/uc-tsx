@@ -1,16 +1,6 @@
 "use client"
 
 import {
-    Dialog,
-    DialogClose,
-    DialogContent,
-    DialogDescription,
-    DialogFooter,
-    DialogHeader,
-    DialogTitle,
-    DialogTrigger,
-} from "@/components/ui/dialog"
-import {
     AlertDialog,
     AlertDialogAction,
     AlertDialogCancel,
@@ -27,17 +17,11 @@ import { Toaster } from "@/components/ui/toaster";
 import { useToast } from "@/hooks/use-toast"
 import { Button } from "@/components/ui/button"
 import deleteSociety from "./DeleteSociety";
-import DeleteSocietyButton from "./DeleteSocietyButton";
-
-import prisma from "@/app/db";
-// import { revalidate } from "../List";
-import { revalidatePath } from "next/cache";
 
 
 export default function DeleteSocietyDialog({society_id}:any) {
    
     const { toast } = useToast()
-    const [open, setOpen] = useState(false);
     const [isConfirmOpen, setIsConfirmOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(false)
 

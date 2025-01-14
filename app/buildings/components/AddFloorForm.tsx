@@ -1,34 +1,19 @@
 "use client";
 import Link from "next/link";
-import prisma from "../../db";
-import { useCallback, useEffect, useState } from "react";
 
-import { redirect } from "next/navigation";
-import AddFloorButton from "../components/AddFloorButton";
-import createFloor from "../../actions/createFloor"
+import { useEffect, useState } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import {
-    Select,
-    SelectContent,
-    SelectGroup,
-    SelectItem,
-    SelectLabel,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select"
 import AddPlot from "@/app/buildings/components/AddFloor";
-// import { useToast } from "@/components/ui/use-toast";
 import { useToast } from "@/hooks/use-toast"
 import FetchBuilding from "@/app/buildings/components/FetchBuilding";
-// import { useRouter } from "next/router";
 import { useRouter } from "next/navigation";
 
 import { z } from "zod";
 
-const stringSchema = z.string().min(1, "Address is required").max(255, "Address cannot exceed 255 characters");
+// const stringSchema = z.string().min(1, "Address is required").max(255, "Address cannot exceed 255 characters");
 const numberSchema = z.number().nonnegative("Value must be a positive number").nullable();
 const occupancySchema = z
     .number()
@@ -82,8 +67,6 @@ export default function AddFloorForm({ building_id }: any) {
     const [occupancy, setOccupancy] = useState<any>("")
     const [remarks, setRemarks] = useState<any>("");
 
-    const [errors, setErrors] = useState({});
-    const [formValid, setFormValid] = useState(true);
 
     // const validateField = (name: any, value: any) => {
     //     let schema;
@@ -99,96 +82,96 @@ export default function AddFloorForm({ building_id }: any) {
     // };
 
 
-    const handleSubmit_old = async (e: any) => {
-        e.preventDefault();
-        const allFields = [
-            // { name: "building-floor-no", value: floor_num, schema: stringSchema },
-            { name: "building-floor-avg-sale-price", value: avg_sale_price, schema: numberSchema },
-            { name: "building-floor-avg-monthly-rent", value: avg_monthly_rent, schema: numberSchema },
-            // { name: "building-floor-remarks", value: remarks, schema: stringSchema },
+    // const handleSubmit_old = async (e: any) => {
+    //     e.preventDefault();
+    //     const allFields = [
+    //         // { name: "building-floor-no", value: floor_num, schema: stringSchema },
+    //         { name: "building-floor-avg-sale-price", value: avg_sale_price, schema: numberSchema },
+    //         { name: "building-floor-avg-monthly-rent", value: avg_monthly_rent, schema: numberSchema },
+    //         // { name: "building-floor-remarks", value: remarks, schema: stringSchema },
 
-        ];
+    //     ];
 
-        const newErrors = {};
-        let isValid = true;
-        for (const field of allFields) {
-            const result = field.schema.safeParse(field.value === "" ? null : Number(field.value));
-            console.log(result)
-            // const result = field.schema.safeParse(field.value);
-            if (!result.success) {
-                isValid = false;
-                // newErrors[field.name] = result.error.errors[0].message;
-            }
-        }
+    //     const newErrors = {};
+    //     let isValid = true;
+    //     for (const field of allFields) {
+    //         const result = field.schema.safeParse(field.value === "" ? null : Number(field.value));
+    //         console.log(result)
+    //         // const result = field.schema.safeParse(field.value);
+    //         if (!result.success) {
+    //             isValid = false;
+    //             // newErrors[field.name] = result.error.errors[0].message;
+    //         }
+    //     }
 
-        if (!isValid) {
-            // setErrors(newErrors);
-            console.log("Not valid inputs")
-            return;
-        }
+    //     if (!isValid) {
+    //         // setErrors(newErrors);
+    //         console.log("Not valid inputs")
+    //         return;
+    //     }
 
-        console.log("Validation passed");
-        try {
+    //     console.log("Validation passed");
+    //     try {
 
-            setIsAdding(true)
+    //         setIsAdding(true)
 
-            const plot_object = {
-                date: entryDate,
-                building_id: Number(building_id) as number,
-                floor_type: floor_type as string,
-                floor_no: floor_num as string,
-                occupancy: occupancy,
-                unit_type: unit_type as string,
-                floor_apartments_studio: apart_studio,
-                floor_apartments_1_bed: apart_1_bed as string,
-                floor_apartments_2_bed: apart_2_bed as string,
-                floor_apartments_3_bed: apart_3_bed as string,
-                floor_apartments_4_bed: apart_4_bed as string,
-                floor_apartments_5_bed: apart_5_bed as string,
-                floor_apartments_duplex: apart_duplex as string,
-                floor_apartments_penthouse: apart_penthouse as string,
-                floor_has_furnished: apart_furnished as string,
-                floor_has_semi_furnished: apart_semi_furnished as string,
-                floor_has_service_apartments: service_apartment as string,
-                floor_has_hotel_suites_apartments: hotel_suites_apartment as string,
-                size_min: size_min,
-                size_max: size_max,
-                avg_sale_price: isNaN(Number(avg_sale_price)) ? null : Number(avg_sale_price),
-                avg_monthly_rent: isNaN(Number(avg_monthly_rent)) ? null : Number(avg_monthly_rent),
-                instalment_plan: instalment_plan,
-                instalment_period: instalment_period,
-                down_payment_amount: down_payment_amount,
-                instalment_amount: instalment_amount,
-                possession_amount: possession_amount,
-                remarks: remarks as string
-            }
+    //         const plot_object = {
+    //             date: entryDate,
+    //             building_id: Number(building_id) as number,
+    //             floor_type: floor_type as string,
+    //             floor_no: floor_num as string,
+    //             occupancy: occupancy,
+    //             unit_type: unit_type as string,
+    //             floor_apartments_studio: apart_studio,
+    //             floor_apartments_1_bed: apart_1_bed as string,
+    //             floor_apartments_2_bed: apart_2_bed as string,
+    //             floor_apartments_3_bed: apart_3_bed as string,
+    //             floor_apartments_4_bed: apart_4_bed as string,
+    //             floor_apartments_5_bed: apart_5_bed as string,
+    //             floor_apartments_duplex: apart_duplex as string,
+    //             floor_apartments_penthouse: apart_penthouse as string,
+    //             floor_has_furnished: apart_furnished as string,
+    //             floor_has_semi_furnished: apart_semi_furnished as string,
+    //             floor_has_service_apartments: service_apartment as string,
+    //             floor_has_hotel_suites_apartments: hotel_suites_apartment as string,
+    //             size_min: size_min,
+    //             size_max: size_max,
+    //             avg_sale_price: isNaN(Number(avg_sale_price)) ? null : Number(avg_sale_price),
+    //             avg_monthly_rent: isNaN(Number(avg_monthly_rent)) ? null : Number(avg_monthly_rent),
+    //             instalment_plan: instalment_plan,
+    //             instalment_period: instalment_period,
+    //             down_payment_amount: down_payment_amount,
+    //             instalment_amount: instalment_amount,
+    //             possession_amount: possession_amount,
+    //             remarks: remarks as string
+    //         }
 
-            console.log("plot_object")
-            console.log(plot_object)
+    //         console.log("plot_object")
+    //         console.log(plot_object)
 
-            const add_plot_output = await AddPlot(plot_object)
+    //         const add_plot_output = await AddPlot(plot_object)
 
-            console.log("redictecting")
-            // redirect("/buildings/" + building_id);
+    //         console.log("redictecting")
+    //         // redirect("/buildings/" + building_id);
 
-            router.push("/buildings/" + building_id); // Replace with your desired route
+    //         router.push("/buildings/" + building_id); // Replace with your desired route
 
-            if (router) {
-                router.push("/buildings/" + building_id);
-            } else {
-                console.log("router not found")
-            }
+    //         if (router) {
+    //             router.push("/buildings/" + building_id);
+    //         } else {
+    //             console.log("router not found")
+    //         }
 
 
 
-        } catch (error) {
+    //     } catch (error) {
 
-            console.error('Error submitting plot:', error);
+    //         console.error('Error submitting plot:', error);
 
-        } finally {
-            setIsAdding(false)
-        }
-    };
+    //     } finally {
+    //         setIsAdding(false)
+    //     }
+    // };
 
     useEffect(() => {
 
@@ -225,145 +208,145 @@ export default function AddFloorForm({ building_id }: any) {
 
     }, []);
 
-    const insertPlot = async () => {
+    // const insertPlot = async () => {
 
-        const allFields = [
-            // { name: "building-floor-no", value: floor_num, schema: stringSchema },
-            { name: "building-floor-avg-sale-price", value: avg_sale_price, schema: numberSchema },
-            { name: "building-floor-avg-monthly-rent", value: avg_monthly_rent, schema: numberSchema },
-            // { name: "building-floor-remarks", value: remarks, schema: stringSchema },
+    //     const allFields = [
+    //         // { name: "building-floor-no", value: floor_num, schema: stringSchema },
+    //         { name: "building-floor-avg-sale-price", value: avg_sale_price, schema: numberSchema },
+    //         { name: "building-floor-avg-monthly-rent", value: avg_monthly_rent, schema: numberSchema },
+    //         // { name: "building-floor-remarks", value: remarks, schema: stringSchema },
 
-        ];
+    //     ];
 
-        const newErrors = {};
-        let isValid = true;
-        for (const field of allFields) {
-            const result = field.schema.safeParse(field.value === "" ? null : Number(field.value));
-            console.log(result)
-            // const result = field.schema.safeParse(field.value);
-            if (!result.success) {
-                isValid = false;
-                // newErrors[field.name] = result.error.errors[0].message;
-            }
-        }
+    //     const newErrors = {};
+    //     let isValid = true;
+    //     for (const field of allFields) {
+    //         const result = field.schema.safeParse(field.value === "" ? null : Number(field.value));
+    //         console.log(result)
+    //         // const result = field.schema.safeParse(field.value);
+    //         if (!result.success) {
+    //             isValid = false;
+    //             // newErrors[field.name] = result.error.errors[0].message;
+    //         }
+    //     }
 
-        if (!isValid) {
-            // setErrors(newErrors);
-            console.log("Not valid inputs")
-            return;
-        }
+    //     if (!isValid) {
+    //         // setErrors(newErrors);
+    //         console.log("Not valid inputs")
+    //         return;
+    //     }
 
-        console.log("Validation passed");
+    //     console.log("Validation passed");
 
-        try {
+    //     try {
 
-            setIsAdding(true)
+    //         setIsAdding(true)
 
-            const plot_object = {
-                date: entryDate,
-                building_id: Number(building_id) as number,
-                floor_type: floor_type as string,
-                floor_no: floor_num as string,
-                occupancy: occupancy,
-                unit_type: unit_type as string,
-                floor_apartments_studio: apart_studio,
-                floor_apartments_1_bed: apart_1_bed as string,
-                floor_apartments_2_bed: apart_2_bed as string,
-                floor_apartments_3_bed: apart_3_bed as string,
-                floor_apartments_4_bed: apart_4_bed as string,
-                floor_apartments_5_bed: apart_5_bed as string,
-                floor_apartments_duplex: apart_duplex as string,
-                floor_apartments_penthouse: apart_penthouse as string,
-                floor_has_furnished: apart_furnished as string,
-                floor_has_semi_furnished: apart_semi_furnished as string,
-                floor_has_service_apartments: service_apartment as string,
-                floor_has_hotel_suites_apartments: hotel_suites_apartment as string,
-                size_min: size_min,
-                size_max: size_max,
-                avg_sale_price: isNaN(Number(avg_sale_price)) ? null : Number(avg_sale_price),
-                avg_monthly_rent: isNaN(Number(avg_monthly_rent)) ? null : Number(avg_monthly_rent),
-                instalment_plan: isNaN(Number(instalment_plan)) ? null : Number(instalment_plan),
-                instalment_period: isNaN(Number(instalment_period)) ? null : Number(instalment_period),
-                down_payment_amount: isNaN(Number(down_payment_amount)) ? null : Number(down_payment_amount),
-                instalment_amount: isNaN(Number(instalment_amount)) ? null : Number(instalment_amount),
-                possession_amount: isNaN(Number(possession_amount)) ? null : Number(possession_amount),
-                remarks: remarks as string
-            }
+    //         const plot_object = {
+    //             date: entryDate,
+    //             building_id: Number(building_id) as number,
+    //             floor_type: floor_type as string,
+    //             floor_no: floor_num as string,
+    //             occupancy: occupancy,
+    //             unit_type: unit_type as string,
+    //             floor_apartments_studio: apart_studio,
+    //             floor_apartments_1_bed: apart_1_bed as string,
+    //             floor_apartments_2_bed: apart_2_bed as string,
+    //             floor_apartments_3_bed: apart_3_bed as string,
+    //             floor_apartments_4_bed: apart_4_bed as string,
+    //             floor_apartments_5_bed: apart_5_bed as string,
+    //             floor_apartments_duplex: apart_duplex as string,
+    //             floor_apartments_penthouse: apart_penthouse as string,
+    //             floor_has_furnished: apart_furnished as string,
+    //             floor_has_semi_furnished: apart_semi_furnished as string,
+    //             floor_has_service_apartments: service_apartment as string,
+    //             floor_has_hotel_suites_apartments: hotel_suites_apartment as string,
+    //             size_min: size_min,
+    //             size_max: size_max,
+    //             avg_sale_price: isNaN(Number(avg_sale_price)) ? null : Number(avg_sale_price),
+    //             avg_monthly_rent: isNaN(Number(avg_monthly_rent)) ? null : Number(avg_monthly_rent),
+    //             instalment_plan: isNaN(Number(instalment_plan)) ? null : Number(instalment_plan),
+    //             instalment_period: isNaN(Number(instalment_period)) ? null : Number(instalment_period),
+    //             down_payment_amount: isNaN(Number(down_payment_amount)) ? null : Number(down_payment_amount),
+    //             instalment_amount: isNaN(Number(instalment_amount)) ? null : Number(instalment_amount),
+    //             possession_amount: isNaN(Number(possession_amount)) ? null : Number(possession_amount),
+    //             remarks: remarks as string
+    //         }
 
-            console.log("plot_object")
-            console.log(plot_object)
+    //         console.log("plot_object")
+    //         console.log(plot_object)
 
-            const add_plot_output = await AddPlot(plot_object)
-
-
-            //   console.log("Plot added")
-            //   console.log(add_plot_output)
-
-            toast({
-                className: "bg-green-600 rounded-lg",
-                // title: "Add Price",
-                description: "Floor added successfully ",
-
-            })
-
-            //    if (error) {
-            //     toast.error(error);
-            //     return
-            //    }
-
-            // toast.success('Hello World')
+    //         const add_plot_output = await AddPlot(plot_object)
 
 
-            setInstalment_plan("")
-            setOccupancy(0)
-            setAvg_Sale_Price("")
-            setAvg_Monthly_Rent("")
-            setDown_Payment_Amount(0)
-            setInstalment_Period(0)
-            setInstalment_Amount(0)
-            setPossession_Amount(0)
-            setEntryDate("")
-            setSize_Min(0)
-            setSize_Max(0)
-            setRemarks("")
-            setFloor_num("")
-            setFloor_Type("")
-            setUnit_type("")
-            setApart_studio("")
-            setApart_1_bed("")
-            setApart_2_bed("")
-            setApart_3_bed("")
-            setApart_4_bed("")
-            setApart_5_bed("")
-            setApart_duplex("")
-            setApart_penthouse("")
-            setApart_furnished("")
-            setApart_semi_furnished("")
-            setService_apartment("")
-            setHotel_suites_apartment("")
+    //         //   console.log("Plot added")
+    //         //   console.log(add_plot_output)
+
+    //         toast({
+    //             className: "bg-green-600 rounded-lg",
+    //             // title: "Add Price",
+    //             description: "Floor added successfully ",
+
+    //         })
+
+    //         //    if (error) {
+    //         //     toast.error(error);
+    //         //     return
+    //         //    }
+
+    //         // toast.success('Hello World')
 
 
+    //         setInstalment_plan("")
+    //         setOccupancy(0)
+    //         setAvg_Sale_Price("")
+    //         setAvg_Monthly_Rent("")
+    //         setDown_Payment_Amount(0)
+    //         setInstalment_Period(0)
+    //         setInstalment_Amount(0)
+    //         setPossession_Amount(0)
+    //         setEntryDate("")
+    //         setSize_Min(0)
+    //         setSize_Max(0)
+    //         setRemarks("")
+    //         setFloor_num("")
+    //         setFloor_Type("")
+    //         setUnit_type("")
+    //         setApart_studio("")
+    //         setApart_1_bed("")
+    //         setApart_2_bed("")
+    //         setApart_3_bed("")
+    //         setApart_4_bed("")
+    //         setApart_5_bed("")
+    //         setApart_duplex("")
+    //         setApart_penthouse("")
+    //         setApart_furnished("")
+    //         setApart_semi_furnished("")
+    //         setService_apartment("")
+    //         setHotel_suites_apartment("")
 
 
 
-            // redirect('/societies/plots/add/' + (params.id).toString(), "push")
-            // redirect('/societies/plots/add/69', "push")
-            // Router.relo
-            // revalidatePath("/societies/plots/add/69")
-            // router.refresh()
-            // router.reload()
 
 
-        } catch (error) {
+    //         // redirect('/societies/plots/add/' + (params.id).toString(), "push")
+    //         // redirect('/societies/plots/add/69', "push")
+    //         // Router.relo
+    //         // revalidatePath("/societies/plots/add/69")
+    //         // router.refresh()
+    //         // router.reload()
 
-            console.error('Error addign plot:', error);
 
-        } finally {
-            setIsAdding(false)
-            setIsSaving(false)
-        }
+    //     } catch (error) {
 
-    };
+    //         console.error('Error addign plot:', error);
+
+    //     } finally {
+    //         setIsAdding(false)
+    //         setIsSaving(false)
+    //     }
+
+    // };
 
 
     const handleSubmit = async () => {

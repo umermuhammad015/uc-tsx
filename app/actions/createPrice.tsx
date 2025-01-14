@@ -2,7 +2,6 @@
 
 import { redirect } from "next/navigation";
 import prisma from "../db";
-import { revalidatePath } from "next/cache";
 
 export default async function createPrice(data: FormData) {
 

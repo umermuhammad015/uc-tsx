@@ -1,14 +1,11 @@
 
 import Link from "next/link"
-// import Create from "./Create"
-import CommercialsList from "./List"
 import List from "./List";
 import { Button } from "@/components/ui/button";
 import CityInput from "./components/CityInput";
 import DateFilter from "./components/datefilter";
 import BuildingStatus from "./components/Building_status";
 import SearchInput from "./components/SearchInput";
-import Pagination from "@/components/pagination";
 import BuildingChart from "./components/BuildingChart";
 import { Suspense } from "react";
 import { Skeleton } from "@/components/ui/skeleton";

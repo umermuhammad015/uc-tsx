@@ -3,17 +3,8 @@
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import Link from 'next/link'
-import {
-    Select,
-    SelectContent,
-    SelectGroup,
-    SelectItem,
-    SelectLabel,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select"
 import UpdatePrice from "./UpdatePrice"
 import UpdatePriceButton from "./UpdatePriceButton"
 

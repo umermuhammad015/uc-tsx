@@ -2,21 +2,10 @@ import prisma from "../../db";
 import { Badge } from "@/components/ui/badge"
 import Link from "next/link";
 import { Button } from "@/components/ui/button"
-import {
-    Dialog,
-    DialogClose,
-    DialogContent,
-    DialogDescription,
-    DialogFooter,
-    DialogHeader,
-    DialogTitle,
-    DialogTrigger,
-} from "@/components/ui/dialog"
 
 import {
     Table,
     TableBody,
-    TableCaption,
     TableCell,
     TableHead,
     TableHeader,
@@ -24,7 +13,6 @@ import {
 } from "@/components/ui/table";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import DeleteHomeButton from "../components/DeleteHomeButton";
 import DeletePlotDialog from "../components/DeletePlotDialog";
 
 

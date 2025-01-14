@@ -1,33 +1,8 @@
 "use client";
-import { Button } from "@/components/ui/button"
-import {
-    Tooltip,
-    TooltipContent,
-    TooltipProvider,
-    TooltipTrigger,
-} from "@/components/ui/tooltip"
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuGroup,
-    DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuPortal,
-    DropdownMenuSeparator,
-    DropdownMenuShortcut,
-    DropdownMenuSub,
-    DropdownMenuSubContent,
-    DropdownMenuSubTrigger,
-    DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import React, { useState } from 'react'
+import React from 'react'
 import ThemeToggleButton from './ThemeToggleButton'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation';
-import LogoutButton from './LogoutButton';
-// import { getKindeServerSession, LoginLink, RegisterLink } from '@kinde-oss/kinde-auth-nextjs/server';
-
-// export default function Header({ email }: any) {
 export default function Header() {
 
     const pathname = usePathname()

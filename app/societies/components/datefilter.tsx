@@ -1,8 +1,7 @@
 "use client";
 
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
-import qs from 'query-string'
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Calendar } from "@/components/ui/calendar"
@@ -13,9 +12,7 @@ import {
 } from "@/components/ui/popover"
 
 // import FetchType from './FetchProjectType';
-
-import { DateRange } from 'react-day-picker';
-import { addDays, format, subDays } from 'date-fns';
+import { format } from 'date-fns';
 import { CalendarIcon } from 'lucide-react';
 
 

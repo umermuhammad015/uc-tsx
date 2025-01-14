@@ -3,7 +3,6 @@
 import { redirect } from "next/navigation";
 import prisma from "../db";
 import { revalidatePath } from "next/cache";
-import { z } from "zod"
 
 // const fileSchema = z.instanceof(File, { message: "Required" })
 // const imageSchema = fileSchema.refine(

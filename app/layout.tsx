@@ -3,19 +3,10 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import Link from "next/link";
 import { ThemeProvider } from "./ThemeProvider";
-import ThemeToggleButton from "@/components/ThemeToggleButton";
 import Header from "@/components/header";
 import NextProgressClient from "@/components/nextprogress-client";
 import { Toaster } from "@/components/ui/sonner"
-// import { getKindeServerSession, LoginLink, LogoutLink, RegisterLink } from "@kinde-oss/kinde-auth-nextjs/server";
-import Home from "./page";
-import prisma from "./db";
-
-// import ThemeToggleButton from "@/components/ThemeToggleButton";
-// import { useState } from "react";
-
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {

@@ -1,14 +1,10 @@
 import Link from "next/link";
-import { Input } from "@/components/ui/input"
+
 import prisma from "../db";
-import { Feed } from "@/components/feed";
-import SearchInput from "./components/SearchInput";
+
 // import { PageProps } from '../buildings/page';
-import { redirect } from "next/navigation";
-import DeleteBuildingButton from "./components/DeleteBuildingButton";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import ThemeToggleButton from "@/components/ThemeToggleButton";
 // import { useSearchParams } from 'next/navigation'
 // import { Pagination } from '../../components/pagination';
 
@@ -17,14 +13,11 @@ import ThemeToggleButton from "@/components/ThemeToggleButton";
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { revalidatePath } from "next/cache";
-
 import DeleteBuildingDialog from "./components/DeleteBuildingDialog";
 
 import Pagination from "@/components/pagination";

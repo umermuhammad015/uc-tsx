@@ -25,7 +25,6 @@ import deleteFloors from "./DeleteFloor";
 export default function DeleteSocietyDialog({ floor_id }: any) {
 
     const { toast } = useToast()
-    const [open, setOpen] = useState(false);
     const [isConfirmOpen, setIsConfirmOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(false)
 

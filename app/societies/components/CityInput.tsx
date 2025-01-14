@@ -1,8 +1,7 @@
 "use client"
 
-import { JSXElementConstructor, Key, PromiseLikeOfReactNode, ReactElement, ReactNode, ReactPortal, useEffect, useState } from "react"
+import { useState } from "react"
 import { useRouter } from 'next/navigation'
-import { Button } from "@/components/ui/button"
 import qs from 'query-string'
 import {
     Select,
@@ -13,10 +12,6 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
-// import FetchCity from "./fetchCity"
-import FetchCity from "./FetchCity"
-import router from "next/router"
-
 
 
 export default function CityInput() {
@@ -25,7 +20,7 @@ export default function CityInput() {
 
     // const { pending } = useFormStatus()
 
-    const [city, setCity] = useState('');
+    // const [city, setCity] = useState('');
     // const [cityList, setCityList] = useState<any>([])
     // console.log(city)
 

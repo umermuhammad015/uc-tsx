@@ -4,7 +4,7 @@ import { redirect } from "next/navigation"
 import prisma from "../../db";
 // import { date } from "zod";
 
-console.log("hiiiiiiiiii")
+// console.log("hiiiiiiiiii")
 
 export default async function UpdateFloor(data: FormData) {
 

@@ -1,25 +1,19 @@
 "use client";
 
 import * as React from "react"
-import prisma from "@/app/db";
-// import { useToast } from "@/components/ui/use-toast"
 import { useToast } from "@/hooks/use-toast"
 import Link from "next/link";
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button"
-import FetchSociety from "@/app/societies/components/FatchSociety";
-import createPrice from "@/app/actions/createPrice";
-import AddPriceButton from "@/app/commercial/components/AddPriceButton";
 import AddPrice from "@/app/commercial/components/AddPrice";
 import { Toaster } from "@/components/ui/toaster";
 import { z } from "zod";
 import { useRouter } from "next/navigation";
-import FetchCommercialName from "./FetchCommercialName";
 import FetchCommercial from "./FetchCommercial";
 
-const stringSchema = z.string().min(1, "Address is required").max(255, "Address cannot exceed 255 characters");
+// const stringSchema = z.string().min(1, "Address is required").max(255, "Address cannot exceed 255 characters");
 const numberSchema = z.number().nonnegative("Value must be a positive number").nullable();
 // const occupancySchema = z
 //     .number()

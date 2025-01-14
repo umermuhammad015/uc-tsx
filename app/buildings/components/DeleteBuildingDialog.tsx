@@ -13,20 +13,14 @@ import {
 } from "@/components/ui/alert-dialog"
 import { useState } from "react";
 import { Toaster } from "@/components/ui/toaster";
-// import { useToast } from "@/components/ui/use-toast"
 import { useToast } from "@/hooks/use-toast"
 import { Button } from "@/components/ui/button"
-
-import prisma from "@/app/db";
-// import { revalidate } from "../List";
-// import { revalidatePath } from "next/cache";
 import deleteBuilding from "./DeleteBuilding";
 
 
 export default function DeleteCommercialDialog({building_id}:any) {
 
     const { toast } = useToast()
-    const [open, setOpen] = useState(false);
     const [isConfirmOpen, setIsConfirmOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(false)
 

@@ -1,9 +1,8 @@
 "use client";
 
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import qs from 'query-string'
-import FetchType from './FetchProjectType';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 export default function ProjectType() {
@@ -11,8 +10,8 @@ export default function ProjectType() {
     const router = useRouter()
 
 
-    const [project_type, setProject_type] = useState('');
-    const [type_List, setType_List] = useState<any>([])
+    // const [project_type, setProject_type] = useState('');
+    // const [type_List, setType_List] = useState<any>([])
 
     // useEffect(() => {
 

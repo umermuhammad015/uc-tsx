@@ -1,8 +1,4 @@
-import Link from "next/link";
-import prisma from "../../../db";
-import FetchSociety from '@/app/societies/components/FatchSociety'
-import UpdateSocietyForm from '@/app/societies/components/UpdateSocietyForm';
-import FetchCommercail from "../../components/FetchCommercial";
+
 import UpdateCommercialForm from "../../components/UpdateCommercialForm";
 import FetchCommercial from "../../components/FetchCommercial";
 

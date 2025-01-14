@@ -1,9 +1,8 @@
 "use client";
 
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import qs from 'query-string'
-import FetchGrade from './FetchGrade';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 export default function Grade() {
@@ -11,7 +10,7 @@ export default function Grade() {
     const router = useRouter()
 
 
-    const [society_grade, setSociety_grade] = useState('');
+    // const [society_grade, setSociety_grade] = useState('');
     // const [grade_List, setGrade_List] = useState<any>([])
 
     // useEffect(() => {

@@ -1,13 +1,9 @@
 // import { type NextRequest } from "next/server";
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest} from "next/server";
 import * as XLSX from "xlsx";
-import { useSearchParams } from "next/navigation";
+
 
 import prisma from "@/app/db";
-
-// For loading example data
-import { promises as fs } from "fs";
-import { format } from "path";
 
 export async function GET(
   request: NextRequest,
@@ -20,17 +16,13 @@ export async function GET(
   const { searchParams } = new URL(request.url);
 
   const file_format = searchParams.get("format");
-  // const search_string = searchParams.get("search") || undefined;
   const city = searchParams.get("city") || undefined;
   const project_type = searchParams.get("project_type") || undefined;
   const society_grade = searchParams.get("society_grade") || undefined;
   const survey_from_date = searchParams.get("survey_from_date") || undefined;
   const survey_to_date = searchParams.get("survey_to_date") || undefined;
 
-  // console.log("search");
-  // console.log(search);
-  // console.log(project_type)
-  // console.log(file_format)
+
 
   try {
     // const { table } = params;

@@ -2,7 +2,6 @@
 
 import { useState } from "react"
 import { useRouter } from 'next/navigation'
-import { Button } from "@/components/ui/button"
 import qs from 'query-string'
 import {
     Select,
@@ -22,8 +21,6 @@ export default function CityInput() {
 
     // const { pending } = useFormStatus()
 
-    const [city, setCity] = useState('');
-    const [cityList, setCityList] = useState<any>([])
     // console.log(city)
 
 

@@ -15,17 +15,12 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
-
-import { Label } from "@/components/ui/label"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import createCommercial from "@/app/actions/creatCommercial";
-import AddButton from "../components/AddButton";
 import FetchCommercialName from "../components/FetchCommercialName";
 import { Command, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
 import AddCommercial from "../components/AddCommerical";
 import { z } from "zod";
 
-const stringSchema = z.string().min(1, "Address is required").max(255, "Address cannot exceed 255 characters");
+// const stringSchema = z.string().min(1, "Address is required").max(255, "Address cannot exceed 255 characters");
 const numberSchema = z.number().nonnegative("Value must be a positive number").nullable();
 const yearSchema = z
     .number()

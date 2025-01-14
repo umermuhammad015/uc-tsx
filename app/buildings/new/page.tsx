@@ -1,5 +1,4 @@
-import createFloor from '@/app/actions/createFloor'
-import AddFloorForm from '@/app/buildings/components/AddFloorForm'
+
 import React from 'react'
 import BuildingNew from '../components/BuildingNew'
 
@@ -12,7 +11,7 @@ type Props = {
 
 
 export default async function page({
-  params, 
+  params,
   // searchParams: { city, page, search, building_status, survey_from_date, survey_to_date }
   // searchParams
 }: any) {
@@ -21,9 +20,9 @@ export default async function page({
 
   return (
     <>
-     
-        <BuildingNew building_id={id} />
-      
+
+      <BuildingNew building_id={id} />
+
     </>
   )
 }

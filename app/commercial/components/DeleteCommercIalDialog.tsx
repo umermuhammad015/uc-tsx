@@ -1,15 +1,4 @@
 "use client"
-
-import {
-    Dialog,
-    DialogClose,
-    DialogContent,
-    DialogDescription,
-    DialogFooter,
-    DialogHeader,
-    DialogTitle,
-    DialogTrigger,
-} from "@/components/ui/dialog"
 import {
     AlertDialog,
     AlertDialogAction,
@@ -26,17 +15,12 @@ import { Toaster } from "@/components/ui/toaster";
 // import { useToast } from "@/components/ui/use-toast"
 import { useToast } from "@/hooks/use-toast"
 import { Button } from "@/components/ui/button"
-
-import prisma from "@/app/db";
-// import { revalidate } from "../List";
-// import { revalidatePath } from "next/cache";
 import deleteCommercial from "./DeleteCommercial";
 
 
 export default function DeleteCommercialDialog({commercial_id}:any) {
 
     const { toast } = useToast()
-    const [open, setOpen] = useState(false);
     const [isConfirmOpen, setIsConfirmOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(false)
 

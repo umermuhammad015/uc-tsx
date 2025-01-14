@@ -1,14 +1,6 @@
-import UpdateHomeButton from '@/app/societies/components/UpdateHouseButton'
-import Link from 'next/link'
-// import React, { useState } from 'react'
-import { Input } from "@/components/ui/input"
-import prisma from "../../../../db";
-import { Button } from "@/components/ui/button"
-import { Textarea } from "@/components/ui/textarea"
+
 import FetchPlot from '@/app/societies/components/FetchPlot'
 import UpdatePlotForm from '@/app/societies/components/UpdatePlotForm';
-
-import { redirect } from "next/navigation"
 
 
 type Props = {

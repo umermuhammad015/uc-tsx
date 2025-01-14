@@ -3,34 +3,16 @@
 import * as React from "react"
 // import { useToast } from "@/components/ui/use-toast"
 import { useToast } from "@/hooks/use-toast"
-import prisma from "@/app/db";
-import { Label } from "@/components/ui/label"
-import AddHomeButton from "../components/AddHomeButton";
 import Link from "next/link";
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import {
-    Select,
-    SelectContent,
-    SelectGroup,
-    SelectItem,
-    SelectLabel,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select"
-
 // import toast from "react-hot-toast"
 import AddPlot from "@/app/societies/components/AddPlot";
-
-import createPlot from "../../actions/createPlot"
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button"
 import FetchSociety from "@/app/societies/components/FatchSociety";
-import { redirect } from "next/dist/server/api-utils";
 import { useRouter } from 'next/navigation'
-import { revalidatePath } from "next/cache";
 import { Toaster } from "@/components/ui/toaster";
-import { Image } from "lucide-react";
 // import FileUpload from "@/app/societies/components/FileUpload";
 
 // import { Toaster, toast } from "sonner"
@@ -43,7 +25,7 @@ type Props = {
 
 import { z } from "zod";
 
-const stringSchema = z.string().min(1, "Address is required").max(255, "Address cannot exceed 255 characters");
+// const stringSchema = z.string().min(1, "Address is required").max(255, "Address cannot exceed 255 characters");
 const numberSchema = z.number().nonnegative("Value must be a positive number").nullable();
 const occupancySchema = z
     .number()

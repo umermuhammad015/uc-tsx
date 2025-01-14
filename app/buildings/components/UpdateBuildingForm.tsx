@@ -1,15 +1,11 @@
 "use client"
 
 import Link from "next/link";
-import prisma from "../../db";
-import { redirect } from "next/navigation"
 import UpdateButton from "../components/UpdateButton";
-import UpdateBuilding from "./UpdateBuilding"
 import { FormEvent, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Checkbox } from "@/components/ui/checkbox"
 import {
     Select,
     SelectContent,
@@ -19,9 +15,8 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
-import AddBuilding from "./AddBuilding";
 import { z } from "zod";
-const stringSchema = z.string().min(1, "Address is required").max(255, "Address cannot exceed 255 characters");
+// const stringSchema = z.string().min(1, "Address is required").max(255, "Address cannot exceed 255 characters");
 const numberSchema = z.number().nonnegative("Value must be a positive number").nullable();
 const yearSchema = z
     .number()

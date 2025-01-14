@@ -5,10 +5,6 @@ import prisma from "@/app/db"
 
 export default async function AddBuilding(building_object: any) {
 
-    // console.log("creating")
-    // console.log(building_object)
-
-
 
     try {
         const crt = await prisma.buildings.create({

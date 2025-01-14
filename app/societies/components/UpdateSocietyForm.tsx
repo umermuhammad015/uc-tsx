@@ -1,8 +1,6 @@
 "use client"
 
 import Link from "next/link";
-import prisma from "../../db";
-import { redirect } from "next/navigation"
 import UpdateButton from "../components/UpdateButton";
 import UpdateSociety from "./UpdateSociety"
 import { useState } from "react"
@@ -19,17 +17,15 @@ import {
     SelectValue,
 } from "@/components/ui/select"
 
-import { Checkbox } from "@/components/ui/checkbox"
-
 
 export default function UpdatePlotForm({ societies }: any) {
 
     const [area, setArea] = useState(societies?.area)
     const [occupancy, setOccupancy] = useState(societies?.occupancy);
     const [population, setPoputation] = useState(societies?.population)
-    const [plot_sizes_residential, setPlot_sizes_residential] = useState(societies?.plot_sizes_residential)
-    const [plot_sizes_commercial, setPlot_sizes_commercial] = useState(societies?.plot_sizes_commercial)
-    const [societies_apartment_size, setSocieties_apartment_size] = useState(societies?.societies_apartment_size)
+    // const [plot_sizes_residential, setPlot_sizes_residential] = useState(societies?.plot_sizes_residential)
+    // const [plot_sizes_commercial, setPlot_sizes_commercial] = useState(societies?.plot_sizes_commercial)
+    // const [societies_apartment_size, setSocieties_apartment_size] = useState(societies?.societies_apartment_size)
     const [price, setPrice] = useState(societies?.plot_price)
     const [vilaprice, setVilaprice] = useState(societies?.vilas_price)
     const [rent, setRent] = useState(societies?.vilas_monthly_rent)

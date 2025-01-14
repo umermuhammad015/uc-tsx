@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import qs from 'query-string'
 import {
@@ -13,16 +13,11 @@ import {
     SelectValue,
 } from "@/components/ui/select"
 // import FetchType from './FetchProjectType';
-import FetchBuildingStatus from './FetchBuildingstatus';
+
 
 export default function BuildingStatus() {
 
     const router = useRouter()
-
-
-    const [building_status, setBuilding_status] = useState('');
-    const [status_List, setStatus_List] = useState<any>([])
-
     // useEffect(() => {
 
     //     const query = {

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import qs from 'query-string'
 import {
@@ -8,7 +8,6 @@ import {
     SelectContent,
     SelectGroup,
     SelectItem,
-    SelectLabel,
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
@@ -17,25 +16,6 @@ import {
 export default function Grade() {
 
     const router = useRouter()
-
-
-    const [commercial_grade, setCommercial_grade] = useState('');
-    // const [grade_List, setGrade_List] = useState<any>([])
-
-    // useEffect(() => {
-
-    //     const query = {
-    //         commercial_grade: commercial_grade,
-
-    //     }
-    //     const url = qs.stringifyUrl({
-    //         url: window.location.href,
-    //         query
-    //     }, { skipNull: true, skipEmptyString: true })
-
-    //     router.push(url)
-
-    // }, [commercial_grade])
 
     function handleChange(value: any) {
         console.log(value)

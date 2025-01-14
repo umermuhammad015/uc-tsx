@@ -2,7 +2,6 @@ import prisma from "../../db";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import DeleteFloorButton from "../components/DeleteFloorButton";
 export const revalidate = 3600 // revalidate the date at most every hour
 
 import {

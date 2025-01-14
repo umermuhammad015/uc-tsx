@@ -1,23 +1,17 @@
 "use client";
 
 import { FormEvent, useEffect, useState } from "react";
-import AddButton from "../components/AddButton";
 import Link from "next/link";
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import createSociety from "../../actions/createSociety"
 import { Button } from "@/components/ui/button"
 import {
   Command,
-  CommandEmpty,
   CommandGroup,
   CommandInput,
   CommandItem,
   CommandList,
-  CommandSeparator,
-  CommandShortcut,
 } from "@/components/ui/command"
-import useDebounce from "@/components/debouce";
 
 import {
   Select,
@@ -28,8 +22,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import clsx from "clsx";
-import FetchSocietyNames from "../components/FetchSocietyNames";
 import FetchSocietyName from "../components/fetchSocityName";
 import { z } from "zod";
 import AddSociety from "../components/AddSociety";
@@ -45,7 +37,7 @@ import AddSociety from "../components/AddSociety";
 //   name: string;
 // };
 
-const stringSchema = z.string().min(1, "Address is required").max(255, "Address cannot exceed 255 characters");
+// const stringSchema = z.string().min(1, "Address is required").max(255, "Address cannot exceed 255 characters");
 const numberSchema = z.number().nonnegative("Value must be a positive number").nullable();
 const yearSchema = z
   .number()
