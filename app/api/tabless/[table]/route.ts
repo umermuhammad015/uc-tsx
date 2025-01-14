@@ -9,7 +9,7 @@ import prisma from "@/app/db";
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { table: string } }
+  {  }: { }
 ) {
   // Check auth & permission here
   // console.log("helo");
@@ -17,7 +17,7 @@ export async function GET(
   // const searchParams = request.nextUrl.searchParams;
   const { searchParams } = new URL(request.url);
 
-  const file_format = searchParams.get("format");
+  // const file_format = searchParams.get("format");
   const search_string = searchParams.get("search_string") || undefined;
   const city = searchParams.get("city") || undefined;
   const building_status = searchParams.get("building_status") || undefined;
