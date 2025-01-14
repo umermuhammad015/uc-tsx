@@ -1,20 +1,18 @@
-// import { type NextRequest } from "next/server";
+
 import { NextRequest} from "next/server";
 import * as XLSX from "xlsx";
-
-
 import prisma from "@/app/db";
 
 export async function GET(
   request: NextRequest
 ) {
-  // Check auth & permission here
-  console.log("helo");
+  // // Check auth & permission here
+  // console.log("helo");
 
   // const searchParams = request.nextUrl.searchParams;
   const { searchParams } = new URL(request.url);
 
-  const file_format = searchParams.get("format");
+  // const file_format = searchParams.get("format");
   const city = searchParams.get("city") || undefined;
   const project_type = searchParams.get("project_type") || undefined;
   const society_grade = searchParams.get("society_grade") || undefined;

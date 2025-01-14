@@ -1,9 +1,6 @@
-// import { type NextRequest } from "next/server";
-import { NextRequest} from "next/server";
-// import * as XLSX from " xlsx";
-import * as XLSX from "xlsx";
-// import { useSearchParams } from "next/navigation";
 
+import { NextRequest} from "next/server";
+import * as XLSX from "xlsx";
 import prisma from "@/app/db";
 
 
