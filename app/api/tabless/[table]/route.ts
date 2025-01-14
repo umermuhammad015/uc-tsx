@@ -8,8 +8,7 @@ import prisma from "@/app/db";
 
 
 export async function GET(
-  request: NextRequest,
-  {  }: { }
+  request: NextRequest
 ) {
   // Check auth & permission here
   // console.log("helo");

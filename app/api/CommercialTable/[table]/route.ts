@@ -11,7 +11,6 @@ import prisma from "@/app/db";
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { table: string } }
 ) {
   // Check auth & permission here
   // console.log("helo");

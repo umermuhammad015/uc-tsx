@@ -6,8 +6,7 @@ import * as XLSX from "xlsx";
 import prisma from "@/app/db";
 
 export async function GET(
-  request: NextRequest,
-  { params }: { params: { table: string } }
+  request: NextRequest
 ) {
   // Check auth & permission here
   console.log("helo");
