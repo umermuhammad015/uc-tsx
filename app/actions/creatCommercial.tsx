@@ -75,7 +75,9 @@ export default async function createCommercial(data: FormData) {
     // if(typeof city !== "string" || city.length === 0){
     //     throw new Error ("Invalid city")
     // }
-      
+
+    // type CommercialCreateInput = Prisma.CommercialCreateInput;
+    // type Commercial = Prisma.Commercial;
 
     const created_commercial: any = await prisma.commercial.create({
         data: {
