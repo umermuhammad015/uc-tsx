@@ -2,6 +2,7 @@
 
 import { redirect } from "next/navigation";
 import prisma from "../db";
+import { Prisma } from '@prisma/client';
 
 export default async function createCommercial(data: FormData) {
 
@@ -74,6 +75,7 @@ export default async function createCommercial(data: FormData) {
     // if(typeof city !== "string" || city.length === 0){
     //     throw new Error ("Invalid city")
     // }
+      
 
     const created_commercial: any = await prisma.commercial.create({
         data: {
@@ -95,14 +97,12 @@ export default async function createCommercial(data: FormData) {
             property_feature: property_feature as string,
             property_title: property_title as string,
             remarks: remarks as string
-
-
         },
     });
     // console.log("created_building")
     // console.log(created_building)
 
-    created_commercial.commercial_id = created_commercial.id; // Copy the value of 'id' to 'building_id'
+    created_commercial.commercial_id = created_commercial.id as number; // Copy the value of 'id' to 'building_id'
     delete created_commercial.id; // Remove the old 'id' key
 
     // console.log(created_commerial)
