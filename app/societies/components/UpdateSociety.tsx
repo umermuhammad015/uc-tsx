@@ -374,7 +374,7 @@ export default async function editForm(data: FormData) {
             utilities_type_utilities_electricity,
             utilities_type_drainage,
             developer_name: developer_name as string,
-            contact_no: contact_no as number,
+            contact_no: Number(contact_no) as number,
             survery_remarks: societies_survery_remarks as string,
             survey_date: societies_survey_date
 
