@@ -1,7 +1,7 @@
 "use server"
 
 import { redirect } from "next/navigation"
-import prisma from "../../db";
+import { prisma } from "@/app/db"
 // import { date } from "zod";
 
 // console.log("hiiiiiiiiii")
@@ -84,9 +84,9 @@ export default async function UpdateFloor(data: FormData) {
         }
     }
 
-    const updateFloor = await prisma.floors.update(update_query)
+    await prisma.floors.update(update_query)
 
-    const created_floor_copy = await prisma.floors_history.create({
+    await prisma.floors_history.create({
         data: {
             // name: name,
             // city: city
@@ -132,7 +132,7 @@ export default async function UpdateFloor(data: FormData) {
 
     // const updateBuilding = await prisma.floors.update(update_query)
     // redirect('/buildings/')
-    const updateBuilding = await prisma.floors.update(update_query)
+    await prisma.floors.update(update_query)
     redirect("/buildings/" + building_id)
 
 }

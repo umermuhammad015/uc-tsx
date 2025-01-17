@@ -491,7 +491,7 @@ model Commercial_history {
   type                 String?
   location             String?
   project_status       String?
-  launch_year          String?
+  launch_year          Int?
   grade                String?
   area                 Int?
   occupancy            Int?

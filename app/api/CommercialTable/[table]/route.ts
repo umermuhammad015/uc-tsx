@@ -3,7 +3,7 @@ import { NextRequest} from "next/server";
 import * as XLSX from "xlsx";
 // import { useSearchParams } from "next/navigation";
 
-import prisma from "@/app/db";
+import { prisma } from "@/app/db"
 
 // For loading example data
 // import { promises as fs } from "fs";
@@ -18,7 +18,7 @@ export async function GET(
   // const searchParams = request.nextUrl.searchParams;
   const { searchParams } = new URL(request.url);
 
-  const file_format = searchParams.get("format");
+  // const file_format = searchParams.get("format");
   // const search_string = searchParams.get("search") || undefined;
   const city = searchParams.get("city") || undefined;
   const project_type = searchParams.get("project_type") || undefined;

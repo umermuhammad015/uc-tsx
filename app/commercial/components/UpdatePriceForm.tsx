@@ -7,6 +7,7 @@ import { useState } from "react"
 import Link from 'next/link'
 import UpdatePrice from "./UpdatePrice"
 import UpdatePriceButton from "./UpdatePriceButton"
+import { Price } from "@prisma/client"
 
 // type PlotProps = {
 //     id: number,
@@ -20,8 +21,10 @@ import UpdatePriceButton from "./UpdatePriceButton"
 //     params: { id: number }
 //     // searchParams: { [key: string]: string | string[] | undefined }
 // }
-
-export default function UpdatePlotForm({ price }: any) {
+type UpdatePriceFormProps = {
+    price: Price | null; // Use the type defined in the Prisma schema
+};
+export default function UpdatePlotForm({ price }: UpdatePriceFormProps) {
 
     const [property_type, setProperty_type] = useState(price?.property_type);
     const [payment_mode, setPayment_mode] = useState(price?.payment_mode);
@@ -433,7 +436,7 @@ export default function UpdatePlotForm({ price }: any) {
                         id="price"
                         name="price"
                         className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-                        defaultValue={price?.price as string}
+                        defaultValue={price?.price as number}
                         placeholder="Rs."
                     />
                     <div className="m-4">
@@ -460,7 +463,7 @@ export default function UpdatePlotForm({ price }: any) {
                         id="rent"
                         name="rent"
                         className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-                        defaultValue={price?.rent as string}
+                        defaultValue={price?.rent as number}
                         placeholder="Rs."
                     />
                     <div className="m-4">
@@ -492,7 +495,7 @@ export default function UpdatePlotForm({ price }: any) {
                                 name="total-price"
                                 className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
                                 placeholder="Rs."
-                                defaultValue={price?.total_price as string}
+                                defaultValue={price?.total_price as number}
                                 onChange={(e) => {
                                     setTotal_price(Number(e.target.value))
                                     console.log(e.target.value)
@@ -517,7 +520,7 @@ export default function UpdatePlotForm({ price }: any) {
                                 id="installment-period"
                                 name="installment-period"
                                 className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-                                defaultValue={price?.installment_period as string}
+                                defaultValue={price?.installment_period as number}
                                 placeholder="Rs."
                                 onChange={(e) => {
                                     setInstallment_period(Number(e.target.value))
@@ -545,7 +548,7 @@ export default function UpdatePlotForm({ price }: any) {
                                 name="down-payment"
                                 className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
                                 placeholder="Rs."
-                                defaultValue={price?.down_payment as string}
+                                defaultValue={price?.down_payment as number}
                                 onChange={(e) => {
                                     setDown_payment(Number(e.target.value))
                                     console.log(e.target.value)
@@ -571,7 +574,7 @@ export default function UpdatePlotForm({ price }: any) {
                                 name="possession-amount"
                                 className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
                                 placeholder="Rs."
-                                defaultValue={price?.possession_amount as string}
+                                defaultValue={price?.possession_amount as number}
                                 onChange={(e) => {
                                     setpossession_Amount(Number(e.target.value))
                                     console.log(e.target.value)

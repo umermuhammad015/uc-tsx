@@ -1,12 +1,11 @@
 "use server"
 
-import prisma from "@/app/db"
+import { prisma } from "@/app/db"
+import { Societies } from "@prisma/client";
 
 
-export default async function AddSociety(society_object: any) {
+export default async function AddSociety(society_object: Societies) {
 
-    console.log("creating")
-    console.log(society_object)
 
 
 
@@ -15,18 +14,19 @@ export default async function AddSociety(society_object: any) {
             data: society_object
         });
 
-        console.log("crt id")
-        console.log(crt)
+        const crt_history = await prisma.societies_history.create({
+            data: {
+                society_id: crt.id,
+                ...society_object
+            }
+        });
 
-        return crt
-
+        return crt_history.society_id
 
     } catch (error) {
 
-        console.error('Error adding price:', error);
-        return ('Error adding price:');
-
-
+        console.error('Error adding society:', error);
+        return ('Error adding society:');
     }
 
 

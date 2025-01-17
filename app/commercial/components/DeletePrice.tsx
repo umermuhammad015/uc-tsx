@@ -1,11 +1,11 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import prisma from "@/app/db";
+import { prisma } from "@/app/db"
 
 
 
-export default async function deleteprice(price_id: any) {
+export default async function deleteprice(price_id: number) {
     // export default async function deleteSociety(data: FormData) {
 
     // console.log("Deleteing inside deleteSociety")

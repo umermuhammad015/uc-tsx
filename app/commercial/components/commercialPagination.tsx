@@ -1,23 +1,43 @@
 // 'use server';
 
 import { cn } from '@/lib/utils';
-// import { cn } from '@/lib/cn';
 import Link from 'next/link';
 import React from 'react';
 
 
-// type PaginationProps = {
-//     page?: string;
-//     totalPages: number;
-//     hasNextPage: boolean;
-// };
+type MetaDataTypes = {
+    pageNumber?: number; // City name or undefined
+    search_string?: string; // Current page number or undefined
+    take?: number; // Search string or undefined
+    skip?: number; // Developer name or undefined
+    city?: string; // Project type or undefined
+    project_type?: string; // Project type or undefined
+    commercial_grade?: string; // Survey start date (ISO string) or undefined
+    survey_from_date?: string; // Survey end date (ISO string) or undefined
+    survey_to_date?: string; // Survey end date (ISO string) or undefined
+    page: number,
+    totalPages: number,
+    hasNextPage: boolean,
+    rows_count: number,
+};
+
+type CommercialPaginationTypes = {
+
+    metadata: MetaDataTypes,
+    city?: string,
+    project_type?: string,
+    commercial_grade?: string,
+    survey_from_date?: string,
+    survey_to_date?: string,
+
+}
 
 export default function CommercialPagination({ metadata, city = "",
 
     project_type = "",
     commercial_grade = "",
     survey_from_date = "",
-    survey_to_date = "" }: any) {
+    survey_to_date = "" }: CommercialPaginationTypes) {
     const { page, totalPages, hasNextPage, rows_count } = metadata;
 
     // console.log("jhghjgh")
@@ -143,7 +163,3 @@ export default function CommercialPagination({ metadata, city = "",
         </>
     );
 };
-function useState(arg0: string): [any, any] {
-    throw new Error('Function not implemented.');
-}
-

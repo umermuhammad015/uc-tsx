@@ -25,6 +25,8 @@ import {
 import FetchSocietyName from "../components/fetchSocityName";
 import { z } from "zod";
 import AddSociety from "../components/AddSociety";
+import { Societies } from "@prisma/client";
+import { useRouter } from "next/navigation";
 
 // type Society = {
 //   // Define the properties of your society object
@@ -33,9 +35,9 @@ import AddSociety from "../components/AddSociety";
 //   name: string | null;
 // };
 
-// type Name = {
-//   name: string;
-// };
+type SocietyNamesProps = {
+  name: string | null;
+};
 
 // const stringSchema = z.string().min(1, "Address is required").max(255, "Address cannot exceed 255 characters");
 const numberSchema = z.number().nonnegative("Value must be a positive number").nullable();
@@ -51,22 +53,22 @@ export default function NewSocietyPage() {
   // const debouncedNameKeywords = useDebounce(nameKeywords, 500)
 
   // const [names, setNames] = useState<Society[]>([])
-
+  const router = useRouter();
   const [isAdding, setIsAdding] = useState(false);
-  const [area, setArea] = useState<any>("");
-  const [occupancy, setOccupancy] = useState<any>(0);
-  const [population, setPoputation] = useState<any>("");
-  const [blocks, setBlocks] = useState<any>("");
-  const [phase, setPhase] = useState<any>("");
-  const [launch_year, setLaunch_year] = useState<any>("");
-  const [total_plots_residential, setTotal_plots_residential] = useState<any>("");
-  const [total_plots_commercial, setTotal_plots_commercial] = useState<any>("");
-  const [total_apartments, setTotal_apartments] = useState<any>("");
-  const [contact_no, setContact_no] = useState<any>("");
+  const [area, setArea] = useState("");
+  const [occupancy, setOccupancy] = useState(0);
+  const [population, setPoputation] = useState("");
+  const [blocks, setBlocks] = useState("");
+  const [phase, setPhase] = useState("");
+  const [launch_year, setLaunch_year] = useState("");
+  const [total_plots_residential, setTotal_plots_residential] = useState("");
+  const [total_plots_commercial, setTotal_plots_commercial] = useState("");
+  const [total_apartments, setTotal_apartments] = useState("");
+  const [contact_no, setContact_no] = useState("");
 
-  const [societyNames, setSocietyNames] = useState<any>([])
+  const [societyNames, setSocietyNames] = useState<SocietyNamesProps[]>([])
 
-  const [societyKeywords, setSocietyKeywords] = useState<any>("")
+  const [societyKeywords, setSocietyKeywords] = useState("")
   const [isSearching, setSearching] = useState(false);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -207,23 +209,13 @@ export default function NewSocietyPage() {
         console.log("society_object")
         console.log(society_object)
 
-        const add_society_output = await AddSociety(society_object)
-
-        // const add_building_output = await prisma.buildings.create({
-        //   data: building_object
-        // });
-
+        const added_society_id = await AddSociety(society_object as Societies)
 
         console.log("add_society_output")
-        console.log(add_society_output)
+        console.log(added_society_id)
 
-        // console.log("isAdding 2");
-        // console.log(isAdding);
-        // if (isAdding) {
-        //     console.log("redictecting")
-        //     // redirect("/buildings/" + building_id);
-        // router.push("/buildings/" + add_building_output); // Replace with your desired route
-        // }
+
+        router.push("/societies/" + added_society_id); // Replace with your desired route
 
       } catch (error) {
 
@@ -261,8 +253,8 @@ export default function NewSocietyPage() {
           // console.log("CityInput use effect trying")
           const all_societies = await FetchSocietyName(societyKeywords)
 
-          // console.log("all_buildings");
-          // console.log(all_buildings);
+          console.log("all_societies");
+          console.log(all_societies);
 
           setTimeout(() => {
             console.log("Hello, World!");
@@ -470,7 +462,7 @@ export default function NewSocietyPage() {
 
                   <CommandList className="">
                     <CommandGroup>
-                      {societyNames.map((society: any) => (
+                      {societyNames.map((society: SocietyNamesProps) => (
                         <CommandItem
                           key={society.name}
                         // onSelect={() => {

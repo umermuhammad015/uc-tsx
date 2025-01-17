@@ -1,5 +1,5 @@
 import Link from "next/link";
-import prisma from "../db";
+import { prisma } from "@/app/db"
 import { Button } from "@/components/ui/button";
 // import { useSearchParams } from 'next/navigation'
 // import { Pagination } from '../../components/pagination';
@@ -17,11 +17,25 @@ import {
 
 import DeleteCommercialDialog from "./components/DeleteCommercIalDialog";
 import CommercialPagination from "./components/commercialPagination";
+import { Prisma } from "@prisma/client";
 
 
 export const revalidate = 0;
 export const dynamic = "force-dynamic";
 const PAGE_SIZE = 5;
+
+type GetCommercialProps = {
+  pageNumber?: number; // City name or undefined
+  search_string?: string; // Current page number or undefined
+  take?: number; // Search string or undefined
+  skip?: number; // Developer name or undefined
+  city?: string; // Project type or undefined
+  project_type?: string; // Survey start date (ISO string) or undefined
+  commercial_grade?: string; // Survey end date (ISO string) or undefined
+  survey_from_date?: string; // Survey end date (ISO string) or undefined
+  survey_to_date?: string; // Survey end date (ISO string) or undefined
+};
+
 
 const GetCommercial = async ({
   pageNumber = 1,
@@ -33,7 +47,7 @@ const GetCommercial = async ({
   commercial_grade = undefined,
   survey_from_date = undefined,
   survey_to_date = undefined
-}) => {
+}: GetCommercialProps) => {
 
   // async function getBuildings({ search = '', take = PAGE_SIZE, skip = 0 }) {
   // console.log("GetSocieties");
@@ -48,7 +62,7 @@ const GetCommercial = async ({
   // console.log("city inside if")
   // console.log(project_type)
 
-  const prisma_query: any = {
+  const prisma_query: Prisma.CommercialFindManyArgs = {
     take,
     skip,
     where: {
@@ -81,7 +95,7 @@ const GetCommercial = async ({
       updatedAt: 'desc', // Sort by "updatedAt" in descending order
     }
   }
-  const prisma_counts_query: any = {
+  const prisma_counts_query: Prisma.CommercialCountArgs = {
     where: {
       OR: [
         {
@@ -144,15 +158,20 @@ const GetCommercial = async ({
 
 }
 
-type Props = {
-  params: {};
-  searchParams: { [key: string]: string | string[] | undefined };
-}
+type ListProps = {
+  city?: string; // City name or undefined
+  page?: string; // Current page number or undefined
+  search?: string; // Search string or undefined
+  commercial_grade?: string; // Society grade or undefined
+  project_type?: string; // Project type or undefined
+  survey_from_date?: string; // Survey start date (ISO string) or undefined
+  survey_to_date?: string; // Survey end date (ISO string) or undefined
+};
 
 
 
 // export default async function List(props: PageProps) {
-export default async function List({ city, page, search, project_type, commercial_grade, survey_from_date, survey_to_date }: any) {
+export default async function List({ city, page, search, project_type, commercial_grade, survey_from_date, survey_to_date }: ListProps) {
 
   // console.log("developer list ")
   // console.log(developer)

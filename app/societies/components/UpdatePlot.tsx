@@ -1,7 +1,7 @@
 "use server"
 import { redirect } from "next/navigation"
-import prisma from "../../db";
-import { revalidatePath } from "next/cache";
+import { prisma } from "@/app/db"
+// import { revalidatePath } from "next/cache";
 
 export default async function UpdatePlot(data: FormData) {
 
@@ -70,7 +70,7 @@ export default async function UpdatePlot(data: FormData) {
         }
     }
 
-    const created_plot_copy = await prisma.plots_history.create({
+    await prisma.plots_history.create({
         data: {
             // name: name,
             // city: city
@@ -100,7 +100,7 @@ export default async function UpdatePlot(data: FormData) {
     // console.log("Update Query is")
     // console.log("update_query")
 
-    const updateSociety = await prisma.plots.update(update_query)
+    await prisma.plots.update(update_query)
 
     redirect("/societies/" + society_id)
 

@@ -1,6 +1,6 @@
-import prisma from "../../db";
+import { prisma } from "@/app/db"
 
-export default async function FetchPlot(id:any) {
+export default async function FetchPlot(id:number) {
 
     const plots = await prisma.plots.findUnique({
         where: {

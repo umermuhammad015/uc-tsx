@@ -19,7 +19,7 @@ import { Button } from "@/components/ui/button"
 import deleteprice from "./DeletePrice";
 
 
-export default function DeletePriceDialog({ price_id }: any) {
+export default function DeletePriceDialog({price_id} : {price_id: number}) {
 
     const { toast } = useToast()
     const [isConfirmOpen, setIsConfirmOpen] = useState(false);

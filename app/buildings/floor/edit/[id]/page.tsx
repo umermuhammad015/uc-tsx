@@ -6,18 +6,18 @@ import React from 'react'
 
 
 // type Props = {
-//     params: { id: string }
+//     params: { id: number }
 //     // searchParams: { [key: string]: string | string[] | undefined }
 // }
 
-export default async function editFloorForm({ params }: any) {
+export default async function editFloorForm( {params}: {params: Promise<{ id: string }>} ) {
 
     const { id } = await params;
 
 
     // const { id } = await params;
 
-    const floors = await FetchFloor(id)
+    const floors = await FetchFloor(Number(id))
 
 
     return (

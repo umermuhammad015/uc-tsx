@@ -1,7 +1,7 @@
 "use server"
 
 import { redirect } from "next/navigation"
-import prisma from "../../db";
+import { prisma } from "@/app/db"
 
 export default async function editForm(data: FormData) {
 
@@ -202,11 +202,11 @@ export default async function editForm(data: FormData) {
             name: project_name,
             zone,
             address,
-            blocks: blocks,
-            phase: phase,
+            blocks: Number(blocks) as number,
+            phase: Number(phase) as number,
             grade,
             occupancy,
-            area: area,
+            area: Number(area) as number,
             population,
             launch_year,
             total_plots_residential,
@@ -278,7 +278,7 @@ export default async function editForm(data: FormData) {
             utilities_type_utilities_electricity,
             utilities_type_drainage,
             developer_name,
-            contact_no,
+            contact_no : Number(contact_no) as number,
             survery_remarks: societies_survery_remarks,
             survey_date: societies_survey_date
 
@@ -286,9 +286,9 @@ export default async function editForm(data: FormData) {
         }
     }
 
-    const updateSociety = await prisma.societies.update(update_query)
+    await prisma.societies.update(update_query)
 
-    const created_society_copy = await prisma.societies_history.create({
+    await prisma.societies_history.create({
         data: {
 
             // city: city
@@ -298,11 +298,11 @@ export default async function editForm(data: FormData) {
             name: project_name as string,
             zone: zone as string,
             address: address as string,
-            blocks: blocks as unknown as number,
-            phase: phase as unknown as number,
+            blocks: Number(blocks) as number,
+            phase: Number(phase) as number,
             grade: grade as string,
             occupancy,
-            area: area as unknown as number,
+            area: Number(area) as number,
             population,
             launch_year,
             total_plots_residential,

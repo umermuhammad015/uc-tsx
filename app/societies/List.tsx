@@ -1,7 +1,7 @@
 "use server"
 
 import Link from "next/link";
-import prisma from "../db";
+import { prisma } from "@/app/db"
 import { Button } from "@/components/ui/button";
 // import { useSearchParams } from 'next/navigation'
 // import { Pagination } from '../../components/pagination';
@@ -18,11 +18,26 @@ import {
 } from "@/components/ui/table";
 import DeleteSocietyDialog from "./components/DeleteSocietyDialog";
 import SocietyPagination from "./components/Societypagination";
+import { Prisma } from "@prisma/client";
 // import DatePickerWithRange from "./components/date";
 // import BuildingChart from "./components/BuildingChart";
 
 // export const revalidate = 0; // revalidate the date at most every hour
 // export const dynamic = "force-dynamic";
+
+type GetSocietiesProps = {
+    pageNumber?: number; // City name or undefined
+    search_string?: string; // Current page number or undefined
+    take?: number; // Search string or undefined
+    skip?: number; // Developer name or undefined
+    developer?: string; // Society grade or undefined
+    city?: string; // Project type or undefined
+    society_grade?: string; // Survey start date (ISO string) or undefined
+    project_type?: string; // Survey end date (ISO string) or undefined
+    survey_from_date?: string; // Survey end date (ISO string) or undefined
+    survey_to_date?: string; // Survey end date (ISO string) or undefined
+};
+
 const PAGE_SIZE = 5;
 
 const GetSocieties = async ({
@@ -36,7 +51,7 @@ const GetSocieties = async ({
     project_type = undefined,
     survey_from_date = undefined,
     survey_to_date = undefined
-}) => {
+}: GetSocietiesProps) => {
 
     // async function getBuildings({ search = '', take = PAGE_SIZE, skip = 0 }) {
     // console.log("GetSocieties");
@@ -51,7 +66,7 @@ const GetSocieties = async ({
     // console.log("developer inside if")
     // console.log(developer)
 
-    const prisma_query: any = {
+    const prisma_query: Prisma.SocietiesFindManyArgs = {
         take,
         skip,
         where: {
@@ -84,7 +99,7 @@ const GetSocieties = async ({
             updatedAt: 'desc', // Sort by "updatedAt" in descending order
         }
     }
-    const prisma_counts_query: any = {
+    const prisma_counts_query: Prisma.SocietiesCountArgs = {
         where: {
             OR: [
                 {
@@ -158,15 +173,24 @@ const GetSocieties = async ({
 
 }
 
-type Props = {
-    params: {};
-    searchParams: { [key: string]: string | string[] | undefined };
-}
+// type Props = {
+//     params: {};
+//     searchParams: { [key: string]: string | string[] | undefined };
+// }
 
-
+type ListProps = {
+    city?: string; // City name or undefined
+    page?: string; // Current page number or undefined
+    search?: string; // Search string or undefined
+    developer?: string; // Developer name or undefined
+    society_grade?: string; // Society grade or undefined
+    project_type?: string; // Project type or undefined
+    survey_from_date?: string; // Survey start date (ISO string) or undefined
+    survey_to_date?: string; // Survey end date (ISO string) or undefined
+};
 
 // export default async function List(props: PageProps) {
-export default async function List({ city, page, search, developer, society_grade, project_type, survey_from_date, survey_to_date }: any) {
+export default async function List({ city, page, search, developer, society_grade, project_type, survey_from_date, survey_to_date }: ListProps) {
 
 
     const pageNumber = Number(page || 1); // Get the page number. Default to 1 if not provided.
@@ -315,8 +339,8 @@ export default async function List({ city, page, search, developer, society_grad
             <div className="mt-6">
                 <SocietyPagination metadata={metadata}
                     city={city}
-                    search={search}
-                    page={page}
+                    // search={search}
+                    // page={page}
                     developer={developer}
                     society_grade={society_grade}
                     project_type={project_type}

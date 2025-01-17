@@ -1,28 +1,32 @@
 "use server"
 
-import prisma from "@/app/db"
+import { prisma } from "@/app/db"
+import { Plots } from "@prisma/client";
 
 
-export default async function AddPrice(price_object: any) {
+export default async function AddPlot(plot_object: Plots) {
 
 
 
 
     try {
         const crt = await prisma.plots.create({
-            data: price_object,
+            data: plot_object
         });
 
+        const crt_history = await prisma.plots_history.create({
+            data: {
+                plot_id: crt.id,
+                ...plot_object
+            }
+        });
 
-        return ("created successfully")
-
+        return crt_history.plot_id
 
     } catch (error) {
 
-        console.error('Error adding price:', error);
-        return ('Error adding price:');
-
-
+        console.error('Error adding plot:', error);
+        return ('Error adding plot:');
     }
 
 

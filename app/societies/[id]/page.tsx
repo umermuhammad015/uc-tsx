@@ -1,4 +1,4 @@
-import prisma from "../../db";
+import { prisma } from "@/app/db"
 import { Badge } from "@/components/ui/badge"
 import Link from "next/link";
 import { Button } from "@/components/ui/button"
@@ -11,24 +11,20 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table";
-import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
+// import { revalidatePath } from "next/cache";
+// import { redirect } from "next/navigation";
 import DeletePlotDialog from "../components/DeletePlotDialog";
 
 
 
 
-type Props = {
-    params: { id: number }
-    // searchParams: { [key: string]: string | string[] | undefined }
-}
+// type Props = {
+//     params: { id: number }
+//     // searchParams: { [key: string]: string | string[] | undefined }
+// }
 
 // export default async function ViewBuilding({ params }: Props) {
-export default async function ViewBuilding({ params, searchParams }:
-    {
-        params: any,
-        searchParams: { [key: string]: string | string[] | undefined }
-    }) {
+export default async function ViewBuilding( {params}: {params: Promise<{ id: string }>} ) {
     // console.log(params);
     // console.log(searchParams.city);
 
@@ -112,21 +108,21 @@ export default async function ViewBuilding({ params, searchParams }:
     //     redirect("/societies");
     // }
 
-    async function deletePlot(data: FormData) {
-        "use server";
+    // async function deletePlot(data: FormData) {
+    //     "use server";
 
-        const plot_id = data.get("plot-id")?.valueOf();
-        // console.log(plot_id);
+    //     const plot_id = data.get("plot-id")?.valueOf();
+    //     // console.log(plot_id);
 
-        await prisma.plots.delete({
-            where: {
-                id: Number(plot_id) as number
-            },
-        });
+    //     await prisma.plots.delete({
+    //         where: {
+    //             id: Number(plot_id) as number
+    //         },
+    //     });
 
-        revalidatePath("/");
-        redirect("/societies/" + id);
-    }
+    //     revalidatePath("/");
+    //     redirect("/societies/" + id);
+    // }
 
     const queryParams = new URLSearchParams();
 

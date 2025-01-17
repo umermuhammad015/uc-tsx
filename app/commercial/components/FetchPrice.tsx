@@ -1,6 +1,6 @@
-import prisma from "../../db";
+import { prisma } from "@/app/db"
 
-export default async function FetchPrice(id:any) {
+export default async function FetchPrice(id:number) {
 
     const price = await prisma.price.findUnique({
         where: {

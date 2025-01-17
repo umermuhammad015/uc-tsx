@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import UpdateButton from "../components/UpdateButton";
-import { FormEvent, useState } from "react"
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -15,261 +15,23 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
-import { z } from "zod";
+// import { z } from "zod";
+import { Buildings } from "@prisma/client";
+import UpdateBuilding from "./UpdateBuilding";
+// import { Buildings } from "@prisma/client";
 // const stringSchema = z.string().min(1, "Address is required").max(255, "Address cannot exceed 255 characters");
-const numberSchema = z.number().nonnegative("Value must be a positive number").nullable();
-const yearSchema = z
-    .number()
-    .int()
-    .min(1950, "Year must be no earlier than 1950")
-    .max(2025, "Year must be no later than 2024");
 
-export default function UpdatePlotForm({ building }: any) {
+type UpdateBuildingFormProps = {
+    building: Buildings | null; // Use the type defined in the Prisma schema
+};
 
-    // const [apartments_maintenance_fee, setApartments_Maintenance_Fee] = useState(building?.apartments_maintenance_fee)
-    // const [retail_floors_maintenance_fee, setRetail_Floors_Maintenance_Fee] = useState(building?.retail_floors_maintenance_fee)
-    // const [office_maintenance_fee, setOffice_Maintenance_Fee] = useState(building?.office_maintenance_fee)
-    // const [plot_size, setPlot_Size] = useState(building?.plot_size)
-    // const [construction_area, setConstruction_Area] = useState(building?.construction_area)
-    // const [launch_year, setLaunch_year] = useState(building?.construction_area)
-
-    // const router = useRouter()
-    const [isAdding, setIsAdding] = useState(false);
-    const [plot_size, setPlot_Size] = useState<any>(building?.plot_size);
-    const [construction_area, setConstruction_Area] = useState<any>(building?.construction_area);
-    const [launch_year, setLaunch_year] = useState<any>(building?.launch_year);
-    // const [construction_year, setConstruction_year] = useState<any>(building?.construction_year);
-    // const [total_floors, setTotal_floors] = useState<any>(building?.total_floors);
-    // const [parking_floor, setParking_floor] = useState<any>(building?.parking_floor);
-    // const [retail_floors_num, setRetail_floors_num] = useState<any>(building?.retail_floors_num);
-    // const [shop_num, setShop_num] = useState<any>(building?.shop_num);
-    // const [apartment_floor_num, setApartment_floor_num] = useState<any>(building?.apartment_floor_num);
-    // const [apartment_num, setApartment_num] = useState<any>(building?.apartment_num);
-    // const [office_floor_num, setOffice_floor_num] = useState<any>(building?.office_floor_num);
-    // const [office_num, setOffice_num] = useState<any>(building?.office_num);
-
-    // const [entryDate, setEntryDate] = useState<string>((new Date).toISOString().split('T')[0]);
-    // const [city, setCity] = useState("");
-    // const [zone, setZone] = useState("");
-    // const [area, setArea] = useState("");
-    // const [building_name, setBuilding_name] = useState("");
-    // const [address, setAddress] = useState("");
-    // const [type, setType] = useState("");
-    // const [status, setStatus] = useState("");
-    // const [builder_name, setBuilder_name] = useState("");
-    // const [building_rank, setBuilding_rank] = useState("");
-    // const [air_condition, setAir_condition] = useState("");
-    // const [security, setSecurity] = useState("");
-    // const [food_court, setFood_court] = useState("");
-    // const [entertainment, setEntertainment] = useState("");
-    // const [escalators, setEscalators] = useState("");
-    // const [none, setNone] = useState("");
-    // const [type_retail, setType_retail] = useState("");
-    // const [type_offices, setType_offices] = useState("");
-    // const [type_apartments, setType_apartments] = useState("");
-    // const [apartments_studio, setApartments_studio] = useState("");
-    // const [apartments_1_bed, setApartments_1_bed] = useState("");
-    // const [apartments_2_bed, setApartments_2_bed] = useState("");
-    // const [apartments_3_bed, setApartments_3_bed] = useState("");
-    // const [apartments_4_bed, setApartments_4_bed] = useState("");
-    // const [apartments_5_bed, setApartments_5_bed] = useState("");
-    // const [apartments_duplex, setApartments_duplex] = useState("");
-    // const [apartments_penthouse, setApartments_penthouse] = useState("");
-    // const [furnished, setFurnished] = useState("");
-    // const [semi_furnished, setSemi_furnished] = useState("");
-    // const [service_apartments, setService_apartments] = useState("");
-    // const [hotel_suites_apartments, setHotel_service_apartments] = useState("");
-    // const [servant_quarter, setServant_quarter] = useState("");
-    // const [fashion_health, setFashion_health] = useState("");
-    // const [electronics_appliancecs, setElectronics_appliancecs] = useState("");
-    // const [home_living, setHome_living] = useState("");
-    // const [restaurants_courts, setRestaurants_courts] = useState("");
-    // const [bakery_ice, setBakery_ice] = useState("");
-    // const [banks_atm, setBanks_atm] = useState("");
-    // const [real_estate, setReal_estate] = useState("");
-    // const [labs_pharmacies, setLabs_pharmacies] = useState("");
-    // const [play_fitness, setPlay_fitness] = useState("");
-    // const [swimming_pool, setSwimming_pool] = useState("");
-    // const [cinema, setCinema] = useState("");
-    // const [surveyor_name, setSurveyor_name] = useState("");
-    // const [remarks, setRemarks] = useState("");
+export default function UpdateBuildingForm({ building }: UpdateBuildingFormProps) {
+    
+    const [plot_size, setPlot_Size] = useState(building?.plot_size);
+    const [construction_area, setConstruction_Area] = useState(building?.construction_area);
+    const [launch_year, setLaunch_year] = useState(building?.launch_year);
 
 
-
-
-    const [open, setOpen] = useState(false);
-
-    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-
-        setIsAdding(true);
-
-        // console.log("isAdding")
-        // console.log(isAdding)
-
-        e.preventDefault();
-
-        if (!isAdding) {
-
-            const formData = new FormData(e.currentTarget)
-
-            console.log("buildingggg name")
-            console.log(formData.get("building-name")); // foo
-
-            console.log("1");
-            console.log("isAdding");
-            console.log(isAdding);
-
-            const allFields = [
-                // { name: "building-floor-no", value: floor_num, schema: stringSchema },
-                { name: "launch-year", value: launch_year, schema: yearSchema },
-                { name: "construction-area", value: construction_area, schema: numberSchema },
-                // { name: "construction-year", value: construction_year, schema: yearSchema },             
-                // { name: "total-floors", value: total_floors, schema: numberSchema },
-                // { name: "parking-floors", value: parking_floor, schema: numberSchema },
-                // { name: "apartment-floors-count", value: apartment_floor_num, schema: numberSchema },
-                // { name: "apartments-count", value: apartment_num, schema: numberSchema },
-                // { name: "office-floors-count", value: office_floor_num, schema: numberSchema },
-                // { name: "offices-count", value: office_num, schema: numberSchema },
-                // { name: "retail-floors-count", value: retail_floors_num, schema: numberSchema },
-                // { name: "retail-floors-shops-count", value: shop_num, schema: numberSchema },
-
-            ];
-
-            console.log("2");
-
-
-            // const newErrors = {};
-            let isValid = true;
-            for (const field of allFields) {
-                const result = field.schema.safeParse(field.value === "" ? null : Number(field.value));
-                console.log(result)
-                // const result = field.schema.safeParse(field.value);
-                if (!result.success) {
-                    isValid = false;
-                    // newErrors[field.name] = result.error.errors[0].message;
-                }
-            }
-
-            console.log("3");
-
-
-            if (!isValid) {
-                // setErrors(newErrors);
-                console.log("Not valid inputs")
-                setIsAdding(false)
-                // setIsSaving(false)
-                return false;
-            }
-
-            console.log("Validation passed");
-
-
-
-            try {
-
-                // const building_object = {
-                //     // id: Number(building_id) as number,
-                //     name: buildingKeywords,
-                //     city: formData.get("building-city"),
-                //     status: formData.get("building-status"),
-                //     zone: formData.get("zone"),
-                //     area: formData.get("area"),
-                //     address: formData.get("address"),
-                //     plot_size: isNaN(Number(plot_size)) ? null : Number(plot_size),
-                //     construction_area: isNaN(Number(construction_area)) ? null : Number(construction_area),
-                //     construction_year: isNaN(Number(construction_year)) ? null : Number(construction_year),
-                //     launch_year: isNaN(Number(launch_year)) ? null : Number(launch_year),
-                //     builder_name: formData.get("builder-name"),
-                //     building_rank: formData.get("building-rank"),
-                //     total_floors: isNaN(Number(total_floors)) ? null : Number(total_floors),
-                //     parking_floors: isNaN(Number(parking_floor)) ? null : Number(parking_floor),
-                //     apartment_floors: isNaN(Number(apartment_floor_num)) ? null : Number(apartment_floor_num),
-                //     apartments_count: isNaN(Number(apartment_num)) ? null : Number(apartment_num),
-                //     office_floors_count: isNaN(Number(office_floor_num)) ? null : Number(office_floor_num),
-                //     offices_count: isNaN(Number(office_num)) ? null : Number(office_num),
-                //     retail_floors_count: isNaN(Number(retail_floors_num)) ? null : Number(retail_floors_num),
-                //     retail_floors_shops_count: isNaN(Number(shop_num)) ? null : Number(shop_num),
-                //     is_centrally_air_conditioned: formData.get("building-facility-centrally-air-conditioned"),
-                //     has_security: formData.get("building-facility-security"),
-                //     has_escalators: formData.get("building-facility-security"),
-                //     has_food_court: formData.get("building-facility-food-court"),
-                //     has_entertainment_area: formData.get("building-facility-entertainment-area"),
-                //     has_none: formData.get("building-facility-none"),
-                //     type_retail: formData.get("building-type-retail"),
-                //     type_offices: formData.get("building-type-offices"),
-                //     type_apartments: formData.get("building-type-apartments"),
-                //     apartments_studio: formData.get("apartments-studio"),
-                //     apartments_has_type_1_bed: formData.get("apartments-has-type-1-bed"),
-                //     apartments_has_type_2_bed: formData.get("apartments-has-type-2-bed"),
-                //     apartments_has_type_3_bed: formData.get("apartments-has-type-3-bed"),
-                //     apartments_has_type_4_bed: formData.get("apartments-has-type-4-bed"),
-                //     apartments_has_type_5_bed: formData.get("apartments-has-type-5-bed"),
-                //     apartments_has_type_duplex: formData.get("apartments-has-type-duplex"),
-                //     apartments_has_type_penthouse: formData.get("apartments-has-type-penthouse"),
-                //     has_furnished: formData.get("has-furnished"),
-                //     has_semi_furnished: formData.get("has-semi-furnished"),
-                //     has_service_apartments: formData.get("has-service-apartments"),
-                //     has_hotel_suites_apartments: formData.get("has-hotel-suites-apartments"),
-                //     apartments_has_servant_quarter: formData.get("apartment-has-servant-quarter"),
-                //     has_fashion_health: formData.get("has-fashion-health"),
-                //     has_electronics_appliancecs: formData.get("has-electronics-appliancecs"),
-                //     has_home_living: formData.get("has-home-living"),
-                //     has_restaurants_courts: formData.get("has-restaurants-courts"),
-                //     has_bakery_ice: formData.get("has-bakery-ice"),
-                //     has_banks_atm: formData.get("has-banks-atm"),
-                //     has_real_estate: formData.get("has-real-estate"),
-                //     has_labs_pharmacies: formData.get("has-labs-pharmacies"),
-                //     has_play_fitness: formData.get("has-play-fitness"),
-                //     has_swimming_pool: formData.get("has-swimming-pool"),
-                //     has_cinema: formData.get("has-cinema"),
-                //     survey_date: formData.get("survey-date"),
-                //     surveyor_name: formData.get("surveyor-name"),
-                //     building_survery_remarks: formData.get("building-survery-remarks"),
-                // }
-                // console.log("building_object")
-                // console.log(building_object)
-
-                // const add_building_output = await AddBuilding(building_object)
-
-                // // const add_building_output = await prisma.buildings.create({
-                // //   data: building_object
-                // // });
-
-
-                // console.log("add_building_output")
-                // console.log(add_building_output)
-
-                // // console.log("isAdding 2");
-                // // router.push("/buildings/" + building_id); // Replace with your desired route
-
-                // // if (router) {
-                // //     router.push("/buildings/" + building_id);
-                // // } else {
-                // //     console.log("router not found")
-                // // }
-
-            } catch (error) {
-
-                console.error('Error submitting building:', error);
-
-            }
-            finally {
-                setIsAdding(false)
-                // setIsSaving(false)
-                console.log("finally")
-
-
-                // return true;
-
-            }
-
-
-
-        }
-
-
-
-    };
 
 
 
@@ -278,8 +40,8 @@ export default function UpdatePlotForm({ building }: any) {
             <div>{building?.name}</div>
 
             <form
-                // action={UpdateBuilding}
-                onSubmit={handleSubmit}
+                action={UpdateBuilding}
+            // onSubmit={handleSubmit}
             >
                 <div className="p-5 border-2 border-b-0 border-gray-200 dark:border-gray-700">
                     {/* Building Id  */}
@@ -298,7 +60,7 @@ export default function UpdatePlotForm({ building }: any) {
                             id="building-id"
                             name="building-id"
                             // defaultValue={societies?.survey_date as unknown as string}
-                            value={building?.id as string}
+                            value={building?.id}
                             onChange={() => (building)}
                             className="max-w-xs border-gray-400 border-2 text-sm rounded focus:ring-blue-500  block w-full p-2.5"
                             placeholder="ID"
@@ -1568,7 +1330,7 @@ export default function UpdatePlotForm({ building }: any) {
                             id="offices-count"
                             name="offices-count"
                             min="0"
-                            defaultValue={building?.office_count as number}
+                            defaultValue={building?.offices_count as number}
                             className="input input-bordered w-full max-w-xs border-2 mb-2 border-gray-400  "
                             placeholder=""
                         />

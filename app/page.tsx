@@ -1,7 +1,7 @@
 
 
 // import { RegisterLink, LoginLink } from "@kinde-oss/kinde-auth-nextjs/components";
-import prisma from "./db";
+import { prisma } from "@/app/db"
 import * as React from "react"
 
 export const revalidate = 1; // revalidate the date at most every hour
@@ -13,7 +13,7 @@ function getBuildings() {
 
 export default async function Home() {
 
-  const buildings = await getBuildings()
+  await getBuildings()
 
   // await prisma.buildings.create({
   //   data:{

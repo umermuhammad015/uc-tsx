@@ -16,6 +16,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
+import { Plots } from "@prisma/client"
 
 // type PlotProps = {
 //     id: number,
@@ -25,12 +26,11 @@ import {
 // type Props = {
 //     plots: { id: number }
 // }
-type Props = {
-    params: { id: number }
-    // searchParams: { [key: string]: string | string[] | undefined }
-}
+type UpdatePlotFormProps = {
+    plots: Plots | null; // Use the type defined in the Prisma schema
+};
 
-export default function UpdatePlotForm({ plots }: any) {
+export default function UpdatePlotForm({ plots }: UpdatePlotFormProps) {
 
 
     const [price, setPrice] = useState(plots?.plot_price)
@@ -38,7 +38,7 @@ export default function UpdatePlotForm({ plots }: any) {
 
     const [plotType, setPlotType] = useState(plots?.type)
     const [payment_mode, setPayment_mode] = useState(plots?.payment_mode)
-    const [apartment_size_ft, setApartment_size_ft] = useState(plots?.apartment_size_ft);
+    // const [apartment_size_ft, setApartment_size_ft] = useState(plots?.apartment_size_ft);
     const [ins_total_price, setIns_total_price] = useState(plots?.ins_total_price);
     const [ins_down_payment, setIns_down_payment] = useState(plots?.ins_down_payment);
     const [ins_possession_Amount, setIns_possession_Amount] = useState(plots?.ins_possession_Amount);
@@ -459,10 +459,10 @@ export default function UpdatePlotForm({ plots }: any) {
                         id="plot-price"
                         name="plot-price"
                         className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-                        defaultValue={plots?.plot_price as string}
+                        defaultValue={plots?.plot_price as number}
                         placeholder="Rs."
                         onChange={(e) => {
-                            setPrice(e.target.value)
+                            setPrice(Number(e.target.value))
                             // console.log(e.target.value)
                         }}
                     />
@@ -486,10 +486,10 @@ export default function UpdatePlotForm({ plots }: any) {
                         id="plot-rent"
                         name="plot-rent"
                         className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-                        defaultValue={plots?.plot_rent as string}
+                        defaultValue={plots?.plot_rent as number}
                         placeholder="Rs."
                         onChange={(e) => {
-                            setRent(e.target.value)
+                            setRent(Number(e.target.value))
                             console.log(e.target.value)
                         }}
                     />
@@ -523,7 +523,7 @@ export default function UpdatePlotForm({ plots }: any) {
                                 id="ins-down-payment"
                                 name="ins-down-payment"
                                 className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-                                defaultValue={plots?.ins_down_payment as string}
+                                defaultValue={plots?.ins_down_payment as number}
                                 placeholder="Rs."
                                 onChange={(e) => {
                                     setIns_down_payment(Number(e.target.value))
@@ -549,7 +549,7 @@ export default function UpdatePlotForm({ plots }: any) {
                                 id="ins-total-price"
                                 name="ins-total-price"
                                 className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-                                defaultValue={plots?.ins_total_price as string}
+                                defaultValue={plots?.ins_total_price as number}
                                 placeholder="Rs."
                                 onChange={(e) => {
                                     setIns_total_price(Number(e.target.value))
@@ -575,7 +575,7 @@ export default function UpdatePlotForm({ plots }: any) {
                                 id="ins-possession-Amount"
                                 name="ins-possession-Amount"
                                 className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-                                defaultValue={plots?.ins_possession_Amount as string}
+                                defaultValue={plots?.ins_possession_Amount as number}
                                 placeholder="Rs."
                                 onChange={(e) => {
                                     setIns_possession_Amount(Number(e.target.value))
@@ -601,7 +601,7 @@ export default function UpdatePlotForm({ plots }: any) {
                                 id="ins-period"
                                 name="ins-period"
                                 className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-                                defaultValue={plots?.ins_period as string}
+                                defaultValue={plots?.ins_period as number}
                                 placeholder=""
                                 onChange={(e) => {
                                     setIns_Period(Number(e.target.value))

@@ -3,10 +3,10 @@ import { Input } from "@/components/ui/input"
 
 import qs from 'query-string'
 
-import { useState } from "react"
+import { useState, FormEvent } from "react"
 // import { useRouter } from 'next/navigation'
-import { useRouter, useSearchParams } from 'next/navigation'
-import useDebounce from "@/components/debouce";
+import { useRouter } from 'next/navigation'
+// import useDebounce from "@/components/debouce";
 
 
 function SearchInput() {
@@ -40,10 +40,12 @@ function SearchInput() {
   //   router.push(url)
 
   // }, [debouncedSearchKeywords])
+  // e => setSearch((e.target as HTMLInputElement).value
+  function handleInput(e: FormEvent<HTMLInputElement>): void {
 
-  function handleInput(e: any) {
-
-    const value = e.target.value
+    const value = (e.target as HTMLInputElement).value;
+    // const value = e.value
+    // const value = e.currentTarget.value
     // router.push("buildings?search=" + search)
     // console.log(value)
     setSearch(value)
@@ -70,7 +72,9 @@ function SearchInput() {
         <Input type="search"
           placeholder="Searchs"
           value={search}
+          // onChange={handleInput}
           // onInput={e => setSearch((e.target as HTMLInputElement).value)}
+          // onChangeCapture={handleInput}
           onInput={handleInput}
         />
         {/* <Button onClick={handleSearch} style={{ height: '43px' }}>Search</Button> */}

@@ -12,6 +12,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { z } from "zod";
 import { useRouter } from "next/navigation";
 import FetchCommercial from "./FetchCommercial";
+import { Commercial, Price } from "@prisma/client";
 
 // const stringSchema = z.string().min(1, "Address is required").max(255, "Address cannot exceed 255 characters");
 const numberSchema = z.number().nonnegative("Value must be a positive number").nullable();
@@ -22,7 +23,7 @@ const numberSchema = z.number().nonnegative("Value must be a positive number").n
 //     .max(100, "Year must be no later than 2024");
 // export const revalidate = 1 // revalidate at most every hour
 
-export default function AddPriceForm({ commercial_id }: any) {
+export default function AddPriceForm( {commercial_id} : {commercial_id: number}) {
 
     // console.log("hi")
     const router = useRouter(); // Initialize the router
@@ -37,25 +38,25 @@ export default function AddPriceForm({ commercial_id }: any) {
 
     // const [isAdding, setIsAdding] = useState(false);
 
-    const [current_name, setCurrent_name] = useState<any>([]);
-    const [plot_size, setPlot_size] = useState<any>();
-    const [apartment_size, setApartment_size] = useState<any>("");
-    const [building_size, setBuilding_size] = useState<any>();
+    const [current_name, setCurrent_name] = useState<Commercial | null>();
+    const [plot_size, setPlot_size] = useState<string>();
+    const [apartment_size, setApartment_size] = useState("");
+    const [building_size, setBuilding_size] = useState<string>();
     // const [apartment_size_ft, setApartment_size_ft] = useState<any>();
-    const [shop_size, setShop_size] = useState<any>("");
-    const [office_size, setOffice_size] = useState<any>("");
-    const [warehouse_size, setWarehouse_size] = useState<any>();
-    const [total_floor, setTotal_floor] = useState<any>();
-    const [building_sq, setBuilding_sq] = useState<any>();
-    const [total_bed, setTotal_bed] = useState<any>();
+    const [shop_size, setShop_size] = useState("");
+    const [office_size, setOffice_size] = useState("");
+    const [warehouse_size, setWarehouse_size] = useState<string>();
+    const [total_floor, setTotal_floor] = useState<string>();
+    const [building_sq, setBuilding_sq] = useState<string>();
+    const [total_bed, setTotal_bed] = useState<string>();
     const [price, setPrice] = useState("");
     const [rent, setRent] = useState("");
-    const [down_payment, setDown_payment] = useState<any>("");
-    const [total_price, setTotal_price] = useState<any>("");
-    const [possession_amount, setpossession_Amount] = useState<any>("");
-    const [installment_period, setInstallment_period] = useState<any>("");
+    const [down_payment, setDown_payment] = useState("");
+    const [total_price, setTotal_price] = useState("");
+    const [possession_amount, setpossession_Amount] = useState("");
+    const [installment_period, setInstallment_period] = useState("");
     const [entryDate, setEntryDate] = useState<string>((new Date).toISOString().split('T')[0]);
-    const [remarks, setRemarks] = useState<any>("");
+    const [remarks, setRemarks] = useState("");
 
     const [property_type, setProperty_type] = useState("Commercial Plot");
 
@@ -83,7 +84,7 @@ export default function AddPriceForm({ commercial_id }: any) {
         // console.log("2");
 
 
-        const newErrors = {};
+        // const newErrors = {};
         let isValid = true;
         for (const field of allFields) {
             const result = field.schema.safeParse(field.value === "" ? null : Number(field.value));
@@ -136,18 +137,13 @@ export default function AddPriceForm({ commercial_id }: any) {
             // console.log("plot_object")
             // console.log(plot_object)
 
-            const add_price_output = await AddPrice(price_object)
-            // console.log("add_plot_output")
-            // console.log(add_plot_output)
+            const added_price_id = await AddPrice(price_object as unknown as Price)
 
-            // console.log("isAdding 2");
-            // console.log(isAdding);
-            // if (isAdding) {
-            //     console.log("redictecting")
-            //     // redirect("/buildings/" + building_id);
-            //     router.push("/buildings/" + building_id); // Replace with your desired route
-            // }
+            console.log("add_price_output")
+            console.log(added_price_id)
 
+
+            router.push("/commercial/" + added_price_id); // Replace with your desired route
 
         } catch (error) {
 
@@ -197,7 +193,7 @@ export default function AddPriceForm({ commercial_id }: any) {
 
 
 
-    }, []);
+    }, [commercial_id]);
 
     return (
         <>
@@ -256,7 +252,7 @@ export default function AddPriceForm({ commercial_id }: any) {
                                 htmlFor="building-name"
                                 className="block mb-2 text-sm font-medium "
                             >
-                                Commercial zone: <Link href={'/commercial/' + commercial_id}>{current_name.commercial_zone_name}</Link>
+                                Commercial zone: <Link href={'/commercial/' + commercial_id}>{current_name?.commercial_zone_name}</Link>
                             </label>
 
                             {/* <Input

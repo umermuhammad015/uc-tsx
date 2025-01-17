@@ -40,7 +40,7 @@ export default function CityInput() {
     //     router.push(url)
 
     // }, [city])
-    function handleChange(value: any) {
+    function handleChange(value: string | undefined) {
         console.log(value)
 
         const query = {

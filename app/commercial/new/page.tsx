@@ -19,6 +19,8 @@ import FetchCommercialName from "../components/FetchCommercialName";
 import { Command, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
 import AddCommercial from "../components/AddCommerical";
 import { z } from "zod";
+import { Commercial } from "@prisma/client";
+import { useRouter } from "next/navigation";
 
 // const stringSchema = z.string().min(1, "Address is required").max(255, "Address cannot exceed 255 characters");
 const numberSchema = z.number().nonnegative("Value must be a positive number").nullable();
@@ -28,28 +30,32 @@ const yearSchema = z
     .min(1950, "Year must be no earlier than 1950")
     .max(2025, "Year must be no later than 2024");
 
+type CommercialNamesProps = {
+    commercial_zone_name: string | null;
+};
+
 export default function Page() {
 
-
+    const router = useRouter()
     const [isAdding, setIsAdding] = useState(false);
-    const [area, setArea] = useState<any>("");
-    const [occupancy, setOccupancy] = useState<any>("");
-    const [launch_year, setLaunch_year] = useState<any>("");
-    const [total_plots, setTotal_plots] = useState<any>("");
-    const [total_shops, setTotal_shops] = useState<any>("");
-    const [total_offices, setTotal_offices] = useState<any>("");
-    const [total_apartments, setTotal_apartments] = useState<any>("");
+    const [area, setArea] = useState("");
+    const [occupancy, setOccupancy] = useState("");
+    const [launch_year, setLaunch_year] = useState("");
+    const [total_plots, setTotal_plots] = useState("");
+    const [total_shops, setTotal_shops] = useState("");
+    const [total_offices, setTotal_offices] = useState("");
+    const [total_apartments, setTotal_apartments] = useState("");
 
-    const [commercialNames, setCommercialNames] = useState<any>([])
+    const [commercialNames, setCommercialNames] = useState<CommercialNamesProps[]>([])
 
-    const [commercialKeywords, setCommercialKeywords] = useState<any>("")
+    const [commercialKeywords, setCommercialKeywords] = useState("")
     const [isSearching, setSearching] = useState(false);
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
 
         setIsAdding(true);
 
-        // console.log("isAdding")
+        // console.log("isAdding"
         // console.log(isAdding)
 
         e.preventDefault();
@@ -81,7 +87,7 @@ export default function Page() {
             console.log("2");
 
 
-            const newErrors = {};
+            // const newErrors = {};
             let isValid = true;
             for (const field of allFields) {
                 const result = field.schema.safeParse(field.value === "" ? null : Number(field.value));
@@ -136,15 +142,24 @@ export default function Page() {
                 console.log("commerical_object")
                 console.log(commerical_object)
 
-                const add_commercial_output = await AddCommercial(commerical_object)
+                const added_commercial_id = await AddCommercial(commerical_object as Commercial)
+
+                // const added_building_id = await AddBuilding(building_object as Buildings)
+
 
                 // const add_building_output = await prisma.buildings.create({
                 //   data: building_object
                 // });
 
+                console.log("added_commercial_out")
+                console.log(added_commercial_id)
 
-                console.log("commerical_object")
-                console.log(add_commercial_output)
+
+                router.push("/commercial/" + added_commercial_id); // Replace with your desired route
+
+
+                // console.log("commerical_object")
+                // console.log(add_commercial_output)
 
                 // console.log("isAdding 2");
                 // console.log(isAdding);
@@ -347,7 +362,7 @@ export default function Page() {
 
                                     <CommandList className="">
                                         <CommandGroup>
-                                            {commercialNames.map((commercial: any) => (
+                                            {commercialNames.map((commercial: CommercialNamesProps) => (
                                                 <CommandItem
                                                     key={commercial.commercial_zone_name}
                                                 // onSelect={() => {

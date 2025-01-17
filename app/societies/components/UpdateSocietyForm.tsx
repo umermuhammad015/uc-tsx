@@ -16,9 +16,13 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
+import { Societies } from "@prisma/client";
 
+type UpdateSocietiesFormProps = {
+    societies: Societies | null; // Use the type defined in the Prisma schema
+};
 
-export default function UpdatePlotForm({ societies }: any) {
+export default function UpdatePlotForm({ societies }: UpdateSocietiesFormProps) {
 
     const [area, setArea] = useState(societies?.area)
     const [occupancy, setOccupancy] = useState(societies?.occupancy);
@@ -30,7 +34,7 @@ export default function UpdatePlotForm({ societies }: any) {
     const [vilaprice, setVilaprice] = useState(societies?.vilas_price)
     const [rent, setRent] = useState(societies?.vilas_monthly_rent)
     const [commericalprice, setCommericalPrice] = useState(societies?.commercial_plot_price)
-    const [apartments_size, setApartments_size] = useState(societies?.apartments_size)
+    const [apartments_size, setApartments_size] = useState(societies?.apartment_size)
     const [min_apartments_price, setMin_Apartments_price] = useState(societies?.min_apartments_price)
     const [max_apartments_price, setMax_Apartments_price] = useState(societies?.max_apartments_price)
     const [min_apartments_monthly_rent, setMin_Apartments_monthly_rent] = useState(societies?.min_apartments_monthly_rent)
@@ -68,7 +72,7 @@ export default function UpdatePlotForm({ societies }: any) {
                             id="societies-id"
                             name="societies-id"
                             // defaultValue={societies?.survey_date as unknown as string}
-                            value={societies?.id as string}
+                            value={societies?.id}
                             onChange={() => (societies)}
                             className="max-w-xs border-gray-400 border-2 text-sm rounded focus:ring-blue-500  block w-full p-2.5"
                             placeholder="ID"
@@ -231,7 +235,7 @@ export default function UpdatePlotForm({ societies }: any) {
                             id="societies-phase"
                             name="societies-phase"
                             className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-                            defaultValue={societies?.phase as string}
+                            defaultValue={societies?.phase as number}
                             placeholder=""
                         />
                     </div>
@@ -249,7 +253,7 @@ export default function UpdatePlotForm({ societies }: any) {
                             id="societies-blocks"
                             name="societies-blocks"
                             className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-                            defaultValue={societies?.blocks as string}
+                            defaultValue={societies?.blocks as number}
                             placeholder=""
                         />
                     </div>
@@ -360,7 +364,7 @@ export default function UpdatePlotForm({ societies }: any) {
                                 id="societies-area"
                                 name="societies-area"
                                 className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-                                defaultValue={societies?.area as string}
+                                defaultValue={societies?.area as number}
                                 placeholder=""
                                 onChange={(e) => {
                                     setArea(Number(e.target.value))
@@ -389,12 +393,12 @@ export default function UpdatePlotForm({ societies }: any) {
                                 id="societies-occupancy"
                                 name="societies-occupancy"
                                 className="input input-bordered w-full max-w-xs border-2 border-gray-400"
-                                defaultValue={societies?.occupancy as number}
+                                defaultValue={societies?.occupancy as string}
                                 min={0}
                                 max={100}
                                 placeholder=""
                                 onChange={(e) => {
-                                    setOccupancy(Number(e.target.value))
+                                    setOccupancy((e.target.value))
                                 }}
                             />
                             <div className="m-4">
@@ -1150,7 +1154,7 @@ export default function UpdatePlotForm({ societies }: any) {
                                 defaultValue={societies?.plot_price as number}
                                 placeholder="Rs."
                                 onChange={(e) => {
-                                    setPrice(e.target.value)
+                                    setPrice(Number (e.target.value))
                                     console.log(e.target.value)
                                 }}
                             />
@@ -1207,7 +1211,7 @@ export default function UpdatePlotForm({ societies }: any) {
                                 defaultValue={societies?.vilas_price as number}
                                 placeholder="Rs."
                                 onChange={(e) => {
-                                    setVilaprice(e.target.value)
+                                    setVilaprice(Number (e.target.value))
                                     console.log(e.target.value)
                                 }}
                             />
@@ -1234,7 +1238,7 @@ export default function UpdatePlotForm({ societies }: any) {
                                 defaultValue={societies?.vilas_monthly_rent as number}
                                 placeholder="Rs."
                                 onChange={(e) => {
-                                    setRent(e.target.value)
+                                    setRent(Number (e.target.value))
                                     console.log(e.target.value)
                                 }}
                             />
@@ -1289,7 +1293,7 @@ export default function UpdatePlotForm({ societies }: any) {
                                 defaultValue={societies?.commercial_plot_price as number}
                                 placeholder="Rs."
                                 onChange={(e) => {
-                                    setCommericalPrice(e.target.value)
+                                    setCommericalPrice(Number (e.target.value))
                                     console.log(e.target.value)
                                 }}
                             />
@@ -1949,7 +1953,7 @@ export default function UpdatePlotForm({ societies }: any) {
                             id="contact-no"
                             name="contact-no"
                             className="input input-bordered w-full max-w-xs border-2 border-gray-400  "
-                            defaultValue={societies?.contact_no as string}
+                            defaultValue={societies?.contact_no as number}
                             placeholder=""
                         />
                     </div>

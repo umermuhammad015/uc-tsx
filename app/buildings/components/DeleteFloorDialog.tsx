@@ -22,7 +22,7 @@ import { Button } from "@/components/ui/button"
 import deleteFloors from "./DeleteFloor";
 
 
-export default function DeleteSocietyDialog({ floor_id }: any) {
+export default function DeleteSocietyDialog({floor_id} : {floor_id: number}) {
 
     const { toast } = useToast()
     const [isConfirmOpen, setIsConfirmOpen] = useState(false);
@@ -31,8 +31,8 @@ export default function DeleteSocietyDialog({ floor_id }: any) {
     async function handleDelete() {
 
         setIsLoading(true)
-
-        const deletefloor = await deleteFloors(floor_id)
+        
+        await deleteFloors(floor_id)
 
         setIsLoading(false)
 

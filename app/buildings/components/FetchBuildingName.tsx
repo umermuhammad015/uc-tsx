@@ -1,8 +1,8 @@
 "use server"
 
-import prisma from "../../db";
+import { prisma } from "@/app/db"
 
-export default async function FetchBuildingName(buildingKeywords: any) {
+export default async function FetchBuildingName(buildingKeywords: string) {
 
     // console.log("FetchDeveloper()")
 

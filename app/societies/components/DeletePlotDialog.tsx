@@ -18,7 +18,7 @@ import { Button } from "@/components/ui/button"
 import deletePlots from "./DeletePlots";
 
 
-export default function DeleteSocietyDialog({ plot_id }: any) {
+export default function DeleteSocietyDialog({plot_id} : {plot_id: number}) {
 
     const { toast } = useToast()
     const [isConfirmOpen, setIsConfirmOpen] = useState(false);

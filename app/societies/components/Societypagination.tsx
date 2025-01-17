@@ -4,18 +4,42 @@ import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import React from 'react';
 
-type PaginationProps = {
-    page?: string;
-    totalPages: number;
-    hasNextPage: boolean;
-};
+
+type MetaDataTypes = {
+    pageNumber?: number; // City name or undefined
+    search_string?: string; // Current page number or undefined
+    take?: number; // Search string or undefined
+    skip?: number; // Developer name or undefined
+    developer?: string; // Society grade or undefined
+    city?: string; // Project type or undefined
+    society_grade?: string; // Survey start date (ISO string) or undefined
+    project_type?: string; // Survey end date (ISO string) or undefined
+    survey_from_date?: string; // Survey end date (ISO string) or undefined
+    survey_to_date?: string; // Survey end date (ISO string) or undefined
+    page: number, 
+    totalPages: number, 
+    hasNextPage: boolean, 
+    rows_count: number,
+  };
+
+type SocietyPaginationTypes = {  
+
+    metadata: MetaDataTypes,
+    city?: string,
+    developer?: string,
+    society_grade?: string,
+    project_type?: string,
+    survey_from_date?: string,
+    survey_to_date?: string,
+
+}
 
 export default function SocietyPagination({ metadata, city = "",
     developer = "",
     society_grade = "",
     project_type = "",
     survey_from_date = "",
-    survey_to_date = "", }: any) {
+    survey_to_date = "", }: SocietyPaginationTypes) {
     const { page, totalPages, hasNextPage, rows_count } = metadata;
 
     // console.log("jhghjgh")
@@ -142,7 +166,7 @@ export default function SocietyPagination({ metadata, city = "",
         </div>
     );
 };
-function useState(arg0: string): [any, any] {
-    throw new Error('Function not implemented.');
-}
+// function useState(arg0: string): [any, any] {
+//     throw new Error('Function not implemented.');
+// }
 

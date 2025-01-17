@@ -1,13 +1,14 @@
 "use server"
 
-import prisma from "@/app/db"
+import { prisma } from "@/app/db"
+import { Floors } from "@prisma/client";
 
 // export default async function AddPlot(entryDate: string, avg_sale_price: number, building_id: number, avg_monthly_rent: number, down_payment_amount: number,
 //     instalment_period: number, instalment_amount: number, possession_amount: number, size_min: number, size_max: number, floor_num: string,
 //     floor_type: string, apart_studio: string, apart_1_bed: string, apart_2_bed: string, apart_3_bed: string, apart_4_bed: string, apart_5_bed: string,
 //     apart_duplex: string, apart_penthouse: string, apart_furnished: string, apart_semi_furnished: string, service_apartment: string, hotel_suites_apartment: string,
 //      unit_type: string, instalment_plan: string, occupancy: number, remarks: string) {
-export default async function AddPlot(plot_object: any) {
+export default async function AddFloor(floor_object: Floors) {
 
 
 
@@ -22,19 +23,23 @@ export default async function AddPlot(plot_object: any) {
 
     try {
         const crt = await prisma.floors.create({
-            data: plot_object,
+            data: floor_object,
         });
 
-        // console.log("plot inserted successfully")
-        // console.log(crt)
+        const crt_history = await prisma.floors_history.create({
+            data: {
+                floor_id: crt.id,
+                ...floor_object
+            }
+        });
 
-        return ("created successfully")
+        return crt_history.building_id
 
         // setIsAdding(!isAdding)
     } catch (error) {
 
-        console.error('Error adding plot:', error);
-        return ('Error adding plot:');
+        console.error('Error adding floor:', error);
+        return ('Error adding floor:');
 
         // setIsAdding(!isAdding)
     }

@@ -37,16 +37,22 @@ const chartConfig = {
     
 } satisfies ChartConfig
 
+// Define the type for the chart data
+type ChartDataItem = {
+    city: string;
+    count: number;
+  };
+
 export default function BuildingChart() {
 
-    const [chartData, setChartData] = useState([]);
+    const [chartData, setChartData] = useState<ChartDataItem[]>();
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response :any = await FetchBuildingChart();
-                // console.log("response")
-                // console.log(response)
+                const response = await FetchBuildingChart();
+                console.log("FetchBuildingChart Data")
+                console.log(response)
                 setChartData(response);
 
             } catch (error) {

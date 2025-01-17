@@ -16,9 +16,13 @@ import {
 import UpdateCommercial from "./UpdateCommercial";
 import { useState } from "react";
 import UpdateButton from "./UpdateButton";
+import { Commercial } from "@prisma/client";
 
+type UpdateCommercialFormProps = {
+    commercial: Commercial | null; // Use the type defined in the Prisma schema
+};
 
-export default function UpdateCommercialForm({ commercial }: any) {
+export default function UpdateCommercialForm({ commercial }: UpdateCommercialFormProps) {
 
 
     const [area, setArea] = useState(commercial?.area);
@@ -50,7 +54,7 @@ export default function UpdateCommercialForm({ commercial }: any) {
                             id="commercial-id"
                             name="commercial-id"
                             // defaultValue={societies?.survey_date as unknown as string}
-                            value={commercial?.id as string}
+                            value={commercial?.id}
                             onChange={() => (commercial)}
                             className="max-w-xs border-gray-400 border-2 text-sm rounded focus:ring-blue-500  block w-full p-2.5"
                             placeholder="ID"
@@ -104,7 +108,7 @@ export default function UpdateCommercialForm({ commercial }: any) {
                             id="commercial-city"
                             name="commercial-city"
                             className="select  w-full text-sm pl-2 h-10 max-w-xs border-2 rounded border-gray-400 bg-background"
-                            defaultValue={commercial?.city}
+                            defaultValue={commercial?.city as string}
                         >
                             <option value="Bahawalpur">Bahawalpur</option>
                             <option value="Faisalabad">Faisalabad</option>
@@ -307,7 +311,7 @@ export default function UpdateCommercialForm({ commercial }: any) {
                             id="commercial-launch-year"
                             name="commercial-launch-year"
                             className="input input-bordered w-full max-w-xs border-2 border-gray-400  "
-                            defaultValue={commercial?.launch_year as string}
+                            defaultValue={commercial?.launch_year as number}
                             placeholder=""
                         />
                     </div>
@@ -356,7 +360,7 @@ export default function UpdateCommercialForm({ commercial }: any) {
                                 name="commercial-area"
                                 className="input input-bordered w-full max-w-xs border-2 border-gray-400  "
                                 placeholder=""
-                                defaultValue={commercial?.area}
+                                defaultValue={commercial?.area as number}
                                 onChange={(e) => {
                                     setArea(Number(e.target.value))
                                     console.log(e.target.value)
@@ -387,7 +391,7 @@ export default function UpdateCommercialForm({ commercial }: any) {
                                 min={0}
                                 max={100}
                                 placeholder=""
-                                defaultValue={commercial?.occupancy}
+                                defaultValue={commercial?.occupancy as number}
                                 onChange={(e) => {
                                     setOccupancy(Number(e.target.value))
                                 }}
@@ -414,7 +418,7 @@ export default function UpdateCommercialForm({ commercial }: any) {
                             id="total-plots"
                             name="total-plots"
                             className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-                            defaultValue={commercial?.total_plots}
+                            defaultValue={commercial?.total_plots as number}
                             placeholder=""
                         />
                     </div>
@@ -432,7 +436,7 @@ export default function UpdateCommercialForm({ commercial }: any) {
                             id="total-shops"
                             name="total-shops"
                             className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-                            defaultValue={commercial?.total_shops}
+                            defaultValue={commercial?.total_shops as number}
                             placeholder=""
                         />
                     </div>
@@ -450,7 +454,7 @@ export default function UpdateCommercialForm({ commercial }: any) {
                             id="total-offices"
                             name="total-offices"
                             className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-                            defaultValue={commercial?.total_offices}
+                            defaultValue={commercial?.total_offices as number}
                             placeholder=""
                         />
                     </div>
@@ -468,7 +472,7 @@ export default function UpdateCommercialForm({ commercial }: any) {
                             id="total-apartments"
                             name="total-apartments"
                             className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-                            defaultValue={commercial?.total_apartments}
+                            defaultValue={commercial?.total_apartments as number}
                             placeholder=""
                         />
                     </div>

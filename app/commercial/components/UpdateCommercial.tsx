@@ -1,7 +1,7 @@
 "use server"
 
 import { redirect } from "next/navigation"
-import prisma from "../../db";
+import { prisma } from "@/app/db"
 
 export default async function editForm(data: FormData) {
 
@@ -25,7 +25,7 @@ export default async function editForm(data: FormData) {
 
     const commercial_grade = data.get("commercial-grade")?.valueOf();
 
-    const commercial_area = data.get("commercial-area")?.valueOf() as string;
+    const commercial_area = data.get("commercial-area")?.valueOf();
 
     const commercial_occupancy = parseInt(data.get("commercial-occupancy")?.valueOf() as string);
 
@@ -69,9 +69,9 @@ export default async function editForm(data: FormData) {
             type: commercial_type,
             location: commercial_location,
             project_status: commercial_project_status,
-            launch_year: commercial_launch_year,
+            launch_year: Number(commercial_launch_year) as number,
             grade: commercial_grade,
-            area: commercial_area,
+            area: Number(commercial_area) as number,
             occupancy: commercial_occupancy,
             total_plots,
             total_shops,
@@ -91,7 +91,7 @@ export default async function editForm(data: FormData) {
     console.log("Update Query is")
     console.log(update_query)
 
-    const updateCommercial = await prisma.commercial.update(update_query)
+    await prisma.commercial.update(update_query)
 
     // const updateBuilding = await prisma.buildings.update(update_query)
 
@@ -107,9 +107,9 @@ export default async function editForm(data: FormData) {
             type: commercial_type as string,
             location: commercial_location as string,
             project_status: commercial_project_status as string,
-            launch_year: commercial_launch_year as string,
+            launch_year: commercial_launch_year as number,
             grade: commercial_grade as string,
-            area: commercial_area,
+            area: commercial_area as number,
             occupancy: commercial_occupancy,
             total_plots,
             total_shops,

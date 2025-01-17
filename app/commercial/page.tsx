@@ -13,21 +13,13 @@ import { Suspense } from "react";
 export const revalidate = 1; // revalidate the date at most every hour
 export const dynamic = "force-dynamic";
 
-// export type PageProps = {
-// 	params: { [key: string]: string | string[] | undefined };
-// 	searchParams?: { [key: string]: string | undefined };
-// 	// searchParams?: { city: string };
-// };
-
+export type PageProps = {
+	params: { [key: string]: string | string[] | undefined };
+	searchParams?: { [key: string]: string | undefined };
+	// searchParams?: { city: string };
+};
 // export default function Page(props: PageProps ) {
-export default async function Page({
-    // params, 
-    searchParams
-
-}: {
-
-    searchParams: { [key: string]: string | string[] | undefined }
-}) {
+export default async function Page({ searchParams }: { searchParams: Promise<{ [key: string]: string | undefined }> }) {
 
     const { city, page, search, project_type, commercial_grade, survey_from_date, survey_to_date } = await searchParams;
 

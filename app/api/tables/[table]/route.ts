@@ -1,7 +1,7 @@
 
 import { NextRequest} from "next/server";
 import * as XLSX from "xlsx";
-import prisma from "@/app/db";
+import { prisma } from "@/app/db"
 
 export async function GET(
   request: NextRequest

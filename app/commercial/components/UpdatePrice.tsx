@@ -1,6 +1,6 @@
 "use server"
 import { redirect } from "next/navigation"
-import prisma from "../../db";
+import { prisma } from "@/app/db"
 
 export default async function UpdatePrice(data: FormData) {
 
@@ -83,7 +83,7 @@ export default async function UpdatePrice(data: FormData) {
     }
 
 
-    const created_price_copy = await prisma.price_history.create({
+    await prisma.price_history.create({
         data: {
             // name: name,
             // city: city
@@ -118,7 +118,7 @@ export default async function UpdatePrice(data: FormData) {
     console.log("Update Query is")
     console.log("update_query")
 
-    const UpdateCommercial = await prisma.price.update(update_query)
+    await prisma.price.update(update_query)
     redirect("/commercial/" + commercial_id)
 
     // if (add_more === "yes") {

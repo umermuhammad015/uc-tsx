@@ -18,7 +18,7 @@ import { Button } from "@/components/ui/button"
 import deleteCommercial from "./DeleteCommercial";
 
 
-export default function DeleteCommercialDialog({commercial_id}:any) {
+export default function DeleteCommercialDialog({commercial_id} : {commercial_id: number}) {
 
     const { toast } = useToast()
     const [isConfirmOpen, setIsConfirmOpen] = useState(false);

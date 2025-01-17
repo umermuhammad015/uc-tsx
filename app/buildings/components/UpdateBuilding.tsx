@@ -1,7 +1,7 @@
 "use server"
 
 import { redirect } from "next/navigation"
-import prisma from "../../db";
+import { prisma } from "@/app/db"
 
 export default async function editForm(data: FormData) {
 
@@ -210,9 +210,9 @@ export default async function editForm(data: FormData) {
     // console.log("Update Query is")
     // console.log(update_query)
 
-    const updateBuilding = await prisma.buildings.update(update_query)
+    await prisma.buildings.update(update_query)
 
-    const created_building_copy = await prisma.buildings_history.create({
+    await prisma.buildings_history.create({
         data: {
             // name: name,
             // city: city
@@ -259,7 +259,7 @@ export default async function editForm(data: FormData) {
             has_real_estate: has_real_estate,
             has_labs_pharmacies: has_labs_pharmacies,
             has_play_fitness: has_play_fitness,
-            has_swimming_pool: has_swimming_pool ,
+            has_swimming_pool: has_swimming_pool,
             has_cinema: has_cinema,
             office_maintenance_fee: office_maintenance_fee,
             apartment_floors: apartment_floors,

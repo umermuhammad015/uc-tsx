@@ -19,7 +19,7 @@ import { Button } from "@/components/ui/button"
 import deleteSociety from "./DeleteSociety";
 
 
-export default function DeleteSocietyDialog({society_id}:any) {
+export default function DeleteSocietyDialog({society_id} : {society_id: number}) {
    
     const { toast } = useToast()
     const [isConfirmOpen, setIsConfirmOpen] = useState(false);

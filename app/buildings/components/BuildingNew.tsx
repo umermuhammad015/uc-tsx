@@ -22,6 +22,7 @@ import { useRouter } from "next/navigation";
 import { z } from "zod";
 import AddBuilding from "../components/AddBuilding";
 
+import { Buildings } from "@prisma/client";
 
 // const stringSchema = z.string().min(1, "Address is required").max(255, "Address cannot exceed 255 characters");
 const numberSchema = z.number().nonnegative("Value must be a positive number").nullable();
@@ -31,22 +32,26 @@ const yearSchema = z
     .min(1950, "Year must be no earlier than 1950")
     .max(2025, "Year must be no later than 2024");
 
-export default function BuildingNew({ building_id }: any) {
+
+type BuildingNamesProps = {
+    name: string | null;
+};
+export default function BuildingNew() {
 
     const router = useRouter()
     const [isAdding, setIsAdding] = useState(false);
-    const [plot_size, setPlot_Size] = useState<any>("");
-    const [construction_area, setConstruction_Area] = useState<any>("");
-    const [launch_year, setLaunch_year] = useState<any>("");
-    const [construction_year, setConstruction_year] = useState<any>("");
-    const [total_floors, setTotal_floors] = useState<any>("");
-    const [parking_floor, setParking_floor] = useState<any>("");
-    const [retail_floors_num, setRetail_floors_num] = useState<any>("");
-    const [shop_num, setShop_num] = useState<any>("");
-    const [apartment_floor_num, setApartment_floor_num] = useState<any>("");
-    const [apartment_num, setApartment_num] = useState<any>("");
-    const [office_floor_num, setOffice_floor_num] = useState<any>("");
-    const [office_num, setOffice_num] = useState<any>("");
+    const [plot_size, setPlot_Size] = useState("");
+    const [construction_area, setConstruction_Area] = useState("");
+    const [launch_year, setLaunch_year] = useState("");
+    const [construction_year, setConstruction_year] = useState("");
+    const [total_floors, setTotal_floors] = useState("");
+    const [parking_floor, setParking_floor] = useState("");
+    const [retail_floors_num, setRetail_floors_num] = useState("");
+    const [shop_num, setShop_num] = useState("");
+    const [apartment_floor_num, setApartment_floor_num] = useState("");
+    const [apartment_num, setApartment_num] = useState("");
+    const [office_floor_num, setOffice_floor_num] = useState("");
+    const [office_num, setOffice_num] = useState("");
 
     // const [entryDate, setEntryDate] = useState<string>((new Date).toISOString().split('T')[0]);
     // const [city, setCity] = useState("");
@@ -97,8 +102,8 @@ export default function BuildingNew({ building_id }: any) {
 
 
     const [isSearching, setSearching] = useState(false);
-    const [buildingNames, setBuildingNames] = useState<any>([])
-    const [buildingKeywords, setBuildingKeywords] = useState<any>("")
+    const [buildingNames, setBuildingNames] = useState <BuildingNamesProps[]>([])
+    const [buildingKeywords, setBuildingKeywords] = useState("")
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
 
@@ -139,7 +144,7 @@ export default function BuildingNew({ building_id }: any) {
             console.log("2");
 
 
-            const newErrors = {};
+            // const newErrors = {};
             let isValid = true;
             for (const field of allFields) {
                 const result = field.schema.safeParse(field.value === "" ? null : Number(field.value));
@@ -227,27 +232,22 @@ export default function BuildingNew({ building_id }: any) {
                     surveyor_name: formData.get("surveyor-name"),
                     building_survery_remarks: formData.get("building-survery-remarks"),
                 }
-                console.log("building_object")
-                console.log(building_object)
+                // console.log("building_object")
+                // console.log(building_object)
 
-                const add_building_output = await AddBuilding(building_object)
+                const added_building_id = await AddBuilding(building_object as Buildings)
+
 
                 // const add_building_output = await prisma.buildings.create({
                 //   data: building_object
                 // });
 
+                console.log("add_building_output")
+                console.log(added_building_id)
 
-                // console.log("add_building_output")
-                // console.log(add_building_output)
 
-                // console.log("isAdding 2");
-                router.push("/buildings/" + building_id); // Replace with your desired route
+                router.push("/buildings/" + added_building_id); // Replace with your desired route
 
-                if (router) {
-                    router.push("/buildings/" + building_id);
-                } else {
-                    console.log("router not found")
-                }
 
             } catch (error) {
 
@@ -282,14 +282,6 @@ export default function BuildingNew({ building_id }: any) {
 
                     // console.log("CityInput use effect trying")
                     const all_buildings = await FetchBuildingName(buildingKeywords)
-
-                    // console.log("all_buildings");
-                    // console.log(all_buildings);
-
-                    // setTimeout(() => {
-                    //   console.log("Hello, World!");
-
-                    // }, 3000);
                     setSearching(false)
                     setBuildingNames(all_buildings);
 
@@ -548,7 +540,7 @@ export default function BuildingNew({ building_id }: any) {
 
                                 <CommandList className="">
                                     <CommandGroup>
-                                        {buildingNames.map((building: any) => (
+                                        {buildingNames.map((building: BuildingNamesProps) => (
                                             <CommandItem
                                                 key={building.name}
 
@@ -1788,7 +1780,3 @@ export default function BuildingNew({ building_id }: any) {
         </>
     );
 }
-function setError(message: string) {
-    throw new Error("Function not implemented.");
-}
-

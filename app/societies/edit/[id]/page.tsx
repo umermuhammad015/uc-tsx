@@ -24,16 +24,17 @@ import UpdateSocietyForm from '@/app/societies/components/UpdateSocietyForm';
 //     const [date, setDate] = React.useState<Date>()
 // }
 
-type Props = {
-    params: { id: number }
-    // searchParams: { [key: string]: string | string[] | undefined }
-}
+// type Props = {
+//     params: { id: number }
+//     // searchParams: { [key: string]: string | string[] | undefined }
+// }
 
-export default async function editForm({ params }: any) {
+export default async function editForm( {params}: {params: Promise<{ id: string }>} ) {
 
     const { id } = await params;
 
-    const societies = await FetchSociety(id)
+    const societies = await FetchSociety(Number(id))
+    
     return (
         <>
             <div className="text-lg"></div>

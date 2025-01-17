@@ -18,7 +18,7 @@ import { Button } from "@/components/ui/button"
 import deleteBuilding from "./DeleteBuilding";
 
 
-export default function DeleteCommercialDialog({building_id}:any) {
+export default function DeleteCommercialDialog({building_id} : {building_id: number}) {
 
     const { toast } = useToast()
     const [isConfirmOpen, setIsConfirmOpen] = useState(false);
@@ -28,7 +28,7 @@ export default function DeleteCommercialDialog({building_id}:any) {
        
         setIsLoading(true)
 
-        const deleteCom = await deleteBuilding(building_id)
+        await deleteBuilding(building_id)
 
         setIsLoading(false)
 

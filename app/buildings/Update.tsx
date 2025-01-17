@@ -1,5 +1,5 @@
 import Link from "next/link"
-import prisma from "../db"
+import { prisma } from "@/app/db"
 import { redirect } from "next/navigation"
 
 async function updateBuilding(data: FormData){

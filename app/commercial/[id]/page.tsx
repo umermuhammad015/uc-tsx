@@ -1,4 +1,4 @@
-import prisma from "../../db";
+import { prisma } from "@/app/db"
 import Link from "next/link";
 import { Button } from "@/components/ui/button"
 
@@ -16,16 +16,12 @@ import DeletePriceDialog from "../components/DeletePriceDailog";
 
 
 
-type Props = {
-    params: { id: number }
-    // searchParams: { [key: string]: string | string[] | undefined }
-}
+// type Props = {
+//     params: { id: number }
+//     // searchParams: { [key: string]: string | string[] | undefined }
+// }
 
-export default async function ViewCommercail({ params }:
-    {
-        params: { [key: string]: string },
-        searchParams: { [key: string]: string | string[] | undefined }
-    }) {
+export default async function ViewCommercail( {params}: {params: Promise<{ id: string }>} ) {
     // console.log(params);
     const { id } = await params;
     // Get commercial zone information

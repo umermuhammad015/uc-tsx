@@ -1,8 +1,8 @@
 "use server"
 
-import prisma from "../../db";
+import { prisma } from "@/app/db"
 
-export default async function FetchCommercialName(commercialKeywords: any) {
+export default async function FetchCommercialName(commercialKeywords: string) {
 
     // console.log("FetchDeveloper()")
 

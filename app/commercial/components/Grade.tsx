@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react'
+import React from 'react'
 import { useRouter } from 'next/navigation'
 import qs from 'query-string'
 import {
@@ -17,7 +17,7 @@ export default function Grade() {
 
     const router = useRouter()
 
-    function handleChange(value: any) {
+    function handleChange(value: string | undefined) {
         console.log(value)
 
         const query = {

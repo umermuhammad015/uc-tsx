@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+// import { useState } from "react"
 import { useRouter } from 'next/navigation'
 import qs from 'query-string'
 import {
@@ -61,7 +61,7 @@ export default function CityInput() {
 
     // }, []);
 
-    function handleChange(value: any){
+    function handleChange(value: string | undefined) {
         console.log(value)
 
         const query = {

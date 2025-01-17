@@ -1,9 +1,10 @@
 
 "use server"
 
-import prisma from "../../db";
+import { Societies } from "@prisma/client";
+import { prisma } from "@/app/db"
 
-export default async function FetchSociety(id:any) {
+export default async function FetchSociety(id:number): Promise<Societies | null> {
 
     const societies = await prisma.societies.findUnique({
         // select: {

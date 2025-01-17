@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react'
+import React from 'react'
 import { useRouter } from 'next/navigation'
 import qs from 'query-string'
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
@@ -55,7 +55,7 @@ export default function ProjectType() {
     // }, []);
 
 
-    function handleChange(value: any) {
+    function handleChange(value: string | undefined) {
         console.log(value)
 
         const query = {

@@ -9,8 +9,13 @@ import UpdateFloorButton from "./UpdateFloorButton"
 
 
 import Link from 'next/link'
+import { Floors } from "@prisma/client"
 
-export default function UpdatePlotForm({ floor }: any) {
+type UpdateFloorFormProps = {
+    floor: Floors | null; // Use the type defined in the Prisma schema
+};
+
+export default function UpdateFloorForm({ floor }: UpdateFloorFormProps) {
 
     // const [price, setPrice] = useState(plots?.plot_price)
     // const [rent, setRent] = useState(plots?.plot_rent)
@@ -26,7 +31,7 @@ export default function UpdatePlotForm({ floor }: any) {
     // const [current_building, setCurrent_building] = useState(floor?.current_building);
     const [floor_type, setFloor_Type] = useState(floor?.floor_type);
 
-    
+
 
     // console.log(current_building)
 

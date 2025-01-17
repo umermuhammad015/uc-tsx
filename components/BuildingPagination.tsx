@@ -12,8 +12,39 @@ import React from 'react';
 // 	hasNextPage: boolean;
 // };
 
-export default function Pagination({ metadata } :any, city = "", building_status = "", survey_from_date = "",
-	survey_to_date = "" ) {
+type MetaDataTypes = {
+	// page: number, 
+	// totalPages: number, 
+	// hasNextPage: boolean, 
+	// rows_count: number,
+	// pageNumber: number, 
+	// search_string: string, 
+	// take: number,
+	// skip: number, 
+	// city?: string, 
+	// building_status?: string, 
+	// survey_from_date?: string, 
+	// survey_to_date?: string,
+	page: number,
+	// survey_to_date: string,
+	hasNextPage: boolean,
+	totalPages: number,
+	rows_count: number,
+
+};
+
+type BuildingPaginationTypes = {
+
+	metadata: MetaDataTypes,
+	city?: string,
+	building_status?: string,
+	survey_from_date?: string,
+	survey_to_date?: string,
+
+}
+
+export default function BuildingPagination({metadata, city = "", building_status = "", survey_from_date = "",
+	survey_to_date = ""}:BuildingPaginationTypes) {
 	const { page, totalPages, hasNextPage, rows_count } = metadata;
 
 	// console.log("jhghjgh")

@@ -6,17 +6,17 @@ import FetchCommercial from "../../components/FetchCommercial";
 
 
 
-type Props = {
-    params: { id: number }
-    // searchParams: { [key: string]: string | string[] | undefined }
-}
+// type Props = {
+//     params: { id: number }
+//     // searchParams: { [key: string]: string | string[] | undefined }
+// }
 
-export default async function editForm({ params }: any) {
+export default async function editForm( {params}: {params: Promise<{ id: string }>} ) {
 
     const { id } = await params;
    
     //    const price = await FetchPrice(id)
-    const commercial = await FetchCommercial(id)
+    const commercial = await FetchCommercial(Number(id))
 
     // console.log("params")
     // console.log(commercial)

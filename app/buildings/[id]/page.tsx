@@ -1,4 +1,4 @@
-import prisma from "../../db";
+import { prisma } from "@/app/db"
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -12,36 +12,32 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
+// import { revalidatePath } from "next/cache";
+// import { redirect } from "next/navigation";
 import DeleteFloorDialog from "../components/DeleteFloorDialog";
 
-type Props = {
-  params: { id: number }
-  // searchParams: { [key: string]: string | string[] | undefined }
-}
+// type PropsType = {
+//   params: { id: string | undefined}
+// }
 
-export default async function ViewBuilding({ params, searchParams }:
-  {
-    params: any,
-    searchParams: { [key: string]: string | string[] | undefined }
-  }) {
+// export default function ViewBuilding({ params }: PropsType) {
+export default async function ViewBuilding({params}: {params: Promise<{ id: string }>}) {
   // console.log(params);
 
   const { id } = await params;
 
+  // Convert the ID to a number
+  const numericId = Number(id);
+
+  if (isNaN(numericId)) {
+    console.error("Invalid ID format.");
+    return;
+  }
+
   // Get building information
   const building = await prisma.buildings.findUnique({
     where: {
-      id: Number(id) as number
-    },
-  });
-
-  // console.log(building);
-
-  const Buildings = await prisma.buildings.findUnique({
-    where: {
-      id: Number(id) as number
+      id: numericId,
     },
   });
 
@@ -49,25 +45,35 @@ export default async function ViewBuilding({ params, searchParams }:
   // Get floors information
   const floors = await prisma.floors.findMany({
     where: {
-      building_id: Number(id) as number
+      building_id: numericId,
     },
   });
 
-  async function deleteFloor(data: FormData) {
-    "use server";
 
-    const floor_id = data.get("floor-id")?.valueOf();
-    // console.log(floor_id);
+  // // Get building information
+  // const building = await prisma.buildings.findUnique({
+  //   where: {
+  //     id: Number(id) as number
+  //   },
+  // });
 
-    await prisma.floors.delete({
-      where: {
-        id: Number(floor_id) as number
-      },
-    });
+  // // console.log(building);
 
-    revalidatePath("/");
-    redirect("/buildings" + id);
-  }
+  // const Buildings = await prisma.buildings.findUnique({
+  //   where: {
+  //     id: Number(id) as number
+  //   },
+  // });
+
+
+  // // Get floors information
+  // const floors = await prisma.floors.findMany({
+  //   where: {
+  //     building_id: Number(id) as number
+  //   },
+  // });
+
+
 
   const queryParams = new URLSearchParams();
 
@@ -333,7 +339,7 @@ export default async function ViewBuilding({ params, searchParams }:
       </div>
       <div className="flex gap-2 justify-end mt-3">
         <Button asChild>
-          <Link href={"edit/" + Buildings?.id}>
+          <Link href={"edit/" + building?.id}>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
               <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
             </svg>

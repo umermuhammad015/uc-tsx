@@ -3,15 +3,15 @@ import FetchPlot from '@/app/societies/components/FetchPlot'
 import UpdatePlotForm from '@/app/societies/components/UpdatePlotForm';
 
 
-type Props = {
-    params: { id: string }
+// type Props = {
+//     params: { id: string }
 
-    // searchParams: { [key: string]: string | string[] | undefined }
-}
+//     // searchParams: { [key: string]: string | string[] | undefined }
+// }
 
 
 
-export default async function editPlotForm({ params }: Props) {
+export default async function editPlotForm( {params}: {params: Promise<{ id: string }>} ) {
 
     const { id } = await params;
 
@@ -20,7 +20,7 @@ export default async function editPlotForm({ params }: Props) {
 
     // const floors = await FetchFloor(id)
 
-    const plots = await FetchPlot(id)
+    const plots = await FetchPlot(Number(id))
 
 
 

@@ -6,12 +6,12 @@ import { Toaster } from "@/components/ui/toaster";
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import AddPlot from "@/app/buildings/components/AddFloor";
 import { useToast } from "@/hooks/use-toast"
 import FetchBuilding from "@/app/buildings/components/FetchBuilding";
 import { useRouter } from "next/navigation";
-
 import { z } from "zod";
+import AddFloor from "@/app/buildings/components/AddFloor";
+import { Buildings, Floors } from "@prisma/client";
 
 // const stringSchema = z.string().min(1, "Address is required").max(255, "Address cannot exceed 255 characters");
 const numberSchema = z.number().nonnegative("Value must be a positive number").nullable();
@@ -23,9 +23,9 @@ const occupancySchema = z
 
 
 
-export default function AddFloorForm({ building_id }: any) {
+export default function AddFloorForm( {building_id} : {building_id: number}) {
     // console.log(params.id);
-    const router = useRouter(); // Initialize the router
+    const router = useRouter(); // Initialize the router 
     const [entryDate, setEntryDate] = useState<string>((new Date).toISOString().split('T')[0]);
 
     const [isAdding, setIsAdding] = useState(false);
@@ -36,18 +36,18 @@ export default function AddFloorForm({ building_id }: any) {
 
     // const[currentBuildingData, setCurrentBuildingData] = useState<any>({})
 
-    const [current_building, setCurrent_building] = useState<any>([]);
+    const [current_building, setCurrent_building] = useState<Buildings | null>();
     // console.log("current_building")
     // console.log(current_building)
     // const [apartment_size, setApartment_size] = useState<any>();
-    const [avg_sale_price, setAvg_Sale_Price] = useState<any>("");
-    const [avg_monthly_rent, setAvg_Monthly_Rent] = useState<any>("");
-    const [down_payment_amount, setDown_Payment_Amount] = useState<any>("");
-    const [instalment_period, setInstalment_Period] = useState<any>("");
-    const [instalment_amount, setInstalment_Amount] = useState<any>("");
-    const [possession_amount, setPossession_Amount] = useState<any>("");
-    const [size_min, setSize_Min] = useState<any>("");
-    const [size_max, setSize_Max] = useState<any>("");
+    const [avg_sale_price, setAvg_Sale_Price] = useState("");
+    const [avg_monthly_rent, setAvg_Monthly_Rent] = useState("");
+    const [down_payment_amount, setDown_Payment_Amount] = useState("");
+    const [instalment_period, setInstalment_Period] = useState("");
+    const [instalment_amount, setInstalment_Amount] = useState("");
+    const [possession_amount, setPossession_Amount] = useState("");
+    const [size_min, setSize_Min] = useState("");
+    const [size_max, setSize_Max] = useState("");
     const [floor_num, setFloor_num] = useState("");
     const [apart_studio, setApart_studio] = useState("");
     const [apart_1_bed, setApart_1_bed] = useState("");
@@ -62,10 +62,10 @@ export default function AddFloorForm({ building_id }: any) {
     const [service_apartment, setService_apartment] = useState("");
     const [hotel_suites_apartment, setHotel_suites_apartment] = useState("");
     const [floor_type, setFloor_Type] = useState("");
-    const [unit_type, setUnit_type] = useState<any>();
+    const [unit_type, setUnit_type] = useState("");
     const [instalment_plan, setInstalment_plan] = useState("");
-    const [occupancy, setOccupancy] = useState<any>("")
-    const [remarks, setRemarks] = useState<any>("");
+    const [occupancy, setOccupancy] = useState("")
+    const [remarks, setRemarks] = useState("");
 
 
     // const validateField = (name: any, value: any) => {
@@ -206,7 +206,7 @@ export default function AddFloorForm({ building_id }: any) {
 
 
 
-    }, []);
+    }, [building_id]);
 
     // const insertPlot = async () => {
 
@@ -400,7 +400,7 @@ export default function AddFloorForm({ building_id }: any) {
 
         try {
 
-            const plot_object = {
+            const floor_object = {
                 date: entryDate,
                 building_id: Number(building_id) as number,
                 floor_type: floor_type as string,
@@ -434,17 +434,14 @@ export default function AddFloorForm({ building_id }: any) {
             // console.log("plot_object")
             // console.log(plot_object)
 
-            await AddPlot(plot_object)
-            // console.log("add_plot_output")
-            // console.log(add_plot_output)
+            // Returns ID of the building for which floor was added
+            const added_building_id = await AddFloor(floor_object as Floors)
 
-            // console.log("isAdding 2");
-            // console.log(isAdding);
-            // if (isAdding) {
-            //     console.log("redictecting")
-            //     // redirect("/buildings/" + building_id);
-            //     router.push("/buildings/" + building_id); // Replace with your desired route
-            // }
+            console.log("add_building_output")
+            console.log(added_building_id)
+
+
+            router.push("/buildings/" + added_building_id); // Replace with your desired route
 
 
         } catch (error) {
@@ -505,7 +502,7 @@ export default function AddFloorForm({ building_id }: any) {
                                     htmlFor="building-name"
                                     className="block mb-2 text-sm font-medium "
                                 >
-                                    Building Name: <Link href={'/buildings/' + building_id}>{current_building.name}</Link>
+                                    Building Name: <Link href={'/buildings/' + building_id}>{current_building?.name}</Link>
                                 </label>
 
 
@@ -515,7 +512,7 @@ export default function AddFloorForm({ building_id }: any) {
                                     id="building-name"
                                     name="building-name"
                                     // value={current_building?.name}
-                                    defaultValue={current_building.name}
+                                    defaultValue={current_building?.name}
                                     // onChange={() => (current_building?.name)}
                                     className="input input-bordered dark:bg-slate-700  w-full max-w-xs border-2 bg-gray-400 border-gray-400 cursor-not-allowed disabled:bg-gray-200"
                                     placeholder=""
@@ -800,7 +797,7 @@ export default function AddFloorForm({ building_id }: any) {
                                                 floor_type === "Apartment" &&
                                                 <>
                                                     {
-                                                        current_building.apartments_studio === "yes" &&
+                                                        current_building?.apartments_studio === "yes" &&
                                                         <>
                                                             <div className="flex items-center mb-4 ml-2">
                                                                 <input
@@ -826,7 +823,7 @@ export default function AddFloorForm({ building_id }: any) {
 
                                                     }
                                                     {
-                                                        current_building.apartments_has_type_1_bed === "yes" &&
+                                                        current_building?.apartments_has_type_1_bed === "yes" &&
                                                         <>
                                                             <div className="flex items-center mb-4 ml-2">
                                                                 <input
@@ -848,7 +845,7 @@ export default function AddFloorForm({ building_id }: any) {
 
                                                     }
                                                     {
-                                                        current_building.apartments_has_type_2_bed === "yes" &&
+                                                        current_building?.apartments_has_type_2_bed === "yes" &&
                                                         <>
                                                             <div className="flex items-center mb-4 ml-2">
                                                                 <input
@@ -870,7 +867,7 @@ export default function AddFloorForm({ building_id }: any) {
 
                                                     }
                                                     {
-                                                        current_building.apartments_has_type_3_bed === "yes" &&
+                                                        current_building?.apartments_has_type_3_bed === "yes" &&
                                                         <>
                                                             <div className="flex items-center mb-4 ml-2">
                                                                 <input
@@ -892,7 +889,7 @@ export default function AddFloorForm({ building_id }: any) {
 
                                                     }
                                                     {
-                                                        current_building.apartments_has_type_4_bed === "yes" &&
+                                                        current_building?.apartments_has_type_4_bed === "yes" &&
                                                         <>
                                                             <div className="flex items-center mb-4 ml-2">
                                                                 <input
@@ -914,7 +911,7 @@ export default function AddFloorForm({ building_id }: any) {
 
                                                     }
                                                     {
-                                                        current_building.apartments_has_type_5_bed === "yes" &&
+                                                        current_building?.apartments_has_type_5_bed === "yes" &&
                                                         <>
                                                             <div className="flex items-center mb-4 ml-2">
                                                                 <input
@@ -936,7 +933,7 @@ export default function AddFloorForm({ building_id }: any) {
 
                                                     }
                                                     {
-                                                        current_building.apartments_has_type_duplex === "yes" &&
+                                                        current_building?.apartments_has_type_duplex === "yes" &&
                                                         <>
                                                             <div className="flex items-center mb-4 ml-2">
                                                                 <input
@@ -958,7 +955,7 @@ export default function AddFloorForm({ building_id }: any) {
 
                                                     }
                                                     {
-                                                        current_building.apartments_has_type_penthouse === "yes" &&
+                                                        current_building?.apartments_has_type_penthouse === "yes" &&
                                                         <>
                                                             <div className="flex items-center mb-4 ml-2">
                                                                 <input
@@ -980,7 +977,7 @@ export default function AddFloorForm({ building_id }: any) {
 
                                                     }
                                                     {
-                                                        current_building.has_furnished === "yes" &&
+                                                        current_building?.has_furnished === "yes" &&
                                                         <>
                                                             <div className="flex items-center mb-4 ml-2">
                                                                 <input
@@ -1002,7 +999,7 @@ export default function AddFloorForm({ building_id }: any) {
 
                                                     }
                                                     {
-                                                        current_building.has_semi_furnished === "yes" &&
+                                                        current_building?.has_semi_furnished === "yes" &&
                                                         <>
                                                             <div className="flex items-center mb-4 ml-2">
                                                                 <input
@@ -1024,7 +1021,7 @@ export default function AddFloorForm({ building_id }: any) {
 
                                                     }
                                                     {
-                                                        current_building.has_service_apartments === "yes" &&
+                                                        current_building?.has_service_apartments === "yes" &&
                                                         <>
                                                             <div className="flex items-center mb-4 ml-2">
                                                                 <input
@@ -1046,7 +1043,7 @@ export default function AddFloorForm({ building_id }: any) {
 
                                                     }
                                                     {
-                                                        current_building.has_hotel_suites_apartments === "yes" &&
+                                                        current_building?.has_hotel_suites_apartments === "yes" &&
                                                         <>
                                                             <div className="flex items-center mb-4 ml-2">
                                                                 <input

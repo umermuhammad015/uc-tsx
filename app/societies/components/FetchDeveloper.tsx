@@ -1,6 +1,6 @@
 "use server"
 
-import prisma from "../../db";
+import { prisma } from "@/app/db"
 
 export default async function FetchDeveloper() {
 

@@ -1,34 +1,28 @@
 "use server"
 
-import prisma from "@/app/db"
+import { prisma } from "@/app/db"
+import { Commercial } from "@prisma/client";
 
-
-export default async function AddCommercial(commercial_object: any) {
-
-    console.log("creating")
-    console.log(commercial_object)
-
-
+export default async function AddCommercial(commerical_object: Commercial) {
 
     try {
         const crt = await prisma.commercial.create({
-            data: commercial_object
+            data: commerical_object
         });
 
-        console.log("crt id")
-        console.log(crt)
+        const crt_history = await prisma.commercial_history.create({
+            data: {
+                commercial_id: crt.id,
+                ...commerical_object
+            }
+        });
 
-        return crt
-
+        return crt_history.commercial_id
 
     } catch (error) {
 
-        console.error('Error commercial_object:', error);
-        return ('Error commercial_object:');
-
-
+        console.error('Error adding commercial:', error);
+        return ('Error adding commercial:');
     }
-
-
 }
 

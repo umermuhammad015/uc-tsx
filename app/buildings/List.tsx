@@ -1,7 +1,7 @@
 import Link from "next/link";
 
-import prisma from "../db";
-
+import { prisma } from "@/app/db"
+import { Prisma } from "@prisma/client";
 // import { PageProps } from '../buildings/page';
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -20,13 +20,24 @@ import {
 } from "@/components/ui/table";
 import DeleteBuildingDialog from "./components/DeleteBuildingDialog";
 
-import Pagination from "@/components/pagination";
+import BuildingPagination from "@/components/BuildingPagination";
 // import DatePickerWithRange from "./components/date";
 // import BuildingChart from "./components/BuildingChart";
 
 export const revalidate = 0; // revalidate the date at most every hour
 export const dynamic = "force-dynamic";
 const PAGE_SIZE = 5;
+
+type getBuildingsTypes = {
+  pageNumber: number,
+  search_string?: string,
+  take: number,
+  skip: number,
+  city?: string,
+  building_status?: string,
+  survey_from_date?: string,
+  survey_to_date?: string,
+}
 
 const getBuildings = async ({
   pageNumber = 1,
@@ -37,9 +48,9 @@ const getBuildings = async ({
   building_status = undefined,
   survey_from_date = undefined,
   survey_to_date = undefined
-}) => {
+}: getBuildingsTypes) => {
 
-  const prisma_query: any = {
+  const prisma_query: Prisma.BuildingsFindManyArgs = {
     take,
     skip,
     where: {
@@ -71,7 +82,7 @@ const getBuildings = async ({
       updatedAt: 'desc', // Sort by "updatedAt" in descending order
     }
   }
-  const prisma_counts_query: any = {
+  const prisma_counts_query: Prisma.BuildingsCountArgs = {
     where: {
       OR: [
         {
@@ -125,7 +136,7 @@ const getBuildings = async ({
     data: results,
     metadata: {
       page: pageNumber,
-      survey_to_date,
+      // survey_to_date,
       hasNextPage: skip + take < rows_count,
       totalPages: Math.ceil(rows_count / take),
       rows_count: rows_count
@@ -141,15 +152,24 @@ const getBuildings = async ({
 
 }
 
-type Props = {
-  params: {};
-  searchParams: { [key: string]: string | string[] | undefined };
+// type Props = {
+//   params: {};
+//   searchParams: { [key: string]: string | string[] | undefined };
+// }
+
+type ListPropTypes = {
+  city?: string,
+  page?: string,
+  search?: string,
+  building_status?: string,
+  survey_from_date?: string,
+  survey_to_date?: string,
 }
 
 
 
 // export default async function List(props: PageProps) {
-export default async function List({ city, page, search, building_status, survey_from_date, survey_to_date }: any) {
+export default async function List({ city, page, search, building_status, survey_from_date, survey_to_date }: ListPropTypes) {
 
   // console.log("developer list ")
   // console.log(developer)
@@ -321,7 +341,8 @@ export default async function List({ city, page, search, building_status, survey
       </div>
 
       <div className="mt-6">
-        <Pagination metadata={metadata}
+        <BuildingPagination
+          metadata={metadata}
           building_status={building_status}
           city={city}
           survey_from_date={survey_from_date}

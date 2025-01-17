@@ -1,6 +1,6 @@
 "use server"
 
-import prisma from "../../db";
+import { prisma } from "@/app/db"
 
 export default async function FetchBuildingChart() {
 
@@ -33,6 +33,12 @@ export default async function FetchBuildingChart() {
 
     // console.log("cityCounts")
     // console.log(cityCounts)
+
+    // Validate the response structure to ensure it matches ChartDataItem[]
+    if (!Array.isArray(cityCounts) || !cityCounts.every(item => typeof item.city === 'string' && typeof item.count === 'number')) {
+        throw new Error('Invalid response format');
+    }
+
 
     return cityCounts;
 }

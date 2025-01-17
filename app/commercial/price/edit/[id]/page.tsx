@@ -3,18 +3,18 @@ import UpdatePriceForm from '@/app/commercial/components/UpdatePriceForm';
 import FetchPrice from '@/app/commercial/components/FetchPrice';
 
 
-type Props = {
-    params: { id: number }
-    // searchParams: { [key: string]: string | string[] | undefined }
-}
+// type Props = {
+//     params: { id: number }
+//     // searchParams: { [key: string]: string | string[] | undefined }
+// }
 
 
 
-export default async function editPriceForm({ params }: Props) {
+export default async function editPriceForm( {params}: {params: Promise<{ id: string }>} ) {
 
  const { id } = await params;
 
-    const price = await FetchPrice(id)
+    const price = await FetchPrice(Number(id))
 
     
     return (

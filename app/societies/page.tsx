@@ -19,14 +19,7 @@ export type PageProps = {
 };
 
 // export default function Page(props: PageProps ) {
-export default async function Page({
-    // params, 
-    searchParams
-
-}: {
-    // params: { slug: string }
-    searchParams: { [key: string]: string | string[] | undefined }
-}) {
+export default async function Page({ searchParams }: { searchParams: Promise<{ [key: string]: string | undefined }> }) {
 
     const { city, page, search, developer, society_grade, project_type, survey_from_date, survey_to_date } = await searchParams;
 
