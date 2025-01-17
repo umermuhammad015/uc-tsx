@@ -7,10 +7,7 @@ import { prisma } from "@/app/db"
 export async function GET(
   request: NextRequest
 ) {
-  // Check auth & permission here
-  // console.log("helo");
 
-  // const searchParams = request.nextUrl.searchParams;
   const { searchParams } = new URL(request.url);
 
   // const file_format = searchParams.get("format");
@@ -22,10 +19,7 @@ export async function GET(
 
   console.log("search");
   console.log(search_string);
-  // console.log(city);
-  // console.log(building_status);
-  // console.log(survey_from_date);
-  // console.log(survey_to_date);
+
 
   try {
 
