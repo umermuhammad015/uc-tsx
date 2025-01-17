@@ -734,7 +734,7 @@ export default function BuildingNew() {
                             htmlFor="launch-year"
                             className="block mb-2 text-sm font-medium"
                         >
-                            Launch Year:
+                            Launch Year:<span className="text-red-700">*</span>
                         </label>
                         <div className="flex">
                             <Input
@@ -759,7 +759,7 @@ export default function BuildingNew() {
                             htmlFor="construction-year"
                             className="block mb-2 text-sm font-medium"
                         >
-                            Construction Year:
+                            Construction Year:<span className="text-red-700">*</span>
                         </label>
                         <div className="flex">
                             <Input
