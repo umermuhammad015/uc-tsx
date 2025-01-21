@@ -1375,7 +1375,7 @@ export default function BuildingNew() {
                     </div>
 
                     {/* No. of Apartments  */}
-                    <div className="mt-4">
+                    <div className="">
                         <label
                             htmlFor="apartments-count"
                             className="block mb-2 text-sm font-medium"
@@ -1402,7 +1402,7 @@ export default function BuildingNew() {
                     </div>
 
                     {/* Apartments Type  */}
-                    <div className="mt-4">
+                    <div className="">
                         <fieldset>
                             <legend className="block mb-2 text-sm font-medium">
                                 Apartments Type:
@@ -1681,7 +1681,7 @@ export default function BuildingNew() {
                     </div>
 
                     {/* No. of Offices */}
-                    <div className="mt-4">
+                    <div className="">
                         <label
                             htmlFor="offices-count"
                             className="block mb-2 text-sm font-medium"
@@ -1741,7 +1741,7 @@ export default function BuildingNew() {
                     </div>
 
 
-                    <div className="flex items-center mt-4 ml-2">
+                    {/* <div className="flex items-center mt-4 ml-2">
                         <input
                             id="building-draft"
                             name="building-draft"
@@ -1755,7 +1755,7 @@ export default function BuildingNew() {
                         >
                             Draft:
                         </label>
-                    </div>
+                    </div> */}
                 </div>
 
                 {/* Submit button */}

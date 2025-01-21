@@ -405,7 +405,7 @@ export default function AddFloorForm( {building_id} : {building_id: number}) {
                 building_id: Number(building_id) as number,
                 floor_type: floor_type as string,
                 floor_no: floor_num as string,
-                occupancy: isNaN(Number(size_min)) ? null : Number(size_min),
+                occupancy: isNaN(Number(occupancy)) ? null : Number(occupancy),
                 unit_type: unit_type as string,
                 floor_apartments_studio: apart_studio,
                 floor_apartments_1_bed: apart_1_bed as string,

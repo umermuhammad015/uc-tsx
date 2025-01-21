@@ -273,7 +273,7 @@ model Societies {
   blocks                                     Int?
   phase                                      Int?
   grade                                      String?
-  occupancy                                  String?
+  occupancy                                  Int?
   area                                       Int?
   population                                 Int?
   launch_year                                Int?
@@ -372,7 +372,7 @@ model Societies_history {
   blocks                                     Int?
   phase                                      Int?
   grade                                      String?
-  occupancy                                  String?
+  occupancy                                  Int?
   area                                       Int?
   population                                 Int?
   launch_year                                Int?

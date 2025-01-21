@@ -56,7 +56,7 @@ export default function NewSocietyPage() {
   const router = useRouter();
   const [isAdding, setIsAdding] = useState(false);
   const [area, setArea] = useState("");
-  const [occupancy, setOccupancy] = useState(0);
+  const [occupancy, setOccupancy] = useState("");
   const [population, setPoputation] = useState("");
   const [blocks, setBlocks] = useState("");
   const [phase, setPhase] = useState("");
@@ -95,7 +95,7 @@ export default function NewSocietyPage() {
         // { name: "building-floor-no", value: floor_num, schema: stringSchema },
         { name: "societies-blocks", value: blocks, schema: numberSchema },
         { name: "societies-area", value: area, schema: numberSchema },
-        // { name: "societies-occupancy", value: occupancy, schema: numberSchema },
+        { name: "societies-occupancy", value: occupancy, schema: numberSchema },
         { name: "societies-population", value: population, schema: numberSchema },
         { name: "societies-phase", value: phase, schema: numberSchema },
         { name: "societies-launch-year", value: launch_year, schema: yearSchema },
@@ -150,7 +150,7 @@ export default function NewSocietyPage() {
           phase: isNaN(Number(phase)) ? null : Number(phase),
           grade: formData.get("societies-grade"),
           // occupancy: isNaN(Number(occupancy)) ? null : Number(occupancy),
-          occupancy: formData.get("societies-occupancy"),
+          occupancy: isNaN(Number(occupancy)) ? null : Number(occupancy),
           area: isNaN(Number(area)) ? null : Number(area),
           population: isNaN(Number(population)) ? null : Number(population),
           launch_year: isNaN(Number(launch_year)) ? null : Number(launch_year),
@@ -746,19 +746,16 @@ export default function NewSocietyPage() {
             </div> */}
             <div className="flex">
               <Input
-                type="number"
+                type="text"
                 id="societies-occupancy"
                 name="societies-occupancy"
                 className="input input-bordered w-full max-w-xs border-2 border-gray-400"
-                min={0}
-                max={100}
                 placeholder=""
-                onChange={(e) => {
-                  setOccupancy(Number(e.target.value))
-                }}
+                value={occupancy}
+                onChange={(e) => setOccupancy(e.target.value)}
               />
-              <div className="m-4">
-                {occupancy + "%"}
+              <div className="m-3">
+                {isNaN(Number(occupancy)) ? <span className="text-red-500 text-sm mt-1">Enter number only</span> :(occupancy + "%")}
               </div>
             </div>
           </div>

@@ -393,12 +393,12 @@ export default function UpdatePlotForm({ societies }: UpdateSocietiesFormProps) 
                                 id="societies-occupancy"
                                 name="societies-occupancy"
                                 className="input input-bordered w-full max-w-xs border-2 border-gray-400"
-                                defaultValue={societies?.occupancy as string}
+                                defaultValue={societies?.occupancy as number}
                                 min={0}
                                 max={100}
                                 placeholder=""
                                 onChange={(e) => {
-                                    setOccupancy((e.target.value))
+                                    setOccupancy(Number(e.target.value))
                                 }}
                             />
                             <div className="m-4">
@@ -427,7 +427,7 @@ export default function UpdatePlotForm({ societies }: UpdateSocietiesFormProps) 
                                 placeholder=""
                                 onChange={(e) => {
                                     setPoputation(Number(e.target.value))
-                                    console.log(e.target.value)
+                                    // console.log(e.target.value)
                                 }}
                             />
                             <div className="m-4 mb-0">

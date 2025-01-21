@@ -374,7 +374,7 @@ export default function UpdateCommercialForm({ commercial }: UpdateCommercialFor
                     </div>
 
                     {/* Occupancy Ratio */}
-                    <div className="mt-4">
+                    <div className="">
                         <label
                             htmlFor="commercial-occupancy"
                             className="block mb-2 text-sm font-medium"

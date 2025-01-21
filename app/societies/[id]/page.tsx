@@ -193,7 +193,8 @@ export default async function ViewBuilding( {params}: {params: Promise<{ id: str
                         </TableRow>
                         <TableRow>
                             <TableCell>Occupancy Ratio</TableCell>
-                            <TableCell>{society?.occupancy === "" ? (society?.occupancy !== null) : (society?.occupancy + '%')}</TableCell>
+                            {/* <TableCell>{Number(society?.occupancy === undefined ? (society?.occupancy !== "-") : (society?.occupancy + '%'))}</TableCell> */}
+                            <TableCell>{(society?.occupancy + '%') as string}</TableCell>
                         </TableRow>
                         <TableRow>
                             <TableCell>Population</TableCell>

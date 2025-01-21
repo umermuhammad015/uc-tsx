@@ -1372,7 +1372,7 @@ export default function UpdateBuildingForm({ building }: UpdateBuildingFormProps
                         ></Textarea>
                     </div>
 
-                    <div className="flex items-center mt-4 ml-2">
+                    {/* <div className="flex items-center mt-4 ml-2">
                         <input
                             id="building-draft"
                             name="building-draft"
@@ -1386,7 +1386,7 @@ export default function UpdateBuildingForm({ building }: UpdateBuildingFormProps
                         >
                             Draft:
                         </label>
-                    </div>
+                    </div> */}
                 </div>
 
                 <div className="flex gap-1 justify-end mt-3">

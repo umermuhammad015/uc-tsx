@@ -214,26 +214,6 @@ export default function AddPlotForm({ society_id }: { society_id: number }) {
                     //  action={handleSubmit}
                     >
 
-
-
-                        <div className="mt-4 ">
-                            <label
-                                htmlFor="society-id"
-                                className="block mb-2 text-sm font-medium "
-                            >
-                                Society ID:
-                            </label>
-                            <Input
-                                type="text"
-                                id="society-id"
-                                name="society-id"
-                                className="input input-bordered dark:bg-slate-700  w-full max-w-xs border-2 bg-gray-400 border-gray-400 cursor-not-allowed disabled:bg-gray-200"
-                                placeholder=""
-                                value={society_id}
-                                onChange={() => (society_id)}
-                            />
-                        </div>
-
                         <div className="mt-4 ">
                             <label
                                 htmlFor="building-name"
@@ -254,6 +234,26 @@ export default function AddPlotForm({ society_id }: { society_id: number }) {
 
                                 /> */}
                         </div>
+
+                        <div className="mt-4 ">
+                            <label
+                                htmlFor="society-id"
+                                className="block mb-2 text-sm font-medium "
+                            >
+                                Society ID:
+                            </label>
+                            <Input
+                                type="text"
+                                id="society-id"
+                                name="society-id"
+                                className="input input-bordered dark:bg-slate-700  w-full max-w-xs border-2 bg-gray-400 border-gray-400 cursor-not-allowed disabled:bg-gray-200"
+                                placeholder=""
+                                value={society_id}
+                                onChange={() => (society_id)}
+                            />
+                        </div>
+
+
                         {/*Date */}
 
                         <div className="relative max-w-sm mt-4">
@@ -540,7 +540,7 @@ export default function AddPlotForm({ society_id }: { society_id: number }) {
                         {/* Office size  */}
                         {
                             plotType === "Office" &&
-                            <>k
+                            <>
                                 <div className="mt-4">
                                     <label
                                         htmlFor="office-size"

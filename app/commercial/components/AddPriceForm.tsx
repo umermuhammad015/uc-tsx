@@ -23,20 +23,12 @@ const numberSchema = z.number().nonnegative("Value must be a positive number").n
 //     .max(100, "Year must be no later than 2024");
 // export const revalidate = 1 // revalidate at most every hour
 
-export default function AddPriceForm( {commercial_id} : {commercial_id: number}) {
+export default function AddPriceForm({ commercial_id }: { commercial_id: number }) {
 
-    // console.log("hi")
     const router = useRouter(); // Initialize the router
     const [isAdding, setIsAdding] = useState(false);
-    // const [isAdding, setIsAdding] = useState(0);
-    // const [isSaving, setIsSaving] = useState(0);
     const [isSaving, setIsSaving] = useState(false);
     const { toast } = useToast()
-    // const [current_society, setCurrent_society] = useState<any>([]);
-
-    // const [pressAdd, setPress_Add] = useState<Number>(0);
-
-    // const [isAdding, setIsAdding] = useState(false);
 
     const [current_name, setCurrent_name] = useState<Commercial | null>();
     const [plot_size, setPlot_size] = useState<string>();
@@ -70,9 +62,9 @@ export default function AddPriceForm( {commercial_id} : {commercial_id: number})
 
         const allFields = [
 
-            { name: "shop-size", value: shop_size, schema: numberSchema },
-            { name: "office-size", value: office_size, schema: numberSchema },
-            { name: "apartment-size", value: apartment_size, schema: numberSchema },
+            // { name: "shop-size", value: shop_size, schema: numberSchema },
+            // { name: "office-size", value: office_size, schema: numberSchema },
+            // { name: "apartment-size", value: apartment_size, schema: numberSchema },
             { name: "price", value: price, schema: numberSchema },
             { name: "rent", value: rent, schema: numberSchema },
             { name: "total-price", value: total_price, schema: numberSchema },
@@ -226,6 +218,27 @@ export default function AddPriceForm( {commercial_id} : {commercial_id: number})
                 >
                     <div className="p-4 container border-2 ">
 
+                        <div className="">
+                            <label
+                                htmlFor="building-name"
+                                className="block mb-2 text-sm font-medium "
+                            >
+                                Commercial zone: <Link href={'/commercial/' + commercial_id}>{current_name?.commercial_zone_name}</Link>
+                            </label>
+
+                            {/* <Input
+                                    type="text"
+                                    id="building-name"
+                                    name="building-name"
+                                    // value={current_building?.name}
+                                    defaultValue={current_building.name}
+                                    // onChange={() => (current_building?.name)}
+                                    className="input input-bordered dark:bg-slate-700  w-full max-w-xs border-2 bg-gray-400 border-gray-400 cursor-not-allowed disabled:bg-gray-200"
+                                    placeholder=""
+
+                                /> */}
+                        </div>
+
                         <div className="mt-4 ">
                             <label
                                 htmlFor="commercial-id"
@@ -247,26 +260,7 @@ export default function AddPriceForm( {commercial_id} : {commercial_id: number})
                             />
                         </div>
 
-                        <div className="mt-4 ">
-                            <label
-                                htmlFor="building-name"
-                                className="block mb-2 text-sm font-medium "
-                            >
-                                Commercial zone: <Link href={'/commercial/' + commercial_id}>{current_name?.commercial_zone_name}</Link>
-                            </label>
 
-                            {/* <Input
-                                    type="text"
-                                    id="building-name"
-                                    name="building-name"
-                                    // value={current_building?.name}
-                                    defaultValue={current_building.name}
-                                    // onChange={() => (current_building?.name)}
-                                    className="input input-bordered dark:bg-slate-700  w-full max-w-xs border-2 bg-gray-400 border-gray-400 cursor-not-allowed disabled:bg-gray-200"
-                                    placeholder=""
-
-                                /> */}
-                        </div>
 
                         {/*Date */}
 
@@ -495,15 +489,21 @@ export default function AddPriceForm( {commercial_id} : {commercial_id: number})
                                     >
                                         Shop Size (Sq. Ft):
                                     </label>
-                                    <Input
-                                        type="text"
-                                        id="shop-size"
-                                        name="shop-size"
-                                        value={shop_size}
-                                        className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-                                        onChange={(e) => setShop_size(e.target.value)}
-                                        placeholder=""
-                                    />
+                                    <div className="flex">
+                                        <Input
+                                            type="number"
+                                            id="shop-size"
+                                            name="shop-size"
+                                            value={shop_size}
+                                            className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+                                            onChange={(e) => setShop_size(e.target.value)}
+                                            placeholder=""
+                                        />
+                                        <div className="m-4">
+                                            {(Number(shop_size)).toLocaleString()}
+                                            {/* {Number(avg_sale_price).toLocaleString()} */}
+                                        </div>
+                                    </div>
                                 </div>
                             </>
 
@@ -520,18 +520,20 @@ export default function AddPriceForm( {commercial_id} : {commercial_id: number})
                                     >
                                         Office Size (Sq. Ft):
                                     </label>
-                                    <Input
-                                        type="text"
-                                        id="office-size"
-                                        name="office-size"
-                                        // value={office_size}
-                                        className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-                                        value={office_size}
-                                        onChange={(e) => setPrice(e.target.value)}
-                                    />
-                                    <div className="m-4">
-                                        {isNaN(Number(office_size)) ? <span className="text-red-500 text-sm mt-1">Enter number only</span> : Number(office_size).toLocaleString()}
-                                        {/* {Number(avg_sale_price).toLocaleString()} */}
+                                    <div className="flex">
+                                        <Input
+                                            type="number"
+                                            id="office-size"
+                                            name="office-size"
+                                            // value={office_size}
+                                            className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+                                            value={office_size}
+                                            onChange={(e) => setOffice_size(e.target.value)}
+                                        />
+                                        <div className="m-4">
+                                            {(Number(office_size)).toLocaleString()}
+                                            {/* {Number(avg_sale_price).toLocaleString()} */}
+                                        </div>
                                     </div>
                                 </div>
                             </>
@@ -549,23 +551,25 @@ export default function AddPriceForm( {commercial_id} : {commercial_id: number})
                                     >
                                         Apartment Size (Sq. Ft):
                                     </label>
-                                    <Input
-                                        type="text"
-                                        id="apartment-size"
-                                        name="apartment-size"
-                                        // value={apartment_size}
-                                        className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-                                        placeholder=""
-                                        value={apartment_size}
-                                        onChange={(e) => setPrice(e.target.value)}
-                                    />
-                                    <div className="m-4">
-                                        {isNaN(Number(apartment_size)) ? <span className="text-red-500 text-sm mt-1">Enter number only</span> : Number(apartment_size).toLocaleString()}
-                                        {/* {Number(avg_sale_price).toLocaleString()} */}
+                                    <div className="flex">
+                                        <Input
+                                            type="text"
+                                            id="apartment-size"
+                                            name="apartment-size"
+                                            // value={apartment_size}
+                                            className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+                                            placeholder=""
+                                            value={apartment_size}
+                                            onChange={(e) => setApartment_size(e.target.value)}
+                                        />
+                                        <div className="m-4">
+                                            {(Number(apartment_size)).toLocaleString()}
+                                            {/* {Number(avg_sale_price).toLocaleString()} */}
+                                        </div>
                                     </div>
                                 </div>
 
-                                <div className="mt-6">
+                                <div className="">
                                     <label
                                         htmlFor="total-bed"
                                         className="block mb-2 text-sm font-medium"
@@ -573,7 +577,7 @@ export default function AddPriceForm( {commercial_id} : {commercial_id: number})
                                         No. of Beds:
                                     </label>
                                     <Input
-                                        type="text"
+                                        type="number"
                                         id="total-bed"
                                         name="total-bed"
                                         value={total_bed}
@@ -691,7 +695,7 @@ export default function AddPriceForm( {commercial_id} : {commercial_id: number})
 
 
                         {/* rent  */}
-                        <div className="mt-4">
+                        <div className="">
                             <label
                                 htmlFor="rent"
                                 className="block mb-2 text-sm font-medium"
@@ -724,7 +728,7 @@ export default function AddPriceForm( {commercial_id} : {commercial_id: number})
                             payment_mode === "Instalments" &&
                             <>
 
-                                <div className="mt-4">
+                                <div className="">
                                     <label
                                         htmlFor="total-price"
                                         className="block mb-2 text-sm font-medium"
@@ -749,7 +753,7 @@ export default function AddPriceForm( {commercial_id} : {commercial_id: number})
                                     </div>
                                 </div>
 
-                                <div className="mt-4">
+                                <div className="">
                                     <label
                                         htmlFor="installment-period"
                                         className="block mb-2 text-sm font-medium"
@@ -774,7 +778,7 @@ export default function AddPriceForm( {commercial_id} : {commercial_id: number})
                                 </div>
 
 
-                                <div className="mt-4">
+                                <div className="">
                                     <label
                                         htmlFor="down-payment"
                                         className="block mb-2 text-sm font-medium"
@@ -786,7 +790,6 @@ export default function AddPriceForm( {commercial_id} : {commercial_id: number})
                                             type="text"
                                             id="down-payment"
                                             name="down-payment"
-
                                             className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
                                             placeholder="Rs."
                                             value={down_payment}
@@ -799,7 +802,7 @@ export default function AddPriceForm( {commercial_id} : {commercial_id: number})
                                     </div>
                                 </div>
 
-                                <div className="mt-4">
+                                <div className="">
                                     <label
                                         htmlFor="possession-amount"
                                         className="block mb-2 text-sm font-medium"
@@ -900,6 +903,7 @@ export default function AddPriceForm( {commercial_id} : {commercial_id: number})
                                             setDown_payment("")
                                             setpossession_Amount("")
                                             setRemarks("")
+                                            setEntryDate("")
 
 
                                             setIsSaving(false);

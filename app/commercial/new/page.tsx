@@ -543,7 +543,7 @@ export default function Page() {
                     </div>
 
                     {/*Grade  */}
-                    <div className="mt-4">
+                    <div className="">
                         <label
                             htmlFor="commercial-grade"
                             className="block mb-2 text-sm font-medium"
@@ -608,7 +608,7 @@ export default function Page() {
                     </div>
 
                     {/* Occupancy Ratio */}
-                    <div className="mt-4">
+                    <div className="">
                         <label
                             htmlFor="commercial-occupancy"
                             className="block mb-2 text-sm font-medium"
@@ -629,7 +629,7 @@ export default function Page() {
                                 onChange={(e) => setOccupancy(e.target.value)}
                             />
                             <div className="m-3">
-                                {isNaN(Number(occupancy)) ? <span className="text-red-500 text-sm mt-1">Enter number only</span> : Number(occupancy)}
+                                {isNaN(Number(occupancy)) ? <span className="text-red-500 text-sm mt-1">Enter number only</span> : (occupancy + "%")}
                             </div>
                         </div>
 

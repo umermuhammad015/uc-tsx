@@ -6,9 +6,6 @@ import { Price } from "@prisma/client";
 
 export default async function AddPrice(price_object: Price ) {
 
-
-
-
     try {
         const crt = await prisma.price.create({
             data: price_object
