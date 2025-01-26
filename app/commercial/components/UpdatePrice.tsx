@@ -18,19 +18,19 @@ export default async function UpdatePrice(data: FormData) {
 
     const building_size = data.get("building-size")?.valueOf();
 
-    const total_floor = data.get("total-floor")?.valueOf();
+    const total_floor = data.get("total-floor")?.valueOf() as string;
 
-    const building_size_sq = data.get("building-size-sq")?.valueOf();
+    const building_size_sq = data.get("building-size-sq")?.valueOf() as string;
 
-    const shop_size = data.get("shop-size")?.valueOf();
+    const shop_size = data.get("shop-size")?.valueOf() as string;
 
-    const office_size = data.get("office-size")?.valueOf();
+    const office_size = data.get("office-size")?.valueOf() as string;
 
-    const apartment_size = data.get("apartment-size")?.valueOf();
+    const apartment_size = data.get("apartment-size")?.valueOf() as string;
 
     const warehouse_size = data.get("warehouse-size")?.valueOf();
 
-    const total_bed = data.get("total-bed")?.valueOf();
+    const total_bed = data.get("total-bed")?.valueOf() as string;
 
     const payment_mode = data.get("payment-mode")?.valueOf();
 
@@ -59,13 +59,13 @@ export default async function UpdatePrice(data: FormData) {
             property_type: property_type as string,
             plot_size: plot_size as string,
             building_size: building_size as string,
-            total_floor: total_floor as string,
-            building_size_sq: building_size_sq as string,
-            shop_size: shop_size as string,
-            office_size: office_size as string,
-            apartment_size: apartment_size as string,
+            total_floor: Number(total_floor) as number,
+            building_size_sq: Number(building_size_sq) as number,
+            shop_size: Number(shop_size) as number,
+            office_size: Number(office_size) as number,
+            apartment_size: Number(apartment_size) as number,
             warehouse_size: warehouse_size as string,
-            total_bed: total_bed as string,
+            total_bed: Number(total_bed) as number,
             payment_mode: payment_mode as string,
             price: price,
             rent: rent,
@@ -94,13 +94,13 @@ export default async function UpdatePrice(data: FormData) {
             property_type: property_type as string,
             plot_size: plot_size as string,
             building_size: building_size as string,
-            total_floor: total_floor as string,
-            building_size_sq: building_size_sq as string,
-            shop_size: shop_size as string,
-            office_size: office_size as string,
-            apartment_size: apartment_size as string,
+            total_floor: Number(total_bed) as number,
+            building_size_sq: Number(building_size_sq) as number,
+            shop_size: Number(shop_size) as number,
+            office_size: Number(office_size) as number,
+            apartment_size: Number(apartment_size) as number,
             warehouse_size: warehouse_size as string,
-            total_bed: total_bed as string,
+            total_bed: Number(total_bed) as number,
             payment_mode: payment_mode as string,
             price: price,
             rent: rent,

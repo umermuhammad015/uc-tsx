@@ -38,9 +38,9 @@ export default function AddPriceForm({ commercial_id }: { commercial_id: number 
     const [shop_size, setShop_size] = useState("");
     const [office_size, setOffice_size] = useState("");
     const [warehouse_size, setWarehouse_size] = useState<string>();
-    const [total_floor, setTotal_floor] = useState<string>();
-    const [building_sq, setBuilding_sq] = useState<string>();
-    const [total_bed, setTotal_bed] = useState<string>();
+    const [total_floor, setTotal_floor] = useState("");
+    const [building_sq, setBuilding_sq] = useState("");
+    const [total_bed, setTotal_bed] = useState("");
     const [price, setPrice] = useState("");
     const [rent, setRent] = useState("");
     const [down_payment, setDown_payment] = useState("");
@@ -50,9 +50,9 @@ export default function AddPriceForm({ commercial_id }: { commercial_id: number 
     const [entryDate, setEntryDate] = useState<string>((new Date).toISOString().split('T')[0]);
     const [remarks, setRemarks] = useState("");
 
-    const [property_type, setProperty_type] = useState("Commercial Plot");
+    const [property_type, setProperty_type] = useState<string>("Commercial Plot");
 
-    const [payment_mode, setPayment_mode] = useState("Lumpsum Payment");
+    const [payment_mode, setPayment_mode] = useState<string>("Lumpsum Payment");
 
     const handleSubmit = async () => {
 
@@ -62,9 +62,13 @@ export default function AddPriceForm({ commercial_id }: { commercial_id: number 
 
         const allFields = [
 
-            // { name: "shop-size", value: shop_size, schema: numberSchema },
-            // { name: "office-size", value: office_size, schema: numberSchema },
-            // { name: "apartment-size", value: apartment_size, schema: numberSchema },
+
+            { name: "total-floor", value: total_floor, schema: numberSchema },
+            { name: "total-bed", value: total_bed, schema: numberSchema },
+            { name: "building-size-sq", value: building_sq, schema: numberSchema },
+            { name: "shop-size", value: shop_size, schema: numberSchema },
+            { name: "office-size", value: office_size, schema: numberSchema },
+            { name: "apartment-size", value: apartment_size, schema: numberSchema },
             { name: "price", value: price, schema: numberSchema },
             { name: "rent", value: rent, schema: numberSchema },
             { name: "total-price", value: total_price, schema: numberSchema },
@@ -104,18 +108,18 @@ export default function AddPriceForm({ commercial_id }: { commercial_id: number 
         try {
 
             const price_object = {
-                date: entryDate,
+                date: entryDate as string,
                 commercial_id: Number(commercial_id) as number,
                 property_type: property_type as string,
                 plot_size: plot_size as string,
                 building_size: building_size as string,
-                total_floor: total_floor as string,
-                building_size_sq: building_sq as string,
-                shop_size: shop_size as string,
-                office_size: office_size as string,
-                apartment_size: apartment_size as string,
+                total_floor: total_floor,
+                building_size_sq: building_sq,
+                shop_size: shop_size,
+                office_size: office_size,
+                apartment_size: apartment_size,
                 warehouse_size: warehouse_size as string,
-                total_bed: total_bed as string,
+                total_bed: total_bed,
                 payment_mode: payment_mode as string,
                 price: price,
                 rent: rent,
@@ -126,8 +130,8 @@ export default function AddPriceForm({ commercial_id }: { commercial_id: number 
                 remarks: remarks as string,
             }
 
-            // console.log("plot_object")
-            // console.log(plot_object)
+            console.log("plot_object")
+            console.log(price)
 
             const added_price_id = await AddPrice(price_object as unknown as Price)
 
@@ -439,40 +443,52 @@ export default function AddPriceForm({ commercial_id }: { commercial_id: number 
 
                                 </div>
 
-                                <div className="mt-6">
+                                <div className="mt-4">
                                     <label
                                         htmlFor="total-floor"
                                         className="block mb-2 text-sm font-medium"
                                     >
                                         No. of Floors:
                                     </label>
-                                    <Input
-                                        type="text"
-                                        id="total-floor"
-                                        name="total-floor"
-                                        value={total_floor}
-                                        className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-                                        onChange={(e) => setTotal_floor(e.target.value)}
-                                        placeholder=""
-                                    />
+                                    <div className="flex">
+                                        <Input
+                                            type="text"
+                                            id="total-floor"
+                                            name="total-floor"
+                                            value={total_floor}
+                                            className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+                                            onChange={(e) => setTotal_floor(e.target.value)}
+                                            placeholder=""
+                                        />
+                                        <div className="m-4">
+                                            {isNaN(Number(total_floor)) ? <span className="text-red-500 text-sm mt-1">Enter number only</span> : Number(total_floor).toLocaleString()}
+                                            {/* {Number(avg_sale_price).toLocaleString()} */}
+                                        </div>
+                                    </div>
                                 </div>
 
-                                <div className="mt-6">
+                                <div className="">
                                     <label
                                         htmlFor="building-size-sq"
                                         className="block mb-2 text-sm font-medium"
                                     >
                                         Building Size (Sq.Ft.):
                                     </label>
-                                    <Input
-                                        type="text"
-                                        id="building-size-sq"
-                                        name="building-size-sq"
-                                        value={building_sq}
-                                        className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-                                        onChange={(e) => setBuilding_sq(e.target.value)}
-                                        placeholder=""
-                                    />
+                                    <div className="flex">
+                                        <Input
+                                            type="text"
+                                            id="building-size-sq"
+                                            name="building-size-sq"
+                                            value={building_sq}
+                                            className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+                                            onChange={(e) => setBuilding_sq(e.target.value)}
+                                            placeholder=""
+                                        />
+                                        <div className="m-4">
+                                            {isNaN(Number(building_sq)) ? <span className="text-red-500 text-sm mt-1">Enter number only</span> : Number(building_sq).toLocaleString()}
+                                            {/* {Number(avg_sale_price).toLocaleString()} */}
+                                        </div>
+                                    </div>
                                 </div>
                             </>
 
@@ -491,7 +507,7 @@ export default function AddPriceForm({ commercial_id }: { commercial_id: number 
                                     </label>
                                     <div className="flex">
                                         <Input
-                                            type="number"
+                                            type="text"
                                             id="shop-size"
                                             name="shop-size"
                                             value={shop_size}
@@ -500,7 +516,7 @@ export default function AddPriceForm({ commercial_id }: { commercial_id: number 
                                             placeholder=""
                                         />
                                         <div className="m-4">
-                                            {(Number(shop_size)).toLocaleString()}
+                                            {isNaN(Number(shop_size)) ? <span className="text-red-500 text-sm mt-1">Enter number only</span> : Number(shop_size).toLocaleString()}
                                             {/* {Number(avg_sale_price).toLocaleString()} */}
                                         </div>
                                     </div>
@@ -522,7 +538,7 @@ export default function AddPriceForm({ commercial_id }: { commercial_id: number 
                                     </label>
                                     <div className="flex">
                                         <Input
-                                            type="number"
+                                            type="text"
                                             id="office-size"
                                             name="office-size"
                                             // value={office_size}
@@ -531,7 +547,7 @@ export default function AddPriceForm({ commercial_id }: { commercial_id: number 
                                             onChange={(e) => setOffice_size(e.target.value)}
                                         />
                                         <div className="m-4">
-                                            {(Number(office_size)).toLocaleString()}
+                                            {isNaN(Number(office_size)) ? <span className="text-red-500 text-sm mt-1">Enter number only</span> : Number(office_size).toLocaleString()}
                                             {/* {Number(avg_sale_price).toLocaleString()} */}
                                         </div>
                                     </div>
@@ -563,7 +579,7 @@ export default function AddPriceForm({ commercial_id }: { commercial_id: number 
                                             onChange={(e) => setApartment_size(e.target.value)}
                                         />
                                         <div className="m-4">
-                                            {(Number(apartment_size)).toLocaleString()}
+                                            {isNaN(Number(apartment_size)) ? <span className="text-red-500 text-sm mt-1">Enter number only</span> : Number(apartment_size).toLocaleString()}
                                             {/* {Number(avg_sale_price).toLocaleString()} */}
                                         </div>
                                     </div>
@@ -576,15 +592,21 @@ export default function AddPriceForm({ commercial_id }: { commercial_id: number 
                                     >
                                         No. of Beds:
                                     </label>
-                                    <Input
-                                        type="number"
-                                        id="total-bed"
-                                        name="total-bed"
-                                        value={total_bed}
-                                        className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-                                        onChange={(e) => setTotal_bed(e.target.value)}
-                                        placeholder=""
-                                    />
+                                    <div className="flex">
+                                        <Input
+                                            type="text"
+                                            id="total-bed"
+                                            name="total-bed"
+                                            value={total_bed}
+                                            className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+                                            onChange={(e) => setTotal_bed(e.target.value)}
+                                            placeholder=""
+                                        />
+                                        <div className="m-4">
+                                            {isNaN(Number(total_bed)) ? <span className="text-red-500 text-sm mt-1">Enter number only</span> : Number(total_bed).toLocaleString()}
+                                            {/* {Number(avg_sale_price).toLocaleString()} */}
+                                        </div>
+                                    </div>
                                 </div>
                             </>
 
@@ -647,7 +669,7 @@ export default function AddPriceForm({ commercial_id }: { commercial_id: number 
                         }
 
                         {/* Payment Mode*/}
-                        <div className="mt-4">
+                        <div className="mt-2">
                             <label
                                 htmlFor="payment-mode"
                                 className="block mb-2 text-sm font-medium"
@@ -840,6 +862,7 @@ export default function AddPriceForm({ commercial_id }: { commercial_id: number 
                                 Remarks
                             </label>
                             <Textarea
+                            
                                 id="remarks"
                                 name="remarks"
                                 value={remarks}

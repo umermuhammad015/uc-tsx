@@ -625,13 +625,13 @@ model Price {
   property_type      String?
   plot_size          String?
   building_size      String?
-  total_floor        String?
-  building_size_sq   String?
-  shop_size          String?
-  office_size        String?
-  apartment_size     String?
+  total_floor        Int?
+  building_size_sq   Int?
+  shop_size          Int?
+  office_size        Int?
+  apartment_size     Int?
   warehouse_size     String?
-  total_bed          String?
+  total_bed          Int?
   payment_mode       String?
   price              Int?
   rent               Int?
@@ -656,13 +656,13 @@ model Price_history {
   property_type      String?
   plot_size          String?
   building_size      String?
-  total_floor        String?
-  building_size_sq   String?
-  shop_size          String?
-  office_size        String?
-  apartment_size     String?
+  total_floor        Int?
+  building_size_sq   Int?
+  shop_size          Int?
+  office_size        Int?
+  apartment_size     Int?
   warehouse_size     String?
-  total_bed          String?
+  total_bed          Int?
   payment_mode       String?
   price              Int?
   rent               Int?

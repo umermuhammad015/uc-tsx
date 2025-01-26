@@ -241,7 +241,7 @@ export default function UpdatePlotForm({ price }: UpdatePriceFormProps) {
                             id="total-floor"
                             name="total-floor"
                             className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-                            defaultValue={price?.total_floor as string}
+                            defaultValue={price?.total_floor as number}
                             placeholder=""
                         />
                     </div>
@@ -258,7 +258,7 @@ export default function UpdatePlotForm({ price }: UpdatePriceFormProps) {
                             id="building-size-sq"
                             name="building-size-sq"
                             className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-                            defaultValue={price?.building_size_sq as string}
+                            defaultValue={price?.building_size_sq as number}
                             placeholder=""
                         />
                     </div>
@@ -282,7 +282,7 @@ export default function UpdatePlotForm({ price }: UpdatePriceFormProps) {
                             id="shop-size"
                             name="shop-size"
                             className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-                            defaultValue={price?.shop_size as string}
+                            defaultValue={price?.shop_size as number}
                             placeholder=""
                         />
                     </div>
@@ -306,7 +306,7 @@ export default function UpdatePlotForm({ price }: UpdatePriceFormProps) {
                             id="office-size"
                             name="office-size"
                             className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-                            defaultValue={price?.office_size as string}
+                            defaultValue={price?.office_size as number}
                             placeholder=""
                         />
                     </div>
@@ -331,7 +331,7 @@ export default function UpdatePlotForm({ price }: UpdatePriceFormProps) {
                             name="apartment-size"
                             className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
                             placeholder=""
-                            defaultValue={price?.apartment_size as string}
+                            defaultValue={price?.apartment_size as number}
                         />
                     </div>
 
@@ -347,7 +347,7 @@ export default function UpdatePlotForm({ price }: UpdatePriceFormProps) {
                             id="total-bed"
                             name="total-bed"
                             className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-                            defaultValue={price?.total_bed as string}
+                            defaultValue={price?.total_bed as number}
                             placeholder=""
                         />
                     </div>
