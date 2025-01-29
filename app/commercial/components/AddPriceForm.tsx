@@ -48,7 +48,7 @@ export default function AddPriceForm({ commercial_id }: { commercial_id: number 
     const [possession_amount, setpossession_Amount] = useState("");
     const [installment_period, setInstallment_period] = useState("");
     const [entryDate, setEntryDate] = useState<string>((new Date).toISOString().split('T')[0]);
-    const [remarks, setRemarks] = useState("");
+    const [remarks, setRemarks] = useState<string>("");
 
     const [property_type, setProperty_type] = useState<string>("Commercial Plot");
 
@@ -108,32 +108,33 @@ export default function AddPriceForm({ commercial_id }: { commercial_id: number 
         try {
 
             const price_object = {
-                date: entryDate as string,
+                date: entryDate,
                 commercial_id: Number(commercial_id) as number,
                 property_type: property_type as string,
                 plot_size: plot_size as string,
                 building_size: building_size as string,
-                total_floor: total_floor,
-                building_size_sq: building_sq,
-                shop_size: shop_size,
-                office_size: office_size,
-                apartment_size: apartment_size,
+                total_floor: isNaN(Number(total_floor)) ? null : Number(total_floor),
+                building_size_sq: isNaN(Number(building_sq)) ? null : Number(building_sq),
+                shop_size: isNaN(Number(shop_size)) ? null : Number(shop_size),
+                office_size: isNaN(Number(apartment_size)) ? null : Number(office_size),
+                apartment_size: isNaN(Number(apartment_size)) ? null : Number(apartment_size),
                 warehouse_size: warehouse_size as string,
-                total_bed: total_bed,
+                total_bed:  isNaN(Number(total_bed)) ? null : Number(total_bed),
                 payment_mode: payment_mode as string,
-                price: price,
-                rent: rent,
-                total_price: total_price,
-                installment_period: installment_period,
-                down_payment: down_payment,
-                possession_amount: possession_amount,
+                price:  isNaN(Number(price)) ? null : Number(price),
+                // rent: rent,
+                rent: isNaN(Number(rent)) ? null : Number(rent),
+                total_price: isNaN(Number(total_price)) ? null : Number(total_price),
+                installment_period: isNaN(Number(installment_period)) ? null : Number(installment_period),
+                down_payment: isNaN(Number(down_payment)) ? null : Number(down_payment),
+                possession_amount: isNaN(Number(possession_amount)) ? null : Number(possession_amount),
                 remarks: remarks as string,
             }
 
             console.log("plot_object")
             console.log(price)
 
-            const added_price_id = await AddPrice(price_object as unknown as Price)
+            const added_price_id = await AddPrice(price_object as Price)
 
             console.log("add_price_output")
             console.log(added_price_id)
