@@ -228,7 +228,7 @@ export default function AddPriceForm({ commercial_id }: { commercial_id: number 
                                 htmlFor="building-name"
                                 className="block mb-2 text-sm font-medium "
                             >
-                                Commercial zone: <Link href={'/commercial/' + commercial_id}>{current_name?.commercial_zone_name}</Link>
+                                Commercial Zone Name: <Link href={'/commercial/' + commercial_id}>{current_name?.commercial_zone_name}</Link>
                             </label>
 
                             {/* <Input
