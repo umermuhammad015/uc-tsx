@@ -136,8 +136,8 @@ export default function AddPriceForm({ commercial_id }: { commercial_id: number 
 
             const added_price_id = await AddPrice(price_object as Price)
 
-            // console.log("add_price_output")
-            // console.log(added_price_id)
+            console.log("add_price_output")
+            console.log(added_price_id)
 
 
             // router.push("/commercial/" + added_price_id); // Replace with your desired route
