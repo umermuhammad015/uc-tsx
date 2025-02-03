@@ -441,7 +441,7 @@ export default function AddFloorForm( {building_id} : {building_id: number}) {
             console.log(added_building_id)
 
 
-            router.push("/buildings/" + added_building_id); // Replace with your desired route
+            // router.push("/buildings/" + added_building_id); // Replace with your desired route
 
 
         } catch (error) {

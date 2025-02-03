@@ -22,7 +22,7 @@ import { Button } from "@/components/ui/button"
 import deleteFloors from "./DeleteFloor";
 
 
-export default function DeleteSocietyDialog({floor_id} : {floor_id: number}) {
+export default function DeleteFloorDialog({floor_id} : {floor_id: number}) {
 
     const { toast } = useToast()
     const [isConfirmOpen, setIsConfirmOpen] = useState(false);

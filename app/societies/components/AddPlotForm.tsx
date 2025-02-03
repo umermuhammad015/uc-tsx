@@ -166,7 +166,7 @@ export default function AddPlotForm({ society_id }: { society_id: number }) {
             console.log(added_plot_id)
 
 
-            router.push("/societies/" + added_plot_id); // Replace with your desired route
+            // router.push("/societies/" + added_plot_id); // Replace with your desired route
 
 
         } catch (error) {
