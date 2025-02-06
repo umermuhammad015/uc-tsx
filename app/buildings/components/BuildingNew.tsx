@@ -26,11 +26,16 @@ import { Buildings } from "@prisma/client";
 
 // const stringSchema = z.string().min(1, "Address is required").max(255, "Address cannot exceed 255 characters");
 const numberSchema = z.number().nonnegative("Value must be a positive number").nullable();
-const yearSchema = z
+const LaunchyearSchema = z
     .number()
     .int()
     .min(1950, "Year must be no earlier than 1950")
     .max(2030, "Year must be no later than 2024");
+const ConstractionyearSchema = z
+    .number()
+    .int()
+    .min(1950, "Year must be no earlier than 1950")
+    .max(2050, "Year must be no later than 2024");
 
 
 type BuildingNamesProps = {
@@ -102,7 +107,7 @@ export default function BuildingNew() {
 
 
     const [isSearching, setSearching] = useState(false);
-    const [buildingNames, setBuildingNames] = useState <BuildingNamesProps[]>([])
+    const [buildingNames, setBuildingNames] = useState<BuildingNamesProps[]>([])
     const [buildingKeywords, setBuildingKeywords] = useState("")
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -127,8 +132,8 @@ export default function BuildingNew() {
 
             const allFields = [
                 // { name: "building-floor-no", value: floor_num, schema: stringSchema },
-                { name: "launch-year", value: launch_year, schema: yearSchema },
-                { name: "construction-year", value: construction_year, schema: yearSchema },
+                { name: "launch-year", value: launch_year, schema: LaunchyearSchema },
+                { name: "construction-year", value: construction_year, schema: ConstractionyearSchema },
                 { name: "construction-area", value: construction_area, schema: numberSchema },
                 { name: "total-floors", value: total_floors, schema: numberSchema },
                 { name: "parking-floors", value: parking_floor, schema: numberSchema },
