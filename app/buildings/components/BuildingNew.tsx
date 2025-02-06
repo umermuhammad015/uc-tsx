@@ -30,7 +30,7 @@ const yearSchema = z
     .number()
     .int()
     .min(1950, "Year must be no earlier than 1950")
-    .max(2025, "Year must be no later than 2024");
+    .max(2030, "Year must be no later than 2024");
 
 
 type BuildingNamesProps = {
