@@ -27,6 +27,7 @@ import { z } from "zod";
 import AddSociety from "../components/AddSociety";
 import { Societies } from "@prisma/client";
 import { useRouter } from "next/navigation";
+import { launch_year_max_date, launch_year_min_date } from "@/app/lib/constants";
 
 // type Society = {
 //   // Define the properties of your society object
@@ -41,11 +42,18 @@ type SocietyNamesProps = {
 
 // const stringSchema = z.string().min(1, "Address is required").max(255, "Address cannot exceed 255 characters");
 const numberSchema = z.number().nonnegative("Value must be a positive number").nullable();
+const occupancySchema = z
+    .number()
+    .int()
+    .min(0, "Year must be no earlier than 1950")
+    .max(100, "Year must be no later than 2024")
+    .nullable();
 const yearSchema = z
   .number()
   .int()
   .min(1950, "Year must be no earlier than 1950")
-  .max(2025, "Year must be no later than 2024");
+  .max(2025, "Year must be no later than 2024")
+  .nullable();
 
 export default function NewSocietyPage() {
 
@@ -64,7 +72,7 @@ export default function NewSocietyPage() {
   const [total_plots_residential, setTotal_plots_residential] = useState("");
   const [total_plots_commercial, setTotal_plots_commercial] = useState("");
   const [total_apartments, setTotal_apartments] = useState("");
-  const [contact_no, setContact_no] = useState("");
+  // const [contact_no, setContact_no] = useState("");
 
   const [societyNames, setSocietyNames] = useState<SocietyNamesProps[]>([])
 
@@ -95,14 +103,14 @@ export default function NewSocietyPage() {
         // { name: "building-floor-no", value: floor_num, schema: stringSchema },
         { name: "societies-blocks", value: blocks, schema: numberSchema },
         { name: "societies-area", value: area, schema: numberSchema },
-        { name: "societies-occupancy", value: occupancy, schema: numberSchema },
+        { name: "societies-occupancy", value: occupancy, schema: occupancySchema },
         { name: "societies-population", value: population, schema: numberSchema },
         { name: "societies-phase", value: phase, schema: numberSchema },
         { name: "societies-launch-year", value: launch_year, schema: yearSchema },
         { name: "total-plots-residential", value: total_plots_residential, schema: numberSchema },
         { name: "total-plots-commercial", value: total_plots_commercial, schema: numberSchema },
         { name: "societies-total-apartments", value: total_apartments, schema: numberSchema },
-        { name: "contact-no", value: contact_no, schema: numberSchema },
+        // { name: "contact-no", value: contact_no, schema: numberSchema },
         // { name: "retail-floors-shops-count", value: shop_num, schema: numberSchema },
 
       ];
@@ -203,7 +211,7 @@ export default function NewSocietyPage() {
           utilities_type_utilities_electricity: formData.get("utilities-type-utilities-electricity"),
           utilities_type_drainage: formData.get("utilities-type-drainage"),
           developer_name: formData.get("developer-name"),
-          contact_no: isNaN(Number(contact_no)) ? null : Number(contact_no),
+          // contact_no: isNaN(Number(contact_no)) ? null : Number(contact_no),
           survery_remarks: formData.get("societies-survery-remarks"),
         }
         console.log("society_object")
@@ -647,8 +655,14 @@ export default function NewSocietyPage() {
                 value={launch_year}
                 onChange={(e) => setLaunch_year(e.target.value)}
               />
-              <div className="m-3">
-                {isNaN(Number(launch_year)) ? <span className="text-red-500 text-sm mt-1">Enter number only</span> : Number(launch_year)}
+              <div className="m-3 mb-0">
+                <div className="">
+                  {isNaN(Number(launch_year)) ? <span className="text-red-500 text-sm mt-1">Enter number only</span> : launch_year}
+                </div>
+                <div className="">
+                  {/* {((launch_year.toString().length >= 1) && (launch_year.toString().length < 4)) && <span className="text-red-500 text-sm mt-1">Year must be four characters longs</span>} */}
+                  {(launch_year && (Number(launch_year) < 1950 || Number(launch_year) > 2025)) && <span className="text-red-500 text-sm mt-1">Year must be between {launch_year_min_date} and {launch_year_max_date}</span>}
+                </div>
               </div>
             </div>
           </div>
@@ -754,8 +768,15 @@ export default function NewSocietyPage() {
                 value={occupancy}
                 onChange={(e) => setOccupancy(e.target.value)}
               />
-              <div className="m-3">
-                {isNaN(Number(occupancy)) ? <span className="text-red-500 text-sm mt-1">Enter number only</span> :(occupancy + "%")}
+
+              <div className="m-3 mb-0">
+                <div className="m-2">
+                  {isNaN(Number(occupancy)) ? <span className="text-red-500 text-sm mt-1">Enter number only</span> : (occupancy + "%")}
+                </div>
+                <div className="">
+                  {/* {((launch_year.toString().length >= 1) && (launch_year.toString().length < 4)) && <span className="text-red-500 text-sm mt-1">Year must be four characters longs</span>} */}
+                  {(occupancy && (Number(occupancy) < 0 || Number(occupancy) > 100)) && <span className="text-red-500 text-sm mt-1">occupancy Ratio must be between 1 and 100</span>}
+                </div>
               </div>
             </div>
           </div>
@@ -1697,7 +1718,7 @@ export default function NewSocietyPage() {
             />
           </div>
 
-          {/*Contact No*/}
+          {/* Contact No
           <div className="mt-4">
             <label
               htmlFor="contact-no"
@@ -1719,11 +1740,11 @@ export default function NewSocietyPage() {
                 {isNaN(Number(contact_no)) ? <span className="text-red-500 text-sm mt-1">Enter number only</span> : Number(contact_no)}
               </div>
             </div>
-          </div>
+          </div> */}
 
 
           {/* Remarks  */}
-          <div className="">
+          <div className="mt-4">
             <label htmlFor="message" className="block mb-2 text-sm font-medium">
               Your Remarks
             </label>

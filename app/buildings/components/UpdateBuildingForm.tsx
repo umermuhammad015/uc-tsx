@@ -37,7 +37,7 @@ export default function UpdateBuildingForm({ building }: UpdateBuildingFormProps
 
     return (
         <>
-            <div>{building?.name}</div>
+            <div><Link href={'/buildings/' + building?.id}>{building?.name}</Link></div>
 
             <form
                 action={UpdateBuilding}

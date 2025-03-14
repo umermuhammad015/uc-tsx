@@ -16,12 +16,13 @@ import { Commercial, Price } from "@prisma/client";
 
 // const stringSchema = z.string().min(1, "Address is required").max(255, "Address cannot exceed 255 characters");
 const numberSchema = z.number().nonnegative("Value must be a positive number").nullable();
-// const occupancySchema = z
-//     .number()
-//     .int()
-//     .min(0, "Year must be no earlier than 1950")
-//     .max(100, "Year must be no later than 2024");
-// export const revalidate = 1 // revalidate at most every hour
+const insallmentSchema = z
+    .number()
+    .int()
+    .min(1, "Year must be no earlier than 1950")
+    .max(100, "Year must be no later than 2024")
+    .nullable();
+
 
 export default function AddPriceForm({ commercial_id }: { commercial_id: number }) {
 
@@ -50,9 +51,9 @@ export default function AddPriceForm({ commercial_id }: { commercial_id: number 
     const [entryDate, setEntryDate] = useState<string>((new Date).toISOString().split('T')[0]);
     const [remarks, setRemarks] = useState<string>("");
 
-    const [property_type, setProperty_type] = useState<string>("Commercial Plot");
+    const [property_type, setProperty_type] = useState<string>("");
 
-    const [payment_mode, setPayment_mode] = useState<string>("Lumpsum Payment");
+    const [payment_mode, setPayment_mode] = useState<string>("");
 
     const handleSubmit = async () => {
 
@@ -72,7 +73,7 @@ export default function AddPriceForm({ commercial_id }: { commercial_id: number 
             { name: "price", value: price, schema: numberSchema },
             { name: "rent", value: rent, schema: numberSchema },
             { name: "total-price", value: total_price, schema: numberSchema },
-            { name: "installment-period", value: installment_period, schema: numberSchema },
+            { name: "installment-period", value: installment_period, schema: insallmentSchema },
             { name: "down-payment", value: down_payment, schema: numberSchema },
             { name: "possession-amount", value: possession_amount, schema: numberSchema },
         ];
@@ -119,9 +120,9 @@ export default function AddPriceForm({ commercial_id }: { commercial_id: number 
                 office_size: isNaN(Number(apartment_size)) ? null : Number(office_size),
                 apartment_size: isNaN(Number(apartment_size)) ? null : Number(apartment_size),
                 warehouse_size: warehouse_size as string,
-                total_bed:  isNaN(Number(total_bed)) ? null : Number(total_bed),
+                total_bed: isNaN(Number(total_bed)) ? null : Number(total_bed),
                 payment_mode: payment_mode as string,
-                price:  isNaN(Number(price)) ? null : Number(price),
+                price: isNaN(Number(price)) ? null : Number(price),
                 // rent: rent,
                 rent: isNaN(Number(rent)) ? null : Number(rent),
                 total_price: isNaN(Number(total_price)) ? null : Number(total_price),
@@ -292,9 +293,7 @@ export default function AddPriceForm({ commercial_id }: { commercial_id: number 
                                 type="date"
                                 id="date"
                                 name="date"
-                                // defaultValue="2024-12-13"
-                                defaultValue={(new Date).toISOString().split('T')[0]}
-                                // value="12/26/2024"
+                                value={entryDate}
                                 className="max-w-xs border-gray-400  border-2 text-sm rounded focus:ring-blue-500  block w-full p-2.5"
                                 onChange={(e) => setEntryDate(e.target.value)}
                                 placeholder="date"
@@ -684,8 +683,9 @@ export default function AddPriceForm({ commercial_id }: { commercial_id: number 
                                 className="select  w-full text-sm pl-2 h-10 max-w-xs border-2 rounded border-gray-400 bg-background"
                                 onChange={(e) => setPayment_mode(e.target.value)}
                             >
+                                <option value="">Select</option>
                                 <option value="Lumpsum Payment">Lumpsum Payment</option>
-                                <option value="Instalments">Instalments</option>
+                                <option value="Installment">Installment</option>
                             </select>
                         </div>
 
@@ -748,59 +748,8 @@ export default function AddPriceForm({ commercial_id }: { commercial_id: number 
                         {/* Instalment Period Years: */}
 
                         {
-                            payment_mode === "Instalments" &&
+                            payment_mode === "Installment" &&
                             <>
-
-                                <div className="">
-                                    <label
-                                        htmlFor="total-price"
-                                        className="block mb-2 text-sm font-medium"
-                                    >
-                                        Instalments Amount:
-                                    </label>
-                                    <div className="flex">
-                                        <Input
-                                            type="text"
-                                            id="total-price"
-                                            name="total-price"
-
-                                            className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-                                            placeholder="Rs."
-                                            value={total_price}
-                                            onChange={(e) => setTotal_price(e.target.value)}
-                                        />
-                                        <div className="m-4">
-                                            {isNaN(Number(total_price)) ? <span className="text-red-500 text-sm mt-1">Enter number only</span> : Number(total_price).toLocaleString()}
-                                            {/* {Number(avg_sale_price).toLocaleString()} */}
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="">
-                                    <label
-                                        htmlFor="installment-period"
-                                        className="block mb-2 text-sm font-medium"
-                                    >
-                                        Installment Period (Month):
-                                    </label>
-                                    <div className="flex">
-                                        <Input
-                                            type="text"
-                                            id="installment-period"
-                                            name="installment-period"
-
-                                            className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-                                            value={installment_period}
-                                            onChange={(e) => setInstallment_period(e.target.value)}
-                                        />
-                                        <div className="m-4">
-                                            {isNaN(Number(installment_period)) ? <span className="text-red-500 text-sm mt-1">Enter number only</span> : Number(installment_period).toLocaleString()}
-                                            {/* {Number(avg_sale_price).toLocaleString()} */}
-                                        </div>
-                                    </div>
-                                </div>
-
-
                                 <div className="">
                                     <label
                                         htmlFor="down-payment"
@@ -827,6 +776,30 @@ export default function AddPriceForm({ commercial_id }: { commercial_id: number 
 
                                 <div className="">
                                     <label
+                                        htmlFor="total-price"
+                                        className="block mb-2 text-sm font-medium"
+                                    >
+                                        Installment Amount:
+                                    </label>
+                                    <div className="flex">
+                                        <Input
+                                            type="text"
+                                            id="total-price"
+                                            name="total-price"
+
+                                            className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+                                            placeholder="Rs."
+                                            value={total_price}
+                                            onChange={(e) => setTotal_price(e.target.value)}
+                                        />
+                                        <div className="m-4">
+                                            {isNaN(Number(total_price)) ? <span className="text-red-500 text-sm mt-1">Enter number only</span> : Number(total_price).toLocaleString()}
+                                            {/* {Number(avg_sale_price).toLocaleString()} */}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="">
+                                    <label
                                         htmlFor="possession-amount"
                                         className="block mb-2 text-sm font-medium"
                                     >
@@ -848,6 +821,37 @@ export default function AddPriceForm({ commercial_id }: { commercial_id: number 
                                         </div>
                                     </div>
                                 </div>
+
+                                <div className="">
+                                    <label
+                                        htmlFor="installment-period"
+                                        className="block mb-2 text-sm font-medium"
+                                    >
+                                        Installment Period (Month)
+                                    </label>
+                                    <div className="flex">
+                                        <Input
+                                            type="text"
+                                            id="installment-period"
+                                            name="installment-period"
+
+                                            className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
+                                            value={installment_period}
+                                            onChange={(e) => setInstallment_period(e.target.value)}
+                                        />
+
+                                        <div className="m-3 mb-0">
+                                            <div className="m-2">
+                                                {isNaN(Number(installment_period)) ? <span className="text-red-500 text-sm mt-1">Enter number only</span> : Number(installment_period).toLocaleString()}
+                                            </div>
+                                            <div className="">
+                                                {/* {((launch_year.toString().length >= 1) && (launch_year.toString().length < 4)) && <span className="text-red-500 text-sm mt-1">Year must be four characters longs</span>} */}
+                                                {(installment_period && (Number(installment_period) < 0 || Number(installment_period) > 100)) && <span className="text-red-500 text-sm mt-1">Must be between 1 and 100</span>}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </>
 
                         }
@@ -858,12 +862,12 @@ export default function AddPriceForm({ commercial_id }: { commercial_id: number 
 
 
                         {/* Plot Remarks  */}
-                        <div className="mt-4">
+                        <div className="">
                             <label htmlFor="message" className="block mb-2 text-sm font-medium">
                                 Remarks
                             </label>
                             <Textarea
-                            
+
                                 id="remarks"
                                 name="remarks"
                                 value={remarks}

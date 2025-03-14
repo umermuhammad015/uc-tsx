@@ -43,6 +43,7 @@ export default function UpdatePlotForm({ societies }: UpdateSocietiesFormProps) 
     const [instalment_down_payment, setInstalment_down_payment] = useState(societies?.instalment_down_payment)
     const [instalment_possession_Amount, setInstalment_possession_Amount] = useState(societies?.instalment_possession_Amount)
     const [instalment_period, setinstalment_period] = useState(societies?.instalment_period)
+    // const [contact_no, setContact_no] = useState(societies?.contact_no)
 
 
     const [paymentTerms, setPaymentTerms] = useState(societies?.payment_terms)
@@ -1154,7 +1155,7 @@ export default function UpdatePlotForm({ societies }: UpdateSocietiesFormProps) 
                                 defaultValue={societies?.plot_price as number}
                                 placeholder="Rs."
                                 onChange={(e) => {
-                                    setPrice(Number (e.target.value))
+                                    setPrice(Number(e.target.value))
                                     console.log(e.target.value)
                                 }}
                             />
@@ -1211,7 +1212,7 @@ export default function UpdatePlotForm({ societies }: UpdateSocietiesFormProps) 
                                 defaultValue={societies?.vilas_price as number}
                                 placeholder="Rs."
                                 onChange={(e) => {
-                                    setVilaprice(Number (e.target.value))
+                                    setVilaprice(Number(e.target.value))
                                     console.log(e.target.value)
                                 }}
                             />
@@ -1238,7 +1239,7 @@ export default function UpdatePlotForm({ societies }: UpdateSocietiesFormProps) 
                                 defaultValue={societies?.vilas_monthly_rent as number}
                                 placeholder="Rs."
                                 onChange={(e) => {
-                                    setRent(Number (e.target.value))
+                                    setRent(Number(e.target.value))
                                     console.log(e.target.value)
                                 }}
                             />
@@ -1293,7 +1294,7 @@ export default function UpdatePlotForm({ societies }: UpdateSocietiesFormProps) 
                                 defaultValue={societies?.commercial_plot_price as number}
                                 placeholder="Rs."
                                 onChange={(e) => {
-                                    setCommericalPrice(Number (e.target.value))
+                                    setCommericalPrice(Number(e.target.value))
                                     console.log(e.target.value)
                                 }}
                             />
@@ -1940,7 +1941,7 @@ export default function UpdatePlotForm({ societies }: UpdateSocietiesFormProps) 
                         />
                     </div>
 
-                    {/*Contact No*/}
+                    {/* Contact No
                     <div className="mt-4">
                         <label
                             htmlFor="contact-no"
@@ -1948,15 +1949,24 @@ export default function UpdatePlotForm({ societies }: UpdateSocietiesFormProps) 
                         >
                             Contact No:
                         </label>
-                        <Input
-                            type="number"
-                            id="contact-no"
-                            name="contact-no"
-                            className="input input-bordered w-full max-w-xs border-2 border-gray-400  "
-                            defaultValue={societies?.contact_no as number}
-                            placeholder=""
-                        />
-                    </div>
+                        <div className="flex">
+                            <Input
+                                type="text"
+                                id="contact-no"
+                                name="contact-no"
+                                className="input input-bordered w-full max-w-xs border-2 border-gray-400  "
+                                defaultValue={societies?.contact_no as number}
+                                placeholder=""
+                                onChange={(e) => {
+                                    setContact_no(Number(e.target.value))
+                                    console.log(e.target.value)
+                                }}
+                            />
+                            <div className="m-4">
+                                {Number(contact_no)}
+                            </div>
+                        </div>
+                    </div> */}
 
 
                     {/* Remarks  */}

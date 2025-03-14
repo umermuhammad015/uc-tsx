@@ -14,6 +14,7 @@ import {
 // import { revalidatePath } from "next/cache";
 // import { redirect } from "next/navigation";
 import DeletePlotDialog from "../components/DeletePlotDialog";
+import { date } from "zod";
 
 
 
@@ -24,7 +25,7 @@ import DeletePlotDialog from "../components/DeletePlotDialog";
 // }
 
 // export default async function ViewBuilding({ params }: Props) {
-export default async function ViewBuilding( {params}: {params: Promise<{ id: string }>} ) {
+export default async function ViewBuilding({ params }: { params: Promise<{ id: string }> }) {
     // console.log(params);
     // console.log(searchParams.city);
 
@@ -42,6 +43,26 @@ export default async function ViewBuilding( {params}: {params: Promise<{ id: str
             id: Number(id) as number
         },
     });
+
+    function formatDate(date: any) {
+
+        const d = new Date(date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+
+        return d
+
+        // var d = new Date(date),
+        //     // month = '' + (d.getMonth() + 1),
+        //     month = d.toLocaleString('default', { month: 'short' }),
+        //     day = '' + d.getDate(),
+        //     year = d.getFullYear();
+
+        // // if (month.length < 2) 
+        // //     month = '0' + month;
+        // if (day.length < 2)
+        //     day = '0' + day;
+
+        // return [month, day, year].join(' ');
+    }
 
     // console.log(society);
 
@@ -149,7 +170,7 @@ export default async function ViewBuilding( {params}: {params: Promise<{ id: str
                     <TableBody>
                         <TableRow>
                             <TableCell>Date </TableCell>
-                            <TableCell>{society?.survey_date}</TableCell>
+                            <TableCell>{formatDate(society?.survey_date)}</TableCell>
                         </TableRow>
                         <TableRow>
                             <TableCell>City </TableCell>
@@ -377,10 +398,10 @@ export default async function ViewBuilding( {params}: {params: Promise<{ id: str
                             <TableCell>Developer Name</TableCell>
                             <TableCell>{society?.developer_name}</TableCell>
                         </TableRow>
-                        <TableRow>
+                        {/* <TableRow>
                             <TableCell>Contact No</TableCell>
                             <TableCell>{society?.contact_no}</TableCell>
-                        </TableRow>
+                        </TableRow> */}
                         <TableRow>
                             <TableCell>Your Remarks</TableCell>
                             <TableCell>{society?.survery_remarks}</TableCell>
@@ -452,7 +473,7 @@ export default async function ViewBuilding( {params}: {params: Promise<{ id: str
                                 <TableCell>{Number(plot?.ins_down_payment).toLocaleString()}</TableCell>
                                 <TableCell>{Number(plot?.ins_possession_Amount).toLocaleString()}</TableCell>
                                 <TableCell>{Number(plot?.ins_period).toLocaleString()}</TableCell>
-                                <TableCell>{plot?.date}</TableCell>
+                                <TableCell className="w-20">{plot?.date && new Date(plot?.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</TableCell>
                                 <TableCell>{plot?.remarks}</TableCell>
                                 <TableCell>
                                     <Button asChild>

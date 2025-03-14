@@ -19,11 +19,12 @@ const occupancySchema = z
     .number()
     .int()
     .min(0, "Year must be no earlier than 1950")
-    .max(100, "Year must be no later than 2024");
+    .max(100, "Year must be no later than 2024")
+    .nullable();
 
 
 
-export default function AddFloorForm( {building_id} : {building_id: number}) {
+export default function AddFloorForm({ building_id }: { building_id: number }) {
     // console.log(params.id);
     const router = useRouter(); // Initialize the router 
     const [entryDate, setEntryDate] = useState<string>((new Date).toISOString().split('T')[0]);
@@ -63,9 +64,11 @@ export default function AddFloorForm( {building_id} : {building_id: number}) {
     const [hotel_suites_apartment, setHotel_suites_apartment] = useState("");
     const [floor_type, setFloor_Type] = useState("");
     const [unit_type, setUnit_type] = useState("");
-    const [instalment_plan, setInstalment_plan] = useState("");
+    const [instalment_plan, setInstalment_plan] = useState<string>("");
     const [occupancy, setOccupancy] = useState("")
     const [remarks, setRemarks] = useState("");
+    // const [payment_mode, setPayment_mode] = useState<string>("");
+
 
 
     // const validateField = (name: any, value: any) => {
@@ -208,7 +211,7 @@ export default function AddFloorForm( {building_id} : {building_id: number}) {
 
     }, [building_id]);
 
-    // const insertPlot = async () => {
+    // / const insertPlot = async () => {
 
     //     const allFields = [
     //         // { name: "building-floor-no", value: floor_num, schema: stringSchema },
@@ -362,7 +365,7 @@ export default function AddFloorForm( {building_id} : {building_id: number}) {
             { name: "building-floor-avg-monthly-rent", value: avg_monthly_rent, schema: numberSchema },
             { name: "building-floor-size-min", value: size_min, schema: numberSchema },
             { name: "building-floor-size-max", value: size_max, schema: numberSchema },
-            { name: "building-floor-instalment-period", value: instalment_period, schema: numberSchema },
+            { name: "building-floor-instalment-period", value: instalment_period, schema: occupancySchema },
             { name: "building-floor-down-payment-amount", value: down_payment_amount, schema: numberSchema },
             { name: "building-floor-instalment-amount", value: instalment_amount, schema: numberSchema },
             { name: "building-floor-possession-amount", value: possession_amount, schema: numberSchema },
@@ -423,7 +426,7 @@ export default function AddFloorForm( {building_id} : {building_id: number}) {
                 size_max: isNaN(Number(size_max)) ? null : Number(size_max),
                 avg_sale_price: isNaN(Number(avg_sale_price)) ? null : Number(avg_sale_price),
                 avg_monthly_rent: isNaN(Number(avg_monthly_rent)) ? null : Number(avg_monthly_rent),
-                instalment_plan: instalment_plan,
+                instalment_plan: instalment_plan as string,
                 instalment_period: isNaN(Number(instalment_period)) ? null : Number(instalment_period),
                 down_payment_amount: isNaN(Number(down_payment_amount)) ? null : Number(down_payment_amount),
                 instalment_amount: isNaN(Number(instalment_amount)) ? null : Number(instalment_amount),
@@ -569,13 +572,15 @@ export default function AddFloorForm( {building_id} : {building_id: number}) {
                                     name="floor-date"
                                     // defaultValue="2024-12-13"
                                     // defaultValue={(new Date).toISOString().split('T')[0]}
-                                    value={(new Date).toISOString().split('T')[0]}
-                                    // value={entryDate}
+                                    value={entryDate}
+                                    required
                                     className="max-w-xs border-gray-400  border-2 text-sm rounded focus:ring-blue-500  block w-full p-2.5"
                                     onChange={(e) => setEntryDate(e.target.value)}
                                     placeholder="date"
                                 />
                             </div>
+                            
+                            
 
 
 
@@ -1082,7 +1087,7 @@ export default function AddFloorForm( {building_id} : {building_id: number}) {
                                     htmlFor="building-floor-occupancy"
                                     className="block mb-2 text-sm font-medium"
                                 >
-                                    Occupancy Ratio
+                                    Occupancy Ratio (1 to 100)
                                 </label>
                                 <div className="flex">
                                     <Input
@@ -1096,15 +1101,18 @@ export default function AddFloorForm( {building_id} : {building_id: number}) {
 
                                         onChange={(e) => setOccupancy(e.target.value)}
                                     />
-                                    {/* {errors["building-floor-avg-sale-price"] && <p className="text-red-500 text-sm mt-1">*</p>} */}
-                                    <div className="m-4">
-                                        {isNaN(Number(occupancy)) ? <span className="text-red-500 text-sm mt-1">Enter number only</span> : (occupancy + "%").toLocaleString()}
-                                        {/* {Number(avg_sale_price).toLocaleString()} */}
+
+                                    <div className="m-3 mb-0">
+                                        <div className="m-2">
+                                            {isNaN(Number(occupancy)) ? <span className="text-red-500 text-sm mt-1">Enter number only</span> : (occupancy + "%")}
+                                        </div>
+                                        <div className="">
+                                            {/* {((launch_year.toString().length >= 1) && (launch_year.toString().length < 4)) && <span className="text-red-500 text-sm mt-1">Year must be four characters longs</span>} */}
+                                            {(occupancy && (Number(occupancy) < 0 || Number(occupancy) > 100)) && <span className="text-red-500 text-sm mt-1">occupancy Ratio must be between 1 and 100</span>}
+                                        </div>
                                     </div>
-                                    {/* <div className="m-4">
-                                        {occupancy + "%"}
-                                    </div> */}
                                 </div>
+
                             </div>
 
                             {/* Size Minimum (Sq. Ft.)  */}
@@ -1162,8 +1170,33 @@ export default function AddFloorForm( {building_id} : {building_id: number}) {
                                 </div>
                             </div>
 
-                            {/* Avg. Sale Price */}
+                            {/* Installment Plan  */}
                             <div className="">
+                                <label
+                                    htmlFor="building-instalment-plan"
+                                    className="block mb-2 text-sm font-medium"
+                                >
+                                    {/* Installment Plan */}
+                                    Payment Mode:
+                                </label>
+
+                                <select
+                                    id="building-instalment-plan"
+                                    name="building-instalment-plan"
+                                    className="select  w-full text-sm pl-2 h-10 max-w-xs border-2 rounded border-gray-400 bg-background"
+                                    value={instalment_plan}
+                                    // defaultValue={instalment_plan}
+                                    onChange={(e) => setInstalment_plan(e.target.value)}
+                                >
+                                    <option value="">Select</option>
+                                    <option value="Lumpsum Payment">Lumpsum Payment</option>
+                                    <option value="Installment">Installment</option>
+                                </select>
+
+                            </div>
+
+                            {/* Avg. Sale Price */}
+                            <div className="mt-4">
                                 <label
                                     htmlFor="building-floor-avg-sale-price"
                                     className="block mb-2 text-sm font-medium"
@@ -1215,149 +1248,145 @@ export default function AddFloorForm( {building_id} : {building_id: number}) {
                                 </div>
                             </div>
 
-                            {/* Installment Plan  */}
-                            <div className="">
-                                <label
-                                    htmlFor="building-instalment-plan"
-                                    className="block mb-2 text-sm font-medium"
-                                >
-                                    Installment Plan
-                                </label>
 
-                                <select
-                                    id="building-instalment-plan"
-                                    name="building-instalment-plan"
-                                    className="select  w-full text-sm pl-2 h-10 max-w-xs border-2 rounded border-gray-400 bg-background"
-                                    // value={instalment_plan}
-                                    // defaultValue={instalment_plan}
-                                    onChange={(e) => setInstalment_plan(e.target.value)}
-                                >
-                                    <option value="">Select</option>
-                                    <option value="Yes">Yes</option>
-                                    <option value="No">No</option>
-                                </select>
 
-                            </div>
-
-                            {/* Installment Period (Month) */}
-                            <div className="mt-4 ">
-                                <label
-                                    htmlFor="building-floor-instalment-period"
-                                    className="block mb-2 text-sm font-medium"
-                                >
-                                    Installment Period (Month)
-                                </label>
-                                <div className="flex">
-                                    <Input
-                                        type="text"
-                                        id="building-floor-instalment-period"
-                                        name="building-floor-instalment-period"
-                                        className="input input-bordered  w-full max-w-xs border-2 border-gray-400 "
-                                        placeholder=""
-                                        value={instalment_period}
-                                        // defaultValue={instalment_period}
-                                        // value={avg_monthly_rent}
-                                        // min="0"
-                                        onChange={(e) => setInstalment_Period(e.target.value)}
-                                    />
-                                    {/* {errors["building-floor-avg-monthly-rent"] && <p className="text-red-500 text-sm mt-1">{errors["building-floor-avg-monthly-rent"]}</p>} */}
-                                    <div className="m-4">
-                                        {isNaN(Number(instalment_period)) ? <span className="text-red-500 text-sm mt-1">Enter number only</span> : Number(instalment_period).toLocaleString()}
-                                        {/* {Number(avg_sale_price).toLocaleString()} */}
+                            {
+                                instalment_plan === "Installment" &&
+                                <>
+                                    {/* Down Payment */}
+                                    <div className="">
+                                        <label
+                                            htmlFor="building-floor-down-payment-amount"
+                                            className="block mb-2 text-sm font-medium"
+                                        >
+                                            Down Payment
+                                        </label>
+                                        <div className="flex">
+                                            <Input
+                                                type="text"
+                                                id="building-floor-down-payment-amount"
+                                                name="building-floor-down-payment-amount"
+                                                className="input input-bordered  w-full max-w-xs border-2 border-gray-400 "
+                                                placeholder="Rs."
+                                                value={down_payment_amount}
+                                                // defaultValue={down_payment_amount}
+                                                // value={avg_monthly_rent}
+                                                // min="0"
+                                                onChange={(e) => setDown_Payment_Amount(e.target.value)}
+                                            />
+                                            {/* {errors["building-floor-avg-monthly-rent"] && <p className="text-red-500 text-sm mt-1">{errors["building-floor-avg-monthly-rent"]}</p>} */}
+                                            <div className="m-4">
+                                                {isNaN(Number(down_payment_amount)) ? <span className="text-red-500 text-sm mt-1">Enter number only</span> : Number(down_payment_amount).toLocaleString()}
+                                                {/* {Number(avg_sale_price).toLocaleString()} */}
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
 
-                            {/* Down Payment */}
-                            <div className="">
-                                <label
-                                    htmlFor="building-floor-down-payment-amount"
-                                    className="block mb-2 text-sm font-medium"
-                                >
-                                    Down Payment
-                                </label>
-                                <div className="flex">
-                                    <Input
-                                        type="text"
-                                        id="building-floor-down-payment-amount"
-                                        name="building-floor-down-payment-amount"
-                                        className="input input-bordered  w-full max-w-xs border-2 border-gray-400 "
-                                        placeholder="Rs."
-                                        value={down_payment_amount}
-                                        // defaultValue={down_payment_amount}
-                                        // value={avg_monthly_rent}
-                                        // min="0"
-                                        onChange={(e) => setDown_Payment_Amount(e.target.value)}
-                                    />
-                                    {/* {errors["building-floor-avg-monthly-rent"] && <p className="text-red-500 text-sm mt-1">{errors["building-floor-avg-monthly-rent"]}</p>} */}
-                                    <div className="m-4">
-                                        {isNaN(Number(down_payment_amount)) ? <span className="text-red-500 text-sm mt-1">Enter number only</span> : Number(down_payment_amount).toLocaleString()}
-                                        {/* {Number(avg_sale_price).toLocaleString()} */}
+                                    {/* Instalment Amount */}
+                                    <div className="">
+                                        <label
+                                            htmlFor="building-floor-instalment-amount"
+                                            className="block mb-2 text-sm font-medium"
+                                        >
+                                            Total Sale Price
+                                        </label>
+                                        <div className="flex">
+                                            <Input
+                                                type="text"
+                                                id="building-floor-instalment-amount"
+                                                name="building-floor-instalment-amount"
+                                                className="input input-bordered  w-full max-w-xs border-2 border-gray-400 "
+                                                placeholder="Rs."
+                                                value={instalment_amount}
+                                                // defaultValue={instalment_amount}
+                                                // value={avg_monthly_rent}
+                                                // min="0"
+                                                onChange={(e) => setInstalment_Amount(e.target.value)}
+                                            />
+                                            {/* {errors["building-floor-avg-monthly-rent"] && <p className="text-red-500 text-sm mt-1">{errors["building-floor-avg-monthly-rent"]}</p>} */}
+                                            <div className="m-4">
+                                                {isNaN(Number(instalment_amount)) ? <span className="text-red-500 text-sm mt-1">Enter number only</span> : Number(instalment_amount).toLocaleString()}
+                                                {/* {Number(avg_sale_price).toLocaleString()} */}
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
 
-                            {/* Instalment Amount */}
-                            <div className="">
-                                <label
-                                    htmlFor="building-floor-instalment-amount"
-                                    className="block mb-2 text-sm font-medium"
-                                >
-                                    Total Sale Price
-                                </label>
-                                <div className="flex">
-                                    <Input
-                                        type="text"
-                                        id="building-floor-instalment-amount"
-                                        name="building-floor-instalment-amount"
-                                        className="input input-bordered  w-full max-w-xs border-2 border-gray-400 "
-                                        placeholder="Rs."
-                                        value={instalment_amount}
-                                        // defaultValue={instalment_amount}
-                                        // value={avg_monthly_rent}
-                                        // min="0"
-                                        onChange={(e) => setInstalment_Amount(e.target.value)}
-                                    />
-                                    {/* {errors["building-floor-avg-monthly-rent"] && <p className="text-red-500 text-sm mt-1">{errors["building-floor-avg-monthly-rent"]}</p>} */}
-                                    <div className="m-4">
-                                        {isNaN(Number(instalment_amount)) ? <span className="text-red-500 text-sm mt-1">Enter number only</span> : Number(instalment_amount).toLocaleString()}
-                                        {/* {Number(avg_sale_price).toLocaleString()} */}
+                                    {/* Possession Amount */}
+                                    <div className="">
+                                        <label
+                                            htmlFor="building-floor-possession-amount"
+                                            className="block mb-2 text-sm font-medium"
+                                        >
+                                            Possession Amount
+                                        </label>
+                                        <div className="flex">
+                                            <Input
+                                                type="text"
+                                                id="building-floor-possession-amount"
+                                                name="building-floor-possession-amount"
+                                                className="input input-bordered  w-full max-w-xs border-2 border-gray-400 "
+                                                placeholder="Rs."
+                                                value={possession_amount}
+                                                // defaultValue={possession_amount}
+                                                // value={avg_monthly_rent}
+                                                // min="0"
+                                                onChange={(e) => setPossession_Amount(e.target.value)}
+                                            />
+                                            {/* {errors["building-floor-avg-monthly-rent"] && <p className="text-red-500 text-sm mt-1">{errors["building-floor-avg-monthly-rent"]}</p>} */}
+                                            <div className="m-4">
+                                                {isNaN(Number(possession_amount)) ? <span className="text-red-500 text-sm mt-1">Enter number only</span> : Number(possession_amount).toLocaleString()}
+                                                {/* {Number(avg_sale_price).toLocaleString()} */}
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
 
-                            {/* Possession Amount */}
-                            <div className="">
-                                <label
-                                    htmlFor="building-floor-possession-amount"
-                                    className="block mb-2 text-sm font-medium"
-                                >
-                                    Possession Amount
-                                </label>
-                                <div className="flex">
-                                    <Input
-                                        type="text"
-                                        id="building-floor-possession-amount"
-                                        name="building-floor-possession-amount"
-                                        className="input input-bordered  w-full max-w-xs border-2 border-gray-400 "
-                                        placeholder="Rs."
-                                        value={possession_amount}
-                                        // defaultValue={possession_amount}
-                                        // value={avg_monthly_rent}
-                                        // min="0"
-                                        onChange={(e) => setPossession_Amount(e.target.value)}
-                                    />
-                                    {/* {errors["building-floor-avg-monthly-rent"] && <p className="text-red-500 text-sm mt-1">{errors["building-floor-avg-monthly-rent"]}</p>} */}
-                                    <div className="m-4">
-                                        {isNaN(Number(possession_amount)) ? <span className="text-red-500 text-sm mt-1">Enter number only</span> : Number(possession_amount).toLocaleString()}
-                                        {/* {Number(avg_sale_price).toLocaleString()} */}
+                                    {/* Installment Period (Month) */}
+                                    <div className="">
+                                        <label
+                                            htmlFor="building-floor-instalment-period"
+                                            className="block mb-2 text-sm font-medium"
+                                        >
+                                            Installment Period (Month)
+                                        </label>
+
+                                        <div className="flex">
+                                            <Input
+                                                type="text"
+                                                id="building-floor-instalment-period"
+                                                name="building-floor-instalment-period"
+                                                className="input input-bordered  w-full max-w-xs border-2 border-gray-400 "
+                                                placeholder=""
+                                                value={instalment_period}
+                                                // defaultValue={instalment_period}
+                                                // value={avg_monthly_rent}
+                                                // min="0"
+                                                onChange={(e) => setInstalment_Period(e.target.value)}
+                                            />
+
+                                            <div className="m-3 mb-0">
+                                                <div className="m-2">
+                                                {isNaN(Number(instalment_period)) ? <span className="text-red-500 text-sm mt-1">Enter number only</span> : Number(instalment_period).toLocaleString()}
+                                                </div>
+                                                <div className="">
+                                                    {/* {((launch_year.toString().length >= 1) && (launch_year.toString().length < 4)) && <span className="text-red-500 text-sm mt-1">Year must be four characters longs</span>} */}
+                                                    {(instalment_period && (Number(instalment_period) < 0 || Number(instalment_period) > 100)) && <span className="text-red-500 text-sm mt-1">Must be between 1 and 100</span>}
+                                                </div>
+                                            </div>
+                                        </div>
+
                                     </div>
-                                </div>
-                            </div>
+
+                                </>
+
+                            }
+
+
+
+
                         </div>
 
                         {/* Floor Remarks  */}
-                        <div className="mt-4 mb-4">
+                        <div className=" mb-4">
                             <label htmlFor="message" className="block mb-2 text-sm font-medium">
                                 Your Remarks
                             </label>

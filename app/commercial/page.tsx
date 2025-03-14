@@ -9,14 +9,15 @@ import Grade from "./components/Grade";
 import SearchInput from "./components/SearchInput";
 import DateFilter from "./components/datefilter";
 import { Suspense } from "react";
+import { CommercialSkeleton } from "./components/CommercialSkeleton";
 
 export const revalidate = 1; // revalidate the date at most every hour
 export const dynamic = "force-dynamic";
 
 export type PageProps = {
-	params: { [key: string]: string | string[] | undefined };
-	searchParams?: { [key: string]: string | undefined };
-	// searchParams?: { city: string };
+    params: { [key: string]: string | string[] | undefined };
+    searchParams?: { [key: string]: string | undefined };
+    // searchParams?: { city: string };
 };
 // export default function Page(props: PageProps ) {
 export default async function Page({ searchParams }: { searchParams: Promise<{ [key: string]: string | undefined }> }) {
@@ -67,7 +68,7 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ [
             </header>
 
 
-            <Suspense
+            {/* <Suspense
                 key={suspenseKey}
                 fallback={<div className="mt-4">Loading....</div>}>
                 <CommercialsList city={city}
@@ -79,7 +80,22 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ [
                     survey_to_date={survey_to_date}
 
                 />
+            </Suspense> */}
+
+            <Suspense
+                key={suspenseKey}
+                fallback={<CommercialSkeleton />}>
+                <CommercialsList city={city}
+                    search={search}
+                    page={page}
+                    project_type={project_type}
+                    commercial_grade={commercial_grade}
+                    survey_from_date={survey_from_date}
+                    survey_to_date={survey_to_date}
+
+                />
             </Suspense>
+
 
 
         </>

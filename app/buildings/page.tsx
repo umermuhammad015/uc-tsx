@@ -8,7 +8,8 @@ import BuildingStatus from "./components/Building_status";
 import SearchInput from "./components/SearchInput";
 import BuildingChart from "./components/BuildingChart";
 import { Suspense } from "react";
-import { Skeleton } from "@/components/ui/skeleton";
+// import { Skeleton } from "@/components/ui/skeleton";
+import { BuildingSkeleton } from "./components/BuildingSkeleton";
 
 export const revalidate = 1; // revalidate the date at most every hour
 export const dynamic = "force-dynamic";
@@ -65,7 +66,7 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ [
             </header>
 
 
-            <Suspense
+            {/* <Suspense
                 key={suspenseKey}
                 fallback={<>
                     <div className="flex flex-col gap-1 mt-4">
@@ -84,6 +85,21 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ [
 
                     </div>
                 </>}>
+                <List
+                    city={city}
+                    search={search}
+                    page={page}
+                    building_status={building_status}
+                    // survey_date={survey_date}
+                    survey_from_date={survey_from_date}
+                    survey_to_date={survey_to_date}
+
+                />
+            </Suspense> */}
+
+            <Suspense
+                key={suspenseKey}
+                fallback={<BuildingSkeleton />}>
                 <List
                     city={city}
                     search={search}

@@ -8,6 +8,7 @@ import ProjectType from "./components/Project_type";
 import Grade from "./components/Grade";
 import DateFilter from "./components/datefilter";
 import { Suspense } from "react";
+import { SocietiesSkeleton } from "./components/SocietiesSkeleton";
 
 export const revalidate = 1; // revalidate the date at most every hour
 export const dynamic = "force-dynamic";
@@ -68,9 +69,25 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ [
             </header>
 
             {/* <SocietiesList city={city} {...props} /> */}
-            <Suspense
+            {/* <Suspense
                 key={suspenseKey}
                 fallback={<div className="mt-4">Loading....</div>}>
+                <SocietiesList
+                    city={city}
+                    search={search}
+                    page={page}
+                    developer={developer}
+                    society_grade={society_grade}
+                    project_type={project_type}
+                    survey_from_date={survey_from_date}
+                    survey_to_date={survey_to_date}
+                // props
+                />
+            </Suspense> */}
+
+            <Suspense
+                key={suspenseKey}
+                fallback={<SocietiesSkeleton />}>
                 <SocietiesList
                     city={city}
                     search={search}

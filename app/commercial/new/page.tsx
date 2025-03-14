@@ -21,14 +21,22 @@ import AddCommercial from "../components/AddCommerical";
 import { z } from "zod";
 import { Commercial } from "@prisma/client";
 import { useRouter } from "next/navigation";
+import { launch_year_min_date, launch_year_max_date } from "@/app/lib/constants";
 
 // const stringSchema = z.string().min(1, "Address is required").max(255, "Address cannot exceed 255 characters");
 const numberSchema = z.number().nonnegative("Value must be a positive number").nullable();
+const occupancySchema = z
+    .number()
+    .int()
+    .min(0, "Year must be no earlier than 1950")
+    .max(100, "Year must be no later than 2024")
+    .nullable();
 const yearSchema = z
     .number()
     .int()
-    .min(1950, "Year must be no earlier than 1950")
-    .max(2025, "Year must be no later than 2024");
+    .min(launch_year_min_date, "Year must be no earlier than 1950")
+    .max(launch_year_max_date, "Year must be no later than 2024")
+    .nullable();
 
 type CommercialNamesProps = {
     commercial_zone_name: string | null;
@@ -74,7 +82,7 @@ export default function Page() {
             const allFields = [
                 // { name: "building-floor-no", value: floor_num, schema: stringSchema },
                 { name: "commercial-launch-year", value: launch_year, schema: yearSchema },
-                { name: "commercial-occupancy", value: occupancy, schema: numberSchema },
+                { name: "commercial-occupancy", value: occupancy, schema: occupancySchema },
                 { name: "commercial-area", value: area, schema: numberSchema },
                 { name: "total-plots", value: total_plots, schema: numberSchema },
                 { name: "total-shops", value: total_shops, schema: numberSchema },
@@ -522,28 +530,33 @@ export default function Page() {
                             htmlFor="commercial-launch-year"
                             className="block mb-2 text-sm font-medium"
                         >
-                            Launch Year:
+                            Launch Year: <span className="text-red-700">*</span>
                         </label>
                         <div className="flex">
                             <Input
                                 type="text"
                                 id="commercial-launch-year"
                                 name="commercial-launch-year"
-                                className="input input-bordered w-full max-w-xs border-2 border-gray-400  "
+                                className="input input-bordered w-full max-w-xs border-2 border-gray-400"
                                 placeholder=""
                                 value={launch_year}
                                 onChange={(e) => setLaunch_year(e.target.value)}
                             />
-
-                            <div className="m-3">
-                                {isNaN(Number(launch_year)) ? <span className="text-red-500 text-sm mt-1">Enter number only</span> : Number(launch_year)}
-
+                            <div className="m-3 mb-0">
+                                <div className="">
+                                    {isNaN(Number(launch_year)) ? <span className="text-red-500 text-sm mt-1">Enter number only</span> : launch_year}
+                                </div>
+                                <div className="">
+                                    {/* {((launch_year.toString().length >= 1) && (launch_year.toString().length < 4)) && <span className="text-red-500 text-sm mt-1">Year must be four characters longs</span>} */}
+                                    {(launch_year && (Number(launch_year) < 1950 || Number(launch_year) > 2025)) && <span className="text-red-500 text-sm mt-1">Year must be between {launch_year_min_date} and {launch_year_max_date}</span>}
+                                </div>
                             </div>
                         </div>
                     </div>
 
+
                     {/*Grade  */}
-                    <div className="">
+                    <div className="mt-3">
                         <label
                             htmlFor="commercial-grade"
                             className="block mb-2 text-sm font-medium"
@@ -615,21 +628,26 @@ export default function Page() {
                         >
                             Occupancy Ratio (1 to 100)
                         </label>
+                        
                         <div className="flex">
                             <Input
-                                // type="number"
                                 id="commercial-occupancy"
                                 name="commercial-occupancy"
                                 type="text"
-                                className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
-                                min={0}
-                                max={100}
+                                className="input input-bordered w-full max-w-xs border-2 border-gray-400"
                                 placeholder=""
                                 value={occupancy}
                                 onChange={(e) => setOccupancy(e.target.value)}
                             />
-                            <div className="m-3">
-                                {isNaN(Number(occupancy)) ? <span className="text-red-500 text-sm mt-1">Enter number only</span> : (occupancy + "%")}
+
+                            <div className="m-3 mb-0">
+                                <div className="">
+                                    {isNaN(Number(occupancy)) ? <span className="text-red-500 text-sm mt-1">Enter number only</span> : (occupancy + "%")}
+                                </div>
+                                <div className="">
+                                    {/* {((launch_year.toString().length >= 1) && (launch_year.toString().length < 4)) && <span className="text-red-500 text-sm mt-1">Year must be four characters longs</span>} */}
+                                    {(occupancy && (Number(occupancy) < 0 || Number(occupancy) > 100)) && <span className="text-red-500 text-sm mt-1">occupancy Ratio must be between 1 and 100</span>}
+                                </div>
                             </div>
                         </div>
 

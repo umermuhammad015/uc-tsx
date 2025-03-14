@@ -21,7 +21,7 @@ import DeletePriceDialog from "../components/DeletePriceDailog";
 //     // searchParams: { [key: string]: string | string[] | undefined }
 // }
 
-export default async function ViewCommercail( {params}: {params: Promise<{ id: string }>} ) {
+export default async function ViewCommercail({ params }: { params: Promise<{ id: string }> }) {
     // console.log(params);
     const { id } = await params;
     // Get commercial zone information
@@ -46,17 +46,26 @@ export default async function ViewCommercail( {params}: {params: Promise<{ id: s
 
     const queryParams = new URLSearchParams();
 
-    // Object.entries(searchParams).forEach(([key, value]) => {
-    //     if (value) {
-    //         if (Array.isArray(value)) {
-    //             // If the value is an array, append all values
-    //             value.forEach((v) => queryParams.append(key, v));
-    //         } else {
-    //             // If the value is a string, append it
-    //             queryParams.append(key, value);
-    //         }
-    //     }
-    // });
+    function formatDate(date: any) {
+
+        const d = new Date(date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+
+        return d
+
+        // var d = new Date(date),
+        //     // month = '' + (d.getMonth() + 1),
+        //     month = d.toLocaleString('default', { month: 'short' }),
+        //     day = '' + d.getDate(),
+        //     year = d.getFullYear();
+
+        // // if (month.length < 2) 
+        // //     month = '0' + month;
+        // if (day.length < 2)
+        //     day = '0' + day;
+
+        // return [month, day, year].join(' ');
+    }
+
 
 
     return (
@@ -71,6 +80,10 @@ export default async function ViewCommercail( {params}: {params: Promise<{ id: s
             <div className="border border-gray-400 ">
                 <Table className="">
                     <TableBody>
+                        <TableRow>
+                            <TableCell>Date </TableCell>
+                            <TableCell>{formatDate(commercial?.survey_date)}</TableCell>
+                        </TableRow>
                         <TableRow>
                             <TableCell>City </TableCell>
                             <TableCell>{commercial?.city}</TableCell>
@@ -213,7 +226,7 @@ export default async function ViewCommercail( {params}: {params: Promise<{ id: s
                                 <TableCell>{Number(price?.down_payment).toLocaleString()}</TableCell>
                                 <TableCell>{Number(price?.possession_amount).toLocaleString()}</TableCell>
 
-                                <TableCell>{price?.date}</TableCell>
+                                <TableCell className="w-20">{price?.date && new Date(price?.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</TableCell>
                                 <TableCell>{price?.remarks}</TableCell>
                                 <TableCell>
                                     <Button asChild>

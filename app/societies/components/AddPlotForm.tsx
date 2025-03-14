@@ -18,20 +18,19 @@ import { Plots, Societies } from "@prisma/client";
 
 // const stringSchema = z.string().min(1, "Address is required").max(255, "Address cannot exceed 255 characters");
 const numberSchema = z.number().nonnegative("Value must be a positive number").nullable();
-// const occupancySchema = z
-//     .number()
-//     .int()
-//     .min(0, "Year must be no earlier than 1950")
-//     .max(100, "Year must be no later than 2024");
-// export const revalidate = 1 // revalidate at most every hour
+const insallmentSchema = z
+    .number()
+    .int()
+    .min(0)
+    .max(99)
+    .nullable()
+    .optional();
+
 
 
 export default function AddPlotForm({ society_id }: { society_id: number }) {
 
     const router = useRouter()
-
-    // console.log("hi")
-
 
     const [current_society, setCurrent_society] = useState<Societies | null>();
     const { toast } = useToast()
@@ -106,7 +105,7 @@ export default function AddPlotForm({ society_id }: { society_id: number }) {
             { name: "ins-down-payment", value: ins_down_payment, schema: numberSchema },
             { name: "ins-total-price", value: ins_total_price, schema: numberSchema },
             { name: "ins-possession-Amount", value: ins_possession_Amount, schema: numberSchema },
-            { name: "ins-period", value: ins_period, schema: numberSchema },
+            { name: "ins-period", value: ins_period, schema: insallmentSchema },
 
 
         ];
@@ -280,9 +279,10 @@ export default function AddPlotForm({ society_id }: { society_id: number }) {
                                 id="plot-date"
                                 name="plot-date"
                                 // defaultValue="2024-12-13"
-                                defaultValue={(new Date).toISOString().split('T')[0]}
+                                value={entryDate}
                                 // value="12/26/2024"
                                 // value={entryDate}
+                                required
                                 className="max-w-xs border-gray-400  border-2 text-sm rounded focus:ring-blue-500  block w-full p-2.5"
                                 onChange={(e) => setEntryDate(e.target.value)}
                                 placeholder="date"
@@ -356,6 +356,7 @@ export default function AddPlotForm({ society_id }: { society_id: number }) {
                                         value={property_size}
                                         onChange={(e) => setProperty_size(e.target.value)}
                                     >
+                                        <option value="">Select</option>
                                         {(current_society?.plot_sizes_residential_87_5 === "yes" || current_society?.plot_sizes_commercial_87_5 === "yes") && <option value="87.5">87.5</option>}
                                         {(current_society?.plot_sizes_commercial_100 === "yes") && <option value="100">100</option>}
                                         {(current_society?.plot_sizes_residential_125 === "yes" || current_society?.plot_sizes_commercial_125 === "yes") && <option value="125">125</option>}
@@ -712,6 +713,7 @@ export default function AddPlotForm({ society_id }: { society_id: number }) {
                                     </div>
                                 </div>
 
+                                {/* installment amount */}
                                 <div className="">
                                     <label
                                         htmlFor="ins-total-price"
@@ -737,7 +739,7 @@ export default function AddPlotForm({ society_id }: { society_id: number }) {
                                     </div>
                                 </div>
 
-
+                                {/* Possession amount */}
                                 <div className="">
                                     <label
                                         htmlFor="ins-possession-Amount"
@@ -763,6 +765,7 @@ export default function AddPlotForm({ society_id }: { society_id: number }) {
                                     </div>
                                 </div>
 
+                                {/* installament pre */}
                                 <div className="">
                                     <label
                                         htmlFor="ins-period"
@@ -780,13 +783,19 @@ export default function AddPlotForm({ society_id }: { society_id: number }) {
                                             value={ins_period}
                                             onChange={(e) => setIns_Period(e.target.value)}
                                         />
-                                        {/* {errors["building-floor-avg-sale-price"] && <p className="text-red-500 text-sm mt-1">*</p>} */}
-                                        <div className="m-4">
-                                            {isNaN(Number(ins_period)) ? <span className="text-red-500 text-sm mt-1">Enter number only</span> : Number(ins_period).toLocaleString()}
-                                            {/* {Number(avg_sale_price).toLocaleString()} */}
+
+                                        <div className="m-3 mb-0">
+                                            <div className="m-2">
+                                                {isNaN(Number(ins_period)) ? <span className="text-red-500 text-sm mt-1">Enter number only</span> : Number(ins_period).toLocaleString()}
+                                            </div>
+                                            <div className="">
+                                                {/* {((launch_year.toString().length >= 1) && (launch_year.toString().length < 4)) && <span className="text-red-500 text-sm mt-1">Year must be four characters longs</span>} */}
+                                                {(ins_period && (Number(ins_period) < 0 || Number(ins_period) > 100)) && <span className="text-red-500 text-sm mt-1">Must be between 1 and 100</span>}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+
                             </>
 
                         }
@@ -802,7 +811,7 @@ export default function AddPlotForm({ society_id }: { society_id: number }) {
                         }}>Check</button> */}
 
                         {/* Plot Remarks  */}
-                        <div className="mt-4">
+                        <div className="">
                             <label htmlFor="message" className="block mb-2 text-sm font-medium">
                                 Remarks
                             </label>

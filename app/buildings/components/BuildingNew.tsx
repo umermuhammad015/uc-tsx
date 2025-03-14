@@ -23,6 +23,7 @@ import { z } from "zod";
 import AddBuilding from "../components/AddBuilding";
 
 import { Buildings } from "@prisma/client";
+import { launch_year_max_date, launch_year_min_date } from "@/app/lib/constants";
 
 // const stringSchema = z.string().min(1, "Address is required").max(255, "Address cannot exceed 255 characters");
 const numberSchema = z.number().nonnegative("Value must be a positive number").nullable();
@@ -30,12 +31,14 @@ const LaunchyearSchema = z
     .number()
     .int()
     .min(1950, "Year must be no earlier than 1950")
-    .max(2030, "Year must be no later than 2024");
+    .max(2030, "Year must be no later than 2024")
+    .nullable();
 const ConstractionyearSchema = z
     .number()
     .int()
     .min(1950, "Year must be no earlier than 1950")
-    .max(2050, "Year must be no later than 2024");
+    .max(2050, "Year must be no later than 2024")
+    .nullable();
 
 
 type BuildingNamesProps = {
@@ -605,7 +608,7 @@ export default function BuildingNew() {
                                     </label>
                                 </div>
 
-                                <div className="flex items-center  ml-2">
+                                <div className="items-center  ml-2">
                                     <input
                                         id="building-type-offices"
                                         name="building-type-offices"
@@ -750,16 +753,20 @@ export default function BuildingNew() {
                                 className="input input-bordered w-full max-w-xs border-2 border-gray-400"
                                 onChange={(e) => setLaunch_year(e.target.value)}
                             />
-                            {/* {errors["building-floor-avg-monthly-rent"] && <p className="text-red-500 text-sm mt-1">{errors["building-floor-avg-monthly-rent"]}</p>} */}
-                            <div className="m-4">
-                                {isNaN(Number(launch_year)) ? <span className="text-red-500 text-sm mt-1">Enter number only</span> : Number(launch_year)}
-                                {/* {Number(avg_sale_price).toLocaleString()} */}
+                            <div className="m-3 mb-0">
+                                <div className="mb-2">
+                                    {isNaN(Number(launch_year)) ? <span className="text-red-500 text-sm mt-1">Enter number only</span> : launch_year}
+                                </div>
+                                <div className="">
+                                    {/* {((launch_year.toString().length >= 1) && (launch_year.toString().length < 4)) && <span className="text-red-500 text-sm mt-1">Year must be four characters longs</span>} */}
+                                    {(launch_year && (Number(launch_year) < 1950 || Number(launch_year) > 2025)) && <span className="text-red-500 text-sm mt-1">Year must be between {launch_year_min_date} and {launch_year_max_date}</span>}
+                                </div>
                             </div>
                         </div>
                     </div>
 
                     {/* Construction Year  */}
-                    <div className="">
+                    <div className="mt-2">
                         <label
                             htmlFor="construction-year"
                             className="block mb-2 text-sm font-medium"
@@ -771,23 +778,24 @@ export default function BuildingNew() {
                                 type="text"
                                 id="construction-year"
                                 name="construction-year"
-                                minLength={1}
-                                maxLength={4}
-                                className="input input-bordered input-primary w-full max-w-xs border-2 border-gray-400 "
-                                placeholder=""
                                 value={construction_year}
+                                className="input input-bordered w-full max-w-xs border-2 border-gray-400"
                                 onChange={(e) => setConstruction_year(e.target.value)}
                             />
-                            {/* {errors["building-floor-avg-monthly-rent"] && <p className="text-red-500 text-sm mt-1">{errors["building-floor-avg-monthly-rent"]}</p>} */}
-                            <div className="m-4">
-                                {isNaN(Number(construction_year)) ? <span className="text-red-500 text-sm mt-1">Enter number only</span> : Number(construction_year)}
-                                {/* {Number(avg_sale_price).toLocaleString()} */}
+                            <div className="m-3 mb-0">
+                                <div className="">
+                                    {isNaN(Number(construction_year)) ? <span className="text-red-500 text-sm mt-1">Enter number only</span> : construction_year}
+                                </div>
+                                <div className="">
+                                    {/* {((launch_year.toString().length >= 1) && (launch_year.toString().length < 4)) && <span className="text-red-500 text-sm mt-1">Year must be four characters longs</span>} */}
+                                    {(construction_year && (Number(construction_year) < 1950 || Number(construction_year) > 2025)) && <span className="text-red-500 text-sm mt-1">Year must be between 1950 and 2025</span>}
+                                </div>
                             </div>
                         </div>
                     </div>
 
                     {/* Building Rank  */}
-                    <div className="">
+                    <div className="mt-2">
                         <label
                             htmlFor="building-rank"
                             className="block mb-2 text-sm font-medium"

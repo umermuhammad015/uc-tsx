@@ -21,7 +21,7 @@ import DeleteFloorDialog from "../components/DeleteFloorDialog";
 // }
 
 // export default function ViewBuilding({ params }: PropsType) {
-export default async function ViewBuilding({params}: {params: Promise<{ id: string }>}) {
+export default async function ViewBuilding({ params }: { params: Promise<{ id: string }> }) {
   // console.log(params);
 
   const { id } = await params;
@@ -106,6 +106,10 @@ export default async function ViewBuilding({params}: {params: Promise<{ id: stri
       <div className="border border-gray-400 ">
         <Table>
           <TableBody>
+            <TableRow>
+              <TableCell>Date </TableCell>
+              <TableCell>{building?.survey_date && new Date(building?.survey_date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</TableCell>
+            </TableRow>
             <TableRow>
               <TableCell>Name </TableCell>
               <TableCell>{building?.name}</TableCell>
@@ -361,13 +365,13 @@ export default async function ViewBuilding({params}: {params: Promise<{ id: stri
               <TableHead>Occupancy Ratio</TableHead>
               <TableHead>Min Size</TableHead>
               <TableHead>Max size</TableHead>
+              <TableHead>Payment Mode</TableHead>
               <TableHead>Avg. Sale Price</TableHead>
               <TableHead>Monthly Rent</TableHead>
-              <TableHead>Instalment Plan</TableHead>
-              <TableHead>Instalment Period</TableHead>
               <TableHead>Down Payment</TableHead>
               <TableHead>Total Sale Price</TableHead>
               <TableHead>Possession Amount</TableHead>
+              <TableHead>Instalment Period</TableHead>
               <TableHead>Date</TableHead>
               <TableHead>Remarks</TableHead>
             </TableRow>
@@ -384,14 +388,14 @@ export default async function ViewBuilding({params}: {params: Promise<{ id: stri
                 <TableCell>{(floor?.occupancy === null ? "0%" : floor?.occupancy + "%")}</TableCell>
                 <TableCell>{Number(floor?.size_min).toLocaleString()}</TableCell>
                 <TableCell>{Number(floor?.size_max).toLocaleString()}</TableCell>
+                <TableCell>{floor?.instalment_plan}</TableCell>
                 <TableCell>{Number(floor?.avg_sale_price).toLocaleString()}</TableCell>
                 <TableCell>{Number(floor?.avg_monthly_rent).toLocaleString()}</TableCell>
-                <TableCell>{floor?.instalment_plan}</TableCell>
-                <TableCell>{Number(floor?.instalment_period).toLocaleString()}</TableCell>
                 <TableCell>{Number(floor?.down_payment_amount).toLocaleString()}</TableCell>
                 <TableCell>{Number(floor?.instalment_amount).toLocaleString()}</TableCell>
                 <TableCell>{Number(floor?.possession_amount).toLocaleString()}</TableCell>
-                <TableCell>{floor?.date}</TableCell>
+                <TableCell>{Number(floor?.instalment_period).toLocaleString()}</TableCell>
+                <TableCell className="w-20">{floor?.date && new Date(floor?.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</TableCell>
                 <TableCell>{floor?.remarks}</TableCell>
                 <TableCell>
                   <Button asChild>
