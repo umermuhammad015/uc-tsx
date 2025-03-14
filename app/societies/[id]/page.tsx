@@ -14,7 +14,7 @@ import {
 // import { revalidatePath } from "next/cache";
 // import { redirect } from "next/navigation";
 import DeletePlotDialog from "../components/DeletePlotDialog";
-import { date } from "zod";
+// import { date } from "zod";
 
 
 
@@ -44,24 +44,16 @@ export default async function ViewBuilding({ params }: { params: Promise<{ id: s
         },
     });
 
-    function formatDate(date: any) {
-
-        const d = new Date(date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
-
-        return d
-
-        // var d = new Date(date),
-        //     // month = '' + (d.getMonth() + 1),
-        //     month = d.toLocaleString('default', { month: 'short' }),
-        //     day = '' + d.getDate(),
-        //     year = d.getFullYear();
-
-        // // if (month.length < 2) 
-        // //     month = '0' + month;
-        // if (day.length < 2)
-        //     day = '0' + day;
-
-        // return [month, day, year].join(' ');
+    function formatDate(date: string | Date | null | undefined): string {
+        if (!date) return "N/A"; // Handle null/undefined cases
+        
+        const d = new Date(date).toLocaleDateString('en-US', { 
+            month: 'short', 
+            day: 'numeric', 
+            year: 'numeric' 
+        });
+        
+        return d;
     }
 
     // console.log(society);

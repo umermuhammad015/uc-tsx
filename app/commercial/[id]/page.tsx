@@ -46,26 +46,17 @@ export default async function ViewCommercail({ params }: { params: Promise<{ id:
 
     const queryParams = new URLSearchParams();
 
-    function formatDate(date: any) {
+    function formatDate(date: string | Date | null | undefined): string {
+        if (!date) return "N/A"; // Handle null/undefined cases
 
-        const d = new Date(date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+        const d = new Date(date).toLocaleDateString('en-US', {
+            month: 'short',
+            day: 'numeric',
+            year: 'numeric'
+        });
 
-        return d
-
-        // var d = new Date(date),
-        //     // month = '' + (d.getMonth() + 1),
-        //     month = d.toLocaleString('default', { month: 'short' }),
-        //     day = '' + d.getDate(),
-        //     year = d.getFullYear();
-
-        // // if (month.length < 2) 
-        // //     month = '0' + month;
-        // if (day.length < 2)
-        //     day = '0' + day;
-
-        // return [month, day, year].join(' ');
+        return d;
     }
-
 
 
     return (
