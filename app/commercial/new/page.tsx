@@ -287,7 +287,7 @@ export default function Page() {
                             htmlFor="commercial-city"
                             className="block mb-2 text-sm font-medium"
                         >
-                            City
+                            City:
                         </label>
                         <Select
                             name="commercial-city">
@@ -349,7 +349,7 @@ export default function Page() {
                                 htmlFor="commercial-zone-name"
                                 className="block mb-2 text-sm font-medium"
                             >
-                                Commercial Zone name:<span className="text-red-700">*</span>
+                                Commercial Zone name: <span className="text-red-700">*</span>
                             </label>
                         </div>
 
@@ -399,7 +399,7 @@ export default function Page() {
                             htmlFor="commercial-zone"
                             className="block mb-2 text-sm font-medium"
                         >
-                            Zone:<span className="text-red-700">*</span>
+                            Zone: <span className="text-red-700">*</span>
                         </label>
                         {/* <select
                             id="commercial-zone"
@@ -416,7 +416,8 @@ export default function Page() {
                             <option value="Central">Central</option>
                         </select> */}
                         <Select
-                            name="commercial-zone">
+                            name="commercial-zone"
+                            required>
                             <SelectTrigger
                                 id="commercial-zone"
                                 className="select  w-full max-w-xs border-2 border-gray-400">
@@ -443,7 +444,7 @@ export default function Page() {
                             htmlFor="commercial-type"
                             className="block mb-2 text-sm font-medium"
                         >
-                            Type:<span className="text-red-700">*</span>
+                            Type: <span className="text-red-700">*</span>
                         </label>
                         {/* <select
                             id="commercial-type"
@@ -461,7 +462,9 @@ export default function Page() {
                             <option value="Occasional Bazar">Occasional Bazar</option>
                         </select> */}
                         <Select
-                            name="commercial-type">
+                            name="commercial-type"
+                            required
+                        >
                             <SelectTrigger
                                 id="commercial-type"
                                 className="select  w-full max-w-xs border-2 border-gray-400 ">
@@ -501,7 +504,7 @@ export default function Page() {
                             htmlFor="commercial-project-status"
                             className="block mb-2 text-sm font-medium"
                         >
-                            Project Status
+                            Project Status:
                         </label>
                         <Select
                             name="commercial-project-status">
@@ -541,14 +544,17 @@ export default function Page() {
                                 placeholder=""
                                 value={launch_year}
                                 onChange={(e) => setLaunch_year(e.target.value)}
+                                maxLength={4}
                             />
                             <div className="m-3 mb-0">
                                 <div className="">
                                     {isNaN(Number(launch_year)) ? <span className="text-red-500 text-sm mt-1">Enter number only</span> : launch_year}
                                 </div>
                                 <div className="">
-                                    {/* {((launch_year.toString().length >= 1) && (launch_year.toString().length < 4)) && <span className="text-red-500 text-sm mt-1">Year must be four characters longs</span>} */}
-                                    {(launch_year && (Number(launch_year) < 1950 || Number(launch_year) > 2025)) && <span className="text-red-500 text-sm mt-1">Year must be between {launch_year_min_date} and {launch_year_max_date}</span>}
+                                    {/* {(launch_year && launch_year.toString().length !== 4)
+                                    } */}
+                                    {(launch_year && (Number(launch_year) < 1950 || Number(launch_year) > 2025)) &&
+                                        <span className="text-red-500 text-sm mt-1">Year must be between {launch_year_min_date} and {launch_year_max_date}</span>}
                                 </div>
                             </div>
                         </div>
@@ -561,7 +567,7 @@ export default function Page() {
                             htmlFor="commercial-grade"
                             className="block mb-2 text-sm font-medium"
                         >
-                            Grade
+                            Grade:
                         </label>
                         {/* <select
                             id="commercial-grade"
@@ -626,9 +632,9 @@ export default function Page() {
                             htmlFor="commercial-occupancy"
                             className="block mb-2 text-sm font-medium"
                         >
-                            Occupancy Ratio (1 to 100)
+                            Occupancy Ratio: (1 to 100)
                         </label>
-                        
+
                         <div className="flex">
                             <Input
                                 id="commercial-occupancy"
@@ -637,6 +643,7 @@ export default function Page() {
                                 className="input input-bordered w-full max-w-xs border-2 border-gray-400"
                                 placeholder=""
                                 value={occupancy}
+                                maxLength={2}
                                 onChange={(e) => setOccupancy(e.target.value)}
                             />
 
@@ -759,7 +766,7 @@ export default function Page() {
                             htmlFor="property-feature"
                             className="block mb-2 text-sm font-medium"
                         >
-                            Property Feature
+                            Property Feature:
                         </label>
                         {/* <select
                             id="property-feature"
@@ -797,7 +804,7 @@ export default function Page() {
                             htmlFor="property-title"
                             className="block mb-2 text-sm font-medium"
                         >
-                            Property Title
+                            Property Title:
                         </label>
                         {/* <select
                             id="property-title"

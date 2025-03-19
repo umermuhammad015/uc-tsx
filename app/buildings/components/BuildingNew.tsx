@@ -60,7 +60,7 @@ export default function BuildingNew() {
     const [apartment_num, setApartment_num] = useState("");
     const [office_floor_num, setOffice_floor_num] = useState("");
     const [office_num, setOffice_num] = useState("");
-
+    
     // const [entryDate, setEntryDate] = useState<string>((new Date).toISOString().split('T')[0]);
     // const [city, setCity] = useState("");
     // const [zone, setZone] = useState("");
@@ -411,10 +411,11 @@ export default function BuildingNew() {
                             htmlFor="building-city"
                             className="block mb-2 text-sm font-medium"
                         >
-                            City:<span className="text-red-700">*</span>
+                            City: <span className="text-red-700">*</span>
                         </label>
                         <Select
-                            name="building-city">
+                            name="building-city"
+                            required>
                             <SelectTrigger
                                 id="building-city"
                                 aria-required
@@ -474,7 +475,8 @@ export default function BuildingNew() {
                             <option value="Central">Central</option>
                         </select> */}
                         <Select
-                            name="zone">
+                            name="zone"
+                            required>
                             <SelectTrigger
                                 id="zone"
                                 className="select  w-full max-w-xs border-2 border-gray-400">
@@ -496,7 +498,7 @@ export default function BuildingNew() {
                     {/* Area/Society  */}
                     <div className="mt-4">
                         <label htmlFor="area" className="block mb-2 text-sm font-medium">
-                            Area / Society: <span className="text-red-700">*</span>
+                            Area/ Society: <span className="text-red-700">*</span>
                         </label>
                         <Input
                             type="text"
@@ -515,7 +517,7 @@ export default function BuildingNew() {
                                 htmlFor="building-name"
                                 className="block mb-2 text-sm font-medium"
                             >
-                                Building name:<span className="text-red-700">*</span>
+                                Building name: <span className="text-red-700">*</span>
                             </label>
                             {/* <Input
                 type="text"
@@ -571,7 +573,7 @@ export default function BuildingNew() {
                     {/* Location/Address  */}
                     <div className="mt-4">
                         <label htmlFor="address" className="block mb-2 text-sm font-medium">
-                            Location / Address:<span className="text-red-700">*</span>
+                            Location/ Address: <span className="text-red-700">*</span>
                         </label>
                         <Input
                             type="text"
@@ -673,7 +675,7 @@ export default function BuildingNew() {
                             htmlFor="plot-size"
                             className="block mb-2 text-sm font-medium"
                         >
-                            Plot Size (Sq. Yards):
+                            Plot Size: (Sq. Yards)
                         </label>
                         <div className="flex">
                             <Input
@@ -699,7 +701,7 @@ export default function BuildingNew() {
                             htmlFor="construction-area"
                             className="block mb-2 text-sm font-medium"
                         >
-                            Total Covered Area of Building (Sq Ft):
+                            Total Covered Area of Building: (Sq Ft)
                         </label>
                         <div className="flex">
                             <Input
@@ -742,7 +744,7 @@ export default function BuildingNew() {
                             htmlFor="launch-year"
                             className="block mb-2 text-sm font-medium"
                         >
-                            Launch Year:<span className="text-red-700">*</span>
+                            Launch Year: 
                         </label>
                         <div className="flex">
                             <Input
@@ -771,7 +773,7 @@ export default function BuildingNew() {
                             htmlFor="construction-year"
                             className="block mb-2 text-sm font-medium"
                         >
-                            Construction Year:<span className="text-red-700">*</span>
+                            Construction Year: 
                         </label>
                         <div className="flex">
                             <Input
@@ -1098,7 +1100,7 @@ export default function BuildingNew() {
           </div> */}
 
                     {/* Brands/Type of Products & Services: */}
-                    <div className="mt-4">Brands/Type of Products & Services:</div>
+                    <div className="mt-4">Brands/ Type of Products & Services:</div>
                     <div className="flex gap-12">
                         {/* Retail Categories */}
                         <div className="mt-4">

@@ -315,6 +315,7 @@ export default function AddPriceForm({ commercial_id }: { commercial_id: number 
                                 id="property-type"
                                 name="property-type"
                                 value={property_type}
+                                required
                                 className="select  w-full text-sm pl-2 h-10 max-w-xs border-2 rounded border-gray-400 bg-background"
                                 onChange={(e) => setProperty_type(e.target.value)}
                             >
@@ -349,7 +350,7 @@ export default function AddPriceForm({ commercial_id }: { commercial_id: number 
                                         className="select w-full text-sm pl-2 h-10 max-w-xs border-2 rounded border-gray-400 bg-background"
                                         onChange={(e) => setPlot_size(e.target.value)}
                                     >
-                                        <option value="">All</option>
+                                        <option value="">Select</option>
                                         <option value="50">50</option>
                                         <option value="75">75</option>
                                         <option value="100">100</option>
@@ -407,7 +408,7 @@ export default function AddPriceForm({ commercial_id }: { commercial_id: number 
                                         className="select  w-full text-sm pl-2 h-10 max-w-xs border-2 rounded border-gray-400 bg-background"
                                         onChange={(e) => setBuilding_size(e.target.value)}
                                     >
-                                        <option value="">All</option>
+                                        <option value="">Select</option>
                                         <option value="50">50</option>
                                         <option value="75">75</option>
                                         <option value="100">100</option>
@@ -630,7 +631,7 @@ export default function AddPriceForm({ commercial_id }: { commercial_id: number 
                                         className="select w-full text-sm pl-2 h-10 max-w-xs border-2 rounded border-gray-400 bg-background"
                                         onChange={(e) => setWarehouse_size(e.target.value)}
                                     >
-                                        <option value="">All</option>
+                                        <option value="">Select</option>
                                         <option value="50">50</option>
                                         <option value="75">75</option>
                                         <option value="100">100</option>
@@ -834,7 +835,7 @@ export default function AddPriceForm({ commercial_id }: { commercial_id: number 
                                             type="text"
                                             id="installment-period"
                                             name="installment-period"
-
+                                            maxLength={2}
                                             className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
                                             value={installment_period}
                                             onChange={(e) => setInstallment_period(e.target.value)}

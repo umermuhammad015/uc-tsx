@@ -43,11 +43,11 @@ type SocietyNamesProps = {
 // const stringSchema = z.string().min(1, "Address is required").max(255, "Address cannot exceed 255 characters");
 const numberSchema = z.number().nonnegative("Value must be a positive number").nullable();
 const occupancySchema = z
-    .number()
-    .int()
-    .min(0, "Year must be no earlier than 1950")
-    .max(100, "Year must be no later than 2024")
-    .nullable();
+  .number()
+  .int()
+  .min(0, "Year must be no earlier than 1950")
+  .max(100, "Year must be no later than 2024")
+  .nullable();
 const yearSchema = z
   .number()
   .int()
@@ -305,7 +305,7 @@ export default function NewSocietyPage() {
               htmlFor="surveyor-name"
               className="block mb-2 text-sm font-medium "
             >
-              Survey Date: (Month/Day/year)
+              Survey Date: (Month/ Day/ Year)
 
             </label>
             <div className="absolute inset-y-0 right-0 flex items-center pr-20 pointer-events-none">
@@ -338,14 +338,15 @@ export default function NewSocietyPage() {
               htmlFor="societies-city"
               className="block mb-2 text-sm font-medium"
             >
-              City<span className="text-red-700">*</span>
+              City:<span className="text-red-700">*</span>
             </label>
             <Select
-              name="societies-city">
+              name="societies-city"
+              required>
               <SelectTrigger
                 id="societies-city"
                 className="select  w-full max-w-xs border-2 border-gray-400">
-                <SelectValue placeholder="Select city" />
+                <SelectValue placeholder="Select City" />
               </SelectTrigger>
               <SelectContent>
                 <SelectGroup>
@@ -381,7 +382,7 @@ export default function NewSocietyPage() {
               htmlFor="societies-zone"
               className="block mb-2 text-sm font-medium"
             >
-              Zone / Region:<span className="text-red-700">*</span>
+              Zone/ Region:<span className="text-red-700">*</span>
             </label>
             {/* <select
               id="societies-zone"
@@ -398,7 +399,8 @@ export default function NewSocietyPage() {
               <option value="Central">Central</option>
             </select> */}
             <Select
-              name="societies-zone">
+              name="societies-zone"
+              required>
               <SelectTrigger
                 id="societies-zone"
                 className="select  w-full max-w-xs border-2 border-gray-400">
@@ -441,7 +443,7 @@ export default function NewSocietyPage() {
                 htmlFor="soceity-project-name"
                 className="block mb-2 text-sm font-medium"
               >
-                Soceity / Project Name:<span className="text-red-700">*</span>
+                Soceity/ Project Name:<span className="text-red-700">*</span>
               </label>
               {/* <Input
                 type="text"
@@ -497,7 +499,7 @@ export default function NewSocietyPage() {
               htmlFor="societies-phase"
               className="block mb-2 text-sm font-medium"
             >
-              Total phase / sectors :
+              Total Phase/ Sectors :
             </label>
             <div className="flex">
               <Input
@@ -565,7 +567,7 @@ export default function NewSocietyPage() {
           {/* Location/Address  */}
           <div className="">
             <label htmlFor="societies-address" className="block mb-2 text-sm font-medium">
-              Location/Address:<span className="text-red-700">*</span>
+              Location/ Address:<span className="text-red-700">*</span>
             </label>
             <Input
               type="text"
@@ -668,12 +670,12 @@ export default function NewSocietyPage() {
           </div>
 
           {/*Grade  */}
-          <div className="">
+          <div className="mt-2">
             <label
               htmlFor="societies-grade"
               className="block mb-2 text-sm font-medium"
             >
-              Grade
+              Grade:
             </label>
             {/* <select
               id="societies-grade"
@@ -714,7 +716,7 @@ export default function NewSocietyPage() {
               htmlFor="societies-area"
               className="block mb-2 text-sm font-medium"
             >
-              Total Area of Society (Acres):
+              Total Area of Society: (Acres)
             </label>
             <div className="flex">
               <Input
@@ -740,7 +742,7 @@ export default function NewSocietyPage() {
               htmlFor="societies-occupancy"
               className="block mb-2 text-sm font-medium"
             >
-              Occupancy Ratio (1 to 100)
+              Occupancy Ratio: (1 to 100)
             </label>
             {/* <div className="flex">
               <Input
@@ -841,7 +843,7 @@ export default function NewSocietyPage() {
             <div className="">
               <fieldset className="flex gap-10 text-lg">
                 <legend className="block mb-4 text-sm font-medium">
-                  Plot Sizes Residential (Sq. Yards):
+                  Plot Size Residential: (Sq. Yards)
                 </legend>
 
                 <div className="flex items-center mb-4 ml-2">
@@ -1037,7 +1039,7 @@ export default function NewSocietyPage() {
               htmlFor="total-plots-commercial"
               className="block mb-2 text-sm font-medium"
             >
-              Total Plots Commercial :
+              Total Plot Commercial:
             </label>
             <div className="flex">
               <Input
@@ -1061,7 +1063,7 @@ export default function NewSocietyPage() {
             <div className="mt-4">
               <fieldset className="flex gap-10 text-lg">
                 <legend className="block mb-4 text-sm font-medium">
-                  Plot Sizes Commercial (Sq. Yards):
+                  Plot Size Commercial: (Sq. Yards)
                 </legend>
 
                 <div className="flex items-center mb-4 ml-2">
@@ -1231,7 +1233,7 @@ export default function NewSocietyPage() {
             <div className="mt-4">
               <fieldset className="flex gap-10 text-lg">
                 <legend className="block mb-4 text-sm font-medium">
-                  Apartments Type :
+                  Apartments Type:
                 </legend>
 
                 <div className="flex items-center mb-4 ml-2">
@@ -1746,7 +1748,7 @@ export default function NewSocietyPage() {
           {/* Remarks  */}
           <div className="mt-4">
             <label htmlFor="message" className="block mb-2 text-sm font-medium">
-              Your Remarks
+              Your Remarks:
             </label>
             <Textarea
               id="societies-survery-remarks"

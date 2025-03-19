@@ -304,6 +304,7 @@ export default function AddPlotForm({ society_id }: { society_id: number }) {
                                 id="type"
                                 name="type"
                                 value={plotType}
+                                required
                                 className="select  w-full text-sm pl-2 h-10 max-w-xs border-2 rounded border-gray-400 bg-background"
                                 onChange={(e) => setPlotType(e.target.value)}
                             >
@@ -642,6 +643,7 @@ export default function AddPlotForm({ society_id }: { society_id: number }) {
                                     name="plot-price"
                                     className="input input-bordered w-full max-w-xs border-2 border-gray-400 "
                                     value={plot_price}
+                                    required
                                     placeholder="Rs."
                                     onChange={(e) => setplot_Price(e.target.value)}
                                 />

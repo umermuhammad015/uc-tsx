@@ -162,7 +162,7 @@ export default function UpdatePlotForm({ price }: UpdatePriceFormProps) {
                             className="select w-full text-sm pl-2 h-10 max-w-xs border-2 rounded border-gray-400 bg-background"
                             defaultValue={price?.plot_size as string}
                         >
-                            <option value="">All</option>
+                            <option value="">Select</option>
                             <option value="50">50</option>
                             <option value="75">75</option>
                             <option value="100">100</option>
@@ -205,7 +205,7 @@ export default function UpdatePlotForm({ price }: UpdatePriceFormProps) {
                             className="select  w-full text-sm pl-2 h-10 max-w-xs border-2 rounded border-gray-400 bg-background"
                             defaultValue={price?.building_size as string}
                         >
-                            <option value="">All</option>
+                            <option value="">Select</option>
                             <option value="50">50</option>
                             <option value="75">75</option>
                             <option value="100">100</option>
@@ -372,7 +372,7 @@ export default function UpdatePlotForm({ price }: UpdatePriceFormProps) {
                             className="select w-full text-sm pl-2 h-10 max-w-xs border-2 rounded border-gray-400 bg-background"
                             defaultValue={price?.warehouse_size as string}
                         >
-                            <option value="">All</option>
+                            <option value="">Select</option>
                             <option value="50">50</option>
                             <option value="75">75</option>
                             <option value="100">100</option>
@@ -413,8 +413,9 @@ export default function UpdatePlotForm({ price }: UpdatePriceFormProps) {
                     onChange={(e) => setPayment_mode(e.target.value)}
                     defaultValue={price?.payment_mode as string}
                 >
+                    <option value="">Select</option>
                     <option value="Lumpsum Payment">Lumpsum Payment</option>
-                    <option value="Instalments">Instalments</option>
+                    <option value="Installment">Installment</option>
                 </select>
             </div>
 
@@ -478,7 +479,7 @@ export default function UpdatePlotForm({ price }: UpdatePriceFormProps) {
             {/* Instalment Period Years: */}
 
             {
-                payment_mode === "Instalments" &&
+                payment_mode === "Installment" &&
                 <>
 
                     <div className="mt-4">
@@ -486,7 +487,7 @@ export default function UpdatePlotForm({ price }: UpdatePriceFormProps) {
                             htmlFor="total-price"
                             className="block mb-2 text-sm font-medium"
                         >
-                            Instalments Amount:
+                            Installment Amount:
                         </label>
                         <div className="flex">
                             <Input
